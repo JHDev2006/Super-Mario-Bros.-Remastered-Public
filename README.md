@@ -37,11 +37,9 @@ You are more than welcome to contribute any fixes / improvements you'd like, sim
 
 ## System Requirements
 
-Please refer to the Godot engine requirements for minimum and recommended hardware specifications.
-
-[Minimum Requirements]([url](https://docs.godotengine.org/en/latest/about/system_requirements.html#desktop-or-laptop-pc-minimum))
-
-[Recommended Requirements]([url](https://docs.godotengine.org/en/latest/about/system_requirements.html#id3))
+Please refer to the Godot engine requirements for minimum and recommended hardware specifications:<br>
+[Minimum Requirements](https://docs.godotengine.org/en/latest/about/system_requirements.html#desktop-or-laptop-pc-minimum)<br>
+[Recommended Requirements](https://docs.godotengine.org/en/latest/about/system_requirements.html#id3)
 
 
 ## Issues
