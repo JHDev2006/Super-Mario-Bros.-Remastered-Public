@@ -20,7 +20,7 @@ func setup_line() -> void:
 		$Line2D.add_point(line_position)
 
 func _physics_process(delta: float) -> void:
-	velocity.y += (5 / delta) * delta
+	velocity.y += (5) * delta * 60.0
 	$Line2D.remove_point(0)
 	if global_position.y > 64 and velocity.y > 0:
 		queue_free()
