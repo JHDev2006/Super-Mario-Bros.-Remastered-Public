@@ -308,13 +308,14 @@ func transition_to_scene(scene_path := "", apply_to_audio := false) -> void:
 	transitioning_scene = true
 	
 	# audio setup
-	var initial_master_volume := AudioServer.get_bus_volume_linear(master_bus_idx)
-	var audio_endpoint := 0.0 if apply_to_audio else initial_master_volume
-	var fade_duration: float = $Transition/AnimationPlayer.get_animation("FadeIn").length # have to strictly specify type here (no walrus operator) because it cannot be inferred automatically
+	# (have to strictly specify types here (no walrus operator) because they cannot be inferred automatically)
+	var master_volume_linear: float = Settings.file.audio.master / 10.0 # divide by 10.0 to follow AudioAdjuster.gd, line 4
+	var audio_endpoint: float = 0.0 if apply_to_audio else master_volume_linear
+	var fade_duration: float = $Transition/AnimationPlayer.get_animation("FadeIn").length
 	
 	if fade_transition:
 		$Transition/AnimationPlayer.play("FadeIn")
-		fade_audio_linear(initial_master_volume, audio_endpoint, fade_duration)
+		fade_audio_linear(master_volume_linear, audio_endpoint, fade_duration)
 		await $Transition/AnimationPlayer.animation_finished
 		await get_tree().create_timer(0.1, true).timeout
 	else:
@@ -326,32 +327,33 @@ func transition_to_scene(scene_path := "", apply_to_audio := false) -> void:
 	await get_tree().create_timer(0.15, true).timeout
 	if fade_transition:
 		$Transition/AnimationPlayer.play_backwards("FadeIn")
-		fade_audio_linear(audio_endpoint, initial_master_volume, fade_duration)
+		fade_audio_linear(audio_endpoint, master_volume_linear, fade_duration)
 	else:
 		$Transition/AnimationPlayer.play("RESET")
 		$Transition.hide()
-		stop_audio_fade(initial_master_volume)
+		stop_audio_fade(master_volume_linear)
 	transitioning_scene = false
 
 func do_fake_transition(apply_to_audio := false) -> void:
 	# audio setup
-	var initial_master_volume := AudioServer.get_bus_volume_linear(master_bus_idx)
-	var audio_endpoint := 0.0 if apply_to_audio else initial_master_volume
-	var fade_duration: float = $Transition/AnimationPlayer.get_animation("FadeIn").length # have to strictly specify type here (no walrus operator) because it cannot be inferred automatically
+	# (have to strictly specify types here (no walrus operator) because they cannot be inferred automatically)
+	var master_volume_linear: float = Settings.file.audio.master / 10.0 # divide by 10.0 to follow AudioAdjuster.gd, line 4
+	var audio_endpoint: float = 0.0 if apply_to_audio else master_volume_linear
+	var fade_duration: float = $Transition/AnimationPlayer.get_animation("FadeIn").length
 	
 	if fade_transition:
 		$Transition/AnimationPlayer.play("FadeIn")
-		fade_audio_linear(initial_master_volume, audio_endpoint, fade_duration)
+		fade_audio_linear(master_volume_linear, audio_endpoint, fade_duration)
 		await $Transition/AnimationPlayer.animation_finished
 		await get_tree().create_timer(0.2, false).timeout
 		$Transition/AnimationPlayer.play_backwards("FadeIn")
-		fade_audio_linear(audio_endpoint, initial_master_volume, fade_duration)
+		fade_audio_linear(audio_endpoint, master_volume_linear, fade_duration)
 	else:
 		%TransitionBlock.modulate.a = 1
 		$Transition.show()
 		await get_tree().create_timer(0.25, false).timeout
 		$Transition.hide()
-		stop_audio_fade(initial_master_volume)
+		stop_audio_fade(master_volume_linear)
 
 func freeze_screen() -> void:
 	if Settings.file.video.visuals == 1:
