@@ -155,6 +155,6 @@ func reload_level() -> void:
 		LevelTransition.level_to_transition_to = "res://Scenes/Levels/LevelEditor.tscn"
 	if Global.current_game_mode == Global.GameMode.BOO_RACE:
 		LevelPersistance.reset_states()
-		Global.transition_to_scene(LevelTransition.level_to_transition_to)
+		Global.transition_to_scene(LevelTransition.level_to_transition_to, true)
 	else:
-		Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
+		Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn", true)

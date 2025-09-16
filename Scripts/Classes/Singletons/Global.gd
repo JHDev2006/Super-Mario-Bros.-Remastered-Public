@@ -88,6 +88,8 @@ var disco_mode := false
 signal transition_finished
 var transitioning_scene := false
 var awaiting_transition := false
+var audio_fade_tween: Tween
+var master_bus_idx := AudioServer.get_bus_index("Master")
 
 signal level_complete_begin
 signal score_tally_finished
@@ -279,13 +281,40 @@ func clear_saved_values() -> void:
 	lives = 3
 	player_power_states = "0000"
 
-func transition_to_scene(scene_path := "") -> void:
+func stop_audio_fade(reset_value_linear := -1.0) -> void:
+	if audio_fade_tween:
+		audio_fade_tween.kill()
+		audio_fade_tween = null
+	if reset_value_linear >= 0.0:
+		AudioServer.set_bus_volume_linear(master_bus_idx, reset_value_linear)
+
+func _set_master_volume_linear(vol: float) -> void:
+	AudioServer.set_bus_volume_linear(master_bus_idx, vol)
+
+func fade_audio_linear(from: float, to: float, duration: float) -> void:
+	stop_audio_fade()
+	audio_fade_tween = self.create_tween()
+	audio_fade_tween.tween_method(
+		_set_master_volume_linear,
+		from,
+		to,
+		duration
+	)
+
+func transition_to_scene(scene_path := "", apply_to_audio := false) -> void:
 	Global.fade_transition = bool(Settings.file.visuals.transition_animation)
 	if transitioning_scene:
 		return
 	transitioning_scene = true
+	
+	# audio setup
+	var initial_master_volume := AudioServer.get_bus_volume_linear(master_bus_idx)
+	var audio_endpoint := 0.0 if apply_to_audio else initial_master_volume
+	var fade_duration: float = $Transition/AnimationPlayer.get_animation("FadeIn").length # have to strictly specify type here (no walrus operator) because it cannot be inferred automatically
+	
 	if fade_transition:
 		$Transition/AnimationPlayer.play("FadeIn")
+		fade_audio_linear(initial_master_volume, audio_endpoint, fade_duration)
 		await $Transition/AnimationPlayer.animation_finished
 		await get_tree().create_timer(0.1, true).timeout
 	else:
@@ -297,24 +326,32 @@ func transition_to_scene(scene_path := "") -> void:
 	await get_tree().create_timer(0.15, true).timeout
 	if fade_transition:
 		$Transition/AnimationPlayer.play_backwards("FadeIn")
+		fade_audio_linear(audio_endpoint, initial_master_volume, fade_duration)
 	else:
 		$Transition/AnimationPlayer.play("RESET")
 		$Transition.hide()
+		stop_audio_fade(initial_master_volume)
 	transitioning_scene = false
 
-
-
-func do_fake_transition() -> void:
+func do_fake_transition(apply_to_audio := false) -> void:
+	# audio setup
+	var initial_master_volume := AudioServer.get_bus_volume_linear(master_bus_idx)
+	var audio_endpoint := 0.001 if apply_to_audio else initial_master_volume
+	var fade_duration: float = $Transition/AnimationPlayer.get_animation("FadeIn").length # have to strictly specify type here (no walrus operator) because it cannot be inferred automatically
+	
 	if fade_transition:
 		$Transition/AnimationPlayer.play("FadeIn")
+		fade_audio_linear(initial_master_volume, audio_endpoint, fade_duration)
 		await $Transition/AnimationPlayer.animation_finished
 		await get_tree().create_timer(0.2, false).timeout
 		$Transition/AnimationPlayer.play_backwards("FadeIn")
+		fade_audio_linear(audio_endpoint, initial_master_volume, fade_duration)
 	else:
 		%TransitionBlock.modulate.a = 1
 		$Transition.show()
 		await get_tree().create_timer(0.25, false).timeout
 		$Transition.hide()
+		stop_audio_fade(initial_master_volume)
 
 func freeze_screen() -> void:
 	if Settings.file.video.visuals == 1:

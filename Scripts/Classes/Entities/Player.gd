@@ -507,7 +507,7 @@ func do_i_frames() -> void:
 	refresh_hitbox()
 
 func die(pit := false) -> void:
-	if ["Dead", "Pipe", "LevelExit"].has(state_machine.state.name):
+	if state_machine.state.name == "Dead" or state_machine.state.name == "Pipe":
 		return
 	is_dead = true
 	visible = not pit
@@ -538,7 +538,7 @@ func death_load() -> void:
 	Global.death_load = true
 	if Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
 		LevelTransition.level_to_transition_to = "res://Scenes/Levels/LevelEditor.tscn"
-		Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
+		Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn", true)
 		return
 	if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
 		owner.stop_testing()
@@ -548,12 +548,12 @@ func death_load() -> void:
 			Global.lives -= 1
 	Global.death_load = true
 	if Global.current_game_mode == Global.GameMode.CHALLENGE:
-		Global.transition_to_scene("res://Scenes/Levels/ChallengeMiss.tscn")
+		Global.transition_to_scene("res://Scenes/Levels/ChallengeMiss.tscn", true)
 	elif Global.time <= 0:
-		Global.transition_to_scene("res://Scenes/Levels/TimeUp.tscn")
+		Global.transition_to_scene("res://Scenes/Levels/TimeUp.tscn", true)
 	elif Global.lives <= 0 and Settings.file.difficulty.inf_lives == 0:
 		Global.death_load = false
-		Global.transition_to_scene("res://Scenes/Levels/GameOver.tscn")
+		Global.transition_to_scene("res://Scenes/Levels/GameOver.tscn", true)
 	else:
 		LevelPersistance.reset_states()
 		if Global.current_game_mode == Global.GameMode.BOO_RACE:
