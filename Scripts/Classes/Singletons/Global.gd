@@ -336,7 +336,7 @@ func transition_to_scene(scene_path := "", apply_to_audio := false) -> void:
 func do_fake_transition(apply_to_audio := false) -> void:
 	# audio setup
 	var initial_master_volume := AudioServer.get_bus_volume_linear(master_bus_idx)
-	var audio_endpoint := 0.001 if apply_to_audio else initial_master_volume
+	var audio_endpoint := 0.0 if apply_to_audio else initial_master_volume
 	var fade_duration: float = $Transition/AnimationPlayer.get_animation("FadeIn").length # have to strictly specify type here (no walrus operator) because it cannot be inferred automatically
 	
 	if fade_transition:
