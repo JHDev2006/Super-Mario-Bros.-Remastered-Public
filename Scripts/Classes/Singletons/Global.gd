@@ -26,13 +26,11 @@ var second_quest := false
 var extra_worlds_win := false
 const lang_codes := ["en", "fr", "es", "de", "it", "pt", "pl", "tr", "ru", "jp", "fil", "id", "ga"]
 
-var config_path : String = get_config_path()
-
 var rom_path := ""
 var rom_assets_exist := false
-var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
-var ROM_PATH = config_path.path_join("baserom.nes")
-var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
+const ROM_POINTER_PATH := "user://rom_pointer.smb"
+const ROM_PATH := "user://baserom.nes"
+const ROM_ASSETS_PATH := "user://resource_packs/BaseAssets"
 const ROM_PACK_NAME := "BaseAssets"
 const ROM_ASSETS_VERSION := 0
 
@@ -62,8 +60,6 @@ var debugged_in := true
 var score_tween = create_tween()
 var time_tween = create_tween()
 
-var total_deaths := 0
-
 var score := 0:
 	set(value):
 		if disco_mode == true:
@@ -88,12 +84,6 @@ var world_num := 1
 
 var level_num := 1
 var disco_mode := false
-
-enum Room{MAIN_ROOM, BONUS_ROOM, COIN_HEAVEN, PIPE_CUTSCENE, TITLE_SCREEN}
-
-const room_strings := ["MainRoom", "BonusRoom", "CoinHeaven", "PipeCutscene", "TitleScreen"]
-
-var current_room: Room = Room.MAIN_ROOM
 
 signal transition_finished
 var transitioning_scene := false
@@ -174,51 +164,23 @@ var p_switch_timer_paused := false
 
 var debug_mode := false
 
+var Discord : Object = null # DiscordRPC
+
 func _ready() -> void:
 	current_version = get_version_number()
 	get_server_version()
 	if OS.is_debug_build():
 		debug_mode = false
-	setup_config_dirs()
-	check_for_rom()
-
-func setup_config_dirs() -> void:
-	var dirs = [
-		"custom_characters",
-		"custom_levels",
-		"logs",
-		"marathon_recordings",
-		"resource_packs",
-		"saves",
-		"screenshots"
-	]
-
-	for d in dirs:
-		var full_path = Global.config_path.path_join(d)
-		if not DirAccess.dir_exists_absolute(full_path):
-			DirAccess.make_dir_recursive_absolute(full_path)
-
-func get_config_path() -> String:
-	var exe_path := OS.get_executable_path()
-	var exe_dir  := exe_path.get_base_dir()
-	var portable_flag := exe_dir.path_join("portable.txt")
-	
-	# Test that exe dir is writeable, if not fallback to user://
-	if FileAccess.file_exists(portable_flag):
-		var test_file = exe_dir.path_join("test.txt")
-		var f = FileAccess.open(test_file, FileAccess.WRITE)
-		if f:
-			f.close()
-			var dir = DirAccess.open(exe_dir)
-			if dir:
-				dir.remove(test_file.get_file())
-			var local_dir = exe_dir.path_join("config")
-			if not DirAccess.dir_exists_absolute(local_dir):
-				DirAccess.make_dir_recursive_absolute(local_dir)
-			return local_dir
+	if OS.get_name() == "Android":
+		Discord = DiscordRPCDummy.new()
+	else:
+		# Only load the real DiscordRPC if it exists
+		if Engine.has_singleton("DiscordRPC"):
+			Discord = Engine.get_singleton("DiscordRPC")
 		else:
-			push_warning("Portable flag found but exe directory is not writeable. Falling back to user://")
-	return "user://"
+			Discord = DiscordRPCDummy.new()
+	setup_discord_rpc()
+	check_for_rom()
 
 func check_for_rom() -> void:
 	rom_path = ""
@@ -252,13 +214,7 @@ func _process(delta: float) -> void:
 		debug_mode = true
 		log_comment("Debug Mode enabled! some bugs may occur!")
 		
-	if Input.is_action_just_pressed("ui_screenshot"):
-		take_screenshot()
-
-func take_screenshot() -> void:
-	var img: Image = get_viewport().get_texture().get_image()
-	var filename = Global.config_path.path_join("screenshots/screenshot_" + str(int(Time.get_unix_time_from_system())) + ".png")
-	var err = img.save_png(filename)
+	Discord.run_callbacks()
 
 func handle_p_switch(delta: float) -> void:
 	if p_switch_active and get_tree().paused == false:
@@ -319,13 +275,8 @@ func activate_p_switch() -> void:
 
 func reset_values() -> void:
 	PlayerGhost.idx = 0
-	Checkpoint.passed_checkpoints.clear()
+	Checkpoint.passed = false
 	Checkpoint.sublevel_id = 0
-	Global.total_deaths = 0
-	Door.unlocked_doors = []
-	Checkpoint.unlocked_doors = []
-	KeyItem.total_collected = 0
-	Checkpoint.keys_collected = 0
 	Level.start_level_path = Level.get_scene_string(Global.world_num, Global.level_num)
 	LevelPersistance.reset_states()
 	Level.first_load = true
@@ -333,8 +284,6 @@ func reset_values() -> void:
 	Level.in_vine_level = false
 	Level.vine_return_level = ""
 	Level.vine_warp_level = ""
-	p_switch_active = false
-	p_switch_timer = 0.0
 
 func clear_saved_values() -> void:
 	coins = 0
@@ -364,20 +313,19 @@ func transition_to_scene(scene_path := "") -> void:
 		$Transition/AnimationPlayer.play("RESET")
 		$Transition.hide()
 	transitioning_scene = false
-	transition_finished.emit()
 
 
 
-func do_fake_transition(duration := 0.2) -> void:
+func do_fake_transition() -> void:
 	if fade_transition:
 		$Transition/AnimationPlayer.play("FadeIn")
 		await $Transition/AnimationPlayer.animation_finished
-		await get_tree().create_timer(duration, false).timeout
+		await get_tree().create_timer(0.2, false).timeout
 		$Transition/AnimationPlayer.play_backwards("FadeIn")
 	else:
 		%TransitionBlock.modulate.a = 1
 		$Transition.show()
-		await get_tree().create_timer(duration + 0.05, false).timeout
+		await get_tree().create_timer(0.25, false).timeout
 		$Transition.hide()
 
 func freeze_screen() -> void:
@@ -391,13 +339,34 @@ func close_freeze() -> void:
 	$Transition/Freeze.hide()
 	$Transition.hide()
 
-var recording_dir = config_path.path_join("marathon_recordings")
+var recording_dir = "user://marathon_recordings/"
+
+func setup_discord_rpc() -> void:
+	Discord.app_id = 1331261692381757562
+	Discord.start_timestamp = int(Time.get_unix_time_from_system())
+	Discord.details = "In Title Screen.."
+	if Discord.get_is_discord_working():
+		Discord.refresh()
+
+func set_discord_status(details := "") -> void:
+	Discord.details = details
+	if Discord.get_is_discord_working():
+		Discord.refresh()
 
 func update_game_status() -> void:
 	var lives_str := str(Global.lives)
 	if Settings.file.difficulty.inf_lives == 1:
 		lives_str = "∞"
 	var string := "Coins = " + str(Global.coins) + " Lives = " + lives_str
+	Discord.large_image = (Global.level_theme + Global.theme_time).to_lower()
+	Discord.small_image = Global.current_campaign.to_lower()
+	Discord.state = string
+
+func refresh_discord_rpc() -> void:
+	if Discord.get_is_discord_working() == false:
+		return
+	update_game_status()
+	Discord.refresh()
 
 func open_marathon_results() -> void:
 	get_node("GameHUD/MarathonResults").open()

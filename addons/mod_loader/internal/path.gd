@@ -157,8 +157,15 @@ static func get_file_paths_in_dir(src_dir_path: String) -> Array:
 # Returns an array of directory paths inside the src dir
 static func get_dir_paths_in_dir(src_dir_path: String) -> Array:
 	var dir_paths := []
+	
+	
 
 	var dir := DirAccess.open(src_dir_path)
+	
+	# If null, try creating it (needed for Android)
+	if dir == null:
+		DirAccess.make_dir_recursive_absolute(src_dir_path)
+	dir = DirAccess.open(src_dir_path)
 
 	if dir == null:
 		ModLoaderLog.error("Encountered an error (%s) when attempting to open a directory, with the path: %s" % [error_string(DirAccess.get_open_error()), src_dir_path], LOG_NAME)
