@@ -590,11 +590,18 @@ static func _rotate_log_file() -> void:
 			if not dir == null:
 				dir.copy(MOD_LOG_PATH, backup_name)
 			_clear_old_log_backups()
+	
+	# Create log directory (needed for Android)
+	var log_dir := "user://logs"
+	var dir := DirAccess.open(log_dir)
+	if dir == null:
+		DirAccess.make_dir_recursive_absolute(log_dir)
 
 	# only File.WRITE creates a new file, File.READ_WRITE throws an error
 	var log_file := FileAccess.open(MOD_LOG_PATH, FileAccess.WRITE)
 	if log_file == null:
-		assert(false, "Could not open log file, error code: %s" % error)
+		var err := FileAccess.get_open_error()
+		assert(false, "Could not open log file, error code: %s" % err)
 	log_file.store_string('%s Created log' % _get_date_string())
 	log_file.close()
 
