@@ -9,6 +9,8 @@ const VALID_HASHES := [
 var args: PackedStringArray
 var rom_arg: String = ""
 
+@onready var file_dialog := FileDialog.new()
+
 func _ready() -> void:
 	args = OS.get_cmdline_args()
 	Global.get_node("GameHUD").hide()
@@ -35,6 +37,29 @@ func _ready() -> void:
 	# Window setup
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+	
+	# Configure file dialog
+	file_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	file_dialog.use_native_dialog = true
+	file_dialog.access = FileDialog.ACCESS_FILESYSTEM
+	file_dialog.filters = PackedStringArray(["*.nes ; NES ROMs"]) # adjust for your rom type
+	file_dialog.connect("file_selected", Callable(self, "_on_file_selected"))
+	add_child(file_dialog)
+	
+	# Request the MANAGE_EXTERNAL_STORAGE permission
+	# which for some reason is the only way I can have it read the file you select
+	# https://github.com/godotengine/godot/issues/100493
+	OS.request_permissions()	
+	
+	
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		file_dialog.popup_centered_ratio(0.8)
+		
+func _on_file_selected(path: String):
+	if (handle_rom(path)):
+		return
+	error()
 
 func find_local_rom() -> String:
 	var exe_dir := OS.get_executable_path().get_base_dir()
