@@ -366,8 +366,6 @@ func close_save_menu() -> void:
 	menu_open = false
 	current_state = EditorState.TILE_MENU
 
-const CUSTOM_LEVEL_DIR := "user://custom_levels/"
-
 func handle_tile_cursor() -> void:
 	Input.set_custom_mouse_cursor(null)
 	var snapped_position = ((%TileCursor.get_global_mouse_position() - CURSOR_OFFSET).snapped(Vector2(16, 16))) + CURSOR_OFFSET

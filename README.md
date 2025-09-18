@@ -18,6 +18,7 @@ A Remake / Celebration of the original 'Super Mario Bros.' games. Features new l
 - Custom Characters - Add in your own characters to use in game.
 - Fully Open Source!
 - Level Share Square Partnered
+- Portable mode by creating `portable.txt` in the executable directory
 
 ## Downloading
 

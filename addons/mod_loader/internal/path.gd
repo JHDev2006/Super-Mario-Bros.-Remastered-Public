@@ -6,9 +6,24 @@ extends RefCounted
 # Currently all of the included functions are internal and should only be used by the mod loader itself.
 
 const LOG_NAME := "ModLoader:Path"
-const MOD_CONFIG_DIR_PATH := "user://mod_configs"
-const MOD_CONFIG_DIR_PATH_OLD := "user://configs"
+static var MOD_CONFIG_DIR_PATH : String = get_modconfigs_path()
+static var MOD_CONFIG_DIR_PATH_OLD : String = get_modconfigs_path_old()
 
+static func get_modconfigs_path() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		return exe_dir.path_join("config/mod_configs")
+	else:
+		return "user://configs"
+		
+static func get_modconfigs_path_old() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		return exe_dir.path_join("config/configs")
+	else:
+		return "user://configs"
 
 # Get the path to a local folder. Primarily used to get the  (packed) mods
 # folder, ie "res://mods" or the OS's equivalent, as well as the configs path

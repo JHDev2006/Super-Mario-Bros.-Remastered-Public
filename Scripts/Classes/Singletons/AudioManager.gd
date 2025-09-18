@@ -113,7 +113,7 @@ func play_sfx(stream_name = "", position := Vector2.ZERO, pitch := 1.0) -> void:
 	var stream = stream_name
 	var is_custom = false
 	if stream_name is String:
-		is_custom = sfx_library[stream_name].contains("user://custom_characters")
+		is_custom = sfx_library[stream_name].contains(Global.config_path.path_join("custom_characters"))
 		stream = import_stream(sfx_library[stream_name])
 	if is_custom == false:
 		player.stream = ResourceSetter.get_resource(stream, player)
@@ -236,7 +236,7 @@ func handle_music_override() -> void:
 func create_stream_from_json(json_path := "") -> AudioStream:
 	if json_path.contains(".json") == false:
 		var path = ResourceSetter.get_pure_resource_path(json_path)
-		if path.contains("user://"):
+		if path.contains(Global.config_path):
 			match json_path.get_slice(".", 1):
 				"wav":
 					return AudioStreamWAV.load_from_file(ResourceSetter.get_pure_resource_path(json_path))

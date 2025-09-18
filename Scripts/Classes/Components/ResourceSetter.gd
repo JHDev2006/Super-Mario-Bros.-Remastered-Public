@@ -134,13 +134,13 @@ static func get_pure_resource_path(resource_path := "") -> String:
 	if Settings.file.visuals.resource_packs.is_empty() == false:
 		for i in Settings.file.visuals.resource_packs:
 			var new_path = get_override_resource_path(resource_path, i)
-			new_path = new_path.replace("user://custom_characters/", "user://resource_packs/" + new_path + "/Sprites/Players/CustomCharacters/")
+			new_path = new_path.replace(Global.config_path.path_join("custom_characters"), Global.config_path.path_join("resource_packs/" + new_path + "/Sprites/Players/CustomCharacters/"))
 			if FileAccess.file_exists(new_path):
 				return new_path
 	return resource_path
 
 static func get_override_resource_path(resource_path := "", resource_pack := "") -> String:
 	if resource_pack != "":
-		return resource_path.replace("res://Assets", "user://resource_packs/" + resource_pack)
+		return resource_path.replace("res://Assets", Global.config_path.path_join("resource_packs/" + resource_pack))
 	else:
 		return resource_path

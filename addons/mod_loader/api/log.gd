@@ -6,9 +6,19 @@ extends Object
 
 
 # Path to the latest log file.
-const MOD_LOG_PATH := "user://logs/modloader.log"
+static var MOD_LOG_PATH = get_log_path()
 
 const _LOG_NAME := "ModLoader:Log"
+
+static func get_log_path() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		var log_dir = exe_dir.path_join("config/logs")
+		DirAccess.make_dir_recursive_absolute(log_dir)
+		return log_dir.path_join("modloader.log")
+	else:
+		return "user://logs/modloader.log"
 
 ## Denotes the severity of a log entry
 enum VERBOSITY_LEVEL {

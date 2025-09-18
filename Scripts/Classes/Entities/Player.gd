@@ -194,7 +194,7 @@ func _ready() -> void:
 func apply_character_physics() -> void:
 	var path = "res://Assets/Sprites/Players/" + character + "/CharacterInfo.json"
 	if int(Global.player_characters[player_id]) > 3:
-		path = path.replace("res://Assets/Sprites/Players", "user://custom_characters")
+		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 	path = ResourceSetter.get_pure_resource_path(path)
 	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
 	for i in json.physics:
@@ -323,7 +323,7 @@ func apply_character_sfx_map() -> void:
 	var custom_character := false
 	if int(Global.player_characters[player_id]) > 3:
 		custom_character = true
-		path = path.replace("res://Assets/Sprites/Players", "user://custom_characters")
+		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 	path = ResourceSetter.get_pure_resource_path(path)
 	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
 	
@@ -333,7 +333,7 @@ func apply_character_sfx_map() -> void:
 		if FileAccess.file_exists(res_path) == false or custom_character:
 			var directory = "res://Assets/Sprites/Players/" + character + "/" + json[i]
 			if int(Global.player_characters[player_id]) > 3:
-				directory = directory.replace("res://Assets/Sprites/Players", "user://custom_characters")
+				directory = directory.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 			directory = ResourceSetter.get_pure_resource_path(directory)
 			if FileAccess.file_exists(directory):
 				json[i] = directory
@@ -699,7 +699,7 @@ func dispense_stored_item() -> void:
 func get_character_sprite_path(power_stateto_use := power_state.state_name) -> String:
 	var path = "res://Assets/Sprites/Players/" + character + "/" + power_stateto_use + ".json"
 	if int(Global.player_characters[player_id]) > 3:
-		path = path.replace("res://Assets/Sprites/Players", "user://custom_characters")
+		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 	return path
 
 func enter_pipe(pipe: PipeArea, warp_to_level := true) -> void:

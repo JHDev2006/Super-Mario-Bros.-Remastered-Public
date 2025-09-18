@@ -24,7 +24,7 @@ func update() -> void:
 	if resource_setter != null:
 		var path = "res://Assets/Sprites/Players/" + character + "/" + Player.POWER_STATES[int(power_state)] + ".json"
 		if Player.CHARACTERS.find(character) > 3:
-			path = path.replace("res://Assets/Sprites/Players/", "user://custom_characters/")
+			path = path.replace("res://Assets/Sprites/Players/", Global.config_path.path_join("custom_characters/"))
 		var json = resource_setter.get_resource(load(path))
 		sprite_frames = json
 		if sprite_frames == null: 

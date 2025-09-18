@@ -276,8 +276,8 @@ func get_config_file(resource_pack := "") -> void:
 		print("resource pack to use: " + resource_pack)
 
 func get_resource_pack_path(res_path := "", resource_pack := "") -> String:
-	var user_path := res_path.replace("res://Assets", "user://resource_packs/" + resource_pack)
-	user_path = user_path.replace("user://custom_characters/", "user://resource_packs/" + resource_pack + "/Sprites/Players/CustomCharacters/")
+	var user_path := res_path.replace("res://Assets", Global.config_path.path_join("resource_packs/" + resource_pack))
+	user_path = user_path.replace(Global.config_path.path_join("custom_characters"), Global.config_path.path_join("resource_packs/" + resource_pack + "/Sprites/Players/CustomCharacters/"))
 	if FileAccess.file_exists(user_path):
 		return user_path
 	else:

@@ -6,7 +6,6 @@ static var current_level_file := ""
 static var has_entered := false
 
 var selected_lvl_idx := 0
-const CUSTOM_LEVEL_PATH := "user://custom_levels/"
 const base64_charset := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 static var page_number_save := -1
 static var last_played_container = null
