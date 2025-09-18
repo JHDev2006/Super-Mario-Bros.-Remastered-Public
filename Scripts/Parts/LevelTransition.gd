@@ -73,7 +73,7 @@ func _ready() -> void:
 	
 	if Global.current_game_mode == Global.GameMode.CAMPAIGN:
 		SaveManager.write_save(Global.current_campaign)
-	Global.set_discord_status("Playing " + Global.current_campaign + ": " + str(world_num) + "-" + str(Global.level_num))
+	DiscordManager.set_discord_status("Playing " + Global.current_campaign + ": " + str(world_num) + "-" + str(Global.level_num))
 	$BG/Control/WorldNum.text = str(world_num) +"-" + str(Global.level_num)
 	if Settings.file.difficulty.inf_lives:
 		$BG/Control/LivesCount.text = "*  ∞"

@@ -105,7 +105,7 @@ var undo_redo = UndoRedo.new()
 
 func _ready() -> void:
 	$TileMenu.hide()
-	Global.set_discord_status("In The Level Editor...")
+	DiscordManager.set_discord_status("In The Level Editor...")
 	Global.level_editor = self
 	playing_level = false
 	menu_open = $TileMenu.visible
