@@ -174,6 +174,7 @@ func _ready() -> void:
 	if OS.get_name() == "Android":
 		Discord = DiscordRPCDummy.new()
 	else:
+		#get_node("OnScreenControls").visible = false
 		# Only load the real DiscordRPC if it exists
 		if Engine.has_singleton("DiscordRPC"):
 			Discord = Engine.get_singleton("DiscordRPC")
