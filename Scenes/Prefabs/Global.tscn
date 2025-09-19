@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c3h2iqkvitqd2"]
+[gd_scene load_steps=58 format=3 uid="uid://c3h2iqkvitqd2"]
 
 [ext_resource type="PackedScene" uid="uid://bod0jkf7jc5pm" path="res://Scenes/Prefabs/GameHud.tscn" id="1_ctvpw"]
 [ext_resource type="Script" uid="uid://bbxqn16ekbpcl" path="res://Scripts/Classes/Singletons/Global.gd" id="1_t23sr"]
@@ -23,6 +23,8 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="19_okfpr"]
 [ext_resource type="Texture2D" uid="uid://bhgjvnslkt143" path="res://Assets/Sprites/UI/PanelSelected.png" id="19_xspbb"]
 [ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="20_3l3ph"]
+[ext_resource type="Texture2D" uid="uid://c8yio3lpcsvqu" path="res://Assets/Sprites/UI/PipeArrow.png" id="24_3l3ph"]
+[ext_resource type="Texture2D" uid="uid://dboi14xptkew3" path="res://Assets/Sprites/UI/BooWarning.png" id="25_m6bur"]
 
 [sub_resource type="Animation" id="Animation_6jmk5"]
 resource_name = "FadeIn"
@@ -445,6 +447,35 @@ metadata/_custom_type_script = "uid://ctsjagoa5t33f"
 script = ExtResource("19_l7dvb")
 labels = [NodePath("../CanvasLayer/VBoxContainer/ErrorMessage"), NodePath("../CanvasLayer/VBoxContainer/Comment"), NodePath("../CanvasLayer/VBoxContainer/Warning"), NodePath("../GameHUD/FPSCount")]
 metadata/_custom_type_script = "uid://dt2p68xl462v2"
+
+[node name="OnScreenControls" type="CanvasLayer" parent="."]
+
+[node name="Up" type="TouchScreenButton" parent="OnScreenControls"]
+position = Vector2(45, 181)
+rotation = -3.1415927
+texture_normal = ExtResource("24_3l3ph")
+action = "move_up_0"
+
+[node name="Right" type="TouchScreenButton" parent="OnScreenControls"]
+position = Vector2(45, 198)
+rotation = -1.5707964
+texture_normal = ExtResource("24_3l3ph")
+action = "move_right_0"
+
+[node name="A" type="TouchScreenButton" parent="OnScreenControls"]
+position = Vector2(207, 174)
+texture_normal = ExtResource("25_m6bur")
+action = "jump_0"
+
+[node name="A2" type="TouchScreenButton" parent="OnScreenControls"]
+position = Vector2(207, 197)
+texture_normal = ExtResource("25_m6bur")
+action = "jump_1"
+
+[node name="A3" type="TouchScreenButton" parent="OnScreenControls"]
+position = Vector2(209, 218)
+texture_normal = ExtResource("25_m6bur")
+action = "jump_2"
 
 [connection signal="finished" from="ScoreTally" to="." method="on_score_sfx_finished"]
 [connection signal="finished" from="ScoreTallyEnd" to="." method="on_score_sfx_finished"]
