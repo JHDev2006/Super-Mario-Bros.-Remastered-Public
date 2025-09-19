@@ -435,32 +435,114 @@ metadata/_custom_type_script = "uid://dt2p68xl462v2"
 
 [node name="OnScreenControls" type="CanvasLayer" parent="."]
 
-[node name="Up" type="TouchScreenButton" parent="OnScreenControls"]
-position = Vector2(45, 181)
-rotation = -3.1415927
+[node name="Left Side" type="Control" parent="OnScreenControls"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 37.0
+offset_top = 189.0
+offset_right = 37.0
+offset_bottom = 189.0
+
+[node name="Up" type="TouchScreenButton" parent="OnScreenControls/Left Side"]
+position = Vector2(16, -1)
+rotation = 3.1415925
+scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("24_3l3ph")
 action = "move_up_0"
 
-[node name="Right" type="TouchScreenButton" parent="OnScreenControls"]
-position = Vector2(45, 198)
+[node name="UI Up" type="TouchScreenButton" parent="OnScreenControls/Left Side/Up"]
+position = Vector2(1.57361e-06, 0)
+texture_normal = ExtResource("24_3l3ph")
+action = "ui_up"
+
+[node name="Down" type="TouchScreenButton" parent="OnScreenControls/Left Side"]
+position = Vector2(-8, 16)
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("24_3l3ph")
+action = "move_down_0"
+
+[node name="UI Down" type="TouchScreenButton" parent="OnScreenControls/Left Side/Down"]
+texture_normal = ExtResource("24_3l3ph")
+action = "ui_down"
+
+[node name="Right" type="TouchScreenButton" parent="OnScreenControls/Left Side"]
+position = Vector2(13, 19)
 rotation = -1.5707964
+scale = Vector2(1.5, 1.5)
 texture_normal = ExtResource("24_3l3ph")
 action = "move_right_0"
 
-[node name="A" type="TouchScreenButton" parent="OnScreenControls"]
-position = Vector2(207, 174)
+[node name="UI Right" type="TouchScreenButton" parent="OnScreenControls/Left Side/Right"]
+texture_normal = ExtResource("24_3l3ph")
+action = "ui_right"
+
+[node name="Left" type="TouchScreenButton" parent="OnScreenControls/Left Side"]
+position = Vector2(-5, -4)
+rotation = 1.5707964
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("24_3l3ph")
+action = "move_left_0"
+
+[node name="UI Left" type="TouchScreenButton" parent="OnScreenControls/Left Side/Left"]
+texture_normal = ExtResource("24_3l3ph")
+action = "ui_left"
+
+[node name="Bottom" type="Control" parent="OnScreenControls"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Pause" type="TouchScreenButton" parent="OnScreenControls/Bottom"]
+position = Vector2(-12, -14)
+texture_normal = ExtResource("25_m6bur")
+action = "pause"
+
+[node name="Right Side" type="Control" parent="OnScreenControls"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -54.0
+offset_right = -53.0
+offset_bottom = -54.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="A" type="TouchScreenButton" parent="OnScreenControls/Right Side"]
+position = Vector2(4, -12)
+scale = Vector2(2, 2)
 texture_normal = ExtResource("25_m6bur")
 action = "jump_0"
 
-[node name="A2" type="TouchScreenButton" parent="OnScreenControls"]
-position = Vector2(207, 197)
+[node name="UI A" type="TouchScreenButton" parent="OnScreenControls/Right Side/A"]
 texture_normal = ExtResource("25_m6bur")
-action = "jump_1"
+action = "ui_accept"
 
-[node name="A3" type="TouchScreenButton" parent="OnScreenControls"]
-position = Vector2(209, 218)
+[node name="B" type="TouchScreenButton" parent="OnScreenControls/Right Side"]
+position = Vector2(-46, -13)
+scale = Vector2(2, 2)
 texture_normal = ExtResource("25_m6bur")
-action = "jump_2"
+action = "run_0"
+
+[node name="Shoot B" type="TouchScreenButton" parent="OnScreenControls/Right Side/B"]
+texture_normal = ExtResource("25_m6bur")
+action = "action_0"
+
+[node name="UI B" type="TouchScreenButton" parent="OnScreenControls/Right Side/B"]
+texture_normal = ExtResource("25_m6bur")
+action = "ui_back"
 
 [connection signal="finished" from="ScoreTally" to="." method="on_score_sfx_finished"]
 [connection signal="finished" from="ScoreTallyEnd" to="." method="on_score_sfx_finished"]
