@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://cuh62hlq8errh"]
+[gd_scene load_steps=81 format=3 uid="uid://cuh62hlq8errh"]
 
 [ext_resource type="Script" uid="uid://dt4rosa5o35xr" path="res://Scripts/Classes/Entities/Player.gd" id="1_f6bau"]
 [ext_resource type="Script" uid="uid://uribh0f1jttq" path="res://Scripts/Classes/States/StateMachine.gd" id="2_1y62l"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://c6pd7cdhx78od" path="res://Assets/Sprites/UI/Tab.png" id="20_34tqy"]
 [ext_resource type="Script" uid="uid://dgmaoklmc0wfa" path="res://Scripts/Parts/CameraHandler.gd" id="20_d7xah"]
 [ext_resource type="Script" uid="uid://cp1bh6fi6tpa5" path="res://Scripts/Classes/Components/ScalableCollisionShape.gd" id="21_jl70t"]
+[ext_resource type="Script" uid="uid://do13ixmhrcorl" path="res://Scenes/Prefabs/Entities/GroundPound.gd" id="21_vijl6"]
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="22_445e4"]
 [ext_resource type="SpriteFrames" uid="uid://dw8r8t7iqvrmq" path="res://Resources/SpriteFrames/Player/Luigi/Fire.tres" id="23_445e4"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="24_hu5lw"]
@@ -425,6 +426,10 @@ size = Vector2(4, 6.75)
 resource_local_to_scene = true
 size = Vector2(4, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vijl6"]
+resource_local_to_scene = true
+size = Vector2(8, 16)
+
 [sub_resource type="Resource" id="Resource_xy8gq"]
 script = ExtResource("24_hu5lw")
 Overworld = ExtResource("40_o70e0")
@@ -564,6 +569,10 @@ metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 script = ExtResource("16_cekpg")
 metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
+[node name="GroundPound" type="Node" parent="States"]
+script = ExtResource("21_vijl6")
+metadata/_custom_type_script = "uid://cnjpqn05bfm57"
+
 [node name="PowerStates" type="Node" parent="."]
 unique_name_in_owner = true
 
@@ -598,7 +607,6 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, -10)
 collision_mask = 5
 
@@ -1044,6 +1052,17 @@ debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 offset = Vector2(0, 26)
 link = NodePath("../../BigCollision")
+
+[node name="GroundBlockCollision" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape2D" parent="GroundBlockCollision"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_vijl6")
+debug_color = Color(1, 0, 0, 0.419608)
+script = ExtResource("21_jl70t")
+offset = Vector2(0, -16)
 
 [node name="TimerWarn" type="AudioStreamPlayer" parent="."]
 process_mode = 3

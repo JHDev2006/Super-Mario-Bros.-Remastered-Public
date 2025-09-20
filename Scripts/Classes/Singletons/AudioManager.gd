@@ -54,7 +54,9 @@ const DEFAULT_SFX_LIBRARY := {
 	"bumper": "res://Assets/Audio/SFX/Bumper.wav",
 	"bumper_high": "res://Assets/Audio/SFX/BumperHigh.wav",
 	"door_unlock": "res://Assets/Audio/SFX/DoorUnlock.wav",
-	"door_locked": "res://Assets/Audio/SFX/DoorLocked.wav"
+	"door_locked": "res://Assets/Audio/SFX/DoorLocked.wav",
+	
+	"ground_pound": "res://Assets/Audio/SFX/GroundPound.wav"
 }
 
 @onready var sfx_library = DEFAULT_SFX_LIBRARY.duplicate()

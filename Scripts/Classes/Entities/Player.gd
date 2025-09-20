@@ -19,6 +19,14 @@ var RUN_SPEED := 160
 var WALK_SKID := 8.0
 var WALK_SPEED := 96.0
 var CEILING_BUMP_SPEED := 45.0
+
+var is_pounding := false
+var CAN_GROUND_POUND := true
+var POUND_HANG_TIME := 0.2
+var POUND_HANG_SPEED := 40.0
+var POUND_HANG_DECEL := 300.0
+var POUND_FALL_SPEED := 340
+
 @onready var camera_center_joint: Node2D = $CameraCenterJoint
 
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -125,7 +133,9 @@ const ANIMATION_FALLBACKS := {
 	"WaterIdle": "Idle",
 	"DieFreeze": "Die",
 	"StarJump": "Jump",
-	"StarFall": "JumpFall"
+	"StarFall": "JumpFall",
+	
+	"GroundPound": "CrouchFall",
 }
 
 var palette_transform := true
@@ -363,6 +373,8 @@ func is_actually_on_ceiling() -> bool:
 func enemy_bounce_off(add_combo := true) -> void:
 	if add_combo:
 		add_stomp_combo()
+	if is_pounding:
+		return
 	jump_cancelled = not Global.player_action_pressed("jump", player_id)
 	await get_tree().physics_frame
 	if Global.player_action_pressed("jump", player_id):
@@ -422,6 +434,7 @@ func handle_block_collision_detection() -> void:
 			if i is Block:
 				if is_on_ceiling():
 					i.player_block_hit.emit(self)
+
 func handle_directions() -> void:
 	input_direction = 0
 	if Global.player_action_pressed("move_right", player_id):
