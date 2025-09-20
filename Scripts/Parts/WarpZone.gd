@@ -3,7 +3,7 @@ extends Node
 
 @export var enable_sides := true
 
-@export var pipe_destinations := [-1, -1, -1]
+@export var pipe_destinations := [-1, 5, -1]
 
 func _ready() -> void:
 	if enable_sides == false:

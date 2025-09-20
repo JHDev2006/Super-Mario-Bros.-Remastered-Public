@@ -35,7 +35,7 @@ text = "1"
 position = Vector2(0, -48)
 
 [node name="Pipe" parent="Pipes/Middle" instance=ExtResource("1_cqjry")]
-world_num = -1
+world_num = 5
 
 [node name="TextLabel" parent="Pipes/Middle" groups=["Labels"] instance=ExtResource("3_xejae")]
 visible = false
