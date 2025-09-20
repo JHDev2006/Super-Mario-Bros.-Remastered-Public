@@ -20,10 +20,19 @@ A Remake / Celebration of the original 'Super Mario Bros.' games. Features new l
 - Level Share Square Partnered
 
 ## Downloading
+
+### Windows/Linux
 1. Go to the 'Releases' page
 2. Look for the latest version
 3. Download the .zip for your OS
 4. Extract and run
+5. Enjoy!
+
+### macOS
+1. Go to the [macOS repo](https://github.com/yuriko-shimizu/Super-Mario-Bros.-Remastered-Public-Mac/releases)
+2. Look for the latest version
+3. Download the .zip file
+4. Extract, drag into the 'Applictions' folder and run
 5. Enjoy!
 
 ## Importing for editing
