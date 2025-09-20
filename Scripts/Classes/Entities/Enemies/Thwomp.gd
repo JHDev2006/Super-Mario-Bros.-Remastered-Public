@@ -37,7 +37,7 @@ func handle_idle(delta: float) -> void:
 
 func handle_falling(delta: float) -> void:
 	%Sprite.play("Fall")
-	velocity.y += (15 / delta) * delta
+	velocity.y += (15 ) * delta * 60.0
 	velocity.y = clamp(velocity.y, -INF, Global.entity_max_fall_speed)
 	handle_block_breaking()
 	if is_on_floor():

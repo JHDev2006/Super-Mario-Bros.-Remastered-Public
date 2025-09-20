@@ -27,14 +27,14 @@ func _physics_process(delta: float) -> void:
 		0:
 			spin_move(delta)
 		1:
-			velocity.y += (15 / delta) * delta
+			velocity.y += (15) * delta * 60.0
 			velocity.y = clamp(velocity.y, -INF, Global.entity_max_fall_speed)
 			scale.y = -1
 			
 	global_position += velocity * delta
 
 func spin_move(delta: float) -> void:
-	velocity.y += (15 / delta) * delta
+	velocity.y += (15) * delta * 60.0
 	velocity.y = clamp(velocity.y, -INF, Global.entity_max_fall_speed)
 	entity_rotation = (180 * direction)
 	visuals.global_rotation_degrees = snapped(entity_rotation, 45)

@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
-	velocity.y += (Global.entity_gravity / delta) * delta
+	velocity.y += (Global.entity_gravity) * delta * 60.0
 	velocity.y = clamp(velocity.y, -INF, Global.entity_max_fall_speed)
 	
 func flag_die() -> void:
