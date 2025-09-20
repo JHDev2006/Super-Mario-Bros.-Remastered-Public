@@ -5,11 +5,29 @@ const VALID_HASH := "c9b34443c0414f3b91ef496d8cfee9fdd72405d673985afa11fb56732c9
 
 func _ready() -> void:
 	Global.get_node("GameHUD").hide()
-	get_window().files_dropped.connect(on_file_dropped)
-	await get_tree().physics_frame
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+	
+	# Try to auto-load a ROM from exe dir
+	var local_rom := find_local_rom()
+	if local_rom != "":
+		Global.rom_path = local_rom
+		copy_rom(local_rom)
+		verified()
+	else:
+		get_window().files_dropped.connect(on_file_dropped)
+		await get_tree().physics_frame
 
+func find_local_rom() -> String:
+	var exe_dir := OS.get_executable_path().get_base_dir()
+	var dir := DirAccess.open(exe_dir)
+	if dir:
+		for file_name in dir.get_files():
+			if file_name.to_lower().ends_with(".nes"):
+				var candidate := exe_dir.path_join(file_name)
+				if is_valid_rom(candidate):
+					return candidate
+	return ""
 
 func on_file_dropped(files: PackedStringArray) -> void:
 	for i in files:
