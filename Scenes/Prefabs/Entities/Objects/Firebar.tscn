@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://iq86u4w60yee"]
+[gd_scene load_steps=19 format=3 uid="uid://iq86u4w60yee"]
 
 [ext_resource type="Texture2D" uid="uid://b7n5kp30whnb3" path="res://Assets/Sprites/Blocks/FireBar.png" id="1_e2e05"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_kpo86"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="2_ym371"]
+[ext_resource type="Script" uid="uid://b5ejlbl0vp1gm" path="res://Scripts/Classes/Blocks/BlockClass.gd" id="3_calnj"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_kpo86"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="3_p4n6u"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="4_vag0n"]
@@ -19,13 +21,20 @@ script/source = "extends Node2D
 
 @export_enum(\"C-Clockwise\", \"Clockwise\") var direction := 0
 
+@export var block_visible := false
+
 func _physics_process(delta: float) -> void:
+	$FireBar.visible = block_visible
+	$FireBar/Block/Collision.disabled = !block_visible
 	$RotationJoint.global_rotation_degrees += 90 * delta * [-1, 1][direction]
 
 func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player:
 		area.owner.damage()
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vk8wt"]
+size = Vector2(16, 16)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_p4n6u"]
 resource_local_to_scene = true
@@ -100,6 +109,19 @@ visible = false
 top_level = true
 z_index = -5
 texture = ExtResource("1_e2e05")
+script = ExtResource("2_ym371")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Block" type="AnimatableBody2D" parent="FireBar" node_paths=PackedStringArray("visuals")]
+visible = false
+script = ExtResource("3_calnj")
+visuals = NodePath("..")
+destructable = false
+metadata/_custom_type_script = "uid://b5ejlbl0vp1gm"
+
+[node name="Collision" type="CollisionShape2D" parent="FireBar/Block"]
+visible = false
+shape = SubResource("RectangleShape2D_vk8wt")
 
 [node name="RotationJoint" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -529,7 +551,7 @@ update_scale = false
 
 [node name="EditorPropertyExposer" type="Node" parent="."]
 script = ExtResource("3_p4n6u")
-properties = Array[String](["length", "starting_angle", "direction"])
+properties = Array[String](["length", "starting_angle", "direction", "block_visible"])
 
 [node name="FireballHandler" type="Node" parent="."]
 process_mode = 3
