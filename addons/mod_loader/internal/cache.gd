@@ -4,13 +4,21 @@ extends RefCounted
 
 # This Class provides methods for caching data.
 
-const CACHE_FILE_PATH = "user://mod_loader_cache.json"
 const LOG_NAME = "ModLoader:Cache"
 
+# Path to the config directory.
+static func get_config_path() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		return exe_dir.path_join("config")
+	else:
+		return "user://"
 
 # ModLoaderStore is passed as parameter so the cache data can be loaded on ModLoaderStore._init()
 static func init_cache(_ModLoaderStore) -> void:
-	if not _ModLoaderFile.file_exists(CACHE_FILE_PATH):
+	var cache_path = get_config_path().path_join("mod_loader_cache.json")
+	if not _ModLoaderFile.file_exists(cache_path):
 		_init_cache_file()
 		return
 
@@ -71,15 +79,18 @@ static func remove_data(key: String) -> void:
 
 # Save the cache to the cache file
 static func save_to_file() -> void:
-	_ModLoaderFile.save_dictionary_to_json_file(ModLoaderStore.cache, CACHE_FILE_PATH)
+	var cache_path = get_config_path().path_join("mod_loader_cache.json")
+	_ModLoaderFile.save_dictionary_to_json_file(ModLoaderStore.cache, cache_path)
 
 
 # Load the cache file data and store it in ModLoaderStore
 # ModLoaderStore is passed as parameter so the cache data can be loaded on ModLoaderStore._init()
 static func _load_file(_ModLoaderStore = ModLoaderStore) -> void:
-	_ModLoaderStore.cache = _ModLoaderFile.get_json_as_dict(CACHE_FILE_PATH)
+	var cache_path = get_config_path().path_join("mod_loader_cache.json")
+	_ModLoaderStore.cache = _ModLoaderFile.get_json_as_dict(cache_path)
 
 
 # Create an empty cache file
 static func _init_cache_file() -> void:
-	_ModLoaderFile.save_dictionary_to_json_file({}, CACHE_FILE_PATH)
+	var cache_path = get_config_path().path_join("mod_loader_cache.json")
+	_ModLoaderFile.save_dictionary_to_json_file({}, cache_path)

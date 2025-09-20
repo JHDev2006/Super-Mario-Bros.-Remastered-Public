@@ -5,8 +5,6 @@ extends Node
 
 # Global store for all Data the ModTool requires.
 
-
-const PATH_SAVE_FILE := "user://mod-tool-plugin-save.json"
 const PATH_TEMPLATES_DIR := "res://addons/mod_tool/templates/"
 
 var editor_plugin: EditorPlugin
@@ -96,7 +94,7 @@ func init(store: Dictionary) -> void:
 
 func update_paths(new_name_mod_dir: String) -> void:
 	path_mod_dir = "res://mods-unpacked/" + new_name_mod_dir
-	path_temp_dir = "user://temp/" + new_name_mod_dir
+	path_temp_dir = Global.config_path.path_join("temp/" + new_name_mod_dir)
 	path_global_temp_dir = ProjectSettings.globalize_path(path_temp_dir)
 	path_manifest = path_mod_dir + "/manifest.json"
 	path_global_final_zip =  "%s/%s.zip" % [path_global_export_dir, name_mod_dir]
@@ -121,7 +119,7 @@ func save_store() -> void:
 		"mod_hook_preprocessor_hashmap": JSON.stringify(mod_hook_preprocessor.hashmap)
 	}
 
-	var file := FileAccess.open(PATH_SAVE_FILE, FileAccess.WRITE)
+	var file := FileAccess.open(Global.config_path.path_join("mod-tool-plugin-save.json"), FileAccess.WRITE)
 	if not file:
 		ModToolUtils.output_error(str(FileAccess.get_open_error()))
 	file.store_string(JSON.stringify(save_data))
@@ -130,10 +128,10 @@ func save_store() -> void:
 
 # NOTE: Check if mod_dir still exists when loading
 func load_store() -> void:
-	if not FileAccess.file_exists(PATH_SAVE_FILE):
+	if not FileAccess.file_exists(Global.config_path):
 		return
 
-	var file := FileAccess.open(PATH_SAVE_FILE, FileAccess.READ)
+	var file := FileAccess.open(Global.config_path.path_join("mod-tool-plugin-save.json"), FileAccess.READ)
 	if not file:
 		ModToolUtils.output_error(str(FileAccess.get_open_error()))
 	var content := file.get_as_text()

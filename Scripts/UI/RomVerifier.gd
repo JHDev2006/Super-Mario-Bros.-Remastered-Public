@@ -18,8 +18,8 @@ func on_file_dropped(files: PackedStringArray) -> void:
 			return
 		elif is_valid_rom(i):
 			Global.rom_path = i
-			verified()
 			copy_rom(i)
+			verified()
 			return
 	error()
 

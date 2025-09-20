@@ -15,11 +15,13 @@ func _ready() -> void:
 		activated.show()
 
 func get_character_sprite_path(player_id := 0) -> String:
-	var character = Player.CHARACTERS[int(Global.player_characters[player_id])]
-	var path = "res://Assets/Sprites/Players/" + character + "/CheckpointFlag.json"
-	if int(Global.player_characters[player_id]) > 3:
-		path = path.replace("res://Assets/Sprites/Players", "user://custom_characters")
-	return path
+	var char_idx = int(Global.player_characters[player_id])
+	var character = Player.CHARACTERS[char_idx]
+	if char_idx > 3:
+		var path = Global.config_path.path_join("custom_characters").path_join(character).path_join("CheckpointFlag.json")
+		return path
+	else:
+		return "res://Assets/Sprites/Players".path_join(character).path_join("CheckpointFlag.json")
 
 func activate(player: Player) -> void:
 	character_save = player.character

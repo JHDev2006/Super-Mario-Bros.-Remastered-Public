@@ -6,9 +6,14 @@ extends Object
 
 const LOG_NAME := "ModLoader:UserProfile"
 
-# The path where the Mod User Profiles data is stored.
-const FILE_PATH_USER_PROFILES := "user://mod_user_profiles.json"
-
+# Path to the config directory.
+static func get_config_path() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		return exe_dir.path_join("config")
+	else:
+		return "user://"
 
 # API profile functions
 # =============================================================================
@@ -217,7 +222,8 @@ static func get_all_as_array() -> Array:
 ## On the first execution of the game, user profiles might not yet be created.
 ## Use this method to check if everything is ready to interact with the ModLoaderUserProfile API.
 static func is_initialized() -> bool:
-	return _ModLoaderFile.file_exists(FILE_PATH_USER_PROFILES)
+	var file_path_user_profiles = get_config_path().path_join("mod_user_profiles.json")
+	return _ModLoaderFile.file_exists(file_path_user_profiles)
 
 
 # Internal profile functions
@@ -429,11 +435,12 @@ static func _create_new_profile(profile_name: String, mod_list: Dictionary) -> M
 # Loads user profiles from the JSON file and adds them to ModLoaderStore.
 static func _load() -> bool:
 	# Load JSON data from the user profiles file
-	var data := _ModLoaderFile.get_json_as_dict(FILE_PATH_USER_PROFILES)
+	var file_path_user_profiles = get_config_path().path_join("mod_user_profiles.json")
+	var data := _ModLoaderFile.get_json_as_dict(file_path_user_profiles)
 
 	# If there is no data, log an error and return
 	if data.is_empty():
-		ModLoaderLog.error("No profile file found at \"%s\"" % FILE_PATH_USER_PROFILES, LOG_NAME)
+		ModLoaderLog.error("No profile file found at \"%s\"" % file_path_user_profiles, LOG_NAME)
 		return false
 
 	# Loop through each profile in the data and add them to ModLoaderStore
@@ -453,6 +460,7 @@ static func _load() -> bool:
 
 # Saves the user profiles in the ModLoaderStore to the user profiles JSON file.
 static func _save() -> bool:
+	var file_path_user_profiles = get_config_path().path_join("mod_user_profiles.json")
 	# Initialize a dictionary to hold the serialized user profiles data
 	var save_dict := {
 		"current_profile": "",
@@ -472,4 +480,4 @@ static func _save() -> bool:
 		save_dict.profiles[profile.name].mod_list = profile.mod_list
 
 	# Save the serialized user profiles data to the user profiles JSON file
-	return _ModLoaderFile.save_dictionary_to_json_file(save_dict, FILE_PATH_USER_PROFILES)
+	return _ModLoaderFile.save_dictionary_to_json_file(save_dict, file_path_user_profiles)

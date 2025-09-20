@@ -130,17 +130,27 @@ static func create_new_sprite_frames(old_sprite_frames: SpriteFrames, resource_p
 			new_frames.set_animation_speed(i, old_sprite_frames.get_animation_speed(i))
 	return new_frames
 
+static func get_config_path() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		return exe_dir.path_join("config/")
+	else:
+		return "user://"
+	
 static func get_pure_resource_path(resource_path := "") -> String:
 	if Settings.file.visuals.resource_packs.is_empty() == false:
 		for i in Settings.file.visuals.resource_packs:
+			var config_path = get_config_path()
 			var new_path = get_override_resource_path(resource_path, i)
-			new_path = new_path.replace("user://custom_characters/", "user://resource_packs/" + new_path + "/Sprites/Players/CustomCharacters/")
+			new_path = new_path.replace(config_path.path_join("custom_characters/"), config_path.path_join("resource_packs/") + new_path + "/Sprites/Players/CustomCharacters/")
 			if FileAccess.file_exists(new_path):
 				return new_path
 	return resource_path
 
 static func get_override_resource_path(resource_path := "", resource_pack := "") -> String:
+	var config_path = get_config_path()
 	if resource_pack != "":
-		return resource_path.replace("res://Assets", "user://resource_packs/" + resource_pack)
+		return resource_path.replace("res://Assets", config_path.path_join("resource_packs/") + resource_pack)
 	else:
 		return resource_path

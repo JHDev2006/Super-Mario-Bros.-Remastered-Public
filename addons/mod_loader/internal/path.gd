@@ -6,9 +6,6 @@ extends RefCounted
 # Currently all of the included functions are internal and should only be used by the mod loader itself.
 
 const LOG_NAME := "ModLoader:Path"
-const MOD_CONFIG_DIR_PATH := "user://mod_configs"
-const MOD_CONFIG_DIR_PATH_OLD := "user://configs"
-
 
 # Get the path to a local folder. Primarily used to get the  (packed) mods
 # folder, ie "res://mods" or the OS's equivalent, as well as the configs path
@@ -223,9 +220,11 @@ static func get_unpacked_mods_dir_path() -> String:
 
 # Get the path to the configs folder, with any applicable overrides applied
 static func get_path_to_configs() -> String:
-	if _ModLoaderFile.dir_exists(MOD_CONFIG_DIR_PATH_OLD):
+	var mod_config_dir_path = Global.config_path.path_join("mod_configs")
+	var mod_config_dir_path_old = Global.config_path.path_join("configs")
+	if _ModLoaderFile.dir_exists((mod_config_dir_path_old)):
 		handle_mod_config_path_deprecation()
-	var configs_path := MOD_CONFIG_DIR_PATH
+	var configs_path : String = mod_config_dir_path
 	if ModLoaderStore:
 		if ModLoaderStore.ml_options.override_path_to_configs:
 			configs_path = ModLoaderStore.ml_options.override_path_to_configs
@@ -284,10 +283,12 @@ static func is_zip(path: String) -> bool:
 
 
 static func handle_mod_config_path_deprecation() -> void:
+	var mod_config_dir_path = Global.config_path.path_join("mod_configs")
+	var mod_config_dir_path_old = Global.config_path.path_join("configs")
 	ModLoaderDeprecated.deprecated_message("The mod config path has been moved to \"%s\".
-	The Mod Loader will attempt to rename the config directory." % MOD_CONFIG_DIR_PATH, "7.0.0")
-	var error := DirAccess.rename_absolute(MOD_CONFIG_DIR_PATH_OLD, MOD_CONFIG_DIR_PATH)
+	The Mod Loader will attempt to rename the config directory." % mod_config_dir_path, "7.0.0")
+	var error := DirAccess.rename_absolute(mod_config_dir_path_old, mod_config_dir_path)
 	if not error == OK:
 		ModLoaderLog.error("Failed to rename the config directory with error \"%s\"." % [error_string(error)], LOG_NAME)
 	else:
-		ModLoaderLog.success("Successfully renamed config directory to \"%s\"." % MOD_CONFIG_DIR_PATH, LOG_NAME)
+		ModLoaderLog.success("Successfully renamed config directory to \"%s\"." % mod_config_dir_path, LOG_NAME)

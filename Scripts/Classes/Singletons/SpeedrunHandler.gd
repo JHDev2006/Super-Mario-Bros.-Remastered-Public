@@ -201,7 +201,7 @@ func gen_time_string(timer_dict := {}) -> String:
 
 func save_recording() -> void:
 	var recording := [timer, current_recording, levels, str(["Mario", "Luigi", "Toad", "Toadette"].find(get_tree().get_first_node_in_group("Players").character)), anim_list]
-	var recording_dir = "user://marathon_recordings/" + Global.current_campaign
+	var recording_dir = Global.config_path.path_join("marathon_recordings/" + Global.current_campaign)
 	DirAccess.make_dir_recursive_absolute(recording_dir)
 	var file = FileAccess.open(recording_dir + "/" + str(Global.world_num) + "-" + str(Global.level_num) + ("warp" if is_warp_run else "") + ".json", FileAccess.WRITE)
 	file.store_string(compress_recording(JSON.stringify(recording, "", false, true)))
@@ -240,7 +240,7 @@ func load_best_marathon() -> void:
 		anim_list = recording[4].duplicate()
 
 func load_recording(world_num := 0, level_num := 0, is_warpless := true, campaign := "SMB1") -> Array:
-	var recording_dir = "user://marathon_recordings/" + campaign
+	var recording_dir = Global.config_path.path_join("marathon_recordings/" + campaign)
 	var path = recording_dir + "/" + str(world_num) + "-" + str(level_num) + ("" if is_warpless else "warp") + ".json"
 	print(path)
 	if FileAccess.file_exists(path) == false:
@@ -257,12 +257,12 @@ func load_best_times(campaign = Global.current_campaign) -> void:
 	best_level_any_times.clear()
 	for world_num in 8:
 		for level_num in 4:
-			var path = "user://marathon_recordings/" + campaign + "/" + str(world_num + 1) + "-" + str(level_num + 1) + ".json"
+			var path = Global.config_path.path_join("marathon_recordings/" + campaign + "/" + str(world_num + 1) + "-" + str(level_num + 1) + ".json")
 			if FileAccess.file_exists(path):
 				best_level_warpless_times[world_num][level_num] = load_recording(world_num + 1, level_num + 1, true, campaign)[0]
 			else:
 				best_level_warpless_times[world_num][level_num] = -1
-			path = "user://marathon_recordings/" + campaign + "/" + str(world_num + 1) + "-" + str(level_num + 1) +"warp" + ".json"
+			path = Global.config_path.path_join("marathon_recordings/" + campaign + "/" + str(world_num + 1) + "-" + str(level_num + 1) +"warp" + ".json")
 			if FileAccess.file_exists(path):
 				best_level_any_times[str(world_num + 1) + "-" + str(level_num + 1)] = load_recording(world_num + 1, level_num + 1, false, campaign)[0]
 	check_for_medal_achievement()

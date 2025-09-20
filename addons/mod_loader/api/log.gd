@@ -4,11 +4,16 @@ extends Object
 ##
 ## This Class provides methods for logging, retrieving logged data, and internal methods for working with log files.
 
-
-# Path to the latest log file.
-const MOD_LOG_PATH := "user://logs/modloader.log"
-
 const _LOG_NAME := "ModLoader:Log"
+
+# Path to the config directory.
+static func get_config_path() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		return exe_dir.path_join("config")
+	else:
+		return "user://"
 
 ## Denotes the severity of a log entry
 enum VERBOSITY_LEVEL {
@@ -518,10 +523,11 @@ static func _get_date_time_string() -> String:
 # =============================================================================
 
 static func _write_to_log_file(string_to_write: String) -> void:
-	if not FileAccess.file_exists(MOD_LOG_PATH):
+	var log_path = get_config_path().path_join("logs/modloader.log")
+	if not FileAccess.file_exists(log_path):
 		_rotate_log_file()
 
-	var log_file := FileAccess.open(MOD_LOG_PATH, FileAccess.READ_WRITE)
+	var log_file := FileAccess.open(log_path, FileAccess.READ_WRITE)
 
 	if log_file == null:
 		assert(false, "Could not open log file, error code: %s" % error)
@@ -536,21 +542,24 @@ static func _write_to_log_file(string_to_write: String) -> void:
 # https://github.com/godotengine/godot/blob/1d14c054a12dacdc193b589e4afb0ef319ee2aae/core/io/logger.cpp#L151
 static func _rotate_log_file() -> void:
 	var MAX_LOGS: int = ProjectSettings.get_setting("debug/file_logging/max_log_files")
+	var log_path = get_config_path().path_join("logs/modloader.log")
 
-	if FileAccess.file_exists(MOD_LOG_PATH):
+	if FileAccess.file_exists(log_path):
 		if MAX_LOGS > 1:
 			var datetime := _get_date_time_string().replace(":", ".")
-			var backup_name: String = MOD_LOG_PATH.get_basename() + "_" + datetime
-			if MOD_LOG_PATH.get_extension().length() > 0:
-				backup_name += "." + MOD_LOG_PATH.get_extension()
+			var backup_name: String = log_path.get_basename() + "_" + datetime
+			if log_path.get_extension().length() > 0:
+				backup_name += "." + log_path.get_extension()
 
-			var dir := DirAccess.open(MOD_LOG_PATH.get_base_dir())
+			var dir := DirAccess.open(log_path.get_base_dir())
 			if not dir == null:
-				dir.copy(MOD_LOG_PATH, backup_name)
+				dir.copy(log_path, backup_name)
 			_clear_old_log_backups()
 
 	# only File.WRITE creates a new file, File.READ_WRITE throws an error
-	var log_file := FileAccess.open(MOD_LOG_PATH, FileAccess.WRITE)
+	var log_dir = log_path.get_base_dir()
+	DirAccess.make_dir_recursive_absolute(log_dir)
+	var log_file := FileAccess.open(log_path, FileAccess.WRITE)
 	if log_file == null:
 		assert(false, "Could not open log file, error code: %s" % error)
 	log_file.store_string('%s Created log' % _get_date_string())
@@ -560,10 +569,11 @@ static func _rotate_log_file() -> void:
 static func _clear_old_log_backups() -> void:
 	var MAX_LOGS := int(ProjectSettings.get_setting("debug/file_logging/max_log_files"))
 	var MAX_BACKUPS := MAX_LOGS - 1 # -1 for the current new log (not a backup)
-	var basename := MOD_LOG_PATH.get_file().get_basename() as String
-	var extension := MOD_LOG_PATH.get_extension() as String
+	var log_path = get_config_path().path_join("logs/modloader.log")
+	var basename := log_path.get_file().get_basename() as String
+	var extension := log_path.get_extension() as String
 
-	var dir := DirAccess.open(MOD_LOG_PATH.get_base_dir())
+	var dir := DirAccess.open(log_path.get_base_dir())
 	if dir == null:
 		return
 
@@ -574,7 +584,7 @@ static func _clear_old_log_backups() -> void:
 		if (not dir.current_is_dir() and
 				file.begins_with(basename) and
 				file.get_extension() == extension and
-				not file == MOD_LOG_PATH.get_file()):
+				not file == log_path.get_file()):
 			backups.append(file)
 		file = dir.get_next()
 	dir.list_dir_end()

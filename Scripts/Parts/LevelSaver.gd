@@ -34,10 +34,9 @@ func save_level(level_name := "Unnamed Level", level_author := "You", level_desc
 	return level_file
 
 func write_file(json := {}, lvl_file_name := "") -> void:
-	DirAccess.make_dir_absolute(LevelEditor.CUSTOM_LEVEL_DIR)
 	for i in "<>:?!/":
 		lvl_file_name = lvl_file_name.replace(i, "")
-	var file = FileAccess.open(LevelEditor.CUSTOM_LEVEL_DIR + lvl_file_name, FileAccess.WRITE)
+	var file = FileAccess.open(Global.config_path.path_join("custom_levels/" + lvl_file_name), FileAccess.WRITE)
 	file.store_string(JSON.stringify(json, "", false))
 	file.close()
 	print("saved")

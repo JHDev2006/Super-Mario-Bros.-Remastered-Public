@@ -4,7 +4,6 @@ signal level_selected(container: CustomLevelContainer)
 
 const CUSTOM_LEVEL_CONTAINER = preload("uid://dt20tjug8m6oh")
 
-const CUSTOM_LEVEL_PATH := "user://custom_levels/"
 const base64_charset := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 signal closed
@@ -25,7 +24,8 @@ func open(refresh_list := true) -> void:
 	set_process(true)
 
 func open_folder() -> void:
-	OS.shell_show_in_file_manager(ProjectSettings.globalize_path(CUSTOM_LEVEL_PATH))
+	var custom_level_path = Global.config_path.path_join("custom_levels")
+	OS.shell_show_in_file_manager(ProjectSettings.globalize_path(custom_level_path))
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_back"):
@@ -41,11 +41,12 @@ func refresh() -> void:
 		if i is CustomLevelContainer:
 			i.queue_free()
 	containers.clear()
-	get_levels("user://custom_levels")
-	get_levels("user://custom_levels/downloaded")
+	get_levels(Global.config_path.path_join("custom_levels"))
+	get_levels(Global.config_path.path_join("custom_levels/downloaded"))
 
-func get_levels(path := "user://custom_levels") -> void:
-	DirAccess.make_dir_recursive_absolute(path)
+func get_levels(path : String = "") -> void:
+	if path == "":
+		path = Global.config_path.path_join("custom_levels")
 	var idx := 0
 	for i in DirAccess.get_files_at(path):
 		if i.contains(".lvl") == false:

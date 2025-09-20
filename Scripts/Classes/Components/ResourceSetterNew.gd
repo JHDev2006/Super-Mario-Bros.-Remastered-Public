@@ -255,12 +255,21 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	return json
 
+static func get_config_path() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		return exe_dir.path_join("config/")
+	else:
+		return "user://"
+	
 func get_resource_pack_path(res_path := "", resource_pack := "") -> String:
-	var user_path := res_path.replace("res://Assets", "user://resource_packs/" + resource_pack)
-	user_path = user_path.replace("user://custom_characters/", "user://resource_packs/" + resource_pack + "/Sprites/Players/CustomCharacters/")
+	var config_path = get_config_path()
+	var user_path := res_path.replace("res://Assets", config_path + "resource_packs/" + resource_pack)
+	user_path = user_path.replace(config_path.path_join("custom_characters/"), config_path.path_join("resource_packs/") + resource_pack + "/Sprites/Players/CustomCharacters/")
 	if FileAccess.file_exists(user_path):
-		if FileAccess.file_exists("user://resource_packs/" + resource_pack + "/config.json"):
-			config_to_use = JSON.parse_string(FileAccess.open("user://resource_packs/" + resource_pack + "/config.json", FileAccess.READ).get_as_text())
+		if FileAccess.file_exists(config_path.path_join("resource_packs/") + resource_pack + "/config.json"):
+			config_to_use = JSON.parse_string(FileAccess.open(config_path.path_join("resource_packs/") + resource_pack + "/config.json", FileAccess.READ).get_as_text())
 			if config_to_use == null:
 				Global.log_error("Error parsing Config File! (" + resource_pack + ")")
 				config_to_use = {}
