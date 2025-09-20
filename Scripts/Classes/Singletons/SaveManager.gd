@@ -71,6 +71,9 @@ func write_save(campaign: String = Global.current_campaign, force := false) -> v
 		return
 	var save = null
 	DirAccess.make_dir_recursive_absolute("user://saves")
+	DirAccess.make_dir_recursive_absolute("user://resource_packs")
+	DirAccess.make_dir_recursive_absolute("user://custom_characters")
+	DirAccess.make_dir_recursive_absolute("user://custom_levels")
 	var save_json = {}
 	var path = "user://saves/" + campaign + ".sav"
 	if FileAccess.file_exists(path):
