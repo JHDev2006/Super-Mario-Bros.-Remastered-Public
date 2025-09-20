@@ -1,0 +1,30 @@
+{
+	"dependencies": [],
+	"description": "Description of your mod...",
+	"extra": {
+		"godot": {
+			"authors": [
+				"AuthorName"
+			],
+			"compatible_game_version": [
+				"0.0.1"
+			],
+			"compatible_mod_loader_version": [
+				"7.0.0"
+			],
+			"config_schema": {
+
+			},
+			"description_rich": "",
+			"image": null,
+			"incompatibilities": [],
+			"load_before": [],
+			"optional_dependencies": [],
+			"tags": []
+		}
+	},
+	"name": "walljumpreadd",
+	"namespace": "falkimore",
+	"version_number": "0.0.1",
+	"website_url": "https://github.com/exampleauthor/examplemod"
+}
