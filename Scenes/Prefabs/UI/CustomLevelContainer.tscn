@@ -7,10 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://dmggnqp6esawy" path="res://Assets/Sprites/UI/DifficultyStars.png" id="5_6ktlh"]
 [ext_resource type="Texture2D" uid="uid://dfeu75lbxfkim" path="res://Assets/Sprites/UI/GameStyles.png" id="5_l0vwk"]
 [ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="5_psjdr"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="7_psjdr"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="7_t47t0"]
 [ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="8_l0vwk"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="10_psjdr"]
-[ext_resource type="Resource" uid="uid://8dcuxbc3h2u2" path="res://Resources/ThemedResources/Font.tres" id="11_jiigy"]
 
 [node name="CustomLevelContainer" type="Button"]
 custom_minimum_size = Vector2(0, 40)
@@ -57,6 +57,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("4_jiwhq")
 region_rect = Rect2(64, 64, 32, 32)
+script = ExtResource("7_psjdr")
 
 [node name="LevelInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf"]
 layout_mode = 2
@@ -104,6 +105,7 @@ layout_mode = 2
 texture = ExtResource("5_6ktlh")
 region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
+script = ExtResource("7_psjdr")
 
 [node name="Star2" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars"]
 custom_minimum_size = Vector2(8, 0)
@@ -111,6 +113,7 @@ layout_mode = 2
 texture = ExtResource("5_6ktlh")
 region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
+script = ExtResource("7_psjdr")
 
 [node name="Star3" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars"]
 custom_minimum_size = Vector2(8, 0)
@@ -118,6 +121,7 @@ layout_mode = 2
 texture = ExtResource("5_6ktlh")
 region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
+script = ExtResource("7_psjdr")
 
 [node name="Star4" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars"]
 custom_minimum_size = Vector2(8, 0)
@@ -125,6 +129,7 @@ layout_mode = 2
 texture = ExtResource("5_6ktlh")
 region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
+script = ExtResource("7_psjdr")
 
 [node name="Star5" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars"]
 custom_minimum_size = Vector2(8, 0)
@@ -132,6 +137,7 @@ layout_mode = 2
 texture = ExtResource("5_6ktlh")
 region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
+script = ExtResource("7_psjdr")
 
 [node name="CampaignIcon" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -140,6 +146,7 @@ layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("5_l0vwk")
 region_rect = Rect2(0, 0, 42, 16)
+script = ExtResource("7_psjdr")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
@@ -163,7 +170,6 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
 script = ExtResource("10_psjdr")
 labels = [NodePath("../MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo/ScrollContainer/LevelName"), NodePath("../MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo/ScrollContainer2/LevelAuthor")]
-resource = ExtResource("11_jiigy")
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [connection signal="focus_entered" from="." to="TextureRect" method="show"]

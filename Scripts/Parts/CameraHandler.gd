@@ -21,6 +21,9 @@ static var cam_locked := false
 var scrolling := false
 var cam_direction := 1
 
+# how far between the center and the edge of the screen before scrolling to the center
+const SCROLL_DIFFERENCE := 48.0
+
 func _exit_tree() -> void:
 	cam_locked = false
 
@@ -66,15 +69,10 @@ func handle_horizontal_scrolling(delta: float) -> void:
 		cam_direction = 1
 		if global_position.x >= camera_position.x:
 			var offset = 0
-			scrolling = true
 			if camera_position.x <= global_position.x - 4:
 				offset = camera_position.x - global_position.x + abs(true_velocity.x * delta)
+			scrolling = true
 			camera_position.x = global_position.x + offset
-		elif global_position.x >= camera_position.x - get_viewport_rect().size.x / 8:
-			if true_velocity.x > 75:
-				camera_position.x += true_velocity.x * delta / 2
-			else:
-				camera_position.x += true_velocity.x * delta
 	
 	## LEFT MOVEMENT
 	elif true_vel_dir == -1 and can_scroll_left and Global.current_level.can_backscroll:
@@ -85,11 +83,14 @@ func handle_horizontal_scrolling(delta: float) -> void:
 			if camera_position.x >= global_position.x + 4:
 				offset = camera_position.x - global_position.x - abs(true_velocity.x * delta)
 			camera_position.x = global_position.x + offset
-		elif global_position.x <= camera_position.x + get_viewport_rect().size.x / 4:
-			if true_velocity.x < -75:
-				camera_position.x += true_velocity.x * delta / 2
-			else:
-				camera_position.x += true_velocity.x * delta
+	
+	# horizontal adjusgments
+	# if the position is matching the camera, start scrolling towards the center
+	if global_position.x >= camera_position.x:
+		position.x = move_toward(position.x,0.0,delta * max(30.0, abs(true_velocity.x / 2.3)))
+	else:
+		# if the camera if behind the middle of the screen, calculate the current difference
+		position.x = max(min(camera_position.x-global_position.x,SCROLL_DIFFERENCE),position.x)
 
 
 func handle_vertical_scrolling(_delta: float) -> void:

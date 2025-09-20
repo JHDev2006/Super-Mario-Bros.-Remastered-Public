@@ -304,7 +304,9 @@ func load_image_from_path(path := "") -> ImageTexture:
 
 func load_audio_from_path(path := "") -> AudioStream:
 	var stream = null
-	if path.contains("res://"):
+	if path.contains(".bgm"):
+		stream = AudioManager.generate_interactive_stream(JSON.parse_string(FileAccess.get_file_as_string(path)))
+	elif path.contains("res://"):
 		return load(path)
 	if path.contains(".wav"):
 		stream = AudioStreamWAV.load_from_file(path)

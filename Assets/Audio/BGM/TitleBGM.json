@@ -1,7 +1,7 @@
 {
 	"variations": {
 		"SMB1": {"source": "TitleSMB.mp3"},
-		"SMBLL": {"source": "TitleSMBLL.mp3"},
+		"SMBLL": {"source": "TitleSMBLL.bgm"},
 		"SMBS": {"source": "TitleSMBS.mp3"},
 		"SMBANN": {"source": "TitleANN.mp3"}
 	}

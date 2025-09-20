@@ -1,7 +1,8 @@
-[gd_scene load_steps=81 format=3 uid="uid://bgeh6ex0lbqfq"]
+[gd_scene load_steps=82 format=3 uid="uid://bgeh6ex0lbqfq"]
 
 [ext_resource type="Script" uid="uid://b3stoe2kp1nv1" path="res://Scripts/UI/Credits.gd" id="1_db8c5"]
 [ext_resource type="AudioStream" uid="uid://cdhsj02wqdt7y" path="res://Assets/Audio/BGM/Credits.mp3" id="1_k57dj"]
+[ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="3_suvme"]
 [ext_resource type="Texture2D" uid="uid://bmvf1l15447r" path="res://Assets/Sprites/UI/Staff.png" id="4_g2gtw"]
 [ext_resource type="Texture2D" uid="uid://vqtqnrt5rco1" path="res://Assets/Sprites/UI/CreditsDioramas/1.png" id="4_j3afk"]
 [ext_resource type="Texture2D" uid="uid://dvo3gs4wg68hl" path="res://Assets/Sprites/UI/CreditsDioramas/2.png" id="6_s34bh"]
@@ -292,6 +293,8 @@ color = Color(0, 0, 0, 1)
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_k57dj")
 bus = &"Music"
+script = ExtResource("3_suvme")
+metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
 [node name="Labels" type="Node" parent="."]
 
@@ -460,7 +463,6 @@ offset_bottom = 232.0
 texture = ExtResource("4_j3afk")
 
 [node name="BGArtists" type="Control" parent="Labels"]
-visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -473,9 +475,9 @@ grow_horizontal = 2
 [node name="Label" type="Label" parent="Labels/BGArtists"]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 24.0
+offset_top = 16.0
 offset_right = 104.0
-offset_bottom = 40.0
+offset_bottom = 32.0
 text = "BG ARTISTS"
 uppercase = true
 
@@ -564,6 +566,25 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_x745s")
+stretch_mode = 2
+
+[node name="Label5" type="Label" parent="Labels/BGArtists/Label"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 80.0
+offset_bottom = 96.0
+text = "SamButSam"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BGArtists/Label/Label5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_g2gtw")
 stretch_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Labels/BGArtists"]
@@ -1948,6 +1969,7 @@ texture = SubResource("AtlasTexture_tm746")
 stretch_mode = 2
 
 [node name="BetaTesters2" type="Control" parent="Labels"]
+visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5

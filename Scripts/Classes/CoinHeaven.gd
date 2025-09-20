@@ -3,6 +3,9 @@ extends Level
 
 @export var all_coins_check: AllCoinsCollectedCheck = null
 
+func _ready() -> void:
+	Level.in_vine_level = true
+
 func warp_back(player: Player) -> void:
 	player.state_machine.transition_to("Freeze")
 	if all_coins_check != null:

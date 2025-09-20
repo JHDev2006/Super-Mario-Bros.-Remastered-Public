@@ -102,7 +102,7 @@
 			},
 			"SMBLL": {
 				"Day": {
-					"source": "BeachMushroomsLLNight.png"
+					"source": "BeachMushroomsNightLL.png"
 				},
 				"Night": {
 					"source": "BeachMushroomsNightLL.png"

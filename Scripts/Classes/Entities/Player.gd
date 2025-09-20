@@ -443,6 +443,7 @@ func handle_wing_flight(delta: float) -> void:
 	flight_meter -= delta
 	if flight_meter <= 0 && $Sprite/Wings.visible:
 		AudioManager.stop_music_override(AudioManager.MUSIC_OVERRIDES.WING)
+		gravity = FALL_GRAVITY
 	$Sprite/Wings.visible = flight_meter >= 0
 	if flight_meter < 0:
 		return
@@ -507,7 +508,7 @@ func do_i_frames() -> void:
 	refresh_hitbox()
 
 func die(pit := false) -> void:
-	if state_machine.state.name == "Dead" or state_machine.state.name == "Pipe":
+	if ["Dead", "Pipe", "LevelExit"].has(state_machine.state.name):
 		return
 	is_dead = true
 	visible = not pit
@@ -533,6 +534,8 @@ func die(pit := false) -> void:
 func death_load() -> void:
 	power_state = get_node("PowerStates/Small")
 	Global.player_power_states = "0000"
+	if Global.death_load:
+		return
 	Global.death_load = true
 	if Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
 		LevelTransition.level_to_transition_to = "res://Scenes/Levels/LevelEditor.tscn"

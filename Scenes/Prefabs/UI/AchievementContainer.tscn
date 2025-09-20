@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://8wnmuhtwu8ib"]
+[gd_scene load_steps=11 format=3 uid="uid://8wnmuhtwu8ib"]
 
 [ext_resource type="Script" uid="uid://cfoivmjplms0g" path="res://Scripts/UI/AchievementContainer.gd" id="1_mcb14"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="3_d3cm7"]
@@ -7,6 +7,7 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="5_0kyuu"]
 [ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="5_pjc6k"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="6_d3cm7"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="6_ptsd0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcb14"]
 bg_color = Color(0.27387273, 0.27387276, 0.27387264, 1)
@@ -64,6 +65,8 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("4_ptsd0")
 region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("6_ptsd0")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2

@@ -13,7 +13,10 @@ func _ready() -> void:
 
 func on_file_dropped(files: PackedStringArray) -> void:
 	for i in files:
-		if is_valid_rom(i):
+		if i.contains(".zip"):
+			zip_error()
+			return
+		elif is_valid_rom(i):
 			Global.rom_path = i
 			verified()
 			copy_rom(i)
@@ -34,6 +37,10 @@ static func is_valid_rom(rom_path := "") -> bool:
 func error() -> void:
 	%Error.show()
 	$ErrorSFX.play()
+
+func zip_error() -> void:
+	$ErrorSFX.play()
+	%ZipError.show()
 
 func verified() -> void:
 	$BGM.queue_free()

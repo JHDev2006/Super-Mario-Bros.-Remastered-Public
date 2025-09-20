@@ -24,6 +24,9 @@ func physics_update(delta: float) -> void:
 		in_air()
 	handle_movement(delta)
 	handle_animations()
+	handle_death_pits()
+
+func handle_death_pits() -> void:
 	if player.global_position.y > 64 and not Level.in_vine_level and player.auto_death_pit:
 		player.die(true)
 	elif player.global_position.y < Global.current_level.vertical_height - 32 and player.gravity_vector == Vector2.UP:

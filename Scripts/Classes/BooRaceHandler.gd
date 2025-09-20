@@ -63,8 +63,16 @@ func player_win_race() -> void:
 	SpeedrunHandler.run_finished()
 	run_best_time_check()
 	TimedBooBlock.can_tick = false
-	if int(BooRaceHandler.cleared_boo_levels[level_id]) <= BooRaceHandler.boo_colour:
-		BooRaceHandler.cleared_boo_levels[level_id] = str(BooRaceHandler.boo_colour + 1)
+	
+	var cleared_boo: int = 0
+	for boo_time in boo.time_needed:
+		if SpeedrunHandler.timer < boo_time:
+			cleared_boo += 1
+		else:
+			break
+	
+	if int(BooRaceHandler.cleared_boo_levels[level_id]) <= cleared_boo:
+		BooRaceHandler.cleared_boo_levels[level_id] = str(cleared_boo)
 	print(BooRaceHandler.cleared_boo_levels)
 	SaveManager.write_save(Global.current_campaign)
 	boo.flag_die()

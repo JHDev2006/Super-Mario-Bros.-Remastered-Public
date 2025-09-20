@@ -12,6 +12,8 @@ var show_timer := false
 
 signal level_finished
 
+var paused_time := 0.0
+
 var start_time := 0.0
 
 const GHOST_RECORDING_TEMPLATE := {
@@ -147,12 +149,17 @@ const MEDAL_CONVERSIONS := [2, 1.5, 1]
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if timer_active:
-		timer = abs(start_time - Time.get_ticks_msec()) / 1000
+		if Global.game_paused and Global.current_game_mode != Global.GameMode.MARATHON:
+			paused_time += delta
+		else:
+			timer = (abs(start_time - Time.get_ticks_msec()) / 1000) - paused_time
 		if enable_recording:
 			if get_tree().get_first_node_in_group("Players") != null:
 				record_frame(get_tree().get_first_node_in_group("Players"))
+	else:
+		paused_time = 0
 	Global.player_ghost.visible = ghost_visible
 	if ghost_active and ghost_enabled:
 		ghost_idx += 1
@@ -163,6 +170,7 @@ func _physics_process(_delta: float) -> void:
 
 func start_timer() -> void:
 	timer = 0
+	paused_time = 0
 	timer_active = true
 	show_timer = true
 	start_time = Time.get_ticks_msec()

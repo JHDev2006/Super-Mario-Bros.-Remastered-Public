@@ -59,8 +59,9 @@ func setup_visuals() -> void:
 		var world_visited = (SaveManager.visited_levels.substr((idx + world_offset) * 4, 4) != "0000" or Global.debug_mode or idx == 0)
 		if world_visited == false:
 			level_theme = "Mystery"
+		var resource_getter = ResourceGetter.new() #Is it safe to be making a new one of these per icon?
 		i.get_node("Icon").region_rect = CustomLevelContainer.THEME_RECTS[level_theme]
-		i.get_node("Icon").texture = CustomLevelContainer.ICON_TEXTURES[0 if (idx <= 3 or idx >= 8) and Global.current_campaign != "SMBANN" else 1]
+		i.get_node("Icon").texture = resource_getter.get_resource(CustomLevelContainer.ICON_TEXTURES[0 if (idx <= 3 or idx >= 8) and Global.current_campaign != "SMBANN" else 1])
 		i.get_node("Icon/Number").region_rect.position.y = clamp(NUMBER_Y.find(level_theme) * 12, 0, 9999)
 		i.get_node("Icon/Number").region_rect.position.x = (idx + world_offset) * 12
 		idx += 1

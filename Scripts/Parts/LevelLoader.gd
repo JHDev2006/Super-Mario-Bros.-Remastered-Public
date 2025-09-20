@@ -15,6 +15,7 @@ func _ready() -> void:
 
 func load_level(level_idx := 0) -> void:
 	clear_level()
+	editor.sub_level_id = level_idx
 	sub_level_file = editor.level_file["Levels"][level_idx]
 	build_level()
 

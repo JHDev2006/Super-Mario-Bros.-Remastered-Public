@@ -56,6 +56,7 @@ func _ready() -> void:
 	Level.can_set_time = true
 	setup_visuals()
 	%LevelLabels.get_child(BooRaceHandler.current_level_id).grab_focus()
+	$Music.play()
 
 func _exit_tree() -> void:
 	Global.get_node("GameHUD").show()

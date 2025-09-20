@@ -18,7 +18,6 @@ func _ready() -> void:
 		idx += 1
 
 func activate() -> void:
-	CameraHandler.cam_locked = true
 	for i in get_tree().get_nodes_in_group("Labels"):
 		i.show()
 	for i in get_tree().get_nodes_in_group("Plants"):

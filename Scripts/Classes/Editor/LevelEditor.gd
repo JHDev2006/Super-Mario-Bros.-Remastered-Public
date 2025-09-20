@@ -351,6 +351,7 @@ func save_level() -> void:
 	$LevelSaver.write_file(level_file, file_name)
 	%SaveDialog.text = str("'") +  file_name + "'" + " Saved." 
 	%SaveAnimation.play("Show")
+	current_state = EditorState.TILE_MENU
 	level_saved.emit()
 
 func close_save_menu() -> void:

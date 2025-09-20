@@ -10,12 +10,15 @@ var has_downloaded := false
 
 signal level_play
 
+var level_thumbnail = null
+
 func _ready() -> void:
 	set_process(false)
 
 func open(container: OnlineLevelContainer) -> void:
 	has_downloaded = FileAccess.file_exists("user://custom_levels/downloaded/" + container.level_id + ".lvl")
 	show()
+	level_thumbnail = container.level_thumbnail
 	%Download.text = "DOWNLOAD"
 	if has_downloaded:
 		%OnlinePlay.grab_focus()
@@ -34,7 +37,7 @@ func setup_visuals(container: OnlineLevelContainer) -> void:
 	%SelectedOnlineLevel.level_author = container.level_author
 	%SelectedOnlineLevel.level_id = container.level_id
 	%SelectedOnlineLevel.thumbnail_url = container.thumbnail_url
-	%SelectedOnlineLevel.level_thumbnail = container.level_thumbnail
+	%SelectedOnlineLevel.level_thumbnail = level_thumbnail
 	%SelectedOnlineLevel.difficulty = container.difficulty
 	%SelectedOnlineLevel.setup_visuals()
 	$Description.request(LEVEL_INFO_URL + container.level_id)
@@ -76,9 +79,16 @@ func level_downloaded(result: int, response_code: int, headers: PackedStringArra
 		data = json.levelData
 	file.store_string(JSON.stringify(str_to_var(data)))
 	file.close()
+	save_thumbnail()
 	%Download.hide()
 	%OnlinePlay.show()
 	%OnlinePlay.grab_focus()
+
+func save_thumbnail() -> void:
+	if OnlineLevelContainer.cached_thumbnails.has(level_id):
+		var thumbnail = OnlineLevelContainer.cached_thumbnails.get(level_id)
+		DirAccess.make_dir_recursive_absolute("user://custom_levels/downloaded/thumbnails")
+		thumbnail.get_image().save_png("user://custom_levels/downloaded/thumbnails/"+ level_id + ".png")
 
 func play_level() -> void:
 	var file_path := "user://custom_levels/downloaded/" + level_id + ".lvl"
