@@ -158,7 +158,16 @@ func apply_properties(properties := {}) -> void:
 	if property_node == null:
 		return
 	for i in properties.keys():
-		property_node.set(i, properties[i])
+		var obj = property_node
+		for p in i.split("."):
+			if not is_instance_valid(obj): continue
+			if obj.get(p) is Object:
+				if obj.has_method("duplicate"):
+					obj.set(p, obj[p].duplicate(true))
+				obj = obj[p]
+			else:
+				obj.set(p, properties[i])
+				continue
 
 func get_variation_json(json := {}) -> Dictionary:
 	var level_theme = Global.level_theme
