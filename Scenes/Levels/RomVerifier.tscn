@@ -200,6 +200,23 @@ ARE YOU SURE ITS A VALID VANILLA NES SMB1 ROM?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="ZipError" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.99999994, 0.17417294, 0.12721592, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+text = "PLEASE EXTRACT THE ROM FILE, OUT OF THE ZIP FIRST"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="SuccessMSG" type="Label" parent="BG/Border/MarginContainer"]
 unique_name_in_owner = true
 visible = false

@@ -67,7 +67,6 @@ func handle_player_interaction(delta: float) -> void:
 func on_player_entered(_player: Player) -> void:
 	if can_tele == false:
 		return
-	Level.in_vine_level = true
 	Level.vine_return_level = Global.current_level.scene_file_path
 	Global.transition_to_scene(Level.vine_warp_level)
 

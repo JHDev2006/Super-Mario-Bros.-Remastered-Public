@@ -1,4 +1,7 @@
 {
+	"properties": {
+		"can_turn": true
+	},
 	"animations": {
 		"Walk": {
 			"frames": [

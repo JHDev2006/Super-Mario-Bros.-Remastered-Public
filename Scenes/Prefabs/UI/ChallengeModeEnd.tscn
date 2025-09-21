@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://jv82ssp7gwn4"]
+[gd_scene load_steps=8 format=3 uid="uid://jv82ssp7gwn4"]
 
 [ext_resource type="Script" uid="uid://by48a8oa5hefr" path="res://Scripts/UI/StoryPause.gd" id="1_1nlpt"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_37ia2"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_r6n62"]
 [ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="5_f5hk3"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="6_6v5ys"]
-[ext_resource type="Resource" uid="uid://8dcuxbc3h2u2" path="res://Resources/ThemedResources/Font.tres" id="7_g5edx"]
 [ext_resource type="PackedScene" uid="uid://dnksdgorle8su" path="res://Scenes/Prefabs/UI/SettingsMenu.tscn" id="8_s7xbe"]
 
 [node name="PauseMenu" type="Control" node_paths=PackedStringArray("options")]
@@ -89,7 +88,6 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
 script = ExtResource("6_6v5ys")
 labels = [NodePath("../Control/PanelContainer/MarginContainer/VBoxContainer/Label"), NodePath("../Control/PanelContainer/MarginContainer/VBoxContainer/Label2"), NodePath("../Control/PanelContainer/MarginContainer/VBoxContainer/Label3"), null]
-resource = ExtResource("7_g5edx")
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [node name="SettingsMenu" parent="." node_paths=PackedStringArray("disabled_containers") instance=ExtResource("8_s7xbe")]

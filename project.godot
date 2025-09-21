@@ -15,15 +15,17 @@ warnings/check_angle_interpolation_type_conflicting=false
 
 [application]
 
-config/name="SMB1R"
+config/name="Super Mario Bros. Remastered"
+config/version="1.0.1"
 run/main_scene="uid://bn66tnn8nlpi7"
 config/use_custom_user_dir=true
+config/custom_user_dir_name="SMB1R"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://icon.png"
+config/icon="uid://dxm1xti5gx41t"
 
 [autoload]
 
@@ -33,10 +35,10 @@ Global="*res://Scenes/Prefabs/Global.tscn"
 Settings="*res://Scenes/Prefabs/Autoload/Settings.tscn"
 SaveManager="*res://Scripts/Classes/Singletons/SaveManager.gd"
 AudioManager="*res://Scenes/Prefabs/Autoload/AudioManager.tscn"
-DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 GameBanana="*res://Scripts/Classes/Singletons/GameBananaManager.gd"
 SpeedrunHandler="*res://Scripts/Classes/Singletons/SpeedrunHandler.gd"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [debug]
 
@@ -47,9 +49,8 @@ gdscript/warnings/narrowing_conversion=0
 
 window/size/viewport_width=256
 window/size/viewport_height=240
-window/size/window_width_override=1024
-window/size/window_height_override=960
-window/stretch/mode="viewport"
+window/size/window_width_override=768
+window/size/window_height_override=720
 
 [dotnet]
 
@@ -524,8 +525,8 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 textures/default_filters/anisotropic_filtering_level=0
 textures/decals/filter=0
 textures/light_projectors/filter=0

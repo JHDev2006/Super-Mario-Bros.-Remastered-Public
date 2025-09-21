@@ -22,6 +22,7 @@ texture = ExtResource("3_8rftf")
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 visible = false
+priority = 1
 script = ExtResource("4_wggyr")
 metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 

@@ -8,11 +8,11 @@
 		"Desert": {"source": "Cannon.png", "rect": [0, 16, 48, 16]},
 		"Jungle": {"source": "Cannon.png", "rect": [48, 16, 48, 16]},
 		"Snow": {"source": "Cannon.png", "rect": [96, 16, 48, 16]},
-		"Space": {"source": "Cannon.png", "rect": [144, 16, 48, 16]},
+		"Volcano": {"source": "Cannon.png", "rect": [144, 16, 48, 16]},
 		"Autumn": {"source": "Cannon.png", "rect": [0, 32, 48, 16]},
 		"Beach": {"source": "Cannon.png", "rect": [48, 32, 48, 16]},
 		"Mountain": {"source": "Cannon.png", "rect": [96, 32, 48, 16]},
-		"Volcano": {"source": "Cannon.png", "rect": [144, 32, 48, 16]},
+		"Space": {"source": "Cannon.png", "rect": [144, 32, 48, 16]},
 		"Bonus": {"source": "Cannon.png", "rect": [0, 48, 48, 16]}
 	}
 }

@@ -10,16 +10,27 @@ const base_info_json := {
 	}
 
 func create_template() -> void:
-	get_directories("res://Assets/", files, directories)
+	get_directories("res://Assets", files, directories)
 	for i in directories:
-		DirAccess.make_dir_recursive_absolute(i.replace("res://Assets", "user://resource_packs/new_pack/"))
+		DirAccess.make_dir_recursive_absolute(i.replace("res://Assets", "user://resource_packs/new_pack"))
 	for i in files:
 		var destination = i
 		if destination.contains("res://"):
-			destination = i.replace("res://Assets", "user://resource_packs/new_pack/")
+			destination = i.replace("res://Assets", "user://resource_packs/new_pack")
 		else:
 			destination = i.replace("user://resource_packs/BaseAssets", "user://resource_packs/new_pack")
-		DirAccess.copy_absolute(i, destination)
+		print("Copying '" + i + "' to: '" + destination)
+		if i.contains(".bgm") or i.contains(".json") or i.contains("user://"):
+			DirAccess.copy_absolute(i, destination)
+		else:
+			var resource = load(i)
+			if resource is Texture:
+				resource.get_image().save_png(destination)
+			elif resource is AudioStream:
+				var file = FileAccess.open(destination, FileAccess.WRITE)
+				file.store_buffer(resource.data)
+				file.close()
+			
 	var file = FileAccess.open("user://resource_packs/new_pack/pack_info.json", FileAccess.WRITE)
 	file.store_string(JSON.stringify(base_info_json, "\t"))
 	file.close()
@@ -34,7 +45,9 @@ func get_directories(base_dir := "", files := [], directories := []) -> void:
 
 func get_files(base_dir := "", files := []) -> void:
 	for i in DirAccess.get_files_at(base_dir):
-		if i.contains(".import") == false and base_dir.contains("LevelGuides") == false:
+		if base_dir.contains("LevelGuides") == false:
+			i = i.replace(".import", "")
+			print(i)
 			var target_path = base_dir + "/" + i
 			var rom_assets_path = target_path.replace("res://Assets", "user://resource_packs/BaseAssets")
 			if FileAccess.file_exists(rom_assets_path):

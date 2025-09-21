@@ -16,6 +16,7 @@ func physics_update(delta: float) -> void:
 		player.direction = int(player.pipe_enter_direction.x)
 		player.sprite.scale.x = player.direction
 	else:
+		player.sprite.speed_scale = 1
 		player.play_animation("Pipe")
 
 func exit() -> void:

@@ -173,6 +173,8 @@ func _ready() -> void:
 	check_for_rom()
 
 func check_for_rom() -> void:
+	rom_path = ""
+	rom_assets_exist = false
 	if FileAccess.file_exists(Global.ROM_PATH) == false:
 		return
 	var path = Global.ROM_PATH 

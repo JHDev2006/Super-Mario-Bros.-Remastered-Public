@@ -8,7 +8,8 @@ var file := {
 		"drop_shadows": 1,
 		"scaling": 0,
 		"visuals": 0,
-		"hud_size": 0
+		"hud_size": 0, 
+		"frame_limit" : 0,
 	},
 	"audio": {
 		"master": 10.0,

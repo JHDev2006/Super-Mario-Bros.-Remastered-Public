@@ -148,6 +148,12 @@ func delete_everything(campaign := \"SMB1\") -> void:
 	delete_challenge(campaign)
 	delete_achievement(campaign)
 	delete_boo(campaign)
+
+func regen_rom() -> void:
+	DirAccess.remove_absolute(Global.ROM_PATH)
+	DirAccess.remove_absolute(Global.ROM_ASSETS_PATH)
+	Global.check_for_rom()
+	Global.transition_to_scene(\"res://Scenes/Levels/RomVerifier.tscn\")
 "
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("containers")]
@@ -251,7 +257,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_VIDEO"
-options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle")]
+options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle"), NodePath("FrameLimit")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
 custom_minimum_size = Vector2(0, 4)
@@ -314,6 +320,12 @@ layout_mode = 2
 option_key = "hud_scaling"
 title = "VIDEO_HUD_SCALING"
 values = ["VIDEO_HUD_STRETCHED", "VIDEO_HUD_CENTER"]
+
+[node name="FrameLimit" parent="PanelContainer/MarginContainer/VBoxContainer/Video" instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "frame_limit"
+title = "FRAME LIMIT"
+values = ["Unlimited", "60fps", "120fps", "144fps", "240fps"]
 
 [node name="WindowChanger" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
 script = ExtResource("5_hnwhb")
@@ -764,12 +776,11 @@ script = SubResource("GDScript_ksnto")
 type = 1
 
 [node name="Data" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_DATA"
-options = [NodePath("CampaignData"), NodePath("ChallengeModeData"), NodePath("BooRaceData"), NodePath("MarathonData"), NodePath("AchievementData"), NodePath("Everything")]
+options = [NodePath("CampaignData"), NodePath("ChallengeModeData"), NodePath("BooRaceData"), NodePath("MarathonData"), NodePath("AchievementData"), NodePath("Everything"), NodePath("RegenROM")]
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
 layout_mode = 2
@@ -822,6 +833,14 @@ extra_confirm = true
 [node name="DataDeletion" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
 script = SubResource("GDScript_oh4w7")
 
+[node name="Control2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="RegenROM" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("9_t6b48")]
+layout_mode = 2
+title = "Delete Generated Resource Pack"
+
 [node name="Control" type="Control" parent="PanelContainer"]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
@@ -871,6 +890,7 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/VSync" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="vsync_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/DropShadows" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="drop_shadows_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/HudStyle" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="hud_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/FrameLimit" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="frame_limit_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="master_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="music_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="sfx_changed"]
@@ -907,6 +927,7 @@ script = ExtResource("19_k6yev")
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/MarathonData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_marathon"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/AchievementData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_achievement"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/Everything" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_everything"]
+[connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/Data/RegenROM" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="regen_rom"]
 
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Video/Language"]
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode"]
