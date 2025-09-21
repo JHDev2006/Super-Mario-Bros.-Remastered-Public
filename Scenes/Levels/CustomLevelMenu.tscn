@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cyf16hyu7mr7x"]
+[gd_scene load_steps=41 format=3 uid="uid://cyf16hyu7mr7x"]
 
 [ext_resource type="Script" uid="uid://bxu6kcun4m6uo" path="res://Scripts/UI/CustomLevelMenu.gd" id="1_2wr4s"]
 [ext_resource type="Texture2D" uid="uid://bhuybr2gtuco5" path="res://Assets/Sprites/UI/MenuBG.png" id="2_0jssh"]
@@ -29,8 +29,7 @@
 [ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="24_wf6nb"]
 [ext_resource type="PackedScene" uid="uid://cr2pku7fjkgpo" path="res://Scenes/Prefabs/UI/OnlineLevelContainer.tscn" id="26_r5ajm"]
 [ext_resource type="PackedScene" uid="uid://ci678koo0peoa" path="res://Scenes/Prefabs/UI/CharacterSelect.tscn" id="28_u8fen"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="29_ruj08"]
-[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="30_gmv51"]
+[ext_resource type="JSON" path="res://Assets/Audio/BGM/CustomLevel.json" id="29_r5ajm"]
 
 [sub_resource type="Shader" id="Shader_u8fen"]
 code = "shader_type canvas_item;
@@ -87,11 +86,6 @@ region = Rect2(12, 0, 12, 12)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_obbrw"]
 color = Color(1, 1, 1, 1)
-
-[sub_resource type="Resource" id="Resource_qigcv"]
-script = ExtResource("30_gmv51")
-Overworld = ExtResource("23_22hnx")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [node name="CustomLevelMenu" type="Node"]
 script = ExtResource("1_2wr4s")
@@ -368,11 +362,11 @@ layout_mode = 2
 focus_mode = 0
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="0"]
-scroll_horizontal = 288
+scroll_horizontal = 166
 is_active = true
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="1"]
-scroll_horizontal = 6
+scroll_horizontal = 32
 is_active = true
 
 [node name="Panel" type="PanelContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo"]
@@ -383,7 +377,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/Panel"]
 layout_mode = 2
 mouse_filter = 2
-scroll_vertical = 15
+scroll_vertical = 59
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("24_wf6nb")
@@ -475,13 +469,15 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "EDITOR_MAIN_REFRESH"
 
-[node name="SelectableOptionLabel" parent="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer" instance=ExtResource("22_13and")]
+[node name="Sort" parent="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer" instance=ExtResource("22_13and")]
+unique_name_in_owner = true
 layout_mode = 2
 title = "EDITOR_LSS_SORT"
 values = Array[String](["EDITOR_LSS_SORT_FEATURED", "EDITOR_LSS_SORT_RECENT", "EDITOR_LSS_SORT_DOWNLOADS", "EDITOR_LSS_SORT_RATING"])
 add_colon = false
 
 [node name="Order" parent="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer" instance=ExtResource("22_13and")]
+unique_name_in_owner = true
 layout_mode = 2
 title = "EDITOR_LSS_ORDER"
 values = Array[String](["EDITOR_LSS_ORDER_ASC", "EDITOR_LSS_ORDER_DEC"])
@@ -569,11 +565,12 @@ layout_mode = 2
 focus_mode = 0
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="0"]
+scroll_horizontal = 24
 is_active = true
 auto_connect_focus = false
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="1"]
-scroll_horizontal = 6
+scroll_horizontal = 32
 is_active = true
 auto_connect_focus = false
 
@@ -586,7 +583,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/Panel"]
 layout_mode = 2
 mouse_filter = 0
-scroll_vertical = 15
+scroll_vertical = 59
 horizontal_scroll_mode = 3
 script = ExtResource("24_wf6nb")
 direction = 1
@@ -649,15 +646,15 @@ metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_22hnx")
-autoplay = true
 bus = &"Music"
 
-[node name="ResourceSetter" type="Node" parent="BGM" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("29_ruj08")
+[node name="ResourceSetterNew" type="Node" parent="BGM" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_qigcv")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("29_r5ajm")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CharacterSelect" parent="." instance=ExtResource("28_u8fen")]
 visible = false
@@ -690,19 +687,21 @@ focus_mode = 2
 [connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/LSSBrowser" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="open"]
 [connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/LSSBrowser" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="close" unbinds=1]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer/RefreshList" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="grab_levels"]
-[connection signal="value_changed" from="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer/SelectableOptionLabel" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="set_filter"]
+[connection signal="value_changed" from="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer/Sort" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="set_filter"]
 [connection signal="value_changed" from="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer/Order" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="set_order"]
 [connection signal="value_changed" from="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer/Page" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="set_page"]
 [connection signal="request_completed" from="BG/Border/Levels/VBoxContainer/LSSBrowser/HTTPRequest" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="level_list_retrieved"]
 [connection signal="tree_exiting" from="BG/Border/Levels/VBoxContainer/LSSBrowser/HTTPRequest" to="BG/Border/Levels/VBoxContainer/LSSBrowser/HTTPRequest" method="cancel_request"]
+[connection signal="closed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo" to="." method="clear_saved_stuff"]
 [connection signal="closed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="open" binds= [false]]
 [connection signal="level_play" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo" to="." method="play_level"]
+[connection signal="level_play" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo" to="." method="lss_level_played"]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/HBoxContainer/Download" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="download_level"]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/HBoxContainer/OnlinePlay" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="play_level"]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/HBoxContainer/ViewOnLSS" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="open_lss"]
 [connection signal="request_completed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/Description" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="on_request_completed"]
 [connection signal="request_completed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/DownloadLevel" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="level_downloaded"]
-[connection signal="sprites_updated" from="BGM/ResourceSetter" to="BGM" method="play"]
+[connection signal="updated" from="BGM/ResourceSetterNew" to="BGM" method="play"]
 [connection signal="cancelled" from="CharacterSelect" to="BG/Border/Levels/VBoxContainer/LevelInfo" method="reopen"]
 
 [editable path="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel"]

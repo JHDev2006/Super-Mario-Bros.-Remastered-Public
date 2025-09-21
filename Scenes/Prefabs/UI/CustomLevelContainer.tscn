@@ -49,6 +49,15 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Thumbnail" type="TextureRect" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+expand_mode = 3
+stretch_mode = 5
+
 [node name="LevelIcon" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)

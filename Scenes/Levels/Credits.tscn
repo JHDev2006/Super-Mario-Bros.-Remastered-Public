@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bgeh6ex0lbqfq"]
+[gd_scene load_steps=83 format=3 uid="uid://bgeh6ex0lbqfq"]
 
 [ext_resource type="Script" uid="uid://b3stoe2kp1nv1" path="res://Scripts/UI/Credits.gd" id="1_db8c5"]
 [ext_resource type="AudioStream" uid="uid://cdhsj02wqdt7y" path="res://Assets/Audio/BGM/Credits.mp3" id="1_k57dj"]
@@ -119,6 +119,10 @@ region = Rect2(48, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3diwr"]
 atlas = ExtResource("4_g2gtw")
 region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttapi"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(32, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2gfq"]
 atlas = ExtResource("4_g2gtw")
@@ -463,6 +467,7 @@ offset_bottom = 232.0
 texture = ExtResource("4_j3afk")
 
 [node name="BGArtists" type="Control" parent="Labels"]
+visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -1031,7 +1036,6 @@ offset_bottom = 232.0
 texture = ExtResource("8_3648a")
 
 [node name="Sound" type="Control" parent="Labels"]
-visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -1140,9 +1144,9 @@ stretch_mode = 2
 [node name="Label2" type="Label" parent="Labels/Sound"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 104.0
+offset_top = 96.0
 offset_right = 48.0
-offset_bottom = 120.0
+offset_bottom = 112.0
 text = "SFXs"
 uppercase = true
 
@@ -1212,6 +1216,25 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_3diwr")
+stretch_mode = 2
+
+[node name="Label8" type="Label" parent="Labels/Sound/Label2"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 80.0
+text = "Trimint"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label2/Label8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_ttapi")
 stretch_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Labels/Sound"]

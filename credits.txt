@@ -54,6 +54,7 @@ Created by JoeMama
 # SFXs
 - QuagIsCool
 - LeviR.star
+- Trimint
 
 # Localizers
 - Cube (pl)

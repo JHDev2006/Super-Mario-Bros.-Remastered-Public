@@ -240,7 +240,6 @@ func cleanup() -> void:
 	playing_level = !playing_level
 	play_pipe_transition = false
 	play_door_transition = false
-	Door.unlocked_doors = []
 	LevelPersistance.reset_states()
 	KeyItem.total_collected = 0
 	Global.get_node("GameHUD").visible = playing_level
@@ -656,7 +655,9 @@ func transition_to_sublevel(sub_lvl_idx := 0) -> void:
 		level_file = $LevelSaver.save_level(level_name, level_author, level_desc, difficulty)
 		LevelPersistance.reset_states()
 	sub_level_id = sub_lvl_idx
-	$LevelLoader.load_level(sub_lvl_idx)
+	await $LevelLoader.load_level(sub_lvl_idx)
+	if Settings.file.visuals.transition_animation == 0:
+		Global.do_fake_transition(0.1)
 	await get_tree().physics_frame
 	if (play_pipe_transition or play_door_transition) and play_transition:
 		parse_tiles()

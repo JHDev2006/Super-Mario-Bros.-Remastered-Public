@@ -5,7 +5,10 @@ extends Node2D
 
 @export_enum("0", "1", "2", "3", "4") var sublevel_id := 0
 
-@export var locked := false
+@export var locked := false:
+	set(value):
+		locked = value
+		pass
 @export var start_locked := false
 
 signal updated
@@ -23,6 +26,7 @@ static var same_scene_exiting_door: Door = null
 func _ready() -> void:
 	if start_locked:
 		locked = true
+	await get_tree().physics_frame
 	if locked:
 		check_if_unlocked(false)
 
@@ -42,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 
 func check_if_unlocked(do_animation := true) -> void:
 	if locked:
+		print(unlocked_doors)
 		if unlocked_doors.has(door_id):
 			locked = false
 			$Sprite.play("Idle")
@@ -113,7 +118,6 @@ func player_enter(player: Player) -> void:
 	else:
 		same_scene_exiting_door = null
 		Global.level_editor.transition_to_sublevel(sublevel_id)
-	$Sprite.play("Idle")
 	can_enter = true
 
 func freeze_player(player: Player) -> void:
