@@ -7,7 +7,7 @@ Recompile of Super Mario Bros. Remastered to macOS!
 1. Go to the 'Releases' page
 2. Look for the latest version
 3. Download the .dmg file
-4. Mount it and drag the application into the 'Applictions' folder
+4. Mount it and drag the application into the 'Applications' folder
 
 ## System requirements
 This port is built as a Universal 2 binary (natively compatible with Intel and Apple Silicon) and will run on macOS 10.15 Catalina or higher.
