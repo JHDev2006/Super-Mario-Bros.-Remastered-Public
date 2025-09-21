@@ -130,22 +130,17 @@ func handle_air_movement(delta: float) -> void:
 	if player.input_direction != 0:
 		air_acceleration(delta)
 		
-		if player.velocity.y >= 0 and player.is_actually_on_wall():
+		if player.WALL_SLIDE_ENABLED and player.velocity.y >= 0 and player.is_actually_on_wall():
 			player.state_machine.transition_to("WallSlide")
 			return
 		
 	if Global.player_action_pressed("jump", player.player_id) == false and player.has_jumped and not player.jump_cancelled:
 		player.jump_cancelled = true
-		if player.gravity_vector.y > 0:
-			if player.velocity.y < 0:
-				player.velocity.y /= 1.5
-				player.gravity = player.FALL_GRAVITY
-		elif player.gravity_vector.y < 0:
-			if player.velocity.y > 0:
-				player.velocity.y /= 1.5
-				player.gravity = player.FALL_GRAVITY
+		if sign(player.gravity_vector.y * player.velocity.y) < 0.0:
+			player.velocity.y /= 1.5
+			player.gravity = player.FALL_GRAVITY
 	
-	if player.CAN_GROUND_POUND and Global.player_action_just_pressed("move_down", player.player_id):
+	if player.GROUND_POUND_ENABLED and Global.player_action_just_pressed("move_down", player.player_id):
 		player.state_machine.transition_to("GroundPound")
 
 func air_acceleration(delta: float) -> void:

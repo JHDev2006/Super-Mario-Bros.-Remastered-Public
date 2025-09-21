@@ -56,7 +56,8 @@ const DEFAULT_SFX_LIBRARY := {
 	"door_unlock": "res://Assets/Audio/SFX/DoorUnlock.wav",
 	"door_locked": "res://Assets/Audio/SFX/DoorLocked.wav",
 	
-	"ground_pound": "res://Assets/Audio/SFX/GroundPound.wav"
+	"ground_pound_start": "res://Assets/Audio/SFX/GroundPound.wav",
+	"ground_pound_land": "res://Assets/Audio/SFX/Cannon.wav"
 }
 
 @onready var sfx_library = DEFAULT_SFX_LIBRARY.duplicate()
