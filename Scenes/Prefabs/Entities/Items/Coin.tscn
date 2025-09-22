@@ -62,9 +62,10 @@ sprite_frames = SubResource("SpriteFrames_nu35s")
 autoplay = "default"
 frame_progress = 0.487032
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("3_uahob")
 node_to_affect = NodePath("..")
+property_node = NodePath("../..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_thymr")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
