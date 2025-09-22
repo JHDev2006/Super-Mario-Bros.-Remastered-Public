@@ -4,7 +4,7 @@ signal closed
 
 const LEVEL_INFO_URL := "https://levelsharesquare.com/api/levels/"
 
-var level_id := ""
+static var level_id := ""
 
 var has_downloaded := false
 
@@ -30,7 +30,9 @@ func open(container: OnlineLevelContainer) -> void:
 	else:
 		%Download.grab_focus()
 	setup_visuals(container)
-	level_id = container.level_id
+	reset_process()
+
+func reset_process() -> void:
 	await get_tree().physics_frame
 	set_process(true)
 
@@ -49,6 +51,7 @@ func setup_visuals(container: OnlineLevelContainer) -> void:
 		else: value = container.get(i)
 		%SelectedOnlineLevel.set(i, value)
 		saved_stuff[i] = value
+	level_id = saved_stuff.level_id
 	%SelectedOnlineLevel.setup_visuals()
 	%Download.visible = not has_downloaded
 	%OnlinePlay.visible = has_downloaded
@@ -70,6 +73,7 @@ func download_level() -> void:
 	%Download.text = "DOWNLOADING..."
 
 func open_lss() -> void:
+	print(level_id)
 	OS.shell_open("https://levelsharesquare.com/levels/" + str(level_id))
 
 func on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
@@ -104,6 +108,7 @@ func play_level() -> void:
 	var file_path := "user://custom_levels/downloaded/" + level_id + ".lvl"
 	var file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
 	LevelEditor.level_file = file
+	set_process(false)
 	var info = file["Info"]
 	LevelEditor.level_author = info["Author"]
 	LevelEditor.level_name = info["Name"]

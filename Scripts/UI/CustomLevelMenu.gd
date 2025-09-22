@@ -12,6 +12,7 @@ static var page_number_save := -1
 static var last_played_container = null
 
 static var saved_search_values := [-1, -1, -1]
+static var level_id := ""
 
 func _ready() -> void:
 	has_entered = true
@@ -84,8 +85,20 @@ func play_level() -> void:
 	LevelTransition.level_to_transition_to = ("res://Scenes/Levels/LevelEditor.tscn")
 	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
 
+func online_play() -> void:
+	lss_level_played()
+	Global.current_game_mode = Global.GameMode.CUSTOM_LEVEL
+	Settings.file.difficulty.inf_lives = 1
+	LevelEditor.load_play = true
+	$LSSCharacterSelect.open()
+	await $LSSCharacterSelect.selected
+	LevelTransition.level_to_transition_to = ("res://Scenes/Levels/LevelEditor.tscn")
+	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
+
 func lss_level_played() -> void:
 	last_played_container = %LSSLevelInfo.container_to_play.duplicate()
+	level_id = %LSSLevelInfo.container_to_play.level_id
+	print(level_id)
 	page_number_save = %LSSBrowser.page_number
 	saved_search_values[0] = %LSSBrowser.page_number
 	saved_search_values[1] = %LSSBrowser.filter

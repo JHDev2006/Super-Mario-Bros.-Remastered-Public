@@ -294,6 +294,8 @@ func return_to_editor() -> void:
 	return_editor_tiles()
 	%Camera.enabled = true
 	%Camera.make_current()
+	KeyItem.total_collected = 0
+	Door.unlocked_doors.clear()
 	editor_start.emit()
 	current_state = EditorState.IDLE
 	handle_hud()

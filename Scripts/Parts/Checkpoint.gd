@@ -14,6 +14,7 @@ static var level := ""
 static var sublevel_id := 0
 static var keys_collected := 0
 static var old_state := [[], []]
+static var unlocked_doors := []
 
 func _enter_tree() -> void:
 	if Global.level_editor != null:
@@ -51,6 +52,7 @@ func on_area_entered(area: Area2D) -> void:
 		passed = true
 		keys_collected = KeyItem.total_collected
 		old_state = LevelPersistance.active_nodes.duplicate(true)
+		unlocked_doors = Door.unlocked_doors.duplicate()
 		Level.start_level_path = Global.current_level.scene_file_path
 		if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR or Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
 			sublevel_id = Global.level_editor.sub_level_id

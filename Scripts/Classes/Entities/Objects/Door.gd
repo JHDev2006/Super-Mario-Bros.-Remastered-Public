@@ -87,6 +87,7 @@ func player_exit(player: Player) -> void:
 	exiting_door_id = -1
 	can_enter = false
 	LevelEditor.play_door_transition = false
+	if same_scene_exiting_door != null: same_scene_exiting_door.get_node("Sprite").play("Idle")
 	same_scene_exiting_door = null
 	player.global_position = global_position
 	player.recenter_camera()

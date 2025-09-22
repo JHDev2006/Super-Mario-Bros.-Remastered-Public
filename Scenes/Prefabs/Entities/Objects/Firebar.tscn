@@ -13,9 +13,10 @@
 [sub_resource type="GDScript" id="GDScript_e2e05"]
 script/source = "extends Node2D
 
-@export_range(4, 16) var length := 6
+# guzlad: Changed from 16 to 18 to mimick SMM
+@export_range(4, 18) var length := 6
 
-@export_range(0, 360, 45) var starting_angle := 0
+@export_range(0, 360) var starting_angle := 0
 
 @export_enum(\"C-Clockwise\", \"Clockwise\") var direction := 0
 
@@ -197,6 +198,18 @@ update_scale = false
 [node name="RemoteTransform2D16" type="RemoteTransform2D" parent="RotationJoint"]
 position = Vector2(0, -120)
 remote_path = NodePath("../../Fireballs/Fireball16")
+update_rotation = false
+update_scale = false
+
+[node name="RemoteTransform2D17" type="RemoteTransform2D" parent="RotationJoint"]
+position = Vector2(0, -128)
+remote_path = NodePath("../../Fireballs/Fireball17")
+update_rotation = false
+update_scale = false
+
+[node name="RemoteTransform2D18" type="RemoteTransform2D" parent="RotationJoint"]
+position = Vector2(0, -136)
+remote_path = NodePath("../../Fireballs/Fireball18")
 update_rotation = false
 update_scale = false
 
@@ -516,6 +529,46 @@ libraries = {
 autoplay = "Spin"
 
 [node name="ResourceSetter" type="Node" parent="Fireballs/Fireball16" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_kpo86")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_ym371")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Fireball17" type="AnimatedSprite2D" parent="Fireballs"]
+visible = false
+position = Vector2(0, -128)
+script = ExtResource("2_kpo86")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="Animation" type="AnimationPlayer" parent="Fireballs/Fireball17"]
+libraries = {
+&"": SubResource("AnimationLibrary_ytedt")
+}
+autoplay = "Spin"
+
+[node name="ResourceSetter" type="Node" parent="Fireballs/Fireball17" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_kpo86")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_ym371")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Fireball18" type="AnimatedSprite2D" parent="Fireballs"]
+visible = false
+position = Vector2(0, -136)
+script = ExtResource("2_kpo86")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="Animation" type="AnimationPlayer" parent="Fireballs/Fireball18"]
+libraries = {
+&"": SubResource("AnimationLibrary_ytedt")
+}
+autoplay = "Spin"
+
+[node name="ResourceSetter" type="Node" parent="Fireballs/Fireball18" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"

@@ -23,8 +23,6 @@ var can_exit := true:
 		can_exit = value
 		pass
 
-func _ready() -> void:
-	pass
 
 func _process(_delta: float) -> void:
 	if active and (Input.is_action_just_pressed("ui_back") or Input.is_action_just_pressed("editor_open_menu")):
@@ -39,6 +37,8 @@ func open() -> void:
 	size = Vector2.ZERO
 	add_properties()
 	show()
+	editing_node.tree_exiting.connect(close)
+
 
 func add_properties() -> void:
 	for i in properties:

@@ -117,7 +117,7 @@ var can_time_tick := true:
 		if value == false:
 			pass
 
-var player_power_states := "1000"
+var player_power_states := "0000"
 
 var connected_players := 1
 
@@ -266,6 +266,7 @@ func reset_values() -> void:
 	Checkpoint.passed = false
 	Checkpoint.sublevel_id = 0
 	Door.unlocked_doors = []
+	Checkpoint.unlocked_doors = []
 	KeyItem.total_collected = 0
 	Checkpoint.keys_collected = 0
 	Level.start_level_path = Level.get_scene_string(Global.world_num, Global.level_num)
