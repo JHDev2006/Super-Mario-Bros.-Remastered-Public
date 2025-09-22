@@ -1,9 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
+#region Physics properies, these can be changed within a custom character's CharacterInfo.json
 var JUMP_GRAVITY := 11.0               # The player's gravity while jumping, measured in px/frame
 var JUMP_HEIGHT := 300.0               # The strength of the player's jump, measured in px/sec
 var JUMP_INCR := 8.0                   # How much the player's X velocity affects their jump speed
+var JUMP_CANCEL_DIVIDE := 1.5          # When the player cancels their jump, their Y velocity gets divided by this value
 var JUMP_HOLD_SPEED_THRESHOLD := 0.0   # When the player's Y velocity goes past this value while jumping, their gravity switches to FALL_GRAVITY
 
 var BOUNCE_HEIGHT := 200.0             # The strength at which the player bounces off enemies, measured in px/sec 
@@ -12,10 +14,6 @@ var BOUNCE_JUMP_HEIGHT := 300.0        # The strength at which the player bounce
 var FALL_GRAVITY := 25.0               # The player's gravity while falling, measured in px/frame
 var MAX_FALL_SPEED := 280              # The player's maximum fall speed, measured in px/sec
 var CEILING_BUMP_SPEED := 45.0         # The speed at which the player falls after hitting a ceiling, measured in px/sec
-
-var SWIM_SPEED := 95.0                 # The player's horizontal speed while swimming, measured in px/sec
-var SWIM_GRAVITY := 2.5                # The player's gravity while swimming, measured in px/frame
-var MAX_SWIM_FALL_SPEED := 200         # The player's maximum fall speed while swimming, measured in px/sec
 
 var WALK_SPEED := 96.0                 # The player's speed while walking, measured in px/sec
 var GROUND_WALK_ACCEL := 4.0           # The player's acceleration while walking, measured in px/frame
@@ -29,15 +27,28 @@ var DECEL := 3.0                       # The player's deceleration while no butt
 var AIR_ACCEL := 3.0                   # The player's acceleration while in midair, measured in px/frame
 var AIR_SKID := 1.5                    # The player's turning deceleration while in midair, measured in px/frame
 
-var DEATH_JUMP_HEIGHT := 300           # The strength of the player's "jump" during the death animation, measured in px/sec
+var SWIM_SPEED := 95.0                 # The player's horizontal speed while swimming, measured in px/sec
+var SWIM_GROUND_SPEED := 45.0          # The player's horizontal speed while grounded underwater, measured in px/sec
+var SWIM_HEIGHT := 100.0               # The strength of the player's swim, measured in px/sec
+var SWIM_GRAVITY := 2.5                # The player's gravity while swimming, measured in px/frame
+var MAX_SWIM_FALL_SPEED := 200         # The player's maximum fall speed while swimming, measured in px/sec
 
-var GROUND_POUND_ENABLED := true       # If true, enables the ability to ground pound while pressing down in midair
+var DEATH_JUMP_HEIGHT := 300           # The strength of the player's "jump" during the death animation, measured in px/sec
+#endregion
+
+#region Custom moveset options, can be toggled/modified within a custom character's CharacterInfo.json
+var GROUND_POUND_ENABLED := false      # If true, enables the ability to ground pound while pressing down in midair
 var GROUND_POUND_HANG_TIME := 0.2      # How long the player hangs in the air after activating a ground pound, measured in seconds
 var GROUND_POUND_HANG_SPEED := 40.0    # The upwards speed the player moves at the start of a ground pound, measured in px/sec
 var GROUND_POUND_HANG_DECEL := 5.0     # The rate at which the player decelerates at the start of a ground pound, measured in px/frame
 var GROUND_POUND_FALL_SPEED := 340     # The downwards speed the player travels at during a ground pound, measured in px/second
 
-var WALL_SLIDE_ENABLED := true         # If true, enables the ability to wall slide and wall jump
+var WALL_SLIDE_ENABLED := false        # If true, enables the ability to wall slide and wall jump
+var WALL_SLIDE_SPEED := 50.0           # How quickly the player slides down walls, measured in px/sec
+var WALL_SLIDE_GRAVITY := 25.0         # The strength of gravity while wall sliding, measured in px/frame
+var WALL_SLIDE_EJECT_SPEED := 50.0     # The speed at which the player ejects from a wall while sliding by holding away from it, measured in px/sec
+var WALL_JUMP_SPEED := 120.0           # The horizontal speed of the wall jump, measured in px/sec
+#endregion
 
 @onready var camera_center_joint: Node2D = $CameraCenterJoint
 
@@ -150,6 +161,7 @@ const ANIMATION_FALLBACKS := {
 	"StarJump": "Jump",
 	"StarFall": "StarJump",
 	"GroundPound": "CrouchFall",
+	"WallSlide": "Skid"
 }
 
 var palette_transform := true
