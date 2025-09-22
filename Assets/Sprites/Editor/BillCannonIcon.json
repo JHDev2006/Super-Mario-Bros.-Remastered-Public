@@ -1,11 +1,11 @@
 {
 	"variations": {
 		"default": {
-			"Day": {"source": "InvisibleBlock.png", "rect": [0, 0, 16, 16]},
-			"Night": {"source": "InvisibleBlock.png", "rect": [16, 0, 16, 16]}
+			"Day": {"source": "BillCannon.png", "rect": [0, 0, 16, 16]},
+			"Night": {"source": "BillCannon.png", "rect": [16, 0, 16, 16]}
 		},
 		"Underground": {
-			"source": "InvisibleBlock.png",
+			"source": "BillCannon.png",
 			"rect": [
 				16.0,
 				0.0,

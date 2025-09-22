@@ -27,7 +27,8 @@ func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player:
 		collect_item(area.owner)
 
-func block_bounce_up() -> void:
+func block_bounce_up(block: Node2D) -> void:
+	direction = -sign(block.global_position.x - global_position.x + 0.1)
 	velocity.y = -200
 
 func block_dispense_tween() -> void:

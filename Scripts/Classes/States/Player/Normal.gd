@@ -54,6 +54,7 @@ func grounded(delta: float) -> void:
 	if player.velocity.y >= 0:
 		player.has_jumped = false
 	if Global.player_action_just_pressed("jump", player.player_id):
+		player.handle_water_detection()
 		if player.in_water or player.flight_meter > 0:
 			swim_up()
 			return

@@ -24,6 +24,8 @@ var cam_direction := 1
 # how far between the center and the edge of the screen before scrolling to the center
 const SCROLL_DIFFERENCE := 48.0
 
+var can_diff := true
+
 func _exit_tree() -> void:
 	cam_locked = false
 
@@ -84,6 +86,9 @@ func handle_horizontal_scrolling(delta: float) -> void:
 				offset = camera_position.x - global_position.x - abs(true_velocity.x * delta)
 			camera_position.x = global_position.x + offset
 	
+	if can_diff == false: 
+		position.x = 0
+		return
 	# horizontal adjusgments
 	# if the position is matching the camera, start scrolling towards the center
 	if global_position.x >= camera_position.x:

@@ -71,6 +71,9 @@ func write_save(campaign: String = Global.current_campaign, force := false) -> v
 		return
 	var save = null
 	DirAccess.make_dir_recursive_absolute("user://saves")
+	DirAccess.make_dir_recursive_absolute("user://resource_packs")
+	DirAccess.make_dir_recursive_absolute("user://custom_characters")
+	DirAccess.make_dir_recursive_absolute("user://custom_levels")
 	var save_json = {}
 	var path = "user://saves/" + campaign + ".sav"
 	if FileAccess.file_exists(path):
@@ -113,7 +116,7 @@ func write_save_to_file(json := {}, path := "") -> void:
 	file.close()
 
 func apply_save(json := {}) -> void:
-	Global.world_num = clamp(json["World"], 1, 8)
+	Global.world_num = json.get_or_add("World", 1)
 	Global.level_num = json.get_or_add("Level", 1)
 	Global.lives = json["Lives"]
 	Global.coins = json["Coins"]

@@ -107,11 +107,4 @@ func run_player_check(player: Player) -> void:
 		pipe_entered.emit()
 		DiscoLevel.can_meter_tick = false
 		Level.in_vine_level = false
-
-		# temporal flex tape solution, sorry if this does bad things
-		# - leanycat
-		if (Global.current_game_mode == Global.GameMode.CAMPAIGN and Global.current_campaign == "SMBLL") and Global.world_num == 9 and Global.level_num == 3:
-			Level.vine_return_level = Global.current_level.scene_file_path
-			Level.in_vine_level = true
-
 		player.enter_pipe(self)

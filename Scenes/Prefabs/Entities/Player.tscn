@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://cuh62hlq8errh"]
+[gd_scene load_steps=83 format=3 uid="uid://cuh62hlq8errh"]
 
 [ext_resource type="Script" uid="uid://dt4rosa5o35xr" path="res://Scripts/Classes/Entities/Player.gd" id="1_f6bau"]
 [ext_resource type="Script" uid="uid://uribh0f1jttq" path="res://Scripts/Classes/States/StateMachine.gd" id="2_1y62l"]
@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bbdcmhyxmc3pu" path="res://Assets/Sprites/Items/SPItems.png" id="3_a1d2e"]
 [ext_resource type="Script" uid="uid://blxvov3jyx8gg" path="res://Scripts/Classes/States/Player/Normal.gd" id="3_f6bau"]
 [ext_resource type="Texture2D" uid="uid://bdurtsr7cld64" path="res://Assets/Sprites/Players/Mario/ColourPalette.png" id="3_x2idl"]
-[ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="4_cekpg"]
+[ext_resource type="SpriteFrames" uid="uid://328p7l1rmy00" path="res://Resources/SpriteFrames/Player/Toad/Big.tres" id="4_fqdtv"]
 [ext_resource type="Script" uid="uid://dvbib1gtmmvui" path="res://Scripts/Classes/States/Player/Pipe.gd" id="5_hodem"]
 [ext_resource type="Script" uid="uid://c8xvkkv34fjr4" path="res://Scripts/Classes/PowerStates/PowerUpState.gd" id="5_rs3l8"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="5_x2idl"]
@@ -238,6 +238,58 @@ _data = {
 &"RESET": SubResource("Animation_jl70t")
 }
 
+[sub_resource type="Animation" id="Animation_fqdtv"]
+resource_name = "Grow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite/..:scale")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000008, 0.20000005, 0.30000007, 0.4000001, 0.5000001, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0.7), Vector2(1, 0.85), Vector2(1, 0.8), Vector2(1, 0.95), Vector2(1, 0.9), Vector2(1, 1.05), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vijl6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite/..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pm4ir"]
+resource_name = "Shrink"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Sprite/..:scale")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999964, 0.19999999, 0.29999995, 0.39999998, 0.5, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0.9), Vector2(1, 0.96), Vector2(1, 0.8), Vector2(1, 0.85), Vector2(1, 0.7), Vector2(1, 0.75), Vector2(1, 0.6), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pm4ir"]
+_data = {
+&"Grow": SubResource("Animation_fqdtv"),
+&"RESET": SubResource("Animation_vijl6"),
+&"Shrink": SubResource("Animation_pm4ir")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbkfn"]
 resource_local_to_scene = true
 size = Vector2(9, 14)
@@ -450,17 +502,21 @@ platform_on_leave = 2
 script = ExtResource("1_f6bau")
 power_state = NodePath("PowerStates/Small")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="SpriteScaleJoint" type="Node2D" parent="."]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="SpriteScaleJoint"]
+unique_name_in_owner = true
 physics_interpolation_mode = 2
 material = SubResource("ShaderMaterial_4ojwh")
 position = Vector2(0, -16)
-sprite_frames = ExtResource("4_cekpg")
+sprite_frames = ExtResource("4_fqdtv")
 animation = &"Idle"
 offset = Vector2(0, 1)
 script = ExtResource("5_x2idl")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="Hammer" type="Sprite2D" parent="Sprite"]
+[node name="Hammer" type="Sprite2D" parent="SpriteScaleJoint/Sprite"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(8, 8)
 texture = ExtResource("3_a1d2e")
@@ -468,13 +524,13 @@ offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Animation" type="AnimationPlayer" parent="Sprite/Hammer"]
+[node name="Animation" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite/Hammer"]
 libraries = {
 &"": SubResource("AnimationLibrary_bl5al")
 }
 autoplay = "Swing"
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite/Hammer" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Hammer" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -482,19 +538,20 @@ mode = 1
 resource_json = ExtResource("7_2mfvl")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="HammerHitbox" type="Area2D" parent="Sprite"]
+[node name="HammerHitbox" type="Area2D" parent="SpriteScaleJoint/Sprite"]
 visible = false
 position = Vector2(16, 16)
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/HammerHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteScaleJoint/Sprite/HammerHitbox"]
 position = Vector2(-3.49691e-07, -8)
 shape = SubResource("RectangleShape2D_a1d2e")
 
-[node name="Wings" type="Node2D" parent="Sprite"]
+[node name="Wings" type="Node2D" parent="SpriteScaleJoint/Sprite"]
+unique_name_in_owner = true
 visible = false
 
-[node name="BigWing" type="AnimatedSprite2D" parent="Sprite/Wings"]
+[node name="BigWing" type="AnimatedSprite2D" parent="SpriteScaleJoint/Sprite/Wings"]
 unique_name_in_owner = true
 position = Vector2(-10, -3)
 sprite_frames = SubResource("SpriteFrames_uwhl4")
@@ -502,14 +559,14 @@ animation = &"Idle"
 frame_progress = 0.9603284
 flip_h = true
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite/Wings/BigWing" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Wings/BigWing" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("9_o70e0")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="SmallWing" type="AnimatedSprite2D" parent="Sprite/Wings"]
+[node name="SmallWing" type="AnimatedSprite2D" parent="SpriteScaleJoint/Sprite/Wings"]
 unique_name_in_owner = true
 visible = false
 show_behind_parent = true
@@ -518,16 +575,22 @@ sprite_frames = SubResource("SpriteFrames_uwhl4")
 animation = &"Idle"
 flip_h = true
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite/Wings/SmallWing" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Wings/SmallWing" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("9_o70e0")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite/Wings"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite/Wings"]
 libraries = {
 &"": SubResource("AnimationLibrary_nbkfn")
+}
+
+[node name="GrowAnimation" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_pm4ir")
 }
 
 [node name="States" type="Node" parent="." node_paths=PackedStringArray("state")]
@@ -951,7 +1014,7 @@ metadata/_custom_type_script = "uid://cqif1li7otvpl"
 [node name="ResourceSetterNew" type="Node" parent="." node_paths=PackedStringArray("node_to_affect", "property_node")]
 unique_name_in_owner = true
 script = ExtResource("25_cekpg")
-node_to_affect = NodePath("../Sprite")
+node_to_affect = NodePath("../SpriteScaleJoint/Sprite")
 property_node = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("26_o4wvw")
@@ -1076,9 +1139,9 @@ property_name = "stream"
 themed_resource = SubResource("Resource_xy8gq")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[connection signal="frame_changed" from="Sprite" to="Sprite" method="on_frame_changed"]
-[connection signal="sprite_frames_changed" from="Sprite" to="Sprite" method="on_frame_changed"]
-[connection signal="area_entered" from="Sprite/HammerHitbox" to="." method="on_hammer_area_entered"]
+[connection signal="frame_changed" from="SpriteScaleJoint/Sprite" to="SpriteScaleJoint/Sprite" method="on_frame_changed"]
+[connection signal="sprite_frames_changed" from="SpriteScaleJoint/Sprite" to="SpriteScaleJoint/Sprite" method="on_frame_changed"]
+[connection signal="area_entered" from="SpriteScaleJoint/Sprite/HammerHitbox" to="." method="on_hammer_area_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="on_area_exited"]
 [connection signal="body_entered" from="LavaPoisonDetect" to="." method="die" unbinds=1]

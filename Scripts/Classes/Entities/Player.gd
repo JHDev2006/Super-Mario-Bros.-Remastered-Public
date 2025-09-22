@@ -52,7 +52,7 @@ var WALL_JUMP_SPEED := 120.0           # The horizontal speed of the wall jump, 
 
 @onready var camera_center_joint: Node2D = $CameraCenterJoint
 
-@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var sprite: AnimatedSprite2D = %Sprite
 @onready var camera: Camera2D = $Camera
 @onready var score_note_spawner: ScoreNoteSpawner = $ScoreNoteSpawner
 
@@ -276,11 +276,7 @@ func _physics_process(delta: float) -> void:
 		stomp_combo = 0
 	elif velocity.y > 15:
 		can_bump_sfx = true
-	var old_water = in_water
-	if $Hitbox.monitoring:
-		in_water = $Hitbox.get_overlapping_areas().any(func(area: Area2D): return area is WaterArea) or $WaterDetect.get_overlapping_bodies().is_empty() == false
-	if old_water != in_water and in_water == false and flight_meter <= 0:
-		water_exited()
+	handle_water_detection()
 	if $SkidSFX.playing:
 		if (is_actually_on_floor() and skidding) == false:
 			$SkidSFX.stop()
@@ -288,6 +284,13 @@ func _physics_process(delta: float) -> void:
 		$SkidSFX.play()
 
 const BUBBLE_PARTICLE = preload("uid://bwjae1h1airtr")
+
+func handle_water_detection() -> void:
+	var old_water = in_water
+	if $Hitbox.monitoring:
+		in_water = $Hitbox.get_overlapping_areas().any(func(area: Area2D): return area is WaterArea) or $WaterDetect.get_overlapping_bodies().is_empty() == false
+	if old_water != in_water and in_water == false and flight_meter <= 0:
+		water_exited()
 
 func summon_bubble() -> void:
 	var bubble = BUBBLE_PARTICLE.instantiate()
@@ -299,7 +302,7 @@ func _process(delta: float) -> void:
 	handle_invincible_palette()
 	if is_invincible:
 		DiscoLevel.combo_meter = 100
-	$Sprite/Hammer.visible = has_hammer
+	%Hammer.visible = has_hammer
 
 func apply_gravity(delta: float) -> void:
 	if in_water or flight_meter > 0:
@@ -442,9 +445,9 @@ func stop_all_timers() -> void:
 
 func handle_invincible_palette() -> void:
 	sprite.material.set_shader_parameter("mode", !Settings.file.visuals.rainbow_style)
-	$Sprite.material.set_shader_parameter("player_palette", $PlayerPalette.texture)
-	$Sprite.material.set_shader_parameter("palette_size", colour_palette.get_width())
-	$Sprite.material.set_shader_parameter("invincible_palette", $InvinciblePalette.texture)
+	sprite.material.set_shader_parameter("player_palette", $PlayerPalette.texture)
+	sprite.material.set_shader_parameter("palette_size", colour_palette.get_width())
+	sprite.material.set_shader_parameter("invincible_palette", $InvinciblePalette.texture)
 	sprite.material.set_shader_parameter("palette_idx", POWER_STATES.find(power_state.state_name))
 	sprite.material.set_shader_parameter("enabled", (is_invincible or (palette_transform and transforming)))
 
@@ -476,10 +479,10 @@ func handle_power_up_states(delta) -> void:
 
 func handle_wing_flight(delta: float) -> void:
 	flight_meter -= delta
-	if flight_meter <= 0 && $Sprite/Wings.visible:
+	if flight_meter <= 0 && %Wings.visible:
 		AudioManager.stop_music_override(AudioManager.MUSIC_OVERRIDES.WING)
 		gravity = FALL_GRAVITY
-	$Sprite/Wings.visible = flight_meter >= 0
+	%Wings.visible = flight_meter >= 0
 	if flight_meter < 0:
 		return
 	%BigWing.visible = power_state.hitbox_size == "Big"
@@ -490,9 +493,9 @@ func handle_wing_flight(delta: float) -> void:
 		else:
 			i.play("Idle")
 	if flight_meter <= 3:
-		$Sprite/Wings/AnimationPlayer.play("Flash")
+		%Wings.get_node("AnimationPlayer").play("Flash")
 	else:
-		$Sprite/Wings/AnimationPlayer.play("RESET")
+		%Wings.get_node("AnimationPlayer").play("RESET")
 
 func damage() -> void:
 	if can_hurt == false or is_invincible:
@@ -531,11 +534,11 @@ func passed_checkpoint() -> void:
 func do_i_frames() -> void:
 	can_hurt = false
 	for i in 25:
-		$Sprite.hide()
+		sprite.hide()
 		if get_tree() == null:
 			return
 		await get_tree().create_timer(0.04, false).timeout
-		$Sprite.show()
+		sprite.show()
 		if get_tree() == null:
 			return
 		await get_tree().create_timer(0.04, false).timeout
@@ -632,7 +635,7 @@ func get_power_up(power_name := "") -> void:
 	refresh_hitbox()
 
 func check_for_block() -> void:
-	if test_move(global_transform, Vector2.UP * 2):
+	if test_move(global_transform, (Vector2.UP * gravity_vector) * 4):
 		crouching = true
 
 func power_up_animation(new_power_state := "") -> void:
@@ -641,18 +644,29 @@ func power_up_animation(new_power_state := "") -> void:
 	var old_frames = sprite.sprite_frames
 	var new_frames = $ResourceSetterNew.get_resource(load(get_character_sprite_path(new_power_state)))
 	sprite.process_mode = Node.PROCESS_MODE_ALWAYS
-	$Sprite.show()
+	sprite.show()
 	get_tree().paused = true
 	if get_node("PowerStates/" + new_power_state).hitbox_size != power_state.hitbox_size:
-		sprite.speed_scale = 3
-		sprite.play("Grow")
-		await get_tree().create_timer(0.4, true).timeout
-		sprite.sprite_frames = new_frames
-		sprite.play("Grow")
-		await get_tree().create_timer(0.4, true).timeout
-		transforming = false
+		if Settings.file.visuals.transform_style == 0:
+			sprite.speed_scale = 3
+			sprite.play("Grow")
+			await get_tree().create_timer(0.4, true).timeout
+			sprite.sprite_frames = new_frames
+			sprite.play("Grow")
+			await get_tree().create_timer(0.4, true).timeout
+			transforming = false
+		else:
+			sprite.speed_scale = 0
+			if new_power_state == "Small":
+				%GrowAnimation.play("Shrink")
+			else:
+				sprite.sprite_frames = new_frames
+				%GrowAnimation.play("Grow")
+			await get_tree().create_timer(0.8, true).timeout
+			sprite.sprite_frames = new_frames
+			transforming = false
 	else:
-		if not palette_transform:
+		if Settings.file.visuals.transform_style == 1:
 			for i in 6:
 				sprite.sprite_frames = new_frames
 				await get_tree().create_timer(0.05).timeout

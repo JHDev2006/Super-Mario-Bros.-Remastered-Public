@@ -92,9 +92,9 @@ func cleanup() -> void:
 	await get_tree().physics_frame
 	Global.world_num = starting_value
 	starting_value = -1
-	Global.world_num = clamp(Global.world_num, 1, 8)
+	Global.world_num = clamp(Global.world_num, 1, Level.get_world_count())
 	if owner is Level:
-		owner.world_id = clamp(owner.world_id, 1, 8)
+		owner.world_id = clamp(owner.world_id, 1, Level.get_world_count())
 
 func close() -> void:
 	active = false
