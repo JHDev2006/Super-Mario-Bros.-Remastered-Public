@@ -11,7 +11,7 @@ func _ready() -> void:
 	ChallengeModeHandler.set_value(ChallengeModeHandler.CoinValues.YOSHI_EGG, true)
 
 func _physics_process(delta: float) -> void:
-	velocity.y += (Global.entity_gravity / delta) * delta
+	velocity.y += (Global.entity_gravity) * delta * 60.0
 	velocity.y = clamp(velocity.y, -INF, Global.entity_max_fall_speed)
 	move_and_slide()
 

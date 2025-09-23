@@ -14,6 +14,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	for i in 4:
 		particles[i].global_position += particle_velocities[i] * delta
-		particle_velocities[i] += Vector2(0, 15 / delta) * delta
+		particle_velocities[i] += Vector2(0, 15) * delta * 60.0
 		particle_rotations[i] += (1080 * particle_directions[i].x) * delta
 		particles[i].global_rotation_degrees = snapped(particle_rotations[i], 90)

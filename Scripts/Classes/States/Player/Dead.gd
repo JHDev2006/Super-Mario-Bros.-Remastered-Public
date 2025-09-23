@@ -22,7 +22,7 @@ func physics_update(delta: float) -> void:
 		player.play_animation("DieFreeze")
 	player.sprite.speed_scale = 1
 	if can_fall:
-		player.velocity.y += (player.JUMP_GRAVITY / delta) * delta
+		player.velocity.y += (player.JUMP_GRAVITY) * delta * 60.0
 		player.velocity.y = clamp(player.velocity.y, -INF, player.MAX_FALL_SPEED)
 		player.move_and_slide()
 		if Input.is_action_just_pressed("jump_0"):
