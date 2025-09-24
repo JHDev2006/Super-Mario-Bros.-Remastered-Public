@@ -38,7 +38,7 @@ A Remake / Celebration of the original 'Super Mario Bros.' games. Features new l
 
 ## Importing for editing
 1. Download the source
-2. Download Godot 4.5 beta 3
+2. Download Godot Release 4.5 
 3. Import the project
 4. Enjoy!
 
