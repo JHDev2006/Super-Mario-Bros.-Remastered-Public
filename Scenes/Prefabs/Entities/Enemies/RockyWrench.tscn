@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c3m38c2skawpj"]
+[gd_scene load_steps=35 format=3 uid="uid://c3m38c2skawpj"]
 
 [ext_resource type="Script" uid="uid://bfsh8bhcmknkh" path="res://Scripts/Classes/Entities/Enemies/RockyWrench.gd" id="1_pl7bt"]
 [ext_resource type="Texture2D" uid="uid://bfora2lrmtyj4" path="res://Assets/Sprites/Enemies/RockyWrench.png" id="2_8y80u"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="10_w66sd"]
 [ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="13_h21ug"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="14_el25t"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="16_q44ss"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nqvoc"]
 atlas = ExtResource("2_8y80u")
@@ -391,6 +392,11 @@ script = ExtResource("14_el25t")
 add_score = true
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
+[node name="BlockBouncingDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("16_q44ss")
+hitbox = NodePath("../Sprite/EntityHitbox")
+metadata/_custom_type_script = "uid://cmg61722ktg2m"
+
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
 [connection signal="player_stomped_on" from="Sprite/StompHitbox/EnemyPlayerDetection" to="." method="on_player_stomped_on"]
 [connection signal="invincible_player_hit" from="Sprite/EntityHitbox/EnemyPlayerDetection" to="." method="die_from_object"]
@@ -405,3 +411,4 @@ metadata/_custom_type_script = "uid://5octqlf4ohel"
 [connection signal="timeout" from="Timer" to="." method="on_timeout"]
 [connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]
 [connection signal="explosion_entered" from="ExplosionDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [500]]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="die_from_object"]

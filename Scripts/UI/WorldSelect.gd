@@ -39,6 +39,8 @@ func open() -> void:
 	setup_visuals()
 	show()
 	await get_tree().process_frame
+	if Global.current_game_mode != Global.GameMode.CAMPAIGN:
+		selected_world = clamp(selected_world, 0, 7)
 	$%SlotContainer.get_child(selected_world).grab_focus()
 	active = true
 

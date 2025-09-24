@@ -379,7 +379,7 @@ modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "ERROR! PLEASE REPORT!"
-autowrap_mode = 2
+autowrap_mode = 1
 uppercase = true
 
 [node name="Warning" type="Label" parent="CanvasLayer/VBoxContainer"]
@@ -388,7 +388,7 @@ modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "Warning!"
-autowrap_mode = 2
+autowrap_mode = 1
 uppercase = true
 
 [node name="Comment" type="Label" parent="CanvasLayer/VBoxContainer"]
@@ -396,7 +396,7 @@ visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "Comment"
-autowrap_mode = 2
+autowrap_mode = 1
 uppercase = true
 
 [node name="PanelSetter" type="Node" parent="."]

@@ -43,6 +43,8 @@ func _ready() -> void:
 	Global.p_switch_timer = -1
 	if Checkpoint.passed:
 		Door.unlocked_doors = Checkpoint.unlocked_doors.duplicate()
+	else:
+		Door.unlocked_doors = []
 	if Global.current_campaign == "SMBANN":
 		DiscoLevel.reset_values()
 	DiscoLevel.first_load = true
