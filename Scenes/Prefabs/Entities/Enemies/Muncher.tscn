@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bi1hb03wk001p"]
+[gd_scene load_steps=17 format=3 uid="uid://bi1hb03wk001p"]
 
 [ext_resource type="Script" uid="uid://bpydbpyjk1mt4" path="res://Scripts/Classes/Entities/Enemy.gd" id="1_cgdwi"]
 [ext_resource type="Texture2D" uid="uid://dg7yxoq44gaae" path="res://Assets/Sprites/Enemies/Muncher.png" id="2_ad4wf"]
@@ -32,7 +32,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgdwi"]
-size = Vector2(15.9, 16)
+size = Vector2(14, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gi78"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjn4g"]
+size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7ue2"]
 size = Vector2(17, 18.5)
@@ -42,7 +48,7 @@ size = Vector2(16, 16)
 
 [node name="Muncher" type="CharacterBody2D" node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
 disable_mode = 1
-collision_layer = 20
+collision_layer = 54
 collision_mask = 4114
 script = ExtResource("1_cgdwi")
 on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
@@ -65,8 +71,19 @@ property_name = "sprite_frames"
 resource_json = ExtResource("5_cgdwi")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="DCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0.4749999, 0)
 shape = SubResource("RectangleShape2D_cgdwi")
+one_way_collision = true
+
+[node name="RCollision" type="CollisionShape2D" parent="."]
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_6gi78")
+one_way_collision = true
+
+[node name="LCollision" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_sjn4g")
 one_way_collision = true
 
 [node name="PlayerDetection" type="Area2D" parent="."]
