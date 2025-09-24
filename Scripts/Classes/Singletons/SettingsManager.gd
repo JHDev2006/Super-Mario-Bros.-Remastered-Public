@@ -61,7 +61,8 @@ var file := {
 		"bridge_animation": 0,
 		"visible_timers": 0,
 		"transition_animation": 0,
-		"colour_pipes": 1
+		"colour_pipes": 1,
+		"firebar_style": 0
 	},
 	"difficulty":
 	{

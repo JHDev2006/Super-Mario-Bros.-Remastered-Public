@@ -622,6 +622,7 @@ offset_right = 128.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
+has_challenge_stuff = true
 
 [node name="CharacterSelect" parent="CanvasLayer/ChallengeHunt" instance=ExtResource("13_8wrri")]
 visible = false

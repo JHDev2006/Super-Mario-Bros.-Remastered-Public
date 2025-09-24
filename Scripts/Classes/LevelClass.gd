@@ -9,6 +9,13 @@ extends Node
 
 const THEME_IDXS := ["Overworld", "Underground", "Desert", "Snow", "Jungle", "Beach", "Garden", "Mountain", "Skyland", "Autumn", "Pipeland", "Space", "Underwater", "Volcano", "GhostHouse", "Castle", "CastleWater", "Airship", "Bonus"]
 
+const WORLD_COUNTS := {
+	"SMB1": 8,
+	"SMBLL": 13,
+	"SMBS": 8,
+	"SMBANN": 8
+}
+
 const WORLD_THEMES := {
 	"SMB1": SMB1_THEMES,
 	"SMBLL": SMB1_THEMES,
@@ -29,6 +36,8 @@ const SMB1_THEMES := {
 	9: "Space",
 	10: "Autumn",
 	11: "Pipeland",
+	12: "Skyland",
+	13: "Volcano"
 }
 
 const SMBS_THEMES := {
@@ -130,6 +139,9 @@ func update_next_level_info() -> void:
 
 static func get_scene_string(world_num := 0, level_num := 0) -> String:
 	return "res://Scenes/Levels/" + Global.current_campaign + "/World" + str(world_num) + "/" + str(world_num) + "-" + str(level_num) + ".tscn"
+
+static func get_world_count() -> int:
+	return WORLD_COUNTS[Global.current_campaign]
 
 func transition_to_next_level() -> void:
 	if Global.current_game_mode == Global.GameMode.CHALLENGE:

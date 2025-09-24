@@ -1,6 +1,7 @@
 extends PlayerState
 
 func enter(_msg := {}) -> void:
+	player.can_hurt = false
 	player.has_jumped = false
 	player.crouching = false
 	player.get_node("CameraCenterJoint/RightWall").set_collision_layer_value(1, false)

@@ -27,7 +27,7 @@ func physics_update(delta: float) -> void:
 	handle_death_pits()
 
 func handle_death_pits() -> void:
-	if player.global_position.y > 64 and not Level.in_vine_level and player.auto_death_pit:
+	if player.global_position.y > 64 and not Level.in_vine_level and player.auto_death_pit and player.gravity_vector == Vector2.DOWN:
 		player.die(true)
 	elif player.global_position.y < Global.current_level.vertical_height - 32 and player.gravity_vector == Vector2.UP:
 		player.die(true)
@@ -54,6 +54,7 @@ func grounded(delta: float) -> void:
 	if player.velocity.y >= 0:
 		player.has_jumped = false
 	if Global.player_action_just_pressed("jump", player.player_id):
+		player.handle_water_detection()
 		if player.in_water or player.flight_meter > 0:
 			swim_up()
 			return
@@ -94,7 +95,7 @@ func handle_ground_movement(delta: float) -> void:
 func ground_acceleration(delta: float) -> void:
 	var target_move_speed := player.WALK_SPEED
 	if player.in_water or player.flight_meter > 0:
-		target_move_speed = 45
+		target_move_speed = player.SWIM_GROUND_SPEED
 	var target_accel := player.GROUND_WALK_ACCEL
 	if (Global.player_action_pressed("run", player.player_id) and abs(player.velocity.x) >= player.WALK_SPEED) and (not player.in_water and player.flight_meter <= 0) and player.can_run:
 		target_move_speed = player.RUN_SPEED
@@ -132,14 +133,9 @@ func handle_air_movement(delta: float) -> void:
 		
 	if Global.player_action_pressed("jump", player.player_id) == false and player.has_jumped and not player.jump_cancelled:
 		player.jump_cancelled = true
-		if player.gravity_vector.y > 0:
-			if player.velocity.y < 0:
-				player.velocity.y /= 1.5
-				player.gravity = player.FALL_GRAVITY
-		elif player.gravity_vector.y < 0:
-			if player.velocity.y > 0:
-				player.velocity.y /= 1.5
-				player.gravity = player.FALL_GRAVITY
+		if sign(player.gravity_vector.y * player.velocity.y) < 0.0:
+			player.velocity.y /= player.JUMP_CANCEL_DIVIDE
+			player.gravity = player.FALL_GRAVITY
 
 func air_acceleration(delta: float) -> void:
 	var target_speed = player.WALK_SPEED
@@ -170,7 +166,7 @@ func swim_acceleration(delta: float) -> void:
 func swim_up() -> void:
 	if player.swim_stroke:
 		player.play_animation("SwimIdle")
-	player.velocity.y = -100 * player.gravity_vector.y
+	player.velocity.y = -player.SWIM_HEIGHT * player.gravity_vector.y
 	AudioManager.play_sfx("swim", player.global_position)
 	swim_up_meter = 0.5
 	player.crouching = false

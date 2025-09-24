@@ -25,11 +25,11 @@ func setup_visuals() -> void:
 			target_time = SpeedrunHandler.GOLD_WARPLESS_TIMES[Global.current_campaign]
 	%Target.text = SpeedrunHandler.gen_time_string(SpeedrunHandler.format_time(target_time))
 	var medal_index := -1
-	if SpeedrunHandler.timer < target_time:
+	if SpeedrunHandler.timer <= target_time:
 		medal_index = 2
-	elif SpeedrunHandler.timer < target_time * SpeedrunHandler.MEDAL_CONVERSIONS[1]:
+	elif SpeedrunHandler.timer <= target_time * SpeedrunHandler.MEDAL_CONVERSIONS[1]:
 		medal_index = 1
-	elif SpeedrunHandler.timer < target_time * SpeedrunHandler.MEDAL_CONVERSIONS[0]:
+	elif SpeedrunHandler.timer <= target_time * SpeedrunHandler.MEDAL_CONVERSIONS[0]:
 		medal_index = 0
 	%Medal.get_node("Full").visible = medal_index >= 0
 	%Medal.get_node("Full").region_rect.position = Vector2(8 * medal_index, 0)

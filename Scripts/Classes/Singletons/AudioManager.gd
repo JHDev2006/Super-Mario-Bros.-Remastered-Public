@@ -224,8 +224,6 @@ func handle_music() -> void:
 					music_player.get_stream_playback().switch_to_clip(1)
 			elif music_player.get_stream_playback().get_current_clip_index() != 0:
 				music_player.get_stream_playback().switch_to_clip(0)
-		if DiscoLevel.in_disco_level:
-			music_player.pitch_scale = 2
 
 func handle_music_override() -> void:
 	if music_override_player.stream is AudioStreamInteractive and music_override_player.is_playing():
@@ -244,6 +242,8 @@ func create_stream_from_json(json_path := "") -> AudioStream:
 					return AudioStreamWAV.load_from_file(ResourceSetter.get_pure_resource_path(json_path))
 				"mp3":
 					return AudioStreamMP3.load_from_file(ResourceSetter.get_pure_resource_path(json_path))
+				"ogg":
+					return AudioStreamOggVorbis.load_from_file(ResourceSetter.get_pure_resource_path(json_path))
 		elif path.contains("res://"):
 			return load(path)
 	var bgm_file = $ResourceSetterNew.get_variation_json(JSON.parse_string(FileAccess.open(ResourceSetter.get_pure_resource_path(json_path), FileAccess.READ).get_as_text()).variations).source
@@ -255,8 +255,10 @@ func create_stream_from_json(json_path := "") -> AudioStream:
 	else:
 		if path.contains("res://"):
 			stream = load(path)
-		else:
+		elif path.contains(".mp3"):
 			stream = AudioStreamMP3.load_from_file(path)
+		elif path.contains(".ogg"):
+			stream = AudioStreamOggVorbis.load_from_file(path)
 	return stream
 
 func generate_interactive_stream(bgm_file := {}) -> AudioStreamInteractive:
@@ -274,10 +276,15 @@ func import_stream(file_path := "", loop_point := -1.0) -> AudioStream:
 		stream = load(path)
 	elif path.contains(".mp3"):
 		stream = AudioStreamMP3.load_from_file(ResourceSetter.get_pure_resource_path(file_path))
+	elif path.contains(".ogg"):
+		stream = AudioStreamOggVorbis.load_from_file(ResourceSetter.get_pure_resource_path(file_path))
 	elif path.contains(".wav"):
 		stream = AudioStreamWAV.load_from_file(path)
 		print([path, stream])
 	if path.contains(".mp3"):
+		stream.set_loop(loop_point >= 0)
+		stream.set_loop_offset(loop_point)
+	elif path.contains(".ogg"):
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
 	return stream

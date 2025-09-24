@@ -190,7 +190,7 @@ level_id = 7
 [node name="RaceBoo" parent="." node_paths=PackedStringArray("path") instance=ExtResource("16_fhj5s")]
 position = Vector2(-248, -136)
 path = NodePath("../Path2D/PathFollow2D")
-time_needed = [65, 60, 55, 50, 44]
+time_needed = [65, 60, 55, 50, 45]
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2v8ni")

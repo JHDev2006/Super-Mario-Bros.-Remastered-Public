@@ -136,6 +136,7 @@ script = ExtResource("1_gcnju")
 metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+process_mode = 1
 sprite_frames = SubResource("SpriteFrames_bcd7j")
 autoplay = "default"
 frame_progress = 0.177236

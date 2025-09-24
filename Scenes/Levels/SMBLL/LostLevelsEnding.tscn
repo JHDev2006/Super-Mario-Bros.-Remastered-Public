@@ -1,10 +1,9 @@
-[gd_scene load_steps=27 format=4 uid="uid://b0omfelsiothx"]
+[gd_scene load_steps=26 format=4 uid="uid://b0omfelsiothx"]
 
 [ext_resource type="Script" uid="uid://caugelxhwlvl0" path="res://Scripts/Parts/LostLevelsEnding.gd" id="1_qmhaw"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Ending.json" id="2_k7rel"]
 [ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="4_fxsfu"]
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="4_tkq3a"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/Bushes/Bush.json" id="4_xoqts"]
 [ext_resource type="Texture2D" uid="uid://dkjam0jo2k2m0" path="res://Assets/Sprites/Backgrounds/Bushes/CastleBushNight.png" id="5_wr0ye"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="6_g1x38"]
 [ext_resource type="FontVariation" uid="uid://djxdgxy1iv8yv" path="res://Resources/ThemedResources/FontLLMain.tres" id="9_1flm1"]
@@ -415,23 +414,16 @@ color = Color(0, 0, 0, 0)
 time_of_day = 1
 primary_layer = 1
 
+[node name="ResourceSetter" parent="LevelBG/SkyLayer/Sky" index="0"]
+force_properties = {
+"Time": "Night"
+}
+
 [node name="ResourceSetter" parent="LevelBG/PrimaryLayer/Bush" index="0"]
 process_mode = 3
 force_properties = {
 "Time": "Night"
 }
-
-[node name="ResourceSetter2" type="Node" parent="LevelBG/PrimaryLayer/Bush" index="1" node_paths=PackedStringArray("node_to_affect")]
-process_mode = 3
-script = ExtResource("13_k7rel")
-node_to_affect = NodePath("..")
-property_name = "texture"
-mode = 1
-resource_json = ExtResource("4_xoqts")
-force_properties = {
-"Time": "Night"
-}
-metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Bush2" type="Sprite2D" parent="LevelBG/PrimaryLayer" index="2"]
 process_mode = 1

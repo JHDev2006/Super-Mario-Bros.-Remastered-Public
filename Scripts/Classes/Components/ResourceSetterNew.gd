@@ -158,7 +158,12 @@ func apply_properties(properties := {}) -> void:
 	if property_node == null:
 		return
 	for i in properties.keys():
-		property_node.set(i, properties[i])
+		if property_node.get(i) is Vector2:
+			var value = properties[i]
+			if value is Array:
+				property_node.set(i, Vector2(value[0], value[1]))
+		else:
+			property_node.set(i, properties[i])
 
 func get_variation_json(json := {}) -> Dictionary:
 	var level_theme = Global.level_theme

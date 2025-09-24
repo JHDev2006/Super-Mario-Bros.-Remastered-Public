@@ -39,6 +39,8 @@ func open() -> void:
 	setup_visuals()
 	show()
 	await get_tree().process_frame
+	if Global.current_game_mode != Global.GameMode.CAMPAIGN:
+		selected_world = clamp(selected_world, 0, 7)
 	$%SlotContainer.get_child(selected_world).grab_focus()
 	active = true
 
@@ -92,9 +94,9 @@ func cleanup() -> void:
 	await get_tree().physics_frame
 	Global.world_num = starting_value
 	starting_value = -1
-	Global.world_num = clamp(Global.world_num, 1, 8)
+	Global.world_num = clamp(Global.world_num, 1, Level.get_world_count())
 	if owner is Level:
-		owner.world_id = clamp(owner.world_id, 1, 8)
+		owner.world_id = clamp(owner.world_id, 1, Level.get_world_count())
 
 func close() -> void:
 	active = false

@@ -9,6 +9,7 @@ static var title_first_load = true
 @onready var cursor = %Cursor
 
 static var last_theme := "Overworld"
+var last_campaign := "SMB1"
 var has_achievements_to_unlock := false
 @export var active_options: TitleScreenOptions = null
 
@@ -21,6 +22,7 @@ func _enter_tree() -> void:
 	Global.current_campaign = Settings.file.game.campaign
 	Global.in_title_screen = true
 	Global.current_game_mode = Global.GameMode.NONE
+	last_campaign = Global.current_campaign
 	title_first_load = false
 
 func _ready() -> void:
@@ -40,15 +42,17 @@ func _ready() -> void:
 	Global.player_ghost.apply_data()
 	get_tree().call_group("PlayerGhosts", "delete")
 	Global.current_level = null
-	Global.world_num = clamp(Global.world_num, 1, 8)
+	Global.world_num = clamp(Global.world_num, 1, get_world_count())
+	update_title()
+
+func update_title() -> void:
+	SaveManager.apply_save(SaveManager.load_save(Global.current_campaign))
 	level_id = Global.level_num - 1
 	world_id = Global.world_num
 	update_theme()
 	await get_tree().physics_frame
 	$LevelBG.time_of_day = ["Day", "Night"].find(Global.theme_time)
 	$LevelBG.update_visuals()
-
-
 
 func play_bgm() -> void:
 	if has_achievements_to_unlock:
@@ -66,7 +70,9 @@ func _process(_delta: float) -> void:
 		$BGM.play()
 
 func campaign_selected() -> void:
-	SaveManager.apply_save(SaveManager.load_save(Global.current_campaign))
+	if last_campaign != Global.current_campaign:
+		last_campaign = Global.current_campaign
+		update_title()
 	if Global.current_campaign == "SMBANN":
 		Global.current_game_mode = Global.GameMode.CAMPAIGN
 		$CanvasLayer/AllNightNippon/WorldSelect.open()

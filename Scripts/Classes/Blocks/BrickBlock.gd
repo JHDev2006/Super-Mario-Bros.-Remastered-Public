@@ -4,9 +4,11 @@ extends Block
 var ticking_down := false
 
 func _ready() -> void:
-	$PSwitcher.enabled = item == null
 	if item_amount == 10 and item.resource_path == "res://Scenes/Prefabs/Entities/Items/SpinningCoin.tscn" and is_instance_valid(Global.level_editor) == false:
 		Global.log_warning("Coin Brick Block is wrong! please report!: " + name)
+
+func check_brick_empty() -> void:
+	$PSwitcher.enabled = item == null
 
 func on_block_hit(player: Player) -> void:
 	if player.power_state.hitbox_size == "Big":

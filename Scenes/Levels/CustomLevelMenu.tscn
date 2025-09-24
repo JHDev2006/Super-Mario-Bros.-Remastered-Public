@@ -362,11 +362,11 @@ layout_mode = 2
 focus_mode = 0
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="0"]
-scroll_horizontal = 166
+scroll_horizontal = 145
 is_active = true
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="1"]
-scroll_horizontal = 32
+scroll_horizontal = 63
 is_active = true
 
 [node name="Panel" type="PanelContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo"]
@@ -377,7 +377,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/Panel"]
 layout_mode = 2
 mouse_filter = 2
-scroll_vertical = 59
+scroll_vertical = 71
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("24_wf6nb")
@@ -565,12 +565,12 @@ layout_mode = 2
 focus_mode = 0
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="0"]
-scroll_horizontal = 24
+scroll_horizontal = 31
 is_active = true
 auto_connect_focus = false
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" index="1"]
-scroll_horizontal = 32
+scroll_horizontal = 63
 is_active = true
 auto_connect_focus = false
 
@@ -583,7 +583,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/Panel"]
 layout_mode = 2
 mouse_filter = 0
-scroll_vertical = 59
+scroll_vertical = 71
 horizontal_scroll_mode = 3
 script = ExtResource("24_wf6nb")
 direction = 1
@@ -662,6 +662,12 @@ offset_left = -76.0
 offset_right = 76.0
 focus_mode = 2
 
+[node name="LSSCharacterSelect" parent="." instance=ExtResource("28_u8fen")]
+visible = false
+offset_left = -76.0
+offset_right = 76.0
+focus_mode = 2
+
 [connection signal="closed" from="BG/Border/Levels/VBoxContainer/LevelList" to="." method="back_to_title_screen"]
 [connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/LevelList" to="BG/Border/Levels/VBoxContainer/LevelInfo" method="open"]
 [connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/LevelList" to="BG/Border/Levels/VBoxContainer/LevelList" method="close" unbinds=1]
@@ -694,8 +700,7 @@ focus_mode = 2
 [connection signal="tree_exiting" from="BG/Border/Levels/VBoxContainer/LSSBrowser/HTTPRequest" to="BG/Border/Levels/VBoxContainer/LSSBrowser/HTTPRequest" method="cancel_request"]
 [connection signal="closed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo" to="." method="clear_saved_stuff"]
 [connection signal="closed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="open" binds= [false]]
-[connection signal="level_play" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo" to="." method="play_level"]
-[connection signal="level_play" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo" to="." method="lss_level_played"]
+[connection signal="level_play" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo" to="." method="online_play"]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/HBoxContainer/Download" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="download_level"]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/HBoxContainer/OnlinePlay" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="play_level"]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/HBoxContainer/ViewOnLSS" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="open_lss"]
@@ -703,6 +708,8 @@ focus_mode = 2
 [connection signal="request_completed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/DownloadLevel" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="level_downloaded"]
 [connection signal="updated" from="BGM/ResourceSetterNew" to="BGM" method="play"]
 [connection signal="cancelled" from="CharacterSelect" to="BG/Border/Levels/VBoxContainer/LevelInfo" method="reopen"]
+[connection signal="cancelled" from="LSSCharacterSelect" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="reset_process"]
+[connection signal="cancelled" from="LSSCharacterSelect" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo/HBoxContainer/OnlinePlay" method="grab_focus"]
 
 [editable path="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel"]
 [editable path="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Play"]

@@ -266,6 +266,9 @@ func reset_values() -> void:
 	Checkpoint.passed = false
 	Checkpoint.sublevel_id = 0
 	Door.unlocked_doors = []
+	Checkpoint.unlocked_doors = []
+	KeyItem.total_collected = 0
+	Checkpoint.keys_collected = 0
 	Level.start_level_path = Level.get_scene_string(Global.world_num, Global.level_num)
 	LevelPersistance.reset_states()
 	Level.first_load = true

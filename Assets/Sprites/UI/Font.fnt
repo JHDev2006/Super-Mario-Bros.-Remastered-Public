@@ -137,3 +137,5 @@ char id=195   x=48    y=128     width=16    height=16 xoffset=0     yoffset=0   
 char id=213   x=64    y=128     width=16    height=16 xoffset=0     yoffset=0     xadvance=16    page=0  chnl=0
 
 char id=1059   x=80    y=128     width=16    height=16 xoffset=0     yoffset=0     xadvance=16    page=0  chnl=0
+
+char id=8203   x=0   y=0   width=1   height=1   xoffset=0   yoffset=0   xadvance=0   page=0   chnl=0

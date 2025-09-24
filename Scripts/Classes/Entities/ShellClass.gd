@@ -3,6 +3,8 @@ extends Enemy
 
 var moving := false
 
+var moving_time := 0.0
+
 const MOVE_SPEED := 192
 const AIR_MOVE_SPEED := 64
 
@@ -15,7 +17,7 @@ var can_kick := false
 
 var player: Player = null
 
-const COMBO_VALS := [500, 800, 1000, 2000, 4000, 5000, 8000, null]
+const COMBO_VALS := [100, 200, 400, 500, 800, 1000, 2000, 4000, 5000, 8000, null]
 
 var wake_meter := 0.0 ## SMB1R IS WOKE
 
@@ -24,6 +26,8 @@ var old_entity: Enemy = null
 var can_update := true
 
 var can_air_kick := false
+
+var times_kicked := 0
 
 func _ready() -> void:
 	$Sprite.flip_v = flipped
@@ -40,14 +44,12 @@ func on_player_stomped_on(stomped_player: Player) -> void:
 		return
 	if not moving:
 		direction = sign(global_position.x - stomped_player.global_position.x)
-		kick()
+		kick(stomped_player)
 	else:
 		DiscoLevel.combo_meter += 10
 		moving = false
 		AudioManager.play_sfx("enemy_stomp", global_position)
-		stomped_player.enemy_bounce_off()
-		if Global.current_game_mode == Global.GameMode.CHALLENGE and stomped_player.stomp_combo >= 10:
-			die_from_object(stomped_player)
+		stomped_player.enemy_bounce_off(true, moving_time > 0.1)
 
 func block_bounced(_block: Block) -> void:
 	velocity.y = -200
@@ -59,19 +61,50 @@ func on_player_hit(hit_player: Player) -> void:
 		return 
 	if not moving:
 		direction = sign(global_position.x - hit_player.global_position.x )
-		kick()
+		kick(hit_player)
 	else:
 		hit_player.damage()
+		
+func award_score(award_level: int) -> void:
+	if award_level >= 10:
+		if Global.current_game_mode == Global.GameMode.CHALLENGE or Settings.file.difficulty.inf_lives:
+			$ScoreNoteSpawner.spawn_note(10000)
+		else:
+			AudioManager.play_global_sfx("1_up")
+			Global.lives += 1
+			$ScoreNoteSpawner.spawn_one_up_note()
+	else:
+		$ScoreNoteSpawner.spawn_note(COMBO_VALS[award_level])
+		
+func get_kick_award(hit_player: Player) -> int:
+	var award_level = hit_player.stomp_combo + 2
+	if award_level > 10:
+		award_level = 10
+	# Award special amounts of points if close to waking up.
+	if wake_meter > 7 - 0.04:
+		award_level = 9
+	elif wake_meter > 7 - 0.25:
+		award_level = 5
+	elif wake_meter > 7 - 0.75:
+		award_level = 3
+	return award_level
 
-func kick() -> void:
+func kick(hit_player: Player) -> void:
 	update_hitbox()
 	DiscoLevel.combo_meter += 25
 	moving = true
+	moving_time = 0.0
 	if can_air_kick:
 		$ScoreNoteSpawner.spawn_note(8000)
 	else:
-		$ScoreNoteSpawner.spawn_note(400)
+		award_score(get_kick_award(hit_player))
 	AudioManager.play_sfx("kick", global_position)
+	
+	# Limit the number of times you can kick the same shell.
+	if Global.current_game_mode == Global.GameMode.CHALLENGE:
+		times_kicked += 1
+		if times_kicked >= 7:
+			die_from_object(hit_player)
 
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
@@ -79,6 +112,7 @@ func _physics_process(delta: float) -> void:
 	handle_block_collision()
 	if moving:
 		wake_meter = 0
+		moving_time += delta
 		$Sprite.play("Spin")
 	else:
 		combo = 0
@@ -94,6 +128,7 @@ func handle_waking(delta: float) -> void:
 
 func summon_original_entity() -> void:
 	old_entity.global_position = global_position
+	old_entity.times_kicked = times_kicked
 	add_sibling(old_entity)
 	queue_free()
 
@@ -105,17 +140,12 @@ func handle_block_collision() -> void:
 			i.shell_block_hit.emit(self)
 
 func add_combo() -> void:
-	if combo >= 7:
-		if Global.current_game_mode == Global.GameMode.CHALLENGE or Settings.file.difficulty.inf_lives:
-			Global.score += 10000
-			$ScoreNoteSpawner.spawn_note(10000)
-		else:
-			AudioManager.play_global_sfx("1_up")
-			Global.lives += 1
-			$ScoreNoteSpawner.spawn_one_up_note()
-	else:
-		$ScoreNoteSpawner.spawn_note(COMBO_VALS[combo])
+	award_score(combo + 3)
+	if combo < 7:
 		combo += 1
+	elif Global.current_game_mode == Global.GameMode.CHALLENGE and moving_time > 12.0:
+		# Force limit on how long you can let a shell hit respawning enemies.
+		die()
 
 func update_hitbox() -> void:
 	can_kick = false

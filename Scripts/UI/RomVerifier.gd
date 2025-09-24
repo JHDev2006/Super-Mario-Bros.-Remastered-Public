@@ -1,16 +1,23 @@
 class_name ROMVerifier
 extends Node
 
+var args = OS.get_cmdline_args()
 const VALID_HASH := "c9b34443c0414f3b91ef496d8cfee9fdd72405d673985afa11fb56732c96152b"
 
 func _ready() -> void:
 	Global.get_node("GameHUD").hide()
-	get_window().files_dropped.connect(on_file_dropped)
+	var validRomFound = false
+	for i in args:
+		if i.is_valid_filename():
+			if(is_valid_rom((i))):
+				on_file_dropped(args)
+				validRomFound = true 
+	if(!validRomFound):
+		get_window().files_dropped.connect(on_file_dropped)
 	await get_tree().physics_frame
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-
-
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)	
+  
 func on_file_dropped(files: PackedStringArray) -> void:
 	for i in files:
 		if i.contains(".zip"):

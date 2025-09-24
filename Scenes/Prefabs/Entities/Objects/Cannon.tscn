@@ -89,4 +89,6 @@ script = SubResource("GDScript_ywjuo")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="shoot"]

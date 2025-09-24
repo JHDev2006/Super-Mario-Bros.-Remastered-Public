@@ -131,6 +131,10 @@ func _ready() -> void:
 			$Info.hide()
 			%Grid.hide()
 			play_level()
+			_physics_process(0)
+			set_physics_process(false)
+			for i in [$TileMenu]:
+				i.queue_free()
 		else:
 			Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	else:
@@ -147,7 +151,8 @@ func _physics_process(delta: float) -> void:
 		handle_tile_cursor()
 	if [EditorState.IDLE, EditorState.TRACK_EDITING].has(current_state):
 		handle_camera(delta)
-	%ThemeName.text = Global.level_theme
+	if is_instance_valid(%ThemeName):
+		%ThemeName.text = Global.level_theme
 	handle_hud()
 	if Input.is_action_just_pressed("editor_open_menu"):
 		if current_state == EditorState.IDLE:
@@ -294,6 +299,8 @@ func return_to_editor() -> void:
 	return_editor_tiles()
 	%Camera.enabled = true
 	%Camera.make_current()
+	KeyItem.total_collected = 0
+	Door.unlocked_doors.clear()
 	editor_start.emit()
 	current_state = EditorState.IDLE
 	handle_hud()

@@ -1,29 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqhtste1il47d"]
+[gd_scene load_steps=8 format=3 uid="uid://bqhtste1il47d"]
 
 [ext_resource type="Script" uid="uid://0btfo4kjnnrg" path="res://Scripts/Parts/BulletBillCannon.gd" id="1_je07o"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="2_vkq2x"]
 [ext_resource type="Texture2D" uid="uid://di0lgq3cojy41" path="res://Assets/Sprites/Editor/BillCannon.png" id="3_xxt5v"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="4_guvwn"]
-[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="5_84pyo"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_guvwn"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Editor/BillCannonIcon.json" id="5_84pyo"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="6_guvwn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi286"]
 size = Vector2(48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rc5av"]
-atlas = ExtResource("3_xxt5v")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ilyi"]
-atlas = ExtResource("3_xxt5v")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="Resource" id="Resource_0rden"]
-script = ExtResource("5_84pyo")
-Overworld = SubResource("AtlasTexture_1ilyi")
-Underground = SubResource("AtlasTexture_rc5av")
-Castle = SubResource("AtlasTexture_rc5av")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [node name="BulletBillCannon" type="Node2D" groups=["Enemies"]]
 visibility_layer = 2
@@ -49,8 +34,9 @@ region_filter_clip_enabled = true
 script = ExtResource("4_guvwn")
 node_to_affect = NodePath("..")
 property_name = "texture"
-themed_resource = SubResource("Resource_0rden")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 1
+resource_json = ExtResource("5_84pyo")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="EditorPropertyExposer" type="Node" parent="."]
 script = ExtResource("6_guvwn")
