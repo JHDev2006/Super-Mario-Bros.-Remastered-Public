@@ -5,7 +5,7 @@ const BARREL_DESTRUCTION_PARTICLE = preload("res://Scenes/Prefabs/Particles/Barr
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 
-func handle_movement(delta: float) -> void:
+func handle_movement(_delta: float) -> void:
 	if is_on_wall() and is_on_floor() and get_wall_normal().x == -direction:
 		die()
 
