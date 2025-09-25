@@ -227,4 +227,9 @@ func _update_ml_options_from_cli_args() -> void:
 func _configure_logger() -> void:
 	ModLoaderLog.verbosity = ml_options.log_level
 	ModLoaderLog.ignored_mods = ml_options.ignored_mod_names_in_log
+	ModLoaderLog.warning_color = ml_options.warning_color
+	ModLoaderLog.success_color = ml_options.success_color
+	ModLoaderLog.info_color = ml_options.info_color
 	ModLoaderLog.hint_color = ml_options.hint_color
+	ModLoaderLog.debug_color = ml_options.debug_color
+	ModLoaderLog.debug_bold = ml_options.debug_bold

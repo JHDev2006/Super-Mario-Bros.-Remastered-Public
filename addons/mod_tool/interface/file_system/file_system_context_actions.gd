@@ -89,7 +89,7 @@ func add_custom_context_actions(context_menu: PopupMenu, file_paths: Array[Strin
 			add_hooks_context_action(context_menu, script_paths)
 
 	if asset_override_paths.size() > 0:
-		add_asset_override_context_action(context_menu, script_paths)
+		add_asset_override_context_action(context_menu, asset_override_paths)
 
 
 func create_script_extension(file_path: String) -> String:

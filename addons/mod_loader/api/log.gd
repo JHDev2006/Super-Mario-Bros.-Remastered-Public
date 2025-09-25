@@ -43,8 +43,13 @@ static var verbosity: VERBOSITY_LEVEL = VERBOSITY_LEVEL.DEBUG
 ## Array of mods that should be ignored when logging messages (contains mod IDs as strings)
 static var ignored_mods: Array[String] = []
 
-## Highlighting color for hint type log messages
-static var hint_color := Color("#70bafa")
+# NOTE: default values which get replaced later by `_configure_logger`
+static var warning_color := Color("#ffde66")
+static var success_color := Color("#5d8c3f")
+static var info_color := Color("#70bafa")
+static var hint_color := Color("#b293fa")
+static var debug_color := Color("#d4d4d4")
+static var debug_bold := true
 
 ## This Sub-Class represents a log entry in ModLoader.
 class ModLoaderLogEntry:
@@ -99,9 +104,15 @@ class ModLoaderLogEntry:
 
 	## Get the prefix string for the log entry, including the log type and mod name.[br]
 	## [br]
+	## [b]Parameters:[/b][br]
+	## [param exclude_type] ([bool]): (Optional) If true, the log type (e.g., DEBUG, WARN) will be excluded from the prefix. Default is false.[br]
+	## [br]
 	## [b]Returns:[/b] [String]
-	func get_prefix() -> String:
-		return "%s %s: " % [type.to_upper(), mod_name]
+	func get_prefix(exclude_type := false) -> String:
+		return "%s%s: " % [
+			"" if exclude_type else "%s " % type.to_upper(),
+			mod_name
+		]
 
 
 	## Generate an MD5 hash of the log entry (prefix + message).[br]
@@ -391,6 +402,17 @@ static func get_all_entries_as_string(log_entries: Array) -> Array:
 # Internal log functions
 # =============================================================================
 
+static func _print_rich(prefix: String, message: String, color: Color, bold := true) -> void:
+	if OS.has_feature("editor"):
+		var prefix_text := "[b]%s[/b]" % prefix if bold else prefix
+		print_rich("[color=%s]%s[/color]%s" % [
+			color.to_html(false),
+			prefix_text,
+			message
+		])
+	else:
+		print(prefix + message)
+
 static func _log(message: String, mod_name: String, log_type: String = "info", only_once := false) -> void:
 	if _is_mod_name_ignored(mod_name):
 		return
@@ -422,25 +444,35 @@ static func _log(message: String, mod_name: String, log_type: String = "info", o
 			_write_to_log_file(JSON.stringify(get_stack(), "  "))
 			assert(false, message)
 		"error":
-			printerr(log_entry.get_prefix() + message)
+			if ModLoaderStore.has_feature.editor:
+				printerr(log_entry.get_prefix(true) + message)
+			else:
+				printerr(log_entry.get_prefix() + message)
 			push_error(message)
 			_write_to_log_file(log_entry.get_entry())
 		"warning":
 			if verbosity >= VERBOSITY_LEVEL.WARNING:
-				print(log_entry.get_prefix() + message)
+				_print_rich(log_entry.get_prefix(), message, warning_color)
 				push_warning(message)
 				_write_to_log_file(log_entry.get_entry())
-		"info", "success":
+		"success":
 			if verbosity >= VERBOSITY_LEVEL.INFO:
-				print(log_entry.get_prefix() + message)
+				_print_rich(log_entry.get_prefix(), message, success_color)
+				_write_to_log_file(log_entry.get_entry())
+		"info":
+			if verbosity >= VERBOSITY_LEVEL.INFO:
+				_print_rich(log_entry.get_prefix(), message, info_color)
 				_write_to_log_file(log_entry.get_entry())
 		"debug":
 			if verbosity >= VERBOSITY_LEVEL.DEBUG:
-				print(log_entry.get_prefix() + message)
+				_print_rich(log_entry.get_prefix(), message, debug_color, debug_bold)
 				_write_to_log_file(log_entry.get_entry())
 		"hint":
-			if OS.has_feature("editor") and verbosity >= VERBOSITY_LEVEL.DEBUG:
-				print_rich("[color=%s]%s[/color]" % [hint_color.to_html(false), log_entry.get_prefix() + message])
+			if (
+				ModLoaderStore.has_feature.editor and
+				verbosity >= VERBOSITY_LEVEL.DEBUG
+			):
+					_print_rich(log_entry.get_prefix(), message, hint_color)
 
 
 static func _is_mod_name_ignored(mod_name: String) -> bool:
