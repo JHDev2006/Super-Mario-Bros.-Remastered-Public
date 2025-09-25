@@ -10,7 +10,7 @@ class_name ModToolUtils
 static func reload_script(script: Script, mod_tool_store: ModToolStore) -> void:
 	var pending_reloads := mod_tool_store.pending_reloads
 
-	if script.resource_path in pending_reloads:
+	if script and script.resource_path in pending_reloads:
 		var source_code_from_disc := FileAccess.open(script.resource_path, FileAccess.READ).get_as_text()
 
 		var script_editor := EditorInterface.get_script_editor()
