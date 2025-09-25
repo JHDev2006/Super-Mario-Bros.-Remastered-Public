@@ -160,7 +160,7 @@
 	"CastleWater": {
 	  "SMB1": { "source": "CastleWaterDeco.png", "rect": [0.0, 0.0, 80.0, 32.0] },
 	  "SMBLL": { "source": "CastleWaterLLDeco.png", "rect": [0.0, 0.0, 80.0, 32.0] },
-	  "SMBANN": { "source": "CastleWaterDecoANN.png", "rect": [0.0, 0.0, 80.0, 32.0] }
+	  "SMBANN": { "link": "SMBLL" }
 	},
 	"Airship": {
 		"SMB1": {

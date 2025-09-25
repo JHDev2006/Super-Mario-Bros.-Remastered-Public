@@ -176,6 +176,9 @@
 			},
 			"SMBS": {
 				"source": "CastleWaterSP.png"
+			},
+			"SMBANN": {
+				"source": "CastleWaterANN.png"
 			}
 		},
 		"Airship": {
