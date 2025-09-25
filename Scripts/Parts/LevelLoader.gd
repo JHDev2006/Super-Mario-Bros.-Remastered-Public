@@ -118,13 +118,14 @@ func apply_level_data(data := "") -> void:
 	level.can_backscroll = bool(values[4])
 	level.vertical_height = -int(values[5])
 	level.time_limit = int(values[6])
-	%ThemeTime.selected = values[1]
-	%LevelMusic.selected = values[2]
-	%Campaign.selected = values[3]
-	%BackScroll.set_pressed_no_signal(bool(values[4]))
-	%HeightLimit.value = values[5]
-	%TimeLimit.value = values[6]
-	%SubLevelID.selected = editor.sub_level_id
+	if is_instance_valid($TileMenu):
+		%ThemeTime.selected = values[1]
+		%LevelMusic.selected = values[2]
+		%Campaign.selected = values[3]
+		%BackScroll.set_pressed_no_signal(bool(values[4]))
+		%HeightLimit.value = values[5]
+		%TimeLimit.value = values[6]
+		%SubLevelID.selected = editor.sub_level_id
 	ResourceSetterNew.cache.clear()
 	Global.level_theme_changed.emit()
 
@@ -140,12 +141,13 @@ func apply_bg_data(data := "") -> void:
 			value = (decode_from_base64_2char(i))
 		else:
 			value = (base64_charset.find(i))
-		if SELECTORS[id] is SpinBox:
-			SELECTORS[id].value = value
-		elif SELECTORS[id] is Button:
-			SELECTORS[id].set_pressed_no_signal(bool(value))
-		else:
-			SELECTORS[id].selected = value
+		if is_instance_valid($TileMenu):
+			if SELECTORS[id] is SpinBox:
+				SELECTORS[id].value = value
+			elif SELECTORS[id] is Button:
+				SELECTORS[id].set_pressed_no_signal(bool(value))
+			else:
+				SELECTORS[id].selected = value
 		level_bg.set_value(value, BG_VALUES[id])
 		id += 1
 	

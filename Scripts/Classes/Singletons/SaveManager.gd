@@ -43,7 +43,8 @@ const SAVE_TEMPLATE := {
 		-1.0, -1.0, -1.0, -1.0
 	],
 	"HighScore": 0,
-	"ExtraWorldWin": false
+	"ExtraWorldWin": false,
+	"CurrentQuest": 1
 }
 
 
@@ -95,6 +96,7 @@ func write_save(campaign: String = Global.current_campaign, force := false) -> v
 			save_json["LevelsVisited"] = visited_levels
 			save_json["HighScore"] = Global.high_score
 			save_json["ExtraWorldWin"] = Global.extra_worlds_win
+			save_json["SecondQuest"] = Global.second_quest
 		Global.GameMode.CHALLENGE:
 			save_json["ChallengeScores"] = ChallengeModeHandler.top_challenge_scores
 			save_json["RedCoins"] = ChallengeModeHandler.red_coins_collected
@@ -137,6 +139,7 @@ func apply_save(json := {}) -> void:
 		DiscoLevel.level_ranks = json.get("Ranks")
 	if json.has("BooBestTimes"):
 		BooRaceHandler.best_times = json.get("BooBestTimes").duplicate()
+	Global.second_quest = json.get("SecondQuest", false)
 
 func clear_save() -> void:
 	for i in [BooRaceHandler.cleared_boo_levels, ChallengeModeHandler.top_challenge_scores, ChallengeModeHandler.red_coins_collected, visited_levels]:

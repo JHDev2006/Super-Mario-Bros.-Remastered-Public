@@ -1,0 +1,12 @@
+{
+	"variations": {
+		"default": {"source": "TextShadowColours.png", "rect": [0, 0, 1, 1]},
+		"Underground": {"source": "TextShadowColours.png", "rect": [1, 0, 1, 1]},
+		"GhostHouse": {"link": "Underground"},
+		"Snow": {"source": "TextShadowColours.png", "rect": [2, 0, 1, 1]},
+		"Space": {"source": "TextShadowColours.png", "rect": [3, 0, 1, 1]},
+		"Volcano": {"source": "TextShadowColours.png", "rect": [4, 0, 1, 1]},
+		"Castle": {"source": "TextShadowColours.png", "rect": [5, 0, 1, 1]},
+		"Bonus": {"source": "TextShadowColours.png", "rect": [6, 0, 1, 1]}
+	}
+}

@@ -119,6 +119,7 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 shape = SubResource("RectangleShape2D_wvrj8")
 
 [node name="Hitbox" type="Area2D" parent="."]
+monitorable = false
 
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(128, 0)

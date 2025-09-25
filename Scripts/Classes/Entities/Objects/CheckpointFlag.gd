@@ -10,7 +10,7 @@ func _ready() -> void:
 		owner.queue_free()
 		return
 	owner.show()
-	if Checkpoint.passed:
+	if owner.passed:
 		sprite.hide()
 		activated.show()
 

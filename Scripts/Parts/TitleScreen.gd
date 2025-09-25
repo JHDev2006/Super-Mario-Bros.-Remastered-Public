@@ -115,17 +115,14 @@ func check_for_ghost() -> void:
 	else:
 		$CanvasLayer/MarathonMode/HasWarp/CharacterSelect.open()
 
+func get_highscore() -> void:
+	%HighScore.text = "TOP- " + str(Global.high_score).pad_zeros(6)
 
-func new_game() -> void:
-	if Global.score > 0 or Global.coins > 0 or Global.player_power_states != "0000" or Global.world_num > 1 or Global.level_num > 1:
-		$CanvasLayer/SaveDeletionWarning.open()
-		await $CanvasLayer/SaveDeletionWarning.selected
-		if $CanvasLayer/SaveDeletionWarning.selected_index == 1:
-			active_options.active = true
-			return
-	Global.current_game_mode = Global.GameMode.CAMPAIGN
-	SaveManager.clear_save()
-	start_game()
+func clear_stats() -> void:
+	Global.clear_saved_values()
+	Global.world_num = 1
+	Global.level_num = 1
+	LevelTransition.level_to_transition_to = Level.get_scene_string(Global.world_num, Global.level_num)
 
 func start_game() -> void:
 	PipeCutscene.seen_cutscene = false
@@ -222,6 +219,19 @@ func open_options() -> void:
 func quit_game() -> void:
 	get_tree().quit()
 
+func new_game_selected() -> void:
+	Global.current_game_mode = Global.GameMode.CAMPAIGN
+	if Global.game_beaten:
+		%QuestSelect.open()
+	else:
+		$CanvasLayer/StoryMode/NewUnbeatenGame/NoBeatenCharSelect.open()
+
+func continue_game() -> void:
+	Global.current_game_mode = Global.GameMode.CAMPAIGN
+	if Global.game_beaten:
+		$CanvasLayer/StoryMode/ContinueBeatenGame/WorldSelect.open()
+	else:
+		$CanvasLayer/StoryMode/ContinueUnbeatenGame/CharacterSelect.open()
 
 func on_story_options_closed() -> void:
 	$CanvasLayer/Options2.open()

@@ -13,7 +13,7 @@ func enter(msg := {}) -> void:
 		player.set_collision_mask_value(i + 1, false)
 	player.gravity = player.JUMP_GRAVITY
 	if msg["Pit"] == false: 
-		player.velocity.y = -300
+		player.velocity.y = -player.DEATH_JUMP_HEIGHT
 
 func physics_update(delta: float) -> void:
 	if can_fall:

@@ -1071,6 +1071,23 @@ offset_bottom = 8.0
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_r70xa")
 
+[node name="ChallengeBits" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -8
+alignment = 1
+
+[node name="HighScore" type="Label" parent="Panel/MarginContainer/VBoxContainer/ChallengeBits"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SCORE: 00000"
+
+[node name="ScoreTarget" type="Label" parent="Panel/MarginContainer/VBoxContainer/ChallengeBits"]
+unique_name_in_owner = true
+modulate = Color(0.4627451, 0.5254902, 1, 1)
+layout_mode = 2
+text = "/24000"
+
 [node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
 script = ExtResource("5_x05vu")
 labels = [NodePath("../Panel/MarginContainer/VBoxContainer/Title")]

@@ -224,8 +224,6 @@ func handle_music() -> void:
 					music_player.get_stream_playback().switch_to_clip(1)
 			elif music_player.get_stream_playback().get_current_clip_index() != 0:
 				music_player.get_stream_playback().switch_to_clip(0)
-		if DiscoLevel.in_disco_level:
-			music_player.pitch_scale = 2
 
 func handle_music_override() -> void:
 	if music_override_player.stream is AudioStreamInteractive and music_override_player.is_playing():

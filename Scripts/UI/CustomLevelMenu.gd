@@ -19,7 +19,7 @@ func _ready() -> void:
 	ResourceSetterNew.cache.clear()
 	ResourceSetter.cache.clear()
 	Global.get_node("GameHUD").hide()
-	Checkpoint.passed = false
+	Checkpoint.passed_checkpoints.clear()
 	Global.world_num = 1
 	Global.level_num = 1
 	Global.reset_values()

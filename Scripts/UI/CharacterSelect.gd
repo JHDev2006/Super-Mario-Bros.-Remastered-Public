@@ -106,3 +106,7 @@ func select() -> void:
 func close() -> void:
 	active = false
 	hide()
+
+
+func on_selected() -> void:
+	pass # Replace with function body.

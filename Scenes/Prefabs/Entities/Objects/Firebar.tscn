@@ -20,8 +20,16 @@ script/source = "extends Node2D
 
 @export_enum(\"C-Clockwise\", \"Clockwise\") var direction := 0
 
+var smooth_rotation := false
+
+var bar_rotation := 0.0
+
 func _physics_process(delta: float) -> void:
-	$RotationJoint.global_rotation_degrees += 90 * delta * [-1, 1][direction]
+	bar_rotation += 108 * delta * [-1, 1][direction]
+	if Settings.file.visuals.firebar_style == 1:
+		$RotationJoint.global_rotation_degrees = bar_rotation
+	else:
+		$RotationJoint.global_rotation_degrees = snapped(bar_rotation, 11.25)
 
 func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player:
@@ -94,6 +102,7 @@ func _process(_delta: float) -> void:
 "
 
 [node name="Firebar" type="Node2D"]
+physics_interpolation_mode = 2
 script = SubResource("GDScript_e2e05")
 
 [node name="FireBar" type="Sprite2D" parent="."]
@@ -104,6 +113,7 @@ texture = ExtResource("1_e2e05")
 
 [node name="RotationJoint" type="Node2D" parent="."]
 unique_name_in_owner = true
+physics_interpolation_mode = 2
 z_index = 20
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="RotationJoint"]

@@ -276,9 +276,18 @@ func run_finished() -> void:
 	if Global.current_game_mode == Global.GameMode.BOO_RACE:
 		pass
 	else:
-		var best = best_level_warpless_times[Global.world_num - 1][Global.level_num - 1]
-		if is_warp_run:
-			best = best_level_any_times.get(str(Global.world_num) + "-" + str(Global.level_num), -1)
+		var best := -1
+		if Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
+			if is_warp_run:
+				best = best_level_any_times.get(str(Global.world_num) + "-" + str(Global.level_num), -1)
+			else:
+				best = best_level_warpless_times[Global.world_num - 1][Global.level_num - 1]
+		else:
+			if is_warp_run:
+				best = marathon_best_any_time
+			else:
+				best = marathon_best_warpless_time
+		
 		if best <= 0 or best > timer:
 			if Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
 				save_recording()

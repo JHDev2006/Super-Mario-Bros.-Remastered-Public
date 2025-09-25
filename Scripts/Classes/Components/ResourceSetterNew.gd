@@ -34,7 +34,7 @@ var update_on_spawn := true
 func _init() -> void:
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	safety_check()
 	if update_on_spawn:
 		update_resource()
@@ -158,16 +158,21 @@ func apply_properties(properties := {}) -> void:
 	if property_node == null:
 		return
 	for i in properties.keys():
-		var obj = property_node
-		for p in i.split("."):
-			if not is_instance_valid(obj): continue
-			if obj.get(p) is Object:
-				if obj.has_method("duplicate"):
-					obj.set(p, obj[p].duplicate(true))
-				obj = obj[p]
-			else:
-				obj.set(p, properties[i])
-				continue
+		if property_node.get(i) is Vector2:
+			var value = properties[i]
+			if value is Array:
+				property_node.set(i, Vector2(value[0], value[1]))
+		else:
+			var obj = property_node
+			for p in i.split("."):
+				if not is_instance_valid(obj): continue
+				if obj.get(p) is Object:
+					if obj.has_method("duplicate"):
+						obj.set(p, obj[p].duplicate(true))
+					obj = obj[p]
+				else:
+					obj.set(p, properties[i])
+					continue
 
 func get_variation_json(json := {}) -> Dictionary:
 	var level_theme = Global.level_theme
