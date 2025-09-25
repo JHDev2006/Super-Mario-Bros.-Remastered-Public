@@ -2,12 +2,68 @@
 	"variations": {
 		"default": {
 			"SMB1": {
-				"source": "1UP.png",
-				"rect": [0, 0, 16, 16]
+				"default": {
+					"source": "1UP.png",
+					"rect": [0, 0, 16, 16]
+				},
+				"Underground": {
+					"source": "1UP.png",
+					"rect": [16, 0, 16, 16]
+				},
+				"Castle": {"link": "Underground"},
+				"GhostHouse": {"link": "Underground"},
+				"Underwater": {
+					"source": "1UP.png",
+					"rect": [32, 0, 16, 16]
+				},
+				"Snow": {
+					"source": "1UP.png",
+					"rect": [0, 16, 16, 16]
+				},
+				"Space": {
+					"source": "1UP.png",
+					"rect": [16, 16, 16, 16]
+				},
+				"Volcano": {
+					"source": "1UP.png",
+					"rect": [32, 16, 16, 16]
+				},
+				"Bonus": {
+					"source": "1UP.png",
+					"rect": [0, 32, 16, 16]
+				}
 			},
 			"SMBLL": {
-				"source": "1UP.png",
-				"rect": [16, 0, 16, 16]
+				"default": {
+					"source": "1UPLL.png",
+					"rect": [0, 0, 16, 16]
+				},
+				"Underground": {
+					"source": "1UPLL.png",
+					"rect": [16, 0, 16, 16]
+				},
+				"Castle": {"link": "Underground"},
+				"GhostHouse": {"link": "Underground"},
+				"Underwater": {
+					"source": "1UPLL.png",
+					"rect": [32, 0, 16, 16]
+				},
+				"Snow": {
+					"source": "1UPLL.png",
+					"rect": [0, 16, 16, 16]
+				},
+				"Space": {
+					"source": "1UPLL.png",
+					"rect": [16, 16, 16, 16]
+				},
+				"Volcano": {
+					"source": "1UPLL.png",
+					"rect": [32, 16, 16, 16]
+				},
+				"Bonus": {
+					"source": "1UPLL.png",
+					"rect": [0, 32, 16, 16]
+				}
 			},
 			"SMBANN": {"link": "SMBLL"}
 		}
