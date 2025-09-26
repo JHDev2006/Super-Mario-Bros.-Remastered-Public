@@ -22,12 +22,12 @@
 [ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="14_h6dkv"]
 [ext_resource type="Script" uid="uid://dwtrmo82e12ud" path="res://Scripts/Parts/ColourPaletteSampler.gd" id="15_8qasw"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="15_jwl8o"]
-[ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="15_niy8w"]
 [ext_resource type="PackedScene" uid="uid://n2e3jgmkilvt" path="res://Scenes/Prefabs/UI/MarathonResults.tscn" id="16_cfljn"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="16_jt73e"]
 [ext_resource type="FontVariation" uid="uid://djxdgxy1iv8yv" path="res://Resources/ThemedResources/FontLLMain.tres" id="17_2w8b3"]
 [ext_resource type="PackedScene" uid="uid://b85i7uni0twpe" path="res://Scenes/Prefabs/UI/DiscoResults.tscn" id="17_ocsy5"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="18_jwl8o"]
+[ext_resource type="Texture2D" uid="uid://w74s6oi3l8k8" path="res://Assets/Sprites/UI/TextShadowColours.png" id="24_h6dkv"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/TextShadow.json" id="25_oeqb4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eon7h"]
 shader = ExtResource("6_r3m7e")
@@ -1021,8 +1021,7 @@ visible = false
 
 [node name="ColourPaletteSampler" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("15_8qasw")
-texture = ExtResource("15_niy8w")
-coords = Vector2i(67, 16)
+texture = ExtResource("24_h6dkv")
 node_to_affect = NodePath("../TextShadowColourChanger")
 value_to_set = "global_text_shadow_color"
 metadata/_custom_type_script = "uid://dwtrmo82e12ud"
@@ -1032,7 +1031,7 @@ script = ExtResource("3_jt73e")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("16_jt73e")
+resource_json = ExtResource("25_oeqb4")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels", "shadow_node")]

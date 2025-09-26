@@ -13,8 +13,14 @@ var old_campaign := ""
 @export var campaign := ["SMB1", "SMBLL", "SMBS", "SMBANN", "Custom"]
 
 func _ready() -> void:
+	update()
+	Global.level_theme_changed.connect(update)
 	get_starting_position()
 	handle_visuals()
+
+func update() -> void:
+	for icon in campaign_icons:
+		icon.atlas = $ResourceGetter.get_resource(icon.atlas)
 
 func _process(_delta: float) -> void:
 	if active:

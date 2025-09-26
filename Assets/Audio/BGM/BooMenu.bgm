@@ -1,0 +1,10 @@
+{
+    "Normal": {
+        "source": "BooMenu.mp3",
+        "loop": 4.797
+    },
+    "Hurry": {
+        "source": "BooMenu.mp3",
+        "loop": 4.797
+    }
+}

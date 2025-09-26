@@ -28,13 +28,15 @@ var is_random := false
 
 signal updated
 
+var current_resource_pack := ""
+
 @export var force_properties := {}
 var update_on_spawn := true
 
 func _init() -> void:
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	safety_check()
 	if update_on_spawn:
 		update_resource()
@@ -70,8 +72,12 @@ func get_resource(json_file: JSON) -> Resource:
 	var resource: Resource = null
 	var resource_path = json_file.resource_path
 	config_to_use = {}
+	current_resource_pack = ""
 	for i in Settings.file.visuals.resource_packs:
-		resource_path = get_resource_pack_path(resource_path, i)
+		var new_path = get_resource_pack_path(resource_path, i)
+		if resource_path != new_path or current_resource_pack == "":
+			current_resource_pack = i
+		resource_path = new_path
 	
 	var source_json = JSON.parse_string(FileAccess.open(resource_path, FileAccess.READ).get_as_text())
 	if source_json == null:
@@ -135,7 +141,6 @@ func get_resource(json_file: JSON) -> Resource:
 				var idx := 0
 				for i in json.get("source"):
 					var frame_path = ResourceSetter.get_pure_resource_path(json_file.resource_path.replace(json_file.resource_path.get_file(), i))
-					print(frame_path)
 					resource.set_frame_texture(idx, load_image_from_path(frame_path))
 					idx += 1
 			else:
@@ -158,7 +163,12 @@ func apply_properties(properties := {}) -> void:
 	if property_node == null:
 		return
 	for i in properties.keys():
-		property_node.set(i, properties[i])
+		if property_node.get(i) is Vector2:
+			var value = properties[i]
+			if value is Array:
+				property_node.set(i, Vector2(value[0], value[1]))
+		else:
+			property_node.set(i, properties[i])
 
 func get_variation_json(json := {}) -> Dictionary:
 	var level_theme = Global.level_theme
@@ -166,6 +176,7 @@ func get_variation_json(json := {}) -> Dictionary:
 		level_theme = force_properties.Theme
 	
 	for i in json.keys().filter(func(key): return key.contains("config:")):
+		get_config_file(current_resource_pack)
 		if config_to_use != {}:
 			var option_name = i.get_slice(":", 1)
 			if config_to_use.options.has(option_name):
@@ -255,15 +266,19 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	return json
 
+func get_config_file(resource_pack := "") -> void:
+	if FileAccess.file_exists("user://resource_packs/" + resource_pack + "/config.json"):
+		config_to_use = JSON.parse_string(FileAccess.open("user://resource_packs/" + resource_pack + "/config.json", FileAccess.READ).get_as_text())
+		if config_to_use == null:
+			Global.log_error("Error parsing Config File! (" + resource_pack + ")")
+			config_to_use = {}
+	else:
+		print("resource pack to use: " + resource_pack)
+
 func get_resource_pack_path(res_path := "", resource_pack := "") -> String:
 	var user_path := res_path.replace("res://Assets", "user://resource_packs/" + resource_pack)
 	user_path = user_path.replace("user://custom_characters/", "user://resource_packs/" + resource_pack + "/Sprites/Players/CustomCharacters/")
 	if FileAccess.file_exists(user_path):
-		if FileAccess.file_exists("user://resource_packs/" + resource_pack + "/config.json"):
-			config_to_use = JSON.parse_string(FileAccess.open("user://resource_packs/" + resource_pack + "/config.json", FileAccess.READ).get_as_text())
-			if config_to_use == null:
-				Global.log_error("Error parsing Config File! (" + resource_pack + ")")
-				config_to_use = {}
 		return user_path
 	else:
 		return res_path
@@ -304,7 +319,9 @@ func load_image_from_path(path := "") -> ImageTexture:
 
 func load_audio_from_path(path := "") -> AudioStream:
 	var stream = null
-	if path.contains("res://"):
+	if path.contains(".bgm"):
+		stream = AudioManager.generate_interactive_stream(JSON.parse_string(FileAccess.get_file_as_string(path)))
+	elif path.contains("res://"):
 		return load(path)
 	if path.contains(".wav"):
 		stream = AudioStreamWAV.load_from_file(path)

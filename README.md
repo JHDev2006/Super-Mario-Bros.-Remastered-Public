@@ -20,11 +20,21 @@ A Remake / Celebration of the original 'Super Mario Bros.' games. Features new l
 - Level Share Square Partnered
 
 ## Downloading
+
+### Windows/Linux
 1. Go to the 'Releases' page
 2. Look for the latest version
 3. Download the .zip for your OS
 4. Extract and run
 5. Enjoy!
+
+### macOS (Unofficial)
+1. Go to the [macOS repo](https://github.com/yuriko-shimizu/Super-Mario-Bros.-Remastered-Public-Mac/releases)
+2. (NOTE: THIS IS AN UNOFFICIAL FORK OF THE GAME)
+3. Look for the latest version
+4. Download the .zip file
+5. Extract, drag into the 'Applictions' folder and run
+6. Enjoy!
 
 ## Importing for editing
 1. Download the source
@@ -34,6 +44,15 @@ A Remake / Celebration of the original 'Super Mario Bros.' games. Features new l
 
 ## Contributing
 You are more than welcome to contribute any fixes / improvements you'd like, simply open a pull request, and I'll review it ASAP!
+
+## System Requirements
+
+Please refer to the Godot engine requirements for minimum and recommended hardware specifications.
+
+[Minimum Requirements](https://docs.godotengine.org/en/latest/about/system_requirements.html#desktop-or-laptop-pc-minimum)
+
+[Recommended Requirements](https://docs.godotengine.org/en/latest/about/system_requirements.html#id3)
+
 
 ## Issues
 When opening an issue, please keep it to one report, per post, and try and be as helpful as possible, when telling me what has occured, so that its as easy to fix as possible.

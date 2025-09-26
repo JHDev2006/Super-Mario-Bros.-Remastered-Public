@@ -149,7 +149,7 @@ _data = {
 }
 
 [node name="BobOmbHeld" type="CharacterBody2D"]
-collision_layer = 32
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_j3rs3")
 

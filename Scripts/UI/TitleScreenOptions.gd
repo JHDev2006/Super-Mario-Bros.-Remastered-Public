@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 		handle_inputs()
 
 func open() -> void:
-	Global.world_num = clamp(Global.world_num, 1, 8) # have this, cause i cba to make a fix for backing out of world 9 keeping you at world 9
+	Global.world_num = clamp(Global.world_num, 1, Level.get_world_count())
 	title_screen_parent.active_options = self
 	show()
 	await get_tree().physics_frame

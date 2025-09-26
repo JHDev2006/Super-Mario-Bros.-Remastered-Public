@@ -8,7 +8,8 @@ var file := {
 		"drop_shadows": 1,
 		"scaling": 0,
 		"visuals": 0,
-		"hud_size": 0
+		"hud_size": 0, 
+		"frame_limit" : 0,
 	},
 	"audio": {
 		"master": 10.0,
@@ -60,7 +61,8 @@ var file := {
 		"bridge_animation": 0,
 		"visible_timers": 0,
 		"transition_animation": 0,
-		"colour_pipes": 1
+		"colour_pipes": 1,
+		"firebar_style": 0
 	},
 	"difficulty":
 	{

@@ -11,7 +11,9 @@ var level_time := 0
 var game_style := "SMBLL"
 var difficulty := 0
 var file_path := ""
-
+var is_downloaded := false
+var thumbnail: Texture = null
+var level_id := ""
 var idx := 0
 
 const CAMPAIGN_RECTS := {
@@ -54,8 +56,16 @@ func _ready() -> void:
 	update_visuals()
 
 func update_visuals() -> void:
-	%LevelIcon.texture = ResourceSetter.get_resource(ICON_TEXTURES[level_time])
-	%LevelIcon.region_rect = THEME_RECTS[level_theme]
+	if is_downloaded and FileAccess.file_exists("user://custom_levels/downloaded/thumbnails/" + level_id + ".png"):
+		thumbnail = ImageTexture.create_from_image(Image.load_from_file("user://custom_levels/downloaded/thumbnails/" + level_id + ".png"))
+		%Thumbnail.texture = thumbnail
+		%LevelIcon.hide()
+		%Thumbnail.show()
+	else:
+		%Thumbnail.hide()
+		%LevelIcon.show()
+		%LevelIcon.texture = ResourceSetter.get_resource(ICON_TEXTURES[level_time])
+		%LevelIcon.region_rect = THEME_RECTS[level_theme]
 	
 	%LevelName.text = level_name if level_name != "" else "(Unnamed Level)"
 	%LevelAuthor.text = "By " + (level_author if level_author != "" else "Player")
@@ -64,7 +74,7 @@ func update_visuals() -> void:
 	
 	var idx := 0
 	for i in %DifficultyStars.get_children():
-		i.region_rect.position.x = 24 if idx > difficulty else [0, 0, 8, 8, 16][difficulty]
+		i.region_rect.position.x = 32 if idx > difficulty else [0, 8, 8, 16, 24][difficulty]
 		idx += 1
 
 func _process(_delta: float) -> void:

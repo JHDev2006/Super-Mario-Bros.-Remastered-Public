@@ -13,7 +13,8 @@ const ONLINE_LEVEL_CONTAINER = preload("uid://cr2pku7fjkgpo")
 
 var filter = 0
 var selected_lvl_idx := -1
-var sort := -1
+var order := 0
+static var number_of_pages := -1
 
 func _ready() -> void:
 	set_process(false)
@@ -49,7 +50,7 @@ func grab_levels() -> void:
 	var filter_str = ["", "", "&sort=plays", "&sort=rating"][filter]
 	var get_type = ["featured?", "get?", "get?", "get?"][filter]
 	var page_str = "&page=" + str(page_number)
-	var url = LSS_URL + "/api/levels/filter/" + get_type + "game=" + str(Global.LSS_GAME_ID) + "&authors=1" + filter_str + page_str + "&sortType=" + str(sort)
+	var url = LSS_URL + "/api/levels/filter/" + get_type + "game=" + str(Global.LSS_GAME_ID) + "&authors=1" + filter_str + page_str + "&sortType=" + str(order)
 	http_request.request(url, [], HTTPClient.METHOD_GET)
 
 func level_list_retrieved(result := 0, response_code := 0, headers: PackedStringArray = [], body: PackedByteArray = []) -> void:
@@ -63,10 +64,13 @@ func level_list_retrieved(result := 0, response_code := 0, headers: PackedString
 		return
 	var json = JSON.parse_string(string)
 	list = json
-	print(list)
 	spawn_containers()
 	%Page.values.clear()
-	for i in json.numberOfPages:
+	number_of_pages = json.numberOfPages
+	setup_page_numbers()
+
+func setup_page_numbers() -> void:
+	for i in number_of_pages:
 		%Page.values.append(str(int(i + 1)))
 
 func spawn_containers() -> void:
@@ -79,6 +83,7 @@ func spawn_containers() -> void:
 		container.level_author = i.author.username
 		container.difficulty = i.difficulty
 		container.level_id = i._id
+		container.ratings = i.rates
 		container.level_selected.connect(show_info)
 		if i.has("thumbnail"):
 			if i.thumbnail != null:
@@ -98,5 +103,5 @@ func set_page(page_idx := 0) -> void:
 	grab_levels()
 
 func set_order(order_idx := 0) -> void:
-	sort = [-1, 1][order_idx]
+	order = [-1, 1][order_idx]
 	grab_levels()

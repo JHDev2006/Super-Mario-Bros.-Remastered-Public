@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://dinpjmg0q23rv"]
+[gd_scene load_steps=23 format=3 uid="uid://dinpjmg0q23rv"]
 
 [ext_resource type="Script" uid="uid://bds7rntb0btee" path="res://Scripts/Classes/Entities/Enemies/Spiny.gd" id="1_u8w4p"]
 [ext_resource type="Texture2D" uid="uid://diemx33h3bxa2" path="res://Assets/Sprites/Enemies/Spiny.png" id="2_u8w4p"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_m3lgl"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_velug"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Spiny.json" id="4_a74i7"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_qcd6q"]
@@ -80,6 +81,8 @@ animation = &"Walk"
 autoplay = "Walk"
 offset = Vector2(0, 1)
 flip_h = true
+script = ExtResource("3_m3lgl")
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_velug")

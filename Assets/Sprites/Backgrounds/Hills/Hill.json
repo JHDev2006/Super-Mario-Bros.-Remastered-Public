@@ -1,4 +1,7 @@
 {
+	"properties": {
+		"primary_layer_size": [512, 512]
+	},
 	"animations": {
 		"default": {
 			"frames": [[0, 0, 512, 512]],

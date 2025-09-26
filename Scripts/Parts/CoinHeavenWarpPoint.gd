@@ -5,9 +5,10 @@ extends Node2D
 
 func _ready() -> void:
 	Level.vine_warp_level = heaven_scene
-	if Level.in_vine_level and PipeArea.exiting_pipe_id == -1:
+	if Level.in_vine_level:
 		Level.in_vine_level = false
-		for i in get_tree().get_nodes_in_group("Players"):
-			i.global_position = global_position
-			i.reset_physics_interpolation()
-			i.recenter_camera()
+		if PipeArea.exiting_pipe_id == -1:
+			for i in get_tree().get_nodes_in_group("Players"):
+				i.global_position = global_position
+				i.reset_physics_interpolation()
+				i.recenter_camera()

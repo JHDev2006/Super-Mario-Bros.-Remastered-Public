@@ -263,8 +263,12 @@ func activate_p_switch() -> void:
 
 func reset_values() -> void:
 	PlayerGhost.idx = 0
-	Checkpoint.passed = false
+	Checkpoint.passed_checkpoints.clear()
 	Checkpoint.sublevel_id = 0
+	Door.unlocked_doors = []
+	Checkpoint.unlocked_doors = []
+	KeyItem.total_collected = 0
+	Checkpoint.keys_collected = 0
 	Level.start_level_path = Level.get_scene_string(Global.world_num, Global.level_num)
 	LevelPersistance.reset_states()
 	Level.first_load = true
@@ -304,16 +308,16 @@ func transition_to_scene(scene_path := "") -> void:
 
 
 
-func do_fake_transition() -> void:
+func do_fake_transition(duration := 0.2) -> void:
 	if fade_transition:
 		$Transition/AnimationPlayer.play("FadeIn")
 		await $Transition/AnimationPlayer.animation_finished
-		await get_tree().create_timer(0.2, false).timeout
+		await get_tree().create_timer(duration, false).timeout
 		$Transition/AnimationPlayer.play_backwards("FadeIn")
 	else:
 		%TransitionBlock.modulate.a = 1
 		$Transition.show()
-		await get_tree().create_timer(0.25, false).timeout
+		await get_tree().create_timer(duration + 0.05, false).timeout
 		$Transition.hide()
 
 func freeze_screen() -> void:

@@ -257,7 +257,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_VIDEO"
-options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle")]
+options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle"), NodePath("FrameLimit")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
 custom_minimum_size = Vector2(0, 4)
@@ -320,6 +320,12 @@ layout_mode = 2
 option_key = "hud_scaling"
 title = "VIDEO_HUD_SCALING"
 values = ["VIDEO_HUD_STRETCHED", "VIDEO_HUD_CENTER"]
+
+[node name="FrameLimit" parent="PanelContainer/MarginContainer/VBoxContainer/Video" instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "frame_limit"
+title = "FRAME LIMIT"
+values = ["Unlimited", "60fps", "120fps", "144fps", "240fps"]
 
 [node name="WindowChanger" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
 script = ExtResource("5_hnwhb")
@@ -395,7 +401,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_VISUALS"
-options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), NodePath("ColourfulPipes")]
+options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), NodePath("ColourfulPipes"), NodePath("FirebarStyle")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
 custom_minimum_size = Vector2(0, 4)
@@ -469,6 +475,13 @@ layout_mode = 2
 option_key = "colour_pipes"
 title = "VISUAL_COLOURFUL_PIPES"
 values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "visuals"
+
+[node name="FirebarStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "firebar_style"
+title = "FIREBAR STYLE"
+values = ["Classic", "Modern"]
 settings_category = "visuals"
 
 [node name="VisualsSetter" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
@@ -606,8 +619,8 @@ settings_category = "difficulty"
 layout_mode = 2
 option_key = "time_limit"
 title = "DIFFI_TIME"
-value_descs = Array[String](["DESC_TIME_0", "DESC_TIME_1"])
-values = ["SETTING_OFF", "SETTING_ON"]
+value_descs = Array[String](["DESC_TIME_0", "DESC_TIME_1", "DESC_TIME_2"])
+values = ["SETTING_OFF", "SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "difficulty"
 
 [node name="LakituStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
@@ -833,7 +846,7 @@ layout_mode = 2
 
 [node name="RegenROM" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("9_t6b48")]
 layout_mode = 2
-title = "Delete Generated Resource Pack"
+title = "Reverify ROM"
 
 [node name="Control" type="Control" parent="PanelContainer"]
 custom_minimum_size = Vector2(24, 0)
@@ -884,6 +897,7 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/VSync" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="vsync_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/DropShadows" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="drop_shadows_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/HudStyle" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="hud_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/FrameLimit" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="frame_limit_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="master_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="music_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="sfx_changed"]
@@ -901,6 +915,7 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisibleTimers" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="visible_timers_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/TransitionAnimation" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="transition_style_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ColourfulPipes" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="colourful_pipes_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/FirebarStyle" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="firebar_style_changed"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="open_folder"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode2" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="get_resource_packs"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" to="ResourcePackTemplateCreator" method="create_template"]

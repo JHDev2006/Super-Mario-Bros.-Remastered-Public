@@ -75,4 +75,4 @@ movement_node = NodePath("../BasicEnemyMovement")
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
-[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounce_up" unbinds=1]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounce_up"]

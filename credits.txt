@@ -32,8 +32,9 @@ Created by JoeMama
 # Level Design
 - JoeMama
 - amer241
-- MakerK6
+- Makerk6
 - SamButSam
+- SlavaWOW
 
 # UI Design + UI Artist
 - VannyArts
@@ -53,12 +54,13 @@ Created by JoeMama
 # SFXs
 - QuagIsCool
 - LeviR.star
+- Trimint
 
 # Localizers
 - Cube (pl)
 - TRIPPY (it)
 - SlavaWOW (ru)
-- MakerK6 (fr)
+- Makerk6 (fr)
 - VannyArts (fil)
 - SpeedyMcFly (es)
 - Kirbo The Poyo (es)

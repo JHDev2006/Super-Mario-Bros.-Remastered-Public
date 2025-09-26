@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://cr2pku7fjkgpo"]
+[gd_scene load_steps=15 format=3 uid="uid://cr2pku7fjkgpo"]
 
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="1_1k7iw"]
 [ext_resource type="StyleBox" uid="uid://dlbdmqmnl30sq" path="res://Resources/UI/PanelSelected.tres" id="2_h6n8u"]
 [ext_resource type="Script" uid="uid://d486p6delid2" path="res://Scripts/UI/OnlineLevelContainer.gd" id="3_1k7iw"]
 [ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="5_ajmg3"]
 [ext_resource type="Texture2D" uid="uid://dmggnqp6esawy" path="res://Assets/Sprites/UI/DifficultyStars.png" id="6_m23pw"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="6_w0xci"]
+[ext_resource type="Texture2D" uid="uid://35who743oaxe" path="res://Assets/Sprites/UI/LSSRatingStars.png" id="7_1k7iw"]
 [ext_resource type="Texture2D" uid="uid://dfeu75lbxfkim" path="res://Assets/Sprites/UI/GameStyles.png" id="7_scevv"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="8_vfnya"]
 [ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="9_d0564"]
@@ -175,6 +177,8 @@ layout_mode = 2
 texture = ExtResource("6_m23pw")
 region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Star2" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars"]
 custom_minimum_size = Vector2(8, 0)
@@ -182,6 +186,8 @@ layout_mode = 2
 texture = ExtResource("6_m23pw")
 region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Star3" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars"]
 custom_minimum_size = Vector2(8, 0)
@@ -189,6 +195,8 @@ layout_mode = 2
 texture = ExtResource("6_m23pw")
 region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Star4" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars"]
 custom_minimum_size = Vector2(8, 0)
@@ -196,6 +204,8 @@ layout_mode = 2
 texture = ExtResource("6_m23pw")
 region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Star5" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars"]
 custom_minimum_size = Vector2(8, 0)
@@ -203,6 +213,58 @@ layout_mode = 2
 texture = ExtResource("6_m23pw")
 region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="RatingStars" type="HBoxContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Star1" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/RatingStars"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+texture = ExtResource("7_1k7iw")
+region_rect = Rect2(0, 0, 8, 8)
+patch_margin_bottom = 8
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Star2" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/RatingStars"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+texture = ExtResource("7_1k7iw")
+region_rect = Rect2(0, 0, 8, 8)
+patch_margin_bottom = 8
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Star3" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/RatingStars"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+texture = ExtResource("7_1k7iw")
+region_rect = Rect2(0, 0, 8, 8)
+patch_margin_bottom = 8
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Star4" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/RatingStars"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+texture = ExtResource("7_1k7iw")
+region_rect = Rect2(0, 0, 8, 8)
+patch_margin_bottom = 8
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Star5" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/RatingStars"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+texture = ExtResource("7_1k7iw")
+region_rect = Rect2(0, 0, 8, 8)
+patch_margin_bottom = 8
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="CampaignIcon" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -211,6 +273,8 @@ layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("7_scevv")
 region_rect = Rect2(0, 0, 42, 16)
+script = ExtResource("6_w0xci")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false

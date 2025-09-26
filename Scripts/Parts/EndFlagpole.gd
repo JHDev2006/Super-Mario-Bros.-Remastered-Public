@@ -29,7 +29,8 @@ func player_touch(player: Player) -> void:
 	get_tree().call_group("Enemies", "flag_die")
 	give_points(player)
 	Global.can_time_tick = false
-	player.z_index = -2
+	if player.can_pose == false:
+		player.z_index = -2
 	player.global_position.x = $Flag.global_position.x + 3
 	$Animation.play("FlagDown")
 	player.state_machine.transition_to("FlagPole")

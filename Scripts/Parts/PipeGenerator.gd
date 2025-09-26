@@ -17,6 +17,7 @@ func on_timeout() -> void:
 	$AnimationPlayer.stop()
 	var node = item.instantiate()
 	node.global_position = $Joint.global_position
+	node.hide()
 	add_sibling(node)
 	$Joint.remote_path = node.get_path()
 	item_amount += 1
@@ -27,10 +28,12 @@ func on_timeout() -> void:
 	node.z_index = -10
 	$AnimationPlayer.play(get_direction_string([Vector2.DOWN, Vector2.UP, Vector2.RIGHT, Vector2.LEFT][direction]))
 	await get_tree().process_frame
+	node.show()
 	node.reset_physics_interpolation()
 	await $AnimationPlayer.animation_finished
 	$Joint.remote_path = ""
 	if is_instance_valid(node):
+		node.velocity = Vector2.ZERO
 		node.set_process(true)
 		node.z_index = z_old
 		node.set_physics_process(true)

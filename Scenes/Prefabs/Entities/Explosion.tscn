@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://clbvyne1cr8gp"]
+[gd_scene load_steps=24 format=3 uid="uid://clbvyne1cr8gp"]
 
 [ext_resource type="Script" uid="uid://ritdlvkpyjd4" path="res://Scripts/Classes/Entities/Objects/Explosion.gd" id="1_aklik"]
 [ext_resource type="Texture2D" uid="uid://brjkrkihadwnj" path="res://Assets/Sprites/Particles/FireballExplosion.png" id="2_4aiuq"]
 [ext_resource type="Texture2D" uid="uid://byy3k1pdrp77" path="res://Assets/Sprites/Particles/Smoke.png" id="3_dvv3e"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_dvv3e"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="4_hjivi"]
 [ext_resource type="AudioStream" uid="uid://d12v455mw8uvu" path="res://Assets/Audio/SFX/Cannon.wav" id="5_8imqq"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Particles/FireballExplosion.json" id="5_hjivi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnd2t"]
 atlas = ExtResource("2_4aiuq")
@@ -250,6 +252,16 @@ sprite_frames = SubResource("SpriteFrames_h02ee")
 autoplay = "default"
 frame = 4
 frame_progress = 1.0
+script = ExtResource("4_hjivi")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_dvv3e")
+node_to_affect = NodePath("")
+property_name = "sprite_frames"
+resource_json = ExtResource("5_hjivi")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CloudTL" type="AnimatedSprite2D" parent="."]
 position = Vector2(-8, -8)

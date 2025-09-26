@@ -1,7 +1,8 @@
-[gd_scene load_steps=81 format=3 uid="uid://bgeh6ex0lbqfq"]
+[gd_scene load_steps=83 format=3 uid="uid://bgeh6ex0lbqfq"]
 
 [ext_resource type="Script" uid="uid://b3stoe2kp1nv1" path="res://Scripts/UI/Credits.gd" id="1_db8c5"]
 [ext_resource type="AudioStream" uid="uid://cdhsj02wqdt7y" path="res://Assets/Audio/BGM/Credits.mp3" id="1_k57dj"]
+[ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="3_suvme"]
 [ext_resource type="Texture2D" uid="uid://bmvf1l15447r" path="res://Assets/Sprites/UI/Staff.png" id="4_g2gtw"]
 [ext_resource type="Texture2D" uid="uid://vqtqnrt5rco1" path="res://Assets/Sprites/UI/CreditsDioramas/1.png" id="4_j3afk"]
 [ext_resource type="Texture2D" uid="uid://dvo3gs4wg68hl" path="res://Assets/Sprites/UI/CreditsDioramas/2.png" id="6_s34bh"]
@@ -118,6 +119,10 @@ region = Rect2(48, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3diwr"]
 atlas = ExtResource("4_g2gtw")
 region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttapi"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(32, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2gfq"]
 atlas = ExtResource("4_g2gtw")
@@ -292,6 +297,8 @@ color = Color(0, 0, 0, 1)
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_k57dj")
 bus = &"Music"
+script = ExtResource("3_suvme")
+metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
 [node name="Labels" type="Node" parent="."]
 
@@ -473,9 +480,9 @@ grow_horizontal = 2
 [node name="Label" type="Label" parent="Labels/BGArtists"]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 24.0
+offset_top = 16.0
 offset_right = 104.0
-offset_bottom = 40.0
+offset_bottom = 32.0
 text = "BG ARTISTS"
 uppercase = true
 
@@ -564,6 +571,25 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_x745s")
+stretch_mode = 2
+
+[node name="Label5" type="Label" parent="Labels/BGArtists/Label"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 80.0
+offset_bottom = 96.0
+text = "SamButSam"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/BGArtists/Label/Label5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_g2gtw")
 stretch_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Labels/BGArtists"]
@@ -1010,7 +1036,6 @@ offset_bottom = 232.0
 texture = ExtResource("8_3648a")
 
 [node name="Sound" type="Control" parent="Labels"]
-visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -1119,9 +1144,9 @@ stretch_mode = 2
 [node name="Label2" type="Label" parent="Labels/Sound"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 104.0
+offset_top = 96.0
 offset_right = 48.0
-offset_bottom = 120.0
+offset_bottom = 112.0
 text = "SFXs"
 uppercase = true
 
@@ -1191,6 +1216,25 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_3diwr")
+stretch_mode = 2
+
+[node name="Label8" type="Label" parent="Labels/Sound/Label2"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 80.0
+text = "Trimint"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label2/Label8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_ttapi")
 stretch_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Labels/Sound"]
@@ -1948,6 +1992,7 @@ texture = SubResource("AtlasTexture_tm746")
 stretch_mode = 2
 
 [node name="BetaTesters2" type="Control" parent="Labels"]
+visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5

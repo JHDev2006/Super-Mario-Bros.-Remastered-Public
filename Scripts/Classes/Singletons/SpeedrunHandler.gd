@@ -12,6 +12,8 @@ var show_timer := false
 
 signal level_finished
 
+var paused_time := 0.0
+
 var start_time := 0.0
 
 const GHOST_RECORDING_TEMPLATE := {
@@ -147,12 +149,17 @@ const MEDAL_CONVERSIONS := [2, 1.5, 1]
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if timer_active:
-		timer = abs(start_time - Time.get_ticks_msec()) / 1000
+		if Global.game_paused and Global.current_game_mode != Global.GameMode.MARATHON:
+			paused_time += delta
+		else:
+			timer = (abs(start_time - Time.get_ticks_msec()) / 1000) - paused_time
 		if enable_recording:
 			if get_tree().get_first_node_in_group("Players") != null:
 				record_frame(get_tree().get_first_node_in_group("Players"))
+	else:
+		paused_time = 0
 	Global.player_ghost.visible = ghost_visible
 	if ghost_active and ghost_enabled:
 		ghost_idx += 1
@@ -163,6 +170,7 @@ func _physics_process(_delta: float) -> void:
 
 func start_timer() -> void:
 	timer = 0
+	paused_time = 0
 	timer_active = true
 	show_timer = true
 	start_time = Time.get_ticks_msec()
@@ -268,9 +276,18 @@ func run_finished() -> void:
 	if Global.current_game_mode == Global.GameMode.BOO_RACE:
 		pass
 	else:
-		var best = best_level_warpless_times[Global.world_num - 1][Global.level_num - 1]
-		if is_warp_run:
-			best = best_level_any_times.get(str(Global.world_num) + "-" + str(Global.level_num), -1)
+		var best := -1
+		if Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
+			if is_warp_run:
+				best = best_level_any_times.get(str(Global.world_num) + "-" + str(Global.level_num), -1)
+			else:
+				best = best_level_warpless_times[Global.world_num - 1][Global.level_num - 1]
+		else:
+			if is_warp_run:
+				best = marathon_best_any_time
+			else:
+				best = marathon_best_warpless_time
+		
 		if best <= 0 or best > timer:
 			if Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
 				save_recording()
@@ -305,66 +322,73 @@ func get_best_time() -> float:
 
 func check_for_medal_achievement() -> void:
 
-	var has_gold_warp := true
-	var has_gold_warpless := true
-	var has_silver_warpless := true
-	var has_silver_warp := true
-	var has_bronze_warpless := true
-	var has_bronze_warp := true
-	
+	var has_gold_levels_warpless := true
+	var has_gold_levels_any := true
 	var has_gold_full := false
+	
+	var has_silver_levels_warpless := true
+	var has_silver_levels_any := true
 	var has_silver_full := false
+	
+	var has_bronze_levels_warpless := true
+	var has_bronze_levels_any := true
 	var has_bronze_full := false
 	
 	if Global.current_campaign == "SMBANN":
 		return
 	
+	
 	for i in LEVEL_GOLD_ANY_TIMES[Global.current_campaign]:
 		if best_level_any_times.has(i):
 			if best_level_any_times[i] > LEVEL_GOLD_ANY_TIMES[Global.current_campaign][i]:
-				has_gold_warp = false
+				has_gold_levels_any = false
 			if best_level_any_times[i] > LEVEL_GOLD_ANY_TIMES[Global.current_campaign][i] * MEDAL_CONVERSIONS[1]:
-				has_silver_warp = false
+				has_silver_levels_any = false
 			if best_level_any_times[i] > LEVEL_GOLD_ANY_TIMES[Global.current_campaign][i] * MEDAL_CONVERSIONS[0]:
-				has_bronze_warp = false
+				has_bronze_levels_any = false
+		else:
+			has_gold_levels_any = false
+			has_silver_levels_any = false
+			has_bronze_levels_any = false
 	
 	var world := 0
 	for i in best_level_warpless_times:
 		var level := 0
 		for x in i:
 			if x < 0:
-				has_gold_warpless = false
-				has_silver_warpless = false
-				has_bronze_warpless = false
+				has_gold_levels_warpless = false
+				has_silver_levels_warpless = false
+				has_bronze_levels_warpless = false
 			if x > LEVEL_GOLD_WARPLESS_TIMES[Global.current_campaign][world][level]:
-				has_gold_warpless = false
+				has_gold_levels_warpless = false
 			if x > LEVEL_GOLD_WARPLESS_TIMES[Global.current_campaign][world][level] * MEDAL_CONVERSIONS[1]:
-				has_silver_warpless = false
+				has_silver_levels_warpless = false
 			if x > LEVEL_GOLD_WARPLESS_TIMES[Global.current_campaign][world][level] * MEDAL_CONVERSIONS[0]:
-				has_bronze_warpless = false
+				has_bronze_levels_warpless = false
 			level += 1
 		world += 1
 	
-	if marathon_best_any_time <= GOLD_ANY_TIMES[Global.current_campaign] and marathon_best_warpless_time <= GOLD_WARPLESS_TIMES[Global.current_campaign]:
-		has_gold_full = true
-	if marathon_best_any_time <= GOLD_ANY_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[1] and marathon_best_warpless_time <= GOLD_WARPLESS_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[1]:
-		has_silver_full = true
-	if marathon_best_any_time <= GOLD_ANY_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[0] and marathon_best_warpless_time <= GOLD_WARPLESS_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[0]:
-		has_bronze_full = true
+	if marathon_best_any_time >= 0 and marathon_best_warpless_time >= 0:
+		if marathon_best_any_time <= GOLD_ANY_TIMES[Global.current_campaign] and marathon_best_warpless_time <= GOLD_WARPLESS_TIMES[Global.current_campaign]:
+			has_gold_full = true
+		if marathon_best_any_time <= GOLD_ANY_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[1] and marathon_best_warpless_time <= GOLD_WARPLESS_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[1]:
+			has_silver_full = true
+		if marathon_best_any_time <= GOLD_ANY_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[0] and marathon_best_warpless_time <= GOLD_WARPLESS_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[0]:
+			has_bronze_full = true
 	
-	if has_gold_warp and has_gold_warpless and has_gold_full:
+	if has_gold_levels_warpless and has_gold_levels_any and has_gold_full:
 		match Global.current_campaign:
 			"SMB1": Global.unlock_achievement(Global.AchievementID.SMB1_GOLD)
 			"SMBLL": Global.unlock_achievement(Global.AchievementID.SMBLL_GOLD)
 			"SMBS": Global.unlock_achievement(Global.AchievementID.SMBS_GOLD)
 	
-	if has_silver_warp and has_silver_warpless and has_silver_full:
+	if has_silver_levels_any and has_silver_levels_warpless and has_silver_full:
 		match Global.current_campaign:
 			"SMB1": Global.unlock_achievement(Global.AchievementID.SMB1_SILVER)
 			"SMBLL": Global.unlock_achievement(Global.AchievementID.SMBLL_SILVER)
 			"SMBS": Global.unlock_achievement(Global.AchievementID.SMBS_SILVER)
 	
-	if has_bronze_warp and has_bronze_warpless and has_bronze_full:
+	if has_bronze_levels_warpless and has_bronze_levels_any and has_bronze_full:
 		match Global.current_campaign:
 			"SMB1": Global.unlock_achievement(Global.AchievementID.SMB1_BRONZE)
 			"SMBLL": Global.unlock_achievement(Global.AchievementID.SMBLL_BRONZE)

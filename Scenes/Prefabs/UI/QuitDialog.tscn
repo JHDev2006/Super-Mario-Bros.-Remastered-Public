@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b75f3fd7xjeya"]
+[gd_scene load_steps=8 format=3 uid="uid://b75f3fd7xjeya"]
 
 [ext_resource type="Script" uid="uid://fwgm5xy4jvwf" path="res://Scripts/UI/QuitDialog.gd" id="1_w3irg"]
 [ext_resource type="AudioStream" uid="uid://drs3md0tuek2w" path="res://Assets/Audio/SFX/Beep.wav" id="2_yapnp"]
+[ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="3_fbj8r"]
+[ext_resource type="Script" uid="uid://bsp584niccobr" path="res://Scripts/Classes/Components/ResourceGetter.gd" id="3_kfsue"]
 
 [sub_resource type="Animation" id="Animation_yapnp"]
 resource_name = "Animation"
@@ -105,3 +107,9 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_yapnp")
+script = ExtResource("3_fbj8r")
+metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
+
+[node name="ResourceGetter" type="Node" parent="."]
+script = ExtResource("3_kfsue")
+metadata/_custom_type_script = "uid://bsp584niccobr"

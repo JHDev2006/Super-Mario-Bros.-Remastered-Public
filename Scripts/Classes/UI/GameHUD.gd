@@ -7,10 +7,17 @@ static var character_icons := [preload("res://Assets/Sprites/Players/Mario/LifeI
 
 const RANK_COLOURS := {"F": Color.DIM_GRAY, "D": Color.WEB_MAROON, "C": Color.PALE_GREEN, "B": Color.DODGER_BLUE, "A": Color.RED, "S": Color.GOLD, "P": Color.PURPLE}
 
+var delta_time := 0.0
+
 func _ready() -> void:
 	Global.level_theme_changed.connect(update_character_info)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if not get_tree().paused and $Timer.paused:
+		delta_time += delta
+	if delta_time >= 1:
+		delta_time -= 1
+		on_timeout()
 	handle_main_hud()
 	handle_pausing()
 
@@ -20,7 +27,7 @@ func handle_main_hud() -> void:
 	$Main/RedCoins.hide()
 	$Main/CoinCount.show()
 	%Combo.hide()
-	
+	$Timer.paused = Settings.file.difficulty.time_limit == 2
 	$%Time.show()
 	%Stopwatch.hide()
 	%PB.hide()
@@ -86,6 +93,8 @@ func handle_challenge_mode_hud() -> void:
 	$Main/CoinCount.hide()
 	var red_coins_collected = ChallengeModeHandler.current_run_red_coins_collected
 	var idx := 0
+	if Global.world_num > 8:
+		return
 	if Global.in_title_screen:
 		red_coins_collected = int(ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1])
 	for i in [$Main/RedCoins/Coin1, $Main/RedCoins/Coin2, $Main/RedCoins/Coin3, $Main/RedCoins/Coin4, $Main/RedCoins/Coin5]:
@@ -173,7 +182,7 @@ func activate_pause_menu() -> void:
 const HURRY_UP = preload("res://Assets/Audio/BGM/HurryUp.mp3")
 
 func on_timeout() -> void:
-	if Global.can_time_tick and is_instance_valid(Global.current_level) and Settings.file.difficulty.time_limit == 1:
+	if Global.can_time_tick and is_instance_valid(Global.current_level) and Settings.file.difficulty.time_limit > 0:
 		if Global.level_editor != null:
 			if Global.level_editor.current_state != LevelEditor.EditorState.PLAYTESTING:
 				return

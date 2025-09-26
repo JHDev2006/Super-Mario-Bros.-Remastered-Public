@@ -6,7 +6,10 @@ signal shell_block_hit(shell: Shell)
 
 @export var visuals: Node = null
 const EMPTY_BLOCK = ("res://Scenes/Prefabs/Blocks/EmptyBlock.tscn")
-@export var item: PackedScene = null
+@export var item: PackedScene = null:
+	set(value):
+		item = value
+		item_changed.emit()
 @export var destructable := true
 @export var destruction_particle_scene: PackedScene = null
 @export_range(1, 99) var item_amount := 1
@@ -19,7 +22,7 @@ var bouncing := false
 const NO_SFX_ITEMS := ["res://Scenes/Prefabs/Entities/Items/SpinningRedCoin.tscn","res://Scenes/Prefabs/Entities/Items/SpinningCoin.tscn", "res://Scenes/Prefabs/Entities/Items/Vine.tscn" ]
 
 @export var start_z := -1
-
+signal item_changed
 signal block_emptied
 signal block_destroyed
 

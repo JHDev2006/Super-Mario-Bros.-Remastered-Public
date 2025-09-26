@@ -66,6 +66,9 @@ var sky_scroll_speed := -4.0
 
 const disco_sfx_threshold := [0.05, 0.5, 0.8]
 
+var primary_layer_size = Vector2(512, 512)
+var secondary_layer_size = Vector2(512, 512)
+var sky_layer_size = Vector2(512, 512)
 
 func set_second_y_offset(value := 0.0) -> void:
 	second_layer_offset.y = -value
@@ -187,6 +190,10 @@ func update_visuals() -> void:
 		i.offset.y = randf_range(-5, 5)
 	$SecondaryLayer/Mushrooms.get_node("Tint").visible = can_mushroom_tint
 	$SecondaryLayer/Trees.get_node("Tint").visible = can_tree_tint
+	
+	$PrimaryLayer.repeat_size = primary_layer_size
+	$SecondaryLayer.repeat_size = secondary_layer_size
+	$SkyLayer.repeat_size = sky_layer_size
 	
 	var tree_tint_amount = inverse_lerp(1, 0, parallax_amount)
 	var mushroom_tint_amount = tree_tint_amount

@@ -51,6 +51,7 @@ metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 metadata/block_spawn_offset = Vector2(0, -8)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+process_mode = 1
 sprite_frames = SubResource("SpriteFrames_6tj01")
 frame_progress = 0.602985
 script = ExtResource("2_fcan1")

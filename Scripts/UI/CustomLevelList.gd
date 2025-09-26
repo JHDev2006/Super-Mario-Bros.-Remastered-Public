@@ -52,16 +52,20 @@ func get_levels(path := "user://custom_levels") -> void:
 			continue
 		%LevelContainers.get_node("Label").hide()
 		var container = CUSTOM_LEVEL_CONTAINER.instantiate()
-		var file = FileAccess.open(path + "/" + i, FileAccess.READ)
+		var file_path = path + "/" + i
+		var file = FileAccess.open(file_path, FileAccess.READ)
 		var json = JSON.parse_string(file.get_as_text())
 		file.close()
 		var data = json["Levels"][0]["Data"].split("=")
 		var info = json["Info"]
+		container.is_downloaded = path.contains("downloaded")
+		if container.is_downloaded:
+			container.level_id = file_path.get_file().replace(".lvl", "")
 		container.level_name = info["Name"]
 		container.level_author = info["Author"]
 		container.level_desc = info["Description"]
 		container.idx = idx
-		container.file_path = path + "/" + i
+		container.file_path = file_path
 		container.level_theme = Level.THEME_IDXS[base64_charset.find(data[0])]
 		container.level_time = base64_charset.find(data[1])
 		container.game_style = Global.CAMPAIGNS[base64_charset.find(data[3])]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cfxtsnujr77ro"]
+[gd_scene load_steps=16 format=4 uid="uid://cfxtsnujr77ro"]
 
 [ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_qfo7w"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Castle.json" id="2_qfo7w"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dkgu57is78lro" path="res://Scenes/Parts/PipeArea.tscn" id="13_rx4ei"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="14_a5fcu"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="14_qfo7w"]
+[ext_resource type="Script" uid="uid://dn7riekvv1gpy" path="res://Scripts/Parts/SettingObjectNode.gd" id="15_5epyp"]
 [ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="15_ovjnn"]
 [ext_resource type="Script" uid="uid://cybpwmw4ywoow" path="res://Scripts/Parts/TileMapConverter.gd" id="16_5epyp"]
 
@@ -68,9 +69,6 @@ position = Vector2(296, -88)
 [node name="FallingPlatform" parent="." instance=ExtResource("12_k7t0u")]
 position = Vector2(784, -64)
 
-[node name="FallingPlatform2" parent="." instance=ExtResource("12_k7t0u")]
-position = Vector2(672, -64)
-
 [node name="PipeArea" parent="." instance=ExtResource("13_rx4ei")]
 position = Vector2(-192, -32)
 exit_only = true
@@ -97,6 +95,14 @@ length = 12
 
 [node name="LevelBG" parent="." instance=ExtResource("14_qfo7w")]
 particles = 3
+
+[node name="SettingObjectNode" type="Node" parent="."]
+script = ExtResource("15_5epyp")
+setting_title = "level_design"
+metadata/_custom_type_script = "uid://dn7riekvv1gpy"
+
+[node name="FallingPlatform2" parent="SettingObjectNode" instance=ExtResource("12_k7t0u")]
+position = Vector2(672, -64)
 
 [connection signal="block_destroyed" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active_2"]
 [connection signal="block_emptied" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active"]
