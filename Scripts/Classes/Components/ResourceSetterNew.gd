@@ -306,7 +306,7 @@ func clear_cache() -> void:
 	cache.clear()
 	property_cache.clear()
 
-func load_image_from_path(path := "") -> ImageTexture:
+func load_image_from_path(path := "") -> Texture2D:
 	if path.contains("res://"):
 		if path.contains("NULL"):
 			return null
