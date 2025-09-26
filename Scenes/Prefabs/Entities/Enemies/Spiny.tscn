@@ -121,7 +121,7 @@ position = Vector2(0, -8)
 
 [node name="GibSpawner" type="Node" parent="." node_paths=PackedStringArray("visuals")]
 script = ExtResource("5_f6841")
-visuals = NodePath("")
+visuals = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 
 [node name="ShellDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]

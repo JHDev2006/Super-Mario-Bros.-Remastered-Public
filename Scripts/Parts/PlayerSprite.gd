@@ -11,6 +11,7 @@ var character := ""
 func _ready() -> void:
 	Global.player_characters_changed.connect(update)
 	Global.level_theme_changed.connect(update)
+	animation_changed.connect(on_animation_changed)
 	update()
 
 func update() -> void:
@@ -30,3 +31,7 @@ func update() -> void:
 			return
 		if sprite_frames.get_frame_texture(animation, frame):
 			offset.y = -(sprite_frames.get_frame_texture(animation, frame).get_height() / 2.0)
+
+func on_animation_changed() -> void:
+	if sprite_frames.has_animation(animation) == false and Player.ANIMATION_FALLBACKS.has(animation):
+		play(Player.ANIMATION_FALLBACKS[animation])
