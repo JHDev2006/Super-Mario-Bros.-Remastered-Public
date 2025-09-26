@@ -412,3 +412,4 @@ metadata/_custom_type_script = "uid://cmg61722ktg2m"
 [connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]
 [connection signal="explosion_entered" from="ExplosionDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [500]]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="die_from_object"]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [500]]

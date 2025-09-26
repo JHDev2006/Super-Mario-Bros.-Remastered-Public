@@ -13,7 +13,7 @@ color = Color(1, 1, 1, 1)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 136.0
-offset_bottom = 104.0
+offset_bottom = 77.0
 script = ExtResource("1_6lbpd")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -55,6 +55,7 @@ grow_vertical = 0
 theme_override_styles/separator = SubResource("StyleBoxLine_6lbpd")
 
 [node name="FirstQuest" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "QUEST_FIRST"
 horizontal_alignment = 1

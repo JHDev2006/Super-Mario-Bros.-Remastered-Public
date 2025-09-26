@@ -184,6 +184,8 @@ func slot_selected(idx := 0) -> void:
 	selected_level = idx
 	update_pb()
 	update_score()
+	if Settings.file.audio.extra_sfx == 1:
+		AudioManager.play_global_sfx("menu_move")
 
 func cleanup() -> void:
 	await get_tree().process_frame
@@ -196,3 +198,7 @@ func cleanup() -> void:
 func close() -> void:
 	active = false
 	hide()
+
+
+func on_level_selected() -> void:
+	pass # Replace with function body.

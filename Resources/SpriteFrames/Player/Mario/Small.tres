@@ -175,6 +175,25 @@ animations = [{
 "name": &"Move",
 "speed": 5.0
 }, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x2os")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk5iy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qy2u4")
+}],
+"loop": true,
+"name": &"Move_1",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"PipeWalk",
+"speed": 5.0
+}, {
 "frames": [],
 "loop": true,
 "name": &"Pose",

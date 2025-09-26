@@ -105,7 +105,6 @@ func ground_acceleration(delta: float) -> void:
 			target_accel = player.RUN_SKID
 		else:
 			target_accel = player.WALK_SKID
-	
 	player.velocity.x = move_toward(player.velocity.x, target_move_speed * player.input_direction, (target_accel / delta) * delta)
 
 func deceleration(delta: float) -> void:

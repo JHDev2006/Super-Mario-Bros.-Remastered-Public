@@ -6,11 +6,14 @@ var active := false
 
 var selected_index := 0
 
+var old_quest := false
+
 func _process(_delta: float) -> void:
 	if active:
 		handle_input()
 
 func open() -> void:
+	old_quest = Global.second_quest
 	show()
 	await get_tree().process_frame
 	[%FirstQuest, %SecondQuest][int(Global.second_quest)].grab_focus()
@@ -21,7 +24,7 @@ func handle_input() -> void:
 		select()
 		close()
 	elif Input.is_action_just_pressed("ui_back"):
-		Global.second_quest = false
+		Global.second_quest = old_quest
 		close()
 		cancelled.emit()
 		return

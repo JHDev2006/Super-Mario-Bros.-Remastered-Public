@@ -160,7 +160,7 @@ func _physics_process(delta: float) -> void:
 		elif current_state == EditorState.TILE_MENU:
 			close_tile_menu()
 	if Input.is_action_just_pressed("editor_play") and (current_state == EditorState.IDLE or current_state == EditorState.PLAYTESTING) and Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
-		Checkpoint.passed = false
+		Checkpoint.passed_checkpoints.clear()
 		if current_state == EditorState.PLAYTESTING:
 			stop_testing()
 		else:

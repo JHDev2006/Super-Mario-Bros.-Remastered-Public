@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bbdcmhyxmc3pu" path="res://Assets/Sprites/Items/SPItems.png" id="3_a1d2e"]
 [ext_resource type="Script" uid="uid://blxvov3jyx8gg" path="res://Scripts/Classes/States/Player/Normal.gd" id="3_f6bau"]
 [ext_resource type="Texture2D" uid="uid://bdurtsr7cld64" path="res://Assets/Sprites/Players/Mario/ColourPalette.png" id="3_x2idl"]
-[ext_resource type="SpriteFrames" uid="uid://328p7l1rmy00" path="res://Resources/SpriteFrames/Player/Toad/Big.tres" id="4_fqdtv"]
+[ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="4_fqdtv"]
 [ext_resource type="Script" uid="uid://dvbib1gtmmvui" path="res://Scripts/Classes/States/Player/Pipe.gd" id="5_hodem"]
 [ext_resource type="Script" uid="uid://c8xvkkv34fjr4" path="res://Scripts/Classes/PowerStates/PowerUpState.gd" id="5_rs3l8"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="5_x2idl"]

@@ -263,7 +263,7 @@ func activate_p_switch() -> void:
 
 func reset_values() -> void:
 	PlayerGhost.idx = 0
-	Checkpoint.passed = false
+	Checkpoint.passed_checkpoints.clear()
 	Checkpoint.sublevel_id = 0
 	Door.unlocked_doors = []
 	Checkpoint.unlocked_doors = []

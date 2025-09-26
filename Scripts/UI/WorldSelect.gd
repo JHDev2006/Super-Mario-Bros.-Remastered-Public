@@ -82,6 +82,8 @@ func handle_input() -> void:
 
 func slot_focused(idx := 0) -> void:
 	selected_world = idx
+	if Settings.file.audio.extra_sfx == 1:
+		AudioManager.play_global_sfx("menu_move")
 
 func select_world() -> void:
 	if owner is Level:

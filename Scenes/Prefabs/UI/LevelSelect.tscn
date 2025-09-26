@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1kedqb68p7vw"]
+[gd_scene load_steps=5 format=3 uid="uid://d1kedqb68p7vw"]
 
 [ext_resource type="Script" uid="uid://bupc8brk48aqi" path="res://Scripts/UI/LevelSelect.gd" id="1_mvafj"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_k7cgt"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="3_a7p1d"]
-[ext_resource type="Resource" uid="uid://8dcuxbc3h2u2" path="res://Resources/ThemedResources/Font.tres" id="4_r15fi"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_k7cgt"]
 color = Color(1, 1, 1, 1)
@@ -103,5 +102,4 @@ uppercase = true
 [node name="LabelFontChanger" type="Node" parent="PanelContainer" node_paths=PackedStringArray("labels")]
 script = ExtResource("3_a7p1d")
 labels = [NodePath("../MarginContainer/VBoxContainer/Label"), NodePath("../MarginContainer/VBoxContainer/SlotContainer/Level1"), NodePath("../MarginContainer/VBoxContainer/SlotContainer/Level2"), NodePath("../MarginContainer/VBoxContainer/SlotContainer/Level3"), NodePath("../MarginContainer/VBoxContainer/SlotContainer/Level4"), NodePath("../MarginContainer/VBoxContainer/Control/Cursor")]
-resource = ExtResource("4_r15fi")
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"

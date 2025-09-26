@@ -159,7 +159,7 @@ func transition_to_next_level() -> void:
 	first_load = true
 	SaveManager.write_save()
 	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
-	Checkpoint.passed = false
+	Checkpoint.passed_checkpoints.clear()
 
 func reload_level() -> void:
 	LevelTransition.level_to_transition_to = Level.start_level_path

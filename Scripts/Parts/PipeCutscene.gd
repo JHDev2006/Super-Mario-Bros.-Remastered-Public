@@ -25,3 +25,6 @@ func update_next_level_info() -> void:
 func go_to_level() -> void:
 	first_load = true
 	Global.transition_to_scene(LevelTransition.level_to_transition_to)
+
+func play_pipe_sfx() -> void:
+	AudioManager.play_global_sfx("pipe")
