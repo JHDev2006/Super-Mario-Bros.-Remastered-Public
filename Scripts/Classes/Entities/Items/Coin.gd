@@ -3,6 +3,8 @@ const COIN_SPARKLE = preload("res://Scenes/Prefabs/Particles/CoinSparkle.tscn")
 
 @export var spinning_coin_scene: PackedScene = null
 
+var can_spawn_particles := true
+
 signal collected
 
 func area_entered(area: Area2D) -> void:
@@ -11,11 +13,16 @@ func area_entered(area: Area2D) -> void:
 
 func collect() -> void:
 	collected.emit()
+	$Hitbox.area_entered.disconnect(area_entered)
 	Global.coins += 1
 	DiscoLevel.combo_meter += 10
 	Global.score += 200
 	AudioManager.play_sfx("coin", global_position)
-	queue_free()
+	if can_spawn_particles:
+		summon_particle()
+		$Sprite.queue_free()
+	else:
+		queue_free()
 
 func summon_block_coin() -> void:
 	var node = spinning_coin_scene.instantiate()
@@ -25,5 +32,5 @@ func summon_block_coin() -> void:
 
 func summon_particle() -> void:
 	var node = COIN_SPARKLE.instantiate()
-	node.global_position = global_position
-	add_sibling(node)
+	node.finished.connect(queue_free)
+	add_child(node)
