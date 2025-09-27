@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://cuh62hlq8errh"]
+[gd_scene load_steps=84 format=3 uid="uid://cuh62hlq8errh"]
 
 [ext_resource type="Script" uid="uid://dt4rosa5o35xr" path="res://Scripts/Classes/Entities/Player.gd" id="1_f6bau"]
 [ext_resource type="Script" uid="uid://uribh0f1jttq" path="res://Scripts/Classes/States/StateMachine.gd" id="2_1y62l"]
@@ -469,6 +469,10 @@ func _physics_process(_delta: float) -> void:
 			print(Global.level_editor.entity_tiles)
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqdtv"]
+resource_local_to_scene = true
+size = Vector2(4, 4.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7xah"]
 resource_local_to_scene = true
 size = Vector2(4, 6.75)
@@ -707,7 +711,7 @@ position = Vector2(0, -13)
 collision_layer = 0
 collision_mask = 384
 
-[node name="SmallShape" type="CollisionShape2D" parent="LavaPoisonDetect"]
+[node name="SmallShape" type="CollisionShape2D" parent="LavaPoisonDetect" groups=["SmallCollisions"]]
 position = Vector2(0, 5.75)
 shape = SubResource("RectangleShape2D_uwhl4")
 debug_color = Color(1, 0, 0, 0.419608)
@@ -1039,6 +1043,12 @@ mode = 1
 resource_json = ExtResource("10_xy8gq")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
+[node name="SmallCrouchCollision" type="CollisionPolygon2D" parent="." groups=["SmallCollisions"]]
+visible = false
+polygon = PackedVector2Array(4, -2, 4, -8, 1, -11, -1, -11, -4, -8, -4, -2, -2, 0, 2, 0)
+one_way_collision = true
+script = ExtResource("35_nbkfn")
+
 [node name="SmallCollision" type="CollisionPolygon2D" parent="." groups=["SmallCollisions"]]
 polygon = PackedVector2Array(4, -2, 4, -8, 1, -14, -1, -14, -4, -8, -4, -2, -2, 0, 2, 0)
 one_way_collision = true
@@ -1047,6 +1057,7 @@ script = ExtResource("35_nbkfn")
 [node name="BigCollision" type="CollisionPolygon2D" parent="." groups=["BigCollisions"]]
 visible = false
 polygon = PackedVector2Array(-4, -2, -2, 0, 2, 0, 4, -2, 4, -23, 1, -28, -1, -28, -4, -23)
+one_way_collision = true
 script = ExtResource("35_nbkfn")
 
 [node name="FootL" type="CollisionShape2D" parent="." groups=["StepCollision"]]
@@ -1089,6 +1100,15 @@ hit_from_inside = true
 [node name="BlockCollision" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
+
+[node name="SmallCrouchShape" type="CollisionShape2D" parent="BlockCollision" node_paths=PackedStringArray("link") groups=["SmallCollisions"]]
+visible = false
+position = Vector2(0, -12.75)
+shape = SubResource("RectangleShape2D_fqdtv")
+debug_color = Color(1, 0, 0, 0.419608)
+script = ExtResource("21_jl70t")
+offset = Vector2(0, 10.5)
+link = NodePath("../../SmallCrouchCollision")
 
 [node name="SmallShape" type="CollisionShape2D" parent="BlockCollision" node_paths=PackedStringArray("link") groups=["SmallCollisions"]]
 visible = false
