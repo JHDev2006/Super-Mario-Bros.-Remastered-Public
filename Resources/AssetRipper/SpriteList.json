@@ -96,6 +96,7 @@
 		"res://Assets/Sprites/Tilesets/Terrain/CastleANN.png",
 		"res://Assets/Sprites/Tilesets/Terrain/CastleLL.png",
 		"res://Assets/Sprites/Tilesets/Terrain/CastleWater.png",
+		"res://Assets/Sprites/Tilesets/Terrain/CastleWaterANN.png",
 		"res://Assets/Sprites/Tilesets/Terrain/CastleWaterLL.png",
 		"res://Assets/Sprites/Tilesets/Terrain/CastleWaterSP.png",
 		"res://Assets/Sprites/Tilesets/Terrain/Desert.png",
@@ -155,6 +156,6 @@
 		"res://Assets/Sprites/UI/TitleSMB1.png",
 		"res://Assets/Sprites/UI/TitleSMBS.png",
 		"res://Assets/Sprites/UI/TitleSMBLL.png",
-		"res://Assets/Sprites/UI/TitleSMBANN.png",
+		"res://Assets/Sprites/UI/TitleSMBANN.png"
 	]
 }

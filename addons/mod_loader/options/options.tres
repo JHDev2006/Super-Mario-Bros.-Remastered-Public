@@ -1,12 +1,8 @@
 [gd_resource type="Resource" script_class="ModLoaderCurrentOptions" load_steps=4 format=3 uid="uid://bls83tkysflvg"]
 
-[ext_resource type="Resource" path="res://addons/mod_loader/options/profiles/default.tres" id="1_yg7p8"]
-[ext_resource type="Script" path="res://addons/mod_loader/resources/options_current.gd" id="2"]
+[ext_resource type="Resource" uid="uid://bau85xe7qd6xm" path="res://addons/mod_loader/options/profiles/default.tres" id="1_yg7p8"]
+[ext_resource type="Script" uid="uid://cmxtu4snlj1bb" path="res://addons/mod_loader/resources/options_current.gd" id="2"]
 [ext_resource type="Resource" path="res://addons/mod_loader/options/profiles/editor.tres" id="3"]
 
 [resource]
 script = ExtResource("2")
-current_options = ExtResource("1_yg7p8")
-feature_override_options = {
-"editor": ExtResource("3")
-}

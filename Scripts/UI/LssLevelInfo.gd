@@ -21,7 +21,7 @@ func _ready() -> void:
 
 func open(container: OnlineLevelContainer) -> void:
 	container_to_play = container.duplicate()
-	has_downloaded = FileAccess.file_exists("user://custom_levels/downloaded/" + container.level_id + ".lvl") or saved_stuff.is_empty() == false
+	has_downloaded = FileAccess.file_exists(Global.config_path.path_join("custom_levels/downloaded/" + container.level_id + ".lvl")) or saved_stuff.is_empty() == false
 	show()
 	level_thumbnail = container.level_thumbnail
 	%Download.text = "DOWNLOAD"
@@ -66,7 +66,7 @@ func close() -> void:
 	set_process(false)
 
 func download_level() -> void:
-	DirAccess.make_dir_recursive_absolute("user://custom_levels/downloaded")
+	DirAccess.make_dir_recursive_absolute(Global.config_path.path_join("custom_levels/downloaded"))
 	var url = "https://levelsharesquare.com/api/levels/" + level_id + "/code"
 	print(url)
 	$DownloadLevel.request(url, [], HTTPClient.METHOD_GET)
@@ -85,7 +85,7 @@ func on_request_completed(result: int, response_code: int, headers: PackedString
 func level_downloaded(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	var string = body.get_string_from_utf8()
 	var json = JSON.parse_string(string)
-	var file = FileAccess.open("user://custom_levels/downloaded/" + level_id + ".lvl", FileAccess.WRITE)
+	var file = FileAccess.open(Global.config_path.path_join("custom_levels/downloaded/" + level_id + ".lvl"), FileAccess.WRITE)
 	var data = null
 	if json.levelData.data is Array:
 		data = get_json_from_bytes(json.levelData.data)
@@ -101,11 +101,11 @@ func level_downloaded(result: int, response_code: int, headers: PackedStringArra
 func save_thumbnail() -> void:
 	if OnlineLevelContainer.cached_thumbnails.has(level_id):
 		var thumbnail = OnlineLevelContainer.cached_thumbnails.get(level_id)
-		DirAccess.make_dir_recursive_absolute("user://custom_levels/downloaded/thumbnails")
-		thumbnail.get_image().save_png("user://custom_levels/downloaded/thumbnails/"+ level_id + ".png")
+		DirAccess.make_dir_recursive_absolute(Global.config_path.path_join("custom_levels/downloaded/thumbnails"))
+		thumbnail.get_image().save_png(Global.config_path.path_join("custom_levels/downloaded/thumbnails/" + level_id + ".png"))
 
 func play_level() -> void:
-	var file_path := "user://custom_levels/downloaded/" + level_id + ".lvl"
+	var file_path := Global.config_path.path_join("custom_levels/downloaded/" + level_id + ".lvl")
 	var file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
 	LevelEditor.level_file = file
 	set_process(false)

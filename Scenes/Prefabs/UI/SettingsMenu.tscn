@@ -104,31 +104,31 @@ func delete_story(campaign := \"SMB1\") -> void:
 		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
 	if save_json.has(\"Ranks\"):
 		save_json[\"Ranks\"] = \"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\"
-	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.write_save_to_file(save_json, Global.config_path.path_join(\"saves/\" + campaign + \".sav\"))
 	SaveManager.apply_save(save_json)
 
 func delete_challenge(campaign := \"SMB1\") -> void:
 	var save_json = SaveManager.load_save(campaign)
 	for i in [\"ChallengeScores\", \"RedCoins\"]:
 		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
-	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.write_save_to_file(save_json, Global.config_path.path_join(\"saves/\" + campaign + \".sav\"))
 	SaveManager.apply_save(save_json)
 
 func delete_boo(campaign := \"SMB1\") -> void:
 	var save_json = SaveManager.load_save(campaign)
 	for i in [\"ClearedBooLevels\", \"BooBestTimes\"]:
 		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
-	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.write_save_to_file(save_json, Global.config_path.path_join(\"saves/\" + campaign + \".sav\"))
 	SaveManager.apply_save(save_json)
 
 func delete_marathon(campaign := \"SMB1\") -> void:
 	var save_json = SaveManager.load_save(campaign)
 	for i in [\"BestAnyTime\", \"BestWarplessTime\"]:
 		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
-	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.write_save_to_file(save_json, Global.config_path.path_join(\"saves/\" + campaign + \".sav\"))
 	SaveManager.apply_save(save_json)
-	for i in DirAccess.get_files_at(\"user://marathon_recordings/\" + campaign + \"/\"):
-		DirAccess.remove_absolute(\"user://marathon_recordings/\" + campaign + \"/\" + i)
+	for i in DirAccess.get_files_at(Global.config_path.path_join(\"marathon_recordings/\" + campaign + \"/\")):
+		DirAccess.remove_absolute(Global.config_path.path_join(\"marathon_recordings/\"+ campaign + \"/\" + i))
 	for world in 8:
 		for level in 4:
 			SpeedrunHandler.best_level_warpless_times[world][level] = -1

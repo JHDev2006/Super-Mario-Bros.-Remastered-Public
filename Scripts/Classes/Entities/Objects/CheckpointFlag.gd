@@ -18,7 +18,7 @@ func get_character_sprite_path(player_id := 0) -> String:
 	var character = Player.CHARACTERS[int(Global.player_characters[player_id])]
 	var path = "res://Assets/Sprites/Players/" + character + "/CheckpointFlag.json"
 	if int(Global.player_characters[player_id]) > 3:
-		path = path.replace("res://Assets/Sprites/Players", "user://custom_characters")
+		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters"))
 	return path
 
 func activate(player: Player) -> void:

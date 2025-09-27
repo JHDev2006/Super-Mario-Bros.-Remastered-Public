@@ -41,21 +41,23 @@ func get_custom_characters() -> void:
 		idx += 1
 	print(Player.CHARACTER_NAMES)
 	
-	DirAccess.make_dir_recursive_absolute("user://custom_characters")
-	for i in DirAccess.get_directories_at("user://custom_characters"):
-		if FileAccess.file_exists("user://custom_characters/" + i + "/CharacterInfo.json"):
-			var char_path = "user://custom_characters/" + i + "/"
-			var json = JSON.parse_string(FileAccess.open(char_path + "CharacterInfo.json", FileAccess.READ).get_as_text())
+	var char_dir = Global.config_path.path_join("custom_characters")
+		
+	for i in DirAccess.get_directories_at(char_dir):
+		var char_path = char_dir.path_join(i)
+		var char_info_path = char_path.path_join("CharacterInfo.json")
+		if FileAccess.file_exists(char_info_path):
+			var json = JSON.parse_string(FileAccess.open(char_path.path_join("CharacterInfo.json"), FileAccess.READ).get_as_text())
 			Player.CHARACTERS.append(i)
 			Player.CHARACTER_NAMES.append(json.name)
-			if FileAccess.file_exists(char_path + "CharacterColour.json"):
-				Player.CHARACTER_COLOURS.append(load(char_path + "CharacterColour.json"))
-			if FileAccess.file_exists(char_path + "LifeIcon.json"):
-				GameHUD.character_icons.append(load(char_path + "LifeIcon.json"))
-			if FileAccess.file_exists(char_path + "ColourPalette.json"):
-				Player.CHARACTER_PALETTES.append(load(char_path + "ColourPalette.json"))
-			if FileAccess.file_exists(char_path + "SFX.json"):
-				AudioManager.character_sfx_map[i] = JSON.parse_string(FileAccess.open(char_path + "SFX.json", FileAccess.READ).get_as_text())
+			if FileAccess.file_exists(char_path.path_join("CharacterColour.json")):
+				Player.CHARACTER_COLOURS.append(load(char_path.path_join("CharacterColour.json")))
+			if FileAccess.file_exists(char_path.path_join("LifeIcon.json")):
+				GameHUD.character_icons.append(load(char_path.path_join("LifeIcon.json")))
+			if FileAccess.file_exists(char_path.path_join("ColourPalette.json")):
+				Player.CHARACTER_PALETTES.append(load(char_path.path_join("ColourPalette.json")))
+			if FileAccess.file_exists(char_path.path_join("SFX.json")):
+				AudioManager.character_sfx_map[i] = JSON.parse_string(FileAccess.open(char_path.path_join("SFX.json"), FileAccess.READ).get_as_text())
 
 func open() -> void:
 	get_custom_characters()

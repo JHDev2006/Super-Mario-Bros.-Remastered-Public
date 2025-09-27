@@ -4,9 +4,16 @@ extends RefCounted
 
 # This Class provides methods for caching data.
 
-const CACHE_FILE_PATH = "user://mod_loader_cache.json"
+static var CACHE_FILE_PATH = get_cache_path()
 const LOG_NAME = "ModLoader:Cache"
 
+static func get_cache_path() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		return exe_dir.path_join("config/mod_loader_cache.json")
+	else:
+		return "user://mod_loader_cache.json"
 
 # ModLoaderStore is passed as parameter so the cache data can be loaded on ModLoaderStore._init()
 static func init_cache(_ModLoaderStore) -> void:

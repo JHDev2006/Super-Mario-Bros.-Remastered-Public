@@ -3,3 +3,5 @@
 /android/
 Exports/
 Assets/LevelGuides
+addons/discord-rpc-gd/bin/windows/~discord_game_sdk_binding_debug.dll
+godotgif/bin/~godotgif.windows.template_debug.x86_64.dll

@@ -1534,6 +1534,7 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [connection signal="cancelled" from="CanvasLayer/StoryMode/NewUnbeatenGame/NoBeatenCharSelect" to="CanvasLayer/StoryMode/StoryOptions" method="open"]
 [connection signal="selected" from="CanvasLayer/StoryMode/NewUnbeatenGame/NoBeatenCharSelect" to="." method="start_game"]
 [connection signal="selected" from="CanvasLayer/StoryMode/NewUnbeatenGame/NoBeatenCharSelect" to="." method="clear_stats"]
+[connection signal="selected" from="CanvasLayer/StoryMode/NewUnbeatenGame/NoBeatenCharSelect" to="." method="go_back_to_first_level"]
 [connection signal="cancelled" from="CanvasLayer/StoryMode/ContinueUnbeatenGame/CharacterSelect" to="CanvasLayer/StoryMode/StoryOptions" method="open"]
 [connection signal="selected" from="CanvasLayer/StoryMode/ContinueUnbeatenGame/CharacterSelect" to="." method="start_game"]
 [connection signal="closed" from="CanvasLayer/ChallengeOptions" to="CanvasLayer/Options2" method="open"]

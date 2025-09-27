@@ -5,8 +5,7 @@ extends Node
 
 # Global store for all Data the ModTool requires.
 
-
-const PATH_SAVE_FILE := "user://mod-tool-plugin-save.json"
+static var PATH_SAVE_FILE := Global.config_path.path_join("mod-tool-plugin-save.json")
 const PATH_TEMPLATES_DIR := "res://addons/mod_tool/templates/"
 
 var editor_plugin: EditorPlugin
@@ -96,7 +95,7 @@ func init(store: Dictionary) -> void:
 
 func update_paths(new_name_mod_dir: String) -> void:
 	path_mod_dir = "res://mods-unpacked/" + new_name_mod_dir
-	path_temp_dir = "user://temp/" + new_name_mod_dir
+	path_temp_dir = Global.config_path.path_join("temp/" + new_name_mod_dir)
 	path_global_temp_dir = ProjectSettings.globalize_path(path_temp_dir)
 	path_manifest = path_mod_dir + "/manifest.json"
 	path_global_final_zip =  "%s/%s.zip" % [path_global_export_dir, name_mod_dir]

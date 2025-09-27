@@ -1,53 +1,85 @@
 class_name ROMVerifier
 extends Node
 
-var args = OS.get_cmdline_args()
-const VALID_HASH := "c9b34443c0414f3b91ef496d8cfee9fdd72405d673985afa11fb56732c96152b"
+const VALID_HASHES := [
+	"6a54024d5abe423b53338c9b418e0c2ffd86fed529556348e52ffca6f9b53b1a",
+	"c9b34443c0414f3b91ef496d8cfee9fdd72405d673985afa11fb56732c96152b"
+]
+
+var args: PackedStringArray
 
 func _ready() -> void:
+	args = OS.get_cmdline_args()
 	Global.get_node("GameHUD").hide()
-	var validRomFound = false
-	for i in args:
-		if i.is_valid_filename():
-			if(is_valid_rom((i))):
-				on_file_dropped(args)
-				validRomFound = true 
-	if(!validRomFound):
-		get_window().files_dropped.connect(on_file_dropped)
+
+	# Try command line ROMs first
+	for path in args:
+		if path.is_valid_filename():
+			if handle_rom(path):
+				return
+	
+	# Fallback: local ROM
+	var local_rom := find_local_rom()
+	if local_rom != "" and handle_rom(local_rom):
+		return
+	
+	# Otherwise wait for dropped files
+	get_window().files_dropped.connect(on_file_dropped)
 	await get_tree().physics_frame
+
+	# Window setup
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)	
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+
+func find_local_rom() -> String:
+	var exe_dir := OS.get_executable_path().get_base_dir()
+	var dir := DirAccess.open(exe_dir)
+	if not dir:
+		return ""
+	for file_name in dir.get_files():
+		if file_name.to_lower().ends_with(".nes"):
+			return exe_dir.path_join(file_name)
+	return ""
   
 func on_file_dropped(files: PackedStringArray) -> void:
-	for i in files:
-		if i.contains(".zip"):
+	for file in files:
+		if file.ends_with(".zip"):
 			zip_error()
 			return
-		elif is_valid_rom(i):
-			Global.rom_path = i
-			verified()
-			copy_rom(i)
+		if handle_rom(file):
 			return
 	error()
 
-func copy_rom(file_path := "") -> void:
+func handle_rom(path: String) -> bool:
+	if not is_valid_rom(path):
+		return false
+	Global.rom_path = path
+	copy_rom(path)
+	verified()
+	return true
+
+func copy_rom(file_path: String) -> void:
 	DirAccess.copy_absolute(file_path, Global.ROM_PATH)
 
-static func get_hash(file_path := "") -> String:
-	var file_bytes = FileAccess.open(file_path, FileAccess.READ).get_buffer(40976)
-	var data = file_bytes.slice(16)
+static func get_hash(file_path: String) -> String:
+	var file := FileAccess.open(file_path, FileAccess.READ)
+	if not file:
+		return ""
+	var file_bytes := file.get_buffer(40976)
+	var data := file_bytes.slice(16)
 	return Marshalls.raw_to_base64(data).sha256_text()
 
 static func is_valid_rom(rom_path := "") -> bool:
-	return get_hash(rom_path) == VALID_HASH
+	return get_hash(rom_path) in VALID_HASHES
+
 
 func error() -> void:
 	%Error.show()
 	$ErrorSFX.play()
 
 func zip_error() -> void:
-	$ErrorSFX.play()
 	%ZipError.show()
+	$ErrorSFX.play()
 
 func verified() -> void:
 	$BGM.queue_free()
@@ -55,15 +87,17 @@ func verified() -> void:
 	%SuccessMSG.show()
 	$SuccessSFX.play()
 	await get_tree().create_timer(3, false).timeout
+	
+	var target_scene := "res://Scenes/Levels/TitleScreen.tscn"
 	if not Global.rom_assets_exist:
-		Global.transition_to_scene("res://Scenes/Levels/RomResourceGenerator.tscn")
-	else:
-		Global.transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
+		target_scene = "res://Scenes/Levels/RomResourceGenerator.tscn"
+	Global.transition_to_scene(target_scene)
 
 func _exit_tree() -> void:
 	Global.get_node("GameHUD").show()
 
-func create_file_pointer(file_path := "") -> void:
-	var pointer = FileAccess.open(Global.ROM_POINTER_PATH, FileAccess.WRITE)
-	pointer.store_string(file_path)
-	pointer.close()
+func create_file_pointer(file_path: String) -> void:
+	var pointer := FileAccess.open(Global.ROM_POINTER_PATH, FileAccess.WRITE)
+	if pointer:
+		pointer.store_string(file_path)
+		pointer.close()

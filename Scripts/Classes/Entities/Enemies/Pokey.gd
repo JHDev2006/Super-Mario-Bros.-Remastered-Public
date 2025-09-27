@@ -10,8 +10,8 @@ func _physics_process(delta: float) -> void:
 
 func handle_collision() -> void:
 	$HeadHitbox.position.y = (-length * 16) + 8
-	$Collision.shape.size.y = (length * 16)
-	$Collision.position.y = (-length * 8)
+	$Collision.shape.size.y = (length * 16) - 2
+	$Collision.position.y = -$Collision.shape.size.y / 2
 	$BodyHitbox.position.y = $Collision.position.y
 
 func handle_part_animation(delta: float) -> void:

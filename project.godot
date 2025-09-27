@@ -24,6 +24,7 @@ boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.png"
+use_discord=true
 
 [autoload]
 
@@ -32,8 +33,8 @@ ModLoader="*res://addons/mod_loader/mod_loader.gd"
 Global="*res://Scenes/Prefabs/Global.tscn"
 Settings="*res://Scenes/Prefabs/Autoload/Settings.tscn"
 SaveManager="*res://Scripts/Classes/Singletons/SaveManager.gd"
+DiscordManager="*res://Scripts/Classes/Singletons/DiscordManager.gd"
 AudioManager="*res://Scenes/Prefabs/Autoload/AudioManager.tscn"
-DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 GameBanana="*res://Scripts/Classes/Singletons/GameBananaManager.gd"
 SpeedrunHandler="*res://Scripts/Classes/Singletons/SpeedrunHandler.gd"
@@ -47,6 +48,8 @@ gdscript/warnings/narrowing_conversion=0
 
 window/size/viewport_width=256
 window/size/viewport_height=240
+window/size/window_width_override=1024
+window/size/window_height_override=960
 window/stretch/mode="viewport"
 
 [dotnet]
