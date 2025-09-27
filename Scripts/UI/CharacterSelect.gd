@@ -41,7 +41,7 @@ func get_custom_characters() -> void:
 		idx += 1
 	print(Player.CHARACTER_NAMES)
 	
-	var base_path = Global.config_path.rstrip("/")
+	var base_path = Global.config_path
 	var char_dir = base_path.path_join("custom_characters")
 		
 	for i in DirAccess.get_directories_at(char_dir):
