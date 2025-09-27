@@ -1,0 +1,28 @@
+name: Bug Report
+description: Report a bug with Super Mario Bros. Remastered
+title: '[Bug Report]: '
+
+body:
+  - type: input
+    id: version
+    attributes:
+      label: "Version"
+      description: "Specify the version of the game you used when you encountered the bug. You can find the game version at the bottom-left of the title screen."
+      
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Please write a clear and concise description of the bug."
+      
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: "Reproduction Steps"
+      description: "Please list the steps taken to reproduce the bug, e.g. 1. Go to ... 2. Do ..."
+      
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots"
+      description: "If applicable, add screenshots to help explain the bug."
