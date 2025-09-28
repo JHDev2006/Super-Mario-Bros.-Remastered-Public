@@ -4,7 +4,9 @@ extends Node2D
 var already_collected := false
 const COLLECTION_SFXS := [preload("uid://drr1qqeuhmv6m"), preload("uid://de1tktivtggdv"), preload("uid://cdtlca36qsba5"), preload("uid://dd47k4c5sypwp"), preload("uid://chi2nogc2op4i")]
 const SPINNING_RED_COIN = preload("res://Scenes/Prefabs/Entities/Items/SpinningRedCoin.tscn")
+var can_spawn_particles := false
 
+@onready var COIN_SPARKLE = load("res://Scenes/Prefabs/Particles/RedCoinSparkle.tscn")
 
 func _ready() -> void:
 	if ChallengeModeHandler.is_coin_collected(id):
@@ -23,7 +25,16 @@ func collected() -> void:
 		ChallengeModeHandler.red_coins += 1
 	Global.score += 200
 	ChallengeModeHandler.set_value(id, true)
-	queue_free()
+	if can_spawn_particles:
+		summon_particle()
+		$Sprite.queue_free()
+	else:
+		queue_free()
+
+func summon_particle() -> void:
+	var node = COIN_SPARKLE.instantiate()
+	node.finished.connect(queue_free)
+	add_child(node)
 
 func summon_bounced_coin() -> void:
 	var node = SPINNING_RED_COIN.instantiate()

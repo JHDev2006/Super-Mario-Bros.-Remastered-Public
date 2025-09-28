@@ -1,5 +1,7 @@
 extends Node2D
-const COIN_SPARKLE = preload("res://Scenes/Prefabs/Particles/CoinSparkle.tscn")
+
+@export var particle: PackedScene = null
+
 var velocity := Vector2(0, -300)
 
 var can_spawn_particles := true
@@ -22,6 +24,6 @@ func vanish() -> void:
 		queue_free()
 
 func summon_particle() -> void:
-	var node = COIN_SPARKLE.instantiate()
+	var node = particle.instantiate()
 	node.finished.connect(queue_free)
 	add_child(node)
