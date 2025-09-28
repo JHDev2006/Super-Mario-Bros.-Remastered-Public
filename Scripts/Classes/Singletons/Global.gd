@@ -181,7 +181,8 @@ func setup_config_dirs() -> void:
 		"logs",
 		"marathon_recordings",
 		"resource_packs",
-		"saves"
+		"saves",
+		"screenshots"
 	]
 
 	for d in dirs:
@@ -242,6 +243,14 @@ func _process(delta: float) -> void:
 		AudioManager.play_global_sfx("switch")
 		debug_mode = true
 		log_comment("Debug Mode enabled! some bugs may occur!")
+		
+	if Input.is_action_just_pressed("ui_screenshot"):
+		take_screenshot()
+
+func take_screenshot() -> void:
+	var img: Image = get_viewport().get_texture().get_image()
+	var filename = Global.config_path.path_join("screenshots/screenshot_" + str(int(Time.get_unix_time_from_system())) + ".png")
+	var err = img.save_png(filename)
 
 func handle_p_switch(delta: float) -> void:
 	if p_switch_active and get_tree().paused == false:
