@@ -1,5 +1,6 @@
 extends Node2D
-const COIN_SPARKLE = preload("res://Scenes/Prefabs/Particles/CoinSparkle.tscn")
+
+@export var COIN_SPARKLE: PackedScene = null
 
 @export var spinning_coin_scene: PackedScene = null
 

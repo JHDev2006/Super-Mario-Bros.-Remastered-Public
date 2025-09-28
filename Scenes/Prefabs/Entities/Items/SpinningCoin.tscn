@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://clxssds8sj8pf"]
+[gd_scene load_steps=12 format=3 uid="uid://clxssds8sj8pf"]
 
 [ext_resource type="Script" uid="uid://dixhffcqfnyku" path="res://Scripts/Classes/Entities/Items/SpinningCoin.gd" id="1_pvx50"]
 [ext_resource type="Texture2D" uid="uid://bnomivkphlt60" path="res://Assets/Sprites/Items/SpinningCoin.png" id="2_6slgd"]
+[ext_resource type="PackedScene" uid="uid://b1ytbn4cu7msu" path="res://Scenes/Prefabs/Particles/CoinSparkle.tscn" id="2_b5lmc"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="3_6slgd"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_7mdmn"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/SpinningCoin.json" id="4_b5lmc"]
@@ -44,6 +45,7 @@ animations = [{
 
 [node name="SpinningCoin" type="Node2D"]
 script = ExtResource("1_pvx50")
+particle = ExtResource("2_b5lmc")
 metadata/block_spawn_offset = Vector2(0, -4)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

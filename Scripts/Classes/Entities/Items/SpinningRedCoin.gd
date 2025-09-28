@@ -8,6 +8,9 @@ const collection_sounds := [preload("uid://drr1qqeuhmv6m"), preload("uid://de1tk
 
 var already_collected := false
 
+var can_spawn_particles := false
+@onready var COIN_SPARKLE = load("res://Scenes/Prefabs/Particles/RedCoinSparkle.tscn")
+
 func _ready() -> void:
 	already_collected = ChallengeModeHandler.is_coin_collected(id)
 	if already_collected == false:
@@ -25,4 +28,14 @@ func _physics_process(delta: float) -> void:
 	velocity.y += (15 / delta) * delta
 
 func vanish() -> void:
-	queue_free()
+	if can_spawn_particles:
+		$Sprite.queue_free()
+		summon_particle()
+	else:
+		queue_free()
+
+func summon_particle() -> void:
+	var node = COIN_SPARKLE.instantiate()
+	node.finished.connect(queue_free)
+	node.global_position = global_position
+	add_sibling(node)

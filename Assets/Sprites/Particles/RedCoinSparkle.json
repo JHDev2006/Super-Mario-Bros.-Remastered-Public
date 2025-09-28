@@ -6,6 +6,6 @@
 		"lifetime": 0.5
 	},
 	"variations": {
-		"default": {"source": "CoinSparkle.png", "rect": [0, 0, 64, 8]}
+		"default": {"source": "RedCoinSparkle.png", "rect": [0, 0, 64, 8]}
 	}
 }

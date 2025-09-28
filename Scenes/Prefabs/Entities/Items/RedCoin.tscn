@@ -93,9 +93,10 @@ script = ExtResource("3_0r8d3")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("3_0xloa")
 node_to_affect = NodePath("..")
+property_node = NodePath("../..")
 property_name = "sprite_frames"
 resource_json = ExtResource("5_0fjrw")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
