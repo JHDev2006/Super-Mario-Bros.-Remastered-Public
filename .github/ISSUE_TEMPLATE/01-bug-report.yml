@@ -17,6 +17,7 @@ body:
       options:
         - label: campaign bug
         - label: editor bug
+        - label: custom pack bug
         - label: ui bug
     validations:
       required: false
