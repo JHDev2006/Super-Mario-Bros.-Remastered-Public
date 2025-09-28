@@ -42,7 +42,7 @@ func _process(_delta: float) -> void:
 		grab_focus()
 	else:
 		focus_mode = Control.FOCUS_NONE
-	if Input.is_action_just_pressed("jump_0") and selected and visible:
+	if Input.is_action_just_pressed("ui_accept") and selected and visible:
 		select()
 	elif Input.is_action_just_pressed("ui_right") and selected and visible and config != {}:
 		open_config_menu()
