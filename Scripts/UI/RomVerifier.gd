@@ -7,16 +7,21 @@ const VALID_HASHES := [
 ]
 
 var args: PackedStringArray
+var rom_arg: String = ""
 
 func _ready() -> void:
 	args = OS.get_cmdline_args()
 	Global.get_node("GameHUD").hide()
 
 	# Try command line ROMs first
-	for path in args:
-		if path.is_valid_filename():
-			if handle_rom(path):
-				return
+	for i in range(args.size()):
+		match args[i]:
+			"-rom":
+				if i + 1 < args.size():
+					rom_arg = args[i + 1].replace("\\", "/")
+					print("ROM argument found: ", rom_arg)
+	if rom_arg != "" and handle_rom(rom_arg):
+		return
 	
 	# Fallback: local ROM
 	var local_rom := find_local_rom()
