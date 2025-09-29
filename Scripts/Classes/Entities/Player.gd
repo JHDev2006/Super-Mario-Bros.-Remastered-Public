@@ -684,7 +684,7 @@ func power_up_animation(new_power_state := "") -> void:
 		if Settings.file.visuals.transform_style == 0:
 			sprite.speed_scale = 3
 			sprite.play("Grow")
-			var rainbow = new_power_state != "Big"
+			var rainbow = new_power_state != "Big" and (power_state.state_name != "Big" and new_power_state != "Small")
 			if rainbow:
 				transforming = true
 				sprite.material.set_shader_parameter("enabled", true)

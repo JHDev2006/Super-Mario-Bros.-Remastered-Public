@@ -435,6 +435,7 @@ centered = false
 color = Color(0, 0, 0, 0)
 
 [node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 1)
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Node2D" node_paths=PackedStringArray("resource_setter")]
 sprite_frames = ExtResource("4_fxsfu")
@@ -466,7 +467,7 @@ libraries = {
 autoplay = "Main"
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(16, -16)
+position = Vector2(16, -15)
 texture = ExtResource("10_1flm1")
 region_rect = Rect2(0, 0, 16, 32)
 

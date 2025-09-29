@@ -29,6 +29,9 @@ func set_focus(enabled := false) -> void:
 		i.focus_mode = 0 if enabled == false else 2
 
 func continue_to_next_level() -> void:
+	if Global.world_num == 8 and Global.level_num == 4:
+		go_to_menu()
+		return
 	Global.current_level.transition_to_next_level()
 	Global.disco_level_continued.emit()
 	close()

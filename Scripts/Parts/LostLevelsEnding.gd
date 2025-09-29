@@ -25,7 +25,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if can_exit and Input.is_action_just_pressed("jump_0"):
 		SaveManager.write_save()
-		if seen or Global.current_campaign == "SMBANN" or Global.world_num > 8 or Global.current_game_mode != Global.GameMode.CAMPAIGN:
+		if Global.current_campaign == "SMBANN":
+			Global.open_disco_results()
+		elif seen or Global.world_num > 8 or Global.current_game_mode != Global.GameMode.CAMPAIGN:
 			Global.transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
 		else:
 			CreditsLevel.go_to_title_screen = false

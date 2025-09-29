@@ -112,9 +112,6 @@ animations = [{
 [node name="LostLevelsEnding" instance=ExtResource("1_3ouhg")]
 campaign = "SMBANN"
 
-[node name="DayBG" parent="." index="1"]
-visible = false
-
 [node name="Sprite2D2" parent="." index="8"]
 texture = ExtResource("2_xj4cw")
 region_rect = Rect2(128, 0, 16, 32)

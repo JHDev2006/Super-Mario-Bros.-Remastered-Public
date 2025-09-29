@@ -177,9 +177,7 @@
 			"SMBS": {
 				"source": "CastleWaterSP.png"
 			},
-			"SMBANN": {
-				"source": "CastleWaterANN.png"
-			}
+			"SMBANN": {"link": "SMBLL"}
 		},
 		"Airship": {
 			"SMB1": {
