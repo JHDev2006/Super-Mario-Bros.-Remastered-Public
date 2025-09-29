@@ -12,7 +12,7 @@ var can_spawn_particles := false
 @onready var COIN_SPARKLE = load("res://Scenes/Prefabs/Particles/RedCoinSparkle.tscn")
 
 func _ready() -> void:
-	already_collected = ChallengeModeHandler.is_coin_collected(id)
+	already_collected = ChallengeModeHandler.is_coin_collected(id) or ChallengeModeHandler.is_coin_permanently_collected(id)
 	if already_collected == false:
 		ChallengeModeHandler.red_coins += 1
 		AudioManager.play_sfx(collection_sounds[ChallengeModeHandler.red_coins - 1], global_position)
