@@ -10,15 +10,7 @@ particles_anim_h_frames = 8
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wdqt2"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 16.0
-gravity = Vector3(0, 0, 0)
-anim_speed_min = 2.0
-anim_speed_max = 2.0
-
-[node name="CoinSparkle" type="GPUParticles2D"]
+[node name="CoinSparkle" type="CPUParticles2D"]
 material = SubResource("CanvasItemMaterial_0guw6")
 emitting = false
 amount = 3
@@ -26,9 +18,12 @@ texture = ExtResource("1_4p5kk")
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.7
-interpolate = false
 fract_delta = false
-process_material = SubResource("ParticleProcessMaterial_wdqt2")
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(0, 0)
+anim_speed_min = 2.0
+anim_speed_max = 2.0
 
 [node name="ResourceSetterNew" type="Node" parent="." node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("2_wdqt2")
