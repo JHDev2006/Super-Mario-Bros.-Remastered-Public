@@ -82,12 +82,12 @@ func do_lost_levels_firework_check() -> void:
 	if coin_digit == time_digit:
 		if coin_digit % 2 == 0:
 			await show_fireworks(6)
-			if coin_digit % 11 == 0:
-				spawn_one_up_note()
-				AudioManager.play_sfx("1_up", global_position)
-				Global.lives += 1
 		else:
 			await show_fireworks(3)
+		if Global.coins % 11 == 0:
+			spawn_one_up_note()
+			AudioManager.play_sfx("1_up", global_position)
+			Global.lives += 1
 
 const ONE_UP_NOTE = preload("uid://dopxwjj37gu0l")
 
