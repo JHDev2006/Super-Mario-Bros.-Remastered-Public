@@ -1,5 +1,6 @@
 name: Bug Report
 description: Report a bug with Super Mario Bros. Remastered
+labels: ["bug"]
 title: '[Bug Report]: '
 
 body:
@@ -39,6 +40,3 @@ body:
     attributes:
       label: "Screenshots"
       description: "If applicable, add screenshots to help explain the bug."
-      
-labels:
-  - ${{ values.bug_type }}

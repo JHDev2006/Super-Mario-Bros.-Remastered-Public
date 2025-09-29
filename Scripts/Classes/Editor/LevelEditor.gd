@@ -400,9 +400,9 @@ func handle_tile_cursor() -> void:
 	
 	if current_state == EditorState.IDLE:
 		if Input.is_action_just_pressed("scroll_up"):
-			selected_tile_index += 1
-		if Input.is_action_just_pressed("scroll_down"):
 			selected_tile_index -= 1
+		if Input.is_action_just_pressed("scroll_down"):
+			selected_tile_index += 1
 	
 		if Input.is_action_just_pressed("editor_copy"):
 			copy_node(tile_position)

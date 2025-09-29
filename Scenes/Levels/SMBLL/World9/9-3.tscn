@@ -44,7 +44,6 @@ position = Vector2(808, 0)
 
 [node name="BowsersBro" parent="." instance=ExtResource("10_vmwy6")]
 position = Vector2(2664, -48)
-can_hammer = false
 
 [node name="EndFlagpole" parent="." instance=ExtResource("11_uxm62")]
 position = Vector2(3176, 0)

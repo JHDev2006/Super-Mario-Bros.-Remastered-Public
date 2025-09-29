@@ -1090,6 +1090,7 @@ offset_right = 128.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
+has_challenge_stuff = true
 
 [connection signal="sprites_updated" from="Music/ResourceSetter" to="Music" method="play"]
 [connection signal="option_1_selected" from="CanvasLayer/PauseMenu" to="." method="retry_level"]
@@ -1100,5 +1101,3 @@ grow_vertical = 2
 [connection signal="world_selected" from="CanvasLayer/WorldSelect" to="CanvasLayer/LevelSelect" method="open"]
 [connection signal="cancelled" from="CanvasLayer/LevelSelect" to="CanvasLayer/WorldSelect" method="open"]
 [connection signal="level_selected" from="CanvasLayer/LevelSelect" to="." method="retry_level"]
-
-[editable path="CanvasLayer/LevelSelect"]

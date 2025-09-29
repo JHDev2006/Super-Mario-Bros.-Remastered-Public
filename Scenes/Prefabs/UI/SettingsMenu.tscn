@@ -65,22 +65,40 @@ func load_inputs() -> void:
 		for action_name in i.action_names:
 			var action = action_name
 			var value = Settings.file[[\"keyboard\", \"controller\"][type]].get(action, null)
-			var event: InputEvent = null
 			if value == null:
 				continue
-			if type == 0:
-				event = InputEventKey.new()
-				event.keycode = OS.find_keycode_from_string(value)
-			elif type == 1:
-				if value is String:
-					var array = value.split(\",\")
-					event = InputEventJoypadMotion.new()
-					event.axis = int(array[0])
-					event.axis_value = int(array[1])
-				elif value is int:
-					event = InputEventJoypadButton.new()
-					event.button_index = value
-			i.map_event_to_action(event)
+			if value is Array:
+				if value.size() < 2:
+					value.append(null)
+				var idx := 0
+				for x in value:
+					bind_value_to_event(i, x, idx)
+					idx += 1
+			else:
+				bind_value_to_event(i, value, 0)
+		i.update_value()
+
+func bind_value_to_event(input_node, value, idx := 0) -> void:
+	var event: InputEvent = null
+	if value == null:
+		return
+	if value is String:
+		if value == \"\":
+			input_node.map_event_to_action(null, idx)
+			return
+	if type == 0:
+		event = InputEventKey.new()
+		event.keycode = OS.find_keycode_from_string(value)
+	elif type == 1:
+		if value is String:
+			var array = value.split(\",\")
+			event = InputEventJoypadMotion.new()
+			event.axis = int(array[0])
+			event.axis_value = int(array[1])
+		elif value is int:
+			event = InputEventJoypadButton.new()
+			event.button_index = value
+	input_node.map_event_to_action(event, idx)
 
 func update_starting_values() -> void:
 	load_inputs()
@@ -88,20 +106,27 @@ func update_starting_values() -> void:
 func save_inputs() -> void:
 	for i in actions:
 		var event = null
+		var events := []
 		if i.contains(\"ui\") or i == \"pause\":
-			event = InputMap.action_get_events(i)[type]
+			event = InputMap.action_get_events(i)
 		else:
-			event = InputMap.action_get_events(i + \"_0\")[type]
-		var rep
-		if event is InputEventKey:
-			rep = OS.get_keycode_string(event.keycode)
-		elif event is InputEventJoypadButton:
-			rep = event.button_index
-		elif event is InputEventJoypadMotion:
-			rep = str(event.axis) + \",\" + str(event.axis_value)
-		else:
-			pass
-		Settings.file[[\"keyboard\", \"controller\"][type]][i] = rep
+			event = InputMap.action_get_events(i + \"_0\")
+		for x in event:
+			if type == 0 and x is InputEventKey:
+				events.append(get_str_for_event(x))
+			elif type == 1 and (x is InputEventJoypadButton or x is InputEventJoypadMotion):
+				events.append(get_str_for_event(x))
+		Settings.file[[\"keyboard\", \"controller\"][type]][i] = events
+
+func get_str_for_event(event: InputEvent):
+	var rep = \"\"
+	if event is InputEventKey:
+		rep = OS.get_keycode_string(event.keycode)
+	elif event is InputEventJoypadButton:
+		rep = event.button_index
+	elif event is InputEventJoypadMotion:
+		rep = str(event.axis) + \",\" + str(event.axis_value)
+	return rep
 "
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_k6yev"]

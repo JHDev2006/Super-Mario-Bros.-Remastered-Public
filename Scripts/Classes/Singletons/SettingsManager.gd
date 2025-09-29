@@ -41,9 +41,9 @@ var file := {
 	},
 	"controller":
 	{
-		"jump": 0,
-		"run": 2,
-		"action": 2,
+		"jump": [0, 1],
+		"run": [2, 3],
+		"action": [2, 3],
 		"move_left": "0,-1",
 		"move_right": "0,1",
 		"move_up": "1,-1",

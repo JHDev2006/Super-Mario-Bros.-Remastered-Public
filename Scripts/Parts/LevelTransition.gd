@@ -113,7 +113,7 @@ func show_best_time() -> void:
 
 func _process(_delta: float) -> void:
 	if can_transition:
-		if Input.is_action_just_pressed("jump_0"):
+		if Input.is_action_just_pressed("ui_accept"):
 			transition()
 
 func _exit_tree() -> void:

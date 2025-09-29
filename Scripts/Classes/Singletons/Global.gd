@@ -344,6 +344,7 @@ func transition_to_scene(scene_path := "") -> void:
 		$Transition/AnimationPlayer.play("RESET")
 		$Transition.hide()
 	transitioning_scene = false
+	transition_finished.emit()
 
 
 

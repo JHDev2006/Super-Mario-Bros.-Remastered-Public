@@ -8,6 +8,7 @@
 size = Vector2(16, 16)
 
 [node name="CastleBridgeSegment" type="StaticBody2D"]
+process_mode = 1
 physics_interpolation_mode = 2
 collision_layer = 2
 collision_mask = 0

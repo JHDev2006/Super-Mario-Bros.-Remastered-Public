@@ -577,7 +577,6 @@ texture = ExtResource("1_vdakf")
 &"type": 22
 }
 5:8/0 = 0
-5:8/0/z_index = 1
 5:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, 0)
 5:8/0/metadata/_better_terrain = {
 0: [0],
@@ -608,7 +607,6 @@ texture = ExtResource("1_vdakf")
 &"type": 18
 }
 0:9/0 = 0
-0:9/0/z_index = -10
 0:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, -8)
 0:9/0/metadata/_better_terrain = {
 0: [0],
@@ -617,7 +615,6 @@ texture = ExtResource("1_vdakf")
 &"type": 20
 }
 1:9/0 = 0
-1:9/0/z_index = -10
 1:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, -8, 8)
 1:9/0/metadata/_better_terrain = {
 8: [0],
@@ -626,7 +623,6 @@ texture = ExtResource("1_vdakf")
 &"type": 21
 }
 2:9/0 = 0
-2:9/0/z_index = -10
 2:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:9/0/metadata/_better_terrain = {
 0: [0],

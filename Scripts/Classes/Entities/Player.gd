@@ -684,10 +684,18 @@ func power_up_animation(new_power_state := "") -> void:
 		if Settings.file.visuals.transform_style == 0:
 			sprite.speed_scale = 3
 			sprite.play("Grow")
+			var rainbow = new_power_state != "Big"
+			if rainbow:
+				transforming = true
+				sprite.material.set_shader_parameter("enabled", true)
 			await get_tree().create_timer(0.4, true).timeout
+			power_state = get_node("PowerStates/" + new_power_state)
 			sprite.sprite_frames = new_frames
+			handle_invincible_palette()
 			sprite.play("Grow")
 			await get_tree().create_timer(0.4, true).timeout
+			if rainbow:
+				sprite.material.set_shader_parameter("enabled", false)
 			transforming = false
 		else:
 			sprite.speed_scale = 0
