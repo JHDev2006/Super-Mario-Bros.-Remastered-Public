@@ -12,9 +12,13 @@ script/source = "extends Node2D
 @export_enum(\"Left\", \"Center\", \"Right\") var alignment := 0
 # guzlad: Do we even need the 4th option \"fill\"?
 
+@export_enum(\"Left\", \"Center\", \"Right\") var text_alignment := 0
+@export var colour := Color.WHITE
+
 func _process(_delta: float) -> void:
 	$TextLabel.text = text
-	$TextLabel.horizontal_alignment = alignment
+	$TextLabel.horizontal_alignment = text_alignment
+	$TextLabel.add_theme_color_override(\"font_color\", colour)
 "
 
 [node name="TextLabelOBJ" type="Node2D"]
@@ -29,7 +33,7 @@ offset_bottom = 8.0
 
 [node name="EditorPropertyExposer" type="Node" parent="."]
 script = ExtResource("2_xh6kd")
-properties = Array[String](["text", "alignment"])
+properties = Array[String](["text", "text_alignment", "colour"])
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
 [node name="LevelEditorVisibleNode" type="Node2D" parent="."]

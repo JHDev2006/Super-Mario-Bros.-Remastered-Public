@@ -44,13 +44,12 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_qar1j")
 position = Vector2(-64, 0)
-emitting = false
 amount = 64
 texture = ExtResource("1_0tjo2")
 lifetime = 2.0
 draw_order = 1
 emission_shape = 3
-emission_rect_extents = Vector2(1, 8)
+emission_rect_extents = Vector2(1, 128)
 spread = 0.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 100.0
@@ -61,7 +60,7 @@ anim_offset_max = 1.0
 
 [node name="ResourceSetterNew" type="Node" parent="CanvasLayer/Control/Particles" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_sbjyn")
-node_to_affect = NodePath("")
+node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_qvx5e")

@@ -630,10 +630,10 @@ func death_load() -> void:
 	# Determine which action to take
 	if death_actions.has(Global.current_game_mode):
 		death_actions[Global.current_game_mode].call()
+	if Global.lives <= 0 and Settings.file.difficulty.inf_lives == 0:
+		death_actions["game_over"].call()
 	elif Global.time <= 0:
 		death_actions["time_up"].call()
-	elif Global.lives <= 0 and Settings.file.difficulty.inf_lives == 0:
-		death_actions["game_over"].call()
 	else:
 		death_actions["default_reload"].call()
 

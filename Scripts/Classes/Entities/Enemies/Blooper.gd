@@ -21,7 +21,11 @@ func rise_tween() -> void:
 	var dir = sign(target_player.global_position.x - global_position.x)
 	var target_position := Vector2(32 * dir, -32)
 	var final_position = global_position + target_position
-	final_position.y = clamp(final_position.y, -176, 64)
+	var top_point = -176
+	if Global.current_level != null:
+		top_point = Global.current_level.vertical_height + 32
+	final_position.y = clamp(final_position.y, top_point, 64)
+	
 	tween.tween_property(self, "global_position", final_position, 0.75)
 	await tween.finished
 	falling = true
