@@ -30,7 +30,7 @@ const MUSIC_TRACKS := {
 var updating := false
 
 static var music: JSON
-static var music_to_replace: JSON
+static var music_to_replace := ""
 
 func get_resource(json_file: JSON) -> Resource:
 	if cache.has(json_file.resource_path) and use_cache and force_properties.is_empty():
@@ -88,14 +88,14 @@ func set_theme(json := {}) -> void:
 			Global.level_theme = json.theme
 			if sync_music:
 				music = load(MUSIC_TRACKS[json.theme])
-				music_to_replace = load(MUSIC_TRACKS[get_default_theme()])
+				music_to_replace = MUSIC_TRACKS[get_default_theme()]
 			else:
 				music = null
-				music_to_replace = null
+				music_to_replace = ""
 		else:
 			Global.level_theme = get_default_theme()
 			music = null
-			music_to_replace = null
+			music_to_replace = ""
 		if json.has("time") and json.time is String and ["Day", "Night"].has(json.time):
 			Global.theme_time = json.time
 		else:
@@ -104,7 +104,7 @@ func set_theme(json := {}) -> void:
 		Global.level_theme = get_default_theme()
 		Global.theme_time = get_default_time()
 		music = null
-		music_to_replace = null
+		music_to_replace = ""
 	updating = false
 
 func get_level() -> Level:
