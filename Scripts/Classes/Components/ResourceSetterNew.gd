@@ -244,6 +244,30 @@ func get_variation_json(json := {}) -> Dictionary:
 		else:
 			json = get_variation_json(json[level_string])
 	
+	var room = "MainRoom"
+	if force_properties.has("Room"):
+		room = force_properties.Room
+	elif Global.current_level != null:
+		if Global.current_level is CoinHeaven:
+			room = "CoinHeaven"
+		else:
+			for i in Global.current_level.get_children():
+				if i is ExtraBGM:
+					if i.extra_track.resource_path == "res://Assets/Audio/BGM/Bonus.json":
+						room = "BonusRoom"
+						break
+	elif get_tree().current_scene is PipeCutscene:
+		room = "PipeCutscene"
+	elif get_tree().current_scene is TitleScreen:
+		room = "TitleScreen"
+	if json.has(room) == false:
+		room = "MainRoom"
+	if json.has(room):
+		if json.get(room).has("link"):
+			json = get_variation_json(json[json.get(room).get("link")])
+		else:
+			json = get_variation_json(json[room])
+	
 	var game_mode = "GameMode:" + Global.game_mode_strings[Global.current_game_mode]
 	if json.has(game_mode) == false:
 		game_mode = "GameMode:" + Global.game_mode_strings[0]
