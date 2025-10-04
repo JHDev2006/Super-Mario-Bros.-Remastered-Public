@@ -236,6 +236,8 @@ func get_variation_json(json := {}) -> Dictionary:
 			json = get_variation_json(json[world])
 	
 	var level_string = "Level" + str(Global.level_num)
+	if force_properties.has("Level"):
+		level_string = "Level" + str(force_properties.Level)
 	if json.has(level_string) == false:
 		level_string = "Level1"
 	if json.has(level_string):
