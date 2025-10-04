@@ -216,12 +216,12 @@ func handle_music() -> void:
 	
 	if is_instance_valid(Global.current_level):
 		var music: JSON = Global.current_level.music
-		if ThemeSetter.music != null and music == ThemeSetter.music_to_replace:
-			music = ThemeSetter.music
 		if music == null or current_music_override != MUSIC_OVERRIDES.NONE:
 			music_player.stop()
 			handle_music_override()
 			return
+		elif ThemeSetter.music != null and ThemeSetter.music_to_replace == music.resource_path:
+			music = ThemeSetter.music
 		music_player.stream_paused = false
 		if current_level_theme != music.resource_path and music != null:
 			var stream = create_stream_from_json(music.resource_path)
