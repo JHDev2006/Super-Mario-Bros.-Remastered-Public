@@ -76,6 +76,11 @@ func update_resource() -> void:
 		"Theme": get_default_theme(),
 		"Time": get_default_time()
 	}
+	if Global.current_game_mode == Global.GameMode.BOO_RACE and Global.current_level != null:
+		force_properties.merge({
+			"World": Global.current_level.world_id,
+			"Level": Global.current_level.level_id
+		})
 	if theme_data != null and theme_data.data.has("variations"):
 		set_theme(get_variation_json(theme_data.data.variations))
 	else:
