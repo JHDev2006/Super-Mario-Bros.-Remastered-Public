@@ -61,7 +61,10 @@ var total_keys := 0
 		set_power_state_frame()
 var character := "Mario"
 
-var crouching := false
+var crouching := false:
+	get(): # You can't crouch if the animation somehow doesn't exist.
+		if not sprite.sprite_frames.has_animation("Crouch"): return false
+		return crouching
 var skidding := false
 
 var bumping := false
@@ -145,6 +148,7 @@ const ANIMATION_FALLBACKS := {
 	"Run": "Move", 
 	"PipeWalk": "Move", 
 	"LookUp": "Idle", 
+	"Crouch": "Idle",
 	"CrouchFall": "Crouch", 
 	"CrouchJump": "Crouch", 
 	"CrouchBump": "Bump",
@@ -483,10 +487,19 @@ func handle_directions() -> void:
 var use_big_collision := false
 
 func handle_power_up_states(delta) -> void:
+	var small_crouch := power_state.hitbox_size == "Small" and crouching
+	var big_crouch := power_state.hitbox_size == "Big" and crouching
+	for i in get_tree().get_nodes_in_group("SmallCollisions"):
+		if i.name.begins_with("SmallCrouch"):
+			i.set_deferred("disabled", power_state.hitbox_size == "Small" and !crouching or power_state.hitbox_size == "Big")
+			i.visible = not i.disabled
+		else:
+			i.set_deferred("disabled", small_crouch or power_state.hitbox_size == "Big" and !crouching)
+			i.visible = not i.disabled
 	for i in get_tree().get_nodes_in_group("BigCollisions"):
-		if i.owner == self:
-			i.set_deferred("disabled", power_state.hitbox_size == "Small" or crouching)
-	$Checkpoint.position.y = -24 if power_state.hitbox_size == "Small" or crouching else -40
+		i.set_deferred("disabled", power_state.hitbox_size == "Small" or big_crouch)
+		i.visible = not i.disabled
+	$Checkpoint.position.y = -20 if small_crouch else -24 if power_state.hitbox_size == "Small" or big_crouch else -40
 	power_state.update(delta)
 
 func handle_wing_flight(delta: float) -> void:
