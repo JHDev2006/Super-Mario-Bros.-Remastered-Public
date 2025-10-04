@@ -85,6 +85,8 @@ func spawn_empty_block() -> void:
 	add_sibling(block)
 	if get_parent().get_parent() is TrackRider:
 		get_parent().get_parent().attached_entity = block
+	if get_parent() is TileMapLayer:
+		get_parent().erase_cell(get_parent().local_to_map(position))
 	block_emptied.emit()
 	queue_free()
 
@@ -95,4 +97,6 @@ func destroy() -> void:
 	var particles = destruction_particle_scene.instantiate()
 	particles.global_position = global_position
 	add_sibling(particles)
+	if get_parent() is TileMapLayer:
+		get_parent().erase_cell(get_parent().local_to_map(position))
 	queue_free()
