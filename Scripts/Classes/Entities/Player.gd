@@ -36,6 +36,8 @@ var SWIM_GRAVITY := 2.5                # The player's gravity while swimming, me
 var MAX_SWIM_FALL_SPEED := 200.0       # The player's maximum fall speed while swimming, measured in px/sec
 
 var DEATH_JUMP_HEIGHT := 300.0         # The strength of the player's "jump" during the death animation, measured in px/sec
+
+var SPRING_GRAVITY := 11.0             # The player's gravity while spring bouncing, measured in px/frame
 #endregion
 
 @onready var camera_center_joint: Node2D = $CameraCenterJoint
@@ -438,6 +440,8 @@ func _process(delta: float) -> void:
 func apply_gravity(delta: float) -> void:
 	if in_water or flight_meter > 0:
 		gravity = SWIM_GRAVITY
+	elif spring_bouncing:
+		gravity = SPRING_GRAVITY
 	else:
 		if sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
 			gravity = FALL_GRAVITY
