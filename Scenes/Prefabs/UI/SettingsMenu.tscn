@@ -590,14 +590,13 @@ custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
 [node name="Difficulty" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options", "description_node")]
-visible = false
 custom_minimum_size = Vector2(0, 134)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_DIFFICULTY"
-options = [NodePath("DamageStyle"), NodePath("Checkpoints"), NodePath("ExtraCheckpoints"), NodePath("Lives"), NodePath("FlagpoleLives"), NodePath("GameOverStyle"), NodePath("LevelDesign"), NodePath("BackScroll"), NodePath("TimeLimit"), NodePath("LakituStyle")]
+options = [NodePath("DamageStyle"), NodePath("Checkpoints"), NodePath("ExtraCheckpoints"), NodePath("Lives"), NodePath("FlagpoleLives"), NodePath("GameOverStyle"), NodePath("LevelDesign"), NodePath("BackScroll"), NodePath("TimeLimit"), NodePath("LakituStyle"), NodePath("PhysicsStyle")]
 description_node = NodePath("Description/AutoScrollContainer/MarginContainer/Desc")
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
@@ -682,6 +681,14 @@ option_key = "lakitu_style"
 title = "DIFFI_LAKITU"
 value_descs = Array[String](["DESC_LAKITU_0", "DESC_LAKITU_1"])
 values = ["DIFFI_LAKITU_0", "DIFFI_LAKITU_1"]
+settings_category = "difficulty"
+
+[node name="PhysicsStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "physics_style"
+title = "PHYSICS STYLE"
+value_descs = Array[String](["MODERN PHYSICS.", "CLASSIC PHYSICS RECREATED.", "TAKES BOTH PHYSICS TYPES AND COMBINES THEM TO MAKE A BETTER PHYSICS TYPE."])
+values = ["REMASTERED", "CLASSIC", "ENHANCED"]
 settings_category = "difficulty"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
@@ -1035,6 +1042,8 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/BackScroll" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="backscroll_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/TimeLimit" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="time_limit_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/LakituStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="lakitu_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/PhysicsStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="on_value_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/PhysicsStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="physics_style_changed"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/CampaignData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_story"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/ChallengeModeData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_challenge"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/BooRaceData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_boo"]

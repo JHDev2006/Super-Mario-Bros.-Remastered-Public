@@ -24,7 +24,7 @@ func update_starting_values() -> void:
 				selected_index = values.find(Settings.file[settings_category][option_key])
 			else:
 				selected_index = Settings.file[settings_category][option_key]
-
+				
 func _process(_delta: float) -> void:
 	if selected:
 		handle_inputs()

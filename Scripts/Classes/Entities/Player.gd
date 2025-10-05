@@ -201,8 +201,10 @@ func _ready() -> void:
 	Global.can_time_tick = true
 	if [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) == false:
 		apply_character_physics()
+		apply_physics_style()
 	apply_character_sfx_map()
 	Global.level_theme_changed.connect(apply_character_sfx_map)
+	Global.level_theme_changed.connect(apply_physics_style)
 	Global.level_theme_changed.connect(apply_character_physics)
 	Global.level_theme_changed.connect(set_power_state_frame)
 	if Global.current_level.first_load and Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
@@ -215,6 +217,125 @@ func _ready() -> void:
 	handle_invincible_palette()
 	if Global.level_editor == null:
 		recenter_camera()
+
+func apply_physics_style() -> void:
+	var physics_style = Settings.file.difficulty.get("physics_style", 2)
+	
+	match physics_style:
+		1:
+			apply_classe_physics()
+		0:
+			apply_remastered_physics()
+		2:
+			apply_enhanced_physics()
+
+func apply_classe_physics() -> void: # yes this is my work around. -Syn
+	JUMP_GRAVITY = 12.75 # This is in a very bare bones state right now- I will genuinely get this near perfect.
+	JUMP_HEIGHT = 320.0
+	JUMP_INCR = 7.8
+	JUMP_CANCEL_DIVIDE = 1.5
+	JUMP_HOLD_SPEED_THRESHOLD = 0.0
+	
+	BOUNCE_HEIGHT = 200.0
+	BOUNCE_JUMP_HEIGHT = 300.0
+	
+	FALL_GRAVITY = 25.0
+	MAX_FALL_SPEED = 360.0
+	CEILING_BUMP_SPEED = 65.0
+	
+	WALK_SPEED = 96.0
+	GROUND_WALK_ACCEL = 4.0
+	WALK_SKID = 7.64
+	
+	RUN_SPEED = 170.0
+	GROUND_RUN_ACCEL = 1.0
+	RUN_SKID = 8.0
+	
+	SKID_THRESHOLD = 105.2
+	
+	DECEL = 5.0
+	AIR_ACCEL = 1.6
+	AIR_SKID = 0.95
+	
+	SWIM_SPEED = 95.0
+	SWIM_GROUND_SPEED = 45.0
+	SWIM_HEIGHT = 100.0
+	SWIM_GRAVITY = 2.5
+	MAX_SWIM_FALL_SPEED = 200.0
+	
+	DEATH_JUMP_HEIGHT = 300.0
+
+func apply_remastered_physics() -> void:
+	JUMP_GRAVITY = 11.0
+	JUMP_HEIGHT = 300.0
+	JUMP_INCR = 8.0
+	JUMP_CANCEL_DIVIDE = 1.5
+	JUMP_HOLD_SPEED_THRESHOLD = 0.0
+	
+	BOUNCE_HEIGHT = 200.0
+	BOUNCE_JUMP_HEIGHT = 300.0
+	
+	FALL_GRAVITY = 25.0
+	MAX_FALL_SPEED = 280.0
+	CEILING_BUMP_SPEED = 45.0
+	
+	WALK_SPEED = 96.0
+	GROUND_WALK_ACCEL = 4.0
+	WALK_SKID = 8.0
+	
+	RUN_SPEED = 160.0
+	GROUND_RUN_ACCEL = 1.25
+	RUN_SKID = 8.0
+	
+	SKID_THRESHOLD = 100.0
+	
+	DECEL = 3.0
+	AIR_ACCEL = 3.0
+	AIR_SKID = 1.5
+	
+	SWIM_SPEED = 95.0
+	SWIM_GROUND_SPEED = 45.0
+	SWIM_HEIGHT = 100.0
+	SWIM_GRAVITY = 2.5
+	MAX_SWIM_FALL_SPEED = 200.0
+	
+	DEATH_JUMP_HEIGHT = 300.0
+
+func apply_enhanced_physics() -> void:
+	JUMP_GRAVITY = 18.0
+	JUMP_HEIGHT = 400.0
+	JUMP_INCR = 8.5
+	JUMP_CANCEL_DIVIDE = 1.5
+	JUMP_HOLD_SPEED_THRESHOLD = -10.0
+	
+	BOUNCE_HEIGHT = 280.0
+	BOUNCE_JUMP_HEIGHT = 400.0
+	
+	FALL_GRAVITY = 36.0
+	MAX_FALL_SPEED = 320.0
+	CEILING_BUMP_SPEED = 60.0
+	
+	WALK_SPEED = 98.0
+	GROUND_WALK_ACCEL = 4.5
+	WALK_SKID = 6.5
+	
+	RUN_SPEED = 180.0
+	GROUND_RUN_ACCEL = 1.8
+	RUN_SKID = 7.0
+	
+	SKID_THRESHOLD = 50.0
+	
+	DECEL = 3.5
+	AIR_ACCEL = 3.5
+	AIR_SKID = 1.5
+	
+	SWIM_SPEED = 95.5
+	SWIM_GROUND_SPEED = 46.0
+	SWIM_HEIGHT = 110.0
+	SWIM_GRAVITY = 4.0
+	MAX_SWIM_FALL_SPEED = 225.0
+	
+	DEATH_JUMP_HEIGHT = 360.0
 
 func apply_character_physics() -> void:
 	var path = "res://Assets/Sprites/Players/" + character + "/CharacterInfo.json"
