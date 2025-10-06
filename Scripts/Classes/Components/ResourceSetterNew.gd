@@ -18,7 +18,7 @@ static var property_cache := {}
 
 var current_json_path := ""
 
-static var state := [0, 0]
+static var state := [0, 0, 0]
 
 static var pack_configs := {}
 
@@ -53,7 +53,7 @@ func update_resource() -> void:
 	randomize()
 	if is_inside_tree() == false or is_queued_for_deletion() or resource_json == null or node_to_affect == null:
 		return
-	if state != [Global.level_theme, Global.theme_time]:
+	if state != [Global.level_theme, Global.theme_time, Global.current_room]:
 		cache.clear()
 		property_cache.clear()
 	if node_to_affect != null:
@@ -61,7 +61,7 @@ func update_resource() -> void:
 		node_to_affect.set(property_name, resource)
 		if node_to_affect is AnimatedSprite2D:
 			node_to_affect.play()
-	state = [Global.level_theme, Global.theme_time]
+	state = [Global.level_theme, Global.theme_time, Global.current_room]
 	updated.emit()
 
 func get_resource(json_file: JSON) -> Resource:
@@ -244,6 +244,15 @@ func get_variation_json(json := {}) -> Dictionary:
 			json = get_variation_json(json[json.get(level_string).get("link")])
 		else:
 			json = get_variation_json(json[level_string])
+	
+	var room = Global.room_strings[Global.current_room]
+	if json.has(room) == false:
+		room = Global.room_strings[0]
+	if json.has(room):
+		if json.get(room).has("link"):
+			json = get_variation_json(json[json.get(room).get("link")])
+		else:
+			json = get_variation_json(json[room])
 	
 	var game_mode = "GameMode:" + Global.game_mode_strings[Global.current_game_mode]
 	if json.has(game_mode) == false:
