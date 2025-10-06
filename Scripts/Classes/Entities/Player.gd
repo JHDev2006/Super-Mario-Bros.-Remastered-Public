@@ -231,10 +231,10 @@ func apply_physics_style() -> void:
 		2:
 			apply_enhanced_physics()
 
-func apply_classe_physics() -> void: # yes this is my work around. -Syn
-	JUMP_GRAVITY = 12.75 # This is in a very bare bones state right now- I will genuinely get this near perfect.
-	JUMP_HEIGHT = 320.0
-	JUMP_INCR = 7.8
+func apply_classe_physics() -> void:
+	JUMP_GRAVITY = 10.0
+	JUMP_HEIGHT = 310.0
+	JUMP_INCR = 8.0
 	JUMP_CANCEL_DIVIDE = 1.5
 	JUMP_HOLD_SPEED_THRESHOLD = 0.0
 	
@@ -242,22 +242,22 @@ func apply_classe_physics() -> void: # yes this is my work around. -Syn
 	BOUNCE_JUMP_HEIGHT = 300.0
 	
 	FALL_GRAVITY = 25.0
-	MAX_FALL_SPEED = 360.0
-	CEILING_BUMP_SPEED = 65.0
+	MAX_FALL_SPEED = 280.0
+	CEILING_BUMP_SPEED = 60.0
 	
 	WALK_SPEED = 96.0
 	GROUND_WALK_ACCEL = 4.0
-	WALK_SKID = 7.64
+	WALK_SKID = 8.0
 	
-	RUN_SPEED = 170.0
+	RUN_SPEED = 160.0
 	GROUND_RUN_ACCEL = 1.0
 	RUN_SKID = 8.0
 	
 	SKID_THRESHOLD = 105.2
 	
 	DECEL = 5.0
-	AIR_ACCEL = 1.6
-	AIR_SKID = 0.95
+	AIR_ACCEL = 1.5
+	AIR_SKID = 0.5
 	
 	SWIM_SPEED = 95.0
 	SWIM_GROUND_SPEED = 45.0
@@ -932,8 +932,17 @@ func jump() -> void:
 	await get_tree().physics_frame
 	has_jumped = true
 
-func calculate_jump_height() -> float: # Thanks wye love you xxx
-	return -(JUMP_HEIGHT + JUMP_INCR * int(abs(velocity.x) / 25))
+func calculate_jump_height() -> float:
+	var physics_style = Settings.file.difficulty.get("physics_style", 2)
+	
+	if physics_style == 1:
+		var speed_threshold := 40.0
+		if abs(velocity.x) >= speed_threshold:
+			return -(JUMP_HEIGHT + JUMP_INCR)
+		else:
+			return -JUMP_HEIGHT
+	else:
+		return -(JUMP_HEIGHT + JUMP_INCR * int(abs(velocity.x) / 25)) # thanks wye love you xxx
 
 const SMOKE_PARTICLE = preload("res://Scenes/Prefabs/Particles/SmokeParticle.tscn")
 
