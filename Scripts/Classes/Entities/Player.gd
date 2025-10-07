@@ -231,33 +231,33 @@ func apply_physics_style() -> void:
 		2:
 			apply_enhanced_physics()
 
-func apply_classe_physics() -> void:
-	JUMP_GRAVITY = 10.0
-	JUMP_HEIGHT = 310.0
+func apply_classe_physics() -> void: # https://docs.google.com/document/d/1XDWMzu2gdywSjhQgOSIK_YHmtX23BAcZOaGMoMbVNhU/edit?usp=sharing Conversion chart I made -syn
+	JUMP_GRAVITY = 11.0
+	JUMP_HEIGHT = 320.0
 	JUMP_INCR = 8.0
-	JUMP_CANCEL_DIVIDE = 1.5
+	JUMP_CANCEL_DIVIDE = 1.8
 	JUMP_HOLD_SPEED_THRESHOLD = 0.0
 	
-	BOUNCE_HEIGHT = 200.0
-	BOUNCE_JUMP_HEIGHT = 300.0
+	BOUNCE_HEIGHT = 320.0
+	BOUNCE_JUMP_HEIGHT = 320.0
 	
 	FALL_GRAVITY = 25.0
-	MAX_FALL_SPEED = 280.0
-	CEILING_BUMP_SPEED = 60.0
+	MAX_FALL_SPEED = 288.0
+	CEILING_BUMP_SPEED = 45.0
 	
 	WALK_SPEED = 96.0
-	GROUND_WALK_ACCEL = 4.0
-	WALK_SKID = 8.0
+	GROUND_WALK_ACCEL = 3.6
+	WALK_SKID = 7.0
 	
 	RUN_SPEED = 160.0
-	GROUND_RUN_ACCEL = 1.0
-	RUN_SKID = 8.0
+	GROUND_RUN_ACCEL = 3.6
+	RUN_SKID = 7.0
 	
-	SKID_THRESHOLD = 105.2
+	SKID_THRESHOLD = 36.0
 	
-	DECEL = 5.0
-	AIR_ACCEL = 1.5
-	AIR_SKID = 0.5
+	DECEL = 7.0
+	AIR_ACCEL = 3.6
+	AIR_SKID = 7.0
 	
 	SWIM_SPEED = 95.0
 	SWIM_GROUND_SPEED = 45.0
@@ -265,7 +265,7 @@ func apply_classe_physics() -> void:
 	SWIM_GRAVITY = 2.5
 	MAX_SWIM_FALL_SPEED = 200.0
 	
-	DEATH_JUMP_HEIGHT = 300.0
+	DEATH_JUMP_HEIGHT = 320.0
 
 func apply_remastered_physics() -> void:
 	JUMP_GRAVITY = 11.0
