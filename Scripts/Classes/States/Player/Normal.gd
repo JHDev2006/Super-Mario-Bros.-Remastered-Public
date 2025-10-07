@@ -100,11 +100,12 @@ func ground_acceleration(delta: float) -> void:
 	if (Global.player_action_pressed("run", player.player_id) and abs(player.velocity.x) >= player.WALK_SPEED) and (not player.in_water and player.flight_meter <= 0) and player.can_run:
 		target_move_speed = player.RUN_SPEED
 		target_accel = player.GROUND_RUN_ACCEL
-	if player.input_direction != player.velocity_direction:
+	if player.input_direction != player.velocity_direction: # theoretically should remake the reverse accel.
 		if Global.player_action_pressed("run", player.player_id) and player.can_run:
 			target_accel = player.RUN_SKID
 		else:
 			target_accel = player.WALK_SKID
+		target_accel += player.get_reverse_acceleration()
 	player.velocity.x = move_toward(player.velocity.x, target_move_speed * player.input_direction, (target_accel / delta) * delta)
 
 func deceleration(delta: float) -> void:

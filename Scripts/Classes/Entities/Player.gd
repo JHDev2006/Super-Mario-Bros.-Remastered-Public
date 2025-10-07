@@ -38,6 +38,8 @@ var MAX_SWIM_FALL_SPEED := 200.0       # The player's maximum fall speed while s
 var DEATH_JUMP_HEIGHT := 300.0         # The strength of the player's "jump" during the death animation, measured in px/sec
 
 var SPRING_GRAVITY := 11.0             # The player's gravity while spring bouncing, measured in px/frame
+
+var FAST_REVERSE_ACCEL := 0.0          # Additional deceleration when reversing direction, measured in px/frame
 #endregion
 
 @onready var camera_center_joint: Node2D = $CameraCenterJoint
@@ -266,6 +268,8 @@ func apply_classe_physics() -> void: # https://docs.google.com/document/d/1XDWMz
 	MAX_SWIM_FALL_SPEED = 200.0
 	
 	DEATH_JUMP_HEIGHT = 320.0
+	
+	FAST_REVERSE_ACCEL = 12.0
 
 func apply_remastered_physics() -> void:
 	JUMP_GRAVITY = 11.0
@@ -302,6 +306,8 @@ func apply_remastered_physics() -> void:
 	MAX_SWIM_FALL_SPEED = 200.0
 	
 	DEATH_JUMP_HEIGHT = 300.0
+	
+	FAST_REVERSE_ACCEL = 0.0
 
 func apply_enhanced_physics() -> void:
 	JUMP_GRAVITY = 18.0
@@ -338,6 +344,8 @@ func apply_enhanced_physics() -> void:
 	MAX_SWIM_FALL_SPEED = 225.0
 	
 	DEATH_JUMP_HEIGHT = 360.0
+	
+	FAST_REVERSE_ACCEL = 24.0
 
 func apply_character_physics() -> void:
 	var path = "res://Assets/Sprites/Players/" + character + "/CharacterInfo.json"
@@ -604,6 +612,13 @@ func handle_directions() -> void:
 	elif Global.player_action_pressed("move_left", player_id):
 		input_direction = -1
 	velocity_direction = sign(velocity.x)
+
+func get_reverse_acceleration() -> float:
+	if FAST_REVERSE_ACCEL > 0.0 and input_direction != 0 and is_on_floor():
+		if sign(velocity.x) != 0 and sign(velocity.x) != input_direction:
+			if abs(velocity.x) < SKID_THRESHOLD:
+				return FAST_REVERSE_ACCEL
+	return 0.0
 
 var use_big_collision := false
 
