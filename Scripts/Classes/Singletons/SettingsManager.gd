@@ -12,9 +12,9 @@ var file := {
 		"frame_limit" : 0,
 	},
 	"audio": {
-		"master": 10.0,
-		"music": 10.0,
-		"sfx": 10.0,
+		"master": 10,
+		"music": 10,
+		"sfx": 10,
 		"athletic_bgm": 1,
 		"extra_bgm": 1,
 		"skid_sfx": 1,
@@ -24,8 +24,7 @@ var file := {
 	},
 	"game": {
 		"campaign": "SMB1",
-		"lang": "en",
-		"character": "0000"
+		"lang": "en"
 	},
 	"keyboard":
 	{

@@ -2,16 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbgjssscntcin"
-path="res://.godot/imported/Level.png-03d869b4cd4d03668741f479f791a499.ctex"
+uid="uid://b5cfmaep0h3i8"
+path="res://.godot/imported/Block.svg-b375fcdd7f9ff578f8f4e7f5bc50abc6.ctex"
 metadata={
+"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Editor/Level.png"
-dest_files=["res://.godot/imported/Level.png-03d869b4cd4d03668741f479f791a499.ctex"]
+source_file="res://Assets/Sprites/Editor/Block.svg"
+dest_files=["res://.godot/imported/Block.svg-b375fcdd7f9ff578f8f4e7f5bc50abc6.ctex"]
 
 [params]
 
@@ -38,3 +39,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=true
+editor/convert_colors_with_editor_theme=true

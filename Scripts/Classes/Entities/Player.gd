@@ -717,7 +717,7 @@ func death_load() -> void:
 	Global.death_load = true
 
 	# Handle lives decrement for CAMPAIGN and MARATHON
-	if [Global.GameMode.CAMPAIGN, Global.GameMode.MARATHON, Global.GameMode.LEVEL_EDITOR, Global.GameMode.CUSTOM_LEVEL].has(Global.current_game_mode):
+	if [Global.GameMode.CAMPAIGN, Global.GameMode.MARATHON].has(Global.current_game_mode):
 		if Settings.file.difficulty.inf_lives == 0:
 			Global.lives -= 1
 
@@ -729,6 +729,7 @@ func death_load() -> void:
 
 		Global.GameMode.LEVEL_EDITOR: func():
 			owner.stop_testing(),
+			
 
 		Global.GameMode.CHALLENGE: func():
 			Global.transition_to_scene("res://Scenes/Levels/ChallengeMiss.tscn"),
@@ -755,7 +756,7 @@ func death_load() -> void:
 	# Determine which action to take
 	if death_actions.has(Global.current_game_mode):
 		death_actions[Global.current_game_mode].call()
-	if Global.lives <= 0 and Settings.file.difficulty.inf_lives == 0:
+	elif Global.lives <= 0 and Settings.file.difficulty.inf_lives == 0:
 		death_actions["game_over"].call()
 	elif Global.time <= 0:
 		death_actions["time_up"].call()
@@ -794,11 +795,13 @@ func get_power_up(power_name := "") -> void:
 		await power_up_animation(power_name)
 	else:
 		return
-	check_for_block()
 	power_state = new_power_state
 	Global.player_power_states[player_id] = str(power_state.get_index())
+	handle_power_up_states(0)
 	can_hurt = true
 	refresh_hitbox()
+	await get_tree().physics_frame
+	check_for_block()
 
 func check_for_block() -> void:
 	if test_move(global_transform, (Vector2.UP * gravity_vector) * 4):

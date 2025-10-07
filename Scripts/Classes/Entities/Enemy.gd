@@ -1,4 +1,4 @@
-@icon("res://Assets/Sprites/Editor/Enemy.png")
+@icon("res://Assets/Sprites/Editor/Enemy.svg")
 class_name Enemy
 extends CharacterBody2D
 

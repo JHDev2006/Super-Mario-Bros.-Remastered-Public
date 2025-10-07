@@ -1,4 +1,4 @@
-@icon("res://Assets/Sprites/Editor/Block.png")
+@icon("res://Assets/Sprites/Editor/Block.svg")
 class_name Block
 extends AnimatableBody2D
 signal player_block_hit(player: Player)

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dkgu57is78lro" path="res://Scenes/Parts/PipeArea.tscn" id="7_wqp3r"]
 [ext_resource type="PackedScene" uid="uid://cs8iql18nkljw" path="res://Scenes/Prefabs/LevelObjects/WarpZone.tscn" id="8_nn0x5"]
 
-[node name="Level" type="Node"]
+[node name="B-4a" type="Node"]
 script = ExtResource("1_oqfsp")
 music = ExtResource("2_oqfsp")
 theme = "Pipeland"

@@ -2,16 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://upehd32j3pbs"
-path="res://.godot/imported/Block.png-10298cbace42d657003ac7128449152c.ctex"
+uid="uid://c0xy8swlmsnnw"
+path="res://.godot/imported/Pipe.svg-591efe0ac96233e665df1d9b15094e15.ctex"
 metadata={
+"has_editor_variant": true,
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Editor/Block.png"
-dest_files=["res://.godot/imported/Block.png-10298cbace42d657003ac7128449152c.ctex"]
+source_file="res://Assets/Sprites/Editor/Pipe.svg"
+dest_files=["res://.godot/imported/Pipe.svg-591efe0ac96233e665df1d9b15094e15.ctex"]
 
 [params]
 
@@ -38,3 +39,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=true
+editor/convert_colors_with_editor_theme=true

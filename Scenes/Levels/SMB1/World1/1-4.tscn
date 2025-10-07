@@ -64,6 +64,7 @@ position = Vector2(1096, -56)
 [node name="Firebar7" parent="Objects" instance=ExtResource("8_71tm4")]
 position = Vector2(1160, -136)
 scale = Vector2(-1, 1)
+direction = 1
 
 [node name="QuestionBlock" parent="Objects" instance=ExtResource("9_3il4d")]
 position = Vector2(232, -104)
@@ -141,6 +142,7 @@ position = Vector2(120, -104)
 
 [node name="Firebar9" parent="SecondQuestNode" instance=ExtResource("8_71tm4")]
 position = Vector2(1032, -136)
+direction = 1
 
 [node name="Firebar8" parent="SecondQuestNode" instance=ExtResource("8_71tm4")]
 position = Vector2(1224, -56)
@@ -159,26 +161,26 @@ position = Vector2(344, -104)
 position = Vector2(1224, -168)
 
 [connection signal="area_entered" from="Tiles/DeathPit" to="Tiles/DeathPit" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67963" to="Tiles/@Area2D@67963" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67964" to="Tiles/@Area2D@67964" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67965" to="Tiles/@Area2D@67965" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67966" to="Tiles/@Area2D@67966" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67967" to="Tiles/@Area2D@67967" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67968" to="Tiles/@Area2D@67968" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67969" to="Tiles/@Area2D@67969" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67970" to="Tiles/@Area2D@67970" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67971" to="Tiles/@Area2D@67971" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67972" to="Tiles/@Area2D@67972" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67973" to="Tiles/@Area2D@67973" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67974" to="Tiles/@Area2D@67974" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67975" to="Tiles/@Area2D@67975" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67976" to="Tiles/@Area2D@67976" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67977" to="Tiles/@Area2D@67977" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67978" to="Tiles/@Area2D@67978" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67979" to="Tiles/@Area2D@67979" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67980" to="Tiles/@Area2D@67980" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67981" to="Tiles/@Area2D@67981" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@67982" to="Tiles/@Area2D@67982" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27446" to="Tiles/@Area2D@27446" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27447" to="Tiles/@Area2D@27447" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27448" to="Tiles/@Area2D@27448" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27449" to="Tiles/@Area2D@27449" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27450" to="Tiles/@Area2D@27450" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27451" to="Tiles/@Area2D@27451" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27452" to="Tiles/@Area2D@27452" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27453" to="Tiles/@Area2D@27453" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27454" to="Tiles/@Area2D@27454" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27455" to="Tiles/@Area2D@27455" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27456" to="Tiles/@Area2D@27456" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27457" to="Tiles/@Area2D@27457" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27458" to="Tiles/@Area2D@27458" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27459" to="Tiles/@Area2D@27459" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27460" to="Tiles/@Area2D@27460" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27461" to="Tiles/@Area2D@27461" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27462" to="Tiles/@Area2D@27462" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27463" to="Tiles/@Area2D@27463" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27464" to="Tiles/@Area2D@27464" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@27465" to="Tiles/@Area2D@27465" method="area_entered"]
 [connection signal="axe_touched" from="CastleBridge" to="Bowser" method="bridge_fall"]
 [connection signal="victory_begin" from="CastleBridge" to="ChallengeNodes/CastleChallengeEnd" method="begin"]
 [connection signal="victory_begin" from="CastleBridge" to="CastleToad" method="begin"]

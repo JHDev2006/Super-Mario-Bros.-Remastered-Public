@@ -19,6 +19,9 @@
 script = ExtResource("1_djnvf")
 music = ExtResource("2_kfu1g")
 theme = "Underground"
+campaign = "SMBS"
+world_id = 2
+level_id = 2
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
 
 [node name="LevelBG" parent="." instance=ExtResource("2_0lews")]
@@ -65,17 +68,17 @@ pipe_id = 5
 target_level = "uid://bai8yq7658vif"
 
 [connection signal="collected" from="Tiles/Coin" to="Tiles/Coin/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34310" to="Tiles/@Node2D@34310/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34311" to="Tiles/@Node2D@34311/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34312" to="Tiles/@Node2D@34312/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34313" to="Tiles/@Node2D@34313/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34314" to="Tiles/@Node2D@34314/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34315" to="Tiles/@Node2D@34315/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34316" to="Tiles/@Node2D@34316/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34317" to="Tiles/@Node2D@34317/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34318" to="Tiles/@Node2D@34318/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34319" to="Tiles/@Node2D@34319/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@34320" to="Tiles/@Node2D@34320/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59887" to="Tiles/@Node2D@59887/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59888" to="Tiles/@Node2D@59888/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59889" to="Tiles/@Node2D@59889/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59890" to="Tiles/@Node2D@59890/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59891" to="Tiles/@Node2D@59891/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59892" to="Tiles/@Node2D@59892/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59893" to="Tiles/@Node2D@59893/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59894" to="Tiles/@Node2D@59894/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59895" to="Tiles/@Node2D@59895/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59896" to="Tiles/@Node2D@59896/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@59897" to="Tiles/@Node2D@59897/LevelPersistance" method="set_as_active"]
 [connection signal="block_destroyed" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active_2"]
 [connection signal="block_emptied" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active"]
 [connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="player_mushroom_check"]
@@ -90,10 +93,10 @@ target_level = "uid://bai8yq7658vif"
 [connection signal="player_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
 [connection signal="shell_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock" method="dispense_item" unbinds=1]
 [connection signal="shell_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@34321" to="Tiles/@AnimatableBody2D@34321/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@34321" to="Tiles/@AnimatableBody2D@34321/LevelPersistance" method="set_as_active"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@34321" to="Tiles/@AnimatableBody2D@34321" method="player_mushroom_check"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@34321" to="Tiles/@AnimatableBody2D@34321" method="dispense_item" unbinds=1]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@34321" to="Tiles/@AnimatableBody2D@34321/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@34321" to="Tiles/@AnimatableBody2D@34321" method="dispense_item" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@34321" to="Tiles/@AnimatableBody2D@34321/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@59898" to="Tiles/@AnimatableBody2D@59898/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@59898" to="Tiles/@AnimatableBody2D@59898/LevelPersistance" method="set_as_active"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@59898" to="Tiles/@AnimatableBody2D@59898" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@59898" to="Tiles/@AnimatableBody2D@59898" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@59898" to="Tiles/@AnimatableBody2D@59898/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@59898" to="Tiles/@AnimatableBody2D@59898" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@59898" to="Tiles/@AnimatableBody2D@59898/BlockAnimations" method="bounce_block" unbinds=1]

@@ -11,11 +11,9 @@ signal sprites_updated
 
 static var cache := {}
 
-func _enter_tree() -> void:
+func _ready() -> void:
 	Global.level_theme_changed.connect(update_sprites)
 	Global.level_time_changed.connect(update_sprites)
-
-func _ready() -> void:
 	update_sprites()
 
 func update_sprites() -> void:

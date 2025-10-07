@@ -5,6 +5,7 @@ const DEFAULT_SFX_LIBRARY := {
 	"big_jump": ("res://Assets/Audio/SFX/BigJump.wav"),
 	"coin": ("res://Assets/Audio/SFX/Coin.wav"),
 	"bump": ("res://Assets/Audio/SFX/Bump.wav"),
+	"skid": ("res://Assets/Audio/SFX/Skid.wav"),
 	"pipe": ("res://Assets/Audio/SFX/Pipe.wav"),
 	"damage": ("res://Assets/Audio/SFX/Damage.wav"),
 	"power_up": ("res://Assets/Audio/SFX/Powerup.wav"),

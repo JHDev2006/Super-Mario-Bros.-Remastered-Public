@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="14_x6nx3"]
 [ext_resource type="PackedScene" uid="uid://cmbpqnq10arts" path="res://Scenes/Prefabs/Entities/Items/RedCoin.tscn" id="15_66ba3"]
 
-[node name="Level" type="Node"]
+[node name="7-1b" type="Node"]
 script = ExtResource("1_kd53a")
 music = ExtResource("2_uj357")
 theme = "Jungle"

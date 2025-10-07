@@ -268,8 +268,9 @@ func get_animation_name() -> String:
 					return "StarFall"
 				return "JumpFall"
 		else:
-			player.sprite.speed_scale = 0
-			player.sprite.frame = walk_frame
+			# guzlad: Fixes characters with fall anims not playing them, but also prevents old characters without that anim not being accurate
+			if !player.sprite.sprite_frames.has_animation("Fall"):
+				player.sprite.frame = walk_frame
 			return "Fall"
 
 func exit() -> void:

@@ -1,5 +1,5 @@
 @tool
-@icon("res://Assets/Sprites/Editor/Pipe.png")
+@icon("res://Assets/Sprites/Editor/Pipe.svg")
 class_name PipeArea
 extends Node2D
 

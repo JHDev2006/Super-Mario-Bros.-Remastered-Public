@@ -263,3 +263,6 @@ func check_for_unlocked_achievements() -> void:
 		has_achievements_to_unlock = true
 		%AchievementUnlock.show_popup(new_achievements)
 	AchievementMenu.unlocked_achievements = Global.achievements
+
+func get_room_type() -> Global.Room:
+	return Global.Room.TITLE_SCREEN

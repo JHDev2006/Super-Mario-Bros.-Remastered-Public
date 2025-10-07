@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="14_8asaa"]
 [ext_resource type="PackedScene" uid="uid://bqhtste1il47d" path="res://Scenes/Prefabs/LevelObjects/BulletBillCannon.tscn" id="14_oweu7"]
 
-[node name="10-4" type="Node"]
+[node name="A-4" type="Node"]
 script = ExtResource("1_ilx4k")
 music = ExtResource("2_2biis")
 theme = "Castle"
@@ -35,18 +35,22 @@ position = Vector2(-248, -96)
 
 [node name="Firebar" parent="." instance=ExtResource("7_deu1b")]
 position = Vector2(136, 8)
+direction = 1
 
 [node name="Firebar2" parent="." instance=ExtResource("7_deu1b")]
 position = Vector2(40, -40)
 
 [node name="Firebar3" parent="." instance=ExtResource("7_deu1b")]
 position = Vector2(232, -40)
+direction = 1
 
 [node name="Firebar4" parent="." instance=ExtResource("7_deu1b")]
 position = Vector2(488, -104)
+direction = 1
 
 [node name="Firebar5" parent="." instance=ExtResource("7_deu1b")]
 position = Vector2(648, -8)
+direction = 1
 
 [node name="RedKoopaTroopa" parent="." instance=ExtResource("8_oikdo")]
 position = Vector2(1016, -128)

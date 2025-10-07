@@ -48,7 +48,7 @@ func open() -> void:
 		AudioManager.play_global_sfx("pause")
 		get_tree().paused = true
 	show()
-	await get_tree().physics_frame
+	await get_tree().create_timer(0.1).timeout
 	active = true
 
 func close() -> void:
@@ -56,7 +56,6 @@ func close() -> void:
 	selected_index = 0
 	hide()
 	closed.emit()
-	for i in 2:
-		await get_tree().physics_frame
+	await get_tree().create_timer(0.1).timeout
 	Global.game_paused = false
 	get_tree().paused = false

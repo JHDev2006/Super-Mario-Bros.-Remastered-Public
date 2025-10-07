@@ -66,10 +66,12 @@ position = Vector2(792, -88)
 [node name="Firebar2" parent="." instance=ExtResource("10_b2gkb")]
 position = Vector2(664, -72)
 scale = Vector2(-1, 1)
+direction = 1
 
 [node name="Firebar3" parent="." instance=ExtResource("10_b2gkb")]
 position = Vector2(408, -104)
 scale = Vector2(-1, 1)
+direction = 1
 
 [node name="Firebar4" parent="." instance=ExtResource("10_b2gkb")]
 position = Vector2(232, -72)
@@ -77,6 +79,7 @@ position = Vector2(232, -72)
 [node name="Firebar5" parent="." instance=ExtResource("10_b2gkb")]
 position = Vector2(88, -88)
 scale = Vector2(-1, 1)
+direction = 1
 
 [node name="CameraRightLimit" type="Node2D" parent="."]
 position = Vector2(928, -64)

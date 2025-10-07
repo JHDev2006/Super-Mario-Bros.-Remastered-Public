@@ -106,6 +106,7 @@ EditorTabs=""
 Coins=""
 Doors=""
 Lakitus=""
+CameraLimits=""
 
 [gui]
 

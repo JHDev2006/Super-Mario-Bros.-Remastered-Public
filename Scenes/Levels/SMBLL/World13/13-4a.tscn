@@ -23,7 +23,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4cyod"]
 normal = Vector2(-1, 0)
 
-[node name="13-4A" type="Node"]
+[node name="D-4a" type="Node"]
 script = ExtResource("1_y0t14")
 music = ExtResource("2_4wdm7")
 theme = "Volcano"

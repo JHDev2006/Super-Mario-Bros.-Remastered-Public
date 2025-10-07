@@ -89,6 +89,12 @@ var world_num := 1
 var level_num := 1
 var disco_mode := false
 
+enum Room{MAIN_ROOM, BONUS_ROOM, COIN_HEAVEN, PIPE_CUTSCENE, TITLE_SCREEN}
+
+const room_strings := ["MainRoom", "BonusRoom", "CoinHeaven", "PipeCutscene", "TitleScreen"]
+
+var current_room: Room = Room.MAIN_ROOM
+
 signal transition_finished
 var transitioning_scene := false
 var awaiting_transition := false
@@ -327,6 +333,8 @@ func reset_values() -> void:
 	Level.in_vine_level = false
 	Level.vine_return_level = ""
 	Level.vine_warp_level = ""
+	p_switch_active = false
+	p_switch_timer = 0.0
 
 func clear_saved_values() -> void:
 	coins = 0

@@ -57,6 +57,7 @@ func run_door_check() -> void:
 	if same_scene_exiting_door != null:
 		if same_scene_exiting_door != self and exiting_door_id == door_id:
 			door_found = true
+			get_tree().call_group("CameraLimits", "return_camera_to_normal")
 			for i in get_tree().get_nodes_in_group("Players"):
 				player_exit(i)
 			return

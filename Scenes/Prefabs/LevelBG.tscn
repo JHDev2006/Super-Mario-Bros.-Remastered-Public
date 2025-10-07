@@ -689,9 +689,10 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 20.0
 initial_velocity_max = 50.0
 
-[node name="ResourceSetter" type="Node" parent="OverlayLayer/Particles/Snow"]
+[node name="ResourceSetter" type="Node" parent="OverlayLayer/Particles/Snow" node_paths=PackedStringArray("node_to_affect")]
 process_mode = 1
 script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("25_aw4cr")
@@ -718,8 +719,9 @@ angular_velocity_min = -720.0
 angular_velocity_max = 720.0
 anim_offset_max = 1.0
 
-[node name="ResourceSetterNew" type="Node" parent="OverlayLayer/Particles/Leaves"]
+[node name="ResourceSetterNew" type="Node" parent="OverlayLayer/Particles/Leaves" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("28_ugdi7")
