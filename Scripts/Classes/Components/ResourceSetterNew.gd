@@ -57,6 +57,7 @@ func update_resource() -> void:
 		cache.clear()
 		property_cache.clear()
 	if node_to_affect != null:
+		print(resource_json.data)
 		var resource = get_resource(resource_json)
 		node_to_affect.set(property_name, resource)
 		if node_to_affect is AnimatedSprite2D:
@@ -346,4 +347,6 @@ func load_audio_from_path(path := "") -> AudioStream:
 		stream = AudioStreamWAV.load_from_file(path)
 	elif path.contains(".mp3"):
 		stream = AudioStreamMP3.load_from_file(path)
+	elif path.contains(".ogg"):
+		stream = AudioStreamOggVorbis.load_from_file(path)
 	return stream

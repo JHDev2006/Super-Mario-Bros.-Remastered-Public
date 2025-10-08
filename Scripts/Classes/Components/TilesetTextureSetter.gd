@@ -16,6 +16,7 @@ func _ready() -> void:
 	texture_changed.connect(update)
 
 func update() -> void:
+	print(name)
 	var source = tile_map.tile_set.get_source(atlas_id)
 	if source != null:
 		source.texture = texture
