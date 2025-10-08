@@ -240,7 +240,7 @@ func new_game_selected() -> void:
 func continue_game() -> void:
 	SaveManager.apply_save(SaveManager.load_save(Global.current_campaign))
 	Global.current_game_mode = Global.GameMode.CAMPAIGN
-	if Global.game_beaten:
+	if Global.game_beaten or Global.debug_mode:
 		$CanvasLayer/StoryMode/ContinueBeatenGame/WorldSelect.open()
 	else:
 		$CanvasLayer/StoryMode/ContinueUnbeatenGame/CharacterSelect.open()

@@ -25,5 +25,5 @@ func physics_update(delta: float) -> void:
 		player.velocity.y += (player.JUMP_GRAVITY / delta) * delta
 		player.velocity.y = clamp(player.velocity.y, -INF, player.MAX_FALL_SPEED)
 		player.move_and_slide()
-		if Input.is_action_just_pressed("jump_0"):
+		if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("jump_0"):
 			player.death_load()
