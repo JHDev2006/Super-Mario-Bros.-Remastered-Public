@@ -233,17 +233,17 @@ func apply_physics_style() -> void:
 		2:
 			apply_enhanced_physics()
 
-func apply_classe_physics() -> void: # https://docs.google.com/document/d/1XDWMzu2gdywSjhQgOSIK_YHmtX23BAcZOaGMoMbVNhU/edit?usp=sharing Conversion chart I made -syn
-	JUMP_GRAVITY = 11.0
-	JUMP_HEIGHT = 320.0
-	JUMP_INCR = 8.0
-	JUMP_CANCEL_DIVIDE = 1.8
+func apply_classe_physics() -> void: # Uses an entirely new type of logic -Syn  
+	JUMP_GRAVITY = 7.0
+	JUMP_HEIGHT = 240.0
+	JUMP_INCR = 0.0
+	JUMP_CANCEL_DIVIDE = 1.0
 	JUMP_HOLD_SPEED_THRESHOLD = 0.0
 	
-	BOUNCE_HEIGHT = 320.0
-	BOUNCE_JUMP_HEIGHT = 320.0
+	BOUNCE_HEIGHT = 240.0
+	BOUNCE_JUMP_HEIGHT = 240.0
 	
-	FALL_GRAVITY = 25.0
+	FALL_GRAVITY = 18.0
 	MAX_FALL_SPEED = 288.0
 	CEILING_BUMP_SPEED = 45.0
 	
@@ -258,8 +258,8 @@ func apply_classe_physics() -> void: # https://docs.google.com/document/d/1XDWMz
 	SKID_THRESHOLD = 36.0
 	
 	DECEL = 7.0
-	AIR_ACCEL = 3.6
-	AIR_SKID = 7.0
+	AIR_ACCEL = 2.4
+	AIR_SKID = 6.0
 	
 	SWIM_SPEED = 95.0
 	SWIM_GROUND_SPEED = 45.0
@@ -267,11 +267,11 @@ func apply_classe_physics() -> void: # https://docs.google.com/document/d/1XDWMz
 	SWIM_GRAVITY = 2.5
 	MAX_SWIM_FALL_SPEED = 200.0
 	
-	DEATH_JUMP_HEIGHT = 320.0
+	DEATH_JUMP_HEIGHT = 240.0
 	
-	FAST_REVERSE_ACCEL = 12.0
+	FAST_REVERSE_ACCEL = 0.0
 
-func apply_remastered_physics() -> void:
+func apply_remastered_physics() -> void: # Same exact physics -Syn
 	JUMP_GRAVITY = 11.0
 	JUMP_HEIGHT = 300.0
 	JUMP_INCR = 8.0
@@ -309,7 +309,7 @@ func apply_remastered_physics() -> void:
 	
 	FAST_REVERSE_ACCEL = 0.0
 
-func apply_enhanced_physics() -> void:
+func apply_enhanced_physics() -> void: # A lot more predictable, slightly faster, a lot less floaty. -Syn
 	JUMP_GRAVITY = 18.0
 	JUMP_HEIGHT = 400.0
 	JUMP_INCR = 8.5
@@ -364,6 +364,22 @@ func apply_character_physics() -> void:
 		var hitbox_scale = json.get("big_hitbox_scale", [1, 1])
 		i.scale = Vector2(hitbox_scale[0], hitbox_scale[1])
 		i.update()
+
+func get_air_acceleration() -> float:
+	var physics_style = Settings.file.difficulty.get("physics_style", 2)
+	if physics_style != 1:
+		return AIR_ACCEL
+	
+	var abs_vel = abs(velocity.x)
+	var input_dir = input_direction
+	var vel_dir = sign(velocity.x)
+	
+	if abs_vel < 16.0:
+		return 6.0
+	elif input_dir != 0 and vel_dir != 0 and sign(input_dir) != vel_dir:
+		return 6.0
+	else:
+		return 2.4
 
 func apply_classic_physics() -> void:
 	var json = JSON.parse_string(FileAccess.open("res://Resources/ClassicPhysics.json", FileAccess.READ).get_as_text())
@@ -451,8 +467,15 @@ func apply_gravity(delta: float) -> void:
 	elif spring_bouncing:
 		gravity = SPRING_GRAVITY
 	else:
-		if sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
-			gravity = FALL_GRAVITY
+		var physics_style = Settings.file.difficulty.get("physics_style", 2)
+		if physics_style == 1:
+			if has_jumped and not Global.player_action_pressed("jump", player_id) and sign(gravity_vector.y) * velocity.y < 0:
+				gravity = FALL_GRAVITY
+			elif sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
+				gravity = FALL_GRAVITY
+		else:
+			if sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
+				gravity = FALL_GRAVITY
 	velocity += (gravity_vector * ((gravity / (1.5 if low_gravity else 1.0)) / delta)) * delta
 	var target_fall: float = MAX_FALL_SPEED
 	if in_water:
@@ -954,11 +977,13 @@ func calculate_jump_height() -> float:
 	var physics_style = Settings.file.difficulty.get("physics_style", 2)
 	
 	if physics_style == 1:
-		var speed_threshold := 40.0
-		if abs(velocity.x) >= speed_threshold:
-			return -(JUMP_HEIGHT + JUMP_INCR)
+		var abs_speed = abs(velocity.x)
+		if abs_speed >= 144.0:
+			return -300.0
+		elif abs_speed >= 60.0:
+			return -270.0
 		else:
-			return -JUMP_HEIGHT
+			return -240.0
 	else:
 		return -(JUMP_HEIGHT + JUMP_INCR * int(abs(velocity.x) / 25)) # thanks wye love you xxx
 
