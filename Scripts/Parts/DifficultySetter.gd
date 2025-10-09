@@ -48,6 +48,5 @@ func set_value(value_name := "", value := 0) -> void:
 		"physics_style": physics_style_changed
 	}[value_name].call(value)
 
-
 func on_value_changed(new_value: Variant) -> void:
 	pass # Replace with function body.
