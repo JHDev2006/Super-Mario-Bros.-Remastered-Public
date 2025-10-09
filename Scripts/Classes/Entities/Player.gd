@@ -192,6 +192,8 @@ var skid_frames := 0
 
 var simulated_velocity := Vector2.ZERO
 
+var jump_type := 0
+
 func _ready() -> void:
 	if classic_physics:
 		apply_classic_physics()
@@ -234,7 +236,7 @@ func apply_physics_style() -> void:
 			apply_enhanced_physics()
 
 func apply_classe_physics() -> void: # Uses an entirely new type of logic -Syn  
-	JUMP_GRAVITY = 7.0
+	JUMP_GRAVITY = 7.5
 	JUMP_HEIGHT = 240.0
 	JUMP_INCR = 0.0
 	JUMP_CANCEL_DIVIDE = 1.0
@@ -243,23 +245,23 @@ func apply_classe_physics() -> void: # Uses an entirely new type of logic -Syn
 	BOUNCE_HEIGHT = 240.0
 	BOUNCE_JUMP_HEIGHT = 240.0
 	
-	FALL_GRAVITY = 18.0
+	FALL_GRAVITY = 26.25
 	MAX_FALL_SPEED = 288.0
 	CEILING_BUMP_SPEED = 45.0
 	
-	WALK_SPEED = 96.0
-	GROUND_WALK_ACCEL = 3.6
-	WALK_SKID = 7.0
+	WALK_SPEED = 90.0
+	GROUND_WALK_ACCEL = 2.23
+	WALK_SKID = 6.10
 	
-	RUN_SPEED = 160.0
-	GROUND_RUN_ACCEL = 3.6
-	RUN_SKID = 7.0
+	RUN_SPEED = 150.0
+	GROUND_RUN_ACCEL = 3.34
+	RUN_SKID = 6.10
 	
-	SKID_THRESHOLD = 36.0
+	SKID_THRESHOLD = 33.75
 	
-	DECEL = 7.0
-	AIR_ACCEL = 2.4
-	AIR_SKID = 6.0
+	DECEL = 3.05
+	AIR_ACCEL = 2.23
+	AIR_SKID = 6.10
 	
 	SWIM_SPEED = 95.0
 	SWIM_GROUND_SPEED = 45.0
@@ -374,12 +376,21 @@ func get_air_acceleration() -> float:
 	var input_dir = input_direction
 	var vel_dir = sign(velocity.x)
 	
-	if abs_vel < 16.0:
-		return 6.0
-	elif input_dir != 0 and vel_dir != 0 and sign(input_dir) != vel_dir:
-		return 6.0
+	if input_dir != 0 and vel_dir != 0 and sign(input_dir) != vel_dir:
+		return 4.46
+	
+	if input_dir == 0:
+		if abs_vel > 105.0:
+			return 3.34
+		elif abs_vel > 90.0:
+			return 3.05
+		else:
+			return 2.23
+	
+	if abs_vel > 90.0:
+		return 3.34
 	else:
-		return 2.4
+		return 2.23
 
 func apply_classic_physics() -> void:
 	var json = JSON.parse_string(FileAccess.open("res://Resources/ClassicPhysics.json", FileAccess.READ).get_as_text())
@@ -418,6 +429,8 @@ func _physics_process(delta: float) -> void:
 	handle_block_collision_detection()
 	handle_wing_flight(delta)
 	air_frames = (air_frames + 1 if is_on_floor() == false else 0)
+	if air_frames == 0:
+		jump_type = 0
 	for i in get_tree().get_nodes_in_group("StepCollision"):
 		var on_wall := false
 		for x in [$StepWallChecks/LWall, $StepWallChecks/RWall]:
@@ -469,10 +482,28 @@ func apply_gravity(delta: float) -> void:
 	else:
 		var physics_style = Settings.file.difficulty.get("physics_style", 2)
 		if physics_style == 1:
-			if has_jumped and not Global.player_action_pressed("jump", player_id) and sign(gravity_vector.y) * velocity.y < 0:
-				gravity = FALL_GRAVITY
-			elif sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
-				gravity = FALL_GRAVITY
+			if has_jumped and sign(gravity_vector.y) * velocity.y < 0:
+				if Global.player_action_pressed("jump", player_id):
+					if jump_type == 0:
+						gravity = 7.5
+					elif jump_type == 1:
+						gravity = 7.03
+					else:
+						gravity = 9.375
+				else:
+					if jump_type == 0:
+						gravity = 26.25
+					elif jump_type == 1:
+						gravity = 22.5
+					else:
+						gravity = 33.75
+			elif sign(gravity_vector.y) * velocity.y >= 0.0:
+				if jump_type == 0:
+					gravity = 26.25
+				elif jump_type == 1:
+					gravity = 22.5
+				else:
+					gravity = 33.75
 		else:
 			if sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
 				gravity = FALL_GRAVITY
@@ -978,11 +1009,14 @@ func calculate_jump_height() -> float:
 	
 	if physics_style == 1:
 		var abs_speed = abs(velocity.x)
-		if abs_speed >= 144.0:
+		if abs_speed >= 135.0:
+			jump_type = 2
 			return -300.0
 		elif abs_speed >= 60.0:
-			return -270.0
+			jump_type = 1
+			return -240.0
 		else:
+			jump_type = 0
 			return -240.0
 	else:
 		return -(JUMP_HEIGHT + JUMP_INCR * int(abs(velocity.x) / 25)) # thanks wye love you xxx
