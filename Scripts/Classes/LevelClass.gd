@@ -126,7 +126,10 @@ func update_theme() -> void:
 		if Global.current_campaign == "SMBANN":
 			theme_time = "Night"
 		ResourceSetterNew.cache.clear()
-	Global.current_room = get_room_type()
+	if self is CoinHeaven:
+		Global.current_room = Global.Room.COIN_HEAVEN
+	else:
+		Global.current_room = get_room_type()
 	Global.current_campaign = campaign
 	Global.level_theme = theme
 	Global.theme_time = theme_time

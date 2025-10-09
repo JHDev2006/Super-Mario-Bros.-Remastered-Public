@@ -13,6 +13,3 @@ func warp_back(player: Player) -> void:
 	await get_tree().create_timer(1, false).timeout
 	PipeArea.exiting_pipe_id = -1
 	Global.transition_to_scene(Level.vine_return_level)
-
-func get_room_type() -> Global.Room:
-	return Global.Room.COIN_HEAVEN
