@@ -22,6 +22,7 @@ func on_block_hit(player: Player) -> void:
 
 func on_shell_block_hit(_shell: Shell) -> void:
 	if item == null:
+		await get_tree().physics_frame
 		destroy()
 		Global.score += 50
 	else:
