@@ -133,20 +133,43 @@ func handle_air_movement(delta: float) -> void:
 	if player.input_direction != 0:
 		air_acceleration(delta)
 		
-	if Global.player_action_pressed("jump", player.player_id) == false and player.has_jumped and not player.jump_cancelled:
-		player.jump_cancelled = true
-		if sign(player.gravity_vector.y * player.velocity.y) < 0.0:
-			player.velocity.y /= player.JUMP_CANCEL_DIVIDE
-			player.gravity = player.FALL_GRAVITY
+	var physics_style = Settings.file.difficulty.get("physics_style", 2)
+	if physics_style != 1:
+		if Global.player_action_pressed("jump", player.player_id) == false and player.has_jumped and not player.jump_cancelled:
+			player.jump_cancelled = true
+			if sign(player.gravity_vector.y * player.velocity.y) < 0.0:
+				player.velocity.y /= player.JUMP_CANCEL_DIVIDE
+				player.gravity = player.FALL_GRAVITY
 
 func air_acceleration(delta: float) -> void:
+	var physics_style = Settings.file.difficulty.get("physics_style", 2)
 	var target_speed = player.WALK_SPEED
 	if abs(player.velocity.x) >= player.WALK_SPEED and Global.player_action_pressed("run", player.player_id) and player.can_run:
 		target_speed = player.RUN_SPEED
-	player.velocity.x = move_toward(player.velocity.x, target_speed * player.input_direction, (player.AIR_ACCEL / delta) * delta)
+	
+	if physics_style == 1:
+		var accel = player.get_air_acceleration()
+		player.velocity.x = move_toward(player.velocity.x, target_speed * player.input_direction, (accel / delta) * delta)
+	elif physics_style == 2:
+		var accel = player.AIR_ACCEL
+		if player.fast_reverse_accel:
+			accel = player.AIR_ACCEL * 2.0
+		player.velocity.x = move_toward(player.velocity.x, target_speed * player.input_direction, (accel / delta) * delta)
+	else:
+		player.velocity.x = move_toward(player.velocity.x, target_speed * player.input_direction, (player.AIR_ACCEL / delta) * delta)
 
 func air_skid(delta: float) -> void:
-	player.velocity.x = move_toward(player.velocity.x, 1 * player.input_direction, (player.AIR_SKID / delta) * delta)
+	var physics_style = Settings.file.difficulty.get("physics_style", 2)
+	if physics_style == 1:
+		var accel = player.get_air_acceleration()
+		player.velocity.x = move_toward(player.velocity.x, 1 * player.input_direction, (accel / delta) * delta)
+	elif physics_style == 2:
+		var accel = player.AIR_SKID
+		if player.fast_reverse_accel:
+			accel = player.AIR_SKID * 2.0
+		player.velocity.x = move_toward(player.velocity.x, 1 * player.input_direction, (accel / delta) * delta)
+	else:
+		player.velocity.x = move_toward(player.velocity.x, 1 * player.input_direction, (player.AIR_SKID / delta) * delta)
 
 func handle_swimming(delta: float) -> void:
 	bubble_meter += delta

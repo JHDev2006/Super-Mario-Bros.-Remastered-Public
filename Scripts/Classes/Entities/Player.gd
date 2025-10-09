@@ -194,6 +194,8 @@ var simulated_velocity := Vector2.ZERO
 
 var jump_type := 0
 
+var fast_reverse_accel := false
+
 func _ready() -> void:
 	if classic_physics:
 		apply_classic_physics()
@@ -229,125 +231,21 @@ func apply_physics_style() -> void:
 	
 	match physics_style:
 		1:
-			apply_classe_physics()
+			apply_classic_physics()
 		0:
 			apply_remastered_physics()
 		2:
 			apply_enhanced_physics()
 
-func apply_classe_physics() -> void: # Uses an entirely new type of logic -Syn  
-	JUMP_GRAVITY = 7.5
-	JUMP_HEIGHT = 240.0
-	JUMP_INCR = 0.0
-	JUMP_CANCEL_DIVIDE = 1.0
-	JUMP_HOLD_SPEED_THRESHOLD = 0.0
-	
-	BOUNCE_HEIGHT = 240.0
-	BOUNCE_JUMP_HEIGHT = 240.0
-	
-	FALL_GRAVITY = 26.25
-	MAX_FALL_SPEED = 288.0
-	CEILING_BUMP_SPEED = 45.0
-	
-	WALK_SPEED = 90.0
-	GROUND_WALK_ACCEL = 2.23
-	WALK_SKID = 6.10
-	
-	RUN_SPEED = 150.0
-	GROUND_RUN_ACCEL = 3.34
-	RUN_SKID = 6.10
-	
-	SKID_THRESHOLD = 33.75
-	
-	DECEL = 3.05
-	AIR_ACCEL = 2.23
-	AIR_SKID = 6.10
-	
-	SWIM_SPEED = 95.0
-	SWIM_GROUND_SPEED = 45.0
-	SWIM_HEIGHT = 100.0
-	SWIM_GRAVITY = 2.5
-	MAX_SWIM_FALL_SPEED = 200.0
-	
-	DEATH_JUMP_HEIGHT = 240.0
-	
-	FAST_REVERSE_ACCEL = 0.0
+func apply_remastered_physics() -> void:
+	var json = JSON.parse_string(FileAccess.open("res://Resources/RemasteredPhysics.json", FileAccess.READ).get_as_text())
+	for i in json:
+		set(i, json[i])
 
-func apply_remastered_physics() -> void: # Same exact physics -Syn
-	JUMP_GRAVITY = 11.0
-	JUMP_HEIGHT = 300.0
-	JUMP_INCR = 8.0
-	JUMP_CANCEL_DIVIDE = 1.5
-	JUMP_HOLD_SPEED_THRESHOLD = 0.0
-	
-	BOUNCE_HEIGHT = 200.0
-	BOUNCE_JUMP_HEIGHT = 300.0
-	
-	FALL_GRAVITY = 25.0
-	MAX_FALL_SPEED = 280.0
-	CEILING_BUMP_SPEED = 45.0
-	
-	WALK_SPEED = 96.0
-	GROUND_WALK_ACCEL = 4.0
-	WALK_SKID = 8.0
-	
-	RUN_SPEED = 160.0
-	GROUND_RUN_ACCEL = 1.25
-	RUN_SKID = 8.0
-	
-	SKID_THRESHOLD = 100.0
-	
-	DECEL = 3.0
-	AIR_ACCEL = 3.0
-	AIR_SKID = 1.5
-	
-	SWIM_SPEED = 95.0
-	SWIM_GROUND_SPEED = 45.0
-	SWIM_HEIGHT = 100.0
-	SWIM_GRAVITY = 2.5
-	MAX_SWIM_FALL_SPEED = 200.0
-	
-	DEATH_JUMP_HEIGHT = 300.0
-	
-	FAST_REVERSE_ACCEL = 0.0
-
-func apply_enhanced_physics() -> void: # A lot more predictable, slightly faster, a lot less floaty. -Syn
-	JUMP_GRAVITY = 18.0
-	JUMP_HEIGHT = 400.0
-	JUMP_INCR = 8.5
-	JUMP_CANCEL_DIVIDE = 1.5
-	JUMP_HOLD_SPEED_THRESHOLD = -10.0
-	
-	BOUNCE_HEIGHT = 280.0
-	BOUNCE_JUMP_HEIGHT = 400.0
-	
-	FALL_GRAVITY = 36.0
-	MAX_FALL_SPEED = 320.0
-	CEILING_BUMP_SPEED = 60.0
-	
-	WALK_SPEED = 98.0
-	GROUND_WALK_ACCEL = 4.5
-	WALK_SKID = 6.5
-	
-	RUN_SPEED = 180.0
-	GROUND_RUN_ACCEL = 1.8
-	RUN_SKID = 7.0
-	
-	SKID_THRESHOLD = 50.0
-	
-	DECEL = 3.5
-	AIR_ACCEL = 3.5
-	AIR_SKID = 1.5
-	
-	SWIM_SPEED = 95.5
-	SWIM_GROUND_SPEED = 46.0
-	SWIM_HEIGHT = 110.0
-	SWIM_GRAVITY = 4.0
-	MAX_SWIM_FALL_SPEED = 225.0
-	
-	DEATH_JUMP_HEIGHT = 360.0
-	
-	FAST_REVERSE_ACCEL = 24.0
+func apply_enhanced_physics() -> void:
+	var json = JSON.parse_string(FileAccess.open("res://Resources/EnhancedPhysics.json", FileAccess.READ).get_as_text())
+	for i in json:
+		set(i, json[i])
 
 func apply_character_physics() -> void:
 	var path = "res://Assets/Sprites/Players/" + character + "/CharacterInfo.json"
@@ -387,10 +285,13 @@ func get_air_acceleration() -> float:
 		else:
 			return 2.23
 	
-	if abs_vel > 90.0:
+	if fast_reverse_accel:
 		return 3.34
-	else:
+	
+	if abs_vel < 90.0:
 		return 2.23
+	else:
+		return 3.34
 
 func apply_classic_physics() -> void:
 	var json = JSON.parse_string(FileAccess.open("res://Resources/ClassicPhysics.json", FileAccess.READ).get_as_text())
@@ -431,6 +332,7 @@ func _physics_process(delta: float) -> void:
 	air_frames = (air_frames + 1 if is_on_floor() == false else 0)
 	if air_frames == 0:
 		jump_type = 0
+		fast_reverse_accel = false
 	for i in get_tree().get_nodes_in_group("StepCollision"):
 		var on_wall := false
 		for x in [$StepWallChecks/LWall, $StepWallChecks/RWall]:
@@ -997,6 +899,14 @@ func exit_pipe(pipe: PipeArea) -> void:
 func jump() -> void:
 	if spring_bouncing:
 		return
+	var physics_style = Settings.file.difficulty.get("physics_style", 2)
+	if physics_style == 1 or physics_style == 2:
+		var abs_speed = abs(velocity.x)
+		var vel_dir = sign(velocity.x)
+		if abs_speed < 16.0 and input_direction != 0 and vel_dir != 0 and sign(input_direction) != vel_dir:
+			fast_reverse_accel = true
+		else:
+			fast_reverse_accel = false
 	velocity.y = calculate_jump_height() * gravity_vector.y
 	gravity = JUMP_GRAVITY
 	AudioManager.play_sfx("small_jump" if power_state.hitbox_size == "Small" else "big_jump", global_position)
@@ -1011,13 +921,13 @@ func calculate_jump_height() -> float:
 		var abs_speed = abs(velocity.x)
 		if abs_speed >= 135.0:
 			jump_type = 2
-			return -300.0
+			return -310.0
 		elif abs_speed >= 60.0:
 			jump_type = 1
-			return -240.0
+			return -250.0
 		else:
 			jump_type = 0
-			return -240.0
+			return -250.0
 	else:
 		return -(JUMP_HEIGHT + JUMP_INCR * int(abs(velocity.x) / 25)) # thanks wye love you xxx
 

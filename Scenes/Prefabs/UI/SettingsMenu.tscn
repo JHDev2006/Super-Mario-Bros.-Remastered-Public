@@ -686,9 +686,9 @@ settings_category = "difficulty"
 [node name="PhysicsStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "physics_style"
-title = "PHYSICS STYLE"
-value_descs = Array[String](["MODERN PHYSICS.", "CLASSIC PHYSICS RECREATED.", "TAKES BOTH PHYSICS TYPES AND COMBINES THEM TO MAKE A BETTER PHYSICS TYPE."])
-values = ["REMASTERED", "CLASSIC", "ENHANCED"]
+title = "DIFFI_PHYSICS"
+value_descs = Array[String](["DESC_PHYSICS_0", "DESC_PHYSICS_1", "DESC_PHYSICS_2"])
+values = ["DIFFI_PHYSICS_0", "DIFFI_PHYSICS_1", "DIFFI_PHYSICS_2"]
 settings_category = "difficulty"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
@@ -1042,8 +1042,8 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/BackScroll" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="backscroll_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/TimeLimit" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="time_limit_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/LakituStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="lakitu_style_changed"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/PhysicsStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="on_value_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/PhysicsStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="physics_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/PhysicsStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="on_value_changed"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/CampaignData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_story"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/ChallengeModeData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_challenge"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/BooRaceData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_boo"]
