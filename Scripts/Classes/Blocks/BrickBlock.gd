@@ -13,7 +13,7 @@ func check_brick_empty() -> void:
 func on_block_hit(player: Player) -> void:
 	if player.power_state.hitbox_size == "Big":
 		if item == null:
-			$Collision.set_deferred("one_way_collision", true) # Don't bonk with physics, will be handled after block is broken
+			self.add_collision_exception_with(player) # Don't bonk with physics, will be handled after block is broken
 			await get_tree().physics_frame
 			destroy()
 			Global.score += 50
