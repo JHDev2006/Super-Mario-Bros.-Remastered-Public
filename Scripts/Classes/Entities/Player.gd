@@ -36,6 +36,31 @@ var SWIM_GRAVITY := 2.5                # The player's gravity while swimming, me
 var MAX_SWIM_FALL_SPEED := 200.0       # The player's maximum fall speed while swimming, measured in px/sec
 
 var DEATH_JUMP_HEIGHT := 300.0         # The strength of the player's "jump" during the death animation, measured in px/sec
+
+# Values for "Classic" SMB1/2j physics feel.
+# Velocities (in pixels / sec)
+var CLASSIC_WALK_VEL := 90.0
+var CLASSIC_RUN_VEL := 150.0
+var CLASSIC_SKID_TURN_VEL := 33.75
+var CLASSIC_WJUMP_THRESH := 60.0
+var CLASSIC_RJUMP_THRESH := 135.0
+# Initial jump heights slightly increased to account for different order of ops.
+var CLASSIC_JUMP_VEL := 248.0
+var CLASSIC_WJUMP_VEL := 248.0
+var CLASSIC_RJUMP_VEL := 310.0
+# Accelerations (in pixels / sec per frame).
+var CLASSIC_RUN_ACCEL := 3.34
+var CLASSIC_MID_ACCEL := 3.05
+var CLASSIC_WALK_ACCEL := 2.23
+var CLASSIC_REVERSE_ACCEL := 4.46
+var CLASSIC_JUMP_HOLD_GRAVITY := 7.5
+var CLASSIC_JUMP_GRAVITY := 26.25
+var CLASSIC_WJUMP_HOLD_GRAVITY := 7.03
+var CLASSIC_WJUMP_GRAVITY := 22.5
+var CLASSIC_RJUMP_HOLD_GRAVITY := 9.375
+var CLASSIC_RJUMP_GRAVITY := 33.75
+# TODO: What to do with enemy bounces, trampolines, swimming?
+
 #endregion
 
 @onready var camera_center_joint: Node2D = $CameraCenterJoint
@@ -45,6 +70,15 @@ var DEATH_JUMP_HEIGHT := 300.0         # The strength of the player's "jump" dur
 @onready var score_note_spawner: ScoreNoteSpawner = $ScoreNoteSpawner
 
 var has_jumped := false
+
+var use_classic_physics := false
+
+# Used primarily for classic physics. 
+# "Standard" falls back to Remastered physics,
+# and "No_Control" falls back to Remastered physics but with no 
+enum JumpType { STANDARD, NO_CONTROL, CLASSIC, CLASSIC_WALK, CLASSIC_RUN }
+var jump_type := 0
+var jump_fall_gravity := FALL_GRAVITY
 
 var direction := 1
 var input_direction := 0
@@ -201,8 +235,10 @@ func _ready() -> void:
 	Global.can_time_tick = true
 	if [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) == false:
 		apply_character_physics()
+		apply_physics_style()
 	apply_character_sfx_map()
 	Global.level_theme_changed.connect(apply_character_sfx_map)
+	Global.level_theme_changed.connect(apply_physics_style)
 	Global.level_theme_changed.connect(apply_character_physics)
 	Global.level_theme_changed.connect(set_power_state_frame)
 	if Global.current_level.first_load and Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
@@ -215,6 +251,15 @@ func _ready() -> void:
 	handle_invincible_palette()
 	if Global.level_editor == null:
 		recenter_camera()
+		
+func apply_physics_style() -> void:
+	var physics_style = Settings.file.difficulty.get("physics_style", 2)
+
+	match physics_style:
+		0:
+			classic_physics = false
+		1:
+			classic_physics = true
 
 func apply_character_physics() -> void:
 	var path = "res://Assets/Sprites/Players/" + character + "/CharacterInfo.json"
@@ -314,12 +359,15 @@ func _process(delta: float) -> void:
 		DiscoLevel.combo_meter = 100
 	%Hammer.visible = has_hammer
 
-func apply_gravity(delta: float) -> void:
+func apply_gravity(delta: float) -> void:	
 	if in_water or flight_meter > 0:
 		gravity = SWIM_GRAVITY
 	else:
 		if sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
-			gravity = FALL_GRAVITY
+			if jump_type >= JumpType.CLASSIC:
+				gravity = jump_fall_gravity
+			else:
+				gravity = FALL_GRAVITY
 	velocity += (gravity_vector * ((gravity / (1.5 if low_gravity else 1.0)) / delta)) * delta
 	var target_fall: float = MAX_FALL_SPEED
 	if in_water:
@@ -410,6 +458,10 @@ func enemy_bounce_off(add_combo := true, award_score := true) -> void:
 		add_stomp_combo(award_score)
 	jump_cancelled = not Global.player_action_pressed("jump", player_id)
 	await get_tree().physics_frame
+	
+	# TODO: Make bounces off of enemies behave more like SMB1/2j in classic mode
+	jump_type = JumpType.STANDARD
+		
 	if Global.player_action_pressed("jump", player_id):
 		velocity.y = sign(gravity_vector.y) * -BOUNCE_JUMP_HEIGHT
 		gravity = JUMP_GRAVITY
@@ -803,8 +855,27 @@ func exit_pipe(pipe: PipeArea) -> void:
 func jump() -> void:
 	if spring_bouncing:
 		return
-	velocity.y = calculate_jump_height() * gravity_vector.y
-	gravity = JUMP_GRAVITY
+		
+	if classic_physics:
+		if abs(velocity.x) < CLASSIC_WJUMP_THRESH:
+			jump_type = JumpType.CLASSIC
+			velocity.y = -CLASSIC_JUMP_VEL * gravity_vector.y
+			gravity = CLASSIC_JUMP_HOLD_GRAVITY
+			jump_fall_gravity = CLASSIC_JUMP_GRAVITY
+		elif abs(velocity.x) < CLASSIC_RJUMP_THRESH:
+			jump_type = JumpType.CLASSIC_WALK
+			velocity.y = -CLASSIC_WJUMP_VEL * gravity_vector.y
+			gravity = CLASSIC_WJUMP_HOLD_GRAVITY
+			jump_fall_gravity = CLASSIC_WJUMP_GRAVITY
+		else:
+			jump_type = JumpType.CLASSIC_RUN
+			velocity.y = -CLASSIC_RJUMP_VEL * gravity_vector.y
+			gravity = CLASSIC_RJUMP_HOLD_GRAVITY
+			jump_fall_gravity = CLASSIC_RJUMP_GRAVITY
+	else:
+		velocity.y = calculate_jump_height() * gravity_vector.y
+		gravity = JUMP_GRAVITY
+	
 	AudioManager.play_sfx("small_jump" if power_state.hitbox_size == "Small" else "big_jump", global_position)
 	has_jumped = true
 	await get_tree().physics_frame

@@ -12,6 +12,7 @@ func bounce_player(player: Player) -> void:
 			player.gravity = player.JUMP_GRAVITY
 			player.jump_cancelled = false
 			player.velocity.y = HIGH_STRENGTH
+			player.jump_type = player.JumpType.STANDARD
 			player.has_jumped = true
 			AudioManager.play_sfx("bumper_high", global_position)
 		else:
