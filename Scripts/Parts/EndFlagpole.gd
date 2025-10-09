@@ -45,7 +45,7 @@ func give_points(player: Player) -> void:
 	$Score.text = str(nearest_value)
 	if Settings.file.difficulty.flagpole_lives == 1 and nearest_value == 5000:
 		AudioManager.play_sfx("1_up", global_position)
-		if Global.current_game_mode == Global.GameMode.CHALLENGE or Settings.file.difficulty.inf_lives:
+		if Global.current_game_mode == Global.GameMode.CHALLENGE or Global.current_game_mode == Global.GameMode.BOO_RACE or Settings.file.difficulty.inf_lives:
 			Global.score += nearest_value
 			$Score/Animation2.play("ScoreRise")
 		else:

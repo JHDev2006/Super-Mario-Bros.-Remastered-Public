@@ -86,7 +86,7 @@ func do_lost_levels_firework_check() -> void:
 			await show_fireworks(3)
 		if Global.coins % 11 == 0:
 			AudioManager.play_sfx("1_up", global_position)
-			if Global.current_game_mode == Global.GameMode.CHALLENGE or Settings.file.difficulty.inf_lives:
+			if Global.current_game_mode == Global.GameMode.CHALLENGE or Global.current_game_mode == Global.GameMode.BOO_RACE or Settings.file.difficulty.inf_lives:
 				Global.score += 2000
 				$ScoreNoteSpawner.spawn_note(2000)
 			else:
