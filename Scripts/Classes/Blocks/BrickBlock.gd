@@ -13,7 +13,6 @@ func check_brick_empty() -> void:
 func on_block_hit(player: Player) -> void:
 	if player.power_state.hitbox_size == "Big":
 		if item == null:
-			await get_tree().physics_frame
 			destroy()
 			Global.score += 50
 	if item != null:
@@ -23,7 +22,6 @@ func on_block_hit(player: Player) -> void:
 
 func on_shell_block_hit(_shell: Shell) -> void:
 	if item == null:
-		await get_tree().physics_frame
 		destroy()
 		Global.score += 50
 	else:
