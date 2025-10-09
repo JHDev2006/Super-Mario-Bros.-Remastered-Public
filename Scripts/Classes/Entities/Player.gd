@@ -895,7 +895,6 @@ func set_classic_jump_parameters(enemy_bounce := false) -> void:
 		jump_fall_gravity = 26.25
 	elif abs(velocity.x) < 135.0:
 		jump_type = JumpType.CLASSIC_WALK
-		velocity.y = -248.0 * gravity_vector.y
 		gravity = 7.03
 		jump_fall_gravity = 22.5
 	else:
