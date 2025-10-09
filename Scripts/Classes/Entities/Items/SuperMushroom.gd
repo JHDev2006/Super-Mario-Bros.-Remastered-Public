@@ -22,6 +22,6 @@ func give_life(_player: Player) -> void:
 		Global.score += 2000
 		$ScoreNoteSpawner.spawn_note(2000)
 	else:
-		$ScoreNoteSpawner.spawn_one_up_note()
 		Global.lives += 1
+		$ScoreNoteSpawner.spawn_one_up_note()
 	queue_free()
