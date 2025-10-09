@@ -29,7 +29,7 @@ func extra_checkpoints_changed(new_value := 0) -> void:
 
 func lakitu_style_changed(new_value := 0) -> void:
 	Settings.file.difficulty.lakitu_style = new_value
-	
+
 func physics_style_changed(new_value := 0) -> void:
 	Settings.file.difficulty.physics_style = new_value
 	for player in get_tree().get_nodes_in_group("Players"):

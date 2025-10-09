@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 func bounce_players() -> void:
 	var high_bounce := false
 	for player in players:
-		player.jump_type = player.JumpType.STANDARD
+		player.jump_type = player.JumpType.TRAMPOLINE
 		if Global.player_action_pressed("jump", player.player_id):
 			high_bounce = true
 			player.velocity.y = bounce_height

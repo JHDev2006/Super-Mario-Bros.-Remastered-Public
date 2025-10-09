@@ -502,6 +502,9 @@ floor_snap_length = 4.0
 platform_on_leave = 2
 script = ExtResource("1_f6bau")
 power_state = NodePath("PowerStates/Small")
+player_id = null
+starting_power_state = null
+auto_death_pit = null
 
 [node name="SpriteScaleJoint" type="Node2D" parent="."]
 

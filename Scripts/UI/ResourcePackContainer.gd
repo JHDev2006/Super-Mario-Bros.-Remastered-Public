@@ -51,9 +51,9 @@ func open_config_menu() -> void:
 	open_config.emit(self)
 
 func select() -> void:
-	print(ResourceSetter.cache)
+	# print(ResourceSetter.cache)
 	ResourceSetter.cache.clear()
-	print(ResourceSetter.cache)
+	# print(ResourceSetter.cache)
 	ResourceSetterNew.cache.clear()
 	ResourceGetter.cache.clear()
 	AudioManager.current_level_theme = ""

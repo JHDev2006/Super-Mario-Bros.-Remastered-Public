@@ -37,30 +37,9 @@ var MAX_SWIM_FALL_SPEED := 200.0       # The player's maximum fall speed while s
 
 var DEATH_JUMP_HEIGHT := 300.0         # The strength of the player's "jump" during the death animation, measured in px/sec
 
-# Values for "Classic" SMB1/2j physics feel.
-# Velocities (in pixels / sec)
-var CLASSIC_WALK_VEL := 90.0
-var CLASSIC_RUN_VEL := 150.0
-var CLASSIC_SKID_TURN_VEL := 33.75
-var CLASSIC_WJUMP_THRESH := 60.0
-var CLASSIC_RJUMP_THRESH := 135.0
-# Initial jump heights slightly increased to account for different order of ops.
-var CLASSIC_JUMP_VEL := 248.0
-var CLASSIC_WJUMP_VEL := 248.0
-var CLASSIC_RJUMP_VEL := 310.0
-# Accelerations (in pixels / sec per frame).
-var CLASSIC_RUN_ACCEL := 3.34
-var CLASSIC_MID_ACCEL := 3.05
-var CLASSIC_WALK_ACCEL := 2.23
-var CLASSIC_REVERSE_ACCEL := 4.46
-var CLASSIC_JUMP_HOLD_GRAVITY := 7.5
-var CLASSIC_JUMP_GRAVITY := 26.25
-var CLASSIC_WJUMP_HOLD_GRAVITY := 7.03
-var CLASSIC_WJUMP_GRAVITY := 22.5
-var CLASSIC_RJUMP_HOLD_GRAVITY := 9.375
-var CLASSIC_RJUMP_GRAVITY := 33.75
-# TODO: What to do with enemy bounces, trampolines, swimming?
+var SPRING_GRAVITY := 11.0             # The player's gravity while spring bouncing, measured in px/frame
 
+var FAST_REVERSE_ACCEL := 0.0          # Additional deceleration when reversing direction, measured in px/frame
 #endregion
 
 @onready var camera_center_joint: Node2D = $CameraCenterJoint
@@ -71,13 +50,13 @@ var CLASSIC_RJUMP_GRAVITY := 33.75
 
 var has_jumped := false
 
-var use_classic_physics := false
+enum PhysicsStyle { REMASTERED, CLASSIC, ENHANCED }
+var physics_style := PhysicsStyle.REMASTERED
 
-# Used primarily for classic physics. 
-# "Standard" falls back to Remastered physics,
-# and "No_Control" falls back to Remastered physics but with no 
-enum JumpType { STANDARD, NO_CONTROL, CLASSIC, CLASSIC_WALK, CLASSIC_RUN }
-var jump_type := 0
+# Used for handling different jump arcs in classic physics. 
+# "Standard" and "Trampoline" falls back to Remastered physics.
+enum JumpType { STANDARD, TRAMPOLINE, CLASSIC, CLASSIC_WALK, CLASSIC_RUN }
+var jump_type := JumpType.STANDARD
 var jump_fall_gravity := FALL_GRAVITY
 
 var direction := 1
@@ -214,17 +193,15 @@ var can_run := true
 
 var air_frames := 0
 
-static var classic_physics := false
-
 var swim_stroke := false
 
 var skid_frames := 0
 
 var simulated_velocity := Vector2.ZERO
 
+var fast_reverse_accel := false
+
 func _ready() -> void:
-	if classic_physics:
-		apply_classic_physics()
 	get_viewport().size_changed.connect(recenter_camera)
 	show()
 	$Checkpoint/Label.text = str(player_id + 1)
@@ -235,7 +212,10 @@ func _ready() -> void:
 	Global.can_time_tick = true
 	if [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) == false:
 		apply_character_physics()
-		apply_physics_style()
+		apply_physics_style(Settings.file.difficulty.get("physics_style", 2))
+	else:
+		apply_physics_style(PhysicsStyle.REMASTERED)
+	
 	apply_character_sfx_map()
 	Global.level_theme_changed.connect(apply_character_sfx_map)
 	Global.level_theme_changed.connect(apply_physics_style)
@@ -251,15 +231,31 @@ func _ready() -> void:
 	handle_invincible_palette()
 	if Global.level_editor == null:
 		recenter_camera()
-		
-func apply_physics_style() -> void:
-	var physics_style = Settings.file.difficulty.get("physics_style", 2)
 
-	match physics_style:
-		0:
-			classic_physics = false
-		1:
-			classic_physics = true
+func apply_physics_style(physics_type) -> void:
+	physics_style = physics_type
+	match physics_type:
+		PhysicsStyle.CLASSIC:
+			apply_classic_physics()
+		PhysicsStyle.REMASTERED:
+			apply_remastered_physics()
+		PhysicsStyle.ENHANCED:
+			apply_enhanced_physics()
+
+func apply_classic_physics() -> void:
+	var json = JSON.parse_string(FileAccess.open("res://Resources/ClassicPhysics.json", FileAccess.READ).get_as_text())
+	for i in json:
+		set(i, json[i])
+
+func apply_remastered_physics() -> void:
+	var json = JSON.parse_string(FileAccess.open("res://Resources/RemasteredPhysics.json", FileAccess.READ).get_as_text())
+	for i in json:
+		set(i, json[i])
+
+func apply_enhanced_physics() -> void:
+	var json = JSON.parse_string(FileAccess.open("res://Resources/EnhancedPhysics.json", FileAccess.READ).get_as_text())
+	for i in json:
+		set(i, json[i])
 
 func apply_character_physics() -> void:
 	var path = "res://Assets/Sprites/Players/" + character + "/CharacterInfo.json"
@@ -279,10 +275,17 @@ func apply_character_physics() -> void:
 		i.scale = Vector2(hitbox_scale[0], hitbox_scale[1])
 		i.update()
 
-func apply_classic_physics() -> void:
-	var json = JSON.parse_string(FileAccess.open("res://Resources/ClassicPhysics.json", FileAccess.READ).get_as_text())
-	for i in json:
-		set(i, json[i])
+func get_air_acceleration() -> float:
+	if physics_style != PhysicsStyle.CLASSIC:
+		return AIR_ACCEL
+	
+	if sign(velocity.x * direction) < 0.0:
+		# Faster acceleration when currently moving backwards.
+		return GROUND_WALK_ACCEL * 2
+	elif abs(velocity.x) > WALK_SPEED:
+		return GROUND_RUN_ACCEL
+	else:
+		return GROUND_WALK_ACCEL
 
 func recenter_camera() -> void:
 	%CameraHandler.recenter_camera()
@@ -316,6 +319,9 @@ func _physics_process(delta: float) -> void:
 	handle_block_collision_detection()
 	handle_wing_flight(delta)
 	air_frames = (air_frames + 1 if is_on_floor() == false else 0)
+	if air_frames == 0:
+		jump_type = JumpType.STANDARD
+		fast_reverse_accel = false
 	for i in get_tree().get_nodes_in_group("StepCollision"):
 		var on_wall := false
 		for x in [$StepWallChecks/LWall, $StepWallChecks/RWall]:
@@ -362,6 +368,8 @@ func _process(delta: float) -> void:
 func apply_gravity(delta: float) -> void:	
 	if in_water or flight_meter > 0:
 		gravity = SWIM_GRAVITY
+	elif spring_bouncing:
+		gravity = SPRING_GRAVITY
 	else:
 		if sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
 			if jump_type >= JumpType.CLASSIC:
@@ -459,10 +467,9 @@ func enemy_bounce_off(add_combo := true, award_score := true) -> void:
 	jump_cancelled = not Global.player_action_pressed("jump", player_id)
 	await get_tree().physics_frame
 	
-	# TODO: Make bounces off of enemies behave more like SMB1/2j in classic mode
-	jump_type = JumpType.STANDARD
-		
-	if Global.player_action_pressed("jump", player_id):
+	if physics_style == PhysicsStyle.CLASSIC:
+		set_classic_jump_parameters(true)
+	elif Global.player_action_pressed("jump", player_id):
 		velocity.y = sign(gravity_vector.y) * -BOUNCE_JUMP_HEIGHT
 		gravity = JUMP_GRAVITY
 		has_jumped = true
@@ -531,6 +538,13 @@ func handle_directions() -> void:
 	elif Global.player_action_pressed("move_left", player_id):
 		input_direction = -1
 	velocity_direction = sign(velocity.x)
+
+func get_reverse_acceleration() -> float:
+	if FAST_REVERSE_ACCEL > 0.0 and input_direction != 0 and is_on_floor():
+		if sign(velocity.x) != 0 and sign(velocity.x) != input_direction:
+			if abs(velocity.x) < SKID_THRESHOLD:
+				return FAST_REVERSE_ACCEL
+	return 0.0
 
 var use_big_collision := false
 
@@ -855,34 +869,63 @@ func exit_pipe(pipe: PipeArea) -> void:
 func jump() -> void:
 	if spring_bouncing:
 		return
-		
-	if classic_physics:
-		if abs(velocity.x) < CLASSIC_WJUMP_THRESH:
-			jump_type = JumpType.CLASSIC
-			velocity.y = -CLASSIC_JUMP_VEL * gravity_vector.y
-			gravity = CLASSIC_JUMP_HOLD_GRAVITY
-			jump_fall_gravity = CLASSIC_JUMP_GRAVITY
-		elif abs(velocity.x) < CLASSIC_RJUMP_THRESH:
-			jump_type = JumpType.CLASSIC_WALK
-			velocity.y = -CLASSIC_WJUMP_VEL * gravity_vector.y
-			gravity = CLASSIC_WJUMP_HOLD_GRAVITY
-			jump_fall_gravity = CLASSIC_WJUMP_GRAVITY
-		else:
-			jump_type = JumpType.CLASSIC_RUN
-			velocity.y = -CLASSIC_RJUMP_VEL * gravity_vector.y
-			gravity = CLASSIC_RJUMP_HOLD_GRAVITY
-			jump_fall_gravity = CLASSIC_RJUMP_GRAVITY
+	
+	if physics_style == PhysicsStyle.CLASSIC:
+		set_classic_jump_parameters(false)
 	else:
+		if physics_style == PhysicsStyle.ENHANCED:
+			var abs_speed = abs(velocity.x)
+			var vel_dir = sign(velocity.x)
+			if abs_speed < 16.0 and input_direction != 0 and vel_dir != 0 and sign(input_direction) != vel_dir:
+				fast_reverse_accel = true
+			else:
+				fast_reverse_accel = false
 		velocity.y = calculate_jump_height() * gravity_vector.y
 		gravity = JUMP_GRAVITY
-	
+
 	AudioManager.play_sfx("small_jump" if power_state.hitbox_size == "Small" else "big_jump", global_position)
 	has_jumped = true
 	await get_tree().physics_frame
 	has_jumped = true
+	
+func set_classic_jump_parameters(enemy_bounce := false) -> void:
+	if abs(velocity.x) < 60.0:
+		jump_type = JumpType.CLASSIC
+		gravity = 7.5
+		jump_fall_gravity = 26.25
+	elif abs(velocity.x) < 135.0:
+		jump_type = JumpType.CLASSIC_WALK
+		velocity.y = -248.0 * gravity_vector.y
+		gravity = 7.03
+		jump_fall_gravity = 22.5
+	else:
+		jump_type = JumpType.CLASSIC_RUN
+		gravity = 9.375
+		jump_fall_gravity = 33.75
+		
+	if enemy_bounce:
+		has_jumped = true
+		# Only allow controlling height of jumps if you hit enemy from below,
+		# recreating the original game's "super jumps".
+		jump_cancelled = sign(velocity.y * gravity_vector.y) >= 0.0
+		if jump_cancelled:
+			gravity = jump_fall_gravity
+		
+		# TODO: Check enemy type? Certain enemies are bouncier than others
+		# in the original games.
+		if Global.current_campaign == "SMBLL":
+			velocity.y = -370.0 * gravity_vector.y
+		else:
+			velocity.y = -248.0 * gravity_vector.y
+	else:
+		if jump_type == JumpType.CLASSIC_RUN:
+			velocity.y = -310.0 * gravity_vector.y
+		else:
+			velocity.y = -248.0 * gravity_vector.y
+		
 
-func calculate_jump_height() -> float: # Thanks wye love you xxx
-	return -(JUMP_HEIGHT + JUMP_INCR * int(abs(velocity.x) / 25))
+func calculate_jump_height() -> float:
+	return -(JUMP_HEIGHT + JUMP_INCR * int(abs(velocity.x) / 25)) # thanks wye love you xxx
 
 const SMOKE_PARTICLE = preload("res://Scenes/Prefabs/Particles/SmokeParticle.tscn")
 
