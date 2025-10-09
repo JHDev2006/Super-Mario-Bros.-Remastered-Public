@@ -498,5 +498,9 @@
 	"B8": [
 		"res://Scenes/Prefabs/Entities/Enemies/Sigebou.tscn",
 		"0,8"
+	],
+	"B9": [
+		"res://Scenes/Prefabs/Entities/Enemies/BowsersBro.tscn",
+		"0,8"
 	]
 }
