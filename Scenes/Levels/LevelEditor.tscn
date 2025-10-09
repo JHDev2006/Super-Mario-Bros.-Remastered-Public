@@ -1,4 +1,4 @@
-[gd_scene load_steps=297 format=3 uid="uid://gbcmqonky63j"]
+[gd_scene load_steps=299 format=3 uid="uid://gbcmqonky63j"]
 
 [ext_resource type="Script" uid="uid://c2lnc7vnq3xth" path="res://Scripts/Classes/Editor/LevelEditor.gd" id="1_0qbyu"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="1_ujeu4"]
@@ -86,7 +86,9 @@
 [ext_resource type="PackedScene" uid="uid://coasuq2vsmlce" path="res://Scenes/Prefabs/Entities/Enemies/BooBuddies.tscn" id="57_miwak"]
 [ext_resource type="PackedScene" uid="uid://bxsay5e6dhcqb" path="res://Scenes/Prefabs/Entities/Enemies/DryBones.tscn" id="58_j12pl"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/DryBones.json" id="58_u38n8"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BowsersBro.json" id="59_kxvns"]
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="60_01msc"]
+[ext_resource type="PackedScene" uid="uid://bjysym6bhxljv" path="res://Scenes/Prefabs/Entities/Enemies/BowsersBro.tscn" id="60_ed30e"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/MontyMole.json" id="60_vt1yk"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/PoisonMushroom.json" id="61_8hw1j"]
 [ext_resource type="PackedScene" uid="uid://bym2j03wxhk3t" path="res://Scenes/Prefabs/Entities/Enemies/MontyMole.tscn" id="61_looxg"]
@@ -3009,17 +3011,55 @@ metadata/can_note_store = false
 metadata/can_lakitu_throw = false
 metadata/can_pipe_gen = false
 
-[node name="Bowser" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer" groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+[node name="Bowsers" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
+mouse_force_pass_scroll_events = false
+script = ExtResource("20_jc7xg")
+
+[node name="Bowser" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers" groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 16.0
+offset_bottom = 16.0
 tile_name = "ENEMY_BOWSER"
 type = 1
 icon_texture = ExtResource("40_62ull")
 icon_region_override = Rect2(8, 16, 16, 16)
 entity_scene = ExtResource("41_3yhuv")
+metadata/_edit_group_ = true
 metadata/can_be_stored = false
 metadata/can_note_store = false
 metadata/can_lakitu_throw = false
 metadata/can_pipe_gen = false
+
+[node name="BowserBro" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers" groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 16.0
+offset_bottom = 16.0
+tile_name = "ENEMY_BOWSERBRO"
+type = 1
+icon_texture = ExtResource("59_kxvns")
+icon_region_override = Rect2(8, 16, 16, 16)
+entity_scene = ExtResource("60_ed30e")
+metadata/_edit_group_ = true
+metadata/can_be_stored = false
+metadata/can_note_store = false
+metadata/can_lakitu_throw = false
+metadata/can_pipe_gen = false
+
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("22_3cjpb")
+expand_mode = 1
+stretch_mode = 3
 
 [node name="Pokey" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer" groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
@@ -5307,7 +5347,8 @@ metadata/_custom_type_script = "uid://dt2p68xl462v2"
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/CheepCheeps/RedCheepCheep" to="." method="on_tile_selected"]
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Blooper" to="." method="on_tile_selected"]
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/HammerBro" to="." method="on_tile_selected"]
-[connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowser" to="." method="on_tile_selected"]
+[connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers/Bowser" to="." method="on_tile_selected"]
+[connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers/BowserBro" to="." method="on_tile_selected"]
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Pokey" to="." method="on_tile_selected"]
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/BulletBill" to="." method="on_tile_selected"]
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Boos/Boo" to="." method="on_tile_selected"]
