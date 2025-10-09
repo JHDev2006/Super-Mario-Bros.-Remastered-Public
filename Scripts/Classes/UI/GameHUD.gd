@@ -42,6 +42,8 @@ func handle_main_hud() -> void:
 		update_character_info()
 	%CharacterIcon.get_node("Shadow").texture = %CharacterIcon.texture
 	%ModernLifeCount.text = "*" + (str(Global.lives).pad_zeros(2) if Settings.file.difficulty.inf_lives == 0 else "∞")
+	%CharacterIcon.visible = Global.current_game_mode != Global.GameMode.BOO_RACE
+	%ModernLifeCount.visible = Global.current_game_mode != Global.GameMode.BOO_RACE
 	var world_num := str(Global.world_num)
 	if int(world_num) >= 10:
 		world_num = ["A", "B", "C", "D"][int(world_num) % 10]
@@ -95,6 +97,8 @@ func handle_challenge_mode_hud() -> void:
 	$ModernHUD/TopLeft/RedCoins.show()
 	$ModernHUD/TopLeft/CoinCount.hide()
 	$Main/CoinCount.hide()
+	%ModernLifeCount.hide()
+	%CharacterIcon.hide()
 	var red_coins_collected = ChallengeModeHandler.current_run_red_coins_collected
 	var idx := 0
 	if Global.world_num > 8:
