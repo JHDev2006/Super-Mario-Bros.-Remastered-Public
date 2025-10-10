@@ -216,15 +216,18 @@ func handle_music() -> void:
 	AudioServer.set_bus_effect_enabled(1, 0, Global.game_paused and Settings.file.audio.pause_bgm == 1)
 	
 	if is_instance_valid(Global.current_level):
-		if Global.current_level.music == null or current_music_override != MUSIC_OVERRIDES.NONE:
+		var music := Global.current_level.music
+		if music == null or current_music_override != MUSIC_OVERRIDES.NONE:
 			music_player.stop()
 			handle_music_override()
 			return
+		if music.resource_path == Global.music_to_replace and Global.force_music != null:
+			music = Global.force_music
 		music_player.stream_paused = false
-		if current_level_theme != Global.current_level.music.resource_path and Global.current_level.music != null:
-			var stream = create_stream_from_json(Global.current_level.music.resource_path)
+		if current_level_theme != music.resource_path and music != null:
+			var stream = create_stream_from_json(music.resource_path)
 			music_player.stream = stream
-			current_level_theme = Global.current_level.music.resource_path
+			current_level_theme = music.resource_path
 		if music_player.is_playing() == false and current_music_override == MUSIC_OVERRIDES.NONE:
 			music_player.stop()
 			current_music_override = MUSIC_OVERRIDES.NONE
