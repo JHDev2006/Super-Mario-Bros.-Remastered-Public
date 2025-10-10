@@ -57,6 +57,7 @@ func update_resource() -> void:
 		cache.clear()
 		property_cache.clear()
 	if node_to_affect != null:
+		# print(resource_json.data)
 		var resource = get_resource(resource_json)
 		node_to_affect.set(property_name, resource)
 		if node_to_affect is AnimatedSprite2D:
