@@ -36,7 +36,7 @@ func bridge_changed(new_value := 0) -> void:
 
 func resource_pack_loaded(new_value := []) -> void:
 	Global.loaded_resource_packs = new_value
-	Global.level_theme_changed.emit()
+	Global.update_theme()
 
 func colourful_pipes_changed(new_value := 0) -> void:
 	Settings.file.visuals.colour_pipes = new_value

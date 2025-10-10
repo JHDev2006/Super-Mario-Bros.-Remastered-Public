@@ -37,7 +37,6 @@ func _init() -> void:
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
 func _ready() -> void:
-	Global.level_time_changed.connect(update_resource)
 	Global.level_theme_changed.connect(update_resource)
 
 func _enter_tree() -> void:
