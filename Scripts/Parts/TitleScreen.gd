@@ -194,7 +194,7 @@ func challenge_hunt_start() -> void:
 
 
 	LevelTransition.level_to_transition_to = Level.get_scene_string(Global.world_num, Global.level_num)
-	ChallengeModeHandler.current_run_red_coins_collected = ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num -1]
+	ChallengeModeHandler.current_run_red_coins_collected = 0
 	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
 
 func world_9_selected() -> void:
