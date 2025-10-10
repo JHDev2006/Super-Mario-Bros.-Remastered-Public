@@ -65,7 +65,7 @@ func select() -> void:
 	else:
 		ResourceSetterNew.pack_configs.erase(pack_name)
 		Settings.file.visuals.resource_packs.erase(pack_name)
-	Global.level_theme_changed.emit()
+	Global.update_theme()
 	if loaded:
 		AudioManager.play_global_sfx("coin")
 	else:

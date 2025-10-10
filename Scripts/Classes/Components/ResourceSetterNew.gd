@@ -37,7 +37,6 @@ func _init() -> void:
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
 func _ready() -> void:
-	Global.level_time_changed.connect(update_resource)
 	Global.level_theme_changed.connect(update_resource)
 
 func _enter_tree() -> void:
@@ -57,7 +56,6 @@ func update_resource() -> void:
 		cache.clear()
 		property_cache.clear()
 	if node_to_affect != null:
-		print(resource_json.data)
 		var resource = get_resource(resource_json)
 		node_to_affect.set(property_name, resource)
 		if node_to_affect is AnimatedSprite2D:

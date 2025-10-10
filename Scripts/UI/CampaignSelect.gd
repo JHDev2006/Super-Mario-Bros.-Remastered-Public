@@ -96,7 +96,7 @@ func select() -> void:
 		Global.freeze_screen()
 		ResourceSetter.cache.clear()
 		ResourceSetterNew.cache.clear()
-		Global.level_theme_changed.emit()
+		Global.update_theme()
 		for i in 2:
 			await get_tree().process_frame
 		Global.close_freeze()

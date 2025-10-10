@@ -28,7 +28,8 @@ static var level_to_transition_to := "res://Scenes/Levels/World1/1-1.tscn":
 
 func _ready() -> void:
 	WarpPipeArea.has_warped = false
-	Global.level_theme = "Underground"
+	Global.force_theme = "Underground"
+	Global.level_theme_changed.emit()
 	$BG/Control/MarathonPB.visible = Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE
 	$BG/Control/LivesCount.visible = Global.current_game_mode != Global.GameMode.MARATHON_PRACTICE
 	Level.can_set_time = true
