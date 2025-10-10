@@ -6,7 +6,7 @@ const HAMMER = preload("res://Scenes/Prefabs/Entities/Items/Hammer.tscn")
 
 @export var can_hammer := false
 @export var can_fire := true
-
+@export var is_real := true
 @export var music_enabled := true
 
 var target_player: Player = null
@@ -50,13 +50,15 @@ func get_target_y(player: Player) -> float:
 		return player.global_position.y - 8
 
 func show_smoke() -> void:
-	if has_meta("is_real"):
+	# guzlad: ugly but it'll have to do until we move the metadata stuff to actual variables
+	if (((Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL) or (Global.current_game_mode == Global.GameMode.LEVEL_EDITOR)) and !is_real):
+		var smoke = preload("res://Scenes/Prefabs/Particles/SmokeParticle.tscn").instantiate()
+		smoke.scale = Vector2(2, 2)
+		smoke.global_position =global_position
+		AudioManager.play_sfx("magic", global_position)
+		add_sibling(smoke)
+	elif has_meta("is_real"):
 		return
-	var smoke = preload("res://Scenes/Prefabs/Particles/SmokeParticle.tscn").instantiate()
-	smoke.scale = Vector2(2, 2)
-	smoke.global_position =global_position
-	AudioManager.play_sfx("magic", global_position)
-	add_sibling(smoke)
 
 func breathe_fire() -> void:
 	if can_fire == false:

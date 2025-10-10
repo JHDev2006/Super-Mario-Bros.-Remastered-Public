@@ -3027,11 +3027,6 @@ type = 1
 icon_texture = ExtResource("40_62ull")
 icon_region_override = Rect2(8, 16, 16, 16)
 entity_scene = ExtResource("41_3yhuv")
-metadata/_edit_group_ = true
-metadata/can_be_stored = false
-metadata/can_note_store = false
-metadata/can_lakitu_throw = false
-metadata/can_pipe_gen = false
 
 [node name="BowserBro" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers" groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 1
@@ -3043,11 +3038,6 @@ type = 1
 icon_texture = ExtResource("59_kxvns")
 icon_region_override = Rect2(8, 16, 16, 16)
 entity_scene = ExtResource("60_ed30e")
-metadata/_edit_group_ = true
-metadata/can_be_stored = false
-metadata/can_note_store = false
-metadata/can_lakitu_throw = false
-metadata/can_pipe_gen = false
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers"]
 layout_mode = 1

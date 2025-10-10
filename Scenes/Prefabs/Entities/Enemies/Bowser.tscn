@@ -381,7 +381,7 @@ metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
 [node name="EditorPropertyExposer" type="Node" parent="."]
 script = ExtResource("15_nf6hu")
-properties = Array[String](["can_hammer", "can_fire"])
+properties = Array[String](["can_hammer", "can_fire", "is_real"])
 
 [node name="TrackJoint" type="Node" parent="."]
 script = ExtResource("17_5b235")
