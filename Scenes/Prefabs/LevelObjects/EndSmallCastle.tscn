@@ -133,10 +133,9 @@ position = Vector2(-8, -32)
 tile_map_data = PackedByteArray("AAABAAAAAAANABQAAAACAAAAAAAOAA4AAAACAAEAAAAOAA8AAAADAAAAAAAPAA4AAAADAAEAAAAPAA8AAAACAAIAAAAOAA4AAAACAAMAAAAOAA8AAAADAAIAAAAPAA4AAAADAAMAAAAPAA8AAAAEAAAAAAAOAA4AAAAEAAEAAAAOAA8AAAAFAAAAAAAPAA4AAAAFAAEAAAAPAA8AAAAEAAIAAAAOAA4AAAAEAAMAAAAOAA8AAAAFAAIAAAAPAA4AAAAFAAMAAAAPAA8AAAAAAP7/AAAKABQAAAAAAP//AAAKABUAAAABAP7/AAALABQAAAABAP//AAALABUAAAACAP7/AAAKABQAAAACAP//AAAKABUAAAADAP7/AAALABQAAAADAP//AAALABUAAAAEAP7/AAAMAA4AAAAEAP//AAAMAA8AAAAFAP7/AAANAA4AAAAFAP//AAANAA8AAAA=")
 tile_set = SubResource("TileSet_xg4af")
 
-[node name="TilesetTextureSetter" type="Node" parent="Overlay" node_paths=PackedStringArray("tile_map", "resource_setter")]
+[node name="TilesetTextureSetter" type="Node" parent="Overlay" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("8_l3xjf")
 tile_map = NodePath("..")
-resource_setter = NodePath("ResourceSetter")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetter" type="Node" parent="Overlay/TilesetTextureSetter" node_paths=PackedStringArray("node_to_affect")]
