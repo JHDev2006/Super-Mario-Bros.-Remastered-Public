@@ -165,6 +165,7 @@ grow_vertical = 2
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/LevelSelect" to="." method="set_focus" binds= [false]]
 [connection signal="focus_entered" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ReturnMenu" to="." method="set_index" binds= [3]]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ReturnMenu" to="." method="go_to_menu"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ReturnMenu" to="." method="close"]
 [connection signal="cancelled" from="WorldSelect" to="." method="open"]
 [connection signal="cancelled" from="WorldSelect" to="." method="set_focus" binds= [true]]
 [connection signal="world_selected" from="WorldSelect" to="LevelSelect" method="open"]

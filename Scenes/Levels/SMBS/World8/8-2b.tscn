@@ -1178,10 +1178,9 @@ show_behind_parent = true
 tile_map_data = PackedByteArray("AABoAPz/AAAHABQAAABoAP3/AAAHABQAAABoAP7/AAAHABQAAABoAP//AAAHABQAAABpAPz/AAAHABQAAABpAP3/AAAHABQAAABpAP7/AAAHABQAAABpAP//AAAHABQAAABsAPz/AAAHABQAAABsAP3/AAAHABQAAABsAP7/AAAHABQAAABsAP//AAAHABQAAABtAPz/AAAHABQAAABtAP3/AAAHABQAAABtAP7/AAAHABQAAABtAP//AAAHABQAAABwAPz/AAAHABQAAABwAP3/AAAHABQAAABwAP7/AAAHABQAAABwAP//AAAHABQAAABxAPz/AAAHABQAAABxAP3/AAAHABQAAABxAP7/AAAHABQAAABxAP//AAAHABQAAABsAPL/AAAHABQAAABsAPP/AAAHABQAAABsAPT/AAAHABQAAABsAPX/AAAHABQAAABtAPL/AAAHABQAAABtAPP/AAAHABQAAABtAPT/AAAHABQAAABtAPX/AAAHABQAAAA=")
 tile_set = SubResource("TileSet_grnkn")
 
-[node name="TilesetTextureSetter" type="Node" parent="Tiles2/BG" node_paths=PackedStringArray("tile_map", "resource_setter")]
+[node name="TilesetTextureSetter" type="Node" parent="Tiles2/BG" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("42_pagxn")
 tile_map = NodePath("..")
-resource_setter = NodePath("ResourceSetterNew")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetterNew" type="Node" parent="Tiles2/BG/TilesetTextureSetter" node_paths=PackedStringArray("node_to_affect")]
@@ -1193,25 +1192,22 @@ resource_json = ExtResource("44_i1bin")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="collected" from="Tiles/Coin" to="Tiles/Coin/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@24600" to="Tiles/@Node2D@24600/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@97589" to="Tiles/@Node2D@97589/LevelPersistance" method="set_as_active"]
 [connection signal="block_destroyed" from="Tiles/BrickBlock" to="Tiles/BrickBlock/LevelPersistance" method="set_as_active_2"]
 [connection signal="block_emptied" from="Tiles/BrickBlock" to="Tiles/BrickBlock/LevelPersistance" method="set_as_active"]
-[connection signal="item_changed" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="check_brick_empty"]
 [connection signal="player_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="on_block_hit"]
 [connection signal="player_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock/BlockAnimations" method="bounce_block" unbinds=1]
 [connection signal="shell_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="on_shell_block_hit"]
 [connection signal="shell_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@24601" to="Tiles/@AnimatableBody2D@24601/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@24601" to="Tiles/@AnimatableBody2D@24601/LevelPersistance" method="set_as_active"]
-[connection signal="item_changed" from="Tiles/@AnimatableBody2D@24601" to="Tiles/@AnimatableBody2D@24601" method="check_brick_empty"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@24601" to="Tiles/@AnimatableBody2D@24601" method="on_block_hit"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@24601" to="Tiles/@AnimatableBody2D@24601/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@24601" to="Tiles/@AnimatableBody2D@24601" method="on_shell_block_hit"]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@24601" to="Tiles/@AnimatableBody2D@24601/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@24602" to="Tiles/@AnimatableBody2D@24602/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@24602" to="Tiles/@AnimatableBody2D@24602/LevelPersistance" method="set_as_active"]
-[connection signal="item_changed" from="Tiles/@AnimatableBody2D@24602" to="Tiles/@AnimatableBody2D@24602" method="check_brick_empty"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@24602" to="Tiles/@AnimatableBody2D@24602" method="on_block_hit"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@24602" to="Tiles/@AnimatableBody2D@24602/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@24602" to="Tiles/@AnimatableBody2D@24602" method="on_shell_block_hit"]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@24602" to="Tiles/@AnimatableBody2D@24602/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@97590" to="Tiles/@AnimatableBody2D@97590/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@97590" to="Tiles/@AnimatableBody2D@97590/LevelPersistance" method="set_as_active"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@97590" to="Tiles/@AnimatableBody2D@97590" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@97590" to="Tiles/@AnimatableBody2D@97590/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@97590" to="Tiles/@AnimatableBody2D@97590" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@97590" to="Tiles/@AnimatableBody2D@97590/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@97591" to="Tiles/@AnimatableBody2D@97591/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@97591" to="Tiles/@AnimatableBody2D@97591/LevelPersistance" method="set_as_active"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@97591" to="Tiles/@AnimatableBody2D@97591" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@97591" to="Tiles/@AnimatableBody2D@97591/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@97591" to="Tiles/@AnimatableBody2D@97591" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@97591" to="Tiles/@AnimatableBody2D@97591/BlockAnimations" method="bounce_block" unbinds=1]

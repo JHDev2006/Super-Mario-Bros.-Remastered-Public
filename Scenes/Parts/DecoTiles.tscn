@@ -26,10 +26,9 @@ visibility_layer = 2
 z_index = -10
 tile_set = SubResource("TileSet_b50pv")
 
-[node name="TilesetTextureSetter" type="Node" parent="." node_paths=PackedStringArray("tile_map", "resource_setter")]
+[node name="TilesetTextureSetter" type="Node" parent="." node_paths=PackedStringArray("tile_map")]
 script = ExtResource("3_mv6fy")
 tile_map = NodePath("..")
-resource_setter = NodePath("../ResourceSetterNew")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetterNew" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]

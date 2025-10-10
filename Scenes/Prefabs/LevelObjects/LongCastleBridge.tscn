@@ -1,34 +1,72 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxyecochur0lo"]
+[gd_scene load_steps=3 format=3 uid="uid://dxyecochur0lo"]
 
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="1_j8urw"]
 [ext_resource type="Texture2D" uid="uid://boc6yagywb1lu" path="res://Assets/Sprites/Tilesets/Terrain/Castle.png" id="2_2iyqs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_74xm1"]
-size = Vector2(256, 16)
-
 [node name="CastleBridge" instance=ExtResource("1_j8urw")]
 
-[node name="Shape" parent="Collsion" index="0"]
-position = Vector2(72, 0)
-shape = SubResource("RectangleShape2D_74xm1")
-
 [node name="Sprite2D16" type="Sprite2D" parent="Bridge" index="0"]
-position = Vector2(-48, 0)
+position = Vector2(192, 0)
 texture = ExtResource("2_2iyqs")
 region_enabled = true
 region_rect = Rect2(64, 48, 16, 16)
 region_filter_clip_enabled = true
 
 [node name="Sprite2D15" type="Sprite2D" parent="Bridge" index="1"]
-position = Vector2(-32, 0)
+position = Vector2(176, 0)
 texture = ExtResource("2_2iyqs")
 region_enabled = true
 region_rect = Rect2(64, 48, 16, 16)
 region_filter_clip_enabled = true
 
 [node name="Sprite2D14" type="Sprite2D" parent="Bridge" index="2"]
-position = Vector2(-16, 0)
+position = Vector2(160, 0)
 texture = ExtResource("2_2iyqs")
 region_enabled = true
 region_rect = Rect2(64, 48, 16, 16)
 region_filter_clip_enabled = true
+
+[node name="CastleBridgeSegment" parent="Bridge" index="3"]
+position = Vector2(144, 0)
+
+[node name="CastleBridgeSegment2" parent="Bridge" index="4"]
+position = Vector2(128, 0)
+
+[node name="CastleBridgeSegment3" parent="Bridge" index="5"]
+position = Vector2(112, 0)
+
+[node name="CastleBridgeSegment4" parent="Bridge" index="6"]
+position = Vector2(96, 0)
+
+[node name="CastleBridgeSegment5" parent="Bridge" index="7"]
+position = Vector2(80, 0)
+
+[node name="CastleBridgeSegment6" parent="Bridge" index="8"]
+position = Vector2(64, 0)
+
+[node name="CastleBridgeSegment7" parent="Bridge" index="9"]
+position = Vector2(48, 0)
+
+[node name="CastleBridgeSegment8" parent="Bridge" index="10"]
+position = Vector2(32, 0)
+
+[node name="CastleBridgeSegment9" parent="Bridge" index="11"]
+position = Vector2(16, 0)
+
+[node name="CastleBridgeSegment10" parent="Bridge" index="12"]
+position = Vector2(0, 0)
+
+[node name="CastleBridgeSegment11" parent="Bridge" index="13"]
+visible = false
+position = Vector2(-999, 0)
+
+[node name="CastleBridgeSegment12" parent="Bridge" index="14"]
+visible = false
+position = Vector2(-999, 0)
+
+[node name="CastleBridgeSegment13" parent="Bridge" index="15"]
+visible = false
+position = Vector2(-999, 0)
+
+[node name="Axe" parent="." index="1"]
+process_mode = 1
