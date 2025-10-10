@@ -550,13 +550,6 @@ script = ExtResource("4_avtty")
 category_name = "SETTINGS_RESOURCE_PACK"
 options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3")]
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
-visible = false
-modulate = Color(1, 1, 0, 1)
-layout_mode = 2
-text = "RESOURCE_PACK_WARNING"
-autowrap_mode = 2
-
 [node name="SelectableOptionNode" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" groups=["Options"] instance=ExtResource("9_t6b48")]
 layout_mode = 2
 title = "RESOURCE_OPEN_FOLDER"

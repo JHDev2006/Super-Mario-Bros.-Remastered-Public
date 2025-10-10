@@ -149,6 +149,7 @@ visible = false
 position = Vector2(-999, 0)
 
 [node name="Axe" type="AnimatedSprite2D" parent="."]
+process_mode = 1
 position = Vector2(208, -32)
 sprite_frames = SubResource("SpriteFrames_13fwi")
 autoplay = "default"
