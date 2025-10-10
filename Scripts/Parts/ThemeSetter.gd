@@ -35,6 +35,9 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	pass
 
+static func update() -> void:
+	node.update_resource()
+
 func on_updated() -> void:
 	Global.force_theme = ""
 	Global.force_time = ""

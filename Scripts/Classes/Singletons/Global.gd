@@ -268,7 +268,7 @@ func _process(delta: float) -> void:
 		take_screenshot()
 
 func update_theme() -> void:
-	ThemeSetter.node.update_resource()
+	ThemeSetter.update()
 	level_theme_changed.emit()
 
 func take_screenshot() -> void:
