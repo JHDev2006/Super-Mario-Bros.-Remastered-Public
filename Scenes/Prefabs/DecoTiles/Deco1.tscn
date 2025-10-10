@@ -28,10 +28,9 @@ tile_map_data = PackedByteArray("AAD7////AAAAAAAAAAD8////AAABAAAAAAD9////AAABAAA
 tile_set = SubResource("TileSet_b50pv")
 script = ExtResource("2_j65d4")
 
-[node name="TilesetTextureSetter" type="Node" parent="." node_paths=PackedStringArray("tile_map", "resource_setter")]
+[node name="TilesetTextureSetter" type="Node" parent="." node_paths=PackedStringArray("tile_map")]
 script = ExtResource("3_qfs4k")
 tile_map = NodePath("..")
-resource_setter = NodePath("../ResourceSetter")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetter" type="Node" parent="." node_paths=PackedStringArray("node_to_affect", "property_node")]

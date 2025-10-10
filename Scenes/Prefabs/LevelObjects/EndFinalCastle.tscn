@@ -153,10 +153,9 @@ position = Vector2(-8, -32)
 tile_map_data = PackedByteArray("AAABAAAAAAANABQAAAAFAAAAAAANABQAAAAJAAAAAAANABQAAAACAAAAAAAOAA4AAAACAAEAAAAOAA8AAAADAAAAAAAPAA4AAAADAAEAAAAPAA8AAAACAAIAAAAOAA4AAAACAAMAAAAOAA8AAAADAAIAAAAPAA4AAAADAAMAAAAPAA8AAAAGAAAAAAAOAA4AAAAGAAEAAAAOAA8AAAAHAAAAAAAPAA4AAAAHAAEAAAAPAA8AAAAGAAIAAAAOAA4AAAAGAAMAAAAOAA8AAAAHAAIAAAAPAA4AAAAHAAMAAAAPAA8AAAAEAAAAAAAMABQAAAAIAAAAAAAMABQAAAABAP7/AAAPAA4AAAABAP//AAAPAA8AAAACAP7/AAAOAA4AAAACAP//AAAOAA8AAAADAP7/AAAPAA4AAAADAP//AAAPAA8AAAAEAP7/AAAOAA4AAAAEAP//AAAOAA8AAAAFAP7/AAAPAA4AAAAFAP//AAAPAA8AAAAGAP7/AAAOAA4AAAAGAP//AAAOAA8AAAAHAP7/AAAPAA4AAAAHAP//AAAPAA8AAAAIAP7/AAAOAA4AAAAIAP//AAAOAA8AAAAJAP7/AAAPAA4AAAAJAP//AAAPAA8AAAA=")
 tile_set = SubResource("TileSet_kd4m5")
 
-[node name="TilesetTextureSetter" type="Node" parent="Overlay" node_paths=PackedStringArray("tile_map", "resource_setter")]
+[node name="TilesetTextureSetter" type="Node" parent="Overlay" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("8_akqko")
 tile_map = NodePath("..")
-resource_setter = NodePath("ResourceSetter")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetter" type="Node" parent="Overlay/TilesetTextureSetter" node_paths=PackedStringArray("node_to_affect")]
@@ -181,10 +180,9 @@ show_behind_parent = true
 tile_map_data = PackedByteArray("AAAEAAAAAAAHABQAAAAEAAEAAAAHABQAAAAEAAIAAAAHABQAAAAEAAMAAAAHABQAAAAFAAAAAAAHABQAAAAFAAEAAAAHABQAAAAFAAIAAAAHABQAAAAFAAMAAAAHABQAAAAIAAAAAAAHABQAAAAIAAEAAAAHABQAAAAIAAIAAAAHABQAAAAIAAMAAAAHABQAAAAJAAAAAAAHABQAAAAJAAEAAAAHABQAAAAJAAIAAAAHABQAAAAJAAMAAAAHABQAAAA=")
 tile_set = SubResource("TileSet_kd4m5")
 
-[node name="TilesetTextureSetter" type="Node" parent="Overlay/Overlay2" node_paths=PackedStringArray("tile_map", "resource_setter")]
+[node name="TilesetTextureSetter" type="Node" parent="Overlay/Overlay2" node_paths=PackedStringArray("tile_map")]
 script = ExtResource("8_akqko")
 tile_map = NodePath("..")
-resource_setter = NodePath("ResourceSetter")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetter" type="Node" parent="Overlay/Overlay2/TilesetTextureSetter" node_paths=PackedStringArray("node_to_affect")]

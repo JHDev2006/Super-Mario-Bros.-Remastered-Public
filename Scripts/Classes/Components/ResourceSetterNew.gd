@@ -57,7 +57,6 @@ func update_resource() -> void:
 		cache.clear()
 		property_cache.clear()
 	if node_to_affect != null:
-		print(resource_json.data)
 		var resource = get_resource(resource_json)
 		node_to_affect.set(property_name, resource)
 		if node_to_affect is AnimatedSprite2D:
@@ -210,7 +209,6 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	var campaign = Global.current_campaign
 	if force_properties.has("Campaign"):
-		is_random = true
 		campaign = force_properties.Campaign
 	if json.has(campaign) == false:
 		campaign = "SMB1"
@@ -226,9 +224,7 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	var world = "World" + str(Global.world_num)
 	if force_properties.has("World"):
-		is_random = true
 		world = "World" + str(force_properties.World)
-		print(world)
 	if json.has(world) == false:
 		world = "World1"
 	if json.has(world):
@@ -332,8 +328,6 @@ func load_image_from_path(path := "") -> Texture2D:
 			return null
 		return load(path)
 	var image = Image.new()
-	if path == "":
-		print([path, owner.name])
 	image.load(path)
 	return ImageTexture.create_from_image(image)
 

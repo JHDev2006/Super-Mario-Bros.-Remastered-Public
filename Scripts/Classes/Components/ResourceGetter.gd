@@ -54,12 +54,6 @@ func get_resource(resource: Resource) -> Resource:
 		send_to_cache(original_resource.resource_path, new_font)
 		return new_font
 	
-	elif original_resource is JSON:
-		var new_json = JSON.new()
-		new_json.parse(FileAccess.get_file_as_string(path))
-		send_to_cache(original_resource.resource_path, new_json)
-		return new_json
-	
 	send_to_cache(original_resource.resource_path, original_resource)
 
 	return original_resource
