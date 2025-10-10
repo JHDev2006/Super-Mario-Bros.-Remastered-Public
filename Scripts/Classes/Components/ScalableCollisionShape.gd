@@ -2,16 +2,19 @@
 extends CollisionShape2D
 
 @export var offset := Vector2.ZERO
-@export var link: Node2D
+@export var link: CollisionPolygon2D
+@export var hitbox := Vector3.ONE
 
-func _ready() -> void:
-	set_process(Engine.is_editor_hint())
+var crouching := false
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	scale = Vector2(hitbox.x, hitbox.y)
+	if crouching and get_meta("scalable", true): scale.y *= hitbox.z
 	update()
 
 func update() -> void:
 	var height_to_use = shape.size.y
 	if link != null:
 		height_to_use *= link.scale.y * link.scale.y
-	position.y = -height_to_use / 2 * scale.y - offset.y
+	if get_meta("scalable", true):
+		position.y = -height_to_use / 2 * scale.y - offset.y

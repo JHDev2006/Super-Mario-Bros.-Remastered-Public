@@ -74,7 +74,10 @@ var total_keys := 0
 		set_power_state_frame()
 var character := "Mario"
 
-var crouching := false
+var crouching := false:
+	get(): # You can't crouch if the animation somehow doesn't exist.
+		if not sprite.sprite_frames.has_animation("Crouch"): return false
+		return crouching
 var skidding := false
 
 var bumping := false
@@ -158,6 +161,7 @@ const ANIMATION_FALLBACKS := {
 	"Run": "Move", 
 	"PipeWalk": "Move", 
 	"LookUp": "Idle", 
+	"Crouch": "Idle",
 	"CrouchFall": "Crouch", 
 	"CrouchJump": "Crouch", 
 	"CrouchBump": "Bump",
@@ -268,12 +272,12 @@ func apply_character_physics() -> void:
 	
 	for i in get_tree().get_nodes_in_group("SmallCollisions"):
 		var hitbox_scale = json.get("small_hitbox_scale", [1, 1])
-		i.scale = Vector2(hitbox_scale[0], hitbox_scale[1])
-		i.update()
+		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("small_crouch_scale", 0.75))
+		i._physics_process(0)
 	for i in get_tree().get_nodes_in_group("BigCollisions"):
 		var hitbox_scale = json.get("big_hitbox_scale", [1, 1])
-		i.scale = Vector2(hitbox_scale[0], hitbox_scale[1])
-		i.update()
+		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("big_crouch_scale", 0.5))
+		i._physics_process(0)
 
 func get_air_acceleration() -> float:
 	if physics_style != PhysicsStyle.CLASSIC:
@@ -525,7 +529,15 @@ func handle_invincible_palette() -> void:
 
 func handle_block_collision_detection() -> void:
 	if ["Pipe"].has(state_machine.state.name): return
-	
+	match power_state.hitbox_size:
+		"Small":
+			var points: Array = $SmallCollision.polygon
+			points.sort_custom(func(a, b): return a.y < b.y)
+			$BlockCollision.position.y = points.front().y * $SmallCollision.scale.y
+		"Big":
+			var points: Array = $BigCollision.polygon
+			points.sort_custom(func(a, b): return a.y < b.y)
+			$BlockCollision.position.y = points.front().y * $BigCollision.scale.y
 	if velocity.y <= FALL_GRAVITY:
 		for i in $BlockCollision.get_overlapping_bodies():
 			if i is Block:
@@ -549,10 +561,15 @@ func get_reverse_acceleration() -> float:
 var use_big_collision := false
 
 func handle_power_up_states(delta) -> void:
+	for i in get_tree().get_nodes_in_group("SmallCollisions"):
+		i.disabled = power_state.hitbox_size != "Small"
+		i.visible = not i.disabled
+		i.crouching = crouching
 	for i in get_tree().get_nodes_in_group("BigCollisions"):
-		if i.owner == self:
-			i.set_deferred("disabled", power_state.hitbox_size == "Small" or crouching)
-	$Checkpoint.position.y = -24 if power_state.hitbox_size == "Small" or crouching else -40
+		i.disabled = power_state.hitbox_size != "Big"
+		i.visible = not i.disabled
+		i.crouching = crouching
+	$Checkpoint.position.y = -24 if power_state.hitbox_size == "Small" else -40
 	power_state.update(delta)
 
 func handle_wing_flight(delta: float) -> void:
