@@ -255,7 +255,7 @@ func _process(delta: float) -> void:
 		ResourceSetterNew.cache.clear()
 		ResourceGetter.cache.clear()
 		AudioManager.current_level_theme = ""
-		level_theme_changed.emit()
+		update_theme()
 		log_comment("Reloaded resource packs!")
 
 	handle_p_switch(delta)
