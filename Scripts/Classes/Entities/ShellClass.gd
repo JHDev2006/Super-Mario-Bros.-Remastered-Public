@@ -67,7 +67,7 @@ func on_player_hit(hit_player: Player) -> void:
 		
 func award_score(award_level: int) -> void:
 	if award_level >= 10:
-		if Global.current_game_mode == Global.GameMode.CHALLENGE or Settings.file.difficulty.inf_lives:
+		if Global.current_game_mode == Global.GameMode.CHALLENGE or Global.current_game_mode == Global.GameMode.BOO_RACE or Settings.file.difficulty.inf_lives:
 			$ScoreNoteSpawner.spawn_note(10000)
 		else:
 			AudioManager.play_global_sfx("1_up")
