@@ -170,7 +170,7 @@ const ANIMATION_FALLBACKS := {
 	"SwimBump": "Bump",
 	"DieFreeze": "Die",
 	"StarJump": "Jump",
-	"StarFall": "StarJump"
+	"StarFall": "JumpFall"
 }
 
 var palette_transform := true
