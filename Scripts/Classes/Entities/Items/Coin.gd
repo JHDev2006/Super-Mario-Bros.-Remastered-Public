@@ -24,8 +24,8 @@ func collect() -> void:
 		$Sprite.queue_free()
 	else:
 		queue_free()
-	if get_parent() is TileMapLayer:
-		get_parent().erase_cell(get_parent().local_to_map(position))
+		if get_parent() is TileMapLayer:
+			get_parent().erase_cell(get_parent().local_to_map(position))
 
 func summon_block_coin() -> void:
 	var node = spinning_coin_scene.instantiate()

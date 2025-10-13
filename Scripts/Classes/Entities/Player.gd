@@ -146,16 +146,16 @@ const ANIMATION_FALLBACKS := {
 	"Pipe": "Idle", 
 	"Walk": "Move", 
 	"Run": "Move", 
-	"PipeWalk": "Move", 
+	"PipeWalk": "Walk", 
 	"LookUp": "Idle", 
 	"Crouch": "Idle",
 	"CrouchFall": "Crouch", 
 	"CrouchJump": "Crouch", 
 	"CrouchBump": "Bump",
 	"CrouchMove": "Crouch", 
-	"IdleAttack": "Attack", 
+	"IdleAttack": "MoveAttack", 
 	"CrouchAttack": "IdleAttack", 
-	"MoveAttack": "IdleAttack", 
+	"MoveAttack": "Attack", 
 	"WalkAttack": "MoveAttack", 
 	"RunAttack": "MoveAttack", 
 	"SkidAttack": "MoveAttack",
@@ -170,7 +170,7 @@ const ANIMATION_FALLBACKS := {
 	"SwimBump": "Bump",
 	"DieFreeze": "Die",
 	"StarJump": "Jump",
-	"StarFall": "StarJump"
+	"StarFall": "JumpFall"
 }
 
 var palette_transform := true
@@ -796,7 +796,7 @@ func hide_pipe_animation() -> void:
 func go_to_exit_pipe(pipe: PipeArea) -> void:
 	Global.can_time_tick = false
 	pipe_enter_direction = Vector2.ZERO
-	state_machine.transition_to("Pipe")
+	state_machine.transition_to("Freeze")
 	global_position = pipe.global_position + (pipe.get_vector(pipe.enter_direction) * 32)
 	if pipe.enter_direction == 1:
 		global_position = pipe.global_position + Vector2(0, -8)

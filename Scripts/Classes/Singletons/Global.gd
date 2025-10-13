@@ -245,6 +245,10 @@ func _process(delta: float) -> void:
 		AudioManager.current_level_theme = ""
 		level_theme_changed.emit()
 		log_comment("Reloaded resource packs!")
+	
+	if Input.is_action_just_pressed("toggle_fps_count"):
+		%FPSCount.visible = !%FPSCount.visible
+	%FPSCount.text = str(int(Engine.get_frames_per_second())) + " FPS"
 
 	handle_p_switch(delta)
 	if Input.is_key_label_pressed(KEY_F11) and debug_mode == false and OS.is_debug_build():

@@ -7,6 +7,7 @@ var selected_index := 0
 
 var active := false
 
+@export var can_exit := true
 @export var is_pause := true
 
 signal option_1_selected
@@ -30,7 +31,7 @@ func handle_inputs() -> void:
 	selected_index = clamp(selected_index, 0, options.size() - 1)
 	if Input.is_action_just_pressed("ui_accept"):
 		option_selected()
-	elif Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("ui_back"):
+	elif (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("ui_back")) and can_exit:
 		close()
 
 func option_selected() -> void:

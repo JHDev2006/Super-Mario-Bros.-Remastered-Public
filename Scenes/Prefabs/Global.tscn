@@ -308,6 +308,20 @@ libraries = {
 [node name="GameHUD" parent="." instance=ExtResource("1_ctvpw")]
 layer = 1
 
+[node name="FPSCount" type="Label" parent="GameHUD"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "120FPS"
+horizontal_alignment = 2
+
 [node name="ScoreTally" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vjpdy")
 bus = &"SFX"
@@ -428,7 +442,7 @@ metadata/_custom_type_script = "uid://ctsjagoa5t33f"
 
 [node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
 script = ExtResource("19_l7dvb")
-labels = [NodePath("../CanvasLayer/VBoxContainer/ErrorMessage"), NodePath("../CanvasLayer/VBoxContainer/Comment"), NodePath("../CanvasLayer/VBoxContainer/Warning")]
+labels = [NodePath("../CanvasLayer/VBoxContainer/ErrorMessage"), NodePath("../CanvasLayer/VBoxContainer/Comment"), NodePath("../CanvasLayer/VBoxContainer/Warning"), NodePath("../GameHUD/FPSCount")]
 metadata/_custom_type_script = "uid://dt2p68xl462v2"
 
 [connection signal="finished" from="ScoreTally" to="." method="on_score_sfx_finished"]
