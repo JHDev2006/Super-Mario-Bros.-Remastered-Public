@@ -37,6 +37,15 @@ A Remake / Celebration of the original 'Super Mario Bros.' games. Features new l
 5. Extract, drag into the 'Applictions' folder and run
 6. Enjoy!
 
+### Android (Unofficial)
+1. Go to the [Android repo](https://github.com/mircey/super-mario-bros.-remastered-android/releases)
+2. (NOTE: THIS IS AN UNOFFICIAL FORK OF THE GAME)
+3. Look for the latest version
+4. Download the .apk file
+5. Run the apk file to install
+6. Run newly installed app
+7. Enjoy!
+
 ## Importing for editing
 1. Download the source
 2. Download Godot 4.5 beta 3
