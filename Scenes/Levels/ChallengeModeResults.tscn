@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://blv1d12smlibh"]
+[gd_scene load_steps=64 format=3 uid="uid://blv1d12smlibh"]
 
 [ext_resource type="Script" uid="uid://bqhrq7sabq811" path="res://Scripts/UI/ChallengeModeResults.gd" id="1_3x4fv"]
 [ext_resource type="Texture2D" uid="uid://116yaio262mj" path="res://Assets/Sprites/UI/ChallengeResultsTemplate.png" id="3_um36a"]
@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://de6otencrflfo" path="res://Assets/Sprites/UI/RedCoins.png" id="10_d76il"]
 [ext_resource type="Texture2D" uid="uid://wx6yyqabrelf" path="res://Assets/Sprites/UI/ChallengeResultsPanel.png" id="11_02i7h"]
 [ext_resource type="AudioStream" uid="uid://n07ty0sc76em" path="res://Assets/Audio/SFX/ChallengeModeGive.mp3" id="11_nym8o"]
+[ext_resource type="JSON" path="res://Assets/Audio/BGM/ChallengeResults.json" id="12_fb45j"]
+[ext_resource type="AudioStream" uid="uid://dhiy4bmyu3j0r" path="res://Assets/Audio/BGM/ChallengeEnd.mp3" id="12_x7w5s"]
+[ext_resource type="JSON" path="res://Assets/Audio/BGM/ChallengeEnd.json" id="12_y63tt"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/ToadNPC.json" id="14_sv6qk"]
 [ext_resource type="Texture2D" uid="uid://cxtan2ap83u3d" path="res://Assets/Sprites/UI/ChallengeMedals.png" id="14_woqpu"]
 [ext_resource type="Texture2D" uid="uid://c7jq6t1d2mhur" path="res://Assets/Sprites/Items/YoshiEgg.png" id="16_1h3k2"]
@@ -33,11 +36,6 @@
 [ext_resource type="PackedScene" uid="uid://jv82ssp7gwn4" path="res://Scenes/Prefabs/UI/ChallengeModeEnd.tscn" id="31_1l20f"]
 [ext_resource type="PackedScene" uid="uid://dntk2js0tu3y2" path="res://Scenes/Prefabs/UI/WorldSelect.tscn" id="32_xk7j8"]
 [ext_resource type="PackedScene" uid="uid://bsfkt344e6j38" path="res://Scenes/Prefabs/UI/LevelSelectNew.tscn" id="33_x7w5s"]
-
-[sub_resource type="Resource" id="Resource_cq5a1"]
-script = ExtResource("10_bylb3")
-Overworld = ExtResource("7_6dwpv")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="Animation" id="Animation_6dwpv"]
 resource_name = "Main"
@@ -765,18 +763,29 @@ metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
 script = ExtResource("7_bob8r")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-process_mode = 3
+[node name="ChallengeResults" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_6dwpv")
-autoplay = true
 bus = &"Music"
 
-[node name="ResourceSetter" type="Node" parent="Music" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("9_iyieq")
+[node name="ResourceSetterNew" type="Node" parent="ChallengeResults" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_cq5a1")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("12_fb45j")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ChallengeEnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_x7w5s")
+bus = &"Music"
+
+[node name="ResourceSetterNew" type="Node" parent="ChallengeEnd" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("7_bob8r")
+node_to_affect = NodePath("..")
+property_name = "stream"
+mode = 2
+resource_json = ExtResource("12_y63tt")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="MainSequence" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1067,7 +1076,7 @@ metadata/_custom_type_script = "uid://364rywt44hy6"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("31_1l20f")]
-visible = false
+can_exit = false
 
 [node name="WorldSelect" parent="CanvasLayer" instance=ExtResource("32_xk7j8")]
 visible = false
@@ -1098,7 +1107,6 @@ grow_horizontal = 2
 grow_vertical = 2
 has_challenge_stuff = true
 
-[connection signal="sprites_updated" from="Music/ResourceSetter" to="Music" method="play"]
 [connection signal="option_1_selected" from="CanvasLayer/PauseMenu" to="." method="retry_level"]
 [connection signal="option_2_selected" from="CanvasLayer/PauseMenu" to="CanvasLayer/PauseMenu" method="close"]
 [connection signal="option_2_selected" from="CanvasLayer/PauseMenu" to="CanvasLayer/WorldSelect" method="open"]
