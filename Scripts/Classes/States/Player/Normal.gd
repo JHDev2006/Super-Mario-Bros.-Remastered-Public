@@ -235,7 +235,7 @@ func get_animation_name() -> String:
 			if player.in_water:
 				return "WaterMove"
 			elif player.flight_meter > 0:
-				return "FlyMove"
+				return "WingMove"
 			elif abs(player.velocity.x) < player.RUN_SPEED - 10:
 				return "Walk"
 			else:
