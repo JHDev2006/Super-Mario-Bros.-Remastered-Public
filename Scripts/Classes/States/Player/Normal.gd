@@ -209,6 +209,8 @@ func get_animation_name() -> String:
 				return "FlyAttack"
 			else:
 				return "AirAttack"
+	if player.kicking and player.can_kick_anim:
+		return "Kick"
 	if player.crouching and not wall_pushing:
 		if player.bumping and player.can_bump_crouch:
 			return "CrouchBump"
