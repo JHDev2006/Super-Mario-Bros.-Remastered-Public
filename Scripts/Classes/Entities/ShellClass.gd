@@ -94,6 +94,7 @@ func kick(hit_player: Player) -> void:
 	DiscoLevel.combo_meter += 25
 	moving = true
 	moving_time = 0.0
+	hit_player.kick_anim()
 	if can_air_kick:
 		$ScoreNoteSpawner.spawn_note(8000)
 	else:
