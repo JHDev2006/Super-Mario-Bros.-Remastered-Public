@@ -74,6 +74,9 @@ var can_bump_crouch = false
 var can_bump_swim = false
 var can_bump_fly = false
 
+var kicking = false
+var can_kick_anim = false
+
 @export var player_id := 0
 const ONE_UP_NOTE = preload("uid://dopxwjj37gu0l")
 var gravity := FALL_GRAVITY
@@ -453,6 +456,11 @@ func bump_ceiling() -> void:
 	await get_tree().create_timer(0.1).timeout
 	bumping = false
 
+func kick_anim() -> void:
+	kicking = true
+	await get_tree().create_timer(0.2).timeout
+	kicking = false
+
 func super_star() -> void:
 	DiscoLevel.combo_meter += 1
 	is_invincible = true
@@ -675,6 +683,7 @@ func set_power_state_frame() -> void:
 		can_bump_crouch = %Sprite.sprite_frames.has_animation("CrouchBump")
 		can_bump_swim = %Sprite.sprite_frames.has_animation("SwimBump")
 		can_bump_fly = %Sprite.sprite_frames.has_animation("FlyBump")
+		can_kick_anim = %Sprite.sprite_frames.has_animation("Kick")
 
 func get_power_up(power_name := "") -> void:
 	if is_dead:
