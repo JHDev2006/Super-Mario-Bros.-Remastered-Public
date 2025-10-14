@@ -52,6 +52,7 @@ var input_direction := 0
 var flight_meter := 0.0
 
 var velocity_direction := 1
+var velocity_x_jump_stored := 0
 
 var total_keys := 0
 
@@ -177,6 +178,9 @@ const ANIMATION_FALLBACKS := {
 	"FlyIdle": "SwimIdle",
 	"SwimBump": "Bump",
 	"DieFreeze": "Die",
+	"RunJump": "Jump",
+	"RunJumpFall": "JumpFall",
+	"RunJumpBump": "JumpBump",
 	"StarJump": "Jump",
 	"StarFall": "JumpFall"
 }
@@ -835,6 +839,7 @@ func jump() -> void:
 	if spring_bouncing:
 		return
 	velocity.y = calculate_jump_height() * gravity_vector.y
+	velocity_x_jump_stored = velocity.x
 	gravity = JUMP_GRAVITY
 	AudioManager.play_sfx("small_jump" if power_state.hitbox_size == "Small" else "big_jump", global_position)
 	has_jumped = true

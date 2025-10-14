@@ -222,12 +222,12 @@ func get_animation_name() -> String:
 		elif player.is_actually_on_floor():
 			if abs(player.velocity.x) >= 5 and not player.is_actually_on_wall():
 				return "CrouchMove"
-		elif player.in_water:
-			return "WaterCrouch"
-		elif player.flight_meter > 0:
-			return "WingCrouch"
-		else:
-			return "Crouch"
+			elif player.in_water:
+				return "WaterCrouch"
+			elif player.flight_meter > 0:
+				return "WingCrouch"
+			else:
+				return "Crouch"
 	if player.is_actually_on_floor():
 		if player.skidding:
 			return "Skid"
@@ -274,15 +274,24 @@ func get_animation_name() -> String:
 				return "FlyIdle"
 		if player.has_jumped:
 			if player.bumping and player.can_bump_jump:
-				return "JumpBump"
+				if abs(player.velocity_x_jump_stored) < player.RUN_SPEED - 10:
+					return "RunJumpBump"
+				else:
+					return "JumpBump"
 			elif player.velocity.y < 0:
 				if player.is_invincible:
 					return "StarJump"
-				return "Jump"
+				elif abs(player.velocity_x_jump_stored) < player.RUN_SPEED - 10:
+					return "RunJump"
+				else:
+					return "Jump"
 			else:
 				if player.is_invincible:
 					return "StarFall"
-				return "JumpFall"
+				elif abs(player.velocity_x_jump_stored) < player.RUN_SPEED - 10:
+					return "RunJumpFall"
+				else:
+					return "JumpFall"
 		else:
 			# guzlad: Fixes characters with fall anims not playing them, but also prevents old characters without that anim not being accurate
 			if !player.sprite.sprite_frames.has_animation("Fall"):
