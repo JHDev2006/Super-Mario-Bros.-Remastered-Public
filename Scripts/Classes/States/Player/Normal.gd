@@ -220,7 +220,12 @@ func get_animation_name() -> String:
 		elif player.is_actually_on_floor():
 			if abs(player.velocity.x) >= 5 and not player.is_actually_on_wall():
 				return "CrouchMove"
-		return "Crouch"
+		elif player.in_water:
+			return "WaterCrouch"
+		elif player.flight_meter > 0:
+			return "WingCrouch"
+		else:
+			return "Crouch"
 	if player.is_actually_on_floor():
 		if player.skidding:
 			return "Skid"
@@ -234,11 +239,20 @@ func get_animation_name() -> String:
 			else:
 				return "Run"
 		else:
-			if player.in_water or player.flight_meter > 0:
-				return "WaterIdle"
 			if Global.player_action_pressed("move_up", player.player_id):
-				return "LookUp"
-			return "Idle"
+				if player.in_water:
+					return "WaterLookUp"
+				elif player.flight_meter > 0:
+					return "WingLookUp"
+				else:
+					return "LookUp"
+			else:
+				if player.in_water:
+					return "WaterIdle"
+				elif player.flight_meter > 0:
+					return "WingIdle"
+				else:
+					return "Idle"
 	else:
 		if player.in_water:
 			if swim_up_meter > 0:
