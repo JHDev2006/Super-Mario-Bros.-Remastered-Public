@@ -263,6 +263,10 @@ func take_screenshot() -> void:
 	var img: Image = get_viewport().get_texture().get_image()
 	var filename = Global.config_path.path_join("screenshots/screenshot_" + str(int(Time.get_unix_time_from_system())) + ".png")
 	var err = img.save_png(filename)
+	if !err:
+		log_comment("Screenshot Saved!")
+	else:
+		log_error(error_string(err))
 
 func handle_p_switch(delta: float) -> void:
 	if p_switch_active and get_tree().paused == false:
