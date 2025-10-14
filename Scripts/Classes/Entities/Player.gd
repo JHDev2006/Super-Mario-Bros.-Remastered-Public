@@ -270,6 +270,7 @@ func _physics_process(delta: float) -> void:
 		set_power_state_frame()
 	if Input.is_action_just_pressed("debug_noclip") and Global.debug_mode:
 		state_machine.transition_to("NoClip")
+		Global.log_comment("NOCLIP Enabled")
 	up_direction = -gravity_vector
 	handle_directions()
 	handle_block_collision_detection()

@@ -45,9 +45,3 @@ script = SubResource("GDScript_k4rkm")
 [connection signal="option_2_selected" from="." to="Handler" method="restart_run"]
 [connection signal="option_4_selected" from="." to="." method="close"]
 [connection signal="option_4_selected" from="." to="Handler" method="quit_to_menu"]
-
-[editable path="SettingsMenu"]
-[editable path="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Video/Language"]
-[editable path="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode"]
-[editable path="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2"]
-[editable path="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3"]
