@@ -112,6 +112,11 @@ func load_settings() -> void:
 	for section in cfg_file.get_sections():
 		for key in cfg_file.get_section_keys(section):
 			file[section][key] = cfg_file.get_value(section, key)
+	fix_broken_settings()
+
+func fix_broken_settings() -> void:
+	for i in range(file.visuals.resource_packs.size()):
+		file.visuals.resource_packs[i] = str(file.visuals.resource_packs[i]).trim_prefix("/")
 
 func apply_settings() -> void:
 	for i in file.video.keys():
