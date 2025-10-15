@@ -309,6 +309,8 @@ process_mode = 3
 script = SubResource("GDScript_ofvpu")
 
 [connection signal="timeout" from="Timer" to="." method="on_timeout"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]

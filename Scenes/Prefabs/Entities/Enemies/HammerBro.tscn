@@ -313,6 +313,8 @@ metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
 [connection signal="timeout" from="JumpTimer" to="." method="jump" binds= [false]]
 [connection signal="timeout" from="HammerTimer" to="." method="do_hammer_throw"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]

@@ -164,6 +164,8 @@ metadata/_custom_type_script = "uid://maqpreddu5kg"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
 [connection signal="killed" from="." to="LevelPersistance" method="set_as_active" unbinds=1]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [100]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]

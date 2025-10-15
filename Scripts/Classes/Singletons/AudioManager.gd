@@ -38,6 +38,7 @@ const DEFAULT_SFX_LIBRARY := {
 	"firework": "res://Assets/Audio/SFX/Firework.wav",
 	"timer_beep": "res://Assets/Audio/SFX/TimerBeep.wav",
 	"hachisuke": "res://Assets/Audio/SFX/Hachisuke.wav",
+	"hammer_hit": "res://Assets/Audio/SFX/HammerHit.wav",
 	"burner": "res://Assets/Audio/SFX/Burner.wav",
 	"rank_up_1": "res://Assets/Audio/SFX/RankUpCBA.wav",
 	"rank_up_2": "res://Assets/Audio/SFX/RankUpSP.wav",

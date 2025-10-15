@@ -318,6 +318,7 @@ func _process(delta: float) -> void:
 	if is_invincible:
 		DiscoLevel.combo_meter = 100
 	%Hammer.visible = has_hammer
+	%HammerHitbox.collision_layer = has_hammer
 
 func apply_gravity(delta: float) -> void:
 	if in_water or flight_meter > 0:
@@ -873,9 +874,6 @@ func hammer_get() -> void:
 	has_hammer = true
 	$HammerTimer.start()
 	AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.HAMMER, 0, false)
-
-func on_hammer_area_entered(area: Area2D) -> void:
-	pass
 
 func wing_get() -> void:
 	AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.WING, 0, false, false)

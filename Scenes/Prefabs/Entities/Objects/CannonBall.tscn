@@ -52,6 +52,7 @@ metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 script = ExtResource("5_il73j")
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="GibSpawner" method="stomp_die"]
