@@ -43,15 +43,7 @@ func give_points(player: Player) -> void:
 	var value = clamp(int(lerp(0, 4, (player.global_position.y / -144))), 0, 4)
 	var nearest_value = FLAG_POINTS[value]
 	$Score.text = str(nearest_value)
-	
-	var can_earn_one_up = (
-		Settings.file.difficulty.flagpole_lives
-		and Global.current_game_mode != Global.GameMode.CHALLENGE
-		and Global.current_game_mode != Global.GameMode.BOO_RACE
-		and not Settings.file.difficulty.inf_lives
-	)
-	
-	if nearest_value == 5000 and can_earn_one_up:
+	if nearest_value == 5000 and Settings.file.difficulty.flagpole_lives and not [Global.GameMode.CHALLENGE, Global.GameMode.BOO_RACE].has(Global.current_game_mode) and not Settings.file.difficulty.inf_lives:
 		AudioManager.play_sfx("1_up", global_position)
 		Global.lives += 1
 		$ScoreNoteSpawner.spawn_one_up_note()
