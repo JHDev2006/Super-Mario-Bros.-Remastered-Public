@@ -26,6 +26,8 @@ func _process(_delta: float) -> void:
 	get_parent().visible = percent < 1 and Settings.file.visuals.visible_timers
 	frame = lerp(0, 6, percent)
 	if percent >= warn_threshold and Settings.file.audio.extra_sfx == 1:
+		if node is Timer:
+			if node.is_stopped(): return
 		if can_warn:
 			can_warn = false
 			AudioManager.play_global_sfx("timer_warning")

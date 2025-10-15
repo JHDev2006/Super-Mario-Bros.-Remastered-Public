@@ -29,6 +29,7 @@ func _process(_delta: float) -> void:
 		go_to_menu()
 
 func go_to_menu() -> void:
+	ResourceGenerator.updating = true
 	if Global.rom_path == "":
 		Global.transition_to_scene("res://Scenes/Levels/RomVerifier.tscn")
 	elif not Global.rom_assets_exist:

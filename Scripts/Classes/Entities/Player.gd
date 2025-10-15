@@ -52,6 +52,7 @@ var input_direction := 0
 var flight_meter := 0.0
 
 var velocity_direction := 1
+var velocity_x_jump_stored := 0
 
 var total_keys := 0
 
@@ -73,6 +74,9 @@ var can_bump_jump = false
 var can_bump_crouch = false
 var can_bump_swim = false
 var can_bump_fly = false
+
+var kicking = false
+var can_kick_anim = false
 
 @export var player_id := 0
 const ONE_UP_NOTE = preload("uid://dopxwjj37gu0l")
@@ -148,7 +152,11 @@ const ANIMATION_FALLBACKS := {
 	"Run": "Move", 
 	"PipeWalk": "Walk", 
 	"LookUp": "Idle", 
+	"WaterLookUp": "LookUp", 
+	"WingLookUp": "WaterLookUp", 
 	"Crouch": "Idle",
+	"WaterCrouch": "Crouch",
+	"WingCrouch": "WaterCrouch",
 	"CrouchFall": "Crouch", 
 	"CrouchJump": "Crouch", 
 	"CrouchBump": "Bump",
@@ -159,16 +167,20 @@ const ANIMATION_FALLBACKS := {
 	"WalkAttack": "MoveAttack", 
 	"RunAttack": "MoveAttack", 
 	"SkidAttack": "MoveAttack",
-	"FlyIdle": "SwimIdle",
+	"WingIdle": "WaterIdle",
 	"FlyUp": "SwimUp",
-	"FlyMove": "SwimMove",
+	"WingMove": "SwimMove",
 	"FlyAttack": "SwimAttack",
 	"FlyBump": "SwimBump",
 	"FlagSlide": "Climb",
 	"WaterMove": "Move",
 	"WaterIdle": "Idle",
+	"FlyIdle": "SwimIdle",
 	"SwimBump": "Bump",
 	"DieFreeze": "Die",
+	"RunJump": "Jump",
+	"RunJumpFall": "JumpFall",
+	"RunJumpBump": "JumpBump",
 	"StarJump": "Jump",
 	"StarFall": "JumpFall"
 }
@@ -449,6 +461,11 @@ func bump_ceiling() -> void:
 	await get_tree().create_timer(0.1).timeout
 	bumping = false
 
+func kick_anim() -> void:
+	kicking = true
+	await get_tree().create_timer(0.2).timeout
+	kicking = false
+
 func super_star() -> void:
 	DiscoLevel.combo_meter += 1
 	is_invincible = true
@@ -671,6 +688,7 @@ func set_power_state_frame() -> void:
 		can_bump_crouch = %Sprite.sprite_frames.has_animation("CrouchBump")
 		can_bump_swim = %Sprite.sprite_frames.has_animation("SwimBump")
 		can_bump_fly = %Sprite.sprite_frames.has_animation("FlyBump")
+		can_kick_anim = %Sprite.sprite_frames.has_animation("Kick")
 
 func get_power_up(power_name := "") -> void:
 	if is_dead:
@@ -822,6 +840,7 @@ func jump() -> void:
 	if spring_bouncing:
 		return
 	velocity.y = calculate_jump_height() * gravity_vector.y
+	velocity_x_jump_stored = velocity.x
 	gravity = JUMP_GRAVITY
 	AudioManager.play_sfx("small_jump" if power_state.hitbox_size == "Small" else "big_jump", global_position)
 	has_jumped = true
