@@ -33,7 +33,7 @@ func handle_movement(delta: float) -> void:
 
 func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player:
-		if area.owner.is_invincible or area.name == "HammerHitbox": # todo: can we make killing boos better?
+		if area.owner.is_invincible or area.name == "HammerHitbox":
 			die()
 		else:
 			area.owner.damage()
