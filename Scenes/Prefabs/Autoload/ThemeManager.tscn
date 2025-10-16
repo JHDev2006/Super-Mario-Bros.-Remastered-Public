@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d12nbi3tr2jmu"]
+
+[ext_resource type="Script" uid="uid://uwwce2eoloan" path="res://Scripts/Classes/Singletons/ThemeManager.gd" id="1_67s3l"]
+[ext_resource type="JSON" path="res://Assets/themes.json" id="2_m5c6a"]
+
+[node name="ThemeManager" type="Node" node_paths=PackedStringArray("node_to_affect", "property_node")]
+script = ExtResource("1_67s3l")
+node_to_affect = NodePath(".")
+property_node = NodePath(".")
+property_name = "current_json"
+mode = 3
+resource_json = ExtResource("2_m5c6a")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[connection signal="updated" from="." to="." method="on_updated"]
