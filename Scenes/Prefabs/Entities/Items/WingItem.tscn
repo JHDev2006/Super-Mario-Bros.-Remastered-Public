@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://ck0spcws71sg5"]
+[gd_scene load_steps=9 format=3 uid="uid://ck0spcws71sg5"]
 
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="1_fcvyr"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_gjj3y"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="2_neobf"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/WingItem.json" id="3_1uenh"]
 [ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="3_143ya"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="4_gdso8"]
@@ -10,10 +9,13 @@
 [sub_resource type="GDScript" id="GDScript_gdso8"]
 script/source = "extends PowerUpItem
 
-func player_entered(player: Player) -> void:
-	AudioManager.play_sfx(\"power_up\", global_position)
-	player.wing_get()
-	queue_free()
+func on_area_entered(area: Area2D) -> void:
+	if area.owner is Player:
+		AudioManager.play_sfx(\"power_up\", global_position)
+		Global.score += 1000
+		$ScoreNoteSpawner.spawn_note(1000)
+		area.owner.wing_get()
+		queue_free()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcvyr"]
@@ -42,8 +44,6 @@ resource_json = ExtResource("3_1uenh")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="."]
-script = ExtResource("2_neobf")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -8)
@@ -62,5 +62,4 @@ script = ExtResource("4_gdso8")
 add_score = true
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
-[connection signal="player_entered" from="Hitbox" to="." method="player_entered"]
-[connection signal="player_entered" from="Hitbox" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]

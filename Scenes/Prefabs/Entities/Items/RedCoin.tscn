@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmbpqnq10arts"]
+[gd_scene load_steps=17 format=3 uid="uid://cmbpqnq10arts"]
 
 [ext_resource type="Script" uid="uid://xwq5ac650e76" path="res://Scripts/Classes/Entities/Items/RedCoin.gd" id="1_c6tmk"]
 [ext_resource type="Texture2D" uid="uid://c8wpxm7b5tgiq" path="res://Assets/Sprites/Items/RedCoin.png" id="2_lwdcj"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_0r8d3"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_0xloa"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_onh0k"]
 [ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="4_lwdcj"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/RedCoin.json" id="5_0fjrw"]
 
@@ -103,8 +102,6 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 5
-script = ExtResource("3_onh0k")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 1.5)
@@ -113,8 +110,8 @@ shape = SubResource("RectangleShape2D_4qu2r")
 [node name="BlockBouncingDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("4_lwdcj")
 detection_type = 1
-hitbox = NodePath("../Hitbox")
+hitbox = NodePath("")
 metadata/_custom_type_script = "uid://cmg61722ktg2m"
 
-[connection signal="player_entered" from="Hitbox" to="." method="on_player_entered"]
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="summon_bounced_coin" unbinds=1]

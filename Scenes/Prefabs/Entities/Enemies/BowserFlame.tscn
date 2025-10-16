@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://blbarreyjem4l"]
+[gd_scene load_steps=11 format=3 uid="uid://blbarreyjem4l"]
 
 [ext_resource type="Texture2D" uid="uid://t5lgshoxlohe" path="res://Assets/Sprites/Items/BowserFlame.png" id="1_4hwux"]
 [ext_resource type="Script" uid="uid://btstbvjk6e6aw" path="res://Scripts/Classes/Entities/Enemies/BowserFlame.gd" id="1_dq7qg"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_ktnk0"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_ktnk0"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/BowserFlame.json" id="5_0e5kh"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="6_0e5kh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iikig"]
 atlas = ExtResource("1_4hwux")
@@ -31,11 +32,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ohhuu"]
 size = Vector2(12, 4)
 
-[node name="BowserFlame" type="Node2D" groups=["Enemies"]]
+[node name="BowserFlame" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_dq7qg")
+metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(-1, 1)
+rotation = -3.1415927
+scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_oy8b6")
 autoplay = "default"
 frame_progress = 0.67141116
@@ -60,6 +63,12 @@ shape = SubResource("RectangleShape2D_ohhuu")
 position = Vector2(-2.38419e-07, 0)
 scale = Vector2(1.6, 1)
 
-[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("6_0e5kh")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="play_sfx"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="queue_free"]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
