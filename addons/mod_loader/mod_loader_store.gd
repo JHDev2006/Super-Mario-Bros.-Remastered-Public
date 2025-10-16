@@ -15,7 +15,7 @@ extends Node
 const MODLOADER_VERSION := "7.0.1"
 
 # This is where mod ZIPs are unpacked to
-const UNPACKED_DIR := "user://mods-unpacked/"
+const UNPACKED_DIR := "res://mods-unpacked/"
 
 # Default name for the mod hook pack
 const MOD_HOOK_PACK_NAME := "mod-hooks.zip"

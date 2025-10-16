@@ -10,6 +10,4 @@ func _ready() -> void:
 	pass
 
 func  _process(_delta) -> void:
-	pass
-	# Moved to Global.gd
-	# DiscordRPC.run_callbacks()
+	DiscordRPC.run_callbacks()
