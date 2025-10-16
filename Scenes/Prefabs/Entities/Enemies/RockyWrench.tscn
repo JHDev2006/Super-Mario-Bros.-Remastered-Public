@@ -1,11 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://c3m38c2skawpj"]
+[gd_scene load_steps=34 format=3 uid="uid://c3m38c2skawpj"]
 
 [ext_resource type="Script" uid="uid://bfsh8bhcmknkh" path="res://Scripts/Classes/Entities/Enemies/RockyWrench.gd" id="1_pl7bt"]
 [ext_resource type="Texture2D" uid="uid://bfora2lrmtyj4" path="res://Assets/Sprites/Enemies/RockyWrench.png" id="2_8y80u"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_4h1b4"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_wom81"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RockyWrench.json" id="4_pl7bt"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="5_4h1b4"]
 [ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="5_8y80u"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="7_pl7bt"]
 [ext_resource type="Texture2D" uid="uid://cop8x5m20cqal" path="res://Assets/Sprites/Items/WrenchProjectile.png" id="7_w66sd"]
@@ -294,8 +293,6 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="StompHitbox" type="Area2D" parent="Sprite"]
 position = Vector2(0, -11)
-script = ExtResource("5_4h1b4")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/StompHitbox"]
 position = Vector2(0, 2.5)
