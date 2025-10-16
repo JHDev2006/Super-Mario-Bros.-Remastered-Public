@@ -21,5 +21,5 @@ func flag_die() -> void:
 	queue_free()
 
 func on_area_entered(area: Area2D) -> void:
-	if area.owner is Player:
+	if area.owner is Player and area.name != "HammerHitbox":
 		area.owner.damage()

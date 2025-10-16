@@ -14,5 +14,5 @@ func on_body_entered(body: Node2D) -> void:
 
 
 func on_area_entered(area: Area2D) -> void:
-	if area.owner is Player:
+	if area.owner is Player and area.name != "HammerHitbox":
 		area.owner.damage()

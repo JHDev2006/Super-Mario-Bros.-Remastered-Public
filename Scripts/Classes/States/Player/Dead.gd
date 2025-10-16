@@ -13,7 +13,7 @@ func enter(msg := {}) -> void:
 		player.set_collision_mask_value(i + 1, false)
 	player.gravity = player.JUMP_GRAVITY
 	if msg["Pit"] == false: 
-		player.velocity.y = -player.DEATH_JUMP_HEIGHT
+		player.velocity.y = -player.DEATH_JUMP_HEIGHT * player.gravity_vector.y # nabbup : Flip death gravity when upside down
 
 func physics_update(delta: float) -> void:
 	if can_fall:
@@ -22,8 +22,9 @@ func physics_update(delta: float) -> void:
 		player.play_animation("DieFreeze")
 	player.sprite.speed_scale = 1
 	if can_fall:
-		player.velocity.y += (player.JUMP_GRAVITY / delta) * delta
-		player.velocity.y = clamp(player.velocity.y, -INF, player.MAX_FALL_SPEED)
+		# nabbup : Flip death gravity when upside down
+		player.velocity.y += (player.JUMP_GRAVITY / delta) * delta * player.gravity_vector.y
+		player.velocity.y = clamp(player.velocity.y, -player.MAX_FALL_SPEED, player.MAX_FALL_SPEED) # wish this could be better than just substituting -INF but you can't win em all ~ nabbup
 		player.move_and_slide()
 		if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("jump_0"):
 			player.death_load()

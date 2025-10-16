@@ -19,6 +19,7 @@ func _ready() -> void:
 	coin_medal = int(ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1]) & 0b011111 == 0b011111
 	score_medal = ChallengeModeHandler.top_challenge_scores[Global.world_num -1][Global.level_num - 1] >= ChallengeModeHandler.CHALLENGE_TARGETS[Global.current_campaign][Global.world_num -1][Global.level_num -1]
 	yoshi_medal = ChallengeModeHandler.is_coin_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG, ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1])
+	$ChallengeResults.play()
 	setup_results()
 
 func _process(_delta: float) -> void:
@@ -26,10 +27,9 @@ func _process(_delta: float) -> void:
 		can_exit = false
 		exiting = true
 		save_results()
-		$Music.stop()
-		$Music.stream = preload("res://Assets/Audio/BGM/ChallengeEnd.mp3")
-		$Music.play()
-		await $Music.finished
+		$ChallengeResults.stop()
+		$ChallengeEnd.play()
+		await $ChallengeEnd.finished
 		open_menu()
 	Engine.time_scale = 5 if Input.is_action_pressed("jump_0") and can_exit == false and exiting == false else 1
 

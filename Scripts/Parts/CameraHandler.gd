@@ -26,6 +26,11 @@ const SCROLL_DIFFERENCE := 48.0
 
 var can_diff := true
 
+static var sp_screen_scroll := false
+static var sp_scroll_style := 1
+
+var sp_scrolling := false
+
 func _exit_tree() -> void:
 	cam_locked = false
 
@@ -45,9 +50,12 @@ func handle_camera(delta: float) -> void:
 		return
 	
 	if not cam_locked:
-		handle_horizontal_scrolling(delta)
-		handle_vertical_scrolling(delta)
-		handle_offsets(delta)
+		if not sp_screen_scroll:
+			handle_horizontal_scrolling(delta)
+			handle_vertical_scrolling(delta)
+			handle_offsets(delta)
+		else:
+			handle_sp_scrolling()
 	
 	do_limits()
 	camera.global_position = camera_position + camera_offset
@@ -106,6 +114,31 @@ func handle_vertical_scrolling(_delta: float) -> void:
 		camera_position.y = global_position.y + 64
 	elif global_position.y > camera_position.y + 32:
 		camera_position.y = global_position.y - 32
+
+func handle_sp_scrolling() -> void:
+	var distance = camera_position.x - owner.global_position.x
+	var limit = get_viewport().get_visible_rect().size.x / 2 - 16
+	if abs(distance) > limit:
+		do_sp_scroll(sign(owner.global_position.x - camera_position.x))
+
+func do_sp_scroll(direction := 1) -> void:
+	if sp_scrolling: return
+	sp_scrolling = true
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().paused = true
+	var distance = get_viewport().get_visible_rect().size.x - 32
+	if sp_scroll_style == 0:
+		var tween = create_tween()
+		tween.tween_property(self, "camera_position:x", camera_position.x + (distance * direction), 1)
+		await tween.finished
+	else:
+		Global.get_node("Transition").show()
+		await get_tree().create_timer(0.5).timeout
+		camera_position.x += distance * direction
+		await get_tree().create_timer(0.5).timeout
+		Global.get_node("Transition").hide()
+	sp_scrolling = false
+	get_tree().paused = false
 
 func tween_ahead() -> void:
 	if scrolling == false: return

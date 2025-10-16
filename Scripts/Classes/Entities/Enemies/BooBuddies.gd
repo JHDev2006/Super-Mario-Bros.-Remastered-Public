@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 		i.get_node("Sprite").scale.x = sign(get_tree().get_first_node_in_group("Players").global_position.x + 1 - i.global_position.x)
 	
 func on_area_entered(area: Area2D) -> void:
-	if area.owner is Player:
+	if area.owner is Player and area.name != "HammerHitbox":
 		area.owner.damage()
 
 func flag_die() -> void:

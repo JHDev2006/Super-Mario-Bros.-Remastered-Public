@@ -43,7 +43,7 @@ func on_area_entered(area: Area2D) -> void:
 		if area.owner.has_node("ShellDetection"):
 			area.owner.die_from_object(self)
 	elif area.owner is Player:
-		if area.owner.is_invincible:
+		if area.owner.is_invincible or area.name == "HammerHitbox":
 			destroy()
 		else:
 			area.owner.damage()

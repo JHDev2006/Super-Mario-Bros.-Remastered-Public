@@ -59,7 +59,10 @@ func frame_limit_changed(new_value := 0) -> void:
 	Engine.max_fps = new_framerate
 	Settings.file.video.frame_limit = new_value
 
-func set_value(value_name := "", value := 0) -> void:
+func set_window_size(value := []) -> void:
+	get_window().size = Vector2(value[0], value[1])
+
+func set_value(value_name := "", value = null) -> void:
 	{
 		"mode": window_mode_changed,
 		"size": window_size_changed,
@@ -71,4 +74,5 @@ func set_value(value_name := "", value := 0) -> void:
 		"hud_size": hud_style_changed,
 		"hud_style": hud_style_changed,
 		"frame_limit": frame_limit_changed,
+		"window_size": set_window_size
 	}[value_name].call(value)

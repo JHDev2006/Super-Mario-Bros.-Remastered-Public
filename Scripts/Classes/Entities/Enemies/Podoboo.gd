@@ -53,3 +53,8 @@ func flag_die() -> void:
 func die() -> void:
 	killed.emit()
 	queue_free()
+
+func die_from_hammer() -> void:
+	AudioManager.play_sfx("hammer_hit", global_position)
+	killed.emit()
+	queue_free()

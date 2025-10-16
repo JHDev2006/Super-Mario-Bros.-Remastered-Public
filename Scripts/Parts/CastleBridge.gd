@@ -70,10 +70,11 @@ func bridge_piece_fall(node: Node2D) -> void:
 const BRIDGE_DESTRUCTION_PARTICLE = preload("uid://cwfjdgsyh35h6")
 
 func bridge_piece_break(node: Node2D) -> void:
-	var particle = BRIDGE_DESTRUCTION_PARTICLE.instantiate()
-	particle.global_position = node.global_position
-	particle.process_mode = Node.PROCESS_MODE_ALWAYS
-	add_sibling(particle)
+	if Settings.file.visuals.extra_particles == 1:
+		var particle = BRIDGE_DESTRUCTION_PARTICLE.instantiate()
+		particle.global_position = node.global_position
+		particle.process_mode = Node.PROCESS_MODE_ALWAYS
+		add_sibling(particle)
 	node.modulate.a = 0
 
 func _physics_process(delta: float) -> void:

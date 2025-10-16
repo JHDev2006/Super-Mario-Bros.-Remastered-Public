@@ -15,6 +15,7 @@ func physics_update(_delta: float) -> void:
 	player.move_and_slide()
 	if Input.is_action_just_pressed("jump_0"):
 		state_machine.transition_to("Normal")
+		Global.log_comment("NOCLIP Disabled")
 
 func exit() -> void:
 	player.can_hurt = false

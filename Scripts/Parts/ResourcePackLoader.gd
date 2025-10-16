@@ -36,7 +36,7 @@ func create_container(resource_pack := "") -> void:
 		container.icon = ImageTexture.create_from_image(image)
 	elif FileAccess.file_exists(resource_pack + "/icon.gif"):
 		container.icon = GifManager.animated_texture_from_file(resource_pack + "/icon.gif")
-	container.pack_name = resource_pack.replace(Global.config_path.path_join("resource_packs"), "")
+	container.pack_name = resource_pack.replace(Global.config_path.path_join("resource_packs"), "").trim_prefix("/")
 	$"../ScrollContainer/VBoxContainer".add_child(container)
 	containers.append(container)
 	container.add_to_group("Options")

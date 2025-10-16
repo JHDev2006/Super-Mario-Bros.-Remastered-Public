@@ -714,6 +714,7 @@ uppercase = true
 script = ExtResource("10_2qqpf")
 
 [node name="KeyboardControls" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = -4

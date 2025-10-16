@@ -14,6 +14,10 @@ func die() -> void:
 
 func die_from_object(_node: Node2D) -> void:
 	destroy()
+	
+func die_from_hammer(_node: Node2D) -> void:
+	AudioManager.play_sfx("hammer_hit", global_position)
+	destroy()
 
 func summon_particle() -> void:
 	var node = BARREL_DESTRUCTION_PARTICLE.instantiate()

@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://p42vcj0qmhxl"]
+[gd_scene load_steps=13 format=3 uid="uid://p42vcj0qmhxl"]
 
 [ext_resource type="Texture2D" uid="uid://cop8x5m20cqal" path="res://Assets/Sprites/Items/WrenchProjectile.png" id="1_bh1cs"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_wtsxo"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_7wlxe"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_tfqn5"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/WrenchProjectile.json" id="4_5s4r1"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_7wlxe"]
 
@@ -85,16 +84,14 @@ property_name = "sprite_frames"
 resource_json = ExtResource("4_5s4r1")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="PlayerDetection" type="Area2D" parent="."]
-script = ExtResource("3_tfqn5")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+[node name="Hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_srvot")
 
 [node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("4_7wlxe")
-hitbox = NodePath("../PlayerDetection")
+hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://chj8hu207lrh"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 		$RotationJoint.global_rotation_degrees = snapped(bar_rotation, 11.25)
 
 func on_area_entered(area: Area2D) -> void:
-	if area.owner is Player:
+	if area.owner is Player and area.name != \"HammerHitbox\":
 		area.owner.damage()
 "
 
