@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bumvqjhs2xxka"]
+[gd_scene load_steps=8 format=3 uid="uid://bumvqjhs2xxka"]
 
 [ext_resource type="Script" uid="uid://bfdtqldkrv4dn" path="res://Scripts/Classes/Entities/Enemies/CannonBall.gd" id="1_yim3j"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="2_il73j"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_yim3j"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/CannonBall.json" id="3_874xq"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="3_pydrn"]
@@ -28,16 +27,14 @@ mode = 1
 resource_json = ExtResource("3_874xq")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="PlayerDetection" type="Area2D" parent="."]
-script = ExtResource("2_il73j")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+[node name="Hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_yim3j")
 
 [node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("3_pydrn")
-hitbox = NodePath("../PlayerDetection")
+hitbox = NodePath("../Hitbox")
 height = 0
 metadata/_custom_type_script = "uid://chj8hu207lrh"
 
@@ -52,6 +49,7 @@ metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 script = ExtResource("5_il73j")
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
+[connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
 [connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
