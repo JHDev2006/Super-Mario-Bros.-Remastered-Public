@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cx0ak5ctcg0mi" path="res://Scripts/Classes/Entities/Enemies/Icicle.gd" id="1_dnx1i"]
 [ext_resource type="Texture2D" uid="uid://rbln0ee0fknc" path="res://Assets/Sprites/Enemies/Icicle.png" id="2_1h8cl"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_1h8cl"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="2_5y583"]
 [ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="3_dnx1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dnx1i"]
@@ -52,6 +52,11 @@ collision_mask = 55
 script = ExtResource("1_dnx1i")
 metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("2_5y583")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = ExtResource("2_1h8cl")
@@ -65,8 +70,6 @@ shape = SubResource("RectangleShape2D_dnx1i")
 
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
-script = ExtResource("3_1h8cl")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -6)
@@ -81,5 +84,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_2sios")
 }
 
-[connection signal="player_entered" from="Hitbox" to="." method="damage_player"]
-[connection signal="player_entered" from="Hitbox" to="." method="destroy" unbinds=1]
+[connection signal="killed" from="." to="." method="destroy" unbinds=1]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="destroy" unbinds=1]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="destroy" unbinds=1]
