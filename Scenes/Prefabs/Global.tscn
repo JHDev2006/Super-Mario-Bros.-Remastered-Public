@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c3h2iqkvitqd2"]
+[gd_scene load_steps=56 format=3 uid="uid://c3h2iqkvitqd2"]
 
 [ext_resource type="PackedScene" uid="uid://bod0jkf7jc5pm" path="res://Scenes/Prefabs/GameHud.tscn" id="1_ctvpw"]
 [ext_resource type="Script" uid="uid://bbxqn16ekbpcl" path="res://Scripts/Classes/Singletons/Global.gd" id="1_t23sr"]
@@ -23,7 +23,6 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="19_okfpr"]
 [ext_resource type="Texture2D" uid="uid://bhgjvnslkt143" path="res://Assets/Sprites/UI/PanelSelected.png" id="19_xspbb"]
 [ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="20_3l3ph"]
-[ext_resource type="JSON" path="res://Assets/themes.json" id="25_m6bur"]
 
 [sub_resource type="Animation" id="Animation_6jmk5"]
 resource_name = "FadeIn"
