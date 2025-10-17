@@ -273,6 +273,10 @@ func _process(delta: float) -> void:
 		take_screenshot()
 
 func update_theme() -> void:
+	force_theme = ""
+	force_time = ""
+	force_music = null
+	music_to_replace = ""
 	ThemeManager.update_resource()
 	level_theme_changed.emit()
 
@@ -480,7 +484,7 @@ func check_completionist_achievement() -> void:
 	if achievements.count("0") == 1:
 		unlock_achievement(AchievementID.COMPLETIONIST)
 
-const FONT = preload("res://Assets/Sprites/UI/Font.fnt")
+const FONT = preload("uid://djsv6aojrcuyg")
 
 func sanitize_string(string := "") -> String:
 	string = string.to_upper()

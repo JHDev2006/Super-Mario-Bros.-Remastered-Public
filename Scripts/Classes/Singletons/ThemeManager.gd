@@ -29,17 +29,10 @@ func _ready() -> void:
 	pass
 
 func on_updated() -> void:
-	Global.force_theme = ""
-	Global.force_time = ""
-	Global.force_music = null
-	Global.music_to_replace = ""
 	if current_json != null and current_json.data.has("variations"):
 		var json := get_variation_json(current_json.data.variations)
-		if json.has("properties"):
-			apply_properties(json.properties)
-		elif current_json.data.has("properties"):
-			apply_properties(current_json.data.properties)
 		if json.has("theme") and Level.THEME_IDXS.has(json.theme):
+			print("SYNC:", sync_music)
 			if sync_music:
 				Global.force_music = load(MUSIC_TRACKS[json.theme])
 				Global.music_to_replace = MUSIC_TRACKS[Global.level_theme]
@@ -61,4 +54,11 @@ func get_resource(json_file: JSON) -> Resource:
 	if source_json == null:
 		Global.log_error("Error parsing " + resource_path + "!")
 		return
+	var json = source_json.duplicate()
+	if json.has("variations"):
+		json = get_variation_json(json.variations)
+	if json.has("properties"):
+		apply_properties(json.get("properties"))
+	elif source_json.has("properties"):
+		apply_properties(source_json.get("properties"))
 	return load(resource_path)

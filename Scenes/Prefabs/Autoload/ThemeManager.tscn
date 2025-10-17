@@ -10,6 +10,7 @@ property_node = NodePath(".")
 property_name = "current_json"
 mode = 3
 resource_json = ExtResource("2_m5c6a")
+use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="updated" from="." to="." method="on_updated"]
