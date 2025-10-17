@@ -1,14 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://rruc6lnk16rr"]
+[gd_scene load_steps=14 format=3 uid="uid://rruc6lnk16rr"]
 
 [ext_resource type="Script" uid="uid://dryofl8epgget" path="res://Scripts/Classes/Entities/Items/ClockItem.gd" id="1_heiyr"]
 [ext_resource type="Texture2D" uid="uid://dal8md4ms07j2" path="res://Assets/Sprites/Items/Clock.png" id="1_ybxan"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_heiyr"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ov4xw"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Clock.json" id="4_newwu"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="5_fg0gx"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="6_ggci8"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="7_eol0e"]
-[ext_resource type="Resource" uid="uid://8dcuxbc3h2u2" path="res://Resources/ThemedResources/Font.tres" id="8_34q7a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c30tx"]
 atlas = ExtResource("1_ybxan")
@@ -136,8 +134,6 @@ resource_json = ExtResource("4_newwu")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="Sprite"]
-script = ExtResource("5_fg0gx")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Hitbox"]
 shape = SubResource("RectangleShape2D_ydslq")
@@ -160,7 +156,6 @@ metadata/_custom_type_script = "uid://dt2p68xl462v2"
 [node name="LabelFontChanger" type="Node" parent="Label" node_paths=PackedStringArray("labels")]
 script = ExtResource("7_eol0e")
 labels = [NodePath("..")]
-resource = ExtResource("8_34q7a")
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
@@ -168,4 +163,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_ov4xw")
 }
 
-[connection signal="player_entered" from="Sprite/Hitbox" to="." method="collect_item"]
+[connection signal="area_entered" from="Sprite/Hitbox" to="." method="on_area_entered"]

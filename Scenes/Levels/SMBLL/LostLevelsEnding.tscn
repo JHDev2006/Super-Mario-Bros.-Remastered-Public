@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="4_tkq3a"]
 [ext_resource type="Texture2D" uid="uid://dkjam0jo2k2m0" path="res://Assets/Sprites/Backgrounds/Bushes/CastleBushNight.png" id="5_wr0ye"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="6_g1x38"]
-[ext_resource type="FontVariation" uid="uid://djxdgxy1iv8yv" path="res://Resources/ThemedResources/FontLLMain.tres" id="9_1flm1"]
+[ext_resource type="FontVariation" uid="uid://bl7sbw4nx3l1t" path="res://Resources/ThemedResources/FontMain.tres" id="9_1flm1"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="10_iab5g"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/PeachNPC.json" id="11_ecp1v"]
 [ext_resource type="Texture2D" uid="uid://fdn41mmtnhdt" path="res://Assets/Sprites/Players/ToadNPCLL.png" id="11_iab5g"]

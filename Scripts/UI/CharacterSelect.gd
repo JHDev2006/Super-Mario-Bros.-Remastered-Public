@@ -50,14 +50,26 @@ func get_custom_characters() -> void:
 			var json = JSON.parse_string(FileAccess.open(char_path.path_join("CharacterInfo.json"), FileAccess.READ).get_as_text())
 			Player.CHARACTERS.append(i)
 			Player.CHARACTER_NAMES.append(json.name)
+			
 			if FileAccess.file_exists(char_path.path_join("CharacterColour.json")):
 				Player.CHARACTER_COLOURS.append(load(char_path.path_join("CharacterColour.json")))
+			else:
+				Player.CHARACTER_COLOURS.append(null)
+			
 			if FileAccess.file_exists(char_path.path_join("LifeIcon.json")):
 				GameHUD.character_icons.append(load(char_path.path_join("LifeIcon.json")))
+			else:
+				GameHUD.character_icons.append(null)
+				
 			if FileAccess.file_exists(char_path.path_join("ColourPalette.json")):
 				Player.CHARACTER_PALETTES.append(load(char_path.path_join("ColourPalette.json")))
+			else:
+				Player.CHARACTER_PALETTES.append(null)
+			
 			if FileAccess.file_exists(char_path.path_join("SFX.json")):
 				AudioManager.character_sfx_map[i] = JSON.parse_string(FileAccess.open(char_path.path_join("SFX.json"), FileAccess.READ).get_as_text())
+			else:
+				AudioManager.character_sfx_map[i] = {}
 
 func open() -> void:
 	get_custom_characters()

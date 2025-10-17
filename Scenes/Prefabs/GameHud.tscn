@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bod0jkf7jc5pm"]
+[gd_scene load_steps=40 format=3 uid="uid://bod0jkf7jc5pm"]
 
 [ext_resource type="Script" uid="uid://bjbd3a6su47si" path="res://Scripts/Classes/UI/GameHUD.gd" id="1_f34v2"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_cbrve"]
@@ -23,7 +23,6 @@
 [ext_resource type="Script" uid="uid://dwtrmo82e12ud" path="res://Scripts/Parts/ColourPaletteSampler.gd" id="15_8qasw"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="15_jwl8o"]
 [ext_resource type="PackedScene" uid="uid://n2e3jgmkilvt" path="res://Scenes/Prefabs/UI/MarathonResults.tscn" id="16_cfljn"]
-[ext_resource type="FontVariation" uid="uid://djxdgxy1iv8yv" path="res://Resources/ThemedResources/FontLLMain.tres" id="17_2w8b3"]
 [ext_resource type="PackedScene" uid="uid://b85i7uni0twpe" path="res://Scenes/Prefabs/UI/DiscoResults.tscn" id="17_ocsy5"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="18_jwl8o"]
 [ext_resource type="Texture2D" uid="uid://w74s6oi3l8k8" path="res://Assets/Sprites/UI/TextShadowColours.png" id="24_h6dkv"]
@@ -241,7 +240,6 @@ offset_left = 4.0
 offset_top = -12.0
 offset_right = 36.0
 offset_bottom = 4.0
-theme_override_fonts/font = ExtResource("17_2w8b3")
 text = "*03"
 
 [node name="CoinIcon" type="AnimatedSprite2D" parent="Main/CoinCount"]
@@ -266,7 +264,6 @@ offset_left = 4.0
 offset_top = -4.0
 offset_right = 36.0
 offset_bottom = 12.0
-theme_override_fonts/font = ExtResource("17_2w8b3")
 text = "*00"
 
 [node name="RedCoins" type="Control" parent="Main"]
@@ -908,7 +905,6 @@ offset_left = 4.0
 offset_top = -12.0
 offset_right = 36.0
 offset_bottom = 4.0
-theme_override_fonts/font = ExtResource("17_2w8b3")
 text = "*03"
 
 [node name="Right" type="Control" parent="ModernHUD"]

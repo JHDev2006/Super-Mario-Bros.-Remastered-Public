@@ -1,13 +1,13 @@
 class_name FontUpdater
 extends Node
 
-@onready var resource_getter_smb1 := ResourceGetter.new()
-@onready var resource_getter_smbll := ResourceGetter.new()
-@onready var resource_getter_score := ResourceGetter.new()
+var main_font: FontFile = null
+var score_font: FontFile = null
+var ga_font: Resource = null
+var jp_font: Resource = null
 
-@onready var FONT_LL_MAIN = load("uid://djxdgxy1iv8yv")
-@onready var FONT_MAIN = load("uid://bl7sbw4nx3l1t")
-@onready var SCORE_FONT = load("uid://cflgloiossd8a")
+var FONT_MAIN = preload("uid://bl7sbw4nx3l1t")
+var SCORE_FONT = preload("uid://cflgloiossd8a")
 
 
 static var current_font: Font = null
@@ -17,6 +17,7 @@ func _ready() -> void:
 	Global.level_theme_changed.connect(update_fonts)
 
 func update_fonts() -> void:
-	FONT_MAIN.base_font = resource_getter_smb1.get_resource(FONT_MAIN.base_font)
-	FONT_LL_MAIN.base_font = resource_getter_smbll.get_resource(FONT_LL_MAIN.base_font)
-	SCORE_FONT.base_font = resource_getter_score.get_resource(SCORE_FONT.base_font)
+	if FONT_MAIN.base_font.get_meta("base_path", "") != main_font.get_meta("base_path", "null"):
+		print([FONT_MAIN.base_font.get_meta("base_path"), main_font.get_meta("base_path")])
+		FONT_MAIN.base_font = main_font
+	SCORE_FONT.base_font = score_font
