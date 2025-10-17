@@ -169,7 +169,7 @@ const ANIMATION_FALLBACKS := {
 	"SkidAttack": "MoveAttack",
 	"WingIdle": "WaterIdle",
 	"FlyUp": "SwimUp",
-	"WingMove": "SwimMove",
+	"WingMove": "WaterMove",
 	"FlyAttack": "SwimAttack",
 	"FlyBump": "SwimBump",
 	"FlagSlide": "Climb",
