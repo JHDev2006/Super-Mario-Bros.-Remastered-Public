@@ -480,7 +480,7 @@ func check_completionist_achievement() -> void:
 	if achievements.count("0") == 1:
 		unlock_achievement(AchievementID.COMPLETIONIST)
 
-const FONT = preload("uid://cd221873lbtj1")
+const FONT = preload("res://Assets/Sprites/UI/Font.fnt")
 
 func sanitize_string(string := "") -> String:
 	string = string.to_upper()

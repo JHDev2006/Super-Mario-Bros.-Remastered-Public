@@ -6,8 +6,8 @@ var score_font: FontFile = null
 var ga_font: Resource = null
 var jp_font: Resource = null
 
-var FONT_MAIN = preload("uid://bl7sbw4nx3l1t")
-var SCORE_FONT = preload("uid://cflgloiossd8a")
+var FONT_MAIN = preload("res://Resources/ThemedResources/FontMain.tres")
+var SCORE_FONT = preload("res://Resources/ThemedResources/ScoreFont.tres")
 
 
 static var current_font: Font = null

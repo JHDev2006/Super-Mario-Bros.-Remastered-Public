@@ -189,11 +189,12 @@ func apply_properties(properties := {}) -> void:
 					obj.set(p, properties[i])
 					continue
 
+
+
 func get_variation_json(json := {}) -> Dictionary:
 	var level_theme = Global.level_theme
 	if force_properties.has("Theme"):
 		level_theme = force_properties.Theme
-	
 	for i in json.keys().filter(func(key): return key.contains("config:")):
 		get_config_file(current_resource_pack)
 		if config_to_use != {}:
