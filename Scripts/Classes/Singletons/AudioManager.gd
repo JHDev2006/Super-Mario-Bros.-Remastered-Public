@@ -89,7 +89,7 @@ const OVERRIDE_STREAMS := [
 	"res://Assets/Audio/BGM/CastleFinish.json",
 	"res://Assets/Audio/BGM/Ending.json",
 	"res://Assets/Audio/SFX/FlagSlide.wav",
-	"res://Assets/Audio/BGM/Hammer.mp3",
+	("res://Assets/Audio/BGM/Hammer.json"),
 	("res://Assets/Audio/BGM/LoseRace.json"),
 	("res://Assets/Audio/BGM/WinRace.json"),
 	"res://Assets/Audio/BGM/Wing.json",

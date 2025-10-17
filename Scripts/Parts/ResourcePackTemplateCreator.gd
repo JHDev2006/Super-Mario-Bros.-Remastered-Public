@@ -20,19 +20,14 @@ func create_template() -> void:
 		else:
 			destination = i.replace(Global.config_path.path_join("resource_packs/BaseAssets"), Global.config_path.path_join("resource_packs/new_pack"))
 		print("Copying '" + i + "' to: '" + destination)
-		if i.contains(".bgm") or i.contains(".json") or i.contains(Global.config_path):
-			DirAccess.copy_absolute(i, destination)
-		else:
-			var resource = load(i)
-			if resource is Texture:
-				resource.get_image().save_png(destination)
-			elif resource is AudioStreamWAV:
-				resource.save_to_wav(destination)
-			elif resource is AudioStream:
-				var file = FileAccess.open(destination, FileAccess.WRITE)
-				file.store_buffer(resource.data)
-				file.close()
+		var old_file = FileAccess.open(i, FileAccess.READ)
+		if old_file != null:
+			var new_file = FileAccess.open(destination, FileAccess.WRITE)
+			new_file.store_buffer(old_file.get_buffer(old_file.get_length()))
+			old_file.close()
+			new_file.close()
 			
+	
 	var pack_info_path = Global.config_path.path_join("resource_packs/new_pack/pack_info.json")
 	DirAccess.make_dir_recursive_absolute(pack_info_path.get_base_dir())
 	var file = FileAccess.open(pack_info_path, FileAccess.WRITE)
