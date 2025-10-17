@@ -22,6 +22,10 @@
 			"SMBLL": {
 				"Day": {"source": "OverworldLL.png"},
 				"Night": {"source": "OverworldNightLL.png"}
+			},
+			"SMBANN": {
+				"Day": {"source": "OverworldANN.png"},
+				"Night": {"source": "OverworldNightANN.png"}
 			}
 		},
 		"Desert": {
@@ -83,6 +87,14 @@
 				},
 				"Night": {
 					"source": "SnowNightLL.png"	
+				}
+			},
+			"SMBANN": {
+				"Day": {
+					"source": "SnowANN.png"
+				},
+				"Night": {
+					"source": "SnowNightANN.png"	
 				}
 			}
 		},
