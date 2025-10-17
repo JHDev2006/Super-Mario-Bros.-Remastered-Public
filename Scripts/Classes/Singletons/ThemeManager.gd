@@ -32,7 +32,6 @@ func on_updated() -> void:
 	if current_json != null and current_json.data.has("variations"):
 		var json := get_variation_json(current_json.data.variations)
 		if json.has("theme") and Level.THEME_IDXS.has(json.theme):
-			print("SYNC:", sync_music)
 			if sync_music:
 				Global.force_music = load(MUSIC_TRACKS[json.theme])
 				Global.music_to_replace = MUSIC_TRACKS[Global.level_theme]
