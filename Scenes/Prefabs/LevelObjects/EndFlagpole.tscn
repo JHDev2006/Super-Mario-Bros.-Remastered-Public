@@ -1,8 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://c6loucilra6da"]
+[gd_scene load_steps=22 format=3 uid="uid://c6loucilra6da"]
 
 [ext_resource type="Script" uid="uid://dwfnvpioh2kvi" path="res://Scripts/Parts/EndFlagpole.gd" id="1_3rtm4"]
 [ext_resource type="Texture2D" uid="uid://3vg41a5plc4e" path="res://Assets/Sprites/Tilesets/FlagPole.png" id="1_hnd65"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="4_62gix"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/FlagPole.json" id="4_nykv5"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_dm4yn"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="5_jihtx"]
@@ -167,10 +166,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_62gix")
 }
 
-[node name="Top" type="Area2D" parent="."]
-script = ExtResource("4_62gix")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
-
 [node name="ScoreNoteSpawner" type="Node" parent="."]
 script = ExtResource("5_dm4yn")
 note_offset = Vector2(0, -160)
@@ -204,5 +199,3 @@ json_file_path = "res://Assets/Sprites/Tilesets/FlagPole.json"
 metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
-[connection signal="player_entered" from="Top" to="." method="on_player_entered"]
-[connection signal="player_entered" from="Top" to="ScoreNoteSpawner" method="spawn_one_up_note" unbinds=1]
