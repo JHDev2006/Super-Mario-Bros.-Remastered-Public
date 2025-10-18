@@ -273,7 +273,7 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	var chara = "Character:" + Player.CHARACTERS[int(Global.player_characters[0])]
 	if json.has(chara) == false:
-		chara = "Character:Mario"
+		chara = "Character:default"
 	if json.has(chara):
 		if json.get(chara).has("link"):
 			json = get_variation_json(json[json.get(chara).get("link")])
