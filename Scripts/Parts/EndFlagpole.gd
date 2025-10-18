@@ -2,6 +2,8 @@ extends Node2D
 
 const FLAG_POINTS := [100, 400, 800, 2000, 5000]
 
+const FLAG_POINTS_MODERN := [100, 200, 800, 4000, 10000]
+
 signal player_reached
 
 signal sequence_begin
@@ -42,8 +44,10 @@ func player_touch(player: Player) -> void:
 func give_points(player: Player) -> void:
 	var value = clamp(int(lerp(0, 4, (player.global_position.y / -144))), 0, 4)
 	var nearest_value = FLAG_POINTS[value]
+	if Settings.file.difficulty.flagpole_style:
+		nearest_value = FLAG_POINTS_MODERN[value]
 	$Score.text = str(nearest_value)
-	if nearest_value == 5000 and Settings.file.difficulty.flagpole_lives and not [Global.GameMode.CHALLENGE, Global.GameMode.BOO_RACE].has(Global.current_game_mode) and not Settings.file.difficulty.inf_lives:
+	if nearest_value == 10000 and not [Global.GameMode.CHALLENGE, Global.GameMode.BOO_RACE].has(Global.current_game_mode) and not Settings.file.difficulty.inf_lives:
 		AudioManager.play_sfx("1_up", global_position)
 		Global.lives += 1
 		$ScoreNoteSpawner.spawn_one_up_note()
