@@ -30,4 +30,4 @@ func handle_inputs() -> void:
 	if Input.is_action_just_pressed("scroll_down"):
 		selected_index -= 1
 		warp_mouse(get_local_mouse_position())
-	selected_index = clamp(selected_index, 0, selectors.size() - 1)
+	selected_index = wrapi(selected_index, 0, selectors.size() - 1)
