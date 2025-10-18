@@ -403,8 +403,8 @@ hitbox = NodePath("../SpriteScaleJoint/Sprite/Hitbox")
 metadata/_custom_type_script = "uid://ba18grqjixded"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
-[connection signal="killed" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [5000]]
 [connection signal="killed" from="." to="." method="show_smoke" unbinds=1]
+[connection signal="killed" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [5000]]
 [connection signal="area_entered" from="SpriteScaleJoint/Sprite/Hitbox" to="." method="on_area_entered"]
 [connection signal="timeout" from="JumpTimer" to="." method="jump"]
 [connection signal="timeout" from="HammerTime" to="." method="throw_hammers"]
@@ -414,6 +414,7 @@ metadata/_custom_type_script = "uid://ba18grqjixded"
 [connection signal="attached" from="TrackJoint" to="MoveAnimation" method="play" binds= ["RESET"]]
 [connection signal="moving_shell_entered" from="ShellDetection" to="ShellDetection" method="destroy_shell"]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="fireball_hit" unbinds=1]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]

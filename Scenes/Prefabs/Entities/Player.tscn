@@ -540,9 +540,11 @@ resource_json = ExtResource("7_2mfvl")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="HammerHitbox" type="Area2D" parent="SpriteScaleJoint/Sprite"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(16, 16)
-monitorable = false
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteScaleJoint/Sprite/HammerHitbox"]
 position = Vector2(-3.49691e-07, -8)
@@ -1138,7 +1140,6 @@ anim_speed_max = 1.0
 
 [connection signal="frame_changed" from="SpriteScaleJoint/Sprite" to="SpriteScaleJoint/Sprite" method="on_frame_changed"]
 [connection signal="sprite_frames_changed" from="SpriteScaleJoint/Sprite" to="SpriteScaleJoint/Sprite" method="on_frame_changed"]
-[connection signal="area_entered" from="SpriteScaleJoint/Sprite/HammerHitbox" to="." method="on_hammer_area_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="on_area_exited"]
 [connection signal="body_entered" from="LavaPoisonDetect" to="." method="die" unbinds=1]

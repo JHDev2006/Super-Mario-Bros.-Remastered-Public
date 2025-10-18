@@ -14,8 +14,9 @@ func _ready() -> void:
 		$Sprite.play("Collected")
 		set_visibility_layer_bit(0, false)
 
-func on_player_entered(_player: Player) -> void:
-	collected()
+func on_area_entered(area: Area2D) -> void:
+	if area.owner is Player:
+		collected()
 
 func collected() -> void:
 	if already_collected:

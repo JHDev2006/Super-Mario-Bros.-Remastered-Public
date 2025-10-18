@@ -1076,6 +1076,7 @@ metadata/_custom_type_script = "uid://364rywt44hy6"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("31_1l20f")]
+visible = false
 can_exit = false
 
 [node name="WorldSelect" parent="CanvasLayer" instance=ExtResource("32_xk7j8")]

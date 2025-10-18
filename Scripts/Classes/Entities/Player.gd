@@ -169,7 +169,7 @@ const ANIMATION_FALLBACKS := {
 	"SkidAttack": "MoveAttack",
 	"WingIdle": "WaterIdle",
 	"FlyUp": "SwimUp",
-	"WingMove": "SwimMove",
+	"WingMove": "WaterMove",
 	"FlyAttack": "SwimAttack",
 	"FlyBump": "SwimBump",
 	"FlagSlide": "Climb",
@@ -280,9 +280,16 @@ func editor_level_start() -> void:
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("debug_reload"):
 		set_power_state_frame()
-	if Input.is_action_just_pressed("debug_noclip") and Global.debug_mode:
-		state_machine.transition_to("NoClip")
-		Global.log_comment("NOCLIP Enabled")
+
+	# guzlad: noclip without dev only works while playtesting.
+	if (Input.is_action_just_pressed("debug_noclip") or Input.is_action_just_pressed("jump_0")) and ((Global.debug_mode) or (Global.level_editor_is_playtesting())):
+		if state_machine.is_state("NoClip"):
+			state_machine.transition_to("Normal")
+			Global.log_comment("NOCLIP Disabled")
+		elif !Input.is_action_just_pressed("jump_0") and !state_machine.is_state("NoClip"):
+			state_machine.transition_to("NoClip")
+			Global.log_comment("NOCLIP Enabled")
+
 	up_direction = -gravity_vector
 	handle_directions()
 	handle_block_collision_detection()
@@ -330,6 +337,7 @@ func _process(delta: float) -> void:
 	if is_invincible:
 		DiscoLevel.combo_meter = 100
 	%Hammer.visible = has_hammer
+	%HammerHitbox.collision_layer = has_hammer
 
 func apply_gravity(delta: float) -> void:
 	if in_water or flight_meter > 0:
@@ -892,9 +900,6 @@ func hammer_get() -> void:
 	has_hammer = true
 	$HammerTimer.start()
 	AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.HAMMER, 0, false)
-
-func on_hammer_area_entered(area: Area2D) -> void:
-	pass
 
 func wing_get() -> void:
 	AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.WING, 0, false, false)

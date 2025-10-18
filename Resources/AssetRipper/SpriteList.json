@@ -4,9 +4,13 @@
 		
 		"res://Assets/Sprites/Backgrounds/Hills/Overworld.png",
 		"res://Assets/Sprites/Backgrounds/Hills/OverworldAlt.png",
+		"res://Assets/Sprites/Backgrounds/Hills/OverworldANN.png",
 		"res://Assets/Sprites/Backgrounds/Hills/OverworldNight.png",
+		"res://Assets/Sprites/Backgrounds/Hills/OverworldNightANN.png",
 		"res://Assets/Sprites/Backgrounds/Hills/Snow.png",
+		"res://Assets/Sprites/Backgrounds/Hills/SnowANN.png",
 		"res://Assets/Sprites/Backgrounds/Hills/SnowNight.png",
+		"res://Assets/Sprites/Backgrounds/Hills/SnowNightANN.png",
 		
 		"res://Assets/Sprites/Backgrounds/Skies/AutumnSky.png",
 		"res://Assets/Sprites/Backgrounds/Skies/BeachSky.png",

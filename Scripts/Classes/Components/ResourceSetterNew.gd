@@ -10,7 +10,7 @@ extends Node
 		resource_json = value
 		update_resource()
 
-enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW}
+enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW, FONT}
 @export var use_cache := true
 
 static var cache := {}
@@ -113,10 +113,16 @@ func get_resource(json_file: JSON) -> Resource:
 	match mode:
 		ResourceMode.SPRITE_FRAMES:
 			var animation_json = {}
-			if json.has("animations"):
-				animation_json = json.get("animations")
-			elif source_json.has("animations"):
+			
+			if source_json.has("animations"):
 				animation_json = source_json.get("animations")
+			elif json.has("animations"):
+				animation_json = json.get("animations")
+			
+			if json.has("animation_overrides"):
+				for i in json.get("animation_overrides").keys():
+					animation_json[i] = json.get("animation_overrides")[i]
+					
 			if animation_json != {}:
 				resource = load_image_from_path(source_resource_path)
 				if json.has("rect"):
@@ -156,6 +162,13 @@ func get_resource(json_file: JSON) -> Resource:
 			resource = load_audio_from_path(source_resource_path)
 		ResourceMode.RAW:
 			pass
+		ResourceMode.FONT:
+			if source_resource_path.contains(Global.get_config_path()):
+				resource = FontFile.new()
+				resource.load_bitmap_font(source_resource_path)
+			else:
+				resource = load(source_resource_path)
+			resource.set_meta("base_path", source_resource_path)
 	if cache.has(json_file.resource_path) == false and use_cache and not is_random:
 		cache[json_file.resource_path] = resource
 	return resource
@@ -180,11 +193,12 @@ func apply_properties(properties := {}) -> void:
 					obj.set(p, properties[i])
 					continue
 
+
+
 func get_variation_json(json := {}) -> Dictionary:
 	var level_theme = Global.level_theme
 	if force_properties.has("Theme"):
 		level_theme = force_properties.Theme
-	
 	for i in json.keys().filter(func(key): return key.contains("config:")):
 		get_config_file(current_resource_pack)
 		if config_to_use != {}:
@@ -262,7 +276,7 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	var chara = "Character:" + Player.CHARACTERS[int(Global.player_characters[0])]
 	if json.has(chara) == false:
-		chara = "Character:Mario"
+		chara = "Character:default"
 	if json.has(chara):
 		if json.get(chara).has("link"):
 			json = get_variation_json(json[json.get(chara).get("link")])

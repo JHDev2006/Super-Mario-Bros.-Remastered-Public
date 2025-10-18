@@ -10,6 +10,7 @@ var file := {
 		"visuals": 0,
 		"hud_size": 0, 
 		"frame_limit" : 0,
+		"window_size": [256, 240]
 	},
 	"audio": {
 		"master": 10,
@@ -67,6 +68,7 @@ var file := {
 		"bridge_animation": 0,
 		"visible_timers": 0,
 		"transition_animation": 0,
+		"smbs_scroll": 0,
 		"colour_pipes": 1,
 		"firebar_style": 0,
 		"extra_particles": 0
@@ -94,6 +96,11 @@ func _enter_tree() -> void:
 	await get_tree().physics_frame
 	apply_settings()
 	TranslationServer.set_locale(Settings.file.game.lang)
+	get_window().size_changed.connect(update_window_size)
+
+func update_window_size() -> void:
+	var window_size = get_window().size
+	Settings.file.video.window_size = [window_size.x, window_size.y]
 
 func save_settings() -> void:
 	var cfg_file = ConfigFile.new()
@@ -112,6 +119,12 @@ func load_settings() -> void:
 	for section in cfg_file.get_sections():
 		for key in cfg_file.get_section_keys(section):
 			file[section][key] = cfg_file.get_value(section, key)
+	fix_broken_settings()
+
+func fix_broken_settings() -> void:
+	# Fix any "permanently-enabled" resource packs from 1.0.2 snapshots after portable mode was added, but before this bug was fixed
+	for i in range(file.visuals.resource_packs.size()):
+		file.visuals.resource_packs[i] = str(file.visuals.resource_packs[i]).trim_prefix("/")
 
 func apply_settings() -> void:
 	for i in file.video.keys():

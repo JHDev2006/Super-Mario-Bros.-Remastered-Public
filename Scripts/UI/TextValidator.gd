@@ -4,7 +4,7 @@ extends Node
 const valid_chars := "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-*!.^/+:,'()?_;<> \n"
 
 @export var node_to_validate: Control = null
-const FONT = preload("uid://cd221873lbtj1")
+const FONT = preload("res://Assets/Sprites/UI/Font.fnt")
 signal text_validated(new_text: String)
 
 func validate_text() -> void:

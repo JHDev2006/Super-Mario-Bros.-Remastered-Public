@@ -1,18 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhd0gp2xvl53l"]
+[gd_scene load_steps=10 format=3 uid="uid://dhd0gp2xvl53l"]
 
 [ext_resource type="Script" uid="uid://bafdl3y53ly60" path="res://Scripts/Classes/UI/PackAnimatedSprite2D.gd" id="2_724cb"]
 [ext_resource type="Texture2D" uid="uid://bbdcmhyxmc3pu" path="res://Assets/Sprites/Items/SPItems.png" id="2_wnlnm"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_724cb"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ke2o5"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/LuckyStar.json" id="4_4cwfa"]
 
 [sub_resource type="GDScript" id="GDScript_y0edb"]
 script/source = "extends PowerUpItem
 
-func player_entered(_player: Player) -> void:
-	queue_free()
-	AudioManager.play_global_sfx(\"lucky_star\")
-	get_tree().call_group(\"Enemies\", \"flag_die\")
+func on_area_entered(area: Area2D) -> void:
+	if area.owner is Player:
+		queue_free()
+		AudioManager.play_global_sfx(\"lucky_star\")
+		get_tree().call_group(\"Enemies\", \"flag_die\")
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ke2o5"]
@@ -59,12 +59,10 @@ property_name = "sprite_frames"
 resource_json = ExtResource("4_4cwfa")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="PlayerDetection" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(0, -8)
-script = ExtResource("3_724cb")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_7yv5x")
 
-[connection signal="player_entered" from="PlayerDetection" to="." method="player_entered"]
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]

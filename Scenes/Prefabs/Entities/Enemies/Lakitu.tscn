@@ -181,6 +181,8 @@ metadata/_custom_type_script = "uid://ba18grqjixded"
 [connection signal="killed" from="." to="." method="summon_cloud_particle" unbinds=1]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="on_screen_entered"]
 [connection signal="timeout" from="ThrowTimer" to="." method="on_timeout"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" flags=3 binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]

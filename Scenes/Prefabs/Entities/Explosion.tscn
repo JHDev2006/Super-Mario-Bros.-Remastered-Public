@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://clbvyne1cr8gp"]
+[gd_scene load_steps=25 format=3 uid="uid://clbvyne1cr8gp"]
 
 [ext_resource type="Script" uid="uid://ritdlvkpyjd4" path="res://Scripts/Classes/Entities/Objects/Explosion.gd" id="1_aklik"]
 [ext_resource type="Texture2D" uid="uid://brjkrkihadwnj" path="res://Assets/Sprites/Particles/FireballExplosion.png" id="2_4aiuq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="4_hjivi"]
 [ext_resource type="AudioStream" uid="uid://d12v455mw8uvu" path="res://Assets/Audio/SFX/Cannon.wav" id="5_8imqq"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Particles/FireballExplosion.json" id="5_hjivi"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="8_hjivi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnd2t"]
 atlas = ExtResource("2_4aiuq")
@@ -243,8 +244,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_6tdk1"]
 radius = 24.0
 
-[node name="Explosion" type="Node2D"]
+[node name="Explosion" type="CharacterBody2D"]
 script = ExtResource("1_aklik")
+metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 metadata/is_explosion = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -317,5 +319,10 @@ collision_mask = 255
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_6tdk1")
 
-[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("8_hjivi")
+hitbox = NodePath("../Hitbox")
+
 [connection signal="body_entered" from="Hitbox" to="." method="on_body_entered"]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]

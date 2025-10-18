@@ -1,11 +1,8 @@
-[gd_resource type="FontVariation" load_steps=4 format=3 uid="uid://bl7sbw4nx3l1t"]
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://bl7sbw4nx3l1t"]
 
-[ext_resource type="FontFile" uid="uid://cd221873lbtj1" path="res://Assets/Sprites/UI/Font.fnt" id="1_6xssw"]
-[ext_resource type="FontVariation" uid="uid://dvrnlamecx862" path="res://Resources/ThemedResources/FontJPMain.tres" id="2_yvbdn"]
-[ext_resource type="FontVariation" uid="uid://ce822mfesax3u" path="res://Resources/ThemedResources/FontGA.tres" id="3_5g8gi"]
+[ext_resource type="FontFile" uid="uid://djsv6aojrcuyg" path="res://Assets/Sprites/UI/Font.fnt" id="1_6xssw"]
 
 [resource]
-fallbacks = Array[Font]([ExtResource("2_yvbdn"), ExtResource("3_5g8gi")])
 base_font = ExtResource("1_6xssw")
 opentype_features = {
 1667329140: 0

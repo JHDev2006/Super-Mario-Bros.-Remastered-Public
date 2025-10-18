@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://deo08vl26nc4b"]
+[gd_scene load_steps=11 format=3 uid="uid://hqrc7ujinbcq"]
 
 [ext_resource type="Script" uid="uid://s1utdly4mtbi" path="res://Scripts/Classes/Entities/Items/Hammer.gd" id="1_3ojke"]
 [ext_resource type="Texture2D" uid="uid://3xmhfi556p3s" path="res://Assets/Sprites/Items/Hammer.png" id="1_o34jf"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_k3c6x"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Hammer.json" id="4_pmlpp"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="5_pmlpp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tvg3"]
 atlas = ExtResource("1_o34jf")
@@ -51,17 +52,17 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_pmlpp"]
 radius = 4.0
 
-[node name="Hammer" type="Node2D" groups=["Enemies"]]
+[node name="Hammer" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_3ojke")
+metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 physics_interpolation_mode = 2
 texture = SubResource("AtlasTexture_2tvg3")
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_k3c6x")
 node_to_affect = NodePath("..")
-property_node = NodePath("../..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_pmlpp")
@@ -78,4 +79,9 @@ autoplay = "Rotate"
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_pmlpp")
 
-[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("5_pmlpp")
+hitbox = NodePath("../Hitbox")
+
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
