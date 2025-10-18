@@ -3,14 +3,26 @@ extends Node
 var level_theme := "Overworld":
 	set(value):
 		level_theme = value
-		level_theme_changed.emit()
+		update_theme()
+	get:
+		if force_theme != "":
+			return force_theme
+		return level_theme
 var theme_time := "Day":
 	set(value):
 		theme_time = value
-		level_time_changed.emit()
+		update_theme()
+	get:
+		if force_time != "":
+			return force_time
+		return theme_time
+
+var force_theme := ""
+var force_time := ""
+var force_music: JSON
+var music_to_replace := ""
 
 signal level_theme_changed
-signal level_time_changed
 
 const BASE64_CHARSET := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
@@ -244,7 +256,7 @@ func _process(delta: float) -> void:
 		ResourceSetterNew.cache.clear()
 		ResourceGetter.cache.clear()
 		AudioManager.current_level_theme = ""
-		level_theme_changed.emit()
+		update_theme()
 		log_comment("Reloaded resource packs!")
 	
 	if Input.is_action_just_pressed("toggle_fps_count"):
@@ -259,6 +271,14 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("ui_screenshot"):
 		take_screenshot()
+
+func update_theme() -> void:
+	force_theme = ""
+	force_time = ""
+	force_music = null
+	music_to_replace = ""
+	ThemeManager.update_resource()
+	level_theme_changed.emit()
 
 func take_screenshot() -> void:
 	var img: Image = get_viewport().get_texture().get_image()
