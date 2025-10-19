@@ -1054,7 +1054,7 @@ position = Vector2(2976, -96)
 [node name="InvisibleQuestionBlock" parent="ChallengeNodes" index="5"]
 position = Vector2(504, -104)
 
-[node name="InvisibleQuestionBlock2" parent="ChallengeNodes" index="6" instance=ExtResource("3_dfskb")]
+[node name="InvisibleQuestionBlock3" parent="ChallengeNodes" index="6" instance=ExtResource("3_dfskb")]
 position = Vector2(1176, -104)
 
 [node name="Enemies" type="Node" parent="." index="13"]
