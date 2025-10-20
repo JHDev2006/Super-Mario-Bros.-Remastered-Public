@@ -132,6 +132,7 @@ offset_left = -44.0
 offset_top = -11.0
 offset_right = 156.0
 offset_bottom = 5.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "CHALLENGE_DIALOGUE_SCORE"
 uppercase = true
 
@@ -143,8 +144,10 @@ offset_left = -8.0
 offset_top = -11.0
 offset_right = 56.0
 offset_bottom = 12.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 2
+uppercase = true
 
 [node name="Target" type="Label" parent="BG/Control/ChallengeScoreText"]
 layout_mode = 1
@@ -155,8 +158,10 @@ offset_left = -8.0
 offset_right = 8.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0.462745, 0.52549, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "/00000"
 horizontal_alignment = 2
+uppercase = true
 
 [node name="ChallengeCoins2" type="Label" parent="BG/Control"]
 unique_name_in_owner = true
@@ -166,6 +171,7 @@ offset_left = -44.0
 offset_top = -27.0
 offset_right = 156.0
 offset_bottom = -11.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "CHALLENGE_DIALOGUE_COINS"
 uppercase = true
 
@@ -230,7 +236,7 @@ metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
 script = ExtResource("10_abjth")
-labels = [NodePath("../BG/Control/World"), NodePath("../BG/Control/LivesCount"), NodePath("../BG/Control/MarathonPB"), NodePath("../BG/Control/WorldNum"), NodePath("../BG/Control/CustomLevelName"), NodePath("../BG/Control/CustomLevelAuthor")]
+labels = [NodePath("../BG/Control/World"), NodePath("../BG/Control/LivesCount"), NodePath("../BG/Control/MarathonPB"), NodePath("../BG/Control/WorldNum"), NodePath("../BG/Control/CustomLevelName"), NodePath("../BG/Control/CustomLevelAuthor"), NodePath("../BG/Control/ChallengeScore"), NodePath("../BG/Control/ChallengeScoreText"), NodePath("../BG/Control/ChallengeScoreText/Target"), NodePath("../BG/Control/ChallengeCoins2")]
 metadata/_custom_type_script = "uid://dt2p68xl462v2"
 
 [connection signal="timeout" from="Timer" to="." method="transition"]
