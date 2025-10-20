@@ -427,7 +427,6 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-
 [node name="Label5" type="Label" parent="Labels/TileArtists/Label"]
 layout_mode = 0
 offset_top = 80.0
@@ -1829,7 +1828,6 @@ script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect" type="TextureRect" parent="Labels/Localizers"]
-visible = false
 layout_mode = 0
 offset_left = 120.0
 offset_top = 8.0
