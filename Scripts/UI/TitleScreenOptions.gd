@@ -44,7 +44,7 @@ func handle_inputs() -> void:
 	for i in options:
 		if i.visible:
 			amount.append(i)
-	selected_index = clamp(selected_index, 0, amount.size() - 1)
+	selected_index = wrapi(selected_index, 0, amount.size())
 	if Input.is_action_just_pressed("ui_accept"):
 		option_selected()
 	elif can_exit and Input.is_action_just_pressed("ui_back"):
