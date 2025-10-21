@@ -92,7 +92,7 @@ func handle_ground_movement(delta: float) -> void:
 			target_speed = player.SWIM_GROUND_SPEED
 		var accel = player.GROUND_WALK_ACCEL
 
-		if player.input_direction == 0:
+		if player.input_direction == 0 or player.crouching:
 			target_speed = 0
 			accel = player.DECEL
 		elif sign(player.input_direction * player.velocity_direction) < 0.0:
