@@ -10,7 +10,7 @@ extends Node
 		resource_json = value
 		update_resource()
 
-enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW}
+enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW, FONT}
 @export var use_cache := true
 
 static var cache := {}
@@ -18,7 +18,7 @@ static var property_cache := {}
 
 var current_json_path := ""
 
-static var state := [0, 0]
+static var state := [0, 0, 0]
 
 static var pack_configs := {}
 
@@ -36,23 +36,24 @@ var update_on_spawn := true
 func _init() -> void:
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
+func _ready() -> void:
+	Global.level_time_changed.connect(update_resource)
+	Global.level_theme_changed.connect(update_resource)
+
 func _enter_tree() -> void:
 	safety_check()
 	if update_on_spawn:
 		update_resource()
-	Global.level_time_changed.connect(update_resource)
-	Global.level_theme_changed.connect(update_resource)
-	
 
 func safety_check() -> void:
-	if Settings.file.visuals.resource_packs.has("BaseAssets") == false:
-		Settings.file.visuals.resource_packs.append("BaseAssets")
+	if Settings.file.visuals.resource_packs.has(Global.ROM_PACK_NAME) == false:
+		Settings.file.visuals.resource_packs.insert(Global.ROM_PACK_NAME, 0)
 
 func update_resource() -> void:
 	randomize()
 	if is_inside_tree() == false or is_queued_for_deletion() or resource_json == null or node_to_affect == null:
 		return
-	if state != [Global.level_theme, Global.theme_time]:
+	if state != [Global.level_theme, Global.theme_time, Global.current_room]:
 		cache.clear()
 		property_cache.clear()
 	if node_to_affect != null:
@@ -60,7 +61,7 @@ func update_resource() -> void:
 		node_to_affect.set(property_name, resource)
 		if node_to_affect is AnimatedSprite2D:
 			node_to_affect.play()
-	state = [Global.level_theme, Global.theme_time]
+	state = [Global.level_theme, Global.theme_time, Global.current_room]
 	updated.emit()
 
 func get_resource(json_file: JSON) -> Resource:
@@ -112,10 +113,16 @@ func get_resource(json_file: JSON) -> Resource:
 	match mode:
 		ResourceMode.SPRITE_FRAMES:
 			var animation_json = {}
-			if json.has("animations"):
-				animation_json = json.get("animations")
-			elif source_json.has("animations"):
+			
+			if source_json.has("animations"):
 				animation_json = source_json.get("animations")
+			elif json.has("animations"):
+				animation_json = json.get("animations")
+			
+			if json.has("animation_overrides"):
+				for i in json.get("animation_overrides").keys():
+					animation_json[i] = json.get("animation_overrides")[i]
+					
 			if animation_json != {}:
 				resource = load_image_from_path(source_resource_path)
 				if json.has("rect"):
@@ -155,6 +162,13 @@ func get_resource(json_file: JSON) -> Resource:
 			resource = load_audio_from_path(source_resource_path)
 		ResourceMode.RAW:
 			pass
+		ResourceMode.FONT:
+			if source_resource_path.contains(Global.get_config_path()):
+				resource = FontFile.new()
+				resource.load_bitmap_font(source_resource_path)
+			else:
+				resource = load(source_resource_path)
+			resource.set_meta("base_path", source_resource_path)
 	if cache.has(json_file.resource_path) == false and use_cache and not is_random:
 		cache[json_file.resource_path] = resource
 	return resource
@@ -179,11 +193,12 @@ func apply_properties(properties := {}) -> void:
 					obj.set(p, properties[i])
 					continue
 
+
+
 func get_variation_json(json := {}) -> Dictionary:
 	var level_theme = Global.level_theme
 	if force_properties.has("Theme"):
 		level_theme = force_properties.Theme
-	
 	for i in json.keys().filter(func(key): return key.contains("config:")):
 		get_config_file(current_resource_pack)
 		if config_to_use != {}:
@@ -208,7 +223,6 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	var campaign = Global.current_campaign
 	if force_properties.has("Campaign"):
-		is_random = true
 		campaign = force_properties.Campaign
 	if json.has(campaign) == false:
 		campaign = "SMB1"
@@ -224,9 +238,7 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	var world = "World" + str(Global.world_num)
 	if force_properties.has("World"):
-		is_random = true
 		world = "World" + str(force_properties.World)
-		print(world)
 	if json.has(world) == false:
 		world = "World1"
 	if json.has(world):
@@ -244,6 +256,15 @@ func get_variation_json(json := {}) -> Dictionary:
 		else:
 			json = get_variation_json(json[level_string])
 	
+	var room = Global.room_strings[Global.current_room]
+	if json.has(room) == false:
+		room = Global.room_strings[0]
+	if json.has(room):
+		if json.get(room).has("link"):
+			json = get_variation_json(json[json.get(room).get("link")])
+		else:
+			json = get_variation_json(json[room])
+	
 	var game_mode = "GameMode:" + Global.game_mode_strings[Global.current_game_mode]
 	if json.has(game_mode) == false:
 		game_mode = "GameMode:" + Global.game_mode_strings[0]
@@ -255,7 +276,7 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	var chara = "Character:" + Player.CHARACTERS[int(Global.player_characters[0])]
 	if json.has(chara) == false:
-		chara = "Character:Mario"
+		chara = "Character:default"
 	if json.has(chara):
 		if json.get(chara).has("link"):
 			json = get_variation_json(json[json.get(chara).get("link")])
@@ -321,8 +342,6 @@ func load_image_from_path(path := "") -> Texture2D:
 			return null
 		return load(path)
 	var image = Image.new()
-	if path == "":
-		print([path, owner.name])
 	image.load(path)
 	return ImageTexture.create_from_image(image)
 
@@ -336,4 +355,6 @@ func load_audio_from_path(path := "") -> AudioStream:
 		stream = AudioStreamWAV.load_from_file(path)
 	elif path.contains(".mp3"):
 		stream = AudioStreamMP3.load_from_file(path)
+	elif path.contains(".ogg"):
+		stream = AudioStreamOggVorbis.load_from_file(path)
 	return stream

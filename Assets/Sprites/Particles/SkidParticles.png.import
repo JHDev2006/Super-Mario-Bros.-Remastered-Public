@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bssh26dxk6xgy"
-path="res://.godot/imported/Pipe.png-69349cb27a593cd597e30a377402c324.ctex"
+uid="uid://bqra7e5xsdg5r"
+path="res://.godot/imported/SkidParticles.png-4f132f13853c04702406f07a4c9c4263.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Editor/Pipe.png"
-dest_files=["res://.godot/imported/Pipe.png-69349cb27a593cd597e30a377402c324.ctex"]
+source_file="res://Assets/Sprites/Particles/SkidParticles.png"
+dest_files=["res://.godot/imported/SkidParticles.png-4f132f13853c04702406f07a4c9c4263.ctex"]
 
 [params]
 

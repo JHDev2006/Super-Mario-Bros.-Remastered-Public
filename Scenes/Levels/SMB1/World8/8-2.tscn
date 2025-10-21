@@ -185,7 +185,7 @@ optional = true
 
 [node name="ChallengeNodes" type="Node" parent="." node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("20_8cbri")
-nodes_to_delete = [NodePath("../Enemies/Lakitu"), NodePath("../DecoTiles"), NodePath("../Blocks")]
+nodes_to_delete = [NodePath("../Blocks")]
 force_on = true
 metadata/_custom_type_script = "uid://cgm3opb5qudc1"
 

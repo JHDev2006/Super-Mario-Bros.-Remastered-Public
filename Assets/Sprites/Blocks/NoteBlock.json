@@ -13,6 +13,7 @@
 		"Castle": {"source": "NoteBlock.png", "rect": [0, 32, 16, 16]},
 		"Snow": {"source": "NoteBlock.png", "rect": [0, 48, 16, 16]},
 		"Space": {"source": "NoteBlock.png", "rect": [0, 64, 16, 16]},
-		"Volcano": {"source": "NoteBlock.png", "rect": [0, 80, 16, 16]}
+		"Volcano": {"source": "NoteBlock.png", "rect": [0, 80, 16, 16]},
+		"Bonus": {"source": "NoteBlock.png", "rect": [0, 96, 16, 16]}
 	}
 }

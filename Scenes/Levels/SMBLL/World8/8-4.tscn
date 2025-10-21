@@ -40,12 +40,15 @@ tile_map_data = PackedByteArray("AAAZAAAAAgAAAAIAAAAZAAEAAgAAAAMAAAAaAAAAAgAAAAI
 
 [node name="Firebar" parent="." instance=ExtResource("7_d6bjg")]
 position = Vector2(24, -56)
+direction = 1
 
 [node name="Firebar2" parent="." instance=ExtResource("7_d6bjg")]
 position = Vector2(152, -56)
+direction = 1
 
 [node name="Firebar3" parent="." instance=ExtResource("7_d6bjg")]
 position = Vector2(344, -56)
+direction = 1
 
 [node name="Enemies" type="Node" parent="."]
 

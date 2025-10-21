@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="8_gnn3a"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="9_3f2f2"]
 [ext_resource type="Texture2D" uid="uid://boivfkpqvnx45" path="res://Assets/Sprites/Players/Peach.png" id="10_5xkvw"]
-[ext_resource type="FontVariation" uid="uid://djxdgxy1iv8yv" path="res://Resources/ThemedResources/FontLLMain.tres" id="11_yglne"]
+[ext_resource type="FontVariation" uid="uid://bl7sbw4nx3l1t" path="res://Resources/ThemedResources/FontMain.tres" id="11_yglne"]
 [ext_resource type="Texture2D" uid="uid://fdn41mmtnhdt" path="res://Assets/Sprites/Players/ToadNPCLL.png" id="12_gvpv4"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="13_2i527"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/ToadNPC.json" id="14_swpxw"]

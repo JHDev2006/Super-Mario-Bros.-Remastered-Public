@@ -69,7 +69,8 @@ func add_properties() -> void:
 				property.property_step = float(values[2])
 		elif i.type == TYPE_BOOL:
 			property = preload("uid://diqn7e5hqpbsk").instantiate()
-		
+		elif i.type == TYPE_COLOR:
+			property = preload("uid://o3ya33lcbn7y").instantiate()
 		
 		if property != null:
 			property.exit_changed.connect(set_can_exit)

@@ -2,7 +2,7 @@
 
 importer="font_data_bmfont"
 type="FontFile"
-uid="uid://cd221873lbtj1"
+uid="uid://djsv6aojrcuyg"
 path="res://.godot/imported/Font.fnt-6c6685c58d22178166a8720d2c719ea3.fontdata"
 
 [deps]
@@ -13,5 +13,5 @@ dest_files=["res://.godot/imported/Font.fnt-6c6685c58d22178166a8720d2c719ea3.fon
 [params]
 
 fallbacks=[]
-compress=false
+compress=true
 scaling_mode=0

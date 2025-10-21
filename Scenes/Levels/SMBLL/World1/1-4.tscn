@@ -41,21 +41,26 @@ position = Vector2(56, -120)
 
 [node name="Firebar2" parent="FireBar" instance=ExtResource("7_hphgw")]
 position = Vector2(344, -120)
+direction = 1
 
 [node name="Firebar3" parent="FireBar" instance=ExtResource("7_hphgw")]
 position = Vector2(456, -56)
+direction = 1
 
 [node name="Firebar4" parent="FireBar" instance=ExtResource("7_hphgw")]
 position = Vector2(600, -56)
 
 [node name="Firebar5" parent="FireBar" instance=ExtResource("7_hphgw")]
 position = Vector2(840, -120)
+direction = 1
 
 [node name="Firebar6" parent="FireBar" instance=ExtResource("7_hphgw")]
 position = Vector2(968, -120)
+direction = 1
 
 [node name="Firebar7" parent="FireBar" instance=ExtResource("7_hphgw")]
 position = Vector2(1096, -120)
+direction = 1
 
 [node name="Firebar8" parent="FireBar" instance=ExtResource("7_hphgw")]
 position = Vector2(1208, -56)

@@ -1,30 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwdwavf4rp1m1"]
+[gd_scene load_steps=7 format=3 uid="uid://bwdwavf4rp1m1"]
 
 [ext_resource type="Script" uid="uid://vhxup1pn2v8q" path="res://Scripts/Classes/Entities/Items/HammerItem.gd" id="1_ws752"]
 [ext_resource type="Texture2D" uid="uid://bbdcmhyxmc3pu" path="res://Assets/Sprites/Items/SPItems.png" id="2_c0srl"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_uc7h7"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_uc7h7"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/HammerItem.json" id="5_6qq3q"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws752"]
-size = Vector2(8, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uc7h7"]
 size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws752"]
+size = Vector2(12, 12)
 
 [node name="HammerItem" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_ws752")
 metadata/_custom_type_script = "uid://cjkurwybsaywm"
-
-[node name="Hitbox" type="Area2D" parent="."]
-script = ExtResource("3_uc7h7")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
-
-[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_ws752")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
@@ -44,4 +35,10 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_uc7h7")
 
-[connection signal="player_entered" from="Hitbox" to="." method="on_player_entered"]
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_ws752")
+
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]

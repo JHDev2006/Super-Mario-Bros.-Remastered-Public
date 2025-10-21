@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1ytbn4cu7msu"]
+[gd_scene load_steps=5 format=3 uid="uid://b1ytbn4cu7msu"]
 
 [ext_resource type="Texture2D" uid="uid://dkebo0uw0dkkw" path="res://Assets/Sprites/Particles/CoinSparkle.png" id="1_4p5kk"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_wdqt2"]
@@ -11,6 +11,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [node name="CoinSparkle" type="CPUParticles2D"]
+z_as_relative = false
 material = SubResource("CanvasItemMaterial_0guw6")
 emitting = false
 amount = 3

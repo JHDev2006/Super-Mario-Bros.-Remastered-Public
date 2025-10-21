@@ -21,6 +21,9 @@ func skid_changed(new_value := 0) -> void:
 func extra_sfx_changed(new_value := 0) -> void:
 	Settings.file.audio.extra_sfx = new_value
 
+func pause_bgm_changed(new_value := 0) -> void:
+	Settings.file.audio.pause_bgm = new_value
+
 func menu_bgm_changed(new_value := 0) -> void:
 	Settings.file.audio.menu_bgm = new_value
 
@@ -36,5 +39,6 @@ func set_value(value_name := "", value := 0) -> void:
 		"extra_bgm": athletic_changed,
 		"skid_sfx": skid_changed,
 		"extra_sfx": extra_sfx_changed,
+		"pause_bgm": pause_bgm_changed,
 		"menu_bgm": menu_bgm_changed
 	}[value_name].call(value)

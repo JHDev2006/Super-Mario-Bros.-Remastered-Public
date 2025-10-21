@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckpuxdilk5u0"]
+[gd_scene load_steps=9 format=3 uid="uid://ckpuxdilk5u0"]
 
 [ext_resource type="Script" uid="uid://vwe7y2scu8a1" path="res://Scripts/Parts/LevelTransition.gd" id="1_75ji3"]
 [ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="3_y8ytj"]
+[ext_resource type="Texture2D" uid="uid://de6otencrflfo" path="res://Assets/Sprites/UI/RedCoins.png" id="5_ehrek"]
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="5_jsg51"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_mcaat"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="6_abjth"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="8_ehrek"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="10_abjth"]
 
@@ -122,6 +124,106 @@ resource_setter = NodePath("ResourceSetterNew")
 script = ExtResource("5_mcaat")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
+[node name="ChallengeScore" type="Label" parent="BG/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -44.0
+offset_top = -11.0
+offset_right = 156.0
+offset_bottom = 5.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "CHALLENGE_DIALOGUE_SCORE"
+uppercase = true
+
+[node name="ChallengeScoreText" type="Label" parent="BG/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 56.0
+offset_bottom = 12.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="Target" type="Label" parent="BG/Control/ChallengeScoreText"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_right = 8.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.462745, 0.52549, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "/00000"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="ChallengeCoins2" type="Label" parent="BG/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -44.0
+offset_top = -27.0
+offset_right = 156.0
+offset_bottom = -11.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "CHALLENGE_DIALOGUE_COINS"
+uppercase = true
+
+[node name="ChallengeCoins" type="Node2D" parent="BG/Control"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(20, -55)
+
+[node name="1" type="Sprite2D" parent="BG/Control/ChallengeCoins"]
+position = Vector2(-5, 36)
+texture = ExtResource("5_ehrek")
+hframes = 2
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("6_abjth")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="2" type="Sprite2D" parent="BG/Control/ChallengeCoins"]
+position = Vector2(3, 36)
+texture = ExtResource("5_ehrek")
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("6_abjth")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="3" type="Sprite2D" parent="BG/Control/ChallengeCoins"]
+position = Vector2(11, 36)
+texture = ExtResource("5_ehrek")
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("6_abjth")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="4" type="Sprite2D" parent="BG/Control/ChallengeCoins"]
+position = Vector2(19, 36)
+texture = ExtResource("5_ehrek")
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("6_abjth")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="5" type="Sprite2D" parent="BG/Control/ChallengeCoins"]
+position = Vector2(27, 36)
+texture = ExtResource("5_ehrek")
+hframes = 2
+frame = 1
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("6_abjth")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
@@ -134,7 +236,7 @@ metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
 script = ExtResource("10_abjth")
-labels = [NodePath("../BG/Control/World"), NodePath("../BG/Control/LivesCount"), NodePath("../BG/Control/MarathonPB"), NodePath("../BG/Control/WorldNum"), NodePath("../BG/Control/CustomLevelName"), NodePath("../BG/Control/CustomLevelAuthor")]
+labels = [NodePath("../BG/Control/World"), NodePath("../BG/Control/LivesCount"), NodePath("../BG/Control/MarathonPB"), NodePath("../BG/Control/WorldNum"), NodePath("../BG/Control/CustomLevelName"), NodePath("../BG/Control/CustomLevelAuthor"), NodePath("../BG/Control/ChallengeScore"), NodePath("../BG/Control/ChallengeScoreText"), NodePath("../BG/Control/ChallengeScoreText/Target"), NodePath("../BG/Control/ChallengeCoins2")]
 metadata/_custom_type_script = "uid://dt2p68xl462v2"
 
 [connection signal="timeout" from="Timer" to="." method="transition"]

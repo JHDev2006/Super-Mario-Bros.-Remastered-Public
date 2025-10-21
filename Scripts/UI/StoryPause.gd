@@ -7,6 +7,7 @@ var selected_index := 0
 
 var active := false
 
+@export var can_exit := true
 @export var is_pause := true
 
 signal option_1_selected
@@ -30,7 +31,7 @@ func handle_inputs() -> void:
 	selected_index = clamp(selected_index, 0, options.size() - 1)
 	if Input.is_action_just_pressed("ui_accept"):
 		option_selected()
-	elif Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("ui_back"):
+	elif (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("ui_back")) and can_exit:
 		close()
 
 func option_selected() -> void:
@@ -48,7 +49,7 @@ func open() -> void:
 		AudioManager.play_global_sfx("pause")
 		get_tree().paused = true
 	show()
-	await get_tree().physics_frame
+	await get_tree().create_timer(0.1).timeout
 	active = true
 
 func close() -> void:
@@ -56,7 +57,6 @@ func close() -> void:
 	selected_index = 0
 	hide()
 	closed.emit()
-	for i in 2:
-		await get_tree().physics_frame
+	await get_tree().create_timer(0.1).timeout
 	Global.game_paused = false
 	get_tree().paused = false

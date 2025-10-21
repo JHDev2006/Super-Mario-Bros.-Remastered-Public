@@ -8,7 +8,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bdd7a"]
 normal = Vector2(-1, 0)
 
-[node name="HardCameraRightLimit" type="Node2D"]
+[node name="HardCameraRightLimit" type="Node2D" groups=["CameraLimits"]]
 script = ExtResource("1_f6lpd")
 metadata/_custom_type_script = "uid://bdq0373j5n5o0"
 

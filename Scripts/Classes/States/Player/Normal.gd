@@ -84,8 +84,7 @@ func grounded(delta: float) -> void:
 func handle_ground_movement(delta: float) -> void:
 	if player.skidding:
 		ground_skid(delta)
-	elif sign(player.input_direction * player.velocity_direction) < 0.0 and player.input_direction != 0 and abs(player.velocity.x) > 100 and not player.crouching:
-		print([player.input_direction, player.velocity_direction])
+	elif sign(player.input_direction * player.velocity_direction) < 0.0 and abs(player.velocity.x) > player.SKID_THRESHOLD and not player.crouching:
 		player.skidding = true
 	elif player.physics_style == player.PhysicsStyle.CLASSIC:
 		var target_speed = player.WALK_SPEED
@@ -131,18 +130,22 @@ func deceleration(delta: float) -> void:
 	player.velocity.x = move_toward(player.velocity.x, 0, (player.DECEL / delta) * delta)
 
 func ground_skid(delta: float) -> void:
+	player.skid_frames += 1
 	if sign(player.input_direction * player.velocity_direction) > 0:
 		player.skidding = false
+        player.skid_frames = 0
 	if player.physics_style == player.PhysicsStyle.CLASSIC:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.DECEL * 2.0)
 		# Instantly snap to zero speed once reaching a sufficiently low 'turning point'.
 		if abs(player.velocity.x) < 33.75:
 			player.skidding = false
+            player.skid_frames = 0
 			player.velocity.x = 0
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 1 * player.input_direction, (player.RUN_SKID / delta) * delta)
 		if abs(player.velocity.x) < 10:
 			player.skidding = false
+            player.skid_frames = 0
 
 func in_air() -> void:
 	if Global.player_action_just_pressed("jump", player.player_id):
@@ -252,18 +255,25 @@ func get_animation_name() -> String:
 				return "FlyAttack"
 			else:
 				return "AirAttack"
+	if player.kicking and player.can_kick_anim:
+		return "Kick"
 	if player.crouching and not wall_pushing:
 		if player.bumping and player.can_bump_crouch:
 			return "CrouchBump"
 		elif player.is_on_floor() == false:
-			if player.velocity.y > 0:
+			if player.velocity.y >= 0:
 				return "CrouchFall"
 			elif player.velocity.y < 0:
 				return "CrouchJump"
 		elif player.is_actually_on_floor():
 			if abs(player.velocity.x) >= 5 and not player.is_actually_on_wall():
 				return "CrouchMove"
-		return "Crouch"
+			elif player.in_water:
+				return "WaterCrouch"
+			elif player.flight_meter > 0:
+				return "WingCrouch"
+			else:
+				return "Crouch"
 	if player.is_actually_on_floor():
 		if player.skidding:
 			return "Skid"
@@ -271,17 +281,26 @@ func get_animation_name() -> String:
 			if player.in_water:
 				return "WaterMove"
 			elif player.flight_meter > 0:
-				return "FlyMove"
+				return "WingMove"
 			elif abs(player.velocity.x) < player.RUN_SPEED - 10:
 				return "Walk"
 			else:
 				return "Run"
 		else:
-			if player.in_water or player.flight_meter > 0:
-				return "WaterIdle"
 			if Global.player_action_pressed("move_up", player.player_id):
-				return "LookUp"
-			return "Idle"
+				if player.in_water:
+					return "WaterLookUp"
+				elif player.flight_meter > 0:
+					return "WingLookUp"
+				else:
+					return "LookUp"
+			else:
+				if player.in_water:
+					return "WaterIdle"
+				elif player.flight_meter > 0:
+					return "WingIdle"
+				else:
+					return "Idle"
 	else:
 		if player.in_water:
 			if swim_up_meter > 0:
@@ -301,20 +320,31 @@ func get_animation_name() -> String:
 				return "FlyIdle"
 		if player.has_jumped:
 			if player.bumping and player.can_bump_jump:
-				return "JumpBump"
+				if abs(player.velocity_x_jump_stored) < player.RUN_SPEED - 10:
+					return "JumpBump"
+				else:
+					return "RunJumpBump"
 			elif player.velocity.y < 0:
 				if player.is_invincible:
 					return "StarJump"
-				return "Jump"
+				elif abs(player.velocity_x_jump_stored) < player.RUN_SPEED - 10:
+					return "Jump"
+				else:
+					return "RunJump"
 			else:
 				if player.is_invincible:
 					return "StarFall"
-				return "JumpFall"
+				elif abs(player.velocity_x_jump_stored) < player.RUN_SPEED - 10:
+					return "JumpFall"
+				else:
+					return "RunJumpFall"
 		else:
-			player.sprite.speed_scale = 0
-			player.sprite.frame = walk_frame
+			# guzlad: Fixes characters with fall anims not playing them, but also prevents old characters without that anim not being accurate
+			if !player.sprite.sprite_frames.has_animation("Fall"):
+				player.sprite.frame = walk_frame
 			return "Fall"
 
 func exit() -> void:
-	player.on_hammer_timeout()
-	player.skidding = false
+	if owner.has_hammer:
+		owner.on_hammer_timeout()
+	owner.skidding = false

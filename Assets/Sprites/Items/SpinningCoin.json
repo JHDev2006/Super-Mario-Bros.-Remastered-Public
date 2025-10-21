@@ -32,7 +32,7 @@
 		}
 	},
 	"properties": {
-		"can_spawn_particles": false
+		"can_spawn_particles": true
 	},
 	"variations": {
 		"default": {

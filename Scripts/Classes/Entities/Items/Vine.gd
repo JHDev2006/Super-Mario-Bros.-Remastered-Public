@@ -72,6 +72,6 @@ func on_player_entered(_player: Player) -> void:
 
 
 func on_area_exited(area: Area2D) -> void:
-	if area.owner is Player:
+	if area.owner is Player and area.name != "HammerHitbox":
 		if area.owner.state_machine.state.name == "Climb":
 			area.owner.state_machine.transition_to("Normal")

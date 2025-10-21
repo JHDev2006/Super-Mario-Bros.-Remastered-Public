@@ -494,5 +494,13 @@
 	"B7": [
 		"res://Scenes/Prefabs/LevelObjects/MoonGravityObj.tscn",
 		"0,0"
+	],
+	"B8": [
+		"res://Scenes/Prefabs/Entities/Enemies/Sigebou.tscn",
+		"0,8"
+	],
+	"B9": [
+		"res://Scenes/Prefabs/Entities/Enemies/BowsersBro.tscn",
+		"0,8"
 	]
 }

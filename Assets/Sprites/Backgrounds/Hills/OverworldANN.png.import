@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://val3y26km5bl"
-path="res://.godot/imported/Enemy.png-761910e2264650da83a00e07455626a9.ctex"
+uid="uid://cs28m2tkqkqpt"
+path="res://.godot/imported/OverworldANN.png-a917c4a1e4c1e40208df341e8af51f42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Editor/Enemy.png"
-dest_files=["res://.godot/imported/Enemy.png-761910e2264650da83a00e07455626a9.ctex"]
+source_file="res://Assets/Sprites/Backgrounds/Hills/OverworldANN.png"
+dest_files=["res://.godot/imported/OverworldANN.png-a917c4a1e4c1e40208df341e8af51f42.ctex"]
 
 [params]
 

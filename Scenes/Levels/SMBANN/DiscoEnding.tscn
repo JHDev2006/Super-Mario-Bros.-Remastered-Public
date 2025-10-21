@@ -112,12 +112,16 @@ animations = [{
 [node name="LostLevelsEnding" instance=ExtResource("1_3ouhg")]
 campaign = "SMBANN"
 
-[node name="Sprite2D2" parent="." index="8"]
-texture = ExtResource("2_xj4cw")
-region_rect = Rect2(128, 0, 16, 32)
+[node name="Cheer1" parent="LevelBG/DiscoBits" index="3"]
+volume_db = -80.0
+
+[node name="Cheer2" parent="LevelBG/DiscoBits" index="4"]
+volume_db = -80.0
+
+[node name="Cheer3" parent="LevelBG/DiscoBits" index="5"]
+volume_db = -80.0
 
 [node name="1" parent="Toads" index="0"]
-self_modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_twn8w")
 animation = &"default"
 autoplay = ""
@@ -125,16 +129,10 @@ autoplay = ""
 [node name="ResourceSetterNew" parent="Toads/1" index="0"]
 use_cache = false
 force_properties = {
-"World": 2
+"World": 1
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="Toads/1" index="1"]
-texture = ExtResource("2_xj4cw")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 32)
-
 [node name="2" parent="Toads" index="1"]
-self_modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_u2ma4")
 animation = &"default"
 autoplay = ""
@@ -145,13 +143,7 @@ force_properties = {
 "World": 2
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="Toads/2" index="1"]
-texture = ExtResource("2_xj4cw")
-region_enabled = true
-region_rect = Rect2(16, 0, 16, 32)
-
 [node name="3" parent="Toads" index="2"]
-self_modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_op12h")
 animation = &"default"
 autoplay = ""
@@ -162,13 +154,7 @@ force_properties = {
 "World": 3
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="Toads/3" index="1"]
-texture = ExtResource("2_xj4cw")
-region_enabled = true
-region_rect = Rect2(32, 0, 16, 32)
-
 [node name="4" parent="Toads" index="3"]
-self_modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_uuw0f")
 animation = &"default"
 autoplay = ""
@@ -179,13 +165,7 @@ force_properties = {
 "World": 4
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="Toads/4" index="1"]
-texture = ExtResource("2_xj4cw")
-region_enabled = true
-region_rect = Rect2(48, 0, 16, 32)
-
 [node name="5" parent="Toads" index="4"]
-self_modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_tsyh5")
 animation = &"default"
 autoplay = ""
@@ -196,13 +176,7 @@ force_properties = {
 "World": 5
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="Toads/5" index="1"]
-texture = ExtResource("2_xj4cw")
-region_enabled = true
-region_rect = Rect2(64, 0, 16, 32)
-
 [node name="6" parent="Toads" index="5"]
-self_modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_pijpk")
 animation = &"default"
 autoplay = ""
@@ -213,13 +187,7 @@ force_properties = {
 "World": 6
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="Toads/6" index="1"]
-texture = ExtResource("2_xj4cw")
-region_enabled = true
-region_rect = Rect2(80, 0, 16, 32)
-
 [node name="7" parent="Toads" index="6"]
-self_modulate = Color(1, 1, 1, 0)
 sprite_frames = SubResource("SpriteFrames_08njn")
 animation = &"default"
 autoplay = ""
@@ -229,11 +197,6 @@ use_cache = false
 force_properties = {
 "World": 7
 }
-
-[node name="Sprite2D" type="Sprite2D" parent="Toads/7" index="1"]
-texture = ExtResource("2_xj4cw")
-region_enabled = true
-region_rect = Rect2(96, 0, 16, 32)
 
 [node name="DiscoLevel" type="Node" parent="." index="13"]
 script = ExtResource("3_xj4cw")

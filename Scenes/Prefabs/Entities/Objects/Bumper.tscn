@@ -36,7 +36,7 @@ tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.16666667),
+"times": PackedFloat32Array(0, 0.010294806, 0.06666667, 0.16666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1.2, 1.2), Vector2(1, 1)]
@@ -84,12 +84,12 @@ property_name = "sprite_frames"
 resource_json = ExtResource("5_ix70v")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="PlayerDetection" type="Area2D" parent="."]
 collision_layer = 255
 script = ExtResource("3_cgc3p")
 metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource("CircleShape2D_tbo6k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -107,4 +107,4 @@ metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tbo6k")
 
-[connection signal="player_entered" from="Hitbox" to="." method="bounce_player"]
+[connection signal="player_entered" from="PlayerDetection" to="." method="bounce_player"]

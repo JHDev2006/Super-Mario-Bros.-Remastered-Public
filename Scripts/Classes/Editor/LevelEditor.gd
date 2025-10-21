@@ -282,7 +282,8 @@ func parse_tiles() -> void:
 	for i in entity_layer_nodes:
 		if is_instance_valid(i) == false:
 			continue
-		saved_entity_layers[idx] = i.duplicate(DUPLICATE_USE_INSTANTIATION)
+		if load_play == false:
+			saved_entity_layers[idx] = i.duplicate(DUPLICATE_USE_INSTANTIATION)
 		if i is Player:
 			i.direction = 1
 			i.velocity = Vector2.ZERO
@@ -367,7 +368,7 @@ func close_save_menu() -> void:
 	current_state = EditorState.TILE_MENU
 
 func handle_tile_cursor() -> void:
-	Input.set_custom_mouse_cursor(null)
+	var target_mouse_icon = null
 	var snapped_position = ((%TileCursor.get_global_mouse_position() - CURSOR_OFFSET).snapped(Vector2(16, 16))) + CURSOR_OFFSET
 	%TileCursor.global_position = (snapped_position)
 	var old_index := selected_tile_index
@@ -387,16 +388,16 @@ func handle_tile_cursor() -> void:
 		elif Input.is_action_pressed("editor_select") == false:
 			multi_selecting = false
 			place_tile(tile_position)
-			Input.set_custom_mouse_cursor(CURSOR_PENCIL)
+			target_mouse_icon = (CURSOR_PENCIL)
 		
 	if Input.is_action_pressed("mb_right"):
 		if Input.is_action_pressed("editor_select") and not multi_selecting:
 			multi_select_start(tile_position)
-			Input.set_custom_mouse_cursor(CURSOR_RULER)
+			target_mouse_icon = (CURSOR_RULER)
 		elif Input.is_action_pressed("editor_select") == false:
 			multi_selecting = false
 			remove_tile(tile_position)
-			Input.set_custom_mouse_cursor(CURSOR_ERASOR)
+			target_mouse_icon = (CURSOR_ERASOR)
 	
 	if current_state == EditorState.IDLE:
 		if Input.is_action_just_pressed("scroll_up"):
@@ -419,6 +420,8 @@ func handle_tile_cursor() -> void:
 		selected_tile_index = wrap(selected_tile_index, 0, tile_list.size())
 		on_tile_selected(tile_list[selected_tile_index])
 		show_scroll_preview()
+	
+	Input.set_custom_mouse_cursor(target_mouse_icon)
 
 func pick_tile(tile_position := Vector2i.ZERO) -> void:
 	if tile_layer_nodes[current_layer].get_used_cells().has(tile_position):

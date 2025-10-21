@@ -77,12 +77,16 @@ func _ready() -> void:
 		SaveManager.write_save(Global.current_campaign)
 	DiscordManager.set_discord_status("Playing " + Global.current_campaign + ": " + str(world_num) + "-" + str(Global.level_num))
 	$BG/Control/WorldNum.text = str(world_num) +"-" + str(Global.level_num)
-	if Settings.file.difficulty.inf_lives:
+	if [Global.GameMode.CUSTOM_LEVEL, Global.GameMode.LEVEL_EDITOR].has(Global.current_game_mode):
+		$BG/Control/LivesCount.text = "☠ * " + str(Global.total_deaths)
+	elif Settings.file.difficulty.inf_lives:
 		$BG/Control/LivesCount.text = "*  ∞"
 	elif Global.lives < 100:
 		$BG/Control/LivesCount.text = "* " + (str(Global.lives).lpad(2, " "))
 	else:
-		$BG/Control/LivesCount.text = "*  ♕" 
+		$BG/Control/LivesCount.text = "*  ♕"
+	if Global.current_game_mode == Global.GameMode.CHALLENGE:
+		handle_challenge_mode_transition()
 	if Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
 		$BG/Control/World.hide()
 		$BG/Control/WorldNum.hide()
@@ -90,9 +94,29 @@ func _ready() -> void:
 		%CustomLevelName.show()
 		%CustomLevelAuthor.text = "By " + LevelEditor.level_author
 		%CustomLevelName.text = LevelEditor.level_name
+		
 	await get_tree().create_timer(0.1, false).timeout
 	can_transition = true
 
+func handle_challenge_mode_transition() -> void:
+	$BG/Control/LivesCount.hide()
+	$BG/Control/Sprite.hide()
+	%ChallengeScore.show()
+	%ChallengeScoreText.show()
+	%ChallengeScoreText/Target.show()
+	%ChallengeCoins2.show()
+	%ChallengeCoins.show()
+	%ChallengeScoreText.text = str(int(ChallengeModeHandler.top_challenge_scores[Global.world_num - 1][Global.level_num - 1]))
+	var idx = 0
+	for i in %ChallengeCoins.get_children():
+		if ChallengeModeHandler.is_coin_collected(idx, ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1]):
+			i.frame = 1
+		else:
+			i.frame = 0
+		idx += 1
+	%ChallengeScoreText/Target.text = "/ " + str(ChallengeModeHandler.CHALLENGE_TARGETS[Global.current_campaign][Global.world_num - 1][Global.level_num - 1])
+
+	
 func transition() -> void:
 	Global.can_time_tick = true
 	if PIPE_CUTSCENE_LEVELS[Global.current_campaign].has([Global.world_num, Global.level_num]) and not PipeCutscene.seen_cutscene and Global.current_game_mode != Global.GameMode.MARATHON_PRACTICE and Global.current_game_mode !=Global.GameMode.BOO_RACE:
@@ -113,7 +137,7 @@ func show_best_time() -> void:
 
 func _process(_delta: float) -> void:
 	if can_transition:
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("jump_0"):
 			transition()
 
 func _exit_tree() -> void:

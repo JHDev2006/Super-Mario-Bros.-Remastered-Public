@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://bgeh6ex0lbqfq"]
+[gd_scene load_steps=84 format=3 uid="uid://bgeh6ex0lbqfq"]
 
 [ext_resource type="Script" uid="uid://b3stoe2kp1nv1" path="res://Scripts/UI/Credits.gd" id="1_db8c5"]
 [ext_resource type="AudioStream" uid="uid://cdhsj02wqdt7y" path="res://Assets/Audio/BGM/Credits.mp3" id="1_k57dj"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bn3mqsvovdtbx" path="res://Assets/Sprites/UI/CreditsDioramas/4.png" id="8_3648a"]
 [ext_resource type="Texture2D" uid="uid://deooy8040yx2u" path="res://Assets/Sprites/UI/LocaleFlags.png" id="8_oqk7k"]
 [ext_resource type="Texture2D" uid="uid://cble1pod2v3gd" path="res://Assets/Sprites/UI/CreditsDioramas/5.png" id="9_shsp7"]
+[ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="11_d4vu4"]
 [ext_resource type="Texture2D" uid="uid://dgu0hgrwsu5jk" path="res://Assets/Sprites/UI/CreditsDioramas/6.png" id="11_kpq8t"]
 [ext_resource type="Texture2D" uid="uid://c8xmws8kj7dtd" path="res://Assets/Sprites/UI/CreditsDioramas/7.png" id="12_oe1k8"]
 [ext_resource type="Texture2D" uid="uid://c8bg7co8ic1mm" path="res://Assets/Sprites/UI/CreditsDioramas/9.png" id="13_17gvw"]
@@ -381,6 +382,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_s34bh")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/TileArtists/Label"]
 layout_mode = 0
@@ -400,6 +403,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_ouss1")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label4" type="Label" parent="Labels/TileArtists/Label"]
 layout_mode = 0
@@ -419,6 +424,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_yji2n")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label5" type="Label" parent="Labels/TileArtists/Label"]
 layout_mode = 0
@@ -438,6 +445,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_4ssyu")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label6" type="Label" parent="Labels/TileArtists/Label"]
 layout_mode = 0
@@ -457,6 +466,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_8pyc7")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect" type="TextureRect" parent="Labels/TileArtists"]
 layout_mode = 0
@@ -465,6 +476,8 @@ offset_top = 120.0
 offset_right = 248.0
 offset_bottom = 232.0
 texture = ExtResource("4_j3afk")
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="BGArtists" type="Control" parent="Labels"]
 visible = false
@@ -515,6 +528,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_s34bh")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/BGArtists/Label"]
 layout_mode = 0
@@ -534,6 +549,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_6kpe2")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label4" type="Label" parent="Labels/BGArtists/Label"]
 layout_mode = 0
@@ -553,6 +570,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_3s1o5")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label6" type="Label" parent="Labels/BGArtists/Label"]
 layout_mode = 0
@@ -572,6 +591,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_x745s")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label5" type="Label" parent="Labels/BGArtists/Label"]
 layout_mode = 0
@@ -591,6 +612,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_g2gtw")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect" type="TextureRect" parent="Labels/BGArtists"]
 layout_mode = 0
@@ -599,6 +622,8 @@ offset_top = 112.0
 offset_right = 144.0
 offset_bottom = 224.0
 texture = ExtResource("6_s34bh")
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="EnemyArtists" type="Control" parent="Labels"]
 visible = false
@@ -649,6 +674,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_s34bh")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/EnemyArtists/Label"]
 layout_mode = 0
@@ -668,6 +695,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_g2gtw")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label4" type="Label" parent="Labels/EnemyArtists/Label"]
 layout_mode = 0
@@ -687,6 +716,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_885hu")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label5" type="Label" parent="Labels/EnemyArtists/Label"]
 layout_mode = 0
@@ -706,6 +737,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_j5uy1")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label6" type="Label" parent="Labels/EnemyArtists/Label"]
 layout_mode = 0
@@ -725,6 +758,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_oqk7k")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label7" type="Label" parent="Labels/EnemyArtists/Label"]
 layout_mode = 0
@@ -744,6 +779,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_ud3pl")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect" type="TextureRect" parent="Labels/EnemyArtists"]
 layout_mode = 0
@@ -752,6 +789,8 @@ offset_top = 120.0
 offset_right = 248.0
 offset_bottom = 232.0
 texture = ExtResource("7_k6bv2")
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label10" type="Label" parent="Labels/EnemyArtists"]
 layout_mode = 0
@@ -772,6 +811,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_isghj")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="LevelDesign" type="Control" parent="Labels"]
 visible = false
@@ -822,6 +863,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_s34bh")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label4" type="Label" parent="Labels/LevelDesign/Label"]
 layout_mode = 0
@@ -841,6 +884,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_oe1k8")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label5" type="Label" parent="Labels/LevelDesign/Label/Label4"]
 layout_mode = 0
@@ -860,6 +905,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_sqdyg")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label5" type="Label" parent="Labels/LevelDesign/Label"]
 layout_mode = 0
@@ -879,6 +926,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_4ssyu")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label7" type="Label" parent="Labels/LevelDesign/Label"]
 layout_mode = 0
@@ -898,6 +947,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_0ixvh")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/LevelDesign/Label/Label7/TextureRect"]
 layout_mode = 1
@@ -909,6 +960,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_txoml")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/LevelDesign/Label"]
 layout_mode = 0
@@ -928,6 +981,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_g2gtw")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label2" type="Label" parent="Labels/LevelDesign"]
 layout_mode = 0
@@ -968,6 +1023,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_s34bh")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label2" type="Label" parent="Labels/LevelDesign/Label2"]
 layout_mode = 0
@@ -987,6 +1044,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_shsp7")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/LevelDesign"]
 layout_mode = 0
@@ -1026,6 +1085,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_i063v")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect" type="TextureRect" parent="Labels/LevelDesign"]
 layout_mode = 0
@@ -1034,6 +1095,8 @@ offset_top = 120.0
 offset_right = 248.0
 offset_bottom = 232.0
 texture = ExtResource("8_3648a")
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Sound" type="Control" parent="Labels"]
 layout_mode = 3
@@ -1083,6 +1146,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_s34bh")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/Sound/Label"]
 layout_mode = 0
@@ -1102,6 +1167,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_23b0w")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label4" type="Label" parent="Labels/Sound/Label"]
 layout_mode = 0
@@ -1121,6 +1188,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_yeh4c")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label6" type="Label" parent="Labels/Sound/Label"]
 layout_mode = 0
@@ -1140,6 +1209,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_mjy6w")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label2" type="Label" parent="Labels/Sound"]
 layout_mode = 0
@@ -1179,6 +1250,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_irr87")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label6" type="Label" parent="Labels/Sound/Label2"]
 layout_mode = 0
@@ -1198,6 +1271,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_mjy6w")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label7" type="Label" parent="Labels/Sound/Label2"]
 layout_mode = 0
@@ -1217,6 +1292,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_3diwr")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label8" type="Label" parent="Labels/Sound/Label2"]
 layout_mode = 0
@@ -1236,6 +1313,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_ttapi")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect" type="TextureRect" parent="Labels/Sound"]
 layout_mode = 0
@@ -1244,6 +1323,8 @@ offset_top = 8.0
 offset_right = 248.0
 offset_bottom = 120.0
 texture = ExtResource("9_shsp7")
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/Sound"]
 layout_mode = 0
@@ -1283,6 +1364,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_o2gfq")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/Sound/Label3"]
 layout_mode = 0
@@ -1302,6 +1385,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_wkf2d")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Localizers" type="Control" parent="Labels"]
 visible = false
@@ -1352,6 +1437,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_g72p5")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label2/TextureRect"]
 layout_mode = 1
@@ -1363,6 +1450,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_4e2pw")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1382,6 +1471,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_mwo1j")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label3/TextureRect"]
 layout_mode = 1
@@ -1393,6 +1484,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_17gvw")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label4" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1412,6 +1505,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_oe1k8")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label4/TextureRect"]
 layout_mode = 1
@@ -1423,6 +1518,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_suvme")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label5" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1442,6 +1539,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_sqdyg")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label5/TextureRect"]
 layout_mode = 1
@@ -1453,6 +1552,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_d4vu4")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label6" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1472,6 +1573,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_x745s")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label6/TextureRect"]
 layout_mode = 1
@@ -1483,6 +1586,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_ekvxv")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label7" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1502,6 +1607,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_0ixvh")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label7/TextureRect"]
 layout_mode = 1
@@ -1513,6 +1620,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_txoml")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label8" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1532,6 +1641,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_uea8q")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label8/TextureRect"]
 layout_mode = 1
@@ -1543,6 +1654,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_txoml")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label9" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1562,6 +1675,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_kd4b0")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label9/TextureRect"]
 layout_mode = 1
@@ -1573,6 +1688,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_d2mcn")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label10" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1592,6 +1709,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_tbk6s")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label10/TextureRect"]
 layout_mode = 1
@@ -1603,6 +1722,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_igtl7")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label11" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1622,6 +1743,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_ipar5")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label11/TextureRect"]
 layout_mode = 1
@@ -1633,6 +1756,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_wjira")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label12" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1652,6 +1777,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_c51sb")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label12/TextureRect"]
 layout_mode = 1
@@ -1663,6 +1790,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_s2n2q")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label13" type="Label" parent="Labels/Localizers/Label"]
 layout_mode = 0
@@ -1682,6 +1811,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_uw0vd")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label13/TextureRect"]
 layout_mode = 1
@@ -1693,6 +1824,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_bdyah")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect" type="TextureRect" parent="Labels/Localizers"]
 layout_mode = 0
@@ -1701,6 +1834,8 @@ offset_top = 8.0
 offset_right = 248.0
 offset_bottom = 120.0
 texture = ExtResource("11_kpq8t")
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="BetaTesters" type="Control" parent="Labels"]
 visible = false
@@ -1752,6 +1887,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_wi5il")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/BetaTesters/Label"]
 layout_mode = 0
@@ -1771,6 +1908,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_mysjn")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label4" type="Label" parent="Labels/BetaTesters/Label"]
 layout_mode = 0
@@ -1790,6 +1929,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_iq5ck")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label5" type="Label" parent="Labels/BetaTesters/Label"]
 layout_mode = 0
@@ -1809,6 +1950,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_g8vsx")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label6" type="Label" parent="Labels/BetaTesters/Label"]
 layout_mode = 0
@@ -1828,6 +1971,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_rtb0f")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label7" type="Label" parent="Labels/BetaTesters/Label"]
 layout_mode = 0
@@ -1847,6 +1992,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_j783k")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label8" type="Label" parent="Labels/BetaTesters/Label"]
 layout_mode = 0
@@ -1866,6 +2013,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_2q3a5")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label9" type="Label" parent="Labels/BetaTesters/Label"]
 layout_mode = 0
@@ -1885,6 +2034,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_8ybgs")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label12" type="Label" parent="Labels/BetaTesters/Label"]
 layout_mode = 0
@@ -1904,6 +2055,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_gclpm")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label14" type="Label" parent="Labels/BetaTesters/Label"]
 layout_mode = 0
@@ -1923,6 +2076,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_knejk")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label13" type="Label" parent="Labels/BetaTesters/Label"]
 layout_mode = 0
@@ -1942,6 +2097,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_bwa3s")
 expand_mode = 1
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters"]
 layout_mode = 0
@@ -1950,6 +2107,8 @@ offset_top = 32.0
 offset_right = 248.0
 offset_bottom = 144.0
 texture = ExtResource("12_oe1k8")
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label2" type="Label" parent="Labels/BetaTesters"]
 layout_mode = 0
@@ -1970,6 +2129,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_ml8dk")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label3" type="Label" parent="Labels/BetaTesters"]
 layout_mode = 0
@@ -1990,6 +2151,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_tm746")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="BetaTesters2" type="Control" parent="Labels"]
 visible = false
@@ -2041,6 +2204,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_t8m53")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label5" type="Label" parent="Labels/BetaTesters2/Label"]
 layout_mode = 0
@@ -2060,6 +2225,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_1n3p2")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label6" type="Label" parent="Labels/BetaTesters2/Label"]
 layout_mode = 0
@@ -2078,6 +2245,8 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label7" type="Label" parent="Labels/BetaTesters2/Label"]
 layout_mode = 0
@@ -2096,6 +2265,8 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label8" type="Label" parent="Labels/BetaTesters2/Label"]
 layout_mode = 0
@@ -2115,6 +2286,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_vk6gj")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label9" type="Label" parent="Labels/BetaTesters2/Label"]
 layout_mode = 0
@@ -2135,6 +2308,8 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_i3nva")
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label10" type="Label" parent="Labels/BetaTesters2/Label"]
 layout_mode = 0
@@ -2153,6 +2328,8 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label11" type="Label" parent="Labels/BetaTesters2/Label"]
 layout_mode = 0
@@ -2171,6 +2348,8 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label12" type="Label" parent="Labels/BetaTesters2/Label"]
 layout_mode = 0
@@ -2189,6 +2368,8 @@ offset_right = 16.0
 offset_bottom = 16.0
 grow_horizontal = 0
 stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TextureRect" type="TextureRect" parent="Labels/BetaTesters2"]
 layout_mode = 0
@@ -2197,6 +2378,8 @@ offset_top = 120.0
 offset_right = 248.0
 offset_bottom = 232.0
 texture = ExtResource("13_17gvw")
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="SpecialThanks" type="Control" parent="Labels"]
 visible = false
@@ -2217,6 +2400,8 @@ offset_top = 7.0
 offset_right = 188.0
 offset_bottom = 119.0
 texture = ExtResource("13_irr87")
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label" type="Label" parent="Labels/SpecialThanks"]
 layout_mode = 1
@@ -2382,6 +2567,8 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = SubResource("AtlasTexture_7s4gc")
 stretch_mode = 3
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label2" type="Label" parent="Labels/MadeWith"]
 layout_mode = 1
@@ -2421,6 +2608,8 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = SubResource("AtlasTexture_2xhay")
 stretch_mode = 3
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="MadeWith2" type="Control" parent="Labels"]
 visible = false

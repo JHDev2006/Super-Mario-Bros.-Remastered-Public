@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ccxhom4wrgfv4"]
+[gd_scene load_steps=11 format=3 uid="uid://ccxhom4wrgfv4"]
 
 [ext_resource type="Texture2D" uid="uid://dy3p03djelkb3" path="res://Assets/Sprites/Particles/Leaves.png" id="1_0tjo2"]
 [ext_resource type="Script" uid="uid://d3kftxro4bfnv" path="res://Scripts/Classes/Entities/Objects/WindArea.gd" id="1_68lil"]
@@ -16,27 +16,6 @@ particles_animation = true
 particles_anim_h_frames = 2
 particles_anim_v_frames = 1
 particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_0tjo2"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.894444, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_8c2la"]
-curve = SubResource("Curve_0tjo2")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wu018"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(1, 15, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 8, 1)
-spread = 0.0
-initial_velocity_min = 100.0
-initial_velocity_max = 500.0
-angular_velocity_min = -720.0
-angular_velocity_max = 720.0
-gravity = Vector3(0, 0, 0)
-alpha_curve = SubResource("CurveTexture_8c2la")
-anim_offset_max = 1.0
 
 [sub_resource type="Resource" id="Resource_sbjyn"]
 script = ExtResource("5_3arhp")
@@ -61,15 +40,23 @@ anchor_bottom = 0.5
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Particles" type="GPUParticles2D" parent="CanvasLayer/Control"]
+[node name="Particles" type="CPUParticles2D" parent="CanvasLayer/Control"]
 unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_qar1j")
 position = Vector2(-64, 0)
-emitting = false
 amount = 64
 texture = ExtResource("1_0tjo2")
 lifetime = 2.0
-process_material = SubResource("ParticleProcessMaterial_wu018")
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(1, 128)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 500.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+anim_offset_max = 1.0
 
 [node name="ResourceSetterNew" type="Node" parent="CanvasLayer/Control/Particles" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_sbjyn")

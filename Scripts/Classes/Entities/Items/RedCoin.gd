@@ -14,8 +14,9 @@ func _ready() -> void:
 		$Sprite.play("Collected")
 		set_visibility_layer_bit(0, false)
 
-func on_player_entered(_player: Player) -> void:
-	collected()
+func on_area_entered(area: Area2D) -> void:
+	if area.owner is Player:
+		collected()
 
 func collected() -> void:
 	if already_collected:
@@ -25,16 +26,14 @@ func collected() -> void:
 		ChallengeModeHandler.red_coins += 1
 	Global.score += 200
 	ChallengeModeHandler.set_value(id, true)
-	if can_spawn_particles:
+	if can_spawn_particles and Settings.file.visuals.extra_particles == 1:
 		summon_particle()
-		$Sprite.queue_free()
-	else:
-		queue_free()
+	queue_free()
 
 func summon_particle() -> void:
 	var node = COIN_SPARKLE.instantiate()
-	node.finished.connect(queue_free)
-	add_child(node)
+	node.global_position = global_position
+	add_sibling(node)
 
 func summon_bounced_coin() -> void:
 	var node = SPINNING_RED_COIN.instantiate()

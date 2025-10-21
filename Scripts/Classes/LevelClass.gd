@@ -1,4 +1,4 @@
-@icon("res://Assets/Sprites/Editor/Level.png")
+@icon("res://Assets/Sprites/Editor/Level.svg")
 class_name Level
 extends Node
 
@@ -49,6 +49,13 @@ const SMBS_THEMES := {
 	6: "Beach",
 	7: "Mountain",
 	8: "Overworld"
+}
+
+const BONUS_ROOMS := {
+	"SMB1": ["1-1a", "1-2a", "2-1a", "3-1a", "4-1a", "4-2a", "5-1a", "6-2a", "6-2c", "7-1a", "8-1a", "8-2a"],
+	"SMBLL": ["1-1a", "2-1a", "2-2a", "3-1b", "4-2a", "5-1a", "5-3a", "7-1c", "7-2a", "10-1a", "12-1a", "13-1a", "13-2a", "13-4b"],
+	"SMBS": ["1-1a", "1-2a", "6-2a", "6-2b", "6-2c", "6-2d", "6-3a", "7-1a", "7-3a"],
+	"SMBANN": ["1-1a", "1-2a", "2-1a", "3-1a", "4-1a", "4-2a", "5-1a", "6-2a", "6-2c", "7-1a", "8-1a", "8-2a"]
 }
 
 @export var auto_set_theme := false
@@ -119,11 +126,16 @@ func update_theme() -> void:
 		if Global.current_campaign == "SMBANN":
 			theme_time = "Night"
 		ResourceSetterNew.cache.clear()
+	if self is CoinHeaven:
+		Global.current_room = Global.Room.COIN_HEAVEN
+	else:
+		Global.current_room = get_room_type()
 	Global.current_campaign = campaign
 	Global.level_theme = theme
 	Global.theme_time = theme_time
 	TitleScreen.last_theme = theme
-	$LevelBG.update_visuals()
+	if get_node_or_null("LevelBG") != null:
+		$LevelBG.update_visuals()
 
 func update_next_level_info() -> void:
 	next_level = wrap(level_id + 1, 1, 5)
@@ -164,3 +176,8 @@ func reload_level() -> void:
 		Global.transition_to_scene(LevelTransition.level_to_transition_to)
 	else:
 		Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
+
+func get_room_type() -> Global.Room:
+	if BONUS_ROOMS[campaign].has(scene_file_path.get_file().get_basename()):
+		return Global.Room.BONUS_ROOM
+	return Global.Room.MAIN_ROOM

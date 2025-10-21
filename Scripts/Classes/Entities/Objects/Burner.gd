@@ -10,9 +10,9 @@ func do_cycle() -> void:
 		AudioManager.play_sfx("burner", global_position)
 		do_animation()
 		await get_tree().create_timer(0.25, false).timeout
-		%Hitbox.set_deferred("disabled", false)
+		%Shape.set_deferred("disabled", false)
 		await get_tree().create_timer(1.5, false).timeout
-	%Hitbox.set_deferred("disabled", true)
+	%Shape.set_deferred("disabled", true)
 	$Timer.start()
 
 func do_animation() -> void:

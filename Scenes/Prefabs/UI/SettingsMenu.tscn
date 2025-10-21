@@ -375,7 +375,7 @@ layout_mode = 2
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_AUDIO"
-options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3"), NodePath("AthleticMusic"), NodePath("SkidSFX"), NodePath("ExtraSFX"), NodePath("MenuBGM")]
+options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3"), NodePath("AthleticMusic"), NodePath("SkidSFX"), NodePath("ExtraSFX"), NodePath("PauseBGM"), NodePath("MenuBGM")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Audio"]
 custom_minimum_size = Vector2(0, 4)
@@ -423,6 +423,13 @@ title = "AUDIO_EXTRA_SFX"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "audio"
 
+[node name="PauseBGM" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "pause_bgm"
+title = "AUDIO_PAUSE_BGM"
+values = ["SETTING_OFF", "SETTING_MUFFLED", "SETTING_ON"]
+settings_category = "audio"
+
 [node name="MenuBGM" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "menu_bgm"
@@ -440,7 +447,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_VISUALS"
-options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), NodePath("ColourfulPipes"), NodePath("FirebarStyle")]
+options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), null, NodePath("ColourfulPipes"), NodePath("FirebarStyle"), NodePath("ExtraParticles")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
 custom_minimum_size = Vector2(0, 4)
@@ -523,6 +530,13 @@ title = "FIREBAR STYLE"
 values = ["Classic", "Modern"]
 settings_category = "visuals"
 
+[node name="ExtraParticles" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "extra_particles"
+title = "EXTRA EFFECTS"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "visuals"
+
 [node name="VisualsSetter" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
 script = ExtResource("9_kfq5n")
 
@@ -535,13 +549,6 @@ theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_RESOURCE_PACK"
 options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3")]
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
-visible = false
-modulate = Color(1, 1, 0, 1)
-layout_mode = 2
-text = "RESOURCE_PACK_WARNING"
-autowrap_mode = 2
 
 [node name="SelectableOptionNode" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" groups=["Options"] instance=ExtResource("9_t6b48")]
 layout_mode = 2
@@ -715,6 +722,7 @@ uppercase = true
 script = ExtResource("10_2qqpf")
 
 [node name="KeyboardControls" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = -4
@@ -1002,6 +1010,7 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/AthleticMusic" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="athletic_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SkidSFX" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="skid_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/ExtraSFX" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="extra_sfx_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/PauseBGM" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="pause_bgm_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/MenuBGM" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="menu_bgm_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ParallaxStyle" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="parallax_style_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/BGParticles" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="bg_particles_changed"]
@@ -1014,6 +1023,7 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/TransitionAnimation" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="transition_style_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ColourfulPipes" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="colourful_pipes_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/FirebarStyle" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="firebar_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ExtraParticles" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="extra_particles"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="open_folder"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode2" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="get_resource_packs"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" to="ResourcePackTemplateCreator" method="create_template"]

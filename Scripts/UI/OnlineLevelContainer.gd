@@ -48,6 +48,10 @@ func setup_rating_stars() -> void:
 	var rating = calculate_rating()
 	
 	var idx := 0
+	if ratings.is_empty():
+		for i in %RatingStars.get_children():
+			i.region_rect.position.x = 16
+		return
 	for i in %RatingStars.get_children():
 		i.region_rect.position.x = 16 if idx > rating else (0 if abs(idx - rating) >= 0.5 else 8)
 		idx += 1

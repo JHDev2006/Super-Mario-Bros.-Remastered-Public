@@ -1,4 +1,4 @@
-@icon("res://Assets/Sprites/Editor/Block.png")
+@icon("res://Assets/Sprites/Editor/Block.svg")
 class_name Block
 extends AnimatableBody2D
 signal player_block_hit(player: Player)
@@ -86,6 +86,8 @@ func spawn_empty_block() -> void:
 	if get_parent().get_parent() is TrackRider:
 		get_parent().get_parent().attached_entity = block
 	block_emptied.emit()
+	if get_parent() is TileMapLayer:
+		get_parent().erase_cell(get_parent().local_to_map(position))
 	queue_free()
 
 func destroy() -> void:
@@ -94,5 +96,7 @@ func destroy() -> void:
 	AudioManager.play_sfx("block_break", global_position)
 	var particles = destruction_particle_scene.instantiate()
 	particles.global_position = global_position
+	if get_parent() is TileMapLayer:
+		get_parent().erase_cell(get_parent().local_to_map(position))
 	add_sibling(particles)
 	queue_free()

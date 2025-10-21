@@ -21,6 +21,7 @@ shape = SubResource("RectangleShape2D_lv0oh")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
 [node name="Hitbox" type="Area2D" parent="."]
+priority = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_5qh6k")

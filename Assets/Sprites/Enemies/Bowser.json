@@ -74,15 +74,6 @@
 		}
 	},
 	"variations": {
-		"Overworld": {
-			"source": "Bowser.png",
-			"rect": [
-				0.0,
-				0.0,
-				96.0,
-				96.0
-			]
-		},
 		"default": {
 			"source": "Bowser.png",
 			"rect": [

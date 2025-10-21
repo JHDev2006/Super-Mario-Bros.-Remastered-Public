@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://upehd32j3pbs"
-path="res://.godot/imported/Block.png-10298cbace42d657003ac7128449152c.ctex"
+uid="uid://dgdag7jgwnjm5"
+path="res://.godot/imported/FireFlowerSpecial.png-3ae8e78d22e3e202bc4dce18fa8aa0eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Editor/Block.png"
-dest_files=["res://.godot/imported/Block.png-10298cbace42d657003ac7128449152c.ctex"]
+source_file="res://Assets/Sprites/Items/FireFlowerSpecial.png"
+dest_files=["res://.godot/imported/FireFlowerSpecial.png-3ae8e78d22e3e202bc4dce18fa8aa0eb.ctex"]
 
 [params]
 

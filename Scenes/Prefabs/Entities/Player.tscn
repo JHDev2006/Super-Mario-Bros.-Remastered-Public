@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://cuh62hlq8errh"]
+[gd_scene load_steps=85 format=3 uid="uid://cuh62hlq8errh"]
 
 [ext_resource type="Script" uid="uid://dt4rosa5o35xr" path="res://Scripts/Classes/Entities/Player.gd" id="1_f6bau"]
 [ext_resource type="Script" uid="uid://uribh0f1jttq" path="res://Scripts/Classes/States/StateMachine.gd" id="2_1y62l"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://c7kmriol0gj16" path="res://Scripts/Classes/States/Player/Climb.gd" id="10_shhao"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/Mario/ColourPalette.json" id="10_xy8gq"]
 [ext_resource type="Script" uid="uid://b10ui1x45l6ly" path="res://Scripts/Classes/States/Player/WallSlide.gd" id="11_057py"]
+[ext_resource type="Texture2D" uid="uid://bqra7e5xsdg5r" path="res://Assets/Sprites/Particles/SkidParticles.png" id="11_vijl6"]
 [ext_resource type="Texture2D" uid="uid://dq58glgwf2l3" path="res://Assets/Sprites/UI/CheckpointIcon.png" id="13_uo1a1"]
 [ext_resource type="Script" uid="uid://ugfx3sb3h6rj" path="res://Scripts/Classes/States/Player/NoClip.gd" id="16_cekpg"]
 [ext_resource type="AudioStream" uid="uid://cbxnq518x3jqe" path="res://Assets/Audio/SFX/Skid.wav" id="18_hofol"]
@@ -291,11 +292,11 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbkfn"]
 resource_local_to_scene = true
-size = Vector2(9, 14)
+size = Vector2(9.2, 14)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d20nf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vijl6"]
 resource_local_to_scene = true
-size = Vector2(9, 29.5)
+size = Vector2(9.2, 29.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6bau"]
 resource_local_to_scene = true
@@ -482,6 +483,12 @@ script = ExtResource("24_hu5lw")
 Overworld = ExtResource("40_o70e0")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pm4ir"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("power_state") groups=["Players"]]
 process_priority = 1
 process_physics_priority = 1
@@ -491,7 +498,6 @@ collision_mask = 3
 collision_priority = 10000000.0
 slide_on_ceiling = false
 floor_constant_speed = true
-floor_max_angle = 0.872665
 floor_snap_length = 4.0
 platform_on_leave = 2
 script = ExtResource("1_f6bau")
@@ -534,9 +540,11 @@ resource_json = ExtResource("7_2mfvl")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="HammerHitbox" type="Area2D" parent="SpriteScaleJoint/Sprite"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(16, 16)
-monitorable = false
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteScaleJoint/Sprite/HammerHitbox"]
 position = Vector2(-3.49691e-07, -8)
@@ -661,7 +669,6 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, -10)
 collision_mask = 5
 
@@ -674,7 +681,7 @@ offset = Vector2(0, -10)
 
 [node name="BigShape" type="CollisionShape2D" parent="Hitbox" groups=["BigCollisions"]]
 position = Vector2(0, -4.75)
-shape = SubResource("RectangleShape2D_d20nf")
+shape = SubResource("RectangleShape2D_vijl6")
 disabled = true
 debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
@@ -707,7 +714,7 @@ position = Vector2(0, -13)
 collision_layer = 0
 collision_mask = 384
 
-[node name="SmallShape" type="CollisionShape2D" parent="LavaPoisonDetect"]
+[node name="SmallShape" type="CollisionShape2D" parent="LavaPoisonDetect" groups=["SmallCollisions"]]
 position = Vector2(0, 5.75)
 shape = SubResource("RectangleShape2D_uwhl4")
 debug_color = Color(1, 0, 0, 0.419608)
@@ -1045,8 +1052,8 @@ one_way_collision = true
 script = ExtResource("35_nbkfn")
 
 [node name="BigCollision" type="CollisionPolygon2D" parent="." groups=["BigCollisions"]]
-visible = false
 polygon = PackedVector2Array(-4, -2, -2, 0, 2, 0, 4, -2, 4, -23, 1, -28, -1, -28, -4, -23)
+one_way_collision = true
 script = ExtResource("35_nbkfn")
 
 [node name="FootL" type="CollisionShape2D" parent="." groups=["StepCollision"]]
@@ -1091,22 +1098,21 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="SmallShape" type="CollisionShape2D" parent="BlockCollision" node_paths=PackedStringArray("link") groups=["SmallCollisions"]]
-visible = false
-position = Vector2(0, -16.875)
+position = Vector2(0, -3.375)
 shape = SubResource("RectangleShape2D_d7xah")
 debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
-offset = Vector2(0, 13.5)
 link = NodePath("../../SmallCollision")
+metadata/scalable = false
 
 [node name="BigShape" type="CollisionShape2D" parent="BlockCollision" node_paths=PackedStringArray("link") groups=["BigCollisions"]]
-position = Vector2(0, -32)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_34tqy")
 disabled = true
 debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
-offset = Vector2(0, 26)
 link = NodePath("../../BigCollision")
+metadata/scalable = false
 
 [node name="TimerWarn" type="AudioStreamPlayer" parent="."]
 process_mode = 3
@@ -1120,9 +1126,20 @@ property_name = "stream"
 themed_resource = SubResource("Resource_xy8gq")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
+[node name="SkidParticles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_pm4ir")
+position = Vector2(0, -2)
+emitting = false
+amount = 2
+texture = ExtResource("11_vijl6")
+lifetime = 0.25
+gravity = Vector2(0, 0)
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
 [connection signal="frame_changed" from="SpriteScaleJoint/Sprite" to="SpriteScaleJoint/Sprite" method="on_frame_changed"]
 [connection signal="sprite_frames_changed" from="SpriteScaleJoint/Sprite" to="SpriteScaleJoint/Sprite" method="on_frame_changed"]
-[connection signal="area_entered" from="SpriteScaleJoint/Sprite/HammerHitbox" to="." method="on_hammer_area_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="on_area_exited"]
 [connection signal="body_entered" from="LavaPoisonDetect" to="." method="die" unbinds=1]

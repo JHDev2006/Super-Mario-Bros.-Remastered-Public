@@ -78,7 +78,6 @@ func edit_level() -> void:
 
 func play_level() -> void:
 	Global.current_game_mode = Global.GameMode.CUSTOM_LEVEL
-	Settings.file.difficulty.inf_lives = 1
 	LevelEditor.load_play = true
 	$CharacterSelect.open()
 	await $CharacterSelect.selected
@@ -88,7 +87,6 @@ func play_level() -> void:
 func online_play() -> void:
 	lss_level_played()
 	Global.current_game_mode = Global.GameMode.CUSTOM_LEVEL
-	Settings.file.difficulty.inf_lives = 1
 	LevelEditor.load_play = true
 	$LSSCharacterSelect.open()
 	await $LSSCharacterSelect.selected

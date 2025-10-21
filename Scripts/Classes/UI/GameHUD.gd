@@ -26,6 +26,7 @@ func handle_main_hud() -> void:
 	$ModernHUD.visible = Settings.file.visuals.modern_hud
 	$Main/RedCoins.hide()
 	$Main/CoinCount.show()
+	%IGT.hide()
 	%Combo.hide()
 	$Timer.paused = Settings.file.difficulty.time_limit == 2
 	$%Time.show()
@@ -41,11 +42,15 @@ func handle_main_hud() -> void:
 		update_character_info()
 	%CharacterIcon.get_node("Shadow").texture = %CharacterIcon.texture
 	%ModernLifeCount.text = "*" + (str(Global.lives).pad_zeros(2) if Settings.file.difficulty.inf_lives == 0 else "∞")
+	%CharacterIcon.visible = Global.current_game_mode != Global.GameMode.BOO_RACE
+	%ModernLifeCount.visible = Global.current_game_mode != Global.GameMode.BOO_RACE
 	var world_num := str(Global.world_num)
 	if int(world_num) >= 10:
 		world_num = ["A", "B", "C", "D"][int(world_num) % 10]
 	elif int(world_num) < 1:
 		world_num = " "
+#	else:
+#		print(Global.world_num)
 	%LevelNum.text = world_num + "-" + str(Global.level_num)
 	%Crown.visible = Global.second_quest
 	%Time.text = " " + str(Global.time).pad_zeros(3)
@@ -71,6 +76,7 @@ func handle_modern_hud() -> void:
 	$ModernHUD/TopLeft/RedCoins.hide()
 	$ModernHUD/TopLeft/CoinCount.show()
 	%ModernPB.hide()
+	%ModernIGT.hide()
 	%ModernCoinCount.text = "*" + str(Global.coins).pad_zeros(2)
 	%ModernScore.text = str(Global.score).pad_zeros(9)
 	%ModernTime.text = "⏲" + str(Global.time).pad_zeros(3)
@@ -91,6 +97,8 @@ func handle_challenge_mode_hud() -> void:
 	$ModernHUD/TopLeft/RedCoins.show()
 	$ModernHUD/TopLeft/CoinCount.hide()
 	$Main/CoinCount.hide()
+	%ModernLifeCount.hide()
+	%CharacterIcon.hide()
 	var red_coins_collected = ChallengeModeHandler.current_run_red_coins_collected
 	var idx := 0
 	if Global.world_num > 8:
@@ -127,7 +135,7 @@ func handle_yoshi_radar() -> void:
 				break
 	%Radar.frame = Global.level_num
 	%ModernRadar.frame = Global.level_num
-	if has_egg == false or ChallengeModeHandler.is_coin_collected(5): 
+	if has_egg == false or ChallengeModeHandler.is_coin_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG): 
 		%Radar.get_node("AnimationPlayer").play("RESET")
 		%ModernRadar.get_node("AnimationPlayer").play("RESET")
 		return
@@ -147,6 +155,11 @@ func handle_yoshi_radar() -> void:
 func handle_speedrun_timer() -> void:
 	%Time.hide()
 	%Stopwatch.show()
+	%IGT.show()
+	%IGT.modulate.a = int([Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) and get_tree().get_first_node_in_group("Players") != null)
+	%IGT.text = "⏲" + (str(Global.time).pad_zeros(3))
+	%ModernIGT.visible = %IGT.modulate.a == 1
+	%ModernIGT.text = %IGT.text
 	var late = SpeedrunHandler.timer > SpeedrunHandler.best_time
 	var diff = SpeedrunHandler.best_time - SpeedrunHandler.timer
 	%PB.visible = SpeedrunHandler.best_time > 0 and (SpeedrunHandler.timer > 0 or Global.current_level != null)

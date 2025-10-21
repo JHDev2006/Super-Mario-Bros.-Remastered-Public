@@ -23,6 +23,8 @@ var RUN_SPEED := 160.0                 # The player's speed while running, measu
 var GROUND_RUN_ACCEL := 1.25           # The player's acceleration while running, measured in px/frame
 var RUN_SKID := 8.0                    # The player's turning deceleration while running, measured in px/frame
 
+var SKID_THRESHOLD := 100.0            # The horizontal speed required, to be able to start skidding.
+
 var DECEL := 3.0                       # The player's deceleration while no buttons are pressed, measured in px/frame
 var AIR_ACCEL := 3.0                   # The player's acceleration while in midair, measured in px/frame
 var AIR_SKID := 1.5                    # The player's turning deceleration while in midair, measured in px/frame
@@ -59,6 +61,7 @@ var input_direction := 0
 var flight_meter := 0.0
 
 var velocity_direction := 1
+var velocity_x_jump_stored := 0
 
 var total_keys := 0
 
@@ -68,7 +71,10 @@ var total_keys := 0
 		set_power_state_frame()
 var character := "Mario"
 
-var crouching := false
+var crouching := false:
+	get(): # You can't crouch if the animation somehow doesn't exist.
+		if not sprite.sprite_frames.has_animation("Crouch"): return false
+		return crouching
 var skidding := false
 
 var bumping := false
@@ -77,6 +83,9 @@ var can_bump_jump = false
 var can_bump_crouch = false
 var can_bump_swim = false
 var can_bump_fly = false
+
+var kicking = false
+var can_kick_anim = false
 
 @export var player_id := 0
 const ONE_UP_NOTE = preload("uid://dopxwjj37gu0l")
@@ -150,30 +159,39 @@ const ANIMATION_FALLBACKS := {
 	"Pipe": "Idle", 
 	"Walk": "Move", 
 	"Run": "Move", 
-	"PipeWalk": "Move", 
+	"PipeWalk": "Walk", 
 	"LookUp": "Idle", 
+	"WaterLookUp": "LookUp", 
+	"WingLookUp": "WaterLookUp", 
+	"Crouch": "Idle",
+	"WaterCrouch": "Crouch",
+	"WingCrouch": "WaterCrouch",
 	"CrouchFall": "Crouch", 
 	"CrouchJump": "Crouch", 
 	"CrouchBump": "Bump",
 	"CrouchMove": "Crouch", 
-	"IdleAttack": "Attack", 
+	"IdleAttack": "MoveAttack", 
 	"CrouchAttack": "IdleAttack", 
-	"MoveAttack": "IdleAttack", 
+	"MoveAttack": "Attack", 
 	"WalkAttack": "MoveAttack", 
 	"RunAttack": "MoveAttack", 
 	"SkidAttack": "MoveAttack",
-	"FlyIdle": "SwimIdle",
+	"WingIdle": "WaterIdle",
 	"FlyUp": "SwimUp",
-	"FlyMove": "SwimMove",
+	"WingMove": "WaterMove",
 	"FlyAttack": "SwimAttack",
 	"FlyBump": "SwimBump",
 	"FlagSlide": "Climb",
 	"WaterMove": "Move",
 	"WaterIdle": "Idle",
+	"FlyIdle": "SwimIdle",
 	"SwimBump": "Bump",
 	"DieFreeze": "Die",
+	"RunJump": "Jump",
+	"RunJumpFall": "JumpFall",
+	"RunJumpBump": "JumpBump",
 	"StarJump": "Jump",
-	"StarFall": "StarJump"
+	"StarFall": "JumpFall"
 }
 
 var palette_transform := true
@@ -188,6 +206,8 @@ var can_run := true
 var air_frames := 0
 
 var swim_stroke := false
+
+var skid_frames := 0
 
 var simulated_velocity := Vector2.ZERO
 
@@ -216,18 +236,22 @@ func _ready() -> void:
 		camera.enabled = false
 	handle_power_up_states(0)
 	set_power_state_frame()
+	handle_invincible_palette()
 	if Global.level_editor == null:
 		recenter_camera()
 		
-func apply_physics_style(physics_type, allow_custom := true) -> void:
+func apply_physics_style(physics_type, allow_custom_physics := true) -> void:
 	physics_style = physics_type
 	match physics_type:
 		PhysicsStyle.MODERN:
 			apply_modern_physics()
-			if allow_custom:
-				apply_character_physics()
 		PhysicsStyle.CLASSIC:
 			apply_classic_physics()
+    
+	if physics_style == PhysicsStyle.CLASSIC:
+        allow_custom_physics = false
+        
+	apply_character_physics(allow_custom_physics)
 
 func apply_modern_physics() -> void:
 	var json = JSON.parse_string(FileAccess.open("res://Resources/ModernPhysics.json", FileAccess.READ).get_as_text())
@@ -239,23 +263,25 @@ func apply_classic_physics() -> void:
 	for i in json:
 		set(i, json[i])
 
-func apply_character_physics() -> void:
+func apply_character_physics(apply: bool) -> void:
 	var path = "res://Assets/Sprites/Players/" + character + "/CharacterInfo.json"
 	if int(Global.player_characters[player_id]) > 3:
 		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 	path = ResourceSetter.get_pure_resource_path(path)
 	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
-	for i in json.physics:
-		set(i, json.physics[i])
+	
+	if apply:
+		for i in json.physics:
+			set(i, json.physics[i])
 	
 	for i in get_tree().get_nodes_in_group("SmallCollisions"):
-		var hitbox_scale = json.get("small_hitbox_scale", [1, 1])
-		i.scale = Vector2(hitbox_scale[0], hitbox_scale[1])
-		i.update()
+		var hitbox_scale = json.get("small_hitbox_scale", [1, 1]) if apply else [1, 1]
+		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("small_crouch_scale", 0.75) if apply else 0.5)
+		i._physics_process(0)
 	for i in get_tree().get_nodes_in_group("BigCollisions"):
-		var hitbox_scale = json.get("big_hitbox_scale", [1, 1])
-		i.scale = Vector2(hitbox_scale[0], hitbox_scale[1])
-		i.update()
+		var hitbox_scale = json.get("big_hitbox_scale", [1, 1]) if apply else [1, 1]
+		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("big_crouch_scale", 0.5) if apply else 0.5)
+		i._physics_process(0)
 
 func recenter_camera() -> void:
 	%CameraHandler.recenter_camera()
@@ -281,8 +307,16 @@ func editor_level_start() -> void:
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("debug_reload"):
 		set_power_state_frame()
-	if Input.is_action_just_pressed("debug_noclip") and Global.debug_mode:
-		state_machine.transition_to("NoClip")
+
+	# guzlad: noclip without dev only works while playtesting.
+	if (Input.is_action_just_pressed("debug_noclip") or Input.is_action_just_pressed("jump_0")) and ((Global.debug_mode) or (Global.level_editor_is_playtesting())):
+		if state_machine.is_state("NoClip"):
+			state_machine.transition_to("Normal")
+			Global.log_comment("NOCLIP Disabled")
+		elif !Input.is_action_just_pressed("jump_0") and !state_machine.is_state("NoClip"):
+			state_machine.transition_to("NoClip")
+			Global.log_comment("NOCLIP Enabled")
+
 	up_direction = -gravity_vector
 	handle_directions()
 	handle_block_collision_detection()
@@ -304,6 +338,8 @@ func _physics_process(delta: float) -> void:
 	elif velocity.y > 15:
 		can_bump_sfx = true
 	handle_water_detection()
+	%SkidParticles.visible = Settings.file.visuals.extra_particles == 1
+	%SkidParticles.emitting = ((skidding and skid_frames > 2) or crouching) and is_on_floor() and abs(velocity.x) > 25 and Settings.file.visuals.extra_particles == 1
 	if $SkidSFX.playing:
 		if (is_actually_on_floor() and skidding) == false:
 			$SkidSFX.stop()
@@ -330,6 +366,7 @@ func _process(delta: float) -> void:
 	if is_invincible:
 		DiscoLevel.combo_meter = 100
 	%Hammer.visible = has_hammer
+	%HammerHitbox.collision_layer = has_hammer
 
 func get_air_acceleration() -> float:
 	if physics_style != PhysicsStyle.CLASSIC:
@@ -455,7 +492,7 @@ func enemy_bounce_off(add_combo := true, award_score := true) -> void:
 func add_stomp_combo(award_score := true) -> void:
 	if stomp_combo >= 10:
 		if award_score:
-			if Global.current_game_mode == Global.GameMode.CHALLENGE or Settings.file.difficulty.inf_lives:
+			if [Global.GameMode.CHALLENGE, Global.GameMode.BOO_RACE].has(Global.current_gamemode) or Settings.file.difficulty.inf_lives:
 				Global.score += 10000
 				score_note_spawner.spawn_note(10000)
 			else:
@@ -479,6 +516,11 @@ func bump_ceiling() -> void:
 	await get_tree().create_timer(0.1).timeout
 	bumping = false
 
+func kick_anim() -> void:
+	kicking = true
+	await get_tree().create_timer(0.2).timeout
+	kicking = false
+
 func super_star() -> void:
 	DiscoLevel.combo_meter += 1
 	is_invincible = true
@@ -501,7 +543,15 @@ func handle_invincible_palette() -> void:
 
 func handle_block_collision_detection() -> void:
 	if ["Pipe"].has(state_machine.state.name): return
-	
+	match power_state.hitbox_size:
+		"Small":
+			var points: Array = $SmallCollision.polygon
+			points.sort_custom(func(a, b): return a.y < b.y)
+			$BlockCollision.position.y = points.front().y * $SmallCollision.scale.y
+		"Big":
+			var points: Array = $BigCollision.polygon
+			points.sort_custom(func(a, b): return a.y < b.y)
+			$BlockCollision.position.y = points.front().y * $BigCollision.scale.y
 	if velocity.y <= FALL_GRAVITY:
 		for i in $BlockCollision.get_overlapping_bodies():
 			if i is Block:
@@ -518,10 +568,15 @@ func handle_directions() -> void:
 var use_big_collision := false
 
 func handle_power_up_states(delta) -> void:
+	for i in get_tree().get_nodes_in_group("SmallCollisions"):
+		i.disabled = power_state.hitbox_size != "Small"
+		i.visible = not i.disabled
+		i.crouching = crouching
 	for i in get_tree().get_nodes_in_group("BigCollisions"):
-		if i.owner == self:
-			i.set_deferred("disabled", power_state.hitbox_size == "Small" or crouching)
-	$Checkpoint.position.y = -24 if power_state.hitbox_size == "Small" or crouching else -40
+		i.disabled = power_state.hitbox_size != "Big"
+		i.visible = not i.disabled
+		i.crouching = crouching
+	$Checkpoint.position.y = -24 if power_state.hitbox_size == "Small" else -40
 	power_state.update(delta)
 
 func handle_wing_flight(delta: float) -> void:
@@ -602,6 +657,7 @@ func die(pit := false) -> void:
 	Global.p_switch_active = false
 	Global.p_switch_timer = 0
 	stop_all_timers()
+	Global.total_deaths += 1
 	sprite.process_mode = Node.PROCESS_MODE_ALWAYS
 	state_machine.transition_to("Dead", {"Pit": pit})
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -638,6 +694,7 @@ func death_load() -> void:
 
 		Global.GameMode.LEVEL_EDITOR: func():
 			owner.stop_testing(),
+			
 
 		Global.GameMode.CHALLENGE: func():
 			Global.transition_to_scene("res://Scenes/Levels/ChallengeMiss.tscn"),
@@ -664,10 +721,10 @@ func death_load() -> void:
 	# Determine which action to take
 	if death_actions.has(Global.current_game_mode):
 		death_actions[Global.current_game_mode].call()
-	elif Global.time <= 0:
-		death_actions["time_up"].call()
 	elif Global.lives <= 0 and Settings.file.difficulty.inf_lives == 0:
 		death_actions["game_over"].call()
+	elif Global.time <= 0:
+		death_actions["time_up"].call()
 	else:
 		death_actions["default_reload"].call()
 
@@ -686,13 +743,15 @@ func set_power_state_frame() -> void:
 		can_bump_crouch = %Sprite.sprite_frames.has_animation("CrouchBump")
 		can_bump_swim = %Sprite.sprite_frames.has_animation("SwimBump")
 		can_bump_fly = %Sprite.sprite_frames.has_animation("FlyBump")
+		can_kick_anim = %Sprite.sprite_frames.has_animation("Kick")
 
-func get_power_up(power_name := "") -> void:
+func get_power_up(power_name := "", give_points := true) -> void:
 	if is_dead:
 		return
-	Global.score += 1000
-	DiscoLevel.combo_amount += 1
-	score_note_spawner.spawn_note(1000)
+	if give_points:
+		Global.score += 1000
+		DiscoLevel.combo_amount += 1
+		score_note_spawner.spawn_note(1000)
 	AudioManager.play_sfx("power_up", global_position)
 	if Settings.file.difficulty.damage_style == 0 and power_state.state_name != power_name:
 		if power_name != "Big" and power_state.state_name != "Big":
@@ -703,12 +762,13 @@ func get_power_up(power_name := "") -> void:
 		await power_up_animation(power_name)
 	else:
 		return
-	if new_power_state.hitbox_size == "Big" and power_state.hitbox_size == "Small":
-		check_for_block()
 	power_state = new_power_state
 	Global.player_power_states[player_id] = str(power_state.get_index())
+	handle_power_up_states(0)
 	can_hurt = true
 	refresh_hitbox()
+	await get_tree().physics_frame
+	check_for_block()
 
 func check_for_block() -> void:
 	if test_move(global_transform, (Vector2.UP * gravity_vector) * 4):
@@ -757,6 +817,7 @@ func power_up_animation(new_power_state := "") -> void:
 				sprite.sprite_frames = old_frames
 				await get_tree().create_timer(0.05).timeout
 		else:
+			handle_invincible_palette()
 			sprite.stop()
 			sprite.material.set_shader_parameter("enabled", true)
 			transforming = true
@@ -781,6 +842,7 @@ func get_character_sprite_path(power_stateto_use := power_state.state_name) -> S
 
 func enter_pipe(pipe: PipeArea, warp_to_level := true) -> void:
 	z_index = -10
+	can_bump_sfx = false
 	Global.can_pause = false
 	Global.can_time_tick = false
 	pipe_enter_direction = pipe.get_vector(pipe.enter_direction)
@@ -809,7 +871,7 @@ func hide_pipe_animation() -> void:
 func go_to_exit_pipe(pipe: PipeArea) -> void:
 	Global.can_time_tick = false
 	pipe_enter_direction = Vector2.ZERO
-	state_machine.transition_to("Pipe")
+	state_machine.transition_to("Freeze")
 	global_position = pipe.global_position + (pipe.get_vector(pipe.enter_direction) * 32)
 	if pipe.enter_direction == 1:
 		global_position = pipe.global_position + Vector2(0, -8)
@@ -825,7 +887,7 @@ func exit_pipe(pipe: PipeArea) -> void:
 	pipe_enter_direction = -pipe.get_vector(pipe.enter_direction)
 	AudioManager.play_sfx("pipe", global_position)
 	state_machine.transition_to("Pipe")
-	await get_tree().create_timer(0.6, false).timeout
+	await get_tree().create_timer(0.65, false).timeout
 	Global.can_pause = true
 	state_machine.transition_to("Normal")
 	Global.can_time_tick = true
@@ -839,7 +901,9 @@ func jump() -> void:
 	else:
 		velocity.y = calculate_jump_height() * gravity_vector.y
 		gravity = JUMP_GRAVITY
-	
+        
+    velocity_x_jump_stored = velocity.x
+    
 	AudioManager.play_sfx("small_jump" if power_state.hitbox_size == "Small" else "big_jump", global_position)
 	has_jumped = true
 	await get_tree().physics_frame
@@ -924,9 +988,6 @@ func hammer_get() -> void:
 	has_hammer = true
 	$HammerTimer.start()
 	AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.HAMMER, 0, false)
-
-func on_hammer_area_entered(area: Area2D) -> void:
-	pass
 
 func wing_get() -> void:
 	AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.WING, 0, false, false)

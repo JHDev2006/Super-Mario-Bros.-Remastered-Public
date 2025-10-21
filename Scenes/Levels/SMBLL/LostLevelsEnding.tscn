@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://b0omfelsiothx"]
+[gd_scene load_steps=25 format=4 uid="uid://b0omfelsiothx"]
 
 [ext_resource type="Script" uid="uid://caugelxhwlvl0" path="res://Scripts/Parts/LostLevelsEnding.gd" id="1_qmhaw"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Ending.json" id="2_k7rel"]
@@ -6,8 +6,7 @@
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="4_tkq3a"]
 [ext_resource type="Texture2D" uid="uid://dkjam0jo2k2m0" path="res://Assets/Sprites/Backgrounds/Bushes/CastleBushNight.png" id="5_wr0ye"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="6_g1x38"]
-[ext_resource type="FontVariation" uid="uid://djxdgxy1iv8yv" path="res://Resources/ThemedResources/FontLLMain.tres" id="9_1flm1"]
-[ext_resource type="Texture2D" uid="uid://boivfkpqvnx45" path="res://Assets/Sprites/Players/Peach.png" id="10_1flm1"]
+[ext_resource type="FontVariation" uid="uid://bl7sbw4nx3l1t" path="res://Resources/ThemedResources/FontMain.tres" id="9_1flm1"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="10_iab5g"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/PeachNPC.json" id="11_ecp1v"]
 [ext_resource type="Texture2D" uid="uid://fdn41mmtnhdt" path="res://Assets/Sprites/Players/ToadNPCLL.png" id="11_iab5g"]
@@ -466,16 +465,13 @@ libraries = {
 }
 autoplay = "Main"
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Peach" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, -15)
-texture = ExtResource("10_1flm1")
-region_rect = Rect2(0, 0, 16, 32)
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite2D2" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Peach" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
-property_name = "texture"
-mode = 1
+property_name = "sprite_frames"
 resource_json = ExtResource("11_ecp1v")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

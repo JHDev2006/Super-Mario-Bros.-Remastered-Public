@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="15_ovjnn"]
 [ext_resource type="Script" uid="uid://cybpwmw4ywoow" path="res://Scripts/Parts/TileMapConverter.gd" id="16_5epyp"]
 
-[node name="13-4" type="Node"]
+[node name="D-4" type="Node"]
 script = ExtResource("1_qfo7w")
 music = ExtResource("2_qfo7w")
 theme = "Castle"
@@ -33,10 +33,12 @@ position = Vector2(-248, -96)
 
 [node name="Firebar2" parent="." instance=ExtResource("8_pi08j")]
 position = Vector2(152, -56)
+direction = 1
 
 [node name="Firebar3" parent="." instance=ExtResource("8_pi08j")]
 position = Vector2(344, -56)
 scale = Vector2(-1, 1)
+direction = 1
 
 [node name="Firebar4" parent="." instance=ExtResource("8_pi08j")]
 position = Vector2(952, 8)
@@ -92,6 +94,7 @@ metadata/_custom_type_script = "uid://cybpwmw4ywoow"
 [node name="Firebar" parent="." instance=ExtResource("8_pi08j")]
 position = Vector2(24, -56)
 length = 12
+direction = 1
 
 [node name="LevelBG" parent="." instance=ExtResource("14_qfo7w")]
 particles = 3

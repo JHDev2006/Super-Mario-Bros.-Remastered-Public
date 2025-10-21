@@ -5,6 +5,7 @@ const DEFAULT_SFX_LIBRARY := {
 	"big_jump": ("res://Assets/Audio/SFX/BigJump.wav"),
 	"coin": ("res://Assets/Audio/SFX/Coin.wav"),
 	"bump": ("res://Assets/Audio/SFX/Bump.wav"),
+	"skid": ("res://Assets/Audio/SFX/Skid.wav"),
 	"pipe": ("res://Assets/Audio/SFX/Pipe.wav"),
 	"damage": ("res://Assets/Audio/SFX/Damage.wav"),
 	"power_up": ("res://Assets/Audio/SFX/Powerup.wav"),
@@ -37,6 +38,7 @@ const DEFAULT_SFX_LIBRARY := {
 	"firework": "res://Assets/Audio/SFX/Firework.wav",
 	"timer_beep": "res://Assets/Audio/SFX/TimerBeep.wav",
 	"hachisuke": "res://Assets/Audio/SFX/Hachisuke.wav",
+	"hammer_hit": "res://Assets/Audio/SFX/HammerHit.wav",
 	"burner": "res://Assets/Audio/SFX/Burner.wav",
 	"rank_up_1": "res://Assets/Audio/SFX/RankUpCBA.wav",
 	"rank_up_2": "res://Assets/Audio/SFX/RankUpSP.wav",
@@ -87,7 +89,7 @@ const OVERRIDE_STREAMS := [
 	"res://Assets/Audio/BGM/CastleFinish.json",
 	"res://Assets/Audio/BGM/Ending.json",
 	"res://Assets/Audio/SFX/FlagSlide.wav",
-	"res://Assets/Audio/BGM/Hammer.mp3",
+	("res://Assets/Audio/BGM/Hammer.json"),
 	("res://Assets/Audio/BGM/LoseRace.json"),
 	("res://Assets/Audio/BGM/WinRace.json"),
 	"res://Assets/Audio/BGM/Wing.json",
@@ -99,6 +101,7 @@ const MUSIC_BASE = preload("uid://da4vqkrpqnma0")
 var character_sfx_map := {}
 
 var audio_override_queue := []
+#var audio_override_queue: Array[Dictionary] = []
 
 func play_sfx(stream_name = "", position := Vector2.ZERO, pitch := 1.0) -> void:
 
@@ -157,6 +160,8 @@ func kill_sfx(sfx_name := "") -> void:
 func set_music_override(stream: MUSIC_OVERRIDES, priority := 0, stop_on_finish := true, restart := true) -> void:
 	if audio_override_queue.has(stream):
 		if current_music_override == stream and restart:
+			music_override_player.stream = create_stream_from_json(OVERRIDE_STREAMS[stream])
+			music_override_player.bus = "Music" if stream != MUSIC_OVERRIDES.FLAG_POLE else "SFX"
 			music_override_player.play()
 		return
 	if music_override_priority > priority:
@@ -174,7 +179,6 @@ func set_music_override(stream: MUSIC_OVERRIDES, priority := 0, stop_on_finish :
 		await music_override_player.finished
 		stop_music_override(stream)
 
-
 func stop_music_override(stream: MUSIC_OVERRIDES, force := false) -> void:
 	if not force:
 		if stream == null:
@@ -182,16 +186,17 @@ func stop_music_override(stream: MUSIC_OVERRIDES, force := false) -> void:
 		elif stream != current_music_override:
 			audio_override_queue.erase(stream)
 			return
+	else:
+		audio_override_queue.clear()
 	audio_override_queue.pop_back()
-	current_music_override = MUSIC_OVERRIDES.NONE
 	music_override_player.stop()
-	music_override_priority = -1
 	if audio_override_queue.is_empty():
 		audio_override_queue.clear()
 		music_override_priority = -1
 		current_music_override = MUSIC_OVERRIDES.NONE
 		music_override_player.stop()
 	else:
+		current_music_override = audio_override_queue[audio_override_queue.size() - 1]
 		set_music_override(audio_override_queue[audio_override_queue.size() - 1])
 
 func load_sfx_map(json := {}) -> void:
@@ -203,7 +208,17 @@ func load_sfx_map(json := {}) -> void:
 func handle_music() -> void:
 	if Global.in_title_screen:
 		current_level_theme = ""
-	AudioServer.set_bus_effect_enabled(1, 0, Global.game_paused)
+	
+	# guzlad: hack in the elif because it doesn't unpause itself like the normal music_player does
+	if Global.game_paused and Settings.file.audio.pause_bgm == 0:
+		AudioManager.music_player.stream_paused = true
+		AudioManager.music_override_player.stream_paused = true
+		return
+	elif AudioManager.music_override_player.stream_paused == true:
+		AudioManager.music_override_player.stream_paused = false
+	
+	AudioServer.set_bus_effect_enabled(1, 0, Global.game_paused and Settings.file.audio.pause_bgm == 1)
+	
 	if is_instance_valid(Global.current_level):
 		if Global.current_level.music == null or current_music_override != MUSIC_OVERRIDES.NONE:
 			music_player.stop()
@@ -234,8 +249,9 @@ func handle_music_override() -> void:
 			music_override_player.get_stream_playback().switch_to_clip(0)
 
 func create_stream_from_json(json_path := "") -> AudioStream:
+	var path := ""
 	if json_path.contains(".json") == false:
-		var path = ResourceSetter.get_pure_resource_path(json_path)
+		path = ResourceSetter.get_pure_resource_path(json_path)
 		if path.contains(Global.config_path):
 			match json_path.get_slice(".", 1):
 				"wav":
@@ -247,8 +263,7 @@ func create_stream_from_json(json_path := "") -> AudioStream:
 		elif path.contains("res://"):
 			return load(path)
 	var bgm_file = $ResourceSetterNew.get_variation_json(JSON.parse_string(FileAccess.open(ResourceSetter.get_pure_resource_path(json_path), FileAccess.READ).get_as_text()).variations).source
-	var path = json_path.replace(json_path.get_file(), bgm_file)
-	path = ResourceSetter.get_pure_resource_path(path)
+	path = ResourceSetter.get_pure_resource_path(json_path.replace(json_path.get_file(), bgm_file))
 	var stream = null
 	if path.get_file().contains(".bgm"):
 		stream = generate_interactive_stream(JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text()))

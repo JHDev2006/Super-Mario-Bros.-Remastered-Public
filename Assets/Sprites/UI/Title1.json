@@ -31,7 +31,7 @@
 			"Autumn": {"source": "TitleSMBLL.png", "rect": [352, 88, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
 			"Beach": {"source": "TitleSMBLL.png", "rect": [0, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
 			"Mountain": {"source": "TitleSMBLL.png", "rect": [176, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
-			"Space": {"source": "TitleSMBLL.png", "rect": [352, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}}
+			"Space": {"source": "TitleSMBLL.png", "rect": [352, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}}
 		},
 		"SMBANN": {
 			"default": {"source": "TitleSMBANN.png", "rect": [0, 0, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
@@ -42,7 +42,7 @@
 			"Autumn": {"source": "TitleSMBANN.png", "rect": [352, 88, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
 			"Beach": {"source": "TitleSMBANN.png", "rect": [0, 176, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
 			"Mountain": {"source": "TitleSMBANN.png", "rect": [176, 176, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
-			"Space": {"source": "TitleSMBANN.png", "rect": [352, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}}
+			"Space": {"source": "TitleSMBANN.png", "rect": [352, 176, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}}
 		}
 	}
 }

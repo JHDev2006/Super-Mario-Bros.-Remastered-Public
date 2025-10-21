@@ -53,11 +53,9 @@ func update_direction_textures() -> void:
 
 func on_mouse_entered(area_idx := 0) -> void:
 	mouse_in_areas |= (1 << area_idx)
-	print(mouse_in_areas)
 
 func on_mouse_exited(area_idx := 0) -> void:
 	mouse_in_areas &= ~(1 << area_idx)
-	print(mouse_in_areas)
 
 func is_mouse_in_area(area_idx := 0) -> bool:
 	return mouse_in_areas & (1 << area_idx) != 0

@@ -81,12 +81,11 @@ func write_save(campaign: String = Global.current_campaign, force := false) -> v
 		save_json = SAVE_TEMPLATE.duplicate(true)
 	match Global.current_game_mode:
 		Global.GameMode.CAMPAIGN:
-			if Global.world_num < 0:
-				Global.world_num = 1
 			if Global.high_score < Global.score:
 				Global.high_score = Global.score
 			save_json["World"] = Global.world_num
 			save_json["Level"] = Global.level_num
+			save_json["Lives"] = Global.lives
 			save_json["Coins"] = Global.coins
 			save_json["Score"] = Global.score
 			save_json["GameWin"] = Global.game_beaten
@@ -116,7 +115,10 @@ func write_save_to_file(json := {}, path := "") -> void:
 	file.close()
 
 func apply_save(json := {}) -> void:
+	
 	Global.world_num = json.get_or_add("World", 1)
+	if Global.world_num < 1:
+		Global.world_num = 1
 	Global.level_num = json.get_or_add("Level", 1)
 	Global.lives = json["Lives"]
 	Global.coins = json["Coins"]

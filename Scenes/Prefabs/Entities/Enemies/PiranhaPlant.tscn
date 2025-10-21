@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://1rxw4k4wq3ni"]
+[gd_scene load_steps=22 format=3 uid="uid://1rxw4k4wq3ni"]
 
 [ext_resource type="Texture2D" uid="uid://dbq6cn2hp6ijx" path="res://Assets/Sprites/Enemies/PiranhaPlant.png" id="1_2imih"]
 [ext_resource type="Script" uid="uid://d23hoj2qc2whq" path="res://Scripts/Classes/Entities/Enemies/PiranhaPlant.gd" id="1_jbk0f"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="10_uohcg"]
 [ext_resource type="Script" uid="uid://d0mqkvopasu8k" path="res://Scripts/Classes/Components/SecondQuestReplaceComponent.gd" id="10_xreuf"]
 [ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="11_8y1e5"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="12_ofvpu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xp8sq"]
 atlas = ExtResource("1_2imih")
@@ -180,6 +181,25 @@ _data = {
 &"Rise": SubResource("Animation_t8k64")
 }
 
+[sub_resource type="GDScript" id="GDScript_ofvpu"]
+script/source = "extends Node
+
+var starting_position = Vector2(-1, -1)
+
+func _ready() -> void:
+	if starting_position == Vector2(-1, -1):
+		starting_position = owner.global_position
+
+func _process(_delta: float) -> void:
+	const OFFSETS = [Vector2.ZERO, Vector2(0, -16), Vector2(-16, 0), Vector2.ZERO]
+	if Global.level_editor != null:
+		owner.global_rotation_degrees = [0, 180, 90, -90][owner.plant_direction]
+		# guzlad: only do the offset calculations if the directions actually need them, stops wasting time for other directions
+		if (owner.plant_direction == 1 or owner.plant_direction == 2):	
+			var offset = OFFSETS[owner.plant_direction]
+			owner.global_position = Vector2((owner.get_meta(\"tile_position\") + Vector2i(1, 1)) * 16) + offset
+"
+
 [node name="PirannhaPlant" type="CharacterBody2D" node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
 z_index = -5
 script = ExtResource("1_jbk0f")
@@ -279,7 +299,18 @@ script = ExtResource("11_8y1e5")
 hitbox = NodePath("../Sprite/Hitbox")
 metadata/_custom_type_script = "uid://ba18grqjixded"
 
+[node name="EditorPropertyExposer" type="Node" parent="."]
+script = ExtResource("12_ofvpu")
+properties = Array[String](["plant_direction"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[node name="Node" type="Node" parent="."]
+process_mode = 3
+script = SubResource("GDScript_ofvpu")
+
 [connection signal="timeout" from="Timer" to="." method="on_timeout"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]

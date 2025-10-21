@@ -82,7 +82,7 @@ func throw_spiny() -> void:
 	node.velocity = Vector2(0, -150)
 	if fixed_throw:
 		node.velocity.x = 50 * (sign(player.global_position.x - global_position.x))
-	node.set("direction", sign(node.velocity.x))
+		node.set("direction", sign(node.velocity.x))
 	add_sibling(node)
 	if Settings.file.audio.extra_sfx == 1:
 		AudioManager.play_sfx("lakitu_throw", global_position)

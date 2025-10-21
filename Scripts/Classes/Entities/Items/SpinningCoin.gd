@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += (15 / delta) * delta
 
 func vanish() -> void:
-	if can_spawn_particles:
+	if can_spawn_particles and Settings.file.visuals.extra_particles == 1:
 		summon_particle()
 		$Sprite.queue_free()
 	else:

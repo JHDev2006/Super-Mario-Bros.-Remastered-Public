@@ -15,3 +15,11 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state.update(delta)
+
+func get_state() -> String:
+	if (state != null):
+		return state.name
+	return ""
+
+func is_state(state_to_check := "") -> bool:
+	return get_state() == state_to_check

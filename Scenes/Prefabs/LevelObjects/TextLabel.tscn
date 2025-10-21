@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccwil8rmgvund"]
+[gd_scene load_steps=3 format=3 uid="uid://ccwil8rmgvund"]
 
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="1_jxnhn"]
-[ext_resource type="Resource" uid="uid://8dcuxbc3h2u2" path="res://Resources/ThemedResources/Font.tres" id="2_fxuqy"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="3_8hggr"]
 
 [node name="TextLabel" type="Label"]
@@ -13,7 +12,6 @@ uppercase = true
 [node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
 script = ExtResource("1_jxnhn")
 labels = [NodePath("..")]
-resource = ExtResource("2_fxuqy")
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]

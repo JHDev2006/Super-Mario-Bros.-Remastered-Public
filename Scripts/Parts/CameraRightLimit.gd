@@ -5,6 +5,7 @@ extends Node2D
 @export var lock_camera := false
 
 func _enter_tree() -> void:
+	add_to_group("CameraLimits")
 	Player.camera_right_limit = int(global_position.x)
 
 func _exit_tree() -> void:
@@ -13,6 +14,7 @@ func _exit_tree() -> void:
 
 func return_camera_to_normal() -> void:
 	for i in get_tree().get_nodes_in_group("Players"):
+		Player.camera_right_limit = int(9999999)
 		CameraHandler.cam_locked = false
 		i.reset_camera_to_center()
 

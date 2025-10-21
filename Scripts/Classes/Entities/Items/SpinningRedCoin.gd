@@ -28,14 +28,12 @@ func _physics_process(delta: float) -> void:
 	velocity.y += (15 / delta) * delta
 
 func vanish() -> void:
-	if can_spawn_particles:
-		$Sprite.queue_free()
+	if can_spawn_particles and Settings.file.visuals.extra_particles == 1:
 		summon_particle()
-	else:
-		queue_free()
+	queue_free()
 
 func summon_particle() -> void:
 	var node = COIN_SPARKLE.instantiate()
 	node.finished.connect(queue_free)
-	node.global_position = global_position
+	node.global_position = $Sprite.global_position
 	add_sibling(node)
