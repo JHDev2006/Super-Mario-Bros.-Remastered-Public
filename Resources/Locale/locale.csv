@@ -165,6 +165,10 @@ VISUAL_COLOURFUL_PIPES,"Enables multi-coloured pipes (green by default, if turne
 VISUAL_TRANSFORM,"Should the transformation effect on the player, be rainbow, or a simple animation swap?",Transform Style,Style Transfo.,Styl Transformacji,ctиль tpahcфopmaции,Estilo de transformación,Stile trasformazione,ＴＲＡＮＳＦＯＲＭ ＳＴＹＬＥ,Style ng Pagtransform,Power-Up-Animationsstil,Dönüşüm Stİlİ,Transformasi Gaya,Estilo de Transformação,へんしんスタイル
 VISUAL_TEXT_SHADOWS,,Text Shadows,Ombre Textes,Cieniowany Tekstu,tehь tekcta,Sombras en textos,Ombre testo,ＴＥＸＴ ＳＨＡＤＯＷＳ,Anino ng Text,Textschatten,Yazı Gölgelerİ,Bayangan Teks,Sombreamento de Texto,テキストのかげ
 VISUAL_TRANSITION_EFFECT,Do we want transitions to be instant? or smooth?,Transition Style,Style de transition,Styl Tranzycji,ctиль пepexoдob,Estilo de transición,Stile transizione,ＴＲＡＮＳＩＴＩＯＮ ＳＴＹＬＥ,Style ng Transition,Übergangsstil,Geçİş Stİlİ,Gaya Transisi,Estilo de Transição,フェード・スタイル
+VISUAL_SMBS_SCROLL,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling,Special Scrolling
+VISUAL_SMBS_SCROLL_OFF,Off,Off,Off,Off,Off,Off,Off,Off,Off,Off,Off,Off,Off,Off
+VISUAL_SMBS_SCROLL_X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1,Sharp X1
+VISUAL_SMBS_SCROLL_PC8801,PC-8801,PC-8801,PC-8801,PC-8801,PC-8801,PC-8801,PC-8801,PC-8801,PC-8801,PC-8801,PC-8801,PC-8801,PC-8801,PC-8801
 VISUAL_PARALLAX_NONE,,None,Aucun,Brak,het,Ninguno,No,ＮＯＮＥ,Wala,Kein,Hİç,None,Nenhum,オフ
 VISUAL_PARALLAX_BASIC,,Basic,Basique,Podstawowe,ochobhoй,Básico,Basico,ＢＡＳＩＣ,Basic,Standard,Basİt,Dasar,Básico,ひょうじゅん
 VISUAL_PARALLAX_DETAIL,,Detailed,Détaillé,Detalowane,Дetaлизиpobahhый,Detallado,Dettagliato,ＤＥＴＡＩＬＥＤ,Detalyado,Detailliert,Detaylı,Detailed,Detalhado,しょうさい

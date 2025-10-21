@@ -85,9 +85,13 @@ func do_lost_levels_firework_check() -> void:
 		else:
 			await show_fireworks(3)
 		if Global.coins % 11 == 0:
-			spawn_one_up_note()
 			AudioManager.play_sfx("1_up", global_position)
-			Global.lives += 1
+			if [Global.GameMode.CHALLENGE, Global.GameMode.BOO_RACE].has(Global.current_game_mode) or Settings.file.difficulty.inf_lives:
+				Global.score += 2000
+				$ScoreNoteSpawner.spawn_note(2000)
+			else:
+				Global.lives += 1
+				spawn_one_up_note()
 
 const ONE_UP_NOTE = preload("uid://dopxwjj37gu0l")
 

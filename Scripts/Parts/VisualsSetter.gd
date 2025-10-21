@@ -41,6 +41,9 @@ func resource_pack_loaded(new_value := []) -> void:
 func colourful_pipes_changed(new_value := 0) -> void:
 	Settings.file.visuals.colour_pipes = new_value
 
+func smbs_scroll_changed(new_value := 0) -> void:
+	Settings.file.visuals.smbs_scroll = new_value
+
 func visible_timers_changed(new_value := 0) -> void:
 	Settings.file.visuals.visible_timers = new_value
 
@@ -69,6 +72,7 @@ func set_value(value_name := "", value = null) -> void:
 		"resource_packs": resource_pack_loaded,
 		"bridge_animation": bridge_changed,
 		"transition_animation": transform_style_changed,
+		"smbs_scroll": smbs_scroll_changed,
 		"colour_pipes": colourful_pipes_changed,
 		"firebar_style": firebar_style_changed,
 		"extra_particles": extra_particles

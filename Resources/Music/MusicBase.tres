@@ -1,7 +1,7 @@
 [gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://da4vqkrpqnma0"]
 
-[ext_resource type="AudioStream" uid="uid://cwe41cd6nkn0u" path="res://Assets/Audio/BGM/Overworld.mp3" id="1_km47y"]
-[ext_resource type="AudioStream" uid="uid://dp3owh2j56xv6" path="res://Assets/Audio/BGM/OverworldHurry.mp3" id="2_i0wg4"]
+[ext_resource type="AudioStream" uid="uid://chknkfu4c0gsp" path="res://Assets/Audio/BGM/Overworld.mp3" id="1_km47y"]
+[ext_resource type="AudioStream" uid="uid://bd0q3pulvt2fr" path="res://Assets/Audio/BGM/OverworldHurry.mp3" id="2_i0wg4"]
 
 [resource]
 clip_count = 2

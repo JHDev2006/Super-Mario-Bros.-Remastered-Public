@@ -68,6 +68,7 @@ var file := {
 		"bridge_animation": 0,
 		"visible_timers": 0,
 		"transition_animation": 0,
+		"smbs_scroll": 0,
 		"colour_pipes": 1,
 		"firebar_style": 0,
 		"extra_particles": 0

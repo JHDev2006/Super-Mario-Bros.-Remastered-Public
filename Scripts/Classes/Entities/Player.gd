@@ -216,7 +216,9 @@ func _ready() -> void:
 	character = CHARACTERS[int(Global.player_characters[player_id])]
 	Global.can_time_tick = true
 	if [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) == false:
-		apply_character_physics()
+		apply_character_physics(true)
+	else:
+		apply_character_physics(false)
 	apply_character_sfx_map()
 	Global.level_theme_changed.connect(apply_character_sfx_map)
 	Global.level_theme_changed.connect(apply_character_physics)
@@ -232,22 +234,24 @@ func _ready() -> void:
 	if Global.level_editor == null:
 		recenter_camera()
 
-func apply_character_physics() -> void:
+func apply_character_physics(apply: bool) -> void:
 	var path = "res://Assets/Sprites/Players/" + character + "/CharacterInfo.json"
 	if int(Global.player_characters[player_id]) > 3:
 		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 	path = ResourceSetter.get_pure_resource_path(path)
 	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
-	for i in json.physics:
-		set(i, json.physics[i])
+	
+	if apply:
+		for i in json.physics:
+			set(i, json.physics[i])
 	
 	for i in get_tree().get_nodes_in_group("SmallCollisions"):
-		var hitbox_scale = json.get("small_hitbox_scale", [1, 1])
-		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("small_crouch_scale", 0.75))
+		var hitbox_scale = json.get("small_hitbox_scale", [1, 1]) if apply else [1, 1]
+		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("small_crouch_scale", 0.75) if apply else 0.5)
 		i._physics_process(0)
 	for i in get_tree().get_nodes_in_group("BigCollisions"):
-		var hitbox_scale = json.get("big_hitbox_scale", [1, 1])
-		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("big_crouch_scale", 0.5))
+		var hitbox_scale = json.get("big_hitbox_scale", [1, 1]) if apply else [1, 1]
+		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("big_crouch_scale", 0.5) if apply else 0.5)
 		i._physics_process(0)
 
 func apply_classic_physics() -> void:
@@ -280,9 +284,16 @@ func editor_level_start() -> void:
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("debug_reload"):
 		set_power_state_frame()
-	if Input.is_action_just_pressed("debug_noclip") and Global.debug_mode:
-		state_machine.transition_to("NoClip")
-		Global.log_comment("NOCLIP Enabled")
+
+	# guzlad: noclip without dev only works while playtesting.
+	if (Input.is_action_just_pressed("debug_noclip") or Input.is_action_just_pressed("jump_0")) and ((Global.debug_mode) or (Global.level_editor_is_playtesting())):
+		if state_machine.is_state("NoClip"):
+			state_machine.transition_to("Normal")
+			Global.log_comment("NOCLIP Disabled")
+		elif !Input.is_action_just_pressed("jump_0") and !state_machine.is_state("NoClip"):
+			state_machine.transition_to("NoClip")
+			Global.log_comment("NOCLIP Enabled")
+
 	up_direction = -gravity_vector
 	handle_directions()
 	handle_block_collision_detection()
@@ -438,7 +449,7 @@ func enemy_bounce_off(add_combo := true, award_score := true) -> void:
 func add_stomp_combo(award_score := true) -> void:
 	if stomp_combo >= 10:
 		if award_score:
-			if Global.current_game_mode == Global.GameMode.CHALLENGE or Settings.file.difficulty.inf_lives:
+			if [Global.GameMode.CHALLENGE, Global.GameMode.BOO_RACE].has(Global.current_gamemode) or Settings.file.difficulty.inf_lives:
 				Global.score += 10000
 				score_note_spawner.spawn_note(10000)
 			else:
@@ -691,12 +702,13 @@ func set_power_state_frame() -> void:
 		can_bump_fly = %Sprite.sprite_frames.has_animation("FlyBump")
 		can_kick_anim = %Sprite.sprite_frames.has_animation("Kick")
 
-func get_power_up(power_name := "") -> void:
+func get_power_up(power_name := "", give_points := true) -> void:
 	if is_dead:
 		return
-	Global.score += 1000
-	DiscoLevel.combo_amount += 1
-	score_note_spawner.spawn_note(1000)
+	if give_points:
+		Global.score += 1000
+		DiscoLevel.combo_amount += 1
+		score_note_spawner.spawn_note(1000)
 	AudioManager.play_sfx("power_up", global_position)
 	if Settings.file.difficulty.damage_style == 0 and power_state.state_name != power_name:
 		if power_name != "Big" and power_state.state_name != "Big":

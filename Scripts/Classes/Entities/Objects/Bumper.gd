@@ -32,7 +32,7 @@ func bounce_player(player: Player) -> void:
 	$Sprite.play("Idle")
 
 func refresh_hitbox() -> void:
-	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
+	$PlayerDetection/CollisionShape2D.set_deferred("disabled", true)
 	await get_tree().physics_frame
-	$Hitbox/CollisionShape2D.set_deferred("disabled", false)
+	$PlayerDetection/CollisionShape2D.set_deferred("disabled", false)
 	

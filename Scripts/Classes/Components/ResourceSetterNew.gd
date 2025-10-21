@@ -162,8 +162,11 @@ func get_resource(json_file: JSON) -> Resource:
 		ResourceMode.RAW:
 			pass
 		ResourceMode.FONT:
-			resource = FontFile.new()
-			resource.load_bitmap_font(source_resource_path)
+			if source_resource_path.contains(Global.get_config_path()):
+				resource = FontFile.new()
+				resource.load_bitmap_font(source_resource_path)
+			else:
+				resource = load(source_resource_path)
 			resource.set_meta("base_path", source_resource_path)
 	if cache.has(json_file.resource_path) == false and use_cache and not is_random:
 		cache[json_file.resource_path] = resource
@@ -272,7 +275,7 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	var chara = "Character:" + Player.CHARACTERS[int(Global.player_characters[0])]
 	if json.has(chara) == false:
-		chara = "Character:Mario"
+		chara = "Character:default"
 	if json.has(chara):
 		if json.get(chara).has("link"):
 			json = get_variation_json(json[json.get(chara).get("link")])

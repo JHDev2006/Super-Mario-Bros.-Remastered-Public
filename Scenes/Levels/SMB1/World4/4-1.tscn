@@ -112,7 +112,7 @@ tile_map_data = PackedByteArray("AAD7////AAAAAAAAAAD8////AAABAAAAAAD+////AAABAAA
 
 [node name="ChallengeNodes" type="Node" parent="." node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("21_f001g")
-nodes_to_delete = [NodePath("../Blocks/QuestionBlock3"), NodePath("../Coin"), null, NodePath("../Blocks/QuestionBlock4")]
+nodes_to_delete = [NodePath("../Blocks/QuestionBlock3"), NodePath("../Coin"), NodePath("../Blocks/QuestionBlock4")]
 metadata/_custom_type_script = "uid://cgm3opb5qudc1"
 
 [node name="QuestionBlock" parent="ChallengeNodes" instance=ExtResource("9_vtupl")]

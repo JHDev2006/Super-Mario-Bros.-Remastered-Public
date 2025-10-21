@@ -6,6 +6,9 @@
 			},
 			"SMBLL": {
 				"source": "LLPlatform.png"
+			},
+			"SMBANN": {
+				"link": "SMBLL"
 			}
 		}
 	}

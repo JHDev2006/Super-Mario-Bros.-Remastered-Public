@@ -164,9 +164,8 @@ position = Vector2(3192, 0)
 [node name="Checkpoint" parent="." instance=ExtResource("20_xv2tb")]
 position = Vector2(1328, 0)
 
-[node name="ChallengeNodes" type="Node" parent="." node_paths=PackedStringArray("nodes_to_delete")]
+[node name="ChallengeNodes" type="Node" parent="."]
 script = ExtResource("21_8rqg6")
-nodes_to_delete = [null]
 metadata/_custom_type_script = "uid://cgm3opb5qudc1"
 
 [node name="RedCoin" parent="ChallengeNodes" instance=ExtResource("22_cxldk")]

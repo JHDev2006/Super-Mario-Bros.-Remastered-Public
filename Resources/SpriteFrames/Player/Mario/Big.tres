@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://cjblhx4flkqva"]
 
-[ext_resource type="Texture2D" uid="uid://cf6up03lxcul2" path="res://Assets/Sprites/Players/Mario/Big.png" id="1_akfsq"]
-[ext_resource type="Texture2D" uid="uid://ecig0d3sw5jm" path="res://Assets/Sprites/Players/Mario/Small.png" id="1_dg100"]
+[ext_resource type="Texture2D" uid="uid://b45d7xacnaoxl" path="res://Assets/Sprites/Players/Mario/Big.png" id="1_akfsq"]
+[ext_resource type="Texture2D" uid="uid://d8g0ff0oepgy" path="res://Assets/Sprites/Players/Mario/Small.png" id="1_dg100"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6q03"]
 atlas = ExtResource("1_akfsq")

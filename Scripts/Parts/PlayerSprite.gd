@@ -33,5 +33,7 @@ func update() -> void:
 			offset.y = -(sprite_frames.get_frame_texture(animation, frame).get_height() / 2.0)
 
 func on_animation_changed() -> void:
-	if sprite_frames.has_animation(animation) == false and Player.ANIMATION_FALLBACKS.has(animation):
-		play(Player.ANIMATION_FALLBACKS[animation])
+	var fallback = animation
+	while not sprite_frames.has_animation(fallback) and Player.ANIMATION_FALLBACKS.has(fallback):
+		fallback = Player.ANIMATION_FALLBACKS[fallback]
+	play(fallback)

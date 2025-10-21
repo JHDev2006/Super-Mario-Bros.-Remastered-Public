@@ -5,7 +5,7 @@
 
 [node name="TrueBowser" instance=ExtResource("1_xtf8a")]
 can_hammer = true
-metadata/is_real = true
+is_real = true
 
 [node name="ResourceSetterNew" parent="SpriteScaleJoint/DeathSprite" index="0"]
 resource_json = ExtResource("4_ryqkh")

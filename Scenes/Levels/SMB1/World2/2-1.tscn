@@ -238,7 +238,7 @@ metadata/_custom_type_script = "uid://pfwgmuchergf"
 
 [node name="ChallengeNodes" type="Node" parent="." node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("27_nvjju")
-nodes_to_delete = [NodePath("../Blocks/QuestionBlock2"), null, NodePath("../Blocks/BrickBlock7")]
+nodes_to_delete = [NodePath("../Blocks/QuestionBlock2"), NodePath("../Blocks/BrickBlock7")]
 metadata/_custom_type_script = "uid://cgm3opb5qudc1"
 
 [node name="RedCoin" parent="ChallengeNodes" instance=ExtResource("28_t63mw")]

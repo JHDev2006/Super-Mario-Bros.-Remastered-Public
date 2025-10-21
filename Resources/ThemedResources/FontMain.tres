@@ -1,6 +1,6 @@
 [gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://bl7sbw4nx3l1t"]
 
-[ext_resource type="FontFile" uid="uid://cd221873lbtj1" path="res://Assets/Sprites/UI/Font.fnt" id="1_6xssw"]
+[ext_resource type="FontFile" uid="uid://djsv6aojrcuyg" path="res://Assets/Sprites/UI/Font.fnt" id="1_6xssw"]
 
 [resource]
 base_font = ExtResource("1_6xssw")

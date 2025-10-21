@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://broeyye3effot"]
+
+[ext_resource type="Script" path="res://Scripts/Classes/CustomLevel.gd" id="1_8pu80"]
+[ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="2_f32q3"]
+[ext_resource type="Texture2D" uid="uid://cbha2l6hg1kfo" path="res://Assets/Sprites/UI/EditorGrid.png" id="3_e7vnc"]
+[ext_resource type="Texture2D" uid="uid://bxciugu0dg7e8" path="res://Assets/Sprites/Editor/ChunkDisplay.png" id="4_rhepb"]
+[ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="5_6gaxc"]
+[ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="6_13qah"]
+[ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="7_rcw8p"]
+
+[node name="CustomLevelBase" type="Node"]
+script = ExtResource("1_8pu80")
+metadata/_custom_type_script = "uid://bcqr1v25ygedb"
+
+[node name="LevelBG" parent="." instance=ExtResource("2_f32q3")]
+z_index = -99
+
+[node name="Grid" type="Parallax2D" parent="."]
+unique_name_in_owner = true
+visible = false
+visibility_layer = 2
+z_index = 4096
+z_as_relative = false
+repeat_size = Vector2(512, 512)
+repeat_times = 8
+
+[node name="TextureRect" type="TextureRect" parent="Grid"]
+modulate = Color(0.356863, 0.356863, 0.356863, 0.407843)
+offset_right = 512.0
+offset_bottom = 512.0
+texture = ExtResource("3_e7vnc")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ChunkGrid" type="Parallax2D" parent="Grid"]
+unique_name_in_owner = true
+visible = false
+visibility_layer = 2
+z_index = 4096
+z_as_relative = false
+scroll_offset = Vector2(0, 32)
+repeat_size = Vector2(512, 512)
+repeat_times = 8
+
+[node name="TextureRect" type="TextureRect" parent="Grid/ChunkGrid"]
+offset_right = 512.0
+offset_bottom = 512.0
+texture = ExtResource("4_rhepb")
+metadata/_edit_use_anchors_ = true
+
+[node name="TileLayer5" parent="." instance=ExtResource("5_6gaxc")]
+unique_name_in_owner = true
+
+[node name="TileLayer4" parent="." instance=ExtResource("5_6gaxc")]
+unique_name_in_owner = true
+
+[node name="TileLayer3" parent="." instance=ExtResource("5_6gaxc")]
+unique_name_in_owner = true
+
+[node name="TileLayer2" parent="." instance=ExtResource("5_6gaxc")]
+unique_name_in_owner = true
+
+[node name="TileLayer1" parent="." instance=ExtResource("5_6gaxc")]
+unique_name_in_owner = true
+
+[node name="EntityLayer5" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="EntityLayer4" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="EntityLayer3" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="EntityLayer2" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="EntityLayer1" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Player" parent="EntityLayer1" instance=ExtResource("6_13qah")]
+position = Vector2(-232, 0)
+metadata/tile_position = Vector2i(-15, -1)
+metadata/no_save = false
+
+[node name="DropShadow" parent="." instance=ExtResource("7_rcw8p")]

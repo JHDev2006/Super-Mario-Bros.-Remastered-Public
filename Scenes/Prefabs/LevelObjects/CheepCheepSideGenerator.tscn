@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3ptkkqrbxti7"]
+
+[ext_resource type="PackedScene" uid="uid://bn1kect7h2dlp" path="res://Scenes/Prefabs/LevelObjects/BulletBillGenerator.tscn" id="1_tqe64"]
+[ext_resource type="PackedScene" uid="uid://d04e1qv3si8j" path="res://Scenes/Prefabs/Entities/Enemies/RedCheepCheep.tscn" id="2_thtyo"]
+[ext_resource type="Texture2D" uid="uid://cd8q0nuveukv1" path="res://Assets/Sprites/Editor/CheepCheepSideGenerator.png" id="3_nd37u"]
+[ext_resource type="Script" uid="uid://bq0pc2vhp35t2" path="res://Scripts/Parts/EntityGenerator.gd" id="4_nd37u"]
+[ext_resource type="PackedScene" uid="uid://bdirphnfabey8" path="res://Scenes/Prefabs/Entities/Enemies/GreenCheepCheep.tscn" id="5_d47d1"]
+
+[node name="EntityGenerator" instance=ExtResource("1_tqe64")]
+threshold = 4.0
+y_pos = 1
+entity_scene = ExtResource("2_thtyo")
+
+[node name="Sprite" parent="LevelEditorVisibleNode" index="0"]
+texture = ExtResource("3_nd37u")
+
+[node name="EntityGenerator" type="Node2D" parent="." index="2"]
+script = ExtResource("4_nd37u")
+threshold = 3.0
+y_pos = 1
+entity_scene = ExtResource("5_d47d1")
+metadata/_custom_type_script = "uid://bq0pc2vhp35t2"
+
+[connection signal="activated" from="." to="EntityGenerator" method="activate"]

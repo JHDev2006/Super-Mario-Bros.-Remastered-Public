@@ -474,6 +474,12 @@ func log_comment(msg := "") -> void:
 	await get_tree().create_timer(2, false).timeout
 	error_message.queue_free()
 
+func level_editor_is_playtesting() -> bool:
+	if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
+		if Global.level_editor.current_state == LevelEditor.EditorState.PLAYTESTING:
+			return true
+	return false
+
 func unlock_achievement(achievement_id := AchievementID.SMB1_CLEAR) -> void:
 	achievements[achievement_id] = "1"
 	if achievement_id != AchievementID.COMPLETIONIST:
