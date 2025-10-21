@@ -9,7 +9,7 @@ var can_spawn_particles := false
 @onready var COIN_SPARKLE = load("res://Scenes/Prefabs/Particles/RedCoinSparkle.tscn")
 
 func _ready() -> void:
-	if ChallengeModeHandler.is_coin_collected(id) or ChallengeModeHandler.is_coin_permanently_collected(id):
+	if ChallengeModeHandler.is_coin_collected(id):
 		already_collected = true
 		$Sprite.play("Collected")
 		set_visibility_layer_bit(0, false)

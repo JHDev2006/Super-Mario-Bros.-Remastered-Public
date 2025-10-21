@@ -46,7 +46,7 @@ func save_results() -> void:
 
 func retry_level() -> void:
 	Global.player_power_states = "0000"
-	ChallengeModeHandler.current_run_red_coins_collected = 0
+	ChallengeModeHandler.current_run_red_coins_collected = ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1]
 	Global.score = 0
 	LevelTransition.level_to_transition_to = Level.get_scene_string(Global.world_num, Global.level_num)
 	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
@@ -90,8 +90,7 @@ func update_score() -> void:
 
 func give_red_coin_medal() -> void:
 	const mask = (1 << ChallengeModeHandler.CoinValues.R_COIN_1) | (1 << ChallengeModeHandler.CoinValues.R_COIN_2) | (1 << ChallengeModeHandler.CoinValues.R_COIN_3) | (1 << ChallengeModeHandler.CoinValues.R_COIN_4) | (1 << ChallengeModeHandler.CoinValues.R_COIN_5)
-	var all_collected = int(ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1]) | ChallengeModeHandler.current_run_red_coins_collected
-	var valid := (int(all_collected) & mask) == mask
+	var valid := (ChallengeModeHandler.current_run_red_coins_collected & mask) == mask
 	if valid and not coin_medal:
 		do_medal_give_animation($Sprite2D3/RedCoins)
 

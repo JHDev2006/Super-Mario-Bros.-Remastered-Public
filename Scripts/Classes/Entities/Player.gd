@@ -221,7 +221,7 @@ func _ready() -> void:
 	character = CHARACTERS[int(Global.player_characters[player_id])]
 	Global.can_time_tick = true
 	if [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) == false:
-		apply_physics_style(Settings.file.difficulty.get("physics_style", 2), true)
+		apply_physics_style(Settings.file.difficulty.get("physics_style", PhysicsStyle.MODERN), true)
 	else:
 		apply_physics_style(PhysicsStyle.MODERN, false)
 	apply_character_sfx_map()

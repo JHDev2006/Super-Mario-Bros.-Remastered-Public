@@ -17,7 +17,7 @@ func restart_level() -> void:
 	DiscoLevel.reset_values()
 	if Global.current_game_mode == Global.GameMode.CHALLENGE:
 		Global.score = 0
-		ChallengeModeHandler.current_run_red_coins_collected = 0
+		ChallengeModeHandler.current_run_red_coins_collected = ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1]
 	Global.current_level.reload_level()
 	await Global.current_level.tree_exited
 	$\"..\".close()

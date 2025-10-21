@@ -81,10 +81,6 @@ static func set_value(coin_id := CoinValues.R_COIN_1, value := false) -> void:
 
 static func is_coin_collected(coin_id: CoinValues = CoinValues.R_COIN_1, num := current_run_red_coins_collected) -> bool:
 	return num & (1 << coin_id) != 0
-	
-static func is_coin_permanently_collected(coin_id: CoinValues = CoinValues.R_COIN_1) -> bool:
-	var permanently_collected = int(red_coins_collected[Global.world_num - 1][Global.level_num - 1])
-	return permanently_collected & (1 << coin_id) != 0
 
 func check_for_achievement() -> void:
 	for x in red_coins_collected:
