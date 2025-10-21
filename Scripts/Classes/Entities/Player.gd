@@ -247,10 +247,10 @@ func apply_physics_style(physics_type, allow_custom_physics := true) -> void:
 			apply_modern_physics()
 		PhysicsStyle.CLASSIC:
 			apply_classic_physics()
-    
+	
 	if physics_style == PhysicsStyle.CLASSIC:
-        allow_custom_physics = false
-        
+		allow_custom_physics = false
+		
 	apply_character_physics(allow_custom_physics)
 
 func apply_modern_physics() -> void:
@@ -901,9 +901,9 @@ func jump() -> void:
 	else:
 		velocity.y = calculate_jump_height() * gravity_vector.y
 		gravity = JUMP_GRAVITY
-        
-    velocity_x_jump_stored = velocity.x
-    
+		
+	velocity_x_jump_stored = velocity.x
+	
 	AudioManager.play_sfx("small_jump" if power_state.hitbox_size == "Small" else "big_jump", global_position)
 	has_jumped = true
 	await get_tree().physics_frame

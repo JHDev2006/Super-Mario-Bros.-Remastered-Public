@@ -133,19 +133,19 @@ func ground_skid(delta: float) -> void:
 	player.skid_frames += 1
 	if sign(player.input_direction * player.velocity_direction) > 0:
 		player.skidding = false
-        player.skid_frames = 0
+		player.skid_frames = 0
 	if player.physics_style == player.PhysicsStyle.CLASSIC:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.DECEL * 2.0)
 		# Instantly snap to zero speed once reaching a sufficiently low 'turning point'.
 		if abs(player.velocity.x) < 33.75:
 			player.skidding = false
-            player.skid_frames = 0
+			player.skid_frames = 0
 			player.velocity.x = 0
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 1 * player.input_direction, (player.RUN_SKID / delta) * delta)
 		if abs(player.velocity.x) < 10:
 			player.skidding = false
-            player.skid_frames = 0
+			player.skid_frames = 0
 
 func in_air() -> void:
 	if Global.player_action_just_pressed("jump", player.player_id):
