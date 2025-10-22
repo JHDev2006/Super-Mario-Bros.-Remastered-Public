@@ -27,10 +27,7 @@ func _enter_tree() -> void:
 		LevelPersistance.active_nodes = old_state.duplicate(true)
 
 func _ready() -> void:
-	if [Global.GameMode.CHALLENGE, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) or Global.current_campaign == "SMBANN":
-		queue_free()
-		return
-	if Settings.file.difficulty.extra_checkpoints == 0 and optional:
+	if [Global.GameMode.CHALLENGE, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) or Global.current_campaign == "SMBANN" or (Settings.file.difficulty.extra_checkpoints == 0 and optional):
 		queue_free()
 		return
 	if has_meta("is_flag") == false:

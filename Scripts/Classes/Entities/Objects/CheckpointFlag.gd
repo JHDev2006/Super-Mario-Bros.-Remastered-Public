@@ -6,9 +6,6 @@ static var character_save := "Mario"
 
 func _ready() -> void:
 	activated.get_node("ResourceSetterNew").resource_json = load(get_character_sprite_path(0))
-	if Settings.file.difficulty.checkpoint_style == 0 and (Global.current_game_mode != Global.GameMode.LEVEL_EDITOR and Global.current_game_mode != Global.GameMode.CUSTOM_LEVEL) or Global.current_campaign == "SMBANN" or (Settings.file.difficulty.extra_checkpoints == 0 and owner.optional):
-		owner.queue_free()
-		return
 	owner.show()
 	if owner.passed:
 		sprite.hide()
