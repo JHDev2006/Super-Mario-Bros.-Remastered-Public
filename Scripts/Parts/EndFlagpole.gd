@@ -44,7 +44,7 @@ func player_touch(player: Player) -> void:
 func give_points(player: Player) -> void:
 	var value = clamp(int(lerp(0, 4, (player.global_position.y / -144))), 0, 4)
 	var nearest_value = FLAG_POINTS[value]
-	if Settings.file.difficulty.flagpole_style:
+	if Settings.file.difficulty.flagpole_lives:
 		nearest_value = FLAG_POINTS_MODERN[value]
 	$Score.text = str(nearest_value)
 	if nearest_value == 8000 and not [Global.GameMode.CHALLENGE, Global.GameMode.BOO_RACE].has(Global.current_game_mode) and not Settings.file.difficulty.inf_lives:
