@@ -8,8 +8,8 @@ var JUMP_INCR := 8.0                   # How much the player's X velocity affect
 var JUMP_CANCEL_DIVIDE := 1.5          # When the player cancels their jump, their Y velocity gets divided by this value
 var JUMP_HOLD_SPEED_THRESHOLD := 0.0   # When the player's Y velocity goes past this value while jumping, their gravity switches to FALL_GRAVITY
 
-var BOUNCE_HEIGHT := 200.0             # The strength at which the player bounces off enemies, measured in px/sec 
-var BOUNCE_JUMP_HEIGHT := 300.0        # The strength at which the player bounces off enemies while holding jump, measured in px/sec 
+var BOUNCE_HEIGHT := 200.0             # The strength at which the player bounces off enemies, measured in px/sec
+var BOUNCE_JUMP_HEIGHT := 300.0        # The strength at which the player bounces off enemies while holding jump, measured in px/sec
 
 var FALL_GRAVITY := 25.0               # The player's gravity while falling, measured in px/frame
 var MAX_FALL_SPEED := 280.0            # The player's maximum fall speed, measured in px/sec
@@ -36,6 +36,10 @@ var SWIM_GRAVITY := 2.5                # The player's gravity while swimming, me
 var MAX_SWIM_FALL_SPEED := 200.0       # The player's maximum fall speed while swimming, measured in px/sec
 
 var DEATH_JUMP_HEIGHT := 300.0         # The strength of the player's "jump" during the death animation, measured in px/sec
+
+var SPRING_GRAVITY := 11.0             # The player's gravity while spring bouncing, measured in px/frame
+
+var FAST_REVERSE_ACCEL := 0.0          # Additional deceleration when reversing direction, measured in px/frame
 #endregion
 
 @onready var camera_center_joint: Node2D = $CameraCenterJoint
@@ -144,28 +148,28 @@ static var CHARACTER_PALETTES := [
 ]
 
 const ANIMATION_FALLBACKS := {
-	"JumpFall": "Jump", 
+	"JumpFall": "Jump",
 	"JumpBump": "Bump",
-	"Fall": "Move", 
-	"Pipe": "Idle", 
-	"Walk": "Move", 
-	"Run": "Move", 
-	"PipeWalk": "Walk", 
-	"LookUp": "Idle", 
-	"WaterLookUp": "LookUp", 
-	"WingLookUp": "WaterLookUp", 
+	"Fall": "Move",
+	"Pipe": "Idle",
+	"Walk": "Move",
+	"Run": "Move",
+	"PipeWalk": "Walk",
+	"LookUp": "Idle",
+	"WaterLookUp": "LookUp",
+	"WingLookUp": "WaterLookUp",
 	"Crouch": "Idle",
 	"WaterCrouch": "Crouch",
 	"WingCrouch": "WaterCrouch",
-	"CrouchFall": "Crouch", 
-	"CrouchJump": "Crouch", 
+	"CrouchFall": "Crouch",
+	"CrouchJump": "Crouch",
 	"CrouchBump": "Bump",
-	"CrouchMove": "Crouch", 
-	"IdleAttack": "MoveAttack", 
-	"CrouchAttack": "IdleAttack", 
-	"MoveAttack": "Attack", 
-	"WalkAttack": "MoveAttack", 
-	"RunAttack": "MoveAttack", 
+	"CrouchMove": "Crouch",
+	"IdleAttack": "MoveAttack",
+	"CrouchAttack": "IdleAttack",
+	"MoveAttack": "Attack",
+	"WalkAttack": "MoveAttack",
+	"RunAttack": "MoveAttack",
 	"SkidAttack": "MoveAttack",
 	"WingIdle": "WaterIdle",
 	"FlyUp": "SwimUp",
@@ -197,6 +201,8 @@ var can_run := true
 var air_frames := 0
 
 static var classic_physics := false
+static var classic_plus_enabled := false
+
 
 var swim_stroke := false
 
@@ -205,8 +211,6 @@ var skid_frames := 0
 var simulated_velocity := Vector2.ZERO
 
 func _ready() -> void:
-	if classic_physics:
-		apply_classic_physics()
 	get_viewport().size_changed.connect(recenter_camera)
 	show()
 	$Checkpoint/Label.text = str(player_id + 1)
@@ -215,12 +219,21 @@ func _ready() -> void:
 	Global.can_pause = true
 	character = CHARACTERS[int(Global.player_characters[player_id])]
 	Global.can_time_tick = true
-	if [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) == false:
+	var physics_style = Settings.file.difficulty.get("physics_style", 2);
+	if [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE, Global.GameMode.CUSTOM_LEVEL].has(Global.current_game_mode) == false:
+		classic_physics = physics_style == 1 or physics_style == 2; #Is Classic Engine
+		classic_plus_enabled = physics_style == 2; #Is Classic Plus
 		apply_character_physics(true)
+		apply_physics_style(physics_style)
 	else:
+		physics_style = 0  #Force Remastered
+		classic_physics = false
+		classic_plus_enabled = false
 		apply_character_physics(false)
+		apply_physics_style(physics_style)
 	apply_character_sfx_map()
 	Global.level_theme_changed.connect(apply_character_sfx_map)
+	Global.level_theme_changed.connect(apply_physics_style)
 	Global.level_theme_changed.connect(apply_character_physics)
 	Global.level_theme_changed.connect(set_power_state_frame)
 	if Global.current_level.first_load and Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
@@ -234,17 +247,37 @@ func _ready() -> void:
 	if Global.level_editor == null:
 		recenter_camera()
 
+# Applies a physics style from a JSON file.
+# Defaults to Remastered (0) if no type is specified.
+func apply_physics_style(physics_type: int = 0) -> void:
+	var json_path: String = "res://Resources/RemasteredPhysics.json"
+	if physics_type == 1 or physics_type == 2: # Classic or Classic Plus
+		json_path = "res://Resources/ClassicPhysics.json"
+	if not FileAccess.file_exists(json_path):
+		printerr("Physics file not found at path: ", json_path)
+		return # Exit the function to prevent a crash.
+	var file = FileAccess.open(json_path, FileAccess.READ)
+	var content = file.get_as_text()
+	var json_data = JSON.parse_string(content)
+	if json_data == null:
+		printerr("Failed to parse JSON from file: ", json_path)
+		return # Exit if the JSON is invalid.
+	for key in json_data:
+		set(key, json_data[key])
+	print("Successfully applied physics style from: ", json_path)
+
+
 func apply_character_physics(apply: bool) -> void:
+	if classic_physics:
+		return
 	var path = "res://Assets/Sprites/Players/" + character + "/CharacterInfo.json"
 	if int(Global.player_characters[player_id]) > 3:
 		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 	path = ResourceSetter.get_pure_resource_path(path)
 	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
-	
 	if apply:
 		for i in json.physics:
 			set(i, json.physics[i])
-	
 	for i in get_tree().get_nodes_in_group("SmallCollisions"):
 		var hitbox_scale = json.get("small_hitbox_scale", [1, 1]) if apply else [1, 1]
 		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("small_crouch_scale", 0.75) if apply else 0.5)
@@ -253,11 +286,6 @@ func apply_character_physics(apply: bool) -> void:
 		var hitbox_scale = json.get("big_hitbox_scale", [1, 1]) if apply else [1, 1]
 		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("big_crouch_scale", 0.5) if apply else 0.5)
 		i._physics_process(0)
-
-func apply_classic_physics() -> void:
-	var json = JSON.parse_string(FileAccess.open("res://Resources/ClassicPhysics.json", FileAccess.READ).get_as_text())
-	for i in json:
-		set(i, json[i])
 
 func recenter_camera() -> void:
 	%CameraHandler.recenter_camera()
@@ -346,9 +374,23 @@ func _process(delta: float) -> void:
 func apply_gravity(delta: float) -> void:
 	if in_water or flight_meter > 0:
 		gravity = SWIM_GRAVITY
+	elif spring_bouncing:
+		gravity = SPRING_GRAVITY
 	else:
-		if sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
+		# If player is falling, apply fall gravity.
+		if velocity.y * gravity_vector.y >= 0:
 			gravity = FALL_GRAVITY
+		# If player is moving upwards:
+		else:
+			# Classic (non-plus) physics has a special jump release mechanic
+			# where releasing the jump button immediately applies fall gravity.
+			if classic_physics and not classic_plus_enabled and not Global.player_action_pressed("jump", player_id):
+				gravity = FALL_GRAVITY
+			# For Remastered, Classic+, and Classic (while holding jump), we do not
+			# re-apply JUMP_GRAVITY here. This prevents overwriting the FALL_GRAVITY
+			# set by the jump cancellation logic in Normal.gd, fixing the "floaty" jump issue.
+			# The gravity is correctly initialized to JUMP_GRAVITY in the jump() function.
+
 	velocity += (gravity_vector * ((gravity / (1.5 if low_gravity else 1.0)) / delta)) * delta
 	var target_fall: float = MAX_FALL_SPEED
 	if in_water:
@@ -357,6 +399,7 @@ func apply_gravity(delta: float) -> void:
 		velocity.y = clamp(velocity.y, -INF, (target_fall / (1.2 if low_gravity else 1.0)))
 	else:
 		velocity.y = clamp(velocity.y, -(target_fall / (1.2 if low_gravity else 1.0)), INF)
+
 
 func camera_make_current() -> void:
 	camera.enabled = true
@@ -382,7 +425,7 @@ func apply_character_sfx_map() -> void:
 		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 	path = ResourceSetter.get_pure_resource_path(path)
 	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
-	
+
 	for i in json:
 		var res_path = "res://Assets/Audio/SFX/" + json[i]
 		res_path = ResourceSetter.get_pure_resource_path(res_path)
@@ -397,7 +440,7 @@ func apply_character_sfx_map() -> void:
 				json[i] = res_path
 		else:
 			json[i] = res_path
-	
+
 	AudioManager.load_sfx_map(json)
 
 func refresh_hitbox() -> void:
@@ -437,14 +480,20 @@ func is_actually_on_ceiling() -> bool:
 func enemy_bounce_off(add_combo := true, award_score := true) -> void:
 	if add_combo:
 		add_stomp_combo(award_score)
-	jump_cancelled = not Global.player_action_pressed("jump", player_id)
-	await get_tree().physics_frame
-	if Global.player_action_pressed("jump", player_id):
-		velocity.y = sign(gravity_vector.y) * -BOUNCE_JUMP_HEIGHT
-		gravity = JUMP_GRAVITY
-		has_jumped = true
-	else:
+	if classic_physics and not classic_plus_enabled:
+		# Classic physics uses a single initial bounce velocity.
 		velocity.y = sign(gravity_vector.y) * -BOUNCE_HEIGHT
+		#gravity = JUMP_GRAVITY 
+	else:
+		# This block handles Remastered and Classic Plus physics, which can remain as is.
+		jump_cancelled = not Global.player_action_pressed("jump", player_id)
+		await get_tree().physics_frame
+		if Global.player_action_pressed("jump", player_id):
+			velocity.y = sign(gravity_vector.y) * -BOUNCE_JUMP_HEIGHT
+			gravity = JUMP_GRAVITY
+			has_jumped = true
+		else:
+			velocity.y = sign(gravity_vector.y) * -BOUNCE_HEIGHT
 
 func add_stomp_combo(award_score := true) -> void:
 	if stomp_combo >= 10:
@@ -514,6 +563,7 @@ func handle_block_collision_detection() -> void:
 			if i is Block:
 				if is_on_ceiling():
 					i.player_block_hit.emit(self)
+
 func handle_directions() -> void:
 	input_direction = 0
 	if Global.player_action_pressed("move_right", player_id):
@@ -522,18 +572,20 @@ func handle_directions() -> void:
 		input_direction = -1
 	velocity_direction = sign(velocity.x)
 
+func get_reverse_acceleration() -> float:
+	if FAST_REVERSE_ACCEL > 0.0 and input_direction != 0 and is_on_floor():
+		if sign(velocity.x) != 0 and sign(velocity.x) != input_direction:
+			if abs(velocity.x) < SKID_THRESHOLD:
+				return FAST_REVERSE_ACCEL
+	return 0.0
+
 var use_big_collision := false
 
 func handle_power_up_states(delta) -> void:
-	for i in get_tree().get_nodes_in_group("SmallCollisions"):
-		i.disabled = power_state.hitbox_size != "Small"
-		i.visible = not i.disabled
-		i.crouching = crouching
 	for i in get_tree().get_nodes_in_group("BigCollisions"):
-		i.disabled = power_state.hitbox_size != "Big"
-		i.visible = not i.disabled
-		i.crouching = crouching
-	$Checkpoint.position.y = -24 if power_state.hitbox_size == "Small" else -40
+		if i.owner == self:
+			i.set_deferred("disabled", power_state.hitbox_size == "Small" or crouching)
+	$Checkpoint.position.y = -24 if power_state.hitbox_size == "Small" or crouching else -40
 	power_state.update(delta)
 
 func handle_wing_flight(delta: float) -> void:
@@ -651,7 +703,7 @@ func death_load() -> void:
 
 		Global.GameMode.LEVEL_EDITOR: func():
 			owner.stop_testing(),
-			
+
 
 		Global.GameMode.CHALLENGE: func():
 			Global.transition_to_scene("res://Scenes/Levels/ChallengeMiss.tscn"),
@@ -822,13 +874,13 @@ func hide_pipe_animation() -> void:
 		await get_tree().create_timer(0.3, false).timeout
 		hide()
 	else:
-		await get_tree().create_timer(0.6, false).timeout
+		await get_tree().create_timer(0.65, false).timeout
 		hide()
 
 func go_to_exit_pipe(pipe: PipeArea) -> void:
 	Global.can_time_tick = false
 	pipe_enter_direction = Vector2.ZERO
-	state_machine.transition_to("Freeze")
+	state_machine.transition_to("Pipe")
 	global_position = pipe.global_position + (pipe.get_vector(pipe.enter_direction) * 32)
 	if pipe.enter_direction == 1:
 		global_position = pipe.global_position + Vector2(0, -8)
@@ -860,8 +912,28 @@ func jump() -> void:
 	await get_tree().physics_frame
 	has_jumped = true
 
-func calculate_jump_height() -> float: # Thanks wye love you xxx
-	return -(JUMP_HEIGHT + JUMP_INCR * int(abs(velocity.x) / 25))
+func calculate_jump_height() -> float:
+
+	if classic_physics:
+
+		# Get the absolute horizontal speed.
+		var speed = abs(velocity.x)
+
+		# These thresholds are scaled from the original smb.asm values.
+		# A scaling factor of 4 is used, consistent with other physics values.
+		# Original values: $09 (9), $10 (16), $19 (25), $1c (28).
+		if speed >= 112: # Corresponds to the fastest run speeds.
+			return -(JUMP_HEIGHT + (JUMP_INCR * 8.0))
+		elif speed >= 100:
+			return -(JUMP_HEIGHT + (JUMP_INCR * 6.0))
+		elif speed >= 64:
+			return -(JUMP_HEIGHT + (JUMP_INCR * 4.0))
+		elif speed >= 36:
+			return -(JUMP_HEIGHT + JUMP_INCR)
+		else: # Base jump height for walking speeds.
+			return -JUMP_HEIGHT
+	else: # Remastered physics logic remains unchanged.
+		return -(JUMP_HEIGHT + JUMP_INCR * int(abs(velocity.x) / 25))
 
 const SMOKE_PARTICLE = preload("res://Scenes/Prefabs/Particles/SmokeParticle.tscn")
 

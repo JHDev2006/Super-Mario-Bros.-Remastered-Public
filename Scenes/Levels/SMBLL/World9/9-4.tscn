@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://vdrwnkl8pdvn"]
+[gd_scene load_steps=18 format=4 uid="uid://vdrwnkl8pdvn"]
 
 [ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_ceu2u"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Space.json" id="2_bmc3o"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dhtqnyrj3ndnj" path="res://Scripts/Parts/MoonGravity.gd" id="14_77o5u"]
 [ext_resource type="PackedScene" uid="uid://c6loucilra6da" path="res://Scenes/Prefabs/LevelObjects/EndFlagpole.tscn" id="15_bmc3o"]
 [ext_resource type="PackedScene" uid="uid://bney0cc8cfm5s" path="res://Scenes/Prefabs/LevelObjects/EndFinalCastle.tscn" id="16_l4ek8"]
+[ext_resource type="PackedScene" uid="uid://cdrgm3154qxxy" path="res://Scenes/Prefabs/Entities/Objects/Trampoline.tscn" id="17_3u5fw"]
 [ext_resource type="Script" uid="uid://cybpwmw4ywoow" path="res://Scripts/Parts/TileMapConverter.gd" id="17_l4ek8"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="17_ug5w3"]
 
@@ -45,7 +46,7 @@ position = Vector2(120, 0)
 position = Vector2(184, 0)
 
 [node name="GreenKoopaTroopa2" parent="Enemies" instance=ExtResource("8_omfv6")]
-position = Vector2(296, 0)
+position = Vector2(264, -1)
 winged = true
 
 [node name="HammerBro" parent="Enemies" instance=ExtResource("10_hb0iq")]
@@ -77,6 +78,9 @@ metadata/_custom_type_script = "uid://cybpwmw4ywoow"
 
 [node name="LevelBG" parent="." instance=ExtResource("17_ug5w3")]
 time_of_day = 1
+
+[node name="Trampoline" parent="." instance=ExtResource("17_3u5fw")]
+position = Vector2(280, 0)
 
 [connection signal="block_destroyed" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active_2"]
 [connection signal="block_emptied" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active"]

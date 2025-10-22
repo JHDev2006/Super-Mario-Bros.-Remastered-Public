@@ -17,7 +17,7 @@ func _ready() -> void:
 	$SpeechBubble/Your.text = your_results[0]
 	$SpeechBubble/Your/Results.text = your_results[1]
 	coin_medal = int(ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1]) & 0b011111 == 0b011111
-	score_medal = ChallengeModeHandler.top_challenge_scores[Global.world_num -1][Global.level_num - 1] >= ChallengeModeHandler.CHALLENGE_TARGETS[Global.current_campaign][Global.world_num -1][Global.level_num -1]
+	score_medal = ChallengeModeHandler.top_challenge_scores[Global.world_num - 1][Global.level_num - 1] >= ChallengeModeHandler.CHALLENGE_TARGETS[Global.current_campaign][Global.world_num - 1][Global.level_num - 1]
 	yoshi_medal = ChallengeModeHandler.is_coin_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG, ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1])
 	$ChallengeResults.play()
 	setup_results()
@@ -38,7 +38,7 @@ func open_menu() -> void:
 
 func save_results() -> void:
 	var index := 0
-	ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1] =  int(ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1]) | ChallengeModeHandler.current_run_red_coins_collected
+	ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1] = int(ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1]) | ChallengeModeHandler.current_run_red_coins_collected
 	if Global.score >= ChallengeModeHandler.top_challenge_scores[Global.world_num - 1][Global.level_num - 1]:
 		ChallengeModeHandler.top_challenge_scores[Global.world_num - 1][Global.level_num - 1] = Global.score
 	ChallengeModeHandler.new().check_for_achievement()
