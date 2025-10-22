@@ -141,11 +141,14 @@ metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
 [node name="ScoreNoteSpawner" type="Node" parent="."]
 script = ExtResource("11_jkv5r")
+add_score = true
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
 [connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="die_from_object"]

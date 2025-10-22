@@ -27,7 +27,7 @@ func _enter_tree() -> void:
 		LevelPersistance.active_nodes = old_state.duplicate(true)
 
 func _ready() -> void:
-	if [Global.GameMode.CHALLENGE, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) or Global.current_campaign == "SMBANN":
+	if [Global.GameMode.CHALLENGE, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) or Global.current_campaign == "SMBANN" or (Settings.file.difficulty.extra_checkpoints == 0 and optional):
 		queue_free()
 		return
 	if has_meta("is_flag") == false:
@@ -71,6 +71,3 @@ func get_id() -> String:
 		return str(Global.level_editor.sub_level_id) + "," + str(Vector2i(global_position)) + "," + get_parent().name
 	else:
 		return Global.current_level.scene_file_path + "," + str(Vector2i(global_position)) + "," + get_parent().name
-
-func on_tree_exiting() -> void:
-	pass # Replace with function body.

@@ -43,6 +43,7 @@ region_rect = Rect2(0, 16, 32, 16)
 shape = SubResource("RectangleShape2D_4k6gi")
 
 [node name="PlacePreview" type="Node2D" parent="."]
+visible = false
 z_index = 1
 
 [node name="NW" type="Sprite2D" parent="PlacePreview"]

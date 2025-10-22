@@ -204,6 +204,7 @@ position = Vector2(2200, -136)
 [node name="CheckpointFlag" parent="." node_paths=PackedStringArray("nodes_to_delete") instance=ExtResource("22_686wu")]
 position = Vector2(1328, 0)
 nodes_to_delete = [NodePath("../Enemies/Blooper6")]
+optional = true
 
 [node name="EntityGenerator" parent="." instance=ExtResource("22_lnx6r")]
 position = Vector2(-72, -176)
