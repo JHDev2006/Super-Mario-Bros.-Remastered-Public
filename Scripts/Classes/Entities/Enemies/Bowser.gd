@@ -130,8 +130,7 @@ func fireball_hit() -> void:
 func play_music() -> void:
 	for i: EntityGenerator in get_tree().get_nodes_in_group("EntityGenerators"):
 		if i.entity_scene != null:
-			if i.entity_scene.resource_path == "res://Scenes/
-			Prefabs/Entities/Enemies/BowserFlame.tscn":
+			if i.entity_scene.resource_path == "res://Scenes/Prefabs/Entities/Enemies/BowserFlame.tscn":
 				i.queue_free()
 	if Settings.file.audio.extra_bgm == 0: return
 	if Global.level_editor != null:

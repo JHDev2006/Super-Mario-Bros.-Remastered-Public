@@ -891,7 +891,8 @@ func do_smoke_effect() -> void:
 func on_timeout() -> void:
 	AudioManager.stop_music_override(AudioManager.MUSIC_OVERRIDES.STAR)
 	await get_tree().create_timer(1, false).timeout
-	is_invincible = false
+	if $StarTimer.is_stopped():
+		is_invincible = false
 
 
 func on_area_entered(area: Area2D) -> void:
