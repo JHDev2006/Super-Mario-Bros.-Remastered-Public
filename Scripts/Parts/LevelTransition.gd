@@ -106,7 +106,7 @@ func handle_challenge_mode_transition() -> void:
 	%ChallengeScoreText/Target.show()
 	%ChallengeCoins2.show()
 	%ChallengeCoins.show()
-	%ChallengeScoreText.text = str(Global.score)
+	%ChallengeScoreText.text = str(int(ChallengeModeHandler.top_challenge_scores[Global.world_num - 1][Global.level_num - 1]))
 	var idx = 0
 	for i in %ChallengeCoins.get_children():
 		if ChallengeModeHandler.is_coin_collected(idx, ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1]):

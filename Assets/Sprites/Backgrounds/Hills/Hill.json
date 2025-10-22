@@ -67,7 +67,7 @@
 		"Underground": {
 			"SMB1": {
 				"source": "Underground.png",
-				"animations": {
+				"animation_overrides": {
 					"default": {
 						"frames": [
 							[
@@ -90,7 +90,7 @@
 			},
 			"SMBLL": {
 				"source": "UndergroundLL.png",
-				"animations": {
+				"animation_overrides": {
 					"default": {
 						"frames": [
 							[

@@ -236,6 +236,7 @@ position = Vector2(3432, -120)
 
 [node name="CheckpointFlag" parent="." instance=ExtResource("24_osugw")]
 position = Vector2(2056, -64)
+optional = true
 
 [node name="BrickBlock" parent="." instance=ExtResource("21_u54v8")]
 position = Vector2(2040, -120)

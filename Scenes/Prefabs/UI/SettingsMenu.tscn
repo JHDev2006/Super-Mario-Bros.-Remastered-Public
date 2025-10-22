@@ -447,7 +447,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_VISUALS"
-options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), NodePath("SpecialScrollingMode"), NodePath("ColourfulPipes"), NodePath("FirebarStyle"), NodePath("ExtraParticles")]
+options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), null, NodePath("ColourfulPipes"), NodePath("FirebarStyle"), NodePath("ExtraParticles")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
 custom_minimum_size = Vector2(0, 4)
@@ -514,13 +514,6 @@ layout_mode = 2
 option_key = "transition_animation"
 title = "VISUAL_TRANSITION_EFFECT"
 values = ["VISUAL_TRANSITION_CLASSIC", "VISUAL_TRANSITION_SMOOTH"]
-settings_category = "visuals"
-
-[node name="SpecialScrollingMode" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
-layout_mode = 2
-option_key = "smbs_scroll"
-title = "VISUAL_SMBS_SCROLL"
-values = ["VISUAL_SMBS_SCROLL_OFF", "VISUAL_SMBS_SCROLL_X1", "VISUAL_SMBS_SCROLL_PC8801"]
 settings_category = "visuals"
 
 [node name="ColourfulPipes" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
@@ -1020,7 +1013,6 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/BridgeDestructionAnimation" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="bridge_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisibleTimers" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="visible_timers_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/TransitionAnimation" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="transition_style_changed"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/SpecialScrollingMode" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="smbs_scroll_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ColourfulPipes" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="colourful_pipes_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/FirebarStyle" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="firebar_style_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ExtraParticles" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="extra_particles"]
