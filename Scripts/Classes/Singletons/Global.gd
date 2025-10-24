@@ -458,8 +458,9 @@ func log_comment(msg := "") -> void:
 
 func level_editor_is_playtesting() -> bool:
 	if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
-		if Global.level_editor.current_state == LevelEditor.EditorState.PLAYTESTING:
-			return true
+		if (Global.level_editor != null):
+			if Global.level_editor.current_state == LevelEditor.EditorState.PLAYTESTING:
+				return true
 	return false
 
 func unlock_achievement(achievement_id := AchievementID.SMB1_CLEAR) -> void:
