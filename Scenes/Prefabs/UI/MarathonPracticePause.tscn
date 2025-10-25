@@ -25,6 +25,8 @@ func quit_to_menu() -> void:
 	Global.speed_run_timer = 0
 	Global.speed_run_timer_active = false
 	Global.speed_run_timer_enabled = false
+	TitleScreen.return_to = TitleScreen.TITLE_RETURN.OPTIONS2
+	TitleScreen.return_selected_index = 2
 	Global.transition_to_scene(\"res://Scenes/Levels/TitleScreen.tscn\")
 	get_tree().paused = true
 	await Global.current_level.tree_exited

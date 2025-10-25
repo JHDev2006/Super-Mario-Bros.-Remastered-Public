@@ -849,6 +849,9 @@ unique_name_in_owner = true
 offset_left = 0.0
 offset_right = 0.0
 
+[node name="Visuals" parent="CanvasLayer/SettingsMenu/PanelContainer/MarginContainer/VBoxContainer" index="5" node_paths=PackedStringArray("options")]
+options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), null, NodePath("ColourfulPipes"), NodePath("FirebarStyle"), NodePath("ExtraParticles")]
+
 [node name="LabelFontChanger" parent="CanvasLayer/SettingsMenu" index="1" node_paths=PackedStringArray("labels")]
 labels = [NodePath("../PanelContainer/MarginContainer/VBoxContainer/Title"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer/Category"), null, null, null, null, null, null, null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3/Value"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer/MarginContainer/Desc")]
 
