@@ -1,18 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhd0gp2xvl53l"]
+[gd_scene load_steps=11 format=3 uid="uid://dhd0gp2xvl53l"]
 
 [ext_resource type="Script" uid="uid://bafdl3y53ly60" path="res://Scripts/Classes/UI/PackAnimatedSprite2D.gd" id="2_724cb"]
 [ext_resource type="Texture2D" uid="uid://bbdcmhyxmc3pu" path="res://Assets/Sprites/Items/SPItems.png" id="2_wnlnm"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ke2o5"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/LuckyStar.json" id="4_4cwfa"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_724cb"]
 
 [sub_resource type="GDScript" id="GDScript_y0edb"]
 script/source = "extends PowerUpItem
 
 func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player:
-		queue_free()
 		AudioManager.play_global_sfx(\"lucky_star\")
+		$ScoreNoteSpawner.spawn_note(1000)
+		DiscoLevel.combo_amount += 1
 		get_tree().call_group(\"Enemies\", \"flag_die\")
+		queue_free()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ke2o5"]
@@ -64,5 +67,10 @@ position = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_7yv5x")
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("5_724cb")
+add_score = true
+metadata/_custom_type_script = "uid://5octqlf4ohel"
 
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]

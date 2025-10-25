@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwdwavf4rp1m1"]
+[gd_scene load_steps=8 format=3 uid="uid://bwdwavf4rp1m1"]
 
 [ext_resource type="Script" uid="uid://vhxup1pn2v8q" path="res://Scripts/Classes/Entities/Items/HammerItem.gd" id="1_ws752"]
 [ext_resource type="Texture2D" uid="uid://bbdcmhyxmc3pu" path="res://Assets/Sprites/Items/SPItems.png" id="2_c0srl"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_uc7h7"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/HammerItem.json" id="5_6qq3q"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_uc7h7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uc7h7"]
 size = Vector2(10, 10)
@@ -40,5 +41,10 @@ position = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_ws752")
+
+[node name="ScoreNoteSpawner" type="Node" parent="."]
+script = ExtResource("5_uc7h7")
+add_score = true
+metadata/_custom_type_script = "uid://5octqlf4ohel"
 
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
