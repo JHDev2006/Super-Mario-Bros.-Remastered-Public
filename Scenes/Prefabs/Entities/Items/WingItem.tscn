@@ -11,8 +11,7 @@ script/source = "extends PowerUpItem
 
 func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player:
-		AudioManager.play_sfx(\"power_up\", global_position)
-		Global.score += 1000
+		AudioManager.play_global_sfx(\"power_up\")
 		$ScoreNoteSpawner.spawn_note(1000)
 		area.owner.wing_get()
 		queue_free()
