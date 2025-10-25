@@ -359,6 +359,8 @@ rect = Rect2(-10, 0, 20, 176)
 
 [node name="BasicEnemyMovement" type="Node" parent="." node_paths=PackedStringArray("visuals")]
 script = ExtResource("11_8aome")
+move_speed = 16
+second_quest_speed = 20
 visuals = NodePath("../Parts")
 metadata/_custom_type_script = "uid://dlq6o2rg1x7in"
 
