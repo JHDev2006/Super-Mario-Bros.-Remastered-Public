@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dybfmrawthall"]
+[gd_scene load_steps=9 format=3 uid="uid://dybfmrawthall"]
 
 [ext_resource type="Texture2D" uid="uid://boongcly3e2cl" path="res://Assets/Sprites/Particles/LakituCloudBurst.png" id="1_3jvpp"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_cic8a"]
@@ -40,20 +40,12 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_3jvpp"]
-script/source = "extends AnimatedSprite2D
-
-func _ready() -> void:
-	pass
-"
-
 [node name="LakituCloudBurst" type="AnimatedSprite2D"]
 z_index = 5
 sprite_frames = SubResource("SpriteFrames_xs1ui")
 autoplay = "default"
 frame = 3
 frame_progress = 1.0
-script = SubResource("GDScript_3jvpp")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

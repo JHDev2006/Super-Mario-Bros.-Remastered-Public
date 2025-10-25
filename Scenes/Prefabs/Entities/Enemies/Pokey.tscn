@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://beggmeixrin75"]
+[gd_scene load_steps=23 format=3 uid="uid://beggmeixrin75"]
 
 [ext_resource type="Script" uid="uid://b1b6aiai213ci" path="res://Scripts/Classes/Entities/Enemies/Pokey.gd" id="1_b54ls"]
 [ext_resource type="Texture2D" uid="uid://dj46y8vhqlqjw" path="res://Assets/Sprites/Enemies/Pokey.png" id="2_8aome"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="11_8aome"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="12_b54ls"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="13_30hxr"]
+[ext_resource type="Script" uid="uid://blfnd65xcx78c" path="res://Scripts/Classes/Components/LedgeDetectionCast.gd" id="16_rjgwh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6vo0"]
 atlas = ExtResource("2_8aome")
@@ -357,8 +358,11 @@ shape = SubResource("RectangleShape2D_mpg4k")
 position = Vector2(0, -168)
 rect = Rect2(-10, 0, 20, 176)
 
-[node name="BasicEnemyMovement" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+[node name="BasicEnemyMovement" type="Node" parent="." node_paths=PackedStringArray("ledge_detection_cast", "visuals")]
 script = ExtResource("11_8aome")
+ledge_detection_cast = NodePath("../LedgeDetectionCast")
+move_speed = 16
+second_quest_speed = 20
 visuals = NodePath("../Parts")
 metadata/_custom_type_script = "uid://dlq6o2rg1x7in"
 
@@ -374,6 +378,12 @@ properties = Array[String](["length"])
 [node name="PartHandler" type="Node" parent="."]
 process_mode = 3
 script = SubResource("GDScript_30hxr")
+
+[node name="LedgeDetectionCast" type="RayCast2D" parent="."]
+position = Vector2(-4, -5)
+target_position = Vector2(0, 8)
+collision_mask = 2
+script = ExtResource("16_rjgwh")
 
 [connection signal="killed" from="." to="." method="summon_part_gibs" unbinds=1]
 [connection signal="fireball_hit" from="FireballDetection" to="." method="die_from_object"]

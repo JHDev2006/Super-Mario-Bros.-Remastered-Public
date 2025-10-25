@@ -73,12 +73,20 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
+focus_neighbor_left = NodePath("../Control")
+focus_neighbor_top = NodePath("../SelectableLabel2")
+focus_neighbor_right = NodePath("../Control")
+focus_neighbor_bottom = NodePath("../SelectableLabel2")
 text = "MENU_CONTINUE"
 
 [node name="SelectableLabel2" parent="CanvasLayer/VBoxContainer" instance=ExtResource("5_l878x")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
+focus_neighbor_left = NodePath("../Control")
+focus_neighbor_top = NodePath("../SelectableLabel")
+focus_neighbor_right = NodePath("../Control")
+focus_neighbor_bottom = NodePath("../SelectableLabel")
 text = "PAUSE_QUIT"
 
 [node name="Timer" type="Timer" parent="."]

@@ -917,6 +917,7 @@ color = Color(0, 0, 0, 1)
 autostart = true
 
 [node name="DevBuildWarning" type="Label" parent="CanvasLayer2/VersionLabel"]
+visible = false
 layout_mode = 1
 offset_top = 16.0
 offset_right = 56.0

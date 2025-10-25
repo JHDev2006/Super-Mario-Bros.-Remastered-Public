@@ -7,7 +7,9 @@ const ACCEL := 1.0
 
 func _physics_process(delta: float) -> void:
 	target_player = get_tree().get_first_node_in_group("Players")
-	direction = sign(target_player.global_position.x - global_position.x)
+	var dir = sign(target_player.global_position.x - global_position.x)
+	if dir != 0:
+		direction = dir
 	$Sprite.scale.x = direction
 	handle_movement(delta)
 

@@ -103,6 +103,7 @@ func value_changed(property, new_value) -> void:
 func close() -> void:
 	hide()
 	active = false
+	if get_tree() == null: return
 	await get_tree().create_timer(0.1).timeout
 	closed.emit()
 	for i in %Container.get_children():

@@ -447,7 +447,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_VISUALS"
-options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), null, NodePath("ColourfulPipes"), NodePath("FirebarStyle"), NodePath("ExtraParticles")]
+options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), NodePath("ColourfulPipes"), NodePath("FirebarStyle"), NodePath("ExtraParticles")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
 custom_minimum_size = Vector2(0, 4)
@@ -562,6 +562,7 @@ title = "RESOURCE_REFRESH"
 [node name="SelectableOptionNode3" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" instance=ExtResource("9_t6b48")]
 layout_mode = 2
 title = "RESOURCE_PACK_CREATE"
+press_sfx = ""
 
 [node name="ResourcePackLoader" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
 script = ExtResource("9_2qqpf")
@@ -639,7 +640,7 @@ settings_category = "difficulty"
 
 [node name="GameOverStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
-option_key = "game_over"
+option_key = "game_over_behaviour"
 title = "DIFFI_GAME_OVER"
 value_descs = Array[String](["DESC_GAME_OVER_0", "DESC_GAME_OVER_1", "DESC_GAME_OVER_2"])
 values = ["DIFFI_GAME_OVER_WLD", "DIFFI_GAME_OVER_LVL", "DIFFI_GAME_OVER_GME"]
@@ -1019,6 +1020,7 @@ script = ExtResource("19_k6yev")
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="open_folder"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode2" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="get_resource_packs"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" to="ResourcePackTemplateCreator" method="create_template"]
+[connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" method="set_title" binds= ["Creating Resource Pack..."]]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DamageStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="damage_style_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Checkpoints" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="checkpoint_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ExtraCheckpoints" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="extra_checkpoints_changed"]
@@ -1036,6 +1038,8 @@ script = ExtResource("19_k6yev")
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/AchievementData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_achievement"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/Everything" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_everything"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/Data/RegenROM" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="regen_rom"]
+[connection signal="pack_created" from="ResourcePackTemplateCreator" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" method="set_title" binds= ["RESOURCE_PACK_CREATE"]]
+[connection signal="pack_created" from="ResourcePackTemplateCreator" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" method="play_sfx" binds= ["correct"]]
 
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Video/Language"]
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode"]

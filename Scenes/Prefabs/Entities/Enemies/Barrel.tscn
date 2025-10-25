@@ -93,6 +93,7 @@ metadata/_custom_type_script = "uid://dlq6o2rg1x7in"
 
 [node name="ScoreNoteSpawner" type="Node" parent="."]
 script = ExtResource("8_m378g")
+add_score = true
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
 [node name="ExplosionDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]

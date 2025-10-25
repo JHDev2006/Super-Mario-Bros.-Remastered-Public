@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bxsay5e6dhcqb"]
+[gd_scene load_steps=26 format=3 uid="uid://bxsay5e6dhcqb"]
 
 [ext_resource type="Script" uid="uid://n123x5yuqpjd" path="res://Scripts/Classes/Entities/Enemies/DryBones.gd" id="1_8c647"]
 [ext_resource type="Texture2D" uid="uid://c5snfukhcacyf" path="res://Assets/Sprites/Enemies/DryBones.png" id="2_qya46"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="7_qya46"]
 [ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="10_br3pe"]
 [ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="11_l4h6l"]
+[ext_resource type="Script" uid="uid://blfnd65xcx78c" path="res://Scripts/Classes/Components/LedgeDetectionCast.gd" id="12_w4qtl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4qtl"]
 atlas = ExtResource("2_qya46")
@@ -196,13 +197,21 @@ rect = Rect2(-10, -13, 20, 23)
 script = ExtResource("7_qya46")
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
-[node name="BasicEnemyMovement" type="Node" parent="."]
+[node name="BasicEnemyMovement" type="Node" parent="." node_paths=PackedStringArray("ledge_detection_cast")]
 script = ExtResource("10_br3pe")
+ledge_detection_cast = NodePath("../LedgeDetectionCast")
 
 [node name="ExplosionDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("11_l4h6l")
 hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://ba18grqjixded"
+
+[node name="LedgeDetectionCast" type="RayCast2D" parent="."]
+position = Vector2(-2, -2)
+target_position = Vector2(0, 3)
+collision_mask = 2
+script = ExtResource("12_w4qtl")
+metadata/_custom_type_script = "uid://blfnd65xcx78c"
 
 [connection signal="killed" from="." to="." method="summon_particle" unbinds=1]
 [connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]

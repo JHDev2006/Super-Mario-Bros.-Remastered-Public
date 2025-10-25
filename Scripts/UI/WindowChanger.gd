@@ -56,7 +56,7 @@ func frame_limit_changed(new_value := 0) -> void:
 		3: new_framerate = 144
 		4: new_framerate = 240
 	
-	Engine.max_fps = new_framerate
+	Engine.set_max_fps(new_framerate)
 	Settings.file.video.frame_limit = new_value
 
 func set_window_size(value := []) -> void:

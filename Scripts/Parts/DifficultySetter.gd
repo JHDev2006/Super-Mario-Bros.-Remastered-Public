@@ -37,6 +37,7 @@ func set_value(value_name := "", value := 0) -> void:
 		"inf_lives": inf_lives_changed,
 		"flagpole_lives": flag_lives_changed,
 		"game_over": game_over_changed,
+		"game_over_behaviour": game_over_changed,
 		"level_design": level_design_changed,
 		"extra_checkpoints": extra_checkpoints_changed,
 		"back_scroll": backscroll_changed
