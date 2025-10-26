@@ -29,7 +29,7 @@ func update_visuals() -> void:
 func run_player_check(player: Player) -> void:
 	if Global.player_action_pressed(get_input_direction(enter_direction), player.player_id) and can_enter:
 		can_enter = false
-		Checkpoint.passed = false
+		Checkpoint.passed_checkpoints.clear()
 		SpeedrunHandler.is_warp_run = true
 		Global.reset_values()
 		Level.first_load = true

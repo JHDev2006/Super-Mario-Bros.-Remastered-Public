@@ -9,7 +9,7 @@ func _ready() -> void:
 	get_resource_packs()
 
 func open_folder() -> void:
-	OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://resource_packs"), true)
+	OS.shell_show_in_file_manager(ProjectSettings.globalize_path(Global.config_path.path_join("resource_packs")), true)
 
 func get_resource_packs() -> void:
 	for i in containers:
@@ -17,12 +17,12 @@ func get_resource_packs() -> void:
 		i.queue_free()
 	containers = []
 	resource_packs = []
-	for i in DirAccess.get_directories_at("user://resource_packs"):
+	for i in DirAccess.get_directories_at(Global.config_path.path_join("resource_packs")):
 		resource_packs.append(i)
 	for i in resource_packs:
-		var pack_info_path = "user://resource_packs/" + i + "/" + "pack_info.json"
+		var pack_info_path = Global.config_path.path_join("resource_packs/" + i + "/pack_info.json")
 		if FileAccess.file_exists(pack_info_path) and i != Global.ROM_PACK_NAME:
-			create_container("user://resource_packs/" + i)
+			create_container(Global.config_path.path_join("resource_packs/" + i))
 
 func create_container(resource_pack := "") -> void:
 	var container = RESOURCE_PACK_CONTAINER.instantiate()
@@ -36,7 +36,7 @@ func create_container(resource_pack := "") -> void:
 		container.icon = ImageTexture.create_from_image(image)
 	elif FileAccess.file_exists(resource_pack + "/icon.gif"):
 		container.icon = GifManager.animated_texture_from_file(resource_pack + "/icon.gif")
-	container.pack_name = resource_pack.replace("user://resource_packs/", "")
+	container.pack_name = resource_pack.replace(Global.config_path.path_join("resource_packs"), "").trim_prefix("/")
 	$"../ScrollContainer/VBoxContainer".add_child(container)
 	containers.append(container)
 	container.add_to_group("Options")

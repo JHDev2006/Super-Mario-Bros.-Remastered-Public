@@ -32,6 +32,7 @@ func handle_movement(delta: float) -> void:
 	move_and_slide()
 
 func destroy() -> void:
+	await get_tree().physics_frame
 	AudioManager.play_sfx("icicle_break", global_position)
 	summon_particles()
 	queue_free()

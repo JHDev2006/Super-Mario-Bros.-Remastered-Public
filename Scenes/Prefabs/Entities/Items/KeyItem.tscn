@@ -1,10 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://ny5glffi0suh"]
+[gd_scene load_steps=17 format=3 uid="uid://ny5glffi0suh"]
 
 [ext_resource type="Texture2D" uid="uid://bagrao4ahra76" path="res://Assets/Sprites/Items/Key.png" id="1_883rn"]
 [ext_resource type="Script" uid="uid://cjgbt7iof66j0" path="res://Scripts/Classes/Entities/Items/KeyItem.gd" id="1_l02ex"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_ecusj"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_l02ex"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_m8uts"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Key.json" id="4_m8uts"]
 [ext_resource type="Texture2D" uid="uid://sgrcmlktp2dk" path="res://Assets/Sprites/Particles/SRankParticles.png" id="7_2yl70"]
 
@@ -146,8 +145,6 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(0, -8)
-script = ExtResource("3_m8uts")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_2u37r")
@@ -166,4 +163,4 @@ texture = ExtResource("7_2yl70")
 randomness = 0.12
 process_material = SubResource("ParticleProcessMaterial_rls2x")
 
-[connection signal="player_entered" from="Hitbox" to="." method="collected" unbinds=1]
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]

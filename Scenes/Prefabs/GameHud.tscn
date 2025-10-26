@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bod0jkf7jc5pm"]
+[gd_scene load_steps=40 format=3 uid="uid://bod0jkf7jc5pm"]
 
 [ext_resource type="Script" uid="uid://bjbd3a6su47si" path="res://Scripts/Classes/UI/GameHUD.gd" id="1_f34v2"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_cbrve"]
@@ -22,12 +22,11 @@
 [ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="14_h6dkv"]
 [ext_resource type="Script" uid="uid://dwtrmo82e12ud" path="res://Scripts/Parts/ColourPaletteSampler.gd" id="15_8qasw"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="15_jwl8o"]
-[ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="15_niy8w"]
 [ext_resource type="PackedScene" uid="uid://n2e3jgmkilvt" path="res://Scenes/Prefabs/UI/MarathonResults.tscn" id="16_cfljn"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="16_jt73e"]
-[ext_resource type="FontVariation" uid="uid://djxdgxy1iv8yv" path="res://Resources/ThemedResources/FontLLMain.tres" id="17_2w8b3"]
 [ext_resource type="PackedScene" uid="uid://b85i7uni0twpe" path="res://Scenes/Prefabs/UI/DiscoResults.tscn" id="17_ocsy5"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="18_jwl8o"]
+[ext_resource type="Texture2D" uid="uid://w74s6oi3l8k8" path="res://Assets/Sprites/UI/TextShadowColours.png" id="24_h6dkv"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/TextShadow.json" id="25_oeqb4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eon7h"]
 shader = ExtResource("6_r3m7e")
@@ -204,6 +203,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Icon" type="AnimatedSprite2D" parent="Main/CoinCount/KeyCount"]
+process_mode = 1
 position = Vector2(0, -8)
 centered = false
 script = ExtResource("2_cbrve")
@@ -241,10 +241,10 @@ offset_left = 4.0
 offset_top = -12.0
 offset_right = 36.0
 offset_bottom = 4.0
-theme_override_fonts/font = ExtResource("17_2w8b3")
 text = "*03"
 
 [node name="CoinIcon" type="AnimatedSprite2D" parent="Main/CoinCount"]
+process_mode = 1
 sprite_frames = SubResource("SpriteFrames_40ba1")
 autoplay = "default"
 frame_progress = 0.132926
@@ -265,7 +265,6 @@ offset_left = 4.0
 offset_top = -4.0
 offset_right = 36.0
 offset_bottom = 12.0
-theme_override_fonts/font = ExtResource("17_2w8b3")
 text = "*00"
 
 [node name="RedCoins" type="Control" parent="Main"]
@@ -530,6 +529,7 @@ uppercase = true
 
 [node name="Time" type="Label" parent="Main/TimeDisplay/TimeLabel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = -1
 offset_left = -12.0
@@ -540,27 +540,41 @@ text = " 000"
 horizontal_alignment = 2
 uppercase = true
 
-[node name="Stopwatch" type="Label" parent="Main/TimeDisplay/TimeLabel"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-offset_left = -16.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/TimeDisplay/TimeLabel"]
+layout_mode = 0
+offset_left = -24.0
 offset_top = 8.0
-offset_right = 24.0
-offset_bottom = 16.0
+offset_right = 56.0
+offset_bottom = 40.0
+theme_override_constants/separation = -8
+alignment = 1
+
+[node name="Stopwatch" type="Label" parent="Main/TimeDisplay/TimeLabel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
 text = "00:00:00"
+horizontal_alignment = 2
 uppercase = true
 
-[node name="PB" type="Label" parent="Main/TimeDisplay/TimeLabel"]
+[node name="PB" type="Label" parent="Main/TimeDisplay/TimeLabel/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = -1
-offset_left = -24.0
-offset_top = 16.0
-offset_right = 16.0
-offset_bottom = 24.0
+layout_mode = 2
+size_flags_vertical = 0
 text = "+00:00:00"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="Control" type="Control" parent="Main/TimeDisplay/TimeLabel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="IGT" type="Label" parent="Main/TimeDisplay/TimeLabel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 2
+text = " ⏲000"
+horizontal_alignment = 2
 uppercase = true
 
 [node name="Buffer5" type="Control" parent="Main"]
@@ -594,6 +608,7 @@ offset_bottom = 44.0
 size_flags_vertical = 8
 
 [node name="Coin" type="AnimatedSprite2D" parent="ModernHUD/TopLeft/CoinCount"]
+process_mode = 1
 position = Vector2(4, 0)
 sprite_frames = SubResource("SpriteFrames_40ba1")
 autoplay = "default"
@@ -853,6 +868,7 @@ offset_right = 60.0
 offset_bottom = 108.0
 
 [node name="Icon" type="AnimatedSprite2D" parent="ModernHUD/TopLeft/ModernKeyCount"]
+process_mode = 1
 position = Vector2(0, -8)
 centered = false
 script = ExtResource("2_cbrve")
@@ -890,7 +906,6 @@ offset_left = 4.0
 offset_top = -12.0
 offset_right = 36.0
 offset_bottom = 4.0
-theme_override_fonts/font = ExtResource("17_2w8b3")
 text = "*03"
 
 [node name="Right" type="Control" parent="ModernHUD"]
@@ -918,7 +933,7 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
-text = "⏲000"
+text = "⏲00:00:00"
 horizontal_alignment = 2
 
 [node name="ModernScore" type="Label" parent="ModernHUD/Right/ModernTime"]
@@ -932,16 +947,27 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "000000000"
 
-[node name="ModernPB" type="Label" parent="ModernHUD/Right/ModernTime"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ModernHUD/Right/ModernTime"]
+layout_mode = 0
+offset_top = 9.0
+offset_right = 80.0
+offset_bottom = 41.0
+theme_override_constants/separation = -4
+
+[node name="ModernPB" type="Label" parent="ModernHUD/Right/ModernTime/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-offset_top = 12.0
-offset_right = 40.0
-offset_bottom = 28.0
+layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
-text = "⏲00"
+text = "⏲00:00:00"
+horizontal_alignment = 2
+
+[node name="ModernIGT" type="Label" parent="ModernHUD/Right/ModernTime/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+text = "⏲000"
 horizontal_alignment = 2
 
 [node name="Timer" type="Timer" parent="."]
@@ -1021,8 +1047,7 @@ visible = false
 
 [node name="ColourPaletteSampler" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("15_8qasw")
-texture = ExtResource("15_niy8w")
-coords = Vector2i(67, 16)
+texture = ExtResource("24_h6dkv")
 node_to_affect = NodePath("../TextShadowColourChanger")
 value_to_set = "global_text_shadow_color"
 metadata/_custom_type_script = "uid://dwtrmo82e12ud"
@@ -1032,12 +1057,12 @@ script = ExtResource("3_jt73e")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("16_jt73e")
+resource_json = ExtResource("25_oeqb4")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels", "shadow_node")]
 script = ExtResource("18_jwl8o")
-labels = [NodePath("../Main/ScoreName/CharacterName"), NodePath("../Main/ScoreName/Score"), NodePath("../Main/CoinCount/CoinLabel"), NodePath("../Main/LevelDisplay/WorldTitle"), NodePath("../Main/LevelDisplay/WorldTitle/LevelNum"), NodePath("../Main/TimeDisplay/TimeLabel"), NodePath("../Main/TimeDisplay/TimeLabel/Time"), NodePath("../Main/TimeDisplay/TimeLabel/Stopwatch"), NodePath("../Main/TimeDisplay/TimeLabel/PB"), NodePath("../ModernHUD/TopLeft/CoinCount/ModernCoinCount"), NodePath("../ModernHUD/Right/ModernTime"), NodePath("../ModernHUD/Right/ModernTime/ModernScore"), NodePath("../Main/CoinCount/KeyCount/KeyAmount"), NodePath("../ModernHUD/TopLeft/ModernKeyCount/ModernKeyAmount"), NodePath("../ModernHUD/TopLeft/LifeCount/ModernLifeCount"), NodePath("../Combo/ComboAmount"), null, null, NodePath("../ModernHUD/Right/ModernTime/ModernPB")]
+labels = [NodePath("../Main/ScoreName/CharacterName"), NodePath("../Main/ScoreName/Score"), NodePath("../Main/CoinCount/CoinLabel"), NodePath("../Main/LevelDisplay/WorldTitle"), NodePath("../Main/LevelDisplay/WorldTitle/LevelNum"), NodePath("../Main/TimeDisplay/TimeLabel"), NodePath("../Main/TimeDisplay/TimeLabel/Time"), NodePath("../Main/TimeDisplay/TimeLabel/VBoxContainer/Stopwatch"), NodePath("../Main/TimeDisplay/TimeLabel/VBoxContainer/PB"), NodePath("../ModernHUD/TopLeft/CoinCount/ModernCoinCount"), NodePath("../ModernHUD/Right/ModernTime"), NodePath("../ModernHUD/Right/ModernTime/ModernScore"), NodePath("../Main/CoinCount/KeyCount/KeyAmount"), NodePath("../ModernHUD/TopLeft/ModernKeyCount/ModernKeyAmount"), NodePath("../ModernHUD/TopLeft/LifeCount/ModernLifeCount"), NodePath("../Combo/ComboAmount"), null, null, NodePath("../ModernHUD/Right/ModernTime/VBoxContainer/ModernPB"), NodePath("../Main/TimeDisplay/TimeLabel/VBoxContainer/IGT"), NodePath("../ModernHUD/Right/ModernTime/VBoxContainer/ModernIGT")]
 shadow_node = NodePath("../Main/RedCoins/BorderL/Shadow")
 
 [node name="HudTemplate" type="Sprite2D" parent="."]
@@ -1049,7 +1074,7 @@ centered = false
 
 [node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
 script = ExtResource("15_jwl8o")
-labels = [NodePath("../Main/ScoreName/CharacterName"), NodePath("../Main/ScoreName/Score"), NodePath("../Main/CoinCount/CoinLabel"), NodePath("../Main/LevelDisplay/WorldTitle"), NodePath("../Main/LevelDisplay/WorldTitle/LevelNum"), NodePath("../Main/TimeDisplay/TimeLabel"), NodePath("../Main/TimeDisplay/TimeLabel/Time"), NodePath("../ModernHUD/TopLeft/CoinCount/ModernCoinCount"), NodePath("../ModernHUD/Right/ModernTime"), NodePath("../ModernHUD/Right/ModernTime/ModernScore"), NodePath("../Main/CoinCount/KeyCount/KeyAmount"), NodePath("../Main/TimeDisplay/TimeLabel/Stopwatch"), NodePath("../Main/TimeDisplay/TimeLabel/PB"), NodePath("../ModernHUD/TopLeft/LifeCount/ModernLifeCount"), NodePath("../Main/CoinCount/KeyCount/KeyAmount"), NodePath("../Combo/ComboAmount"), NodePath("../ModernHUD/TopLeft/ModernKeyCount/ModernKeyAmount"), NodePath("../Main/LevelDisplay/WorldTitle/LevelNum/Crown"), NodePath("../ModernHUD/Right/ModernTime/ModernPB")]
+labels = [NodePath("../Main/ScoreName/CharacterName"), NodePath("../Main/ScoreName/Score"), NodePath("../Main/CoinCount/CoinLabel"), NodePath("../Main/LevelDisplay/WorldTitle"), NodePath("../Main/LevelDisplay/WorldTitle/LevelNum"), NodePath("../Main/TimeDisplay/TimeLabel"), NodePath("../Main/TimeDisplay/TimeLabel/Time"), NodePath("../ModernHUD/TopLeft/CoinCount/ModernCoinCount"), NodePath("../ModernHUD/Right/ModernTime"), NodePath("../ModernHUD/Right/ModernTime/ModernScore"), NodePath("../Main/CoinCount/KeyCount/KeyAmount"), NodePath("../Main/TimeDisplay/TimeLabel/VBoxContainer/Stopwatch"), NodePath("../Main/TimeDisplay/TimeLabel/VBoxContainer/PB"), NodePath("../ModernHUD/TopLeft/LifeCount/ModernLifeCount"), NodePath("../Main/CoinCount/KeyCount/KeyAmount"), NodePath("../Combo/ComboAmount"), NodePath("../ModernHUD/TopLeft/ModernKeyCount/ModernKeyAmount"), NodePath("../Main/LevelDisplay/WorldTitle/LevelNum/Crown"), NodePath("../ModernHUD/Right/ModernTime/VBoxContainer/ModernPB"), NodePath("../Main/TimeDisplay/TimeLabel/VBoxContainer/IGT"), NodePath("../ModernHUD/Right/ModernTime/VBoxContainer/ModernIGT")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [node name="TextureUpdater" type="Node" parent="." node_paths=PackedStringArray("sprites")]

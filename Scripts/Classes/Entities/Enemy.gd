@@ -1,4 +1,4 @@
-@icon("res://Assets/Sprites/Editor/Enemy.png")
+@icon("res://Assets/Sprites/Editor/Enemy.svg")
 class_name Enemy
 extends CharacterBody2D
 
@@ -37,3 +37,12 @@ func flag_die() -> void:
 			Global.score += 500
 			if score_note_adder != null:
 				score_note_adder.spawn_note(500)
+
+func die_from_hammer(obj: Node2D) -> void:
+	var dir = sign(global_position.x - obj.global_position.x)
+	if dir == 0:
+		dir = [-1, 1].pick_random()
+	DiscoLevel.combo_amount += 1
+	AudioManager.play_sfx("hammer_hit", global_position)
+	killed.emit(dir)
+	queue_free()

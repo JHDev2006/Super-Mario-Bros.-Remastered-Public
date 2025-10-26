@@ -21,8 +21,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	print(can_continue)
 	if Input.is_action_just_pressed("jump_0") and can_continue:
-		go_back_to_title()
 		can_continue = false
+		if Global.transitioning_scene:
+			await Global.transition_finished
+			await get_tree().create_timer(0.15, false).timeout
+		go_back_to_title()
 
 
 func go_back_to_title() -> void:

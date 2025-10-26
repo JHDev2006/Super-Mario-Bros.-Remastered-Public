@@ -19,4 +19,11 @@ func handle_inputs() -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		button_pressed.emit()
 		if press_sfx != "":
-			AudioManager.play_global_sfx(press_sfx)
+			play_sfx()
+
+func play_sfx(sfx := press_sfx) -> void:
+	await get_tree().process_frame
+	AudioManager.play_global_sfx(sfx)
+
+func set_title(text := "") -> void:
+	title = text

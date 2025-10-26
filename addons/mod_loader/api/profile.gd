@@ -7,8 +7,15 @@ extends Object
 const LOG_NAME := "ModLoader:UserProfile"
 
 # The path where the Mod User Profiles data is stored.
-const FILE_PATH_USER_PROFILES := "user://mod_user_profiles.json"
+static var FILE_PATH_USER_PROFILES := get_profiles_path()
 
+static func get_profiles_path() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		return exe_dir.path_join("config/mod_user_profiles.json")
+	else:
+		return "user://mod_user_profiles.json"
 
 # API profile functions
 # =============================================================================

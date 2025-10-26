@@ -1,6 +1,6 @@
 extends NoteBlock
 
-const INTRUMENT_SFX := [preload("uid://dia0bsspwrqsn"), preload("uid://d2elbhakm1yfq"), preload("uid://vxox7t6qvyvu"), preload("uid://w44jys81bxjj"), preload("uid://b2lj4akov8ami"), preload("uid://c03nay4r4a2lm"), preload("uid://d0pdbnpfcm80i"), preload("uid://dodww1no4v6qh")]
+const INTRUMENT_SFX := [preload("uid://gsk2lqo8a608"), preload("uid://ch68d4iy1nn2e"), preload("uid://b5wwm2720dks"), preload("uid://b8x38vefni36o"), preload("uid://d4ec6sm3ilh73"), preload("uid://c62pc2e3w30va"), preload("uid://dcdihfu6fpjg1"), preload("uid://byet8ricnkvsf")]
 
 var pitch := 0.0
 var sfx_stream = null

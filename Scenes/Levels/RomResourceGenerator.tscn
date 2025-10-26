@@ -47,6 +47,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "EXTRACTING ASSETS..."
 horizontal_alignment = 1
+uppercase = true
 
 [node name="Error" type="Label" parent="MarginContainer"]
 unique_name_in_owner = true

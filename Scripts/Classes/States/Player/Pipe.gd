@@ -9,6 +9,7 @@ func enter(_msg := {}) -> void:
 	physics_update(0)
 
 func physics_update(delta: float) -> void:
+	player.velocity = Vector2.ZERO
 	player.global_position += (ENTER_SPEED * (player.pipe_enter_direction * player.pipe_move_direction)) * delta
 	if player.pipe_enter_direction.x != 0:
 		player.sprite.speed_scale = 1

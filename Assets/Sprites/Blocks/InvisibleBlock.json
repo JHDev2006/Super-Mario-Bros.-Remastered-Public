@@ -13,14 +13,12 @@
 				16.0
 			]
 		},
-		"Castle": {
-			"source": "InvisibleBlock.png",
-			"rect": [
-				16.0,
-				0.0,
-				16.0,
-				16.0
-			]
-		}
+		"Castle": {"link": "Underground"},
+		"GhostHouse": {"link": "Underground"},
+		"Volcano": {"link": "Underground"},
+		"Bonus": {"link": "Underground"},
+		"Jungle": {"link": "Underground"},
+		"Space": {"link": "Underground"}
+		
 	}
 }

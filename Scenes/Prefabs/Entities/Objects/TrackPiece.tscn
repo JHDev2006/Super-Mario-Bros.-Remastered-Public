@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://4gxhnql5bjk6"]
+[gd_scene load_steps=10 format=3 uid="uid://4gxhnql5bjk6"]
 
 [ext_resource type="Texture2D" uid="uid://50hm4xgnw8ks" path="res://Assets/Sprites/Tilesets/Tracks.png" id="1_84p4k"]
 [ext_resource type="Script" uid="uid://chhr6kgvstkod" path="res://Scripts/Classes/Entities/Objects/TrackPiece.gd" id="1_t2c2l"]
 [ext_resource type="Texture2D" uid="uid://barofu3g8jf00" path="res://Assets/Sprites/Tilesets/InvisibleTracks.png" id="2_5cc87"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_4ie33"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Track.json" id="4_5cc87"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="6_yu1nf"]
+[ext_resource type="Texture2D" uid="uid://dp4b0cpisp5cs" path="res://Assets/Sprites/UI/Arrow.png" id="7_br4q4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4k6gi"]
 size = Vector2(12, 12)
@@ -41,6 +43,7 @@ region_rect = Rect2(0, 16, 32, 16)
 shape = SubResource("RectangleShape2D_4k6gi")
 
 [node name="PlacePreview" type="Node2D" parent="."]
+visible = false
 z_index = 1
 
 [node name="NW" type="Sprite2D" parent="PlacePreview"]
@@ -202,6 +205,16 @@ property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_5cc87")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="DirectionArrow" type="Node2D" parent="."]
+script = ExtResource("6_yu1nf")
+metadata/_custom_type_script = "uid://cpwloakvp672a"
+
+[node name="Arrow" type="Sprite2D" parent="DirectionArrow"]
+modulate = Color(0, 1, 1, 1)
+rotation = -1.5707964
+texture = ExtResource("7_br4q4")
+hframes = 2
 
 [connection signal="mouse_entered" from="PlacePreview/NW/MouseArea" to="." method="on_mouse_entered"]
 [connection signal="mouse_exited" from="PlacePreview/NW/MouseArea" to="." method="on_mouse_exited"]

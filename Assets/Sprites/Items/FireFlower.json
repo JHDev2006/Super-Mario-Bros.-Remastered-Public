@@ -33,70 +33,55 @@
 	},
 	"variations": {
 		"default": {
-			"source": "FireFlower.png",
-			"rect": [
-				0.0,
-				0.0,
-				64.0,
-				16.0
-			]
+			"SMB1": {"source": "FireFlower.png", "rect": [0.0,0.0,64.0,16.0]},
+			"SMBLL": {"link": "SMB1"},
+			"SMBANN": {"link": "SMB1"},
+			"SMBS": {"source": "FireFlowerSpecial.png", "rect": [0.0,0.0,64.0,16.0]}
 		},
 		"Underground": {
-			"source": "FireFlower.png",
-			"rect": [
-				0.0,
-				16.0,
-				64.0,
-				16.0
-			]
+			"SMB1": {"source": "FireFlower.png", "rect": [0.0,16.0,64.0,16.0]},
+			"SMBLL": {"link": "SMB1"},
+			"SMBANN": {"link": "SMB1"},
+			"SMBS": {"source": "FireFlowerSpecial.png", "rect": [0.0,16.0,64.0,16.0]}
+		},
+		"Castle": {
+			"link": "Underground"
 		},
 		"GhostHouse": {
 			"link": "Underground"
 		},
-		"Castle": {
-			"source": "FireFlower.png",
-			"rect": [
-				0.0,
-				32.0,
-				64.0,
-				16.0
-			]
+		"Underwater": {
+			"SMB1": {"source": "FireFlower.png", "rect": [0.0,32.0,64.0,16.0]},
+			"SMBLL": {"link": "SMB1"},
+			"SMBANN": {"link": "SMB1"},
+			"SMBS": {"source": "FireFlowerSpecial.png", "rect": [0.0,32.0,64.0,16.0]}
+		},
+		"CastleWater": {
+			"link": "Underwater"
 		},
 		"Snow": {
-			"source": "FireFlower.png",
-			"rect": [
-				0.0,
-				48.0,
-				64.0,
-				16.0
-			]
+			"SMB1": {"source": "FireFlower.png", "rect": [0.0,48.0,64.0,16.0]},
+			"SMBLL": {"link": "SMB1"},
+			"SMBANN": {"link": "SMB1"},
+			"SMBS": {"source": "FireFlowerSpecial.png", "rect": [0.0,48.0,64.0,16.0]}
 		},
 		"Space": {
-			"source": "FireFlower.png",
-			"rect": [
-				0.0,
-				64.0,
-				64.0,
-				16.0
-			]
+			"SMB1": {"source": "FireFlower.png", "rect": [0.0,64.0,64.0,16.0]},
+			"SMBLL": {"link": "SMB1"},
+			"SMBANN": {"link": "SMB1"},
+			"SMBS": {"source": "FireFlowerSpecial.png", "rect": [0.0,64.0,64.0,16.0]}
 		},
 		"Volcano": {
-			"source": "FireFlower.png",
-			"rect": [
-				0.0,
-				80.0,
-				64.0,
-				16.0
-			]
+			"SMB1": {"source": "FireFlower.png", "rect": [0.0,80.0,64.0,16.0]},
+			"SMBLL": {"link": "SMB1"},
+			"SMBANN": {"link": "SMB1"},
+			"SMBS": {"source": "FireFlowerSpecial.png", "rect": [0.0,80.0,64.0,16.0]}
 		},
 		"Bonus": {
-			"source": "FireFlower.png",
-			"rect": [
-				0.0,
-				96.0,
-				64.0,
-				16.0
-			]
+			"SMB1": {"source": "FireFlower.png", "rect": [0.0,96.0,64.0,16.0]},
+			"SMBLL": {"link": "SMB1"},
+			"SMBANN": {"link": "SMB1"},
+			"SMBS": {"source": "FireFlowerSpecial.png", "rect": [0.0,96.0,64.0,16.0]}
 		}
 	}
 }

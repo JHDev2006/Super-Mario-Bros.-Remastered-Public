@@ -1,4 +1,4 @@
-@icon("res://Assets/Sprites/Editor/Level.png")
+@icon("res://Assets/Sprites/Editor/Level.svg")
 class_name Level
 extends Node
 
@@ -8,6 +8,13 @@ extends Node
 @export_enum("Day", "Night") var theme_time := "Day"
 
 const THEME_IDXS := ["Overworld", "Underground", "Desert", "Snow", "Jungle", "Beach", "Garden", "Mountain", "Skyland", "Autumn", "Pipeland", "Space", "Underwater", "Volcano", "GhostHouse", "Castle", "CastleWater", "Airship", "Bonus"]
+
+const WORLD_COUNTS := {
+	"SMB1": 8,
+	"SMBLL": 13,
+	"SMBS": 8,
+	"SMBANN": 8
+}
 
 const WORLD_THEMES := {
 	"SMB1": SMB1_THEMES,
@@ -29,6 +36,8 @@ const SMB1_THEMES := {
 	9: "Space",
 	10: "Autumn",
 	11: "Pipeland",
+	12: "Skyland",
+	13: "Volcano"
 }
 
 const SMBS_THEMES := {
@@ -40,6 +49,13 @@ const SMBS_THEMES := {
 	6: "Beach",
 	7: "Mountain",
 	8: "Overworld"
+}
+
+const BONUS_ROOMS := {
+	"SMB1": ["1-1a", "1-2a", "2-1a", "3-1a", "4-1a", "4-2a", "5-1a", "6-2a", "6-2c", "7-1a", "8-1a", "8-2a"],
+	"SMBLL": ["1-1a", "2-1a", "2-2a", "3-1b", "4-2a", "5-1a", "5-3a", "7-1c", "7-2a", "10-1a", "12-1a", "13-1a", "13-2a", "13-4b"],
+	"SMBS": ["1-1a", "1-2a", "6-2a", "6-2b", "6-2c", "6-2d", "6-3a", "7-1a", "7-3a"],
+	"SMBANN": ["1-1a", "1-2a", "2-1a", "3-1a", "4-1a", "4-2a", "5-1a", "6-2a", "6-2c", "7-1a", "8-1a", "8-2a"]
 }
 
 @export var auto_set_theme := false
@@ -95,15 +111,9 @@ func _enter_tree() -> void:
 	await get_tree().process_frame
 	AudioManager.stop_music_override(AudioManager.MUSIC_OVERRIDES.NONE, true)
 
-const PLAYER = preload("res://Scenes/Prefabs/Entities/Player.tscn")
 
 func spawn_in_extra_players() -> void:
-	await ready
-	for i in Global.connected_players - 1:
-		var player_node = PLAYER.instantiate()
-		player_node.player_id = i + 1
-		player_node.global_position = get_tree().get_first_node_in_group("Players").global_position + Vector2(16 * (i + 1), 0)
-		add_child(player_node)
+	return
 
 func update_theme() -> void:
 	if auto_set_theme:
@@ -116,11 +126,16 @@ func update_theme() -> void:
 		if Global.current_campaign == "SMBANN":
 			theme_time = "Night"
 		ResourceSetterNew.cache.clear()
+	if self is CoinHeaven:
+		Global.current_room = Global.Room.COIN_HEAVEN
+	else:
+		Global.current_room = get_room_type()
 	Global.current_campaign = campaign
 	Global.level_theme = theme
 	Global.theme_time = theme_time
 	TitleScreen.last_theme = theme
-	$LevelBG.update_visuals()
+	if get_node_or_null("LevelBG") != null:
+		$LevelBG.update_visuals()
 
 func update_next_level_info() -> void:
 	next_level = wrap(level_id + 1, 1, 5)
@@ -130,6 +145,9 @@ func update_next_level_info() -> void:
 
 static func get_scene_string(world_num := 0, level_num := 0) -> String:
 	return "res://Scenes/Levels/" + Global.current_campaign + "/World" + str(world_num) + "/" + str(world_num) + "-" + str(level_num) + ".tscn"
+
+static func get_world_count() -> int:
+	return WORLD_COUNTS[Global.current_campaign]
 
 func transition_to_next_level() -> void:
 	if Global.current_game_mode == Global.GameMode.CHALLENGE:
@@ -147,7 +165,7 @@ func transition_to_next_level() -> void:
 	first_load = true
 	SaveManager.write_save()
 	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
-	Checkpoint.passed = false
+	Checkpoint.passed_checkpoints.clear()
 
 func reload_level() -> void:
 	LevelTransition.level_to_transition_to = Level.start_level_path
@@ -158,3 +176,8 @@ func reload_level() -> void:
 		Global.transition_to_scene(LevelTransition.level_to_transition_to)
 	else:
 		Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
+
+func get_room_type() -> Global.Room:
+	if BONUS_ROOMS[campaign].has(scene_file_path.get_file().get_basename()):
+		return Global.Room.BONUS_ROOM
+	return Global.Room.MAIN_ROOM

@@ -7,6 +7,8 @@ var level_thumbnail = null
 var level_id := ""
 var thumbnail_url := ""
 
+var ratings := []
+
 var difficulty := "Easy"
 var featured = false
 
@@ -35,12 +37,24 @@ func setup_visuals() -> void:
 	if featured:
 		self_modulate = Color.YELLOW
 	var idx := 0
-	print(difficulty)
 	var difficulty_int = DIFFICULTY_TO_STAR_TRANSLATION[difficulty]
 	for i in %DifficultyStars.get_children():
-		i.region_rect.position.x = 24 if idx > difficulty_int else [0, 0, 8, 8, 16][difficulty_int]
+		i.region_rect.position.x = 32 if idx > difficulty_int else [0, 8, 8, 16, 24][difficulty_int]
 		idx += 1
+	setup_rating_stars()
 	get_thumbnail()
+
+func setup_rating_stars() -> void:
+	var rating = calculate_rating()
+	
+	var idx := 0
+	if ratings.is_empty():
+		for i in %RatingStars.get_children():
+			i.region_rect.position.x = 16
+		return
+	for i in %RatingStars.get_children():
+		i.region_rect.position.x = 16 if idx > rating else (0 if abs(idx - rating) >= 0.5 else 8)
+		idx += 1
 
 func get_thumbnail() -> void:
 	if cached_thumbnails.has(level_id):
@@ -52,6 +66,16 @@ func get_thumbnail() -> void:
 		$MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelIcon/Error.show()
 		return
 	$ThumbnailDownloader.request(thumbnail_url, [], HTTPClient.METHOD_GET)
+
+func calculate_rating() -> int:
+	var rating := -1.0
+	var total := 0
+	if ratings.is_empty():
+		return 0
+	for i in ratings:
+		total += i
+	rating = total / float(ratings.size())
+	return rating
 
 func on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	var image = Image.new()

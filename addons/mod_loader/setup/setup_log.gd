@@ -3,7 +3,7 @@ class_name ModLoaderSetupLog
 
 # Slimed down version of ModLoaderLog for the ModLoader Self Setup
 
-const MOD_LOG_PATH := "user://logs/modloader.log"
+static var MOD_LOG_PATH := Global.config_path.path_join("logs/modloader.log")
 
 enum VERBOSITY_LEVEL {
 	ERROR,

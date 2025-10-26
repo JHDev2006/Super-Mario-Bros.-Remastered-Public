@@ -27,7 +27,7 @@ func physics_update(delta: float) -> void:
 	handle_death_pits()
 
 func handle_death_pits() -> void:
-	if player.global_position.y > 64 and not Level.in_vine_level and player.auto_death_pit:
+	if player.global_position.y > 64 and not Level.in_vine_level and player.auto_death_pit and player.gravity_vector == Vector2.DOWN:
 		player.die(true)
 	elif player.global_position.y < Global.current_level.vertical_height - 32 and player.gravity_vector == Vector2.UP:
 		player.die(true)
@@ -54,6 +54,7 @@ func grounded(delta: float) -> void:
 	if player.velocity.y >= 0:
 		player.has_jumped = false
 	if Global.player_action_just_pressed("jump", player.player_id):
+		player.handle_water_detection()
 		if player.in_water or player.flight_meter > 0:
 			swim_up()
 			return
@@ -83,7 +84,7 @@ func grounded(delta: float) -> void:
 func handle_ground_movement(delta: float) -> void:
 	if player.skidding:
 		ground_skid(delta)
-	elif (player.input_direction != player.velocity_direction) and player.input_direction != 0 and abs(player.velocity.x) > 100 and not player.crouching:
+	elif (player.input_direction != player.velocity_direction) and player.input_direction != 0 and abs(player.velocity.x) > player.SKID_THRESHOLD and not player.crouching:
 		print([player.input_direction, player.velocity_direction])
 		player.skidding = true
 	elif player.input_direction != 0 and not player.crouching:
@@ -94,7 +95,7 @@ func handle_ground_movement(delta: float) -> void:
 func ground_acceleration(delta: float) -> void:
 	var target_move_speed := player.WALK_SPEED
 	if player.in_water or player.flight_meter > 0:
-		target_move_speed = 45
+		target_move_speed = player.SWIM_GROUND_SPEED
 	var target_accel := player.GROUND_WALK_ACCEL
 	if (Global.player_action_pressed("run", player.player_id) and abs(player.velocity.x) >= player.WALK_SPEED) and (not player.in_water and player.flight_meter <= 0) and player.can_run:
 		target_move_speed = player.RUN_SPEED
@@ -104,7 +105,6 @@ func ground_acceleration(delta: float) -> void:
 			target_accel = player.RUN_SKID
 		else:
 			target_accel = player.WALK_SKID
-	
 	player.velocity.x = move_toward(player.velocity.x, target_move_speed * player.input_direction, (target_accel / delta) * delta)
 
 func deceleration(delta: float) -> void:
@@ -112,9 +112,11 @@ func deceleration(delta: float) -> void:
 
 func ground_skid(delta: float) -> void:
 	var target_skid := player.RUN_SKID
+	player.skid_frames += 1
 	player.velocity.x = move_toward(player.velocity.x, 1 * player.input_direction, (target_skid / delta) * delta)
 	if abs(player.velocity.x) < 10 or player.input_direction == player.velocity_direction or player.input_direction == 0:
 		player.skidding = false
+		player.skid_frames = 0
 
 func in_air() -> void:
 	if Global.player_action_just_pressed("jump", player.player_id):
@@ -132,14 +134,9 @@ func handle_air_movement(delta: float) -> void:
 		
 	if Global.player_action_pressed("jump", player.player_id) == false and player.has_jumped and not player.jump_cancelled:
 		player.jump_cancelled = true
-		if player.gravity_vector.y > 0:
-			if player.velocity.y < 0:
-				player.velocity.y /= 1.5
-				player.gravity = player.FALL_GRAVITY
-		elif player.gravity_vector.y < 0:
-			if player.velocity.y > 0:
-				player.velocity.y /= 1.5
-				player.gravity = player.FALL_GRAVITY
+		if sign(player.gravity_vector.y * player.velocity.y) < 0.0:
+			player.velocity.y /= player.JUMP_CANCEL_DIVIDE
+			player.gravity = player.FALL_GRAVITY
 
 func air_acceleration(delta: float) -> void:
 	var target_speed = player.WALK_SPEED
@@ -170,7 +167,7 @@ func swim_acceleration(delta: float) -> void:
 func swim_up() -> void:
 	if player.swim_stroke:
 		player.play_animation("SwimIdle")
-	player.velocity.y = -100 * player.gravity_vector.y
+	player.velocity.y = -player.SWIM_HEIGHT * player.gravity_vector.y
 	AudioManager.play_sfx("swim", player.global_position)
 	swim_up_meter = 0.5
 	player.crouching = false
@@ -191,52 +188,123 @@ func get_animation_name() -> String:
 	if player.attacking:
 		if player.crouching:
 			return "CrouchAttack"
-		if player.is_actually_on_floor():
-			return "Attack"
-		elif player.in_water or player.flight_meter > 0:
-			return "SwimAttack"
+		elif player.is_actually_on_floor():
+			if player.skidding:
+				return "SkidAttack"
+			elif abs(player.velocity.x) >= 5 and not player.is_actually_on_wall():
+				if player.in_water:
+					return "SwimAttack"
+				elif player.flight_meter > 0:
+					return "FlyAttack"
+				elif abs(player.velocity.x) < player.RUN_SPEED - 10:
+					return "WalkAttack"
+				else:
+					return "RunAttack"
+			else:
+				return "IdleAttack"
 		else:
-			return "AirAttack"
+			if player.in_water:
+				return "SwimAttack"
+			elif player.flight_meter > 0:
+				return "FlyAttack"
+			else:
+				return "AirAttack"
+	if player.kicking and player.can_kick_anim:
+		return "Kick"
 	if player.crouching and not wall_pushing:
-		if player.velocity.y > 0 and player.is_on_floor() == false:
-			return "CrouchFall"
-		return "Crouch"
+		if player.bumping and player.can_bump_crouch:
+			return "CrouchBump"
+		elif player.is_on_floor() == false:
+			if player.velocity.y >= 0:
+				return "CrouchFall"
+			elif player.velocity.y < 0:
+				return "CrouchJump"
+		elif player.is_actually_on_floor():
+			if abs(player.velocity.x) >= 5 and not player.is_actually_on_wall():
+				if player.in_water:
+					return "WaterCrouchMove"
+				elif player.flight_meter > 0:
+					return "WingCrouchMove"
+				else:
+					return "CrouchMove"
+			else:
+				if player.in_water:
+					return "WaterCrouch"
+				elif player.flight_meter > 0:
+					return "WingCrouch"
+				else:
+					return "Crouch"
 	if player.is_actually_on_floor():
 		if player.skidding:
 			return "Skid"
 		elif abs(player.velocity.x) >= 5 and not player.is_actually_on_wall():
-			if player.in_water or player.flight_meter > 0:
+			if player.in_water:
 				return "WaterMove"
+			elif player.flight_meter > 0:
+				return "WingMove"
 			elif abs(player.velocity.x) < player.RUN_SPEED - 10:
 				return "Walk"
 			else:
 				return "Run"
 		else:
-			if player.in_water or player.flight_meter > 0:
-				return "WaterIdle"
 			if Global.player_action_pressed("move_up", player.player_id):
-				return "LookUp"
-			return "Idle"
+				if player.in_water:
+					return "WaterLookUp"
+				elif player.flight_meter > 0:
+					return "WingLookUp"
+				else:
+					return "LookUp"
+			else:
+				if player.in_water:
+					return "WaterIdle"
+				elif player.flight_meter > 0:
+					return "WingIdle"
+				else:
+					return "Idle"
 	else:
-		if player.in_water or player.flight_meter > 0:
+		if player.in_water:
 			if swim_up_meter > 0:
-				return "SwimUp"
+				if player.bumping and player.can_bump_swim:
+					return "SwimBump"
+				else:
+					return "SwimUp"
 			else:
 				return "SwimIdle"
+		elif player.flight_meter > 0:
+			if swim_up_meter > 0:
+				if player.bumping and player.can_bump_fly:
+					return "FlyBump"
+				else:
+					return "FlyUp"
+			else:
+				return "FlyIdle"
 		if player.has_jumped:
-			if player.velocity.y < 0:
+			if player.bumping and player.can_bump_jump:
+				if abs(player.velocity_x_jump_stored) < player.RUN_SPEED - 10:
+					return "JumpBump"
+				else:
+					return "RunJumpBump"
+			elif player.velocity.y < 0:
 				if player.is_invincible:
 					return "StarJump"
-				return "Jump"
+				elif abs(player.velocity_x_jump_stored) < player.RUN_SPEED - 10:
+					return "Jump"
+				else:
+					return "RunJump"
 			else:
 				if player.is_invincible:
 					return "StarFall"
-				return "JumpFall"
+				elif abs(player.velocity_x_jump_stored) < player.RUN_SPEED - 10:
+					return "JumpFall"
+				else:
+					return "RunJumpFall"
 		else:
-			player.sprite.speed_scale = 0
-			player.sprite.frame = walk_frame
+			# guzlad: Fixes characters with fall anims not playing them, but also prevents old characters without that anim not being accurate
+			if !player.sprite.sprite_frames.has_animation("Fall"):
+				player.sprite.frame = walk_frame
 			return "Fall"
 
 func exit() -> void:
-	player.on_hammer_timeout()
-	player.skidding = false
+	if owner.has_hammer:
+		owner.on_hammer_timeout()
+	owner.skidding = false

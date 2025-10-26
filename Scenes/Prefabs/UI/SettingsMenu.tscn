@@ -39,7 +39,7 @@ script/source = "extends Node
 
 var input_nodes := []
 
-var actions := [\"jump\", \"run\", \"action\", \"move_left\", \"move_right\", \"move_up\", \"move_down\"]
+var actions := [\"jump\", \"run\", \"action\", \"move_left\", \"move_right\", \"move_up\", \"move_down\", \"ui_accept\", \"ui_back\", \"pause\"]
 
 @export_enum(\"Keyboard\", \"Controller\") var type := 0
 
@@ -53,41 +53,80 @@ func get_input_nodes() -> void:
 		if i is SelectableInputOption:
 			input_nodes.append(i)
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed(\"ui_reset_keybindings\"):
+		InputMap.load_from_project_settings()
+		save_inputs()
+		Settings.save_settings()
+		load_inputs()
+
 func load_inputs() -> void:
 	for i in input_nodes:
-		var action = i.action_name
-		var value = Settings.file[[\"keyboard\", \"controller\"][type]].get(action, null)
-		var event: InputEvent = null
-		if value == null:
-			continue
-		if type == 0:
-			event = InputEventKey.new()
-			event.keycode = OS.find_keycode_from_string(value)
-		elif type == 1:
-			if value is String:
-				var array = value.split(\",\")
-				event = InputEventJoypadMotion.new()
-				event.axis = int(array[0])
-				event.axis_value = int(array[1])
-			elif value is int:
-				event = InputEventJoypadButton.new()
-				event.button_index = value
-		i.map_event_to_action(event)
+		for action_name in i.action_names:
+			var action = action_name
+			var value = Settings.file[[\"keyboard\", \"controller\"][type]].get(action, null)
+			if value == null:
+				continue
+			if value is Array:
+				if value.size() < 2:
+					value.append(null)
+				var idx := 0
+				for x in value:
+					bind_value_to_event(i, x, idx)
+					idx += 1
+			else:
+				bind_value_to_event(i, value, 0)
+		i.update_value()
+
+func bind_value_to_event(input_node, value, idx := 0) -> void:
+	var event: InputEvent = null
+	if value == null:
+		return
+	if value is String:
+		if value == \"\":
+			input_node.map_event_to_action(null, idx)
+			return
+	if type == 0:
+		event = InputEventKey.new()
+		event.keycode = OS.find_keycode_from_string(value)
+	elif type == 1:
+		if value is String:
+			var array = value.split(\",\")
+			event = InputEventJoypadMotion.new()
+			event.axis = int(array[0])
+			event.axis_value = int(array[1])
+		elif value is int:
+			event = InputEventJoypadButton.new()
+			event.button_index = value
+	input_node.map_event_to_action(event, idx)
 
 func update_starting_values() -> void:
 	load_inputs()
-
+ 
 func save_inputs() -> void:
 	for i in actions:
-		var event = InputMap.action_get_events(i + \"_0\")[type]
-		var rep
-		if event is InputEventKey:
-			rep = OS.get_keycode_string(event.keycode)
-		elif event is InputEventJoypadButton:
-			rep = event.button_index
-		elif event is InputEventJoypadMotion:
-			rep = str(event.axis) + \",\" + str(event.axis_value)
-		Settings.file[[\"keyboard\", \"controller\"][type]][i] = rep
+		var event = null
+		var events := []
+		if i.contains(\"ui\") or i == \"pause\":
+			event = InputMap.action_get_events(i)
+		else:
+			event = InputMap.action_get_events(i + \"_0\")
+		for x in event:
+			if type == 0 and x is InputEventKey:
+				events.append(get_str_for_event(x))
+			elif type == 1 and (x is InputEventJoypadButton or x is InputEventJoypadMotion):
+				events.append(get_str_for_event(x))
+		Settings.file[[\"keyboard\", \"controller\"][type]][i] = events
+
+func get_str_for_event(event: InputEvent):
+	var rep = \"\"
+	if event is InputEventKey:
+		rep = OS.get_keycode_string(event.keycode)
+	elif event is InputEventJoypadButton:
+		rep = event.button_index
+	elif event is InputEventJoypadMotion:
+		rep = str(event.axis) + \",\" + str(event.axis_value)
+	return rep
 "
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_k6yev"]
@@ -104,31 +143,31 @@ func delete_story(campaign := \"SMB1\") -> void:
 		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
 	if save_json.has(\"Ranks\"):
 		save_json[\"Ranks\"] = \"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\"
-	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.write_save_to_file(save_json, Global.config_path.path_join(\"saves/\" + campaign + \".sav\"))
 	SaveManager.apply_save(save_json)
 
 func delete_challenge(campaign := \"SMB1\") -> void:
 	var save_json = SaveManager.load_save(campaign)
 	for i in [\"ChallengeScores\", \"RedCoins\"]:
 		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
-	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.write_save_to_file(save_json, Global.config_path.path_join(\"saves/\" + campaign + \".sav\"))
 	SaveManager.apply_save(save_json)
 
 func delete_boo(campaign := \"SMB1\") -> void:
 	var save_json = SaveManager.load_save(campaign)
 	for i in [\"ClearedBooLevels\", \"BooBestTimes\"]:
 		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
-	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.write_save_to_file(save_json, Global.config_path.path_join(\"saves/\" + campaign + \".sav\"))
 	SaveManager.apply_save(save_json)
 
 func delete_marathon(campaign := \"SMB1\") -> void:
 	var save_json = SaveManager.load_save(campaign)
 	for i in [\"BestAnyTime\", \"BestWarplessTime\"]:
 		save_json[i] = SaveManager.SAVE_TEMPLATE[i]
-	SaveManager.write_save_to_file(save_json, \"user://saves/\" + campaign + \".sav\")
+	SaveManager.write_save_to_file(save_json, Global.config_path.path_join(\"saves/\" + campaign + \".sav\"))
 	SaveManager.apply_save(save_json)
-	for i in DirAccess.get_files_at(\"user://marathon_recordings/\" + campaign + \"/\"):
-		DirAccess.remove_absolute(\"user://marathon_recordings/\" + campaign + \"/\" + i)
+	for i in DirAccess.get_files_at(Global.config_path.path_join(\"marathon_recordings/\" + campaign + \"/\")):
+		DirAccess.remove_absolute(Global.config_path.path_join(\"marathon_recordings/\"+ campaign + \"/\" + i))
 	for world in 8:
 		for level in 4:
 			SpeedrunHandler.best_level_warpless_times[world][level] = -1
@@ -336,7 +375,7 @@ layout_mode = 2
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_AUDIO"
-options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3"), NodePath("AthleticMusic"), NodePath("SkidSFX"), NodePath("ExtraSFX"), NodePath("MenuBGM")]
+options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3"), NodePath("AthleticMusic"), NodePath("SkidSFX"), NodePath("ExtraSFX"), NodePath("PauseBGM"), NodePath("MenuBGM")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Audio"]
 custom_minimum_size = Vector2(0, 4)
@@ -384,6 +423,13 @@ title = "AUDIO_EXTRA_SFX"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "audio"
 
+[node name="PauseBGM" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "pause_bgm"
+title = "AUDIO_PAUSE_BGM"
+values = ["SETTING_OFF", "SETTING_MUFFLED", "SETTING_ON"]
+settings_category = "audio"
+
 [node name="MenuBGM" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "menu_bgm"
@@ -401,7 +447,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_VISUALS"
-options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), NodePath("ColourfulPipes")]
+options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), NodePath("ColourfulPipes"), NodePath("FirebarStyle"), NodePath("ExtraParticles")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
 custom_minimum_size = Vector2(0, 4)
@@ -477,6 +523,20 @@ title = "VISUAL_COLOURFUL_PIPES"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "visuals"
 
+[node name="FirebarStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "firebar_style"
+title = "FIREBAR STYLE"
+values = ["Classic", "Modern"]
+settings_category = "visuals"
+
+[node name="ExtraParticles" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "extra_particles"
+title = "EXTRA EFFECTS"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "visuals"
+
 [node name="VisualsSetter" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
 script = ExtResource("9_kfq5n")
 
@@ -490,13 +550,6 @@ script = ExtResource("4_avtty")
 category_name = "SETTINGS_RESOURCE_PACK"
 options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3")]
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
-visible = false
-modulate = Color(1, 1, 0, 1)
-layout_mode = 2
-text = "RESOURCE_PACK_WARNING"
-autowrap_mode = 2
-
 [node name="SelectableOptionNode" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" groups=["Options"] instance=ExtResource("9_t6b48")]
 layout_mode = 2
 title = "RESOURCE_OPEN_FOLDER"
@@ -509,6 +562,7 @@ title = "RESOURCE_REFRESH"
 [node name="SelectableOptionNode3" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" instance=ExtResource("9_t6b48")]
 layout_mode = 2
 title = "RESOURCE_PACK_CREATE"
+press_sfx = ""
 
 [node name="ResourcePackLoader" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
 script = ExtResource("9_2qqpf")
@@ -586,7 +640,7 @@ settings_category = "difficulty"
 
 [node name="GameOverStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
-option_key = "game_over"
+option_key = "game_over_behaviour"
 title = "DIFFI_GAME_OVER"
 value_descs = Array[String](["DESC_GAME_OVER_0", "DESC_GAME_OVER_1", "DESC_GAME_OVER_2"])
 values = ["DIFFI_GAME_OVER_WLD", "DIFFI_GAME_OVER_LVL", "DIFFI_GAME_OVER_GME"]
@@ -612,8 +666,8 @@ settings_category = "difficulty"
 layout_mode = 2
 option_key = "time_limit"
 title = "DIFFI_TIME"
-value_descs = Array[String](["DESC_TIME_0", "DESC_TIME_1"])
-values = ["SETTING_OFF", "SETTING_ON"]
+value_descs = Array[String](["DESC_TIME_0", "DESC_TIME_1", "DESC_TIME_2"])
+values = ["SETTING_OFF", "SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "difficulty"
 
 [node name="LakituStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
@@ -663,10 +717,11 @@ script = ExtResource("10_2qqpf")
 [node name="KeyboardControls" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_KEYBOARD"
-options = [NodePath("Jump"), NodePath("Run"), NodePath("Action"), NodePath("Left"), NodePath("Right"), NodePath("Up"), NodePath("Down")]
+options = [NodePath("Jump"), NodePath("Run"), NodePath("Action"), NodePath("Left"), NodePath("Right"), NodePath("Up"), NodePath("Down"), NodePath("Accept"), NodePath("Back"), NodePath("Pause")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls"]
 custom_minimum_size = Vector2(0, 4)
@@ -674,49 +729,72 @@ layout_mode = 2
 
 [node name="Jump" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
-action_name = "jump"
+action_names = ["jump"]
 title = "ACTION_JUMP"
 
 [node name="Run" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
-action_name = "run"
+action_names = ["run"]
 title = "ACTION_RUN"
 
 [node name="Action" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
-action_name = "action"
+action_names = ["action"]
 title = "ACTION_ACTION"
 
 [node name="Left" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
-action_name = "move_left"
+action_names = ["move_left", "ui_left"]
 title = "ACTION_LEFT"
 
 [node name="Right" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
-action_name = "move_right"
+action_names = ["move_right", "ui_right"]
 title = "ACTION_RIGHT"
 
 [node name="Up" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
-action_name = "move_up"
+action_names = ["move_up", "ui_up"]
 title = "ACTION_UP"
 
 [node name="Down" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
-action_name = "move_down"
+action_names = ["move_down", "ui_down"]
 title = "ACTION_DOWN"
 
+[node name="Accept" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+action_names = ["ui_accept"]
+title = "ACCEPT"
+
+[node name="Back" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+action_names = ["ui_back"]
+title = "BACK"
+
+[node name="Pause" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+action_names = ["pause"]
+title = "PAUSE"
+
 [node name="InputMapSaving" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"]]
+process_mode = 3
 script = SubResource("GDScript_ksnto")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "PRESS F5 TO RESET BINDINGS."
+uppercase = true
 
 [node name="Controller" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_CONTROLLER"
-options = [NodePath("Jump"), NodePath("Run"), NodePath("Action"), NodePath("Left"), NodePath("Right"), NodePath("Up"), NodePath("Down")]
+options = [NodePath("Jump"), NodePath("Run"), NodePath("Action"), NodePath("Left"), NodePath("Right"), NodePath("Up"), NodePath("Down"), NodePath("Accept"), NodePath("Back"), NodePath("Pause")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Controller"]
 custom_minimum_size = Vector2(0, 4)
@@ -725,57 +803,85 @@ layout_mode = 2
 [node name="Jump" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
-action_name = "jump"
+action_names = ["jump"]
 title = "ACTION_JUMP"
 type = 1
 
 [node name="Run" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
-action_name = "run"
+action_names = ["run"]
 title = "ACTION_RUN"
 type = 1
 
 [node name="Action" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
-action_name = "action"
+action_names = ["action"]
 title = "ACTION_ACTION"
 type = 1
 
 [node name="Left" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
-action_name = "move_left"
+action_names = ["move_left", "ui_left"]
 title = "ACTION_LEFT"
 type = 1
 
 [node name="Right" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
-action_name = "move_right"
+action_names = ["move_right", "ui_right"]
 title = "ACTION_RIGHT"
 type = 1
 
 [node name="Up" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
-action_name = "move_up"
+action_names = ["move_up", "ui_up"]
 title = "ACTION_UP"
 type = 1
 
 [node name="Down" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
-action_name = "move_down"
+action_names = ["move_down", "ui_down"]
 title = "ACTION_DOWN"
+type = 1
+
+[node name="Accept" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+settings_category = "controller"
+action_names = ["ui_accept"]
+title = "ACCEPT"
+type = 1
+
+[node name="Back" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+settings_category = "controller"
+action_names = ["ui_back"]
+title = "BACK"
+type = 1
+
+[node name="Pause" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+layout_mode = 2
+settings_category = "controller"
+action_names = ["pause"]
+title = "PAUSE"
 type = 1
 
 [node name="InputMapSaving" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"]]
 script = SubResource("GDScript_ksnto")
 type = 1
 
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Controller"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "PRESS F5 TO RESET BINDINGS."
+uppercase = true
+
 [node name="Data" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
@@ -839,7 +945,7 @@ layout_mode = 2
 
 [node name="RegenROM" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("9_t6b48")]
 layout_mode = 2
-title = "Delete Generated Resource Pack"
+title = "Reverify ROM"
 
 [node name="Control" type="Control" parent="PanelContainer"]
 custom_minimum_size = Vector2(24, 0)
@@ -897,6 +1003,7 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/AthleticMusic" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="athletic_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/SkidSFX" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="skid_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/ExtraSFX" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="extra_sfx_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/PauseBGM" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="pause_bgm_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Audio/MenuBGM" to="PanelContainer/MarginContainer/VBoxContainer/Audio/AudioAdjuster" method="menu_bgm_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ParallaxStyle" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="parallax_style_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/BGParticles" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="bg_particles_changed"]
@@ -908,9 +1015,12 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisibleTimers" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="visible_timers_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/TransitionAnimation" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="transition_style_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ColourfulPipes" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="colourful_pipes_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/FirebarStyle" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="firebar_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Visuals/ExtraParticles" to="PanelContainer/MarginContainer/VBoxContainer/Visuals/VisualsSetter" method="extra_particles"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="open_folder"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode2" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="get_resource_packs"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" to="ResourcePackTemplateCreator" method="create_template"]
+[connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" method="set_title" binds= ["Creating Resource Pack..."]]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DamageStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="damage_style_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Checkpoints" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="checkpoint_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ExtraCheckpoints" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="extra_checkpoints_changed"]
@@ -928,6 +1038,8 @@ script = ExtResource("19_k6yev")
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/AchievementData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_achievement"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/Everything" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_everything"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/Data/RegenROM" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="regen_rom"]
+[connection signal="pack_created" from="ResourcePackTemplateCreator" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" method="set_title" binds= ["RESOURCE_PACK_CREATE"]]
+[connection signal="pack_created" from="ResourcePackTemplateCreator" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" method="play_sfx" binds= ["correct"]]
 
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Video/Language"]
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode"]

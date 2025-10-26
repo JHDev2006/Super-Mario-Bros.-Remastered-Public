@@ -14,7 +14,7 @@ signal level_edit
 
 func open(container: CustomLevelContainer = null) -> void:
 	if container != null:
-		for i in ["level_name", "level_author", "level_theme", "game_style", "level_time", "difficulty"]:
+		for i in ["level_name", "level_author", "level_theme", "game_style", "level_time", "difficulty", "is_downloaded", "level_id", "thumbnail"]:
 			%SelectedLevel.set(i, container.get(i))
 	%SelectedLevel.update_visuals()
 	LevelEditor.level_name = container.level_name

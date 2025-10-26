@@ -5,7 +5,10 @@ extends Node2D
 
 @export_enum("0", "1", "2", "3", "4") var sublevel_id := 0
 
-@export var locked := false
+@export var locked := false:
+	set(value):
+		locked = value
+		pass
 @export var start_locked := false
 
 signal updated
@@ -23,6 +26,7 @@ static var same_scene_exiting_door: Door = null
 func _ready() -> void:
 	if start_locked:
 		locked = true
+	await get_tree().physics_frame
 	if locked:
 		check_if_unlocked(false)
 
@@ -42,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 
 func check_if_unlocked(do_animation := true) -> void:
 	if locked:
+		print(unlocked_doors)
 		if unlocked_doors.has(door_id):
 			locked = false
 			$Sprite.play("Idle")
@@ -52,6 +57,7 @@ func run_door_check() -> void:
 	if same_scene_exiting_door != null:
 		if same_scene_exiting_door != self and exiting_door_id == door_id:
 			door_found = true
+			get_tree().call_group("CameraLimits", "return_camera_to_normal")
 			for i in get_tree().get_nodes_in_group("Players"):
 				player_exit(i)
 			return
@@ -82,6 +88,7 @@ func player_exit(player: Player) -> void:
 	exiting_door_id = -1
 	can_enter = false
 	LevelEditor.play_door_transition = false
+	if same_scene_exiting_door != null: same_scene_exiting_door.get_node("Sprite").play("Idle")
 	same_scene_exiting_door = null
 	player.global_position = global_position
 	player.recenter_camera()
@@ -113,7 +120,6 @@ func player_enter(player: Player) -> void:
 	else:
 		same_scene_exiting_door = null
 		Global.level_editor.transition_to_sublevel(sublevel_id)
-	$Sprite.play("Idle")
 	can_enter = true
 
 func freeze_player(player: Player) -> void:

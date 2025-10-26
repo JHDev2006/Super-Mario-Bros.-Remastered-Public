@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://o3ya33lcbn7y"]
+
+[ext_resource type="Script" uid="uid://b5jrj8u7cx8id" path="res://Scripts/Parts/TilePropertyValue.gd" id="1_q3buy"]
+
+[sub_resource type="FontFile" id="FontFile_wb64e"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="Theme" id="Theme_itros"]
+default_font = SubResource("FontFile_wb64e")
+
+[node name="TilePropertyColour" type="HBoxContainer"]
+script = ExtResource("1_q3buy")
+tile_property_name = "colour"
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PROPERTY_NAME:"
+uppercase = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.69803923)
+
+[node name="ColorPicker" type="ColorPicker" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -81.5
+offset_right = 85.0
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_itros")
+theme_override_constants/sv_width = 128
+theme_override_constants/sv_height = 128
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+presets_visible = false
+
+[node name="Button" type="Button" parent="CanvasLayer/ColorPicker"]
+layout_mode = 2
+text = "CLOSE"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[connection signal="start_value_changed" from="." to="ColorRect" method="set_color"]
+[connection signal="color_changed" from="CanvasLayer/ColorPicker" to="." method="set_value"]
+[connection signal="color_changed" from="CanvasLayer/ColorPicker" to="ColorRect" method="set_color"]
+[connection signal="pressed" from="CanvasLayer/ColorPicker/Button" to="CanvasLayer" method="hide"]
+[connection signal="pressed" from="ColorRect/Button" to="CanvasLayer" method="show"]

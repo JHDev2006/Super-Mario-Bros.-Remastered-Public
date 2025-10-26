@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c3h2iqkvitqd2"]
+[gd_scene load_steps=58 format=3 uid="uid://c3h2iqkvitqd2"]
 
 [ext_resource type="PackedScene" uid="uid://bod0jkf7jc5pm" path="res://Scenes/Prefabs/GameHud.tscn" id="1_ctvpw"]
 [ext_resource type="Script" uid="uid://bbxqn16ekbpcl" path="res://Scripts/Classes/Singletons/Global.gd" id="1_t23sr"]
@@ -23,6 +23,8 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="19_okfpr"]
 [ext_resource type="Texture2D" uid="uid://bhgjvnslkt143" path="res://Assets/Sprites/UI/PanelSelected.png" id="19_xspbb"]
 [ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="20_3l3ph"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/FontMain.json" id="23_3l3ph"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/ScoreFont.json" id="24_m6bur"]
 
 [sub_resource type="Animation" id="Animation_6jmk5"]
 resource_name = "FadeIn"
@@ -308,6 +310,21 @@ libraries = {
 [node name="GameHUD" parent="." instance=ExtResource("1_ctvpw")]
 layer = 1
 
+[node name="FPSCount" type="Label" parent="GameHUD"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "120FPS"
+horizontal_alignment = 2
+
 [node name="ScoreTally" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vjpdy")
 bus = &"SFX"
@@ -379,7 +396,7 @@ modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "ERROR! PLEASE REPORT!"
-autowrap_mode = 2
+autowrap_mode = 1
 uppercase = true
 
 [node name="Warning" type="Label" parent="CanvasLayer/VBoxContainer"]
@@ -388,7 +405,7 @@ modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "Warning!"
-autowrap_mode = 2
+autowrap_mode = 1
 uppercase = true
 
 [node name="Comment" type="Label" parent="CanvasLayer/VBoxContainer"]
@@ -396,7 +413,7 @@ visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "Comment"
-autowrap_mode = 2
+autowrap_mode = 1
 uppercase = true
 
 [node name="PanelSetter" type="Node" parent="."]
@@ -426,9 +443,25 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 script = ExtResource("18_1la0o")
 metadata/_custom_type_script = "uid://ctsjagoa5t33f"
 
+[node name="MainFontGetter" type="Node" parent="FontUpdater" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("19_okfpr")
+node_to_affect = NodePath("..")
+property_name = "main_font"
+mode = 4
+resource_json = ExtResource("23_3l3ph")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ScoreFontGetter" type="Node" parent="FontUpdater" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("19_okfpr")
+node_to_affect = NodePath("..")
+property_name = "score_font"
+mode = 4
+resource_json = ExtResource("24_m6bur")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
 [node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
 script = ExtResource("19_l7dvb")
-labels = [NodePath("../CanvasLayer/VBoxContainer/ErrorMessage"), NodePath("../CanvasLayer/VBoxContainer/Comment"), NodePath("../CanvasLayer/VBoxContainer/Warning")]
+labels = [NodePath("../CanvasLayer/VBoxContainer/ErrorMessage"), NodePath("../CanvasLayer/VBoxContainer/Comment"), NodePath("../CanvasLayer/VBoxContainer/Warning"), NodePath("../GameHUD/FPSCount")]
 metadata/_custom_type_script = "uid://dt2p68xl462v2"
 
 [connection signal="finished" from="ScoreTally" to="." method="on_score_sfx_finished"]

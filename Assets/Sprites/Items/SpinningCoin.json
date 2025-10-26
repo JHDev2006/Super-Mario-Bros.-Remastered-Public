@@ -31,6 +31,9 @@
 			"loop": true
 		}
 	},
+	"properties": {
+		"can_spawn_particles": true
+	},
 	"variations": {
 		"default": {
 			"source": "SpinningCoin.png",

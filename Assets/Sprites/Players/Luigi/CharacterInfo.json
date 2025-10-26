@@ -1,24 +1,43 @@
 {
 	"name": "CHAR_LUIGI",
 	"physics": {
-		"AIR_ACCEL": 3.0,
-		"AIR_SKID": 1.5,
-		"DECEL": 3.0,
-		"FALL_GRAVITY": 25.0,
-		"GROUND_RUN_ACCEL": 1.25,
-		"GROUND_WALK_ACCEL": 4.0,
 		"JUMP_GRAVITY": 11.0,
 		"JUMP_HEIGHT": 300.0,
 		"JUMP_INCR": 8.0,
-		"SWIM_GRAVITY": 2.5,
-		"SWIM_SPEED": 95.0,
-		"MAX_FALL_SPEED": 280,
-		"MAX_SWIM_FALL_SPEED": 200,
-		"RUN_SKID": 8.0,
-		"RUN_SPEED": 160,
+		"JUMP_CANCEL_DIVIDE": 1.5,
+		"JUMP_HOLD_SPEED_THRESHOLD": 0.0,
+
+		"BOUNCE_HEIGHT": 200.0,
+		"BOUNCE_JUMP_HEIGHT": 300.0,
+
+		"FALL_GRAVITY": 25.0,
+		"MAX_FALL_SPEED": 280.0,
+		"CEILING_BUMP_SPEED": 45.0,
+
+		"WALK_SPEED": 96.0,
+		"GROUND_WALK_ACCEL": 4.0,
 		"WALK_SKID": 8.0,
-		"WALK_SPEED": 90.0
+
+		"RUN_SPEED": 160.0,
+		"GROUND_RUN_ACCEL": 1.25,
+		"RUN_SKID": 8.0,
+
+		"DECEL": 3.0,
+		"AIR_ACCEL": 3.0,
+		"AIR_SKID": 1.5,
+
+		"SWIM_SPEED": 95.0,
+		"SWIM_GROUND_SPEED": 45.0,
+		"SWIM_HEIGHT": 100.0,
+		"SWIM_GRAVITY": 2.5,
+		"MAX_SWIM_FALL_SPEED": 200.0,
+
+		"DEATH_JUMP_HEIGHT": 300.0,
+		
+		"can_air_turn": false
 	},
 	"small_hitbox_scale": [1.0, 1.0],
-	"big_hitbox_scale": [1.0, 1.0]
+	"small_crouch_scale": 0.75,
+	"big_hitbox_scale": [1.0, 1.0],
+	"big_crouch_scale": 0.5
 }

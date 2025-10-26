@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="CampaignResource" load_steps=4 format=3 uid="uid://8dcuxbc3h2u2"]
+[gd_resource type="Resource" script_class="CampaignResource" load_steps=3 format=3 uid="uid://8dcuxbc3h2u2"]
 
 [ext_resource type="FontVariation" uid="uid://bl7sbw4nx3l1t" path="res://Resources/ThemedResources/FontMain.tres" id="1_okl0f"]
-[ext_resource type="FontVariation" uid="uid://djxdgxy1iv8yv" path="res://Resources/ThemedResources/FontLLMain.tres" id="2_74y1u"]
 [ext_resource type="Script" uid="uid://cixtosud3mfaq" path="res://Scripts/Classes/Resources/CampaignResource.gd" id="3_61m36"]
 
 [resource]
 script = ExtResource("3_61m36")
 SMB1 = ExtResource("1_okl0f")
-SMBLL = ExtResource("2_74y1u")
 SMBS = ExtResource("1_okl0f")
 SMBANN = ExtResource("1_okl0f")
 metadata/_custom_type_script = "uid://cixtosud3mfaq"

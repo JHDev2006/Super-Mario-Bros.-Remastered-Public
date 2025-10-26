@@ -9,6 +9,7 @@ var active := false
 var starting_value := -1
 
 @export var has_speedrun_stuff := false
+@export var has_challenge_stuff := false
 @export var has_disco_stuff := false
 
 const LEVEL_ICONS := {
@@ -98,6 +99,7 @@ var visited_levels := "0000"
 
 func setup_visuals() -> void:
 	%MarathonBits.visible = Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE
+	%ChallengeBits.visible = Global.current_game_mode == Global.GameMode.CHALLENGE
 	var idx := 0
 	for i in %SlotContainer.get_children():
 		if i.visible == false:
@@ -126,6 +128,12 @@ func setup_challenge_mode_bits(container: HBoxContainer, level_num := 1) -> void
 		var collected = ChallengeModeHandler.is_coin_collected(int(i.name) - 1, ChallengeModeHandler.red_coins_collected[Global.world_num - 1][level_num - 1])
 		i.get_node("Full").visible = collected
 	container.get_node("Score/Full").visible = ChallengeModeHandler.top_challenge_scores[Global.world_num - 1][level_num - 1] >= ChallengeModeHandler.CHALLENGE_TARGETS[Global.current_campaign][Global.world_num - 1][level_num - 1]
+
+func update_score() -> void:
+	if has_challenge_stuff == false: return
+	var target = ChallengeModeHandler.CHALLENGE_TARGETS[Global.current_campaign][Global.world_num - 1][selected_level]
+	%ScoreTarget.text = "/" + str(target)
+	%HighScore.text = "SCORE: " + ("-----" if ChallengeModeHandler.top_challenge_scores[Global.world_num - 1][selected_level] <= 0 else str(int(ChallengeModeHandler.top_challenge_scores[Global.world_num - 1][selected_level])).pad_zeros(5))
 
 func update_pb() -> void:
 	if has_speedrun_stuff == false: return
@@ -175,6 +183,9 @@ func select_world() -> void:
 func slot_selected(idx := 0) -> void:
 	selected_level = idx
 	update_pb()
+	update_score()
+	if Settings.file.audio.extra_sfx == 1:
+		AudioManager.play_global_sfx("menu_move")
 
 func cleanup() -> void:
 	await get_tree().process_frame
@@ -187,3 +198,7 @@ func cleanup() -> void:
 func close() -> void:
 	active = false
 	hide()
+
+
+func on_level_selected() -> void:
+	pass # Replace with function body.

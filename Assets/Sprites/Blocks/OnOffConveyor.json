@@ -1,6 +1,10 @@
 {
 	"variations": {
-		"SMB1": {"source": "OnOffConveyorBelt.png"},
-		"SMBS": {"source": "OnOffConveyorBeltSpecial.png"}
+		"SMB1": {
+			"source": "OnOffConveyorBelt.png"
+		},
+		"SMBS": {
+			"source": "OnOffConveyorBeltSpecial.png"
+		}
 	}
 }

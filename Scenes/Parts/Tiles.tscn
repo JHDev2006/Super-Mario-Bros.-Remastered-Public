@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://ct5rrpa7uehkk"]
+[gd_scene load_steps=59 format=3 uid="uid://ct5rrpa7uehkk"]
 
 [ext_resource type="Texture2D" uid="uid://y0c3ajq7uoei" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTemplate.png" id="1_vdakf"]
 [ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="2_5enc8"]
@@ -577,7 +577,6 @@ texture = ExtResource("1_vdakf")
 &"type": 22
 }
 5:8/0 = 0
-5:8/0/z_index = 1
 5:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, 0)
 5:8/0/metadata/_better_terrain = {
 0: [0],
@@ -608,7 +607,6 @@ texture = ExtResource("1_vdakf")
 &"type": 18
 }
 0:9/0 = 0
-0:9/0/z_index = -10
 0:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, -8)
 0:9/0/metadata/_better_terrain = {
 0: [0],
@@ -617,7 +615,6 @@ texture = ExtResource("1_vdakf")
 &"type": 20
 }
 1:9/0 = 0
-1:9/0/z_index = -10
 1:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, -8, 8)
 1:9/0/metadata/_better_terrain = {
 8: [0],
@@ -626,7 +623,6 @@ texture = ExtResource("1_vdakf")
 &"type": 21
 }
 2:9/0 = 0
-2:9/0/z_index = -10
 2:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:9/0/metadata/_better_terrain = {
 0: [0],
@@ -1776,6 +1772,20 @@ func replace_pipes() -> void:
 			tiles.set_cell(i, 0, Vector2i(tiles.get_cell_atlas_coords(i).x, tiles.get_cell_atlas_coords(i).y % 2))
 "
 
+[sub_resource type="GDScript" id="GDScript_hqc4a"]
+script/source = "extends Node
+
+@onready var tile_map: TileMapLayer = get_parent()
+const BRICK_BLOCK = preload(\"uid://dsa8lpl7n8ge0\")
+func _ready() -> void:
+	for i in tile_map.get_used_cells_by_id(0, Vector2i(0, 4)):
+		tile_map.set_cell(i, -1)
+		var node = BRICK_BLOCK.instantiate()
+		node.global_position = (i * Vector2i(16, 16) + Vector2i(8, 8)) + Vector2i(tile_map.global_position)
+		node.get_node(\"Collision\").disabled = !tile_map.collision_enabled
+		add_child(node)
+"
+
 [node name="Tiles" type="TileMapLayer"]
 z_index = -1
 tile_set = SubResource("TileSet_g81ue")
@@ -1853,5 +1863,8 @@ script = SubResource("GDScript_vt0hv")
 
 [node name="PipeReplacer" type="Node" parent="."]
 script = SubResource("GDScript_vdakf")
+
+[node name="BrickBlockSpawner" type="Node" parent="."]
+script = SubResource("GDScript_hqc4a")
 
 [connection signal="child_entered_tree" from="." to="." method="on_child_entered_tree"]

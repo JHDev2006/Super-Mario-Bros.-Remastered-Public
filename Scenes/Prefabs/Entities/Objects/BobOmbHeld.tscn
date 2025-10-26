@@ -149,7 +149,7 @@ _data = {
 }
 
 [node name="BobOmbHeld" type="CharacterBody2D"]
-collision_layer = 32
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_j3rs3")
 
@@ -253,6 +253,7 @@ hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://ba18grqjixded"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="kick"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="kick"]

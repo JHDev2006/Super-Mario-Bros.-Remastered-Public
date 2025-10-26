@@ -1,12 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmbpqnq10arts"]
+[gd_scene load_steps=19 format=3 uid="uid://cmbpqnq10arts"]
 
 [ext_resource type="Script" uid="uid://xwq5ac650e76" path="res://Scripts/Classes/Entities/Items/RedCoin.gd" id="1_c6tmk"]
 [ext_resource type="Texture2D" uid="uid://c8wpxm7b5tgiq" path="res://Assets/Sprites/Items/RedCoin.png" id="2_lwdcj"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_0r8d3"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_0xloa"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_onh0k"]
 [ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="4_lwdcj"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/RedCoin.json" id="5_0fjrw"]
+[ext_resource type="Script" uid="uid://maqpreddu5kg" path="res://Scripts/Classes/Components/LevelPersistance.gd" id="7_0r8d3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwdcj"]
 atlas = ExtResource("2_lwdcj")
@@ -80,6 +80,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qu2r"]
 size = Vector2(12, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xloa"]
+size = Vector2(8, 8)
+
 [node name="RedCoin" type="Node2D"]
 visibility_layer = 3
 z_index = -2
@@ -93,17 +96,16 @@ script = ExtResource("3_0r8d3")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("3_0xloa")
 node_to_affect = NodePath("..")
+property_node = NodePath("../..")
 property_name = "sprite_frames"
 resource_json = ExtResource("5_0fjrw")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 5
-script = ExtResource("3_onh0k")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 1.5)
@@ -112,8 +114,21 @@ shape = SubResource("RectangleShape2D_4qu2r")
 [node name="BlockBouncingDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("4_lwdcj")
 detection_type = 1
-hitbox = NodePath("../Hitbox")
+hitbox = NodePath("../BlockHitbox")
 metadata/_custom_type_script = "uid://cmg61722ktg2m"
 
-[connection signal="player_entered" from="Hitbox" to="." method="on_player_entered"]
+[node name="BlockHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="Shape" type="CollisionShape2D" parent="BlockHitbox"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_0xloa")
+
+[node name="LevelPersistance" type="Node" parent="."]
+script = ExtResource("7_0r8d3")
+
+[connection signal="collected" from="." to="LevelPersistance" method="set_as_active"]
+[connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="summon_bounced_coin" unbinds=1]
+[connection signal="enabled" from="LevelPersistance" to="." method="queue_free"]

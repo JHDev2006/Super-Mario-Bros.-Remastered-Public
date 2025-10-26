@@ -42,7 +42,7 @@ script/source = "extends AchievementProgressCalculator
 @export var campaign := \"SMB1\"
 
 func get_progress() -> int:
-	var save = JSON.parse_string(FileAccess.open(\"user://saves/\" + campaign + \".sav\", FileAccess.READ).get_as_text())
+	var save = JSON.parse_string(FileAccess.open(Global.config_path.path_join(\"saves/\" + campaign + \".sav\"), FileAccess.READ).get_as_text())
 	var levels_finished := 0
 	for world in 8:
 		for level in 4:
@@ -58,7 +58,7 @@ script/source = "extends AchievementProgressCalculator
 @export var campaign := \"SMB1\"
 
 func get_progress() -> int:
-	var save = JSON.parse_string(FileAccess.open(\"user://saves/\" + campaign + \".sav\", FileAccess.READ).get_as_text())
+	var save = JSON.parse_string(FileAccess.open(Global.config_path.path_join(\"saves/\" + campaign + \".sav\"), FileAccess.READ).get_as_text())
 	var levels_finished := 0
 	for i in save[\"ClearedBooLevels\"]:
 		if int(i) > 0:
@@ -72,7 +72,7 @@ script/source = "extends AchievementProgressCalculator
 @export var campaign := \"SMB1\"
 
 func get_progress() -> int:
-	var save = JSON.parse_string(FileAccess.open(\"user://saves/\" + campaign + \".sav\", FileAccess.READ).get_as_text())
+	var save = JSON.parse_string(FileAccess.open(Global.config_path.path_join(\"saves/\" + campaign + \".sav\"), FileAccess.READ).get_as_text())
 	var levels_finished := 0
 	for i in save[\"ClearedBooLevels\"]:
 		if int(i) >= 5:
@@ -90,7 +90,6 @@ script/source = "extends AchievementProgressCalculator
 func get_progress() -> int:
 	var medal_amount := 0
 	SpeedrunHandler.load_best_times(campaign)
-	print(SpeedrunHandler.best_level_warpless_times)
 	var world := 0
 	for x in SpeedrunHandler.best_level_warpless_times:
 		var level := 0
@@ -100,10 +99,9 @@ func get_progress() -> int:
 			level += 1
 		world += 1
 	for x in SpeedrunHandler.best_level_any_times:
-		print(SpeedrunHandler.best_level_any_times)
 		if SpeedrunHandler.best_level_any_times[x] <= SpeedrunHandler.LEVEL_GOLD_ANY_TIMES[campaign][x] * SpeedrunHandler.MEDAL_CONVERSIONS[medal_index] and SpeedrunHandler.best_level_any_times[x] > 0:
 			medal_amount += 1
-	var save = JSON.parse_string(FileAccess.open(\"user://saves/\" + campaign + \".sav\", FileAccess.READ).get_as_text())
+	var save = JSON.parse_string(FileAccess.open(Global.config_path.path_join(\"saves/\" + campaign + \".sav\"), FileAccess.READ).get_as_text())
 	if save.get(\"BestWarplessTime\", -1) <= SpeedrunHandler.GOLD_WARPLESS_TIMES[campaign] and save.get(\"BestWarplessTime\", -1) > 0:
 		medal_amount += 1
 	if save.get(\"BestAnyTime\", -1) <= SpeedrunHandler.GOLD_ANY_TIMES[campaign] and save.get(\"BestAnyTime\", -1) > 0:
@@ -116,7 +114,7 @@ script/source = "extends AchievementProgressCalculator
 
 func get_progress() -> int:
 	var p_amount := 0
-	var save = JSON.parse_string(FileAccess.open(\"user://saves/SMBANN.sav\", FileAccess.READ). get_as_text())
+	var save = JSON.parse_string(FileAccess.open(Global.config_path.path_join(\"saves/SMBANN.sav\"), FileAccess.READ).get_as_text())
 	for i in save[\"Ranks\"]:
 		if i == \"P\":
 			p_amount += 1

@@ -1,0 +1,4 @@
+{
+	"Normal": {"source": "Hammer.mp3", "loop": 0.0},
+	"Hurry": {"source": "HammerHurry.mp3", "loop": 0.0}
+}

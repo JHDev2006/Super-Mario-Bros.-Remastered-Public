@@ -85,6 +85,9 @@
 			"loop": true
 		}
 	},
+	"properties": {
+		"can_spawn_particles": true
+	},
 	"variations": {
 		"default": {"source": "StaticCoin.png", "rect": [0, 0, 64, 16]},
 		"Underground": {"source": "StaticCoin.png", "rect": [0, 16, 64, 16]},

@@ -10,6 +10,8 @@ var fly_wave := PI
 
 var dead := false
 
+var times_kicked := 0 ## For anti-infinite scoring in Challenge mode
+
 func _ready() -> void:
 	if has_meta("fly_2"):
 		fly_wave = 0
@@ -64,6 +66,7 @@ func summon_shell(flipped := false, launch := false) -> void:
 	DiscoLevel.combo_amount += 1
 	var shell = load(shell_scene).instantiate()
 	shell.flipped = flipped
+	shell.times_kicked = times_kicked
 	shell.old_entity = self.duplicate()
 	if launch:
 		AudioManager.play_sfx("kick", global_position)

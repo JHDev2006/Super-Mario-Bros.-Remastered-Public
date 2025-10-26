@@ -11,6 +11,7 @@ var character := ""
 func _ready() -> void:
 	Global.player_characters_changed.connect(update)
 	Global.level_theme_changed.connect(update)
+	animation_changed.connect(on_animation_changed)
 	update()
 
 func update() -> void:
@@ -23,10 +24,16 @@ func update() -> void:
 	if resource_setter != null:
 		var path = "res://Assets/Sprites/Players/" + character + "/" + Player.POWER_STATES[int(power_state)] + ".json"
 		if Player.CHARACTERS.find(character) > 3:
-			path = path.replace("res://Assets/Sprites/Players/", "user://custom_characters/")
+			path = path.replace("res://Assets/Sprites/Players/", Global.config_path.path_join("custom_characters/"))
 		var json = resource_setter.get_resource(load(path))
 		sprite_frames = json
 		if sprite_frames == null: 
 			return
 		if sprite_frames.get_frame_texture(animation, frame):
 			offset.y = -(sprite_frames.get_frame_texture(animation, frame).get_height() / 2.0)
+
+func on_animation_changed() -> void:
+	var fallback = animation
+	while not sprite_frames.has_animation(fallback) and Player.ANIMATION_FALLBACKS.has(fallback):
+		fallback = Player.ANIMATION_FALLBACKS[fallback]
+	play(fallback)

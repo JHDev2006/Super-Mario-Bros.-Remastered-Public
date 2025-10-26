@@ -1,37 +1,156 @@
 {
 	"animations": {
 		"default": {
-			"frames": 
+			"frames": [
 				[
-					[0, 0, 16, 16],
-					[0, 0, 16, 16],
-					[0, 0, 16, 16],
-					[0, 0, 16, 16],
-					[0, 0, 16, 16],
-					[0, 0, 16, 16],
-					[0, 0, 16, 16],
-					[0, 0, 16, 16],
-					[0, 0, 16, 16],
-					[0, 0, 16, 16],
-					[0, 0, 16, 16],
-					[16, 0, 16, 16],
-					[32, 0, 16, 16],
-					[16, 0, 16, 16],
+					0.0,
+					0.0,
+					16.0,
+					16.0
 				],
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					16.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					32.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					16.0,
+					0.0,
+					16.0,
+					16.0
+				]
+			],
 			"speed": 10.0,
 			"loop": true
 		}
 	},
-	
-	"variations":
-	{
-		"default": {"source": "QuestionBlock.png", "rect": [0, 0, 64, 16]},
-		"Underground": {"source": "QuestionBlock.png", "rect": [0, 16, 64, 16]},
-		"GhostHouse": {"link": "Underground"},
-		"Castle": {"source": "QuestionBlock.png", "rect": [0, 32, 64, 16]},
-		"Snow": {"source": "QuestionBlock.png", "rect": [0, 48, 64, 16]},
-		"Space": {"source": "QuestionBlock.png", "rect": [0, 64, 64, 16]},
-		"Volcano": {"source": "QuestionBlock.png", "rect": [0, 80, 64, 16]},
-		"Bonus": {"source": "QuestionBlock.png", "rect": [0, 96, 64, 16]}
+	"variations": {
+		"default": {
+			"source": "QuestionBlock.png",
+			"rect": [
+				0.0,
+				0.0,
+				64.0,
+				16.0
+			]
+		},
+		"Underground": {
+			"source": "QuestionBlock.png",
+			"rect": [
+				0.0,
+				16.0,
+				64.0,
+				16.0
+			]
+		},
+		"GhostHouse": {
+			"link": "Underground"
+		},
+		"Castle": {
+			"source": "QuestionBlock.png",
+			"rect": [
+				0.0,
+				32.0,
+				64.0,
+				16.0
+			]
+		},
+		"Snow": {
+			"source": "QuestionBlock.png",
+			"rect": [
+				0.0,
+				48.0,
+				64.0,
+				16.0
+			]
+		},
+		"Space": {
+			"source": "QuestionBlock.png",
+			"rect": [
+				0.0,
+				64.0,
+				64.0,
+				16.0
+			]
+		},
+		"Volcano": {
+			"source": "QuestionBlock.png",
+			"rect": [
+				0.0,
+				80.0,
+				64.0,
+				16.0
+			]
+		},
+		"Bonus": {
+			"source": "QuestionBlock.png",
+			"rect": [
+				0.0,
+				96.0,
+				64.0,
+				16.0
+			]
+		}
 	}
 }

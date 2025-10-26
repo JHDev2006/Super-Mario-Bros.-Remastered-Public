@@ -49,6 +49,7 @@ static func check_dependencies(mod: ModData, is_required := true, dependency_cha
 			_handle_missing_dependency(mod_id, dependency_id)
 			# Flag the mod so it's not loaded later
 			mod.is_loadable = false
+			mod.is_active = false
 		else:
 			var dependency: ModData = ModLoaderStore.mod_data[dependency_id]
 

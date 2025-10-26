@@ -1,4 +1,4 @@
-@icon("res://Assets/Sprites/Editor/Block.png")
+@icon("res://Assets/Sprites/Editor/Block.svg")
 class_name Block
 extends AnimatableBody2D
 signal player_block_hit(player: Player)
@@ -6,7 +6,10 @@ signal shell_block_hit(shell: Shell)
 
 @export var visuals: Node = null
 const EMPTY_BLOCK = ("res://Scenes/Prefabs/Blocks/EmptyBlock.tscn")
-@export var item: PackedScene = null
+@export var item: PackedScene = null:
+	set(value):
+		item = value
+		item_changed.emit()
 @export var destructable := true
 @export var destruction_particle_scene: PackedScene = null
 @export_range(1, 99) var item_amount := 1
@@ -19,7 +22,7 @@ var bouncing := false
 const NO_SFX_ITEMS := ["res://Scenes/Prefabs/Entities/Items/SpinningRedCoin.tscn","res://Scenes/Prefabs/Entities/Items/SpinningCoin.tscn", "res://Scenes/Prefabs/Entities/Items/Vine.tscn" ]
 
 @export var start_z := -1
-
+signal item_changed
 signal block_emptied
 signal block_destroyed
 
@@ -83,6 +86,8 @@ func spawn_empty_block() -> void:
 	if get_parent().get_parent() is TrackRider:
 		get_parent().get_parent().attached_entity = block
 	block_emptied.emit()
+	if get_parent() is TileMapLayer:
+		get_parent().erase_cell(get_parent().local_to_map(position))
 	queue_free()
 
 func destroy() -> void:
@@ -91,5 +96,7 @@ func destroy() -> void:
 	AudioManager.play_sfx("block_break", global_position)
 	var particles = destruction_particle_scene.instantiate()
 	particles.global_position = global_position
+	if get_parent() is TileMapLayer:
+		get_parent().erase_cell(get_parent().local_to_map(position))
 	add_sibling(particles)
 	queue_free()

@@ -58,6 +58,7 @@ sprite_frames = SubResource("SpriteFrames_jvnky")
 animation = &"Emote"
 autoplay = "Emote"
 frame_progress = 0.91931444
+offset = Vector2(0, 1)
 script = ExtResource("3_puq45")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 

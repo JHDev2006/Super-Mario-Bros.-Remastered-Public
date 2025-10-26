@@ -1,14 +1,11 @@
-[gd_scene load_steps=18 format=4 uid="uid://b1cgn0pwii7yq"]
+[gd_scene load_steps=14 format=4 uid="uid://b1cgn0pwii7yq"]
 
 [ext_resource type="Script" uid="uid://b5jr4tsdixg1w" path="res://Scripts/Parts/PipeCutscene.gd" id="1_16rwd"]
 [ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="2_hx3rw"]
 [ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="5_smaly"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="6_00pvh"]
-[ext_resource type="AudioStream" uid="uid://btanrlbdmyaym" path="res://Assets/Audio/SFX/Pipe.wav" id="6_kbp47"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="7_00pvh"]
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="7_8se4d"]
 [ext_resource type="AudioStream" uid="uid://e8ymu5dqbo02" path="res://Assets/Audio/BGM/PipeCutscene.mp3" id="7_rtu7i"]
-[ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="8_ladiy"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="9_8se4d"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="9_rtu7i"]
 [ext_resource type="PackedScene" uid="uid://githt8ci1xal" path="res://Scenes/Parts/StartCastle.tscn" id="10_kbp47"]
@@ -31,26 +28,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PipeSFX:playing")
+tracks/1/path = NodePath("Player1:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Player1:visible")
+tracks/2/path = NodePath("Player1:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [&"Move"]
 }
 
 [sub_resource type="Animation" id="Animation_8se4d"]
@@ -69,43 +66,46 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-88, 1), Vector2(40, 1)]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PipeSFX:playing")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(2.7, 5),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"play_pipe_sfx"
+}, {
 "args": [],
 "method": &"go_to_level"
 }]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Player1:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Player1:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Move", &"PipeWalk"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_00pvh"]
@@ -113,11 +113,6 @@ _data = {
 &"RESET": SubResource("Animation_kbp47"),
 &"new_animation": SubResource("Animation_8se4d")
 }
-
-[sub_resource type="Resource" id="Resource_444j4"]
-script = ExtResource("8_ladiy")
-Overworld = ExtResource("6_kbp47")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [node name="PipeCutscene" type="Node"]
 script = ExtResource("1_16rwd")
@@ -141,7 +136,6 @@ position = Vector2(-88, 1)
 sprite_frames = ExtResource("5_smaly")
 animation = &"Move"
 autoplay = "Move"
-frame_progress = 0.690689
 speed_scale = 1.5
 offset = Vector2(0, 1)
 script = ExtResource("7_8se4d")
@@ -157,17 +151,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_00pvh")
 }
 autoplay = "new_animation"
-
-[node name="PipeSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_kbp47")
-bus = &"SFX"
-
-[node name="ResourceSetter" type="Node" parent="PipeSFX" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("7_00pvh")
-node_to_affect = NodePath("..")
-property_name = "stream"
-themed_resource = SubResource("Resource_444j4")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_rtu7i")

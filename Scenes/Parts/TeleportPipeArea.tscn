@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6t324yc5gx7p"]
+[gd_scene load_steps=6 format=3 uid="uid://c6t324yc5gx7p"]
 
 [ext_resource type="Script" uid="uid://cp4040k6fqwow" path="res://Scripts/Classes/Entities/TeleportPipeArea.gd" id="1_40l7q"]
 [ext_resource type="Texture2D" uid="uid://c8yio3lpcsvqu" path="res://Assets/Sprites/UI/PipeArrow.png" id="2_fkbuh"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="3_40l7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lv0oh"]
 size = Vector2(16, 16)
@@ -39,6 +40,7 @@ position = Vector2(0, 32)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(-3.496911e-07, 8)
+script = ExtResource("3_40l7q")
 
 [node name="CenterContainer" type="CenterContainer" parent="Node2D"]
 use_top_left = true

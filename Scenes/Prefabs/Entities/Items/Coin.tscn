@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://chjxyhlwohmi6"]
+[gd_scene load_steps=18 format=3 uid="uid://chjxyhlwohmi6"]
 
 [ext_resource type="Script" uid="uid://cexcll4frt0t6" path="res://Scripts/Classes/Entities/Items/Coin.gd" id="1_c6elg"]
 [ext_resource type="Texture2D" uid="uid://b6o28xa83npb1" path="res://Assets/Sprites/Items/StaticCoin.png" id="2_7vxr7"]
 [ext_resource type="PackedScene" uid="uid://clxssds8sj8pf" path="res://Scenes/Prefabs/Entities/Items/SpinningCoin.tscn" id="2_k3746"]
+[ext_resource type="PackedScene" uid="uid://b1ytbn4cu7msu" path="res://Scenes/Prefabs/Particles/CoinSparkle.tscn" id="2_nu35s"]
 [ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="3_korlu"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_uahob"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Coin.json" id="4_thymr"]
@@ -55,6 +56,7 @@ size = Vector2(8, 8)
 [node name="Coin" type="Node2D" groups=["Coins"]]
 z_index = -2
 script = ExtResource("1_c6elg")
+COIN_SPARKLE = ExtResource("2_nu35s")
 spinning_coin_scene = ExtResource("2_k3746")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -62,9 +64,10 @@ sprite_frames = SubResource("SpriteFrames_nu35s")
 autoplay = "default"
 frame_progress = 0.487032
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("3_uahob")
 node_to_affect = NodePath("..")
+property_node = NodePath("../..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_thymr")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

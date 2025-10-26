@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dhk5jdqjqo77p" path="res://Assets/Sprites/Blocks/BurnerFlame.png" id="1_vrk50"]
 [ext_resource type="Texture2D" uid="uid://4l2medldwrwh" path="res://Assets/Sprites/Blocks/Burner.png" id="2_4fveq"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_fsldu"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_sqxap"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BurnerFlame.json" id="4_m4qew"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="5_sqxap"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BurnerBlock.json" id="5_w52fl"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="7_m4qew"]
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="7_w52fl"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="8_oeevx"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="10_oeevx"]
@@ -205,15 +205,18 @@ mode = 1
 resource_json = ExtResource("5_w52fl")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="PlayerDetection" type="Area2D" parent="RotationJoint"]
-script = ExtResource("3_sqxap")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+[node name="Hitbox" type="Area2D" parent="RotationJoint"]
 
-[node name="Hitbox" type="CollisionShape2D" parent="RotationJoint/PlayerDetection"]
+[node name="Shape" type="CollisionShape2D" parent="RotationJoint/Hitbox"]
 unique_name_in_owner = true
 position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_jssei")
 disabled = true
+
+[node name="EnemyPlayerDetection" type="Node" parent="RotationJoint" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("7_m4qew")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -241,5 +244,6 @@ offset = Vector2(0, 0)
 disable_physics = false
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
-[connection signal="player_entered" from="RotationJoint/PlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="RotationJoint/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="RotationJoint/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="timeout" from="Timer" to="." method="do_cycle"]

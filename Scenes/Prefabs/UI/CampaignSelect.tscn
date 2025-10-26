@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://v2lub78wus46" path="res://Assets/Sprites/UI/CampaignIcons.png" id="3_6ft85"]
 [ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="4_uaivh"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="6_1wxv0"]
-[ext_resource type="Resource" uid="uid://8dcuxbc3h2u2" path="res://Resources/ThemedResources/Font.tres" id="7_l766q"]
+[ext_resource type="Script" uid="uid://bsp584niccobr" path="res://Scripts/Classes/Components/ResourceGetter.gd" id="6_6ft85"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ft85"]
 atlas = ExtResource("3_6ft85")
@@ -215,5 +215,8 @@ vertical_alignment = 2
 [node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
 script = ExtResource("6_1wxv0")
 labels = [NodePath("../PanelContainer/MarginContainer/VBoxContainer/CampaignNames/SMB1"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/SelectWorld"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CampaignNames/SMBLL"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CampaignNames/SMBS"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CampaignNames/SMBANN"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CampaignNames/Custom"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/BarLabel")]
-resource = ExtResource("7_l766q")
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="ResourceGetter" type="Node" parent="."]
+script = ExtResource("6_6ft85")
+metadata/_custom_type_script = "uid://bsp584niccobr"

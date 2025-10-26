@@ -93,6 +93,7 @@ metadata/_custom_type_script = "uid://dlq6o2rg1x7in"
 
 [node name="ScoreNoteSpawner" type="Node" parent="."]
 script = ExtResource("8_m378g")
+add_score = true
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
 [node name="ExplosionDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
@@ -113,8 +114,10 @@ metadata/_custom_type_script = "uid://cmg61722ktg2m"
 script = ExtResource("12_d7wml")
 hitbox = NodePath("../Hitbox")
 
-[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="destroy" unbinds=1]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]

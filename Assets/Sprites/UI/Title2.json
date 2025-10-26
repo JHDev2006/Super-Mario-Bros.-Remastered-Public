@@ -88,7 +88,7 @@
 	"variations": {
 		"default": {"source": "Title2.png", "rect": [0, 0, 528, 40]},
 		"Snow": {"source": "Title2.png", "rect": [0, 120, 528, 40]},
-		"Space": {"source": "Title2.png", "rect": [0, 80, 528, 40]},
-		"Volcano": {"source": "Title2.png", "rect": [0, 160, 528, 40]}
+		"Space": {"source": "Title2.png", "rect": [0, 160, 528, 40]},
+		"Volcano": {"source": "Title2.png", "rect": [0, 200, 528, 40]}
 	}
 }

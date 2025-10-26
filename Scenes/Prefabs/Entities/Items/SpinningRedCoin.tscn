@@ -90,9 +90,10 @@ speed_scale = 2.5
 script = ExtResource("3_rnpac")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("3_ke76m")
 node_to_affect = NodePath("..")
+property_node = NodePath("../..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_rnpac")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

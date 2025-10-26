@@ -92,6 +92,6 @@
 		"Castle": {"source": "TitleScreenStars.png", "rect": [0, 16, 24, 8]},
 		"Snow": {"source": "TitleScreenStars.png", "rect": [0, 24, 24, 8]},
 		"Space": {"source": "TitleScreenStars.png", "rect": [0, 32, 24, 8]},
-		"Volcano": {"source": "TitleScreenStars.png", "rect": [0, 48, 24, 8]}
+		"Volcano": {"source": "TitleScreenStars.png", "rect": [0, 40, 24, 8]}
 	}
 }

@@ -1,7 +1,20 @@
 {
+	"properties": {
+		"primary_layer_size": [
+			512.0,
+			512.0
+		]
+	},
 	"animations": {
 		"default": {
-			"frames": [[0, 0, 512, 512]],
+			"frames": [
+				[
+					0.0,
+					0.0,
+					512.0,
+					512.0
+				]
+			],
 			"speed": 5.0,
 			"loop": true
 		}
@@ -17,8 +30,20 @@
 				}
 			},
 			"SMBLL": {
-				"Day": {"source": "OverworldLL.png"},
-				"Night": {"source": "OverworldNightLL.png"}
+				"Day": {
+					"source": "OverworldLL.png"
+				},
+				"Night": {
+					"source": "OverworldNightLL.png"
+				}
+			},
+			"SMBANN": {
+				"Day": {
+					"source": "OverworldANN.png"
+				},
+				"Night": {
+					"source": "OverworldNightANN.png"
+				}
 			}
 		},
 		"Desert": {
@@ -42,28 +67,66 @@
 		"Underground": {
 			"SMB1": {
 				"source": "Underground.png",
-				"animations": {"default": {
-					"frames": [[0, 0, 512, 512], [512, 0, 512, 512]],
-					"speed": 5.0,
-					"loop": true
-				}}
+				"animation_overrides": {
+					"default": {
+						"frames": [
+							[
+								0.0,
+								0.0,
+								512.0,
+								512.0
+							],
+							[
+								512.0,
+								0.0,
+								512.0,
+								512.0
+							]
+						],
+						"speed": 5.0,
+						"loop": true
+					}
+				}
 			},
 			"SMBLL": {
 				"source": "UndergroundLL.png",
-				"animations": {"default": {
-					"frames": [[0, 0, 512, 512], [512, 0, 512, 512]],
-					"speed": 5.0,
-					"loop": true
-				}}
+				"animation_overrides": {
+					"default": {
+						"frames": [
+							[
+								0.0,
+								0.0,
+								512.0,
+								512.0
+							],
+							[
+								512.0,
+								0.0,
+								512.0,
+								512.0
+							]
+						],
+						"speed": 5.0,
+						"loop": true
+					}
+				}
 			}
 		},
 		"Castle": {
-			"SMB1": {"source": "Castle.png"},
-			"SMBLL": {"source": "CastleLL.png"}
+			"SMB1": {
+				"source": "Castle.png"
+			},
+			"SMBLL": {
+				"source": "CastleLL.png"
+			}
 		},
 		"GhostHouse": {
-			"SMB1": {"source": "GhostHouse.png"},
-			"SMBLL": {"source": "GhostHouseLL.png"}
+			"SMB1": {
+				"source": "GhostHouse.png"
+			},
+			"SMBLL": {
+				"source": "GhostHouseLL.png"
+			}
 		},
 		"Snow": {
 			"SMB1": {
@@ -79,115 +142,196 @@
 					"source": "SnowLL.png"
 				},
 				"Night": {
-					"source": "SnowNightLL.png"	
+					"source": "SnowNightLL.png"
+				}
+			},
+			"SMBANN": {
+				"Day": {
+					"source": "SnowANN.png"
+				},
+				"Night": {
+					"source": "SnowNightANN.png"
 				}
 			}
 		},
-		"Jungle":
-		{
-			"SMB1": {"source": "Jungle.png"},
-			"SMBLL": {"source": "JungleLL.png"}
+		"Jungle": {
+			"SMB1": {
+				"source": "Jungle.png"
+			},
+			"SMBLL": {
+				"source": "JungleLL.png"
+			}
 		},
 		"Autumn": {
-			"Day":
-			{
-				"SMB1": {"source": "Autumn.png"},
-				"SMBLL": {"source": "AutumnLL.png"}
+			"Day": {
+				"SMB1": {
+					"source": "Autumn.png"
+				},
+				"SMBLL": {
+					"source": "AutumnLL.png"
+				}
 			},
 			"Night": {
-				"SMB1": {"source": "AutumnNight.png"},
-				"SMBLL": {"source": "AutumnNightLL.png"}
+				"SMB1": {
+					"source": "AutumnNight.png"
+				},
+				"SMBLL": {
+					"source": "AutumnNightLL.png"
+				}
 			}
 		},
 		"Pipeland": {
-			"Day":
-			{
-				"SMB1": {"source": "Pipeland.png"},
-				"SMBLL": {"source": "PipelandLL.png"}
+			"Day": {
+				"SMB1": {
+					"source": "Pipeland.png"
+				},
+				"SMBLL": {
+					"source": "PipelandLL.png"
+				}
 			},
 			"Night": {
-				"SMB1": {"source": "PipelandNight.png"},
-				"SMBLL": {"source": "PipelandNightLL.png"}
+				"SMB1": {
+					"source": "PipelandNight.png"
+				},
+				"SMBLL": {
+					"source": "PipelandNightLL.png"
+				}
 			}
 		},
-		"Volcano":
-		{
-			"SMB1": {"source": "Volcano.png"},
-			"SMBLL": {"source": "VolcanoLL.png"}
-		},
-		"Mountain":
-		{
+		"Volcano": {
 			"SMB1": {
-				"Day": {"source": "Mountain.png"},
-				"Night": {"source": "MountainNight.png"}
+				"source": "Volcano.png"
 			},
 			"SMBLL": {
-				"Day": {"source": "MountainLL.png"},
-				"Night": {"source": "MountainNightLL.png"}
+				"source": "VolcanoLL.png"
+			}
+		},
+		"Mountain": {
+			"SMB1": {
+				"Day": {
+					"source": "Mountain.png"
+				},
+				"Night": {
+					"source": "MountainNight.png"
+				}
+			},
+			"SMBLL": {
+				"Day": {
+					"source": "MountainLL.png"
+				},
+				"Night": {
+					"source": "MountainNightLL.png"
+				}
 			}
 		},
 		"Skyland": {
 			"Day": {
-				"SMB1": {"source": "Sky.png"},
-				"SMBLL": {"source": "SkyLL.png"}
+				"SMB1": {
+					"source": "Sky.png"
+				},
+				"SMBLL": {
+					"source": "SkyLL.png"
+				}
 			},
 			"Night": {
-				"SMB1": {"source": "SkyNight.png"},
-				"SMBLL": {"source": "SkyNightLL.png"}
+				"SMB1": {
+					"source": "SkyNight.png"
+				},
+				"SMBLL": {
+					"source": "SkyNightLL.png"
+				}
 			}
 		},
-		"Beach":
-		{
+		"Beach": {
 			"SMB1": {
-				"Day": {"source": "BeachHills.png"},
-				"Night": {"source": "BeachHillsNight.png"}
+				"Day": {
+					"source": "BeachHills.png"
+				},
+				"Night": {
+					"source": "BeachHillsNight.png"
+				}
 			},
 			"SMBLL": {
-				"Day": {"source": "BeachLL.png"},
-				"Night": {"source": "BeachNightLL.png"}
+				"Day": {
+					"source": "BeachLL.png"
+				},
+				"Night": {
+					"source": "BeachNightLL.png"
+				}
 			}
 		},
-		"Underwater":
-		{
+		"Underwater": {
 			"SMB1": {
-				"Day": {"source": "Underwater.png"},
-				"Night": {"source": "UnderwaterNight.png"}
+				"Day": {
+					"source": "Underwater.png"
+				},
+				"Night": {
+					"source": "UnderwaterNight.png"
+				}
 			},
 			"SMBLL": {
-				"Day": {"source": "UnderwaterLL.png"},
-				"Night": {"source": "UnderwaterNightLL.png"}
+				"Day": {
+					"source": "UnderwaterLL.png"
+				},
+				"Night": {
+					"source": "UnderwaterNightLL.png"
+				}
 			}
 		},
 		"Garden": {
 			"SMB1": {
-				"Day": {"source": "GardenHill.png"},
-				"Night": {"source": "GardenNight.png"}
+				"Day": {
+					"source": "GardenHill.png"
+				},
+				"Night": {
+					"source": "GardenNight.png"
+				}
 			},
 			"SMBLL": {
-				"Day": {"source": "GardenHillLL.png"},
-				"Night": {"source": "GardenHillNightLL.png"}
+				"Day": {
+					"source": "GardenHillLL.png"
+				},
+				"Night": {
+					"source": "GardenHillNightLL.png"
+				}
 			}
-			
 		},
-		"CastleWater":
-		{
+		"CastleWater": {
 			"SMB1": {
-				"Day": {"source": "CastleWater.png"},
-				"Night": {"source": "CastleWaterNight.png"}
+				"Day": {
+					"source": "CastleWater.png"
+				},
+				"Night": {
+					"source": "CastleWaterNight.png"
+				}
 			},
 			"SMBLL": {
-				"Day": {"source": "CastleWaterLL.png"},
-				"Night": {"source": "CastleWaterNightLL.png"}
+				"Day": {
+					"source": "CastleWaterLL.png"
+				},
+				"Night": {
+					"source": "CastleWaterNightLL.png"
+				}
 			}
 		},
 		"Space": {
-			"SMB1": {"source": "Space.png"},
-			"SMBLL": {"source": "SpaceLL.png"}
+			"SMB1": {
+				"source": "Space.png"
+			},
+			"SMBLL": {
+				"source": "SpaceLL.png"
+			}
 		},
-		"Airship": {"link": "Skyland"},
+		"Airship": {
+			"link": "Skyland"
+		},
 		"Bonus": {
-			"SMB1": {"source": "Bonus.png"},
-			"SMBLL": {"source": "BonusLL.png"}
+			"SMB1": {
+				"source": "Bonus.png"
+			},
+			"SMBLL": {
+				"source": "BonusLL.png"
+			}
 		}
 	}
 }

@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="17_h1knk"]
 [ext_resource type="Script" uid="uid://cybpwmw4ywoow" path="res://Scripts/Parts/TileMapConverter.gd" id="17_qn2uf"]
 
-[node name="11-4" type="Node"]
+[node name="B-4" type="Node"]
 script = ExtResource("1_o0yxe")
 music = ExtResource("2_vd3y8")
 theme = "Castle"
@@ -56,6 +56,7 @@ position = Vector2(1048, -72)
 
 [node name="Firebar6" parent="." instance=ExtResource("7_h1knk")]
 position = Vector2(472, -56)
+direction = 1
 
 [node name="Firebar7" parent="." instance=ExtResource("7_h1knk")]
 position = Vector2(312, -72)
@@ -119,6 +120,7 @@ target_level = "uid://c3mq7g1t148ob"
 
 [connection signal="block_destroyed" from="Tiles/BrickBlock" to="Tiles/BrickBlock/LevelPersistance" method="set_as_active_2"]
 [connection signal="block_emptied" from="Tiles/BrickBlock" to="Tiles/BrickBlock/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="check_brick_empty"]
 [connection signal="player_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="on_block_hit"]
 [connection signal="player_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock/BlockAnimations" method="bounce_block" unbinds=1]
 [connection signal="shell_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="on_shell_block_hit"]

@@ -253,13 +253,8 @@ position = Vector2(2624, -32)
 pipe_id = 3
 exit_only = true
 
-[node name="Checkpoint2" parent="." instance=ExtResource("10_q2h2g")]
-position = Vector2(1296, 0)
-optional = true
-
 [node name="CheckpointFlag" parent="." instance=ExtResource("24_v8ufo")]
 position = Vector2(1296, 0)
-optional = true
 
 [connection signal="block_destroyed" from="Tiles/BrickBlock" to="Tiles/BrickBlock/LevelPersistance" method="set_as_active_2"]
 [connection signal="block_emptied" from="Tiles/BrickBlock" to="Tiles/BrickBlock/LevelPersistance" method="set_as_active"]

@@ -16,6 +16,7 @@ size = Vector2(16, 16)
 
 [node name="BrickBlock" type="AnimatableBody2D" node_paths=PackedStringArray("visuals") groups=["Blocks"]]
 z_index = -1
+disable_mode = 1
 collision_layer = 6
 collision_mask = 0
 script = ExtResource("1_ci56s")
@@ -24,6 +25,7 @@ destruction_particle_scene = ExtResource("2_x80g6")
 metadata/_custom_type_script = "uid://b5ejlbl0vp1gm"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+process_mode = 1
 script = ExtResource("3_x80g6")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
@@ -66,6 +68,7 @@ metadata/_custom_type_script = "uid://maqpreddu5kg"
 
 [connection signal="block_destroyed" from="." to="LevelPersistance" method="set_as_active_2"]
 [connection signal="block_emptied" from="." to="LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="." to="." method="check_brick_empty"]
 [connection signal="player_block_hit" from="." to="." method="on_block_hit"]
 [connection signal="player_block_hit" from="." to="BlockAnimations" method="bounce_block" unbinds=1]
 [connection signal="shell_block_hit" from="." to="." method="on_shell_block_hit"]

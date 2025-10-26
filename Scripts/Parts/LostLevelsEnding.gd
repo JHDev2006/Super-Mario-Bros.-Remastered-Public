@@ -19,13 +19,16 @@ func _ready() -> void:
 	AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.ENDING, 9999999, false)
 	Global.can_time_tick = false
 	SaveManager.visited_levels[SaveManager.get_level_idx(9, 1)] = "1"
-	$Text2/Hero.text = tr("CUTSCENE_LL_PEACH_4" if Global.player_characters[0] != "3" else "CUTSCENE_LL_PEACH_4F")
+	$Text2/Hero.text = tr("CUTSCENE_LL_PEACH_4" if Global.player_characters[0] != 3 else "CUTSCENE_LL_PEACH_4F")
 	$Text2/Hurrah.text = tr("CUTSCENE_LL_PEACH_3").replace("{PLAYER}", tr(Player.CHARACTER_NAMES[int(Global.player_characters[0])]))
 	$ThankYou.text = tr("CUTSCENE_CASTLE_PEACH_1").replace("{PLAYER}", tr(Player.CHARACTER_NAMES[int(Global.player_characters[0])]))
 func _process(_delta: float) -> void:
 	if can_exit and Input.is_action_just_pressed("jump_0"):
 		SaveManager.write_save()
-		if seen or Global.current_campaign == "SMBANN" or Global.world_num > 8 or Global.current_game_mode != Global.GameMode.CAMPAIGN:
+		if Global.current_campaign == "SMBANN":
+			can_exit = false
+			Global.open_disco_results()
+		elif seen or Global.world_num > 8 or Global.current_game_mode != Global.GameMode.CAMPAIGN:
 			Global.transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
 		else:
 			CreditsLevel.go_to_title_screen = false

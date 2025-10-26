@@ -1,4 +1,5 @@
 {
+	"properties": {"can_spawn_particles": true},
 	"animations": {
 		"Collected": {
 			"frames": [

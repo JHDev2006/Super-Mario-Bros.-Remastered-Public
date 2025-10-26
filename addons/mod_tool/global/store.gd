@@ -2,11 +2,17 @@
 class_name ModToolStore
 extends Node
 
+static func get_config_path() -> String:
+	var exe_dir = OS.get_executable_path().get_base_dir()
+	var portable_flag = exe_dir.path_join("portable.txt")
+	if FileAccess.file_exists(portable_flag):
+		return exe_dir.path_join("config")
+	else:
+		return "user://"
 
 # Global store for all Data the ModTool requires.
-
-
-const PATH_SAVE_FILE := "user://mod-tool-plugin-save.json"
+static var config_path = get_config_path()
+static var PATH_SAVE_FILE := config_path.path_join("mod-tool-plugin-save.json")
 const PATH_TEMPLATES_DIR := "res://addons/mod_tool/templates/"
 
 var editor_plugin: EditorPlugin
@@ -96,7 +102,7 @@ func init(store: Dictionary) -> void:
 
 func update_paths(new_name_mod_dir: String) -> void:
 	path_mod_dir = "res://mods-unpacked/" + new_name_mod_dir
-	path_temp_dir = "user://temp/" + new_name_mod_dir
+	path_temp_dir = config_path.path_join("temp/" + new_name_mod_dir)
 	path_global_temp_dir = ProjectSettings.globalize_path(path_temp_dir)
 	path_manifest = path_mod_dir + "/manifest.json"
 	path_global_final_zip =  "%s/%s.zip" % [path_global_export_dir, name_mod_dir]

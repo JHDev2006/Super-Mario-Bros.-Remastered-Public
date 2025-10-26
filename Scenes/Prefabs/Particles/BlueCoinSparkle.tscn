@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://2j5gl64gxbgy"]
+
+[ext_resource type="Texture2D" uid="uid://dkebo0uw0dkkw" path="res://Assets/Sprites/Particles/CoinSparkle.png" id="1_l0o8p"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_sgb1m"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Particles/BlueCoinSparkle.json" id="3_l0o8p"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0guw6"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[node name="CoinSparkle" type="CPUParticles2D"]
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_0guw6")
+emitting = false
+amount = 3
+texture = ExtResource("1_l0o8p")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.7
+fixed_fps = 30
+fract_delta = false
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(0, 0)
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[node name="ResourceSetterNew" type="Node" parent="." node_paths=PackedStringArray("node_to_affect", "property_node")]
+script = ExtResource("2_sgb1m")
+node_to_affect = NodePath("..")
+property_node = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("3_l0o8p")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[connection signal="ready" from="." to="." method="set_emitting" binds= [true]]

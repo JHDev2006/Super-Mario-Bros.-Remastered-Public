@@ -26,13 +26,15 @@ var second_quest := false
 var extra_worlds_win := false
 const lang_codes := ["en", "fr", "es", "de", "it", "pt", "pl", "tr", "ru", "jp", "fil", "id", "ga"]
 
+var config_path : String = get_config_path()
+
 var rom_path := ""
 var rom_assets_exist := false
-const ROM_POINTER_PATH := "user://rom_pointer.smb"
-const ROM_PATH := "user://baserom.nes"
-const ROM_ASSETS_PATH := "user://resource_packs/BaseAssets"
+var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
+var ROM_PATH = config_path.path_join("baserom.nes")
+var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
 const ROM_PACK_NAME := "BaseAssets"
-const ROM_ASSETS_VERSION := 0
+const ROM_ASSETS_VERSION := 1
 
 var server_version := -1
 var current_version := -1
@@ -57,8 +59,10 @@ signal text_shadow_changed
 
 var debugged_in := true
 
-var score_tween = create_tween()
-var time_tween = create_tween()
+var score_tween = null
+var time_tween = null
+
+var total_deaths := 0
 
 var score := 0:
 	set(value):
@@ -84,6 +88,12 @@ var world_num := 1
 
 var level_num := 1
 var disco_mode := false
+
+enum Room{MAIN_ROOM, BONUS_ROOM, COIN_HEAVEN, PIPE_CUTSCENE, TITLE_SCREEN}
+
+const room_strings := ["MainRoom", "BonusRoom", "CoinHeaven", "PipeCutscene", "TitleScreen"]
+
+var current_room: Room = Room.MAIN_ROOM
 
 signal transition_finished
 var transitioning_scene := false
@@ -169,8 +179,46 @@ func _ready() -> void:
 	get_server_version()
 	if OS.is_debug_build():
 		debug_mode = false
-	setup_discord_rpc()
+	setup_config_dirs()
 	check_for_rom()
+
+func setup_config_dirs() -> void:
+	var dirs = [
+		"custom_characters",
+		"custom_levels",
+		"logs",
+		"marathon_recordings",
+		"resource_packs",
+		"saves",
+		"screenshots"
+	]
+
+	for d in dirs:
+		var full_path = Global.config_path.path_join(d)
+		if not DirAccess.dir_exists_absolute(full_path):
+			DirAccess.make_dir_recursive_absolute(full_path)
+
+func get_config_path() -> String:
+	var exe_path := OS.get_executable_path()
+	var exe_dir  := exe_path.get_base_dir()
+	var portable_flag := exe_dir.path_join("portable.txt")
+	
+	# Test that exe dir is writeable, if not fallback to user://
+	if FileAccess.file_exists(portable_flag):
+		var test_file = exe_dir.path_join("test.txt")
+		var f = FileAccess.open(test_file, FileAccess.WRITE)
+		if f:
+			f.close()
+			var dir = DirAccess.open(exe_dir)
+			if dir:
+				dir.remove(test_file.get_file())
+			var local_dir = exe_dir.path_join("config")
+			if not DirAccess.dir_exists_absolute(local_dir):
+				DirAccess.make_dir_recursive_absolute(local_dir)
+			return local_dir
+		else:
+			push_warning("Portable flag found but exe directory is not writeable. Falling back to user://")
+	return "user://"
 
 func check_for_rom() -> void:
 	rom_path = ""
@@ -187,6 +235,7 @@ func check_for_rom() -> void:
 		if pack_dict.get("version", -1) == ROM_ASSETS_VERSION:
 			rom_assets_exist = true 
 		else:
+			ResourceGenerator.updating = true
 			OS.move_to_trash(ROM_ASSETS_PATH)
 
 func _process(delta: float) -> void:
@@ -197,12 +246,28 @@ func _process(delta: float) -> void:
 		AudioManager.current_level_theme = ""
 		level_theme_changed.emit()
 		log_comment("Reloaded resource packs!")
+	
+	if Input.is_action_just_pressed("toggle_fps_count"):
+		%FPSCount.visible = !%FPSCount.visible
+	%FPSCount.text = str(int(Engine.get_frames_per_second())) + " FPS"
 
 	handle_p_switch(delta)
 	if Input.is_key_label_pressed(KEY_F11) and debug_mode == false and OS.is_debug_build():
 		AudioManager.play_global_sfx("switch")
 		debug_mode = true
 		log_comment("Debug Mode enabled! some bugs may occur!")
+		
+	if Input.is_action_just_pressed("ui_screenshot"):
+		take_screenshot()
+
+func take_screenshot() -> void:
+	var img: Image = get_viewport().get_texture().get_image()
+	var filename = Global.config_path.path_join("screenshots/screenshot_" + str(int(Time.get_unix_time_from_system())) + ".png")
+	var err = img.save_png(filename)
+	if !err:
+		log_comment("Screenshot Saved!")
+	else:
+		log_error(error_string(err))
 
 func handle_p_switch(delta: float) -> void:
 	if p_switch_active and get_tree().paused == false:
@@ -249,8 +314,10 @@ func tally_time() -> void:
 	score_tally_finished.emit()
 
 func cancel_score_tally() -> void:
-	score_tween.kill()
-	time_tween.kill()
+	if score_tween != null:
+		score_tween.kill()
+	if time_tween != null:
+		time_tween.kill()
 	tallying_score = false
 	$ScoreTally.stop()
 
@@ -263,8 +330,13 @@ func activate_p_switch() -> void:
 
 func reset_values() -> void:
 	PlayerGhost.idx = 0
-	Checkpoint.passed = false
+	Checkpoint.passed_checkpoints.clear()
 	Checkpoint.sublevel_id = 0
+	Global.total_deaths = 0
+	Door.unlocked_doors = []
+	Checkpoint.unlocked_doors = []
+	KeyItem.total_collected = 0
+	Checkpoint.keys_collected = 0
 	Level.start_level_path = Level.get_scene_string(Global.world_num, Global.level_num)
 	LevelPersistance.reset_states()
 	Level.first_load = true
@@ -272,6 +344,8 @@ func reset_values() -> void:
 	Level.in_vine_level = false
 	Level.vine_return_level = ""
 	Level.vine_warp_level = ""
+	p_switch_active = false
+	p_switch_timer = 0.0
 
 func clear_saved_values() -> void:
 	coins = 0
@@ -301,19 +375,20 @@ func transition_to_scene(scene_path := "") -> void:
 		$Transition/AnimationPlayer.play("RESET")
 		$Transition.hide()
 	transitioning_scene = false
+	transition_finished.emit()
 
 
 
-func do_fake_transition() -> void:
+func do_fake_transition(duration := 0.2) -> void:
 	if fade_transition:
 		$Transition/AnimationPlayer.play("FadeIn")
 		await $Transition/AnimationPlayer.animation_finished
-		await get_tree().create_timer(0.2, false).timeout
+		await get_tree().create_timer(duration, false).timeout
 		$Transition/AnimationPlayer.play_backwards("FadeIn")
 	else:
 		%TransitionBlock.modulate.a = 1
 		$Transition.show()
-		await get_tree().create_timer(0.25, false).timeout
+		await get_tree().create_timer(duration + 0.05, false).timeout
 		$Transition.hide()
 
 func freeze_screen() -> void:
@@ -327,34 +402,13 @@ func close_freeze() -> void:
 	$Transition/Freeze.hide()
 	$Transition.hide()
 
-var recording_dir = "user://marathon_recordings/"
-
-func setup_discord_rpc() -> void:
-	DiscordRPC.app_id = 1331261692381757562
-	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
-	DiscordRPC.details = "In Title Screen.."
-	if DiscordRPC.get_is_discord_working():
-		DiscordRPC.refresh()
-
-func set_discord_status(details := "") -> void:
-	DiscordRPC.details = details
-	if DiscordRPC.get_is_discord_working():
-		DiscordRPC.refresh()
+var recording_dir = config_path.path_join("marathon_recordings")
 
 func update_game_status() -> void:
 	var lives_str := str(Global.lives)
 	if Settings.file.difficulty.inf_lives == 1:
 		lives_str = "∞"
 	var string := "Coins = " + str(Global.coins) + " Lives = " + lives_str
-	DiscordRPC.large_image = (Global.level_theme + Global.theme_time).to_lower()
-	DiscordRPC.small_image = Global.current_campaign.to_lower()
-	DiscordRPC.state = string
-
-func refresh_discord_rpc() -> void:
-	if DiscordRPC.get_is_discord_working() == false:
-		return
-	update_game_status()
-	DiscordRPC.refresh()
 
 func open_marathon_results() -> void:
 	get_node("GameHUD/MarathonResults").open()
@@ -402,6 +456,12 @@ func log_comment(msg := "") -> void:
 	await get_tree().create_timer(2, false).timeout
 	error_message.queue_free()
 
+func level_editor_is_playtesting() -> bool:
+	if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
+		if Global.level_editor.current_state == LevelEditor.EditorState.PLAYTESTING:
+			return true
+	return false
+
 func unlock_achievement(achievement_id := AchievementID.SMB1_CLEAR) -> void:
 	achievements[achievement_id] = "1"
 	if achievement_id != AchievementID.COMPLETIONIST:
@@ -412,7 +472,7 @@ func check_completionist_achievement() -> void:
 	if achievements.count("0") == 1:
 		unlock_achievement(AchievementID.COMPLETIONIST)
 
-const FONT = preload("uid://cd221873lbtj1")
+const FONT = preload("res://Assets/Sprites/UI/Font.fnt")
 
 func sanitize_string(string := "") -> String:
 	string = string.to_upper()
@@ -420,3 +480,11 @@ func sanitize_string(string := "") -> String:
 		if FONT.has_char(string.unicode_at(i)) == false and string[i] != "\n":
 			string = string.replace(string[i], " ")
 	return string
+
+func get_base_asset_version() -> int:
+	var json = JSON.parse_string(FileAccess.open("user://BaseAssets/pack_info.json", FileAccess.READ).get_as_text())
+	var version = json.version
+	return get_version_num_int(version)
+
+func get_version_num_int(ver_num := "0.0.0") -> int:
+	return int(ver_num.replace(".", ""))

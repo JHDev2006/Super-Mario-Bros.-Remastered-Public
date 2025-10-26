@@ -20,7 +20,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	target_player = get_tree().get_first_node_in_group("Players")
 	direction = sign(target_player.global_position.x - global_position.x)
-	$Sprite.scale.x = direction
+
+	$MovementJoint/Sprite.scale.x = -direction
 	if $TrackJoint.is_attached: $MovementAnimations.play("RESET")
 
 func _physics_process(delta: float) -> void:
@@ -67,16 +68,16 @@ func do_hammer_throw() -> void:
 	$HammerTimer.start(randf_range(2, 5))
 
 func throw_hammer() -> void:
-	$Sprite/Hammer.show()
-	$Sprite.play("Hammer")
+	$MovementJoint/Sprite/Hammer.show()
+	$MovementJoint/Sprite.play("Hammer")
 	await get_tree().create_timer(0.5, false).timeout
 	spawn_hammer()
-	$Sprite.play("Idle")
-	$Sprite/Hammer.hide()
+	$MovementJoint/Sprite.play("Idle")
+	$MovementJoint/Sprite/Hammer.hide()
 
 func spawn_hammer() -> void:
 	var node = HAMMER.instantiate()
-	node.global_position = $Sprite/Hammer.global_position
+	node.global_position = $MovementJoint/Sprite/Hammer.global_position
 	node.direction = direction
 	if $TrackJoint.is_attached:
 		get_parent().owner.add_sibling(node)

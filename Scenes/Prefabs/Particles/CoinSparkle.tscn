@@ -1,4 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1ytbn4cu7msu"]
+[gd_scene load_steps=5 format=3 uid="uid://b1ytbn4cu7msu"]
+
+[ext_resource type="Texture2D" uid="uid://dkebo0uw0dkkw" path="res://Assets/Sprites/Particles/CoinSparkle.png" id="1_4p5kk"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_wdqt2"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Particles/CoinSparkle.json" id="3_igsqc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0guw6"]
 particles_animation = true
@@ -6,27 +10,29 @@ particles_anim_h_frames = 8
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wdqt2"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 16.0
-gravity = Vector3(0, 0, 0)
-anim_speed_min = 2.0
-anim_speed_max = 2.0
-
-[node name="CoinSparkle" type="GPUParticles2D"]
+[node name="CoinSparkle" type="CPUParticles2D"]
+z_as_relative = false
 material = SubResource("CanvasItemMaterial_0guw6")
 emitting = false
 amount = 3
+texture = ExtResource("1_4p5kk")
 lifetime = 0.5
 one_shot = true
 explosiveness = 0.7
-interpolate = false
 fract_delta = false
-process_material = SubResource("ParticleProcessMaterial_wdqt2")
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(0, 0)
+anim_speed_min = 2.0
+anim_speed_max = 2.0
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
+[node name="ResourceSetterNew" type="Node" parent="." node_paths=PackedStringArray("node_to_affect", "property_node")]
+script = ExtResource("2_wdqt2")
+node_to_affect = NodePath("..")
+property_node = NodePath("..")
+property_name = "texture"
+mode = 1
+resource_json = ExtResource("3_igsqc")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="ready" from="." to="." method="set_emitting" binds= [true]]
-[connection signal="timeout" from="Timer" to="." method="queue_free"]

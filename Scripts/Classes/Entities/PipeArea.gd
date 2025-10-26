@@ -1,5 +1,5 @@
 @tool
-@icon("res://Assets/Sprites/Editor/Pipe.png")
+@icon("res://Assets/Sprites/Editor/Pipe.svg")
 class_name PipeArea
 extends Node2D
 
@@ -43,6 +43,11 @@ func run_pipe_check() -> void:
 		exit_pipe()
 
 func _physics_process(_delta: float) -> void:
+	if enter_direction >= 2:
+		$Hitbox.scale.y = 8
+	else:
+		$Hitbox.scale.y = 1
+	
 	if Engine.is_editor_hint() == false:
 		in_game()
 		update_visuals()
@@ -59,14 +64,17 @@ func update_visuals() -> void:
 		hide()
 
 func exit_pipe() -> void:
+	can_enter = false
 	pipe_exited.emit()
-	await get_tree().physics_frame
 	for i in get_tree().get_nodes_in_group("Players"):
+		if i.is_node_ready() == false:
+			await i.ready
 		i.go_to_exit_pipe(self)
 	for i in get_tree().get_nodes_in_group("Players"):
 		await get_tree().create_timer(0.5, false).timeout
 		await i.exit_pipe(self)
 	exiting_pipe_id = -1
+	can_enter = true
 
 func get_vector(direction := 0) -> Vector2:
 	match direction:
@@ -98,11 +106,13 @@ func in_game() -> void:
 	if exit_only:
 		return
 	for i in hitbox.get_overlapping_areas():
-		if i.owner is Player:
+		if i.owner is Player and can_enter:
 			run_player_check(i.owner)
 
 func run_player_check(player: Player) -> void:
-	if Global.player_action_pressed(get_input_direction(enter_direction), player.player_id) and can_enter and (player.is_on_floor() or enter_direction == 1 or player.gravity_vector != Vector2.DOWN) and player.state_machine.state.name == "Normal":
+	# guzlad: Added support for characters with a hitbox height below 1.0 to enter pipes underwater
+	print(player.is_actually_on_floor())
+	if Global.player_action_pressed(get_input_direction(enter_direction), player.player_id) and (player.is_on_floor() or enter_direction == 1):
 		can_enter = false
 		pipe_entered.emit()
 		DiscoLevel.can_meter_tick = false

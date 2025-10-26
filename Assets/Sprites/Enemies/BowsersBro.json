@@ -74,7 +74,7 @@
 		}
 	},
 	"variations": {
-		"Overworld": {
+		"default": {
 			"source": "BowsersBro.png",
 			"rect": [
 				0.0,
@@ -83,11 +83,50 @@
 				96.0
 			]
 		},
-		"default": {
+		"Underwater": {
+			"source": "BowsersBro.png",
+			"rect": [
+				96.0,
+				0.0,
+				96.0,
+				96.0
+			]
+		},
+		"CastleWater": {
+			"link": "Underwater"
+		},
+		"Snow": {
+			"source": "BowsersBro.png",
+			"rect": [
+				192.0,
+				0.0,
+				96.0,
+				96.0
+			]
+		},
+		"Space": {
 			"source": "BowsersBro.png",
 			"rect": [
 				0.0,
-				0.0,
+				96.0,
+				96.0,
+				96.0
+			]
+		},
+		"Volcano": {
+			"source": "BowsersBro.png",
+			"rect": [
+				96.0,
+				96.0,
+				96.0,
+				96.0
+			]
+		},
+		"Bonus": {
+			"source": "BowsersBro.png",
+			"rect": [
+				192.0,
+				96.0,
 				96.0,
 				96.0
 			]

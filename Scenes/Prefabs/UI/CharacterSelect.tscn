@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://ci678koo0peoa"]
+[gd_scene load_steps=15 format=3 uid="uid://ci678koo0peoa"]
 
 [ext_resource type="Theme" uid="uid://dtn507x2b5de7" path="res://Resources/Theme.tres" id="1_b1bds"]
 [ext_resource type="Script" uid="uid://d0f4edmfxs2pu" path="res://Scripts/UI/CharacterSelect.gd" id="1_en0c6"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="3_8l01y"]
 [ext_resource type="Texture2D" uid="uid://hu770pufown3" path="res://Assets/Sprites/UI/CharacterSelectSpotlight.png" id="4_mgr7r"]
+[ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="5_b1bds"]
 [ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="5_l7t2o"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="6_0j631"]
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="6_0oqrn"]
@@ -25,9 +26,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -88.0
+offset_left = -76.0
 offset_top = -48.0
-offset_right = 88.0
+offset_right = 76.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -77,6 +78,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource("4_mgr7r")
 stretch_mode = 2
+script = ExtResource("5_b1bds")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="ColourPaletteSampler" type="Node" parent="Panel/MarginContainer/VBoxContainer/Spotlight" node_paths=PackedStringArray("node_to_affect")]
 unique_name_in_owner = true

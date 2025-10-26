@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dg7yxoq44gaae" path="res://Assets/Sprites/Enemies/Muncher.png" id="2_ad4wf"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_fcan1"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_6tj01"]
-[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="4_ad4wf"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Muncher.json" id="5_cgdwi"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_r7ue2"]
 [ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="8_3kryf"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="8_cgdwi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7ue2"]
 atlas = ExtResource("2_ad4wf")
@@ -51,6 +51,7 @@ metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 metadata/block_spawn_offset = Vector2(0, -8)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+process_mode = 1
 sprite_frames = SubResource("SpriteFrames_6tj01")
 frame_progress = 0.602985
 script = ExtResource("2_fcan1")
@@ -68,11 +69,9 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 shape = SubResource("RectangleShape2D_cgdwi")
 one_way_collision = true
 
-[node name="PlayerDetection" type="Area2D" parent="."]
-script = ExtResource("4_ad4wf")
-metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+[node name="Hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -0.75)
 shape = SubResource("RectangleShape2D_r7ue2")
 
@@ -93,4 +92,10 @@ sync_to_physics = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
 shape = SubResource("RectangleShape2D_3kryf")
 
-[connection signal="player_entered" from="PlayerDetection" to="." method="damage_player"]
+[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("8_cgdwi")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]

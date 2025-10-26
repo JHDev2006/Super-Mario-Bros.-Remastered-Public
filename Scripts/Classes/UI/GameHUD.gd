@@ -7,10 +7,17 @@ static var character_icons := [preload("res://Assets/Sprites/Players/Mario/LifeI
 
 const RANK_COLOURS := {"F": Color.DIM_GRAY, "D": Color.WEB_MAROON, "C": Color.PALE_GREEN, "B": Color.DODGER_BLUE, "A": Color.RED, "S": Color.GOLD, "P": Color.PURPLE}
 
+var delta_time := 0.0
+
 func _ready() -> void:
 	Global.level_theme_changed.connect(update_character_info)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if not get_tree().paused and $Timer.paused:
+		delta_time += delta
+	if delta_time >= 1:
+		delta_time -= 1
+		on_timeout()
 	handle_main_hud()
 	handle_pausing()
 
@@ -19,8 +26,9 @@ func handle_main_hud() -> void:
 	$ModernHUD.visible = Settings.file.visuals.modern_hud
 	$Main/RedCoins.hide()
 	$Main/CoinCount.show()
+	%IGT.hide()
 	%Combo.hide()
-	
+	$Timer.paused = Settings.file.difficulty.time_limit == 2
 	$%Time.show()
 	%Stopwatch.hide()
 	%PB.hide()
@@ -34,11 +42,15 @@ func handle_main_hud() -> void:
 		update_character_info()
 	%CharacterIcon.get_node("Shadow").texture = %CharacterIcon.texture
 	%ModernLifeCount.text = "*" + (str(Global.lives).pad_zeros(2) if Settings.file.difficulty.inf_lives == 0 else "∞")
+	%CharacterIcon.visible = Global.current_game_mode != Global.GameMode.BOO_RACE
+	%ModernLifeCount.visible = Global.current_game_mode != Global.GameMode.BOO_RACE
 	var world_num := str(Global.world_num)
 	if int(world_num) >= 10:
 		world_num = ["A", "B", "C", "D"][int(world_num) % 10]
 	elif int(world_num) < 1:
 		world_num = " "
+#	else:
+#		print(Global.world_num)
 	%LevelNum.text = world_num + "-" + str(Global.level_num)
 	%Crown.visible = Global.second_quest
 	%Time.text = " " + str(Global.time).pad_zeros(3)
@@ -64,6 +76,7 @@ func handle_modern_hud() -> void:
 	$ModernHUD/TopLeft/RedCoins.hide()
 	$ModernHUD/TopLeft/CoinCount.show()
 	%ModernPB.hide()
+	%ModernIGT.hide()
 	%ModernCoinCount.text = "*" + str(Global.coins).pad_zeros(2)
 	%ModernScore.text = str(Global.score).pad_zeros(9)
 	%ModernTime.text = "⏲" + str(Global.time).pad_zeros(3)
@@ -84,8 +97,12 @@ func handle_challenge_mode_hud() -> void:
 	$ModernHUD/TopLeft/RedCoins.show()
 	$ModernHUD/TopLeft/CoinCount.hide()
 	$Main/CoinCount.hide()
+	%ModernLifeCount.hide()
+	%CharacterIcon.hide()
 	var red_coins_collected = ChallengeModeHandler.current_run_red_coins_collected
 	var idx := 0
+	if Global.world_num > 8:
+		return
 	if Global.in_title_screen:
 		red_coins_collected = int(ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1])
 	for i in [$Main/RedCoins/Coin1, $Main/RedCoins/Coin2, $Main/RedCoins/Coin3, $Main/RedCoins/Coin4, $Main/RedCoins/Coin5]:
@@ -118,7 +135,7 @@ func handle_yoshi_radar() -> void:
 				break
 	%Radar.frame = Global.level_num
 	%ModernRadar.frame = Global.level_num
-	if has_egg == false or ChallengeModeHandler.is_coin_collected(5): 
+	if has_egg == false or ChallengeModeHandler.is_coin_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG): 
 		%Radar.get_node("AnimationPlayer").play("RESET")
 		%ModernRadar.get_node("AnimationPlayer").play("RESET")
 		return
@@ -138,6 +155,11 @@ func handle_yoshi_radar() -> void:
 func handle_speedrun_timer() -> void:
 	%Time.hide()
 	%Stopwatch.show()
+	%IGT.show()
+	%IGT.modulate.a = int([Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) and get_tree().get_first_node_in_group("Players") != null)
+	%IGT.text = "⏲" + (str(Global.time).pad_zeros(3))
+	%ModernIGT.visible = %IGT.modulate.a == 1
+	%ModernIGT.text = %IGT.text
 	var late = SpeedrunHandler.timer > SpeedrunHandler.best_time
 	var diff = SpeedrunHandler.best_time - SpeedrunHandler.timer
 	%PB.visible = SpeedrunHandler.best_time > 0 and (SpeedrunHandler.timer > 0 or Global.current_level != null)
@@ -173,7 +195,7 @@ func activate_pause_menu() -> void:
 const HURRY_UP = preload("res://Assets/Audio/BGM/HurryUp.mp3")
 
 func on_timeout() -> void:
-	if Global.can_time_tick and is_instance_valid(Global.current_level) and Settings.file.difficulty.time_limit == 1:
+	if Global.can_time_tick and is_instance_valid(Global.current_level) and Settings.file.difficulty.time_limit > 0:
 		if Global.level_editor != null:
 			if Global.level_editor.current_state != LevelEditor.EditorState.PLAYTESTING:
 				return

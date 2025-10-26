@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://b7no88iaujhh3"]
+[gd_scene load_steps=46 format=3 uid="uid://b7no88iaujhh3"]
 
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="1_0b6w1"]
 [ext_resource type="Script" uid="uid://b3ol0iyjcb5n1" path="res://Scripts/UI/BooRaceMenu.gd" id="1_nk4wu"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="8_xx8pl"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="9_mm3k3"]
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="10_nk4wu"]
+[ext_resource type="JSON" path="res://Assets/Audio/BGM/BooMenu.json" id="11_kqv8e"]
 [ext_resource type="PackedScene" uid="uid://bxp1l23w1kq41" path="res://Scenes/Prefabs/UI/BooSelect.tscn" id="12_pinst"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RaceBoo.json" id="12_tgnw3"]
 [ext_resource type="PackedScene" uid="uid://ci678koo0peoa" path="res://Scenes/Prefabs/UI/CharacterSelect.tscn" id="13_u5tsp"]
@@ -258,9 +259,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -0.3999939
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_dwawm")
+expand_mode = 1
 stretch_mode = 1
 script = ExtResource("3_dwawm")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
@@ -283,8 +286,15 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_uucdm")
-autoplay = true
 bus = &"Music"
+
+[node name="ResourceSetterNew" type="Node" parent="Music" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_xx8pl")
+node_to_affect = NodePath("..")
+property_name = "stream"
+mode = 2
+resource_json = ExtResource("11_kqv8e")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 8

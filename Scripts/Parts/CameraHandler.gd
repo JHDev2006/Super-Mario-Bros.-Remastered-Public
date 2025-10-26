@@ -21,10 +21,22 @@ static var cam_locked := false
 var scrolling := false
 var cam_direction := 1
 
+# how far between the center and the edge of the screen before scrolling to the center
+const SCROLL_DIFFERENCE := 48.0
+
+var can_diff := true
+
+# guzlad: old Special scrolling variables kept for reference purposes
+static var sp_screen_scroll := false
+#static var sp_scroll_style := 1
+
+var sp_scrolling := false
+
 func _exit_tree() -> void:
 	cam_locked = false
 
 func _physics_process(delta: float) -> void:
+	sp_screen_scroll = Settings.file.visuals.smbs_scroll > 0
 	handle_camera(delta)
 	last_position = global_position
 
@@ -40,9 +52,12 @@ func handle_camera(delta: float) -> void:
 		return
 	
 	if not cam_locked:
-		handle_horizontal_scrolling(delta)
-		handle_vertical_scrolling(delta)
-		handle_offsets(delta)
+		if not sp_screen_scroll:
+			handle_horizontal_scrolling(delta)
+			handle_vertical_scrolling(delta)
+			handle_offsets(delta)
+		else:
+			handle_sp_scrolling()
 	
 	do_limits()
 	camera.global_position = camera_position + camera_offset
@@ -66,15 +81,10 @@ func handle_horizontal_scrolling(delta: float) -> void:
 		cam_direction = 1
 		if global_position.x >= camera_position.x:
 			var offset = 0
-			scrolling = true
 			if camera_position.x <= global_position.x - 4:
 				offset = camera_position.x - global_position.x + abs(true_velocity.x * delta)
+			scrolling = true
 			camera_position.x = global_position.x + offset
-		elif global_position.x >= camera_position.x - get_viewport_rect().size.x / 8:
-			if true_velocity.x > 75:
-				camera_position.x += true_velocity.x * delta / 2
-			else:
-				camera_position.x += true_velocity.x * delta
 	
 	## LEFT MOVEMENT
 	elif true_vel_dir == -1 and can_scroll_left and Global.current_level.can_backscroll:
@@ -85,11 +95,17 @@ func handle_horizontal_scrolling(delta: float) -> void:
 			if camera_position.x >= global_position.x + 4:
 				offset = camera_position.x - global_position.x - abs(true_velocity.x * delta)
 			camera_position.x = global_position.x + offset
-		elif global_position.x <= camera_position.x + get_viewport_rect().size.x / 4:
-			if true_velocity.x < -75:
-				camera_position.x += true_velocity.x * delta / 2
-			else:
-				camera_position.x += true_velocity.x * delta
+	
+	if can_diff == false: 
+		position.x = 0
+		return
+	# horizontal adjusgments
+	# if the position is matching the camera, start scrolling towards the center
+	if global_position.x >= camera_position.x:
+		position.x = move_toward(position.x,0.0,delta * max(30.0, abs(true_velocity.x / 2.3)))
+	else:
+		# if the camera if behind the middle of the screen, calculate the current difference
+		position.x = max(min(camera_position.x-global_position.x,SCROLL_DIFFERENCE),position.x)
 
 
 func handle_vertical_scrolling(_delta: float) -> void:
@@ -100,6 +116,33 @@ func handle_vertical_scrolling(_delta: float) -> void:
 		camera_position.y = global_position.y + 64
 	elif global_position.y > camera_position.y + 32:
 		camera_position.y = global_position.y - 32
+
+func handle_sp_scrolling() -> void:
+	var distance = camera_position.x - owner.global_position.x
+	var limit = get_viewport().get_visible_rect().size.x / 2 - 16
+	if abs(distance) > limit:
+		do_sp_scroll(sign(owner.global_position.x - camera_position.x))
+
+func do_sp_scroll(direction := 1) -> void:
+	if sp_scrolling: return
+	sp_scrolling = true
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().paused = true
+	var distance = get_viewport().get_visible_rect().size.x - 32
+	if Settings.file.visuals.smbs_scroll == 1: #Sharp X1 (smooth)
+		var tween = create_tween()
+		tween.tween_property(self, "camera_position:x", camera_position.x + (distance * direction), 1)
+		await tween.finished
+	else: #PC-8801 (black screen)
+		if Settings.file.visuals.transition_animation:
+			Global.get_node("Transition").get_node("TransitionBlock").modulate.a = 1
+		Global.get_node("Transition").show()
+		await get_tree().create_timer(0.5).timeout
+		camera_position.x += distance * direction
+		await get_tree().create_timer(0.5).timeout
+		Global.get_node("Transition").hide()
+	sp_scrolling = false
+	get_tree().paused = false
 
 func tween_ahead() -> void:
 	if scrolling == false: return

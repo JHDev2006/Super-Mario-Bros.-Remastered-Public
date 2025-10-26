@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dplnidrqshecd"]
+[gd_scene load_steps=5 format=3 uid="uid://dplnidrqshecd"]
 
 [ext_resource type="PackedScene" uid="uid://chjxyhlwohmi6" path="res://Scenes/Prefabs/Entities/Items/Coin.tscn" id="1_iq4uk"]
 [ext_resource type="PackedScene" uid="uid://bxuxtgn5wg108" path="res://Scenes/Prefabs/Entities/Items/SpinningBlueCoin.tscn" id="2_4rq0g"]
+[ext_resource type="PackedScene" uid="uid://2j5gl64gxbgy" path="res://Scenes/Prefabs/Particles/BlueCoinSparkle.tscn" id="2_mibmr"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/BlueCoin.json" id="2_r2p65"]
 
 [node name="Coin" instance=ExtResource("1_iq4uk")]
+COIN_SPARKLE = ExtResource("2_mibmr")
 spinning_coin_scene = ExtResource("2_4rq0g")
 
 [node name="Sprite" parent="." index="0"]

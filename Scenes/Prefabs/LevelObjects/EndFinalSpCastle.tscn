@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5o0j3kfv2xys"]
+[gd_scene load_steps=5 format=3 uid="uid://b5o0j3kfv2xys"]
 
 [ext_resource type="PackedScene" uid="uid://bney0cc8cfm5s" path="res://Scenes/Prefabs/LevelObjects/EndFinalCastle.tscn" id="1_fa5ur"]
-[ext_resource type="PackedScene" uid="uid://bem5ht17ukgcs" path="res://Scenes/Parts/LargeSPCastleVisual.tscn" id="2_jlw6s"]
 [ext_resource type="Texture2D" uid="uid://gnqt7rl36kxy" path="res://Assets/Sprites/Tilesets/CastleFlag.png" id="2_jp1ee"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uq0jd"]
@@ -29,8 +28,8 @@ do_offset = false
 [node name="SmallCastleVisual" parent="." index="3"]
 visible = false
 
-[node name="SmallCastleVisual2" parent="." index="6" instance=ExtResource("2_jlw6s")]
-position = Vector2(32, -40)
+[node name="SmallCastleVisual2" parent="." index="4"]
+visible = true
 
 [node name="Overlay" parent="." index="7"]
 visible = true

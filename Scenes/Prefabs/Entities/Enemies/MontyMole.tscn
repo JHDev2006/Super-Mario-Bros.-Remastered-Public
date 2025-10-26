@@ -93,6 +93,9 @@ animations = [{
 [node name="MontyMole" type="CharacterBody2D" node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
 collision_layer = 16
 collision_mask = 54
+floor_constant_speed = true
+floor_max_angle = 0.87266463
+floor_snap_length = 4.0
 script = ExtResource("1_pcto2")
 on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
 score_note_adder = NodePath("ScoreNoteSpawner")
@@ -181,6 +184,8 @@ hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://ba18grqjixded"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]

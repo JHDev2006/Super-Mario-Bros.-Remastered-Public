@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://coasuq2vsmlce"]
+[gd_scene load_steps=17 format=3 uid="uid://coasuq2vsmlce"]
 
 [ext_resource type="Texture2D" uid="uid://c3l6ynlufxcfp" path="res://Assets/Sprites/Enemies/Boo.png" id="1_bek6j"]
 [ext_resource type="Script" uid="uid://djdtghrjbpv2i" path="res://Scripts/Classes/Entities/Enemies/BooBuddies.gd" id="1_vavt3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="6_5b8ig"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="8_ifdhg"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BooBuddy.json" id="9_ifdhg"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="10_al3pe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7u2yg"]
 atlas = ExtResource("1_bek6j")
@@ -62,8 +63,9 @@ func _physics_process(delta: float) -> void:
 		idx += 1
 "
 
-[node name="BooBuddies" type="Node2D" groups=["Enemies"]]
+[node name="BooBuddies" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_vavt3")
+metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
 [node name="RotationJoint" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -106,6 +108,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo1/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
 
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo1" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
 [node name="Boo2" type="Node2D" parent="Boos"]
 visible = false
 
@@ -129,6 +136,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo2/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo2" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
 
 [node name="Boo3" type="Node2D" parent="Boos"]
 visible = false
@@ -154,6 +166,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo3/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
 
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo3" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
 [node name="Boo4" type="Node2D" parent="Boos"]
 visible = false
 
@@ -177,6 +194,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo4/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo4" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
 
 [node name="Boo5" type="Node2D" parent="Boos"]
 visible = false
@@ -202,6 +224,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo5/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
 
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo5" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
 [node name="Boo6" type="Node2D" parent="Boos"]
 visible = false
 
@@ -225,6 +252,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo6/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo6" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
 
 [node name="Boo7" type="Node2D" parent="Boos"]
 visible = false
@@ -250,6 +282,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo7/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
 
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo7" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
 [node name="Boo8" type="Node2D" parent="Boos"]
 visible = false
 
@@ -273,6 +310,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo8/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo8" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
 
 [node name="Boo9" type="Node2D" parent="Boos"]
 visible = false
@@ -298,6 +340,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo9/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
 
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo9" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
 [node name="Boo10" type="Node2D" parent="Boos"]
 visible = false
 
@@ -321,6 +368,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo10/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
+
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo10" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
 
 [node name="Boo11" type="Node2D" parent="Boos"]
 visible = false
@@ -346,6 +398,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo11/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
 
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo11" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
 [node name="Boo12" type="Node2D" parent="Boos"]
 visible = false
 
@@ -370,6 +427,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="Shape" type="CollisionShape2D" parent="Boos/Boo12/Hitbox"]
 shape = SubResource("RectangleShape2D_1eh5v")
 
+[node name="EnemyPlayerDetection" type="Node" parent="Boos/Boo12" node_paths=PackedStringArray("hitbox")]
+script = ExtResource("10_al3pe")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
 [node name="BooPositioner" type="Node" parent="."]
 process_mode = 3
 script = SubResource("GDScript_vavt3")
@@ -378,15 +440,27 @@ script = SubResource("GDScript_vavt3")
 script = ExtResource("6_5b8ig")
 properties = Array[String](["length", "direction", "boo_amount", "spread_boos"])
 
-[connection signal="area_entered" from="Boos/Boo1/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo2/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo3/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo4/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo5/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo6/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo7/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo8/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo9/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo10/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo11/Hitbox" to="." method="on_area_entered"]
-[connection signal="area_entered" from="Boos/Boo12/Hitbox" to="." method="on_area_entered"]
+[connection signal="player_hit" from="Boos/Boo1/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo1/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo2/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo2/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo3/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo3/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo4/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo4/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo5/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo5/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo6/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo6/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo7/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo7/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo8/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo8/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo9/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo9/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo10/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo10/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo11/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo11/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="Boos/Boo12/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="Boos/Boo12/EnemyPlayerDetection" to="." method="damage_player"]

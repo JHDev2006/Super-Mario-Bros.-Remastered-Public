@@ -164,12 +164,14 @@ movement_node = NodePath("../BasicEnemyMovement")
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="stomped_on"]
-[connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounced" unbinds=1]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
 [connection signal="icicle_detected" from="IcicleDetection" to="." method="die_from_object"]
 [connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]

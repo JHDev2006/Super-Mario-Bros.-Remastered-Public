@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bney0cc8cfm5s"]
+[gd_scene load_steps=20 format=4 uid="uid://bney0cc8cfm5s"]
 
 [ext_resource type="Script" uid="uid://qq26qw7ltflb" path="res://Scripts/Parts/EndCastle.gd" id="1_hwcne"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_1kswc"]
@@ -7,6 +7,7 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/CastleFlag.json" id="4_wqi45"]
 [ext_resource type="PackedScene" uid="uid://bikdod5ra10ra" path="res://Scenes/Parts/LargeCastleVisual.tscn" id="6_w7qld"]
 [ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="8_akqko"]
+[ext_resource type="PackedScene" uid="uid://bem5ht17ukgcs" path="res://Scenes/Parts/LargeSPCastleVisual.tscn" id="10_kd4m5"]
 [ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="10_wqi45"]
 [ext_resource type="Texture2D" uid="uid://dkcs5i8l1y4y6" path="res://Assets/Sprites/Tilesets/EndingFinalCastleSprite.png" id="11_wqi45"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/FinalCastle.json" id="12_kd4m5"]
@@ -117,6 +118,10 @@ autostart = true
 [node name="SmallCastleVisual" parent="." instance=ExtResource("6_w7qld")]
 z_index = -10
 position = Vector2(0, -40)
+
+[node name="SmallCastleVisual2" parent="." instance=ExtResource("10_kd4m5")]
+visible = false
+position = Vector2(32, -40)
 
 [node name="OverlaySprite" type="Sprite2D" parent="."]
 visible = false

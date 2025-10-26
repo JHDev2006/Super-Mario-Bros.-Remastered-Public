@@ -6,7 +6,7 @@ const HAMMER = preload("res://Scenes/Prefabs/Entities/Items/Hammer.tscn")
 
 @export var can_hammer := false
 @export var can_fire := true
-
+@export var is_real := true
 @export var music_enabled := true
 
 var target_player: Player = null
@@ -50,8 +50,7 @@ func get_target_y(player: Player) -> float:
 		return player.global_position.y - 8
 
 func show_smoke() -> void:
-	if has_meta("is_real"):
-		return
+	if is_real: return
 	var smoke = preload("res://Scenes/Prefabs/Particles/SmokeParticle.tscn").instantiate()
 	smoke.scale = Vector2(2, 2)
 	smoke.global_position =global_position
@@ -139,6 +138,14 @@ func play_music() -> void:
 	if music_enabled:
 		AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.BOWSER, 5, false)
 
-
 func on_timeout() -> void:
 	move_dir = [-1, 1].pick_random()
+
+func on_gib_about_to_spawn() -> void:
+	if is_real:
+		$FallSFX.play()
+		$FallSFX.finished.connect($FallSFX.queue_free)
+		$FallSFX.reparent(get_parent())
+	# guzlad: ugly but it'll have to do until we move the metadata stuff to actual variables
+	if ((Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL) or (Global.current_game_mode == Global.GameMode.LEVEL_EDITOR)) and !is_real:
+		$SpriteScaleJoint/DeathSprite/ResourceSetterNew.resource_json = load("res://Assets/Sprites/Enemies/Goomba.json")
