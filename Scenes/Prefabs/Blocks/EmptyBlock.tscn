@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_fuckyou"]
 [ext_resource type="PackedScene" uid="uid://bxxjd0qf60t5q" path="res://Scenes/Prefabs/Particles/EmptyBlockDestructionParticles.tscn" id="2_g8nyw"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_g8nyw"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/EmptyBlock.json" id="5_v5vjc"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/EmptyBlock.json" id="5_v5vjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74q7l"]
 size = Vector2(16, 16)
