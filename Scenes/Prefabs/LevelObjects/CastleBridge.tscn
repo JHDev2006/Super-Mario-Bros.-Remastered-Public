@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dtpyjucfl16sw"]
+[gd_scene load_steps=24 format=3 uid="uid://dtpyjucfl16sw"]
 
 [ext_resource type="Script" uid="uid://drigdwsriqtma" path="res://Scripts/Parts/CastleBridge.gd" id="1_7m65m"]
 [ext_resource type="Texture2D" uid="uid://boc6yagywb1lu" path="res://Assets/Sprites/Tilesets/Terrain/Castle.png" id="1_030qv"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://iiepujg1uywt" path="res://Assets/Sprites/Items/BridgeAxe.png" id="2_wg8ck"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="4_s4k02"]
 [ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_tmf7w"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="5_vt2ac"]
+[ext_resource type="JSON" path="res://Resources/AssetRipper/Sprites/Tilesets/Terrain/Castle.json" id="7_m5y50"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="8_geany"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="9_m5y50"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/BridgeAxe.json" id="10_kvynl"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="11_puc3y"]
 [ext_resource type="Texture2D" uid="uid://dlldh5aks0wff" path="res://Assets/Sprites/Editor/GhostTile.png" id="12_do8w3"]
 [ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="13_do8w3"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="14_kvynl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7m65m"]
 atlas = ExtResource("2_wg8ck")
@@ -50,11 +51,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7m65m"]
 size = Vector2(2, 8)
 
-[sub_resource type="Resource" id="Resource_8q7qv"]
-script = ExtResource("8_geany")
-Overworld = ExtResource("1_030qv")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tmf7w"]
 normal = Vector2(-1, 0)
 
@@ -75,6 +71,11 @@ func _process(_delta: float) -> void:
 		idx += 1
 		
 "
+
+[sub_resource type="Resource" id="Resource_8q7qv"]
+script = ExtResource("8_geany")
+Overworld = ExtResource("1_030qv")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [node name="CastleBridge" type="Node2D" groups=["CastleBridges"]]
 process_mode = 3
@@ -171,11 +172,12 @@ region_rect = Rect2(208, 128, 16, 16)
 region_filter_clip_enabled = true
 
 [node name="ResourceSetterNew" type="Node" parent="Axe/Sprite2D14" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("5_vt2ac")
+script = ExtResource("9_m5y50")
 node_to_affect = NodePath("..")
 property_name = "texture"
-themed_resource = SubResource("Resource_8q7qv")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 1
+resource_json = ExtResource("7_m5y50")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CameraRightLimit" type="Node2D" parent="Axe"]
 position = Vector2(24, 8)
@@ -223,6 +225,12 @@ texture = ExtResource("12_do8w3")
 
 [node name="EditorToggleDetection" type="Node" parent="."]
 script = ExtResource("13_do8w3")
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("14_kvynl")
+resource = SubResource("Resource_8q7qv")
+json_file_path = "res://Assets/Sprites/Tilesets/Terrain/Castle.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
 [connection signal="area_entered" from="Axe/Hitbox" to="." method="on_area_entered" flags=3]
 [connection signal="toggled" from="EditorToggleDetection" to="Axe/CameraRightLimit" method="_enter_tree"]

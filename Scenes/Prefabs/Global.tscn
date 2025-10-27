@@ -3,12 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://bod0jkf7jc5pm" path="res://Scenes/Prefabs/GameHud.tscn" id="1_ctvpw"]
 [ext_resource type="Script" uid="uid://bbxqn16ekbpcl" path="res://Scripts/Classes/Singletons/Global.gd" id="1_t23sr"]
 [ext_resource type="AudioStream" uid="uid://dhc2t3wbtsoss" path="res://Assets/Audio/SFX/ScoreLoop.wav" id="3_vjpdy"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="4_7puui"]
 [ext_resource type="Script" uid="uid://26yissv8bnqw" path="res://Scripts/UI/WindowChanger.gd" id="4_nxm2a"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="5_eyjoc"]
 [ext_resource type="Script" uid="uid://bdgvsycico544" path="res://Scripts/UI/AudioAdjuster.gd" id="5_l70br"]
+[ext_resource type="JSON" path="res://Assets/Audio/SFX/ScoreLoop.json" id="5_mpjtu"]
 [ext_resource type="AudioStream" uid="uid://dsc21eiypsqnd" path="res://Assets/Audio/SFX/Score.wav" id="6_30rl1"]
 [ext_resource type="Script" uid="uid://hb401vacltfw" path="res://Scripts/Parts/VisualsSetter.gd" id="6_pamiy"]
+[ext_resource type="JSON" path="res://Assets/Audio/SFX/Score.json" id="7_81m3w"]
 [ext_resource type="Script" uid="uid://cxkumlifwb0s6" path="res://Scripts/Parts/DifficultySetter.gd" id="7_3324c"]
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="10_nptu4"]
 [ext_resource type="Script" uid="uid://cixtosud3mfaq" path="res://Scripts/Classes/Resources/CampaignResource.gd" id="13_30rl1"]
@@ -111,16 +112,6 @@ _data = {
 &"FadeIn": SubResource("Animation_6jmk5"),
 &"RESET": SubResource("Animation_1la0o")
 }
-
-[sub_resource type="Resource" id="Resource_6jmk5"]
-script = ExtResource("5_eyjoc")
-Overworld = ExtResource("3_vjpdy")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
-[sub_resource type="Resource" id="Resource_l7dvb"]
-script = ExtResource("5_eyjoc")
-Overworld = ExtResource("6_30rl1")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vq00s"]
 region = Rect2(0, 16, 8, 8)
@@ -276,6 +267,11 @@ func update_texture() -> void:
 atlas = ExtResource("19_3l3ph")
 region = Rect2(0, 0, 8, 8)
 
+[sub_resource type="Resource" id="Resource_l7dvb"]
+script = ExtResource("5_eyjoc")
+Overworld = ExtResource("6_30rl1")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
 [node name="Global" type="Node"]
 process_mode = 3
 script = ExtResource("1_t23sr")
@@ -329,23 +325,25 @@ horizontal_alignment = 2
 stream = ExtResource("3_vjpdy")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="ScoreTally" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("4_7puui")
+[node name="ResourceSetterNew" type="Node" parent="ScoreTally" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("19_okfpr")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_6jmk5")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("5_mpjtu")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ScoreTallyEnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_30rl1")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="ScoreTallyEnd" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("4_7puui")
+[node name="ResourceSetterNew" type="Node" parent="ScoreTallyEnd" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("19_okfpr")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_l7dvb")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("7_81m3w")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="SettingsApply" type="Node" parent="."]
 
@@ -463,6 +461,12 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 script = ExtResource("19_l7dvb")
 labels = [NodePath("../CanvasLayer/VBoxContainer/ErrorMessage"), NodePath("../CanvasLayer/VBoxContainer/Comment"), NodePath("../CanvasLayer/VBoxContainer/Warning"), NodePath("../GameHUD/FPSCount")]
 metadata/_custom_type_script = "uid://dt2p68xl462v2"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("10_nptu4")
+resource = SubResource("Resource_l7dvb")
+json_file_path = "res://Assets/Audio/SFX/Score.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
 [connection signal="finished" from="ScoreTally" to="." method="on_score_sfx_finished"]
 [connection signal="finished" from="ScoreTallyEnd" to="." method="on_score_sfx_finished"]

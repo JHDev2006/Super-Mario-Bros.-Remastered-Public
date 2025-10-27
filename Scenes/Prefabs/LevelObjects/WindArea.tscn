@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccxhom4wrgfv4"]
+[gd_scene load_steps=12 format=3 uid="uid://ccxhom4wrgfv4"]
 
 [ext_resource type="Texture2D" uid="uid://dy3p03djelkb3" path="res://Assets/Sprites/Particles/Leaves.png" id="1_0tjo2"]
 [ext_resource type="Script" uid="uid://d3kftxro4bfnv" path="res://Scripts/Classes/Entities/Objects/WindArea.gd" id="1_68lil"]
 [ext_resource type="AudioStream" uid="uid://g5cjhcnpp1fp" path="res://Assets/Audio/SFX/Wind.wav" id="3_qar1j"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_sbjyn"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="4_8c2la"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Particles/WindParticles.json" id="4_qvx5e"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="5_3arhp"]
+[ext_resource type="JSON" path="res://Assets/Audio/SFX/Wind.json" id="8_3ckra"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="9_flnur"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68lil"]
 size = Vector2(16, 16)
@@ -70,9 +71,16 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 stream = ExtResource("3_qar1j")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="SFX" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("4_8c2la")
+[node name="ResourceSetterNew" type="Node" parent="SFX" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_sbjyn")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_sbjyn")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("8_3ckra")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("9_flnur")
+resource = SubResource("Resource_sbjyn")
+json_file_path = "res://Assets/Audio/SFX/Wind.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"

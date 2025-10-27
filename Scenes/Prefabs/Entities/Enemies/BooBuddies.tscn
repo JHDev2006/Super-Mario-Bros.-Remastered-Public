@@ -1,16 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://coasuq2vsmlce"]
+[gd_scene load_steps=18 format=3 uid="uid://coasuq2vsmlce"]
 
 [ext_resource type="Texture2D" uid="uid://c3l6ynlufxcfp" path="res://Assets/Sprites/Enemies/Boo.png" id="1_bek6j"]
 [ext_resource type="Script" uid="uid://djdtghrjbpv2i" path="res://Scripts/Classes/Entities/Enemies/BooBuddies.gd" id="1_vavt3"]
 [ext_resource type="Texture2D" uid="uid://dsncqqhfsnq6s" path="res://Assets/Sprites/Editor/RotationIcon.png" id="2_1eh5v"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_vavt3"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="3_5b8ig"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="4_4rg7w"]
 [ext_resource type="Resource" uid="uid://c8ojbqg4q4qh6" path="res://Resources/ThemedResources/EditorRotationIcon.tres" id="5_4rg7w"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Editor/RotationIcon.json" id="5_7bbmq"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="6_5b8ig"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="8_ifdhg"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BooBuddy.json" id="9_ifdhg"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="10_al3pe"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="11_8gdsq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7u2yg"]
 atlas = ExtResource("1_bek6j")
@@ -74,12 +75,13 @@ z_as_relative = false
 texture = ExtResource("2_1eh5v")
 script = ExtResource("3_5b8ig")
 
-[node name="ResourceSetter" type="Node" parent="RotationJoint" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("4_4rg7w")
+[node name="ResourceSetterNew" type="Node" parent="RotationJoint" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("8_ifdhg")
 node_to_affect = NodePath("..")
 property_name = "texture"
-themed_resource = ExtResource("5_4rg7w")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 1
+resource_json = ExtResource("5_7bbmq")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Boos" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -439,6 +441,12 @@ script = SubResource("GDScript_vavt3")
 [node name="EditorPropertyExposer" type="Node" parent="."]
 script = ExtResource("6_5b8ig")
 properties = Array[String](["length", "direction", "boo_amount", "spread_boos"])
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("11_8gdsq")
+resource = ExtResource("5_4rg7w")
+json_file_path = "res://Assets/Sprites/Editor/RotationIcon.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
 [connection signal="player_hit" from="Boos/Boo1/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="Boos/Boo1/EnemyPlayerDetection" to="." method="damage_player"]
