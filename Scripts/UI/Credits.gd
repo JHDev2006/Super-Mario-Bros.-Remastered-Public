@@ -5,6 +5,7 @@ func _enter_tree() -> void:
 	pass
 
 static var go_to_title_screen := true
+static var view_from_menu := false
 
 func _ready() -> void:
 	for i in $Labels.get_children():
@@ -28,6 +29,9 @@ func _process(_delta: float) -> void:
 
 func exit() -> void:
 	if go_to_title_screen:
+		if view_from_menu:
+			TitleScreen.return_to = TitleScreen.TITLE_RETURN.EXTRAS
+			TitleScreen.return_selected_index = 1
 		Global.transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
 	else:
 		LevelTransition.level_to_transition_to = Level.get_scene_string(9, 1)

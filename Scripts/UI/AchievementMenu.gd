@@ -19,6 +19,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_back"):
+		TitleScreen.return_to = TitleScreen.TITLE_RETURN.EXTRAS
+		TitleScreen.return_selected_index = 0
 		Global.transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
 
 func spawn_achievement_containers() -> void:
