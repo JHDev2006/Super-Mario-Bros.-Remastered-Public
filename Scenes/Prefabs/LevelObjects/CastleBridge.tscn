@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://iiepujg1uywt" path="res://Assets/Sprites/Items/BridgeAxe.png" id="2_wg8ck"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="4_s4k02"]
 [ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_tmf7w"]
-[ext_resource type="JSON" path="res://Resources/AssetRipper/Sprites/Tilesets/Terrain/Castle.json" id="7_m5y50"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="7_m5y50"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="8_geany"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="9_m5y50"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/BridgeAxe.json" id="10_kvynl"]
