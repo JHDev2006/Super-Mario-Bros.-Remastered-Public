@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bod0jkf7jc5pm"]
+[gd_scene load_steps=41 format=3 uid="uid://bod0jkf7jc5pm"]
 
 [ext_resource type="Script" uid="uid://bjbd3a6su47si" path="res://Scripts/Classes/UI/GameHUD.gd" id="1_f34v2"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_cbrve"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://n2e3jgmkilvt" path="res://Scenes/Prefabs/UI/MarathonResults.tscn" id="16_cfljn"]
 [ext_resource type="PackedScene" uid="uid://b85i7uni0twpe" path="res://Scenes/Prefabs/UI/DiscoResults.tscn" id="17_ocsy5"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="18_jwl8o"]
+[ext_resource type="PackedScene" uid="uid://b875xb333ty2y" path="res://Scenes/Prefabs/UI/LevelTestingPauseMenu.tscn" id="22_h6dkv"]
 [ext_resource type="Texture2D" uid="uid://w74s6oi3l8k8" path="res://Assets/Sprites/UI/TextShadowColours.png" id="24_h6dkv"]
 [ext_resource type="JSON" path="res://Assets/Sprites/UI/TextShadow.json" id="25_oeqb4"]
 
@@ -1044,6 +1045,8 @@ visible = false
 
 [node name="DiscoResults" parent="." instance=ExtResource("17_ocsy5")]
 visible = false
+
+[node name="LevelTestingPause" parent="." instance=ExtResource("22_h6dkv")]
 
 [node name="ColourPaletteSampler" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("15_8qasw")

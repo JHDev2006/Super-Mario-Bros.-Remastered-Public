@@ -338,6 +338,8 @@ func handle_layers() -> void:
 	current_layer = clamp(current_layer, 0, entity_layer_nodes.size() - 1)
 	var idx := 0
 	for i in entity_layer_nodes:
+		if is_instance_valid(i) == false:
+			continue
 		i.z_index = 0 if current_layer == idx or playing_level else -1
 		i.modulate = Color(1, 1, 1, 1) if current_layer == idx or playing_level else Color(1, 1, 1, 0.5)
 		tile_layer_nodes[idx].modulate = i.modulate
