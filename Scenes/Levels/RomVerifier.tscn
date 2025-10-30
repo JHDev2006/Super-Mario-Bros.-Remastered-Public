@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d0mmkuq7wtpcl"]
+[gd_scene load_steps=29 format=3 uid="uid://d0mmkuq7wtpcl"]
 
 [ext_resource type="Theme" uid="uid://dtn507x2b5de7" path="res://Resources/Theme.tres" id="1_qwra1"]
 [ext_resource type="Script" uid="uid://dhxt5av5njyiv" path="res://Scripts/UI/RomVerifier.gd" id="1_r85ci"]
@@ -58,6 +58,12 @@ metadata/_custom_type_script = "uid://cixtosud3mfaq"
 script = ExtResource("8_c20ch")
 Overworld = SubResource("Resource_22hnx")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
+[sub_resource type="InputEventAction" id="InputEventAction_2ok7u"]
+action = &"ui_accept"
+
+[sub_resource type="Shortcut" id="Shortcut_5175m"]
+events = [SubResource("InputEventAction_2ok7u")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sxtnd"]
 atlas = ExtResource("2_r85ci")
@@ -157,6 +163,23 @@ theme_override_constants/margin_bottom = 16
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="SelectRom" type="Button" parent="BG/Border/MarginContainer/DefaultText"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.157
+anchor_top = 0.52900004
+anchor_right = 0.84300005
+anchor_bottom = 0.64400005
+offset_left = -0.08600044
+offset_top = -0.03201294
+offset_right = 0.08598328
+offset_bottom = 0.04801941
+shortcut = SubResource("Shortcut_5175m")
+shortcut_in_tooltip = false
+text = "BROWSE FILES..."
+autowrap_mode = 2
+
 [node name="Label" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
 layout_mode = 1
 anchors_preset = -1
@@ -164,22 +187,36 @@ anchor_right = 1.0
 offset_bottom = 16.0
 grow_horizontal = 2
 size_flags_vertical = 0
-text = "ROM VERIFICATION REQUIRED!"
+text = "VERIFICATION REQUIRED!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="ColorRect" type="ColorRect" parent="BG/Border/MarginContainer/DefaultText/Label"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 9.200001
+offset_top = 13.0
+offset_right = -10.800003
+offset_bottom = 14.0
+grow_horizontal = 2
+
 [node name="Label2" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 0.082
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.505
+offset_left = -4.799999
+offset_top = -0.055999756
+offset_right = -4.800003
+offset_bottom = -0.040000916
 grow_horizontal = 2
 grow_vertical = 2
-text = "Please Drag and drop your vanilla WORLD \"super mario bros\" rom onto the window."
+text = "PLEASE PROVIDE A VANILLA ROM FILE FOR \"SUPER MARIO BROS.\" BY SELECTING THE ROM IN YOUR FILES OR DRAGGING THE ROM FILE OVER THE GAME WINDOW."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-uppercase = true
 
 [node name="Error" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
 unique_name_in_owner = true
@@ -194,9 +231,9 @@ offset_top = -40.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-text = "ERROR VERIFYING ROM!
+text = "INVALID ROM HEADER!
 
-ARE YOU SURE ITS A VALID VANILLA NES SMB1 ROM?"
+ARE YOU SURE THIS IS A VANILLA ROM OF SMB1?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -213,7 +250,28 @@ offset_top = -40.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
-text = "PLEASE EXTRACT THE ROM FILE, OUT OF THE ZIP FIRST"
+text = "ERROR EXTRACTING ROM!
+
+ENSURE YOUR ROM ISN'T STORED IN A COMPRESSED FILE FORMAT!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ExtensionError" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.99999994, 0.17417294, 0.12721592, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+text = "ERROR VERIFYING ROM!
+
+ARE YOU SURE THIS IS A ROM IMAGE FILE?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -245,3 +303,22 @@ stream = ExtResource("11_4o1wk")
 
 [node name="ErrorSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_2ok7u")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0
+title = "SELECT A VALID ROM"
+size = Vector2i(352, 240)
+popup_window = true
+ok_button_text = "OPEN"
+dialog_hide_on_ok = true
+cancel_button_text = "CANCEL"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.nes", "*.nez", "*.fds", "*.qd", "*.unf", "*.unif", "*.nsf", "*.nsfe")
+use_native_dialog = true
+folder_creation_enabled = false
+favorites_enabled = false
+recent_list_enabled = false
+
+[connection signal="file_selected" from="FileDialog" to="." method="handle_rom"]
+[connection signal="files_selected" from="FileDialog" to="." method="on_file_dropped"]

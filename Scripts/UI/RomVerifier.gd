@@ -8,6 +8,7 @@ const VALID_HASHES := [
 
 var args: PackedStringArray
 var rom_arg: String = ""
+@onready var file_dialog = $FileDialog
 
 func _ready() -> void:
 	args = OS.get_cmdline_args()
@@ -28,8 +29,11 @@ func _ready() -> void:
 	if local_rom != "" and handle_rom(local_rom):
 		return
 	
-	# Otherwise wait for dropped files
+	# Otherwise wait for dropped/selected files
+	# SkyanUltra: Added button to select files for convenience
 	get_window().files_dropped.connect(on_file_dropped)
+	file_dialog.canceled.connect(file_prompt_closed)
+	%SelectRom.pressed.connect(file_prompt_open)
 	await get_tree().physics_frame
 
 	# Window setup
@@ -48,15 +52,26 @@ func find_local_rom() -> String:
   
 func on_file_dropped(files: PackedStringArray) -> void:
 	for file in files:
-		if file.ends_with(".zip"):
-			zip_error()
-			return
 		if handle_rom(file):
 			return
 	error()
+	
+func file_prompt_open() -> void:
+	$FileDialog.show()
+	%SelectRom.disabled = true
+	
+func file_prompt_closed() -> void:
+	%SelectRom.disabled = false
 
 func handle_rom(path: String) -> bool:
+	file_prompt_closed()
+	if path.get_extension() in ["zip", "7z", "rar", "tar", "gz", "gzip", "bz2"]:
+		zip_error()
+		return false
 	if not is_valid_rom(path):
+		if path.get_extension() in ["nes", "nez", "fds", "qd", "unf", "unif", "nsf", "nsfe"]:
+			error()
+		else: extension_error()
 		return false
 	Global.rom_path = path
 	copy_rom(path)
@@ -80,10 +95,20 @@ static func is_valid_rom(rom_path := "") -> bool:
 
 func error() -> void:
 	%Error.show()
+	%ZipError.hide()
+	%ExtensionError.hide()
 	$ErrorSFX.play()
 
 func zip_error() -> void:
 	%ZipError.show()
+	%Error.hide()
+	%ExtensionError.hide()
+	$ErrorSFX.play()
+	
+func extension_error() -> void:
+	%ExtensionError.show()
+	%Error.hide()
+	%ZipError.hide()
 	$ErrorSFX.play()
 
 func verified() -> void:
