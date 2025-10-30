@@ -347,14 +347,14 @@ func load_image_from_path(path := "") -> Texture2D:
 
 func load_audio_from_path(path := "") -> AudioStream:
 	var stream = null
-	if path.contains(".bgm"):
+	if path.get_extension("bgm"):
 		stream = AudioManager.generate_interactive_stream(JSON.parse_string(FileAccess.get_file_as_string(path)))
 	elif path.contains("res://"):
 		return load(path)
-	if path.contains(".wav"):
+	if path.get_extension("wav"):
 		stream = AudioStreamWAV.load_from_file(path)
-	elif path.contains(".mp3"):
+	elif path.get_extension("mp3"):
 		stream = AudioStreamMP3.load_from_file(path)
-	elif path.contains(".ogg"):
+	elif path.get_extension("ogg"):
 		stream = AudioStreamOggVorbis.load_from_file(path)
 	return stream
