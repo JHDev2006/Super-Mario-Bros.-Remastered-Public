@@ -27,6 +27,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	setup_stars()
+	$CanvasLayer2/VersionLabel/DevBuildWarning.visible = Global.is_snapshot
 	Global.level_theme_changed.connect(setup_stars)
 	DiscoLevel.in_disco_level = false
 	get_tree().paused = false
