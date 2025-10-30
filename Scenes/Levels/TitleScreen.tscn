@@ -43,7 +43,7 @@ script/source = "extends Label
 
 
 func _ready() -> void:
-	text = \"V\" + Global.version_number
+	text = \"V%s\" % Global.get_version()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgapq"]
