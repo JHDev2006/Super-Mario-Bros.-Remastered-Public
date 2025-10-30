@@ -36,13 +36,15 @@
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="24_hu5lw"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="25_cekpg"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/Mario/Small.json" id="26_o4wvw"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="27_6ws8x"]
+[ext_resource type="JSON" path="res://Assets/Sprites/UI/CheckpointIcon.json" id="27_ny1wd"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="28_hu5lw"]
 [ext_resource type="Texture2D" uid="uid://cpoksuhnwvh5l" path="res://Assets/Sprites/UI/TimerIcons.png" id="29_uwhl4"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/InvinciblePalettes/InvinciblePalette.json" id="29_vphr8"]
+[ext_resource type="JSON" path="res://Assets/Audio/SFX/Skid.json" id="30_ny1wd"]
 [ext_resource type="Script" uid="uid://dn5efttgugwvb" path="res://Scripts/Classes/Components/TimerSprite.gd" id="30_o70e0"]
 [ext_resource type="Script" uid="uid://cwti0ks5sfov3" path="res://Scripts/Classes/Components/ScalableCollisionPolygon.gd" id="35_nbkfn"]
 [ext_resource type="AudioStream" uid="uid://oghj2q665pfj" path="res://Assets/Audio/SFX/TimerRunningLow.wav" id="40_o70e0"]
+[ext_resource type="JSON" path="res://Assets/Audio/SFX/TimerRunningLow.json" id="43_pm4ir"]
 
 [sub_resource type="Shader" id="Shader_7nbqp"]
 code = "shader_type canvas_item;
@@ -405,16 +407,6 @@ _data = {
 &"Show": SubResource("Animation_shhao")
 }
 
-[sub_resource type="Resource" id="Resource_2mfvl"]
-script = ExtResource("24_hu5lw")
-Overworld = ExtResource("13_uo1a1")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
-[sub_resource type="Resource" id="Resource_cekpg"]
-script = ExtResource("24_hu5lw")
-Overworld = ExtResource("18_hofol")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bc3q3"]
 atlas = ExtResource("19_bc3q3")
 region = Rect2(0, 16, 2, 2)
@@ -478,16 +470,16 @@ size = Vector2(4, 6.75)
 resource_local_to_scene = true
 size = Vector2(4, 12)
 
-[sub_resource type="Resource" id="Resource_xy8gq"]
-script = ExtResource("24_hu5lw")
-Overworld = ExtResource("40_o70e0")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pm4ir"]
 particles_animation = true
 particles_anim_h_frames = 5
 particles_anim_v_frames = 1
 particles_anim_loop = false
+
+[sub_resource type="Resource" id="Resource_2mfvl"]
+script = ExtResource("24_hu5lw")
+Overworld = ExtResource("13_uo1a1")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("power_state") groups=["Players"]]
 process_priority = 1
@@ -793,12 +785,13 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResourceSetter" type="Node" parent="Checkpoint" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("27_6ws8x")
+[node name="ResourceSetterNew" type="Node" parent="Checkpoint" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "texture"
-themed_resource = SubResource("Resource_2mfvl")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 1
+resource_json = ExtResource("27_ny1wd")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="HammerTimer" type="Timer" parent="."]
 process_mode = 1
@@ -809,12 +802,13 @@ one_shot = true
 stream = ExtResource("18_hofol")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="SkidSFX" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("27_6ws8x")
+[node name="ResourceSetterNew" type="Node" parent="SkidSFX" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_cekpg")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("30_ny1wd")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -1119,12 +1113,13 @@ process_mode = 3
 stream = ExtResource("40_o70e0")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="TimerWarn" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("27_6ws8x")
+[node name="ResourceSetterNew" type="Node" parent="TimerWarn" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_xy8gq")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("43_pm4ir")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="SkidParticles" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
@@ -1137,6 +1132,12 @@ lifetime = 0.25
 gravity = Vector2(0, 0)
 anim_speed_min = 1.0
 anim_speed_max = 1.0
+
+[node name="ThemedToJSONConverter2" type="Node" parent="."]
+script = ExtResource("22_445e4")
+resource = SubResource("Resource_2mfvl")
+json_file_path = "res://Assets/Sprites/UI/CheckpointIcon.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
 [connection signal="frame_changed" from="SpriteScaleJoint/Sprite" to="SpriteScaleJoint/Sprite" method="on_frame_changed"]
 [connection signal="sprite_frames_changed" from="SpriteScaleJoint/Sprite" to="SpriteScaleJoint/Sprite" method="on_frame_changed"]

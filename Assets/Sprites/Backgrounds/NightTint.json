@@ -1,0 +1,16 @@
+{
+	"variations": {
+		"Overworld": {
+			"source": "LevelBG.tscn::Gradient_b8hji"
+		},
+		"default": {
+			"source": "LevelBG.tscn::Gradient_b8hji"
+		},
+		"Desert": {
+			"source": "LevelBG.tscn::Gradient_qkl8a"
+		},
+		"Snow": {
+			"source": "LevelBG.tscn::Gradient_e5ylw"
+		}
+	}
+}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkxkrqflg46b2"]
+[gd_scene load_steps=13 format=3 uid="uid://dkxkrqflg46b2"]
 
 [ext_resource type="Texture2D" uid="uid://ck2ac2a266r6i" path="res://Assets/Sprites/Items/Vine.png" id="1_pfdri"]
 [ext_resource type="AudioStream" uid="uid://bdm8wm7vy4r12" path="res://Assets/Audio/SFX/VineAppear.wav" id="2_ap2o3"]
@@ -6,19 +6,20 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ni768"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="4_m01lk"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Vine.json" id="4_q1cik"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_ohmvf"]
+[ext_resource type="JSON" path="res://Assets/Audio/SFX/VineAppear.json" id="6_e75m7"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="7_e75m7"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="8_cmcye"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ap2o3"]
 resource_local_to_scene = true
 size = Vector2(8, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ssycu"]
+
 [sub_resource type="Resource" id="Resource_cmcye"]
 script = ExtResource("7_e75m7")
 Overworld = ExtResource("2_ap2o3")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ssycu"]
 
 [node name="Vine" type="Node2D"]
 z_index = -5
@@ -54,12 +55,13 @@ stream = ExtResource("2_ap2o3")
 autoplay = true
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="SFX" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("6_ohmvf")
+[node name="ResourceSetterNew" type="Node" parent="SFX" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_ni768")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_cmcye")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("6_e75m7")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="WarpHitbox" type="Area2D" parent="."]
 script = ExtResource("4_m01lk")
@@ -69,6 +71,12 @@ metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 shape = SubResource("CircleShape2D_ssycu")
 disabled = true
 
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("8_cmcye")
+resource = SubResource("Resource_cmcye")
+json_file_path = "res://Assets/Audio/SFX/VineAppear.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
 [connection signal="area_exited" from="Hitbox" to="." method="on_area_exited"]
-[connection signal="sprites_updated" from="SFX/ResourceSetter" to="SFX" method="play"]
+[connection signal="updated" from="SFX/ResourceSetterNew" to="SFX" method="play"]
 [connection signal="player_entered" from="WarpHitbox" to="." method="on_player_entered"]

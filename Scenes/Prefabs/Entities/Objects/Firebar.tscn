@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://iq86u4w60yee"]
+[gd_scene load_steps=15 format=3 uid="uid://iq86u4w60yee"]
 
 [ext_resource type="Texture2D" uid="uid://b7n5kp30whnb3" path="res://Assets/Sprites/Blocks/FireBar.png" id="1_e2e05"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_kpo86"]
@@ -7,8 +7,7 @@
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="4_vag0n"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/FireBarFireBall.json" id="4_ym371"]
 [ext_resource type="Texture2D" uid="uid://dsncqqhfsnq6s" path="res://Assets/Sprites/Editor/RotationIcon.png" id="5_ytedt"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_m0plg"]
-[ext_resource type="Resource" uid="uid://c8ojbqg4q4qh6" path="res://Resources/ThemedResources/EditorRotationIcon.tres" id="7_3irkc"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Editor/RotationIcon.json" id="8_3irkc"]
 
 [sub_resource type="GDScript" id="GDScript_e2e05"]
 script/source = "extends Node2D
@@ -609,11 +608,12 @@ scale = Vector2(-1, 1)
 texture = ExtResource("5_ytedt")
 offset = Vector2(1, 0)
 
-[node name="ResourceSetter" type="Node" parent="Node2D/Sprite2D" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("6_m0plg")
+[node name="ResourceSetterNew" type="Node" parent="Node2D/Sprite2D" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "texture"
-themed_resource = ExtResource("7_3irkc")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 1
+resource_json = ExtResource("8_3irkc")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="area_entered" from="RotationJoint/Hitbox" to="." method="on_area_entered"]

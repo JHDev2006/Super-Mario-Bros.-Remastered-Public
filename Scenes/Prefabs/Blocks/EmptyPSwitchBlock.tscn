@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn7wwtug5xman"]
+[gd_scene load_steps=8 format=3 uid="uid://cn7wwtug5xman"]
 
 [ext_resource type="Texture2D" uid="uid://ln7uey6c4mf" path="res://Assets/Sprites/Blocks/PSwitchBlock.png" id="1_e8kpq"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="2_tb55n"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_wy3br"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/PSwitchBlock.json" id="3_3uy5e"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="3_wy3br"]
 [ext_resource type="Script" uid="uid://bul1nbd2in1gn" path="res://Scripts/Classes/Components/PSwitcher.gd" id="4_3uy5e"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="5_312ms"]
 
 [sub_resource type="Resource" id="Resource_312ms"]
 script = ExtResource("3_wy3br")
@@ -17,14 +19,21 @@ texture = ExtResource("1_e8kpq")
 region_enabled = true
 region_rect = Rect2(16, 0, 16, 16)
 
-[node name="ResourceSetter" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("2_tb55n")
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("2_wy3br")
 node_to_affect = NodePath("..")
 property_name = "texture"
-themed_resource = SubResource("Resource_312ms")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 1
+resource_json = ExtResource("3_3uy5e")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PSwitcher" type="Node" parent="."]
 script = ExtResource("4_3uy5e")
 new_scene = "uid://q3aaukgw01nw"
 metadata/_custom_type_script = "uid://bul1nbd2in1gn"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("5_312ms")
+resource = SubResource("Resource_312ms")
+json_file_path = "res://Assets/Sprites/Blocks/PSwitchBlock.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"

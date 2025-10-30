@@ -1,12 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://bx23j813jg0bl"]
+[gd_scene load_steps=17 format=3 uid="uid://bx23j813jg0bl"]
 
 [ext_resource type="Texture2D" uid="uid://dnjx65qkbf1aq" path="res://Assets/Sprites/Blocks/SpringBlock.png" id="1_5ga5m"]
 [ext_resource type="Script" uid="uid://cdlufmypvdtun" path="res://Scripts/Classes/Blocks/SpringBlock.gd" id="1_omsgc"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_wexil"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_wexil"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="4_a8j4k"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_jash1"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="5_3xejn"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SpringBlock.json" id="5_yo3jl"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="7_3xejn"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="8_jsvem"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omsgc"]
 atlas = ExtResource("1_5ga5m")
@@ -42,16 +44,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_e7kaa"]
-script = ExtResource("5_3xejn")
-Overworld = SubResource("SpriteFrames_3xejn")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7kaa"]
 size = Vector2(16, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omsgc"]
 size = Vector2(14, 8)
+
+[sub_resource type="Resource" id="Resource_e7kaa"]
+script = ExtResource("5_3xejn")
+Overworld = SubResource("SpriteFrames_3xejn")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [node name="SpringBlock" type="AnimatableBody2D"]
 collision_layer = 6
@@ -66,12 +68,12 @@ script = ExtResource("2_wexil")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetter" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("4_a8j4k")
+[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_jash1")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-themed_resource = SubResource("Resource_e7kaa")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+resource_json = ExtResource("5_yo3jl")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -90,5 +92,11 @@ script = ExtResource("7_3xejn")
 offset = Vector2(0, 0)
 disable_physics = false
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("8_jsvem")
+resource = SubResource("Resource_e7kaa")
+json_file_path = "res://Assets/Sprites/Blocks/SpringBlock.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
 [connection signal="player_entered" from="PlayerDetection" to="." method="on_player_entered"]

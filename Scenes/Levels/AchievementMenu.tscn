@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bxaeo8dtil8jy"]
+[gd_scene load_steps=21 format=3 uid="uid://bxaeo8dtil8jy"]
 
 [ext_resource type="Script" uid="uid://d3jebf1trkaor" path="res://Scripts/UI/AchievementMenu.gd" id="1_85no8"]
 [ext_resource type="Theme" uid="uid://dtn507x2b5de7" path="res://Resources/Theme.tres" id="1_gq2qe"]
@@ -7,9 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://3ai0ggxah360" path="res://Assets/Sprites/UI/MenuBorder.png" id="6_25fff"]
 [ext_resource type="Texture2D" uid="uid://26v45a5r1gpd" path="res://Assets/Sprites/UI/AchievementBG.png" id="7_761rq"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="7_khc1b"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="8_flkjp"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="8_flkjp"]
 [ext_resource type="AudioStream" uid="uid://cj5eemp85esmq" path="res://Assets/Audio/BGM/Achievements.mp3" id="8_khc1b"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="9_25fff"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="10_25fff"]
 
 [sub_resource type="Shader" id="Shader_mm3k3"]
 code = "shader_type canvas_item;
@@ -30,11 +31,6 @@ shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_khc1b"]
 color = Color(1, 1, 1, 1)
-
-[sub_resource type="Resource" id="Resource_761rq"]
-script = ExtResource("9_25fff")
-Overworld = ExtResource("8_khc1b")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="GDScript" id="GDScript_lqtx1"]
 script/source = "extends AchievementProgressCalculator
@@ -121,6 +117,11 @@ func get_progress() -> int:
 	print(p_amount)
 	return p_amount
 "
+
+[sub_resource type="Resource" id="Resource_761rq"]
+script = ExtResource("9_25fff")
+Overworld = ExtResource("8_khc1b")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [node name="AchievementMenu" type="Node"]
 script = ExtResource("1_85no8")
@@ -243,12 +244,12 @@ mouse_filter = 2
 stream = ExtResource("8_khc1b")
 bus = &"Music"
 
-[node name="ResourceSetter" type="Node" parent="BGM" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="BGM" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("8_flkjp")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_761rq")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ProgressCalculators" type="Node" parent="."]
 
@@ -364,4 +365,10 @@ script = ExtResource("7_khc1b")
 labels = [NodePath("../BG/Border/MarginContainer/VBoxContainer/Title/Progress"), NodePath("../BG/Border/MarginContainer/VBoxContainer/Title")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
-[connection signal="sprites_updated" from="BGM/ResourceSetter" to="BGM" method="play"]
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("10_25fff")
+resource = SubResource("Resource_761rq")
+json_file_path = "res://Assets/Audio/BGM/Achievements.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
+[connection signal="updated" from="BGM/ResourceSetterNew" to="BGM" method="play"]

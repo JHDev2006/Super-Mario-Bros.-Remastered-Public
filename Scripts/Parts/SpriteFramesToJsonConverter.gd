@@ -118,4 +118,7 @@ func get_source(source_resource: Resource) -> String:
 			return texture.atlas.resource_path.get_file()
 		else:
 			return texture.resource_path.get_file()
-	return ""
+	if source_resource.resource_path.get_file():
+		return 	source_resource.resource_path.get_file()
+	else:
+		return ""

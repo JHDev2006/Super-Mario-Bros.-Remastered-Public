@@ -1,0 +1,49 @@
+{
+	"variations": {
+		"Overworld": {
+			"source": "RotationIcon.png",
+			"rect": [
+				0.0,
+				0.0,
+				16.0,
+				16.0
+			]
+		},
+		"default": {
+			"source": "RotationIcon.png",
+			"rect": [
+				0.0,
+				0.0,
+				16.0,
+				16.0
+			]
+		},
+		"Underground": {
+			"source": "RotationIcon.png",
+			"rect": [
+				16.0,
+				0.0,
+				16.0,
+				16.0
+			]
+		},
+		"Castle": {
+			"source": "RotationIcon.png",
+			"rect": [
+				16.0,
+				0.0,
+				16.0,
+				16.0
+			]
+		},
+		"Volcano": {
+			"source": "RotationIcon.png",
+			"rect": [
+				16.0,
+				0.0,
+				16.0,
+				16.0
+			]
+		}
+	}
+}

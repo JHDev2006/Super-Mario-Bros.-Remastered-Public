@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://blv1d12smlibh"]
+[gd_scene load_steps=65 format=3 uid="uid://blv1d12smlibh"]
 
 [ext_resource type="Script" uid="uid://bqhrq7sabq811" path="res://Scripts/UI/ChallengeModeResults.gd" id="1_3x4fv"]
 [ext_resource type="Texture2D" uid="uid://116yaio262mj" path="res://Assets/Sprites/UI/ChallengeResultsTemplate.png" id="3_um36a"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="7_bob8r"]
 [ext_resource type="Texture2D" uid="uid://dfildm0squweg" path="res://Assets/Sprites/Players/ToadNPC.png" id="7_y11uu"]
 [ext_resource type="Texture2D" uid="uid://pjlt0tmutk8w" path="res://Assets/Sprites/UI/SpeechBubble.png" id="8_nud7a"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="9_iyieq"]
 [ext_resource type="AudioStream" uid="uid://dtuo0r8boftsg" path="res://Assets/Audio/SFX/Speaking.wav" id="9_qaelr"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="10_bylb3"]
 [ext_resource type="Texture2D" uid="uid://de6otencrflfo" path="res://Assets/Sprites/UI/RedCoins.png" id="10_d76il"]
@@ -30,12 +29,14 @@
 [ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="21_xk7j8"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/Yoshi.json" id="23_vohx7"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="24_cq5a1"]
+[ext_resource type="JSON" path="res://Assets/Audio/SFX/Yoshi.json" id="25_rh8b8"]
 [ext_resource type="Texture2D" uid="uid://ccb8wtuolj7i3" path="res://Assets/Sprites/Backgrounds/ChallengeModeResults/Results3.png" id="27_w3bjn"]
 [ext_resource type="Texture2D" uid="uid://dyckss38aqmvl" path="res://Assets/Sprites/Backgrounds/ChallengeModeResults/Results2.png" id="28_vohx7"]
 [ext_resource type="Texture2D" uid="uid://c62qmaatddm0h" path="res://Assets/Sprites/Backgrounds/ChallengeModeResults/Results1.png" id="29_1l20f"]
 [ext_resource type="PackedScene" uid="uid://jv82ssp7gwn4" path="res://Scenes/Prefabs/UI/ChallengeModeEnd.tscn" id="31_1l20f"]
 [ext_resource type="PackedScene" uid="uid://dntk2js0tu3y2" path="res://Scenes/Prefabs/UI/WorldSelect.tscn" id="32_xk7j8"]
 [ext_resource type="PackedScene" uid="uid://bsfkt344e6j38" path="res://Scenes/Prefabs/UI/LevelSelectNew.tscn" id="33_x7w5s"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="36_eaocs"]
 
 [sub_resource type="Animation" id="Animation_6dwpv"]
 resource_name = "Main"
@@ -559,11 +560,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_vohx7"]
-script = ExtResource("10_bylb3")
-Overworld = ExtResource("19_n4lt1")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_x2ehg"]
 atlas = ExtResource("20_n4lt1")
 region = Rect2(0, 0, 16, 16)
@@ -606,6 +602,11 @@ animations = [{
 "name": &"default",
 "speed": 15.0
 }]
+
+[sub_resource type="Resource" id="Resource_vohx7"]
+script = ExtResource("10_bylb3")
+Overworld = ExtResource("19_n4lt1")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [node name="ChallengeModeResults" type="Node"]
 script = ExtResource("1_3x4fv")
@@ -992,12 +993,13 @@ stream = ExtResource("19_n4lt1")
 volume_db = 5.0
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="Yoshi/AudioStreamPlayer2D" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("9_iyieq")
+[node name="ResourceSetterNew" type="Node" parent="Yoshi/AudioStreamPlayer2D" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_vohx7")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("25_rh8b8")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetterNew" type="Node" parent="Yoshi" node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("7_bob8r")
@@ -1107,6 +1109,12 @@ offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 has_challenge_stuff = true
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("36_eaocs")
+resource = SubResource("Resource_vohx7")
+json_file_path = "res://Assets/Audio/SFX/Yoshi.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
 [connection signal="option_1_selected" from="CanvasLayer/PauseMenu" to="." method="retry_level"]
 [connection signal="option_2_selected" from="CanvasLayer/PauseMenu" to="CanvasLayer/PauseMenu" method="close"]
