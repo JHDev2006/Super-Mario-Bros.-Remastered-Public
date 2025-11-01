@@ -621,7 +621,6 @@ func theme_selected(theme_idx := 0) -> void:
 	AudioManager.current_level_theme = ""
 	$Level.theme = Level.THEME_IDXS[theme_idx]
 	Global.level_theme = $Level.theme
-	Global.level_theme_changed.emit()
 
 func time_selected(time_idx := 0) -> void:
 	ResourceSetterNew.cache.clear()
@@ -629,7 +628,6 @@ func time_selected(time_idx := 0) -> void:
 	$Level.theme_time = ["Day", "Night"][time_idx]
 	Global.theme_time = ["Day", "Night"][time_idx]
 	$Level/LevelBG.time_of_day = time_idx
-	Global.level_theme_changed.emit()
 
 func music_selected(music_idx := 0) -> void:
 	bgm_id = music_idx
