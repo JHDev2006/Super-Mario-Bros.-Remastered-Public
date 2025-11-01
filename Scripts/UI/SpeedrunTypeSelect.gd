@@ -14,9 +14,13 @@ func _physics_process(delta: float) -> void:
 	if active:
 		if Input.is_action_just_pressed("ui_down"):
 			selected_index += 1
+			if Settings.file.audio.extra_sfx == 1:
+				AudioManager.play_global_sfx("menu_move")
 		elif Input.is_action_just_pressed("ui_up"):
 			selected_index -= 1
-		selected_index = clamp(selected_index, 0, 1)
+			if Settings.file.audio.extra_sfx == 1:
+				AudioManager.play_global_sfx("menu_move")
+		selected_index = wrapi(selected_index, 0, 2)
 		if Input.is_action_just_pressed("ui_accept"):
 			SpeedrunHandler.is_warp_run = bool(selected_index)
 			selected.emit()
