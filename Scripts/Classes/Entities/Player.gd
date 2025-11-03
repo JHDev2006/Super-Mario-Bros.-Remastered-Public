@@ -49,8 +49,6 @@ var has_jumped := false
 var direction := 1
 var input_direction := 0
 
-var flight_meter := 0.0
-
 var velocity_direction := 1
 var velocity_x_jump_stored := 0
 
@@ -206,6 +204,8 @@ var skid_frames := 0
 
 var simulated_velocity := Vector2.ZERO
 
+var has_wing := false
+
 func _ready() -> void:
 	if classic_physics:
 		apply_classic_physics()
@@ -299,7 +299,6 @@ func _physics_process(delta: float) -> void:
 	up_direction = -gravity_vector
 	handle_directions()
 	handle_block_collision_detection()
-	handle_wing_flight(delta)
 	air_frames = (air_frames + 1 if is_on_floor() == false else 0)
 	for i in get_tree().get_nodes_in_group("StepCollision"):
 		var on_wall := false
@@ -329,7 +328,7 @@ func handle_water_detection() -> void:
 	var old_water = in_water
 	if $Hitbox.monitoring:
 		in_water = $Hitbox.get_overlapping_areas().any(func(area: Area2D): return area is WaterArea) or $WaterDetect.get_overlapping_bodies().is_empty() == false
-	if old_water != in_water and in_water == false and flight_meter <= 0:
+	if old_water != in_water and in_water == false and has_wing == false:
 		water_exited()
 
 func summon_bubble() -> void:
@@ -344,9 +343,10 @@ func _process(delta: float) -> void:
 		DiscoLevel.combo_meter = 100
 	%Hammer.visible = has_hammer
 	%HammerHitbox.collision_layer = has_hammer
+	handle_wing_flight()
 
 func apply_gravity(delta: float) -> void:
-	if in_water or flight_meter > 0:
+	if in_water or has_wing:
 		gravity = SWIM_GRAVITY
 	else:
 		if sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
@@ -488,8 +488,7 @@ func super_star() -> void:
 var colour_palette: Texture = null
 
 func stop_all_timers() -> void:
-	flight_meter = -1
-	for i in [$StarTimer, $HammerTimer]:
+	for i in [$StarTimer, $HammerTimer, $WingTimer]:
 		i.stop()
 
 func handle_invincible_palette() -> void:
@@ -538,22 +537,18 @@ func handle_power_up_states(delta) -> void:
 	$Checkpoint.position.y = -24 if power_state.hitbox_size == "Small" else -40
 	power_state.update(delta)
 
-func handle_wing_flight(delta: float) -> void:
-	flight_meter -= delta
-	if flight_meter <= 0 && %Wings.visible:
-		AudioManager.stop_music_override(AudioManager.MUSIC_OVERRIDES.WING)
-		gravity = FALL_GRAVITY
-	%Wings.visible = flight_meter >= 0
-	if flight_meter < 0:
+func handle_wing_flight() -> void:
+	%Wings.visible = has_wing
+	if has_wing == false:
 		return
 	%BigWing.visible = power_state.hitbox_size == "Big"
 	%SmallWing.visible = power_state.hitbox_size == "Small"
 	for i in [%SmallWing, %BigWing]:
-		if velocity.y < 0:
+		if normal_state.swim_up_meter > 0:
 			i.play("Flap")
 		else:
 			i.play("Idle")
-	if flight_meter <= 3:
+	if $WingTimer.time_left <= 3:
 		%Wings.get_node("AnimationPlayer").play("Flash")
 	else:
 		%Wings.get_node("AnimationPlayer").play("RESET")
@@ -611,7 +606,6 @@ func die(pit := false) -> void:
 		return
 	is_dead = true
 	visible = not pit
-	flight_meter = 0
 	dead.emit()
 	Global.p_switch_active = false
 	Global.p_switch_timer = 0
@@ -890,12 +884,11 @@ func do_smoke_effect() -> void:
 			break
 	AudioManager.play_sfx("magic", global_position)
 
-func on_timeout() -> void:
+func on_star_timeout() -> void:
 	AudioManager.stop_music_override(AudioManager.MUSIC_OVERRIDES.STAR)
 	await get_tree().create_timer(1, false).timeout
 	if $StarTimer.is_stopped():
 		is_invincible = false
-
 
 func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player and area.owner != self:
@@ -910,12 +903,17 @@ func hammer_get() -> void:
 	AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.HAMMER, 0, false)
 
 func wing_get() -> void:
+	has_wing = true
+	$WingTimer.start()
 	AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.WING, 0, false, false)
-	flight_meter = 10
 
 func on_hammer_timeout() -> void:
 	has_hammer = false
 	AudioManager.stop_music_override(AudioManager.MUSIC_OVERRIDES.HAMMER)
+	
+func on_wing_timeout() -> void:
+	has_wing = false
+	AudioManager.stop_music_override(AudioManager.MUSIC_OVERRIDES.WING)
 
 func water_exited() -> void:
 	await get_tree().physics_frame

@@ -410,6 +410,11 @@ script = ExtResource("24_hu5lw")
 Overworld = ExtResource("13_uo1a1")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
+[sub_resource type="Resource" id="Resource_xy8gq"]
+script = ExtResource("24_hu5lw")
+Overworld = ExtResource("40_o70e0")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
+
 [sub_resource type="Resource" id="Resource_cekpg"]
 script = ExtResource("24_hu5lw")
 Overworld = ExtResource("18_hofol")
@@ -477,11 +482,6 @@ size = Vector2(4, 6.75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34tqy"]
 resource_local_to_scene = true
 size = Vector2(4, 12)
-
-[sub_resource type="Resource" id="Resource_xy8gq"]
-script = ExtResource("24_hu5lw")
-Overworld = ExtResource("40_o70e0")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pm4ir"]
 particles_animation = true
@@ -761,11 +761,6 @@ texture = ExtResource("20_34tqy")
 script = ExtResource("8_4ojwh")
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
-[node name="StarTimer" type="Timer" parent="."]
-process_mode = 1
-wait_time = 10.0
-one_shot = true
-
 [node name="Checkpoint" type="Sprite2D" parent="."]
 process_mode = 3
 physics_interpolation_mode = 2
@@ -800,10 +795,32 @@ property_name = "texture"
 themed_resource = SubResource("Resource_2mfvl")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
+[node name="StarTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 10.0
+one_shot = true
+
+[node name="WingTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 10.0
+one_shot = true
+
 [node name="HammerTimer" type="Timer" parent="."]
 process_mode = 1
 wait_time = 10.0
 one_shot = true
+
+[node name="TimerWarn" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("40_o70e0")
+bus = &"SFX"
+
+[node name="ResourceSetter" type="Node" parent="TimerWarn" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("27_6ws8x")
+node_to_affect = NodePath("..")
+property_name = "stream"
+themed_resource = SubResource("Resource_xy8gq")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
 
 [node name="SkidSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_hofol")
@@ -969,7 +986,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
 
-[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/WingTimer" node_paths=PackedStringArray("warn_sfx")]
+[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/WingTimer" node_paths=PackedStringArray("timer", "warn_sfx")]
 texture = ExtResource("29_uwhl4")
 centered = false
 hframes = 7
@@ -977,8 +994,9 @@ region_enabled = true
 region_rect = Rect2(0, 16, 56, 8)
 script = ExtResource("30_o70e0")
 max_value = 10.0
-value_name = "flight_meter"
-object = 1
+value_name = "time_left"
+object = 2
+timer = NodePath("../../../../../../WingTimer")
 warn_sfx = NodePath("../../../../../../TimerWarn")
 warn_threshold = 0.8500000000058208
 metadata/_custom_type_script = "uid://dn5efttgugwvb"
@@ -1114,18 +1132,6 @@ script = ExtResource("21_jl70t")
 link = NodePath("../../BigCollision")
 metadata/scalable = false
 
-[node name="TimerWarn" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("40_o70e0")
-bus = &"SFX"
-
-[node name="ResourceSetter" type="Node" parent="TimerWarn" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("27_6ws8x")
-node_to_affect = NodePath("..")
-property_name = "stream"
-themed_resource = SubResource("Resource_xy8gq")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
-
 [node name="SkidParticles" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_pm4ir")
@@ -1143,5 +1149,6 @@ anim_speed_max = 1.0
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="on_area_exited"]
 [connection signal="body_entered" from="LavaPoisonDetect" to="." method="die" unbinds=1]
-[connection signal="timeout" from="StarTimer" to="." method="on_timeout"]
+[connection signal="timeout" from="StarTimer" to="." method="on_star_timeout"]
+[connection signal="timeout" from="WingTimer" to="." method="on_wing_timeout"]
 [connection signal="timeout" from="HammerTimer" to="." method="on_hammer_timeout"]

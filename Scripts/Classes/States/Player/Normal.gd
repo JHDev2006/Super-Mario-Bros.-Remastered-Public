@@ -42,7 +42,7 @@ func handle_movement(delta: float) -> void:
 		player_transform.origin += Vector2.UP * 1
 	if player.is_actually_on_floor():
 		handle_ground_movement(delta)
-	elif player.in_water or player.flight_meter > 0:
+	elif player.in_water or player.has_wing:
 		handle_swimming(delta)
 	else:
 		handle_air_movement(delta)
@@ -55,12 +55,12 @@ func grounded(delta: float) -> void:
 		player.has_jumped = false
 	if Global.player_action_just_pressed("jump", player.player_id):
 		player.handle_water_detection()
-		if player.in_water or player.flight_meter > 0:
+		if player.in_water or player.has_wing:
 			swim_up()
 			return
 		else:
 			player.jump()
-	if jump_queued and not (player.in_water or player.flight_meter > 0):
+	if jump_queued and not (player.in_water or player.has_wing):
 		if player.spring_bouncing == false:
 			player.jump()
 		jump_queued = false
@@ -94,10 +94,10 @@ func handle_ground_movement(delta: float) -> void:
 
 func ground_acceleration(delta: float) -> void:
 	var target_move_speed := player.WALK_SPEED
-	if player.in_water or player.flight_meter > 0:
+	if player.in_water or player.has_wing:
 		target_move_speed = player.SWIM_GROUND_SPEED
 	var target_accel := player.GROUND_WALK_ACCEL
-	if (Global.player_action_pressed("run", player.player_id) and abs(player.velocity.x) >= player.WALK_SPEED) and (not player.in_water and player.flight_meter <= 0) and player.can_run:
+	if (Global.player_action_pressed("run", player.player_id) and abs(player.velocity.x) >= player.WALK_SPEED) and (not player.in_water and not player.has_wing) and player.can_run:
 		target_move_speed = player.RUN_SPEED
 		target_accel = player.GROUND_RUN_ACCEL
 	if player.input_direction != player.velocity_direction:
@@ -120,7 +120,7 @@ func ground_skid(delta: float) -> void:
 
 func in_air() -> void:
 	if Global.player_action_just_pressed("jump", player.player_id):
-		if player.in_water or player.flight_meter > 0:
+		if player.in_water or player.has_wing:
 			swim_up()
 		else:
 			jump_queued = true
@@ -149,7 +149,7 @@ func air_skid(delta: float) -> void:
 
 func handle_swimming(delta: float) -> void:
 	bubble_meter += delta
-	if bubble_meter >= 1 and player.flight_meter <= 0:
+	if bubble_meter >= 1 and not player.has_wing:
 		player.summon_bubble()
 		bubble_meter = 0
 	swim_up_meter -= delta
@@ -173,7 +173,7 @@ func swim_up() -> void:
 	player.crouching = false
 
 func handle_animations() -> void:
-	if (player.is_actually_on_floor() or player.in_water or player.flight_meter > 0 or player.can_air_turn) and player.input_direction != 0 and not player.crouching:
+	if (player.is_actually_on_floor() or player.in_water or player.has_wing or player.can_air_turn) and player.input_direction != 0 and not player.crouching:
 		player.direction = player.input_direction
 	var animation = get_animation_name()
 	player.sprite.speed_scale = 1
@@ -194,7 +194,7 @@ func get_animation_name() -> String:
 			elif abs(player.velocity.x) >= 5 and not player.is_actually_on_wall():
 				if player.in_water:
 					return "SwimAttack"
-				elif player.flight_meter > 0:
+				elif player.has_wing:
 					return "FlyAttack"
 				elif abs(player.velocity.x) < player.RUN_SPEED - 10:
 					return "WalkAttack"
@@ -205,7 +205,7 @@ func get_animation_name() -> String:
 		else:
 			if player.in_water:
 				return "SwimAttack"
-			elif player.flight_meter > 0:
+			elif player.has_wing:
 				return "FlyAttack"
 			else:
 				return "AirAttack"
@@ -223,14 +223,14 @@ func get_animation_name() -> String:
 			if abs(player.velocity.x) >= 5 and not player.is_actually_on_wall():
 				if player.in_water:
 					return "WaterCrouchMove"
-				elif player.flight_meter > 0:
+				elif player.has_wing:
 					return "WingCrouchMove"
 				else:
 					return "CrouchMove"
 			else:
 				if player.in_water:
 					return "WaterCrouch"
-				elif player.flight_meter > 0:
+				elif player.has_wing:
 					return "WingCrouch"
 				else:
 					return "Crouch"
@@ -240,7 +240,7 @@ func get_animation_name() -> String:
 		elif abs(player.velocity.x) >= 5 and not player.is_actually_on_wall():
 			if player.in_water:
 				return "WaterMove"
-			elif player.flight_meter > 0:
+			elif player.has_wing:
 				return "WingMove"
 			elif abs(player.velocity.x) < player.RUN_SPEED - 10:
 				return "Walk"
@@ -250,14 +250,14 @@ func get_animation_name() -> String:
 			if Global.player_action_pressed("move_up", player.player_id):
 				if player.in_water:
 					return "WaterLookUp"
-				elif player.flight_meter > 0:
+				elif player.has_wing:
 					return "WingLookUp"
 				else:
 					return "LookUp"
 			else:
 				if player.in_water:
 					return "WaterIdle"
-				elif player.flight_meter > 0:
+				elif player.has_wing:
 					return "WingIdle"
 				else:
 					return "Idle"
@@ -270,7 +270,7 @@ func get_animation_name() -> String:
 					return "SwimUp"
 			else:
 				return "SwimIdle"
-		elif player.flight_meter > 0:
+		elif player.has_wing:
 			if swim_up_meter > 0:
 				if player.bumping and player.can_bump_fly:
 					return "FlyBump"
