@@ -297,8 +297,8 @@ func get_variation_json(json := {}) -> Dictionary:
 	return json
 
 func get_config_file(resource_pack := "") -> void:
-	if FileAccess.file_exists("user://resource_packs/" + resource_pack + "/config.json"):
-		config_to_use = JSON.parse_string(FileAccess.open("user://resource_packs/" + resource_pack + "/config.json", FileAccess.READ).get_as_text())
+	if FileAccess.file_exists(Global.config_path.path_join("resource_packs/" + resource_pack + "/config.json")):
+		config_to_use = JSON.parse_string(FileAccess.open(Global.config_path.path_join("resource_packs/" + resource_pack + "/config.json"), FileAccess.READ).get_as_text())
 		if config_to_use == null:
 			Global.log_error("Error parsing Config File! (" + resource_pack + ")")
 			config_to_use = {}
