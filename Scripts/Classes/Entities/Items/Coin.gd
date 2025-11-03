@@ -13,6 +13,7 @@ func area_entered(area: Area2D) -> void:
 		collect()
 
 func collect() -> void:
+	remove_from_group("Coins")
 	collected.emit()
 	$Hitbox.area_entered.disconnect(area_entered)
 	Global.coins += 1

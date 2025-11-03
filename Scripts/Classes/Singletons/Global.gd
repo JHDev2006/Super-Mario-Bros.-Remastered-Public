@@ -482,7 +482,7 @@ func sanitize_string(string := "") -> String:
 	return string
 
 func get_base_asset_version() -> int:
-	var json = JSON.parse_string(FileAccess.open("user://BaseAssets/pack_info.json", FileAccess.READ).get_as_text())
+	var json = JSON.parse_string(FileAccess.open(Global.config_path.path_join("BaseAssets/pack_info.json"), FileAccess.READ).get_as_text())
 	var version = json.version
 	return get_version_num_int(version)
 

@@ -34,8 +34,9 @@ func flag_die() -> void:
 	if on_screen_enabler != null:
 		if on_screen_enabler.is_on_screen():
 			queue_free()
-			Global.score += 500
 			if score_note_adder != null:
+				if score_note_adder.add_score == false:
+					Global.score += 500
 				score_note_adder.spawn_note(500)
 
 func die_from_hammer(obj: Node2D) -> void:

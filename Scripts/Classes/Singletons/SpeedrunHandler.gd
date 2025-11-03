@@ -123,7 +123,6 @@ const SMBLL_LEVEL_GOLD_ANY_TIMES := {
 }
 
 const SMBS_LEVEL_GOLD_ANY_TIMES := {
-	"1-2": 25,
 	"4-2": 30
 }
 

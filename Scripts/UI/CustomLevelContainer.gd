@@ -56,8 +56,8 @@ func _ready() -> void:
 	update_visuals()
 
 func update_visuals() -> void:
-	if is_downloaded and FileAccess.file_exists("user://custom_levels/downloaded/thumbnails/" + level_id + ".png"):
-		thumbnail = ImageTexture.create_from_image(Image.load_from_file("user://custom_levels/downloaded/thumbnails/" + level_id + ".png"))
+	if is_downloaded and FileAccess.file_exists(Global.config_path.path_join("custom_levels/downloaded/thumbnails/" + level_id + ".png")):
+		thumbnail = ImageTexture.create_from_image(Image.load_from_file(Global.config_path.path_join("custom_levels/downloaded/thumbnails/" + level_id + ".png")))
 		%Thumbnail.texture = thumbnail
 		%LevelIcon.hide()
 		%Thumbnail.show()
