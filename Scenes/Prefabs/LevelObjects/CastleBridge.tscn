@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dtpyjucfl16sw"]
+[gd_scene load_steps=25 format=3 uid="uid://dtpyjucfl16sw"]
 
 [ext_resource type="Script" uid="uid://drigdwsriqtma" path="res://Scripts/Parts/CastleBridge.gd" id="1_7m65m"]
 [ext_resource type="Texture2D" uid="uid://boc6yagywb1lu" path="res://Assets/Sprites/Tilesets/Terrain/Castle.png" id="1_030qv"]
@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://iiepujg1uywt" path="res://Assets/Sprites/Items/BridgeAxe.png" id="2_wg8ck"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="4_s4k02"]
 [ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_tmf7w"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="7_m5y50"]
+[ext_resource type="Texture2D" uid="uid://eewi3lw6n1sh" path="res://Assets/Sprites/Items/BridgeChain.png" id="5_m5y50"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/BridgeChain.json" id="7_kvynl"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="8_geany"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="9_m5y50"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/BridgeAxe.json" id="10_kvynl"]
@@ -166,9 +167,9 @@ shape = SubResource("RectangleShape2D_7m65m")
 
 [node name="Sprite2D14" type="Sprite2D" parent="Axe"]
 position = Vector2(-16, 16)
-texture = ExtResource("1_030qv")
+texture = ExtResource("5_m5y50")
 region_enabled = true
-region_rect = Rect2(208, 128, 16, 16)
+region_rect = Rect2(0, 0, 16, 16)
 region_filter_clip_enabled = true
 
 [node name="ResourceSetterNew" type="Node" parent="Axe/Sprite2D14" node_paths=PackedStringArray("node_to_affect")]
@@ -176,7 +177,7 @@ script = ExtResource("9_m5y50")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("7_m5y50")
+resource_json = ExtResource("7_kvynl")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CameraRightLimit" type="Node2D" parent="Axe"]
