@@ -151,11 +151,11 @@ func update_pb() -> void:
 		gold_any_time = SpeedrunHandler.LEVEL_GOLD_ANY_TIMES[Global.current_campaign][str(Global.world_num) + "-" + str(selected_level + 1)]
 	for i in %FullRunMedals.get_children():
 		var target_time = gold_warpless_time * SpeedrunHandler.MEDAL_CONVERSIONS[i.get_index()]
-		i.get_node("Full").visible = best_warpless_time <= target_time and best_warpless_time > 0
+		i.get_node("Full").visible = SpeedrunHandler.met_target_time(best_warpless_time, target_time)
 	if gold_any_time != -1:
 		for i in %WarpRunMedals.get_children():
 			var target_time = gold_any_time * SpeedrunHandler.MEDAL_CONVERSIONS[i.get_index()]
-			i.get_node("Full").visible = best_any_time <= target_time and best_any_time > 0
+			i.get_node("Full").visible = SpeedrunHandler.met_target_time(best_any_time, target_time)
 	else:
 		for i in %WarpRunMedals.get_children():
 			i.get_node("Full").hide()
