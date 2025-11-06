@@ -100,14 +100,21 @@ func handle_challenge_mode_hud() -> void:
 	%ModernLifeCount.hide()
 	%CharacterIcon.hide()
 	var red_coins_collected = ChallengeModeHandler.current_run_red_coins_collected
-	var idx := 0
+
 	if Global.world_num > 8:
 		return
 	if Global.in_title_screen:
 		red_coins_collected = int(ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1])
+	
+	var idx := 0
 	for i in [$Main/RedCoins/Coin1, $Main/RedCoins/Coin2, $Main/RedCoins/Coin3, $Main/RedCoins/Coin4, $Main/RedCoins/Coin5]:
 		i.frame = int(ChallengeModeHandler.is_coin_collected(idx, red_coins_collected))
 		idx += 1
+	idx = 0
+	for i in [$Main/RedCoins/Coin1Transparent, $Main/RedCoins/Coin2Transparent, $Main/RedCoins/Coin3Transparent, $Main/RedCoins/Coin4Transparent, $Main/RedCoins/Coin5Transparent]:
+		i.frame = int(ChallengeModeHandler.is_coin_permanently_collected(idx))
+		idx += 1
+	
 	if ChallengeModeHandler.is_coin_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG, red_coins_collected):
 		$Main/RedCoins/YoshiEgg.frame = Global.level_num
 	else:
@@ -148,6 +155,9 @@ func handle_yoshi_radar() -> void:
 	if distance < 512:
 		%Radar.get_node("AnimationPlayer").play("Flash")
 		%ModernRadar.get_node("AnimationPlayer").play("Flash")
+	elif ChallengeModeHandler.is_coin_permanently_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG):
+		%Radar.get_node("AnimationPlayer").play("AlwaysOn")
+		%ModernRadar.get_node("AnimationPlayer").play("AlwaysOn")
 	else:
 		%Radar.get_node("AnimationPlayer").play("RESET")
 		%ModernRadar.get_node("AnimationPlayer").play("RESET")
