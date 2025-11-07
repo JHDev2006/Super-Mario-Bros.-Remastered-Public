@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=4 uid="uid://b02283dgopw28"]
+
+[ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_1y2g0"]
+[ext_resource type="JSON" path="res://Assets/Audio/BGM/CoinHeaven.json" id="2_5ym04"]
+[ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="3_cp5jp"]
+[ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="4_c6bfj"]
+[ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="7_0g38y"]
+[ext_resource type="PackedScene" uid="uid://ch20va50duqps" path="res://Scenes/Parts/AutoExitPipeArea.tscn" id="8_vpute"]
+[ext_resource type="PackedScene" uid="uid://dkgu57is78lro" path="res://Scenes/Parts/PipeArea.tscn" id="9_k4xfk"]
+[ext_resource type="PackedScene" uid="uid://c145qqkvy8pr5" path="res://Scenes/Parts/DecoTiles.tscn" id="10_1r3ws"]
+[ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="11_5ym04"]
+[ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="12_c6bfj"]
+[ext_resource type="PackedScene" uid="uid://cmbpqnq10arts" path="res://Scenes/Prefabs/Entities/Items/RedCoin.tscn" id="13_jv4xg"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_1y2g0")
+music = ExtResource("2_5ym04")
+campaign = "SMBS"
+metadata/_custom_type_script = "uid://bcqr1v25ygedb"
+
+[node name="LevelBG" parent="." instance=ExtResource("3_cp5jp")]
+primary_layer = 2
+overlay_clouds = true
+
+[node name="Tiles" parent="." instance=ExtResource("4_c6bfj")]
+tile_map_data = PackedByteArray("AADw/wAAAAAEAAIAAADw/wEAAAAEAAIAAADx/wAAAAAEAAIAAADx/wEAAAAEAAIAAADy/wAAAAAEAAIAAADy/wEAAAAEAAIAAADz/wAAAAAEAAIAAADz/wEAAAAEAAIAAAD0/wAAAAAEAAIAAAD0/wEAAAAEAAIAAAD1/wAAAAAEAAIAAAD1/wEAAAAEAAIAAAD2/wAAAAAEAAIAAAD2/wEAAAAEAAIAAAD3/wAAAAAEAAIAAAD3/wEAAAAEAAIAAAD4/wAAAAAEAAIAAAD4/wEAAAAEAAIAAAD5/wAAAAAEAAIAAAD5/wEAAAAEAAIAAAD6/wAAAAAEAAIAAAD6/wEAAAAEAAIAAAD7/wAAAAAEAAIAAAD7/wEAAAAEAAIAAAD8/wAAAAAEAAIAAAD8/wEAAAAEAAIAAAD9/wAAAAAEAAIAAAD9/wEAAAAEAAIAAAD+/wAAAAAEAAIAAAD+/wEAAAAEAAIAAAD//wAAAAAEAAIAAAD//wEAAAAEAAIAAAAAAAAAAAAEAAIAAAAAAAEAAAAEAAIAAAABAAAAAAAEAAIAAAABAAEAAAAEAAIAAAACAAAAAAAEAAIAAAACAAEAAAAEAAIAAAADAAAAAAAEAAIAAAADAAEAAAAEAAIAAAACAPb/AAAEAAIAAAACAPf/AAAEAAIAAAACAPj/AAAEAAIAAAACAPn/AAAEAAIAAAACAPr/AAAEAAIAAAACAPv/AAAEAAIAAAACAPz/AAAEAAIAAAACAP3/AAAEAAIAAAACAP7/AAAEAAIAAAACAP//AAAEAAIAAAADAPb/AAAEAAIAAAADAPf/AAAEAAIAAAADAPj/AAAEAAIAAAADAPn/AAAEAAIAAAADAPr/AAAEAAIAAAADAPv/AAAEAAIAAAADAPz/AAAEAAIAAAADAP3/AAAEAAIAAAADAP7/AAAEAAIAAAADAP//AAAEAAIAAAAAAPX/AAAEAAIAAAABAPX/AAAEAAIAAAACAPX/AAAEAAIAAADw//X/AAAEAAIAAADx//X/AAAEAAIAAADy//X/AAAEAAIAAADz//X/AAAEAAIAAAD0//X/AAAEAAIAAAD1//X/AAAEAAIAAAD2//X/AAAEAAIAAAD3//X/AAAEAAIAAAD4//X/AAAEAAIAAAD5//X/AAAEAAIAAAD6//X/AAAEAAIAAAD7//X/AAAEAAIAAAD8//X/AAAEAAIAAAD9//X/AAAEAAIAAAD+//X/AAAEAAIAAAD///X/AAAEAAIAAAADAPX/AAAEAAIAAADw//b/AAAEAAIAAADw//f/AAAEAAIAAADw//j/AAAEAAIAAADw//n/AAAEAAIAAADw//r/AAAEAAIAAADw//v/AAAEAAIAAADw//z/AAAEAAIAAADw//3/AAAEAAIAAADw//7/AAAEAAIAAADw////AAAEAAIAAADx//b/AAAEAAIAAADx//f/AAAEAAIAAADx//j/AAAEAAIAAADx//n/AAAEAAIAAADx//r/AAAEAAIAAADx//v/AAAEAAIAAADx//z/AAAEAAIAAADx//3/AAAEAAIAAADx//7/AAAEAAIAAADx////AAAEAAIAAADy//v/AAAIAAAAAADy//z/AAAIAAEAAADz//v/AAAJAAAAAADz//z/AAAJAAEAAADy//3/AAAIAAEAAADy//7/AAAIAAEAAADy////AAAIAAEAAADz//3/AAAJAAEAAADz//7/AAAJAAEAAADz////AAAJAAEAAAAAAPv/AAAIAAIAAAAAAPz/AAAIAAMAAAABAPv/AAAJAAIAAAABAPz/AAAJAAMAAAAAAP3/AAAIAAMAAAABAP3/AAAJAAMAAAAAAP7/AAAIAAMAAAABAP7/AAAJAAMAAAAAAP//AAAIAAMAAAABAP//AAAJAAMAAAD5//v/AAAEAAEAAAD6//v/AAAEAAEAAAD0//f/AQAAAAAAAwD1//f/AQAAAAAAAwD2//f/AQAAAAAAAwD3//f/AQAAAAAAAwD4//f/AQAAAAAAAwD5//f/AQAAAAAAAwD6//f/AQAAAAAAAwD7//f/AQAAAAAAAwD8//f/AQAAAAAAAwD9//f/AQAAAAAAAwD+//f/AQAAAAAAAwD///f/AQAAAAAAAwA=")
+
+[node name="Player" parent="." instance=ExtResource("7_0g38y")]
+position = Vector2(-168, -72)
+
+[node name="AutoExitPipeArea" parent="." instance=ExtResource("8_vpute")]
+position = Vector2(-208, -80)
+exit_only = true
+
+[node name="PipeArea" parent="." instance=ExtResource("9_k4xfk")]
+position = Vector2(16, -80)
+target_level = "uid://d013e0ufoaac8"
+
+[node name="DecoTiles" parent="." instance=ExtResource("10_1r3ws")]
+tile_map_data = PackedByteArray("AAD8//7/AAADAAEAAAD8////AAADAAEAAAD3//7/AAADAAEAAAD3////AAADAAEAAAD8//3/AAADAAAAAAD3//3/AAADAAAAAAA=")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-96, -88)
+
+[node name="DropShadow" parent="." instance=ExtResource("11_5ym04")]
+
+[node name="ChallengeNodes" type="Node" parent="."]
+script = ExtResource("12_c6bfj")
+metadata/_custom_type_script = "uid://cgm3opb5qudc1"
+
+[node name="RedCoin" parent="ChallengeNodes" instance=ExtResource("13_jv4xg")]
+position = Vector2(-96, -88)
+id = 3
+
+[connection signal="collected" from="Tiles/Coin" to="Tiles/Coin/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267435" to="Tiles/@Node2D@267435/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267436" to="Tiles/@Node2D@267436/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267437" to="Tiles/@Node2D@267437/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267438" to="Tiles/@Node2D@267438/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267439" to="Tiles/@Node2D@267439/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267440" to="Tiles/@Node2D@267440/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267441" to="Tiles/@Node2D@267441/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267442" to="Tiles/@Node2D@267442/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267443" to="Tiles/@Node2D@267443/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267444" to="Tiles/@Node2D@267444/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@267445" to="Tiles/@Node2D@267445/LevelPersistance" method="set_as_active"]
+[connection signal="ready" from="Camera2D" to="Camera2D" method="make_current"]

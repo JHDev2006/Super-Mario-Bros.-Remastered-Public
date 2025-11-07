@@ -1,40 +1,30 @@
-[gd_scene load_steps=50 format=4 uid="uid://d3hqqssb721f5"]
+[gd_scene load_steps=40 format=4 uid="uid://b25x1t17eeod4"]
 
-[ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_sh56m"]
-[ext_resource type="JSON" path="res://Assets/Audio/BGM/Mountain.json" id="2_5v4dr"]
-[ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="3_at23f"]
-[ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="4_dwe2j"]
-[ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="5_2sfe6"]
-[ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="5_88ydr"]
-[ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="6_4ttxc"]
-[ext_resource type="PackedScene" uid="uid://dpukj2ja3i3qj" path="res://Scenes/Prefabs/Blocks/BrickBlocks/StarBrickBlock.tscn" id="7_fl10u"]
-[ext_resource type="PackedScene" uid="uid://c6loucilra6da" path="res://Scenes/Prefabs/LevelObjects/EndFlagpole.tscn" id="7_giabg"]
-[ext_resource type="PackedScene" uid="uid://canoj6slqk5ee" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleOneUpQuestionBlock.tscn" id="8_3r35u"]
-[ext_resource type="PackedScene" uid="uid://byqmn8yi7iuac" path="res://Scenes/Prefabs/LevelObjects/EndSmallCastle.tscn" id="8_fmns0"]
-[ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="9_5v4dr"]
-[ext_resource type="PackedScene" uid="uid://dkgu57is78lro" path="res://Scenes/Parts/PipeArea.tscn" id="9_at23f"]
-[ext_resource type="PackedScene" uid="uid://um8m5iu20qj3" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/PoisonQuestionBlock.tscn" id="9_piylw"]
-[ext_resource type="PackedScene" uid="uid://cih0lt6mbg3g8" path="res://Scenes/Prefabs/Blocks/BrickBlocks/PoisonMushroomBrickBlock.tscn" id="10_jv5sf"]
-[ext_resource type="PackedScene" uid="uid://by6ndsjhlkmbt" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffBlock.tscn" id="11_utmuf"]
-[ext_resource type="PackedScene" uid="uid://5ua3p0lfl1bf" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffSwitch.tscn" id="12_rlwa0"]
-[ext_resource type="PackedScene" uid="uid://c1xle3fplnxtr" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffBlueBlock.tscn" id="13_qxyew"]
-[ext_resource type="PackedScene" uid="uid://dgq7enviy1qhw" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/TimedBooBlock.tscn" id="14_e5y6n"]
-[ext_resource type="PackedScene" uid="uid://n1xyk5g5r4h6" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisiblePowerUpQuestionBlock.tscn" id="15_jimku"]
-[ext_resource type="PackedScene" uid="uid://bx23j813jg0bl" path="res://Scenes/Prefabs/Blocks/SpringBlock.tscn" id="16_yf4ub"]
-[ext_resource type="PackedScene" uid="uid://bc1mrna4kybhv" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/QuestionBlock.tscn" id="17_o8wpa"]
-[ext_resource type="PackedScene" uid="uid://d2ainv86lt68a" path="res://Scenes/Prefabs/Blocks/SwitchSpikeBlock.tscn" id="18_ff4yn"]
-[ext_resource type="PackedScene" uid="uid://chjxyhlwohmi6" path="res://Scenes/Prefabs/Entities/Items/Coin.tscn" id="19_og8re"]
-[ext_resource type="PackedScene" uid="uid://6n4m3cwyuea1" path="res://Scenes/Prefabs/LevelObjects/DeathPit.tscn" id="20_ibvgo"]
-[ext_resource type="PackedScene" uid="uid://cqvr7a6e84oti" path="res://Scenes/Prefabs/Blocks/BrickBlocks/CoinBrickBlock.tscn" id="21_7s7yt"]
-[ext_resource type="PackedScene" uid="uid://dn1btottv42sd" path="res://Scenes/Prefabs/Blocks/BrickBlocks/OneUpBrickBlock.tscn" id="22_g8qxc"]
-[ext_resource type="PackedScene" uid="uid://cor5javglnirw" path="res://Scenes/Prefabs/Blocks/BrickBlocks/PowerUpBrickBlock.tscn" id="23_npl8h"]
-[ext_resource type="PackedScene" uid="uid://cmgahojpgp2cq" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/PowerUpQuestionBlock.tscn" id="24_u1y2y"]
-[ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="25_17kow"]
-[ext_resource type="Texture2D" uid="uid://clbmg515rgdhs" path="res://Assets/Sprites/Tilesets/Liquids.png" id="26_dngtq"]
-[ext_resource type="Texture2D" uid="uid://cntkcqc74qp50" path="res://Assets/Sprites/Tilesets/Deco/OverworldDeco.png" id="27_p4kes"]
-[ext_resource type="Texture2D" uid="uid://cfk7rvu4in71u" path="res://Assets/Sprites/Blocks/ConveyorBelt.png" id="28_n67lg"]
-[ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="36_utmuf"]
-[ext_resource type="PackedScene" uid="uid://cmbpqnq10arts" path="res://Scenes/Prefabs/Entities/Items/RedCoin.tscn" id="37_rlwa0"]
+[ext_resource type="PackedScene" uid="uid://cnn6e523gkoa0" path="res://Scenes/Levels/SMB1/CoinHeavens/1.tscn" id="1_qlbtg"]
+[ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="2_jk3bo"]
+[ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="3_waun8"]
+[ext_resource type="PackedScene" uid="uid://dpukj2ja3i3qj" path="res://Scenes/Prefabs/Blocks/BrickBlocks/StarBrickBlock.tscn" id="4_gr4ho"]
+[ext_resource type="PackedScene" uid="uid://canoj6slqk5ee" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleOneUpQuestionBlock.tscn" id="5_hr1sd"]
+[ext_resource type="PackedScene" uid="uid://um8m5iu20qj3" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/PoisonQuestionBlock.tscn" id="6_gjflc"]
+[ext_resource type="PackedScene" uid="uid://cih0lt6mbg3g8" path="res://Scenes/Prefabs/Blocks/BrickBlocks/PoisonMushroomBrickBlock.tscn" id="7_rorcd"]
+[ext_resource type="PackedScene" uid="uid://by6ndsjhlkmbt" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffBlock.tscn" id="8_nd0s4"]
+[ext_resource type="PackedScene" uid="uid://5ua3p0lfl1bf" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffSwitch.tscn" id="9_8bhc4"]
+[ext_resource type="PackedScene" uid="uid://c1xle3fplnxtr" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffBlueBlock.tscn" id="10_xh164"]
+[ext_resource type="PackedScene" uid="uid://dgq7enviy1qhw" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/TimedBooBlock.tscn" id="11_f4oyx"]
+[ext_resource type="PackedScene" uid="uid://n1xyk5g5r4h6" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisiblePowerUpQuestionBlock.tscn" id="12_wdsdg"]
+[ext_resource type="PackedScene" uid="uid://bx23j813jg0bl" path="res://Scenes/Prefabs/Blocks/SpringBlock.tscn" id="13_bilbw"]
+[ext_resource type="PackedScene" uid="uid://bc1mrna4kybhv" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/QuestionBlock.tscn" id="14_4355d"]
+[ext_resource type="PackedScene" uid="uid://d2ainv86lt68a" path="res://Scenes/Prefabs/Blocks/SwitchSpikeBlock.tscn" id="15_aetcf"]
+[ext_resource type="PackedScene" uid="uid://chjxyhlwohmi6" path="res://Scenes/Prefabs/Entities/Items/Coin.tscn" id="16_21roy"]
+[ext_resource type="PackedScene" uid="uid://6n4m3cwyuea1" path="res://Scenes/Prefabs/LevelObjects/DeathPit.tscn" id="17_ogxm5"]
+[ext_resource type="PackedScene" uid="uid://cqvr7a6e84oti" path="res://Scenes/Prefabs/Blocks/BrickBlocks/CoinBrickBlock.tscn" id="18_yqhng"]
+[ext_resource type="PackedScene" uid="uid://dn1btottv42sd" path="res://Scenes/Prefabs/Blocks/BrickBlocks/OneUpBrickBlock.tscn" id="19_68m5b"]
+[ext_resource type="PackedScene" uid="uid://cor5javglnirw" path="res://Scenes/Prefabs/Blocks/BrickBlocks/PowerUpBrickBlock.tscn" id="20_xj0d6"]
+[ext_resource type="PackedScene" uid="uid://cmgahojpgp2cq" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/PowerUpQuestionBlock.tscn" id="21_20skv"]
+[ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="22_20lx7"]
+[ext_resource type="Texture2D" uid="uid://clbmg515rgdhs" path="res://Assets/Sprites/Tilesets/Liquids.png" id="23_lj18u"]
+[ext_resource type="Texture2D" uid="uid://cntkcqc74qp50" path="res://Assets/Sprites/Tilesets/Deco/OverworldDeco.png" id="24_wxafy"]
+[ext_resource type="Texture2D" uid="uid://cfk7rvu4in71u" path="res://Assets/Sprites/Blocks/ConveyorBelt.png" id="25_aielr"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_b6qiv"]
 tile_data = PackedInt32Array(0, 524288, 0, 1, 589824, 0)
@@ -60,9 +50,9 @@ tile_data = PackedInt32Array(0, 524288, 6, 1, 589824, 6)
 [sub_resource type="TileMapPattern" id="TileMapPattern_7cpm5"]
 tile_data = PackedInt32Array(0, 524288, 7, 1, 589824, 7)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fl10u"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23b45"]
 resource_name = "Terrain"
-texture = ExtResource("5_88ydr")
+texture = ExtResource("2_jk3bo")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -727,30 +717,30 @@ texture = ExtResource("5_88ydr")
 11:10/0 = 0
 11:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3r35u"]
-scenes/1/scene = ExtResource("6_4ttxc")
-scenes/2/scene = ExtResource("17_o8wpa")
-scenes/3/scene = ExtResource("19_og8re")
-scenes/4/scene = ExtResource("20_ibvgo")
-scenes/5/scene = ExtResource("21_7s7yt")
-scenes/6/scene = ExtResource("22_g8qxc")
-scenes/7/scene = ExtResource("23_npl8h")
-scenes/8/scene = ExtResource("24_u1y2y")
-scenes/9/scene = ExtResource("25_17kow")
-scenes/10/scene = ExtResource("7_fl10u")
-scenes/11/scene = ExtResource("8_3r35u")
-scenes/12/scene = ExtResource("9_piylw")
-scenes/13/scene = ExtResource("10_jv5sf")
-scenes/14/scene = ExtResource("11_utmuf")
-scenes/15/scene = ExtResource("12_rlwa0")
-scenes/16/scene = ExtResource("13_qxyew")
-scenes/17/scene = ExtResource("14_e5y6n")
-scenes/18/scene = ExtResource("15_jimku")
-scenes/19/scene = ExtResource("16_yf4ub")
-scenes/20/scene = ExtResource("18_ff4yn")
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5wh78"]
+scenes/1/scene = ExtResource("3_waun8")
+scenes/2/scene = ExtResource("14_4355d")
+scenes/3/scene = ExtResource("16_21roy")
+scenes/4/scene = ExtResource("17_ogxm5")
+scenes/5/scene = ExtResource("18_yqhng")
+scenes/6/scene = ExtResource("19_68m5b")
+scenes/7/scene = ExtResource("20_xj0d6")
+scenes/8/scene = ExtResource("21_20skv")
+scenes/9/scene = ExtResource("22_20lx7")
+scenes/10/scene = ExtResource("4_gr4ho")
+scenes/11/scene = ExtResource("5_hr1sd")
+scenes/12/scene = ExtResource("6_gjflc")
+scenes/13/scene = ExtResource("7_rorcd")
+scenes/14/scene = ExtResource("8_nd0s4")
+scenes/15/scene = ExtResource("9_8bhc4")
+scenes/16/scene = ExtResource("10_xh164")
+scenes/17/scene = ExtResource("11_f4oyx")
+scenes/18/scene = ExtResource("12_wdsdg")
+scenes/19/scene = ExtResource("13_bilbw")
+scenes/20/scene = ExtResource("15_aetcf")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_piylw"]
-texture = ExtResource("26_dngtq")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_unhax"]
+texture = ExtResource("23_lj18u")
 0:0/next_alternative_id = 2
 0:0/animation_speed = 8.0
 0:0/animation_frame_0/duration = 1.0
@@ -846,8 +836,8 @@ texture = ExtResource("26_dngtq")
 }
 0:7/1 = 1
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jv5sf"]
-texture = ExtResource("27_p4kes")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qohio"]
+texture = ExtResource("24_wxafy")
 0:0/0 = 0
 0:0/0/z_index = -10
 1:0/0 = 0
@@ -869,8 +859,8 @@ texture = ExtResource("27_p4kes")
 4:0/0 = 0
 4:0/0/z_index = -10
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_utmuf"]
-texture = ExtResource("28_n67lg")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qc2cq"]
+texture = ExtResource("25_aielr")
 0:0/next_alternative_id = 3
 0:0/animation_speed = 20.0
 0:0/animation_frame_0/duration = 1.0
@@ -952,7 +942,7 @@ texture = ExtResource("28_n67lg")
 &"type": 17
 }
 
-[sub_resource type="TileSet" id="TileSet_rlwa0"]
+[sub_resource type="TileSet" id="TileSet_ll25q"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
@@ -967,11 +957,11 @@ terrain_set_0/terrain_0/name = "Ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 custom_data_layer_0/name = "OneWay"
 custom_data_layer_0/type = 1
-sources/0 = SubResource("TileSetAtlasSource_fl10u")
-sources/1 = SubResource("TileSetScenesCollectionSource_3r35u")
-sources/2 = SubResource("TileSetAtlasSource_piylw")
-sources/3 = SubResource("TileSetAtlasSource_jv5sf")
-sources/4 = SubResource("TileSetAtlasSource_utmuf")
+sources/0 = SubResource("TileSetAtlasSource_23b45")
+sources/1 = SubResource("TileSetScenesCollectionSource_5wh78")
+sources/2 = SubResource("TileSetAtlasSource_unhax")
+sources/3 = SubResource("TileSetAtlasSource_qohio")
+sources/4 = SubResource("TileSetAtlasSource_qc2cq")
 pattern_0 = SubResource("TileMapPattern_b6qiv")
 pattern_1 = SubResource("TileMapPattern_d4nyf")
 pattern_2 = SubResource("TileMapPattern_ls3wh")
@@ -1027,43 +1017,16 @@ metadata/_better_terrain = {
 &"version": "0.2"
 }
 
-[node name="7-2a" type="Node"]
-script = ExtResource("1_sh56m")
-music = ExtResource("2_5v4dr")
-theme = "Mountain"
-theme_time = "Night"
+[node name="Level" instance=ExtResource("1_qlbtg")]
+theme = "Garden"
 campaign = "SMBS"
-world_id = 7
-level_id = 2
-metadata/_custom_type_script = "uid://bcqr1v25ygedb"
 
-[node name="LevelBG" parent="." instance=ExtResource("3_at23f")]
-time_of_day = 1
-liquid_layer = 1
+[node name="CloudPlatform" parent="." index="0"]
+position = Vector2(-152, -48)
 
-[node name="Tiles" parent="." instance=ExtResource("4_dwe2j")]
-tile_map_data = PackedByteArray("AADy/wAAAAAIAAEAAADz/wAAAAAJAAEAAADy/wEAAAAIAAEAAADz/wEAAAAJAAEAAADy/wIAAAAIAAEAAADz/wIAAAAJAAEAAAAgAAAAAAABAAAAAAAhAAAAAAACAAAAAAAiAAAAAAACAAAAAAAjAAAAAAACAAAAAAAkAAAAAAACAAAAAAAlAAAAAAACAAAAAAAmAAAAAAACAAAAAAAnAAAAAAACAAAAAAAoAAAAAAACAAAAAAApAAAAAAACAAAAAAAqAAAAAAACAAAAAAArAAAAAAACAAAAAAAsAAAAAAACAAAAAAAtAAAAAAACAAAAAAAuAAAAAAACAAAAAAAvAAAAAAACAAAAAAAwAAAAAAACAAAAAAAxAAAAAAACAAAAAAAyAAAAAAACAAAAAAAzAAAAAAACAAAAAAA0AAAAAAACAAAAAAA1AAAAAAADAAAAAAAgAAEAAAABAAEAAAAhAAEAAAACAAEAAAAiAAEAAAACAAEAAAAjAAEAAAACAAEAAAAkAAEAAAACAAEAAAAlAAEAAAACAAEAAAAmAAEAAAACAAEAAAAnAAEAAAACAAEAAAAoAAEAAAACAAEAAAApAAEAAAACAAEAAAAqAAEAAAACAAEAAAArAAEAAAACAAEAAAAsAAEAAAACAAEAAAAtAAEAAAACAAEAAAAuAAEAAAACAAEAAAAvAAEAAAACAAEAAAAwAAEAAAACAAEAAAAxAAEAAAACAAEAAAAyAAEAAAACAAEAAAAzAAEAAAACAAEAAAA0AAEAAAACAAEAAAA1AAEAAAADAAEAAAAgAAIAAAABAAIAAAAhAAIAAAACAAIAAAAiAAIAAAACAAIAAAAjAAIAAAACAAIAAAAkAAIAAAACAAIAAAAlAAIAAAACAAIAAAAmAAIAAAACAAIAAAAnAAIAAAACAAIAAAAoAAIAAAACAAIAAAApAAIAAAACAAIAAAAqAAIAAAACAAIAAAArAAIAAAACAAIAAAAsAAIAAAACAAIAAAAtAAIAAAACAAIAAAAuAAIAAAACAAIAAAAvAAIAAAACAAIAAAAwAAIAAAACAAIAAAAxAAIAAAACAAIAAAAyAAIAAAACAAIAAAAzAAIAAAACAAIAAAA0AAIAAAACAAIAAAA1AAIAAAADAAIAAADy//z/AAAIAAAAAADy//3/AAAIAAEAAADz//z/AAAJAAAAAADz//3/AAAJAAEAAADy//7/AAAIAAEAAADz//7/AAAJAAEAAADy////AAAIAAEAAADz////AAAJAAEAAAD3//z/AAAEAAEAAAD4//z/AAAEAAEAAAD7//3/AAAEAAEAAAD8//3/AAAEAAEAAAD///7/AAAEAAEAAAAAAP7/AAAEAAEAAAADAP3/AAAEAAEAAAAHAPz/AAAEAAEAAAALAPv/AAAEAAEAAAAPAPr/AAAEAAEAAAATAPn/AAAEAAEAAAAWAPj/AAAEAAEAAAAXAPj/AAAEAAEAAAAgAP//AAAEAAIAAAA=")
-tile_set = SubResource("TileSet_rlwa0")
+[node name="Tiles" parent="." index="1"]
+tile_map_data = PackedByteArray("AADw/wAAAAAEAAEAAADx/wAAAAAEAAEAAADy/wAAAAAEAAEAAADz/wAAAAAEAAEAAAD1/wAAAAAEAAEAAAD2/wAAAAAEAAEAAAD3/wAAAAAEAAEAAAD4/wAAAAAEAAEAAAD5/wAAAAAEAAEAAAD6/wAAAAAEAAEAAAD7/wAAAAAEAAEAAAD8/wAAAAAEAAEAAAD9/wAAAAAEAAEAAAD+/wAAAAAEAAEAAAD//wAAAAAEAAEAAAAAAAAAAAAEAAEAAAABAAAAAAAEAAEAAAACAAAAAAAEAAEAAAADAAAAAAAEAAEAAAAEAAAAAAAEAAEAAAAFAAAAAAAEAAEAAAAGAAAAAAAEAAEAAAAHAAAAAAAEAAEAAAAIAAAAAAAEAAEAAAAJAAAAAAAEAAEAAAAKAAAAAAAEAAEAAAALAAAAAAAEAAEAAAAMAAAAAAAEAAEAAAANAAAAAAAEAAEAAAAOAAAAAAAEAAEAAAAPAAAAAAAEAAEAAAAQAAAAAAAEAAEAAAARAAAAAAAEAAEAAAASAAAAAAAEAAEAAAATAAAAAAAEAAEAAAAQAPf/AQAAAAAAAwARAPf/AQAAAAAAAwASAPf/AQAAAAAAAwD///n/AQAAAAAAAwAAAPn/AQAAAAAAAwABAPn/AQAAAAAAAwD4//n/AQAAAAAAAwD5//n/AQAAAAAAAwD6//n/AQAAAAAAAwD7//n/AQAAAAAAAwD8//n/AQAAAAAAAwD9//n/AQAAAAAAAwD+//n/AQAAAAAAAwACAPf/AQAAAAAAAwADAPf/AQAAAAAAAwAEAPf/AQAAAAAAAwAFAPf/AQAAAAAAAwAGAPf/AQAAAAAAAwAHAPj/AQAAAAAAAwAIAPj/AQAAAAAAAwAJAPj/AQAAAAAAAwAKAPj/AQAAAAAAAwALAPj/AQAAAAAAAwAMAPj/AQAAAAAAAwANAPj/AQAAAAAAAwAOAPj/AQAAAAAAAwAPAPf/AQAAAAAAAwATAPf/AQAAAAAAAwAZAP//AQAAAAAAAwAaAP//AQAAAAAAAwAbAP//AQAAAAAAAwA=")
+tile_set = SubResource("TileSet_ll25q")
 
-[node name="Player" parent="." instance=ExtResource("5_2sfe6")]
-position = Vector2(-208, -64)
-
-[node name="EndFlagpole" parent="." instance=ExtResource("7_giabg")]
-position = Vector2(520, 0)
-
-[node name="EndSmallCastle" parent="EndFlagpole" instance=ExtResource("8_fmns0")]
-position = Vector2(96, 0)
-
-[node name="DropShadow" parent="." instance=ExtResource("9_5v4dr")]
-
-[node name="PipeArea" parent="." instance=ExtResource("9_at23f")]
-position = Vector2(-208, -64)
-exit_only = true
-
-[node name="ChallengeNodes" type="Node" parent="."]
-script = ExtResource("36_utmuf")
-metadata/_custom_type_script = "uid://cgm3opb5qudc1"
-
-[node name="RedCoin" parent="ChallengeNodes" instance=ExtResource("37_rlwa0")]
-position = Vector2(8, -104)
-id = 4
+[node name="CameraRightLimit" parent="." index="7"]
+position = Vector2(544, -16)
