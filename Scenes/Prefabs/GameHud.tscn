@@ -534,6 +534,23 @@ libraries = {
 &"": SubResource("AnimationLibrary_cfljn")
 }
 
+[node name="ScoreMedalTransparent" type="Sprite2D" parent="Main/RedCoins"]
+material = SubResource("ShaderMaterial_cfljn")
+position = Vector2(43, -2)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/ScoreMedalTransparent"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
 [node name="ScoreMedal" type="Sprite2D" parent="Main/RedCoins"]
 position = Vector2(43, -2)
 texture = ExtResource("9_m8toq")
@@ -989,6 +1006,23 @@ libraries = {
 &"": SubResource("AnimationLibrary_cfljn")
 }
 
+[node name="ScoreMedalTransparent" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+material = SubResource("ShaderMaterial_cfljn")
+position = Vector2(43, -2)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/ScoreMedalTransparent"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
 [node name="ScoreMedal" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
 position = Vector2(43, -2)
 texture = ExtResource("9_m8toq")
@@ -1264,7 +1298,7 @@ metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [node name="TextureUpdater" type="Node" parent="." node_paths=PackedStringArray("sprites")]
 script = SubResource("GDScript_jwl8o")
-sprites = [NodePath("../Main/RedCoins/BorderL"), NodePath("../Main/RedCoins/BorderL/Shadow"), NodePath("../Main/RedCoins/Coin1"), NodePath("../Main/RedCoins/Coin1/Shadow"), NodePath("../Main/RedCoins/Coin2"), NodePath("../Main/RedCoins/Coin2/Shadow"), NodePath("../Main/RedCoins/Coin3"), NodePath("../Main/RedCoins/Coin3/Shadow"), NodePath("../Main/RedCoins/Coin4"), NodePath("../Main/RedCoins/Coin4/Shadow"), NodePath("../Main/RedCoins/Coin5"), NodePath("../Main/RedCoins/Coin5/Shadow"), NodePath("../Main/RedCoins/Coin1Transparent"), NodePath("../Main/RedCoins/Coin1Transparent/Shadow"), NodePath("../Main/RedCoins/Coin2Transparent"), NodePath("../Main/RedCoins/Coin2Transparent/Shadow"), NodePath("../Main/RedCoins/Coin3Transparent"), NodePath("../Main/RedCoins/Coin3Transparent/Shadow"), NodePath("../Main/RedCoins/Coin4Transparent"), NodePath("../Main/RedCoins/Coin4Transparent/Shadow"), NodePath("../Main/RedCoins/Coin5Transparent"), NodePath("../Main/RedCoins/Coin5Transparent/Shadow"), NodePath("../Main/RedCoins/BorderR"), NodePath("../Main/RedCoins/BorderR/Shadow"), NodePath("../Main/RedCoins/YoshiEgg"), NodePath("../Main/RedCoins/YoshiEgg/Shadow"), NodePath("../Main/RedCoins/ScoreMedal"), NodePath("../Main/RedCoins/ScoreMedal/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderL"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderL/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin1"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin1/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin2"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin2/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin3"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin3/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin4"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin4/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin5"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin5/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin1Transparent"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin1Transparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin2Transparent"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin2Transparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin3Transparent"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin3Transparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin4Transparent"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin4Transparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin5Transparent"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin5Transparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderR"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderR/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/YoshiEgg"), NodePath("../ModernHUD/TopLeft/RedCoins/YoshiEgg/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/ScoreMedal"), NodePath("../ModernHUD/TopLeft/RedCoins/ScoreMedal/Shadow")]
+sprites = [NodePath("../Main/RedCoins/BorderL"), NodePath("../Main/RedCoins/BorderL/Shadow"), NodePath("../Main/RedCoins/Coin1"), NodePath("../Main/RedCoins/Coin1/Shadow"), NodePath("../Main/RedCoins/Coin2"), NodePath("../Main/RedCoins/Coin2/Shadow"), NodePath("../Main/RedCoins/Coin3"), NodePath("../Main/RedCoins/Coin3/Shadow"), NodePath("../Main/RedCoins/Coin4"), NodePath("../Main/RedCoins/Coin4/Shadow"), NodePath("../Main/RedCoins/Coin5"), NodePath("../Main/RedCoins/Coin5/Shadow"), NodePath("../Main/RedCoins/Coin1Transparent"), NodePath("../Main/RedCoins/Coin1Transparent/Shadow"), NodePath("../Main/RedCoins/Coin2Transparent"), NodePath("../Main/RedCoins/Coin2Transparent/Shadow"), NodePath("../Main/RedCoins/Coin3Transparent"), NodePath("../Main/RedCoins/Coin3Transparent/Shadow"), NodePath("../Main/RedCoins/Coin4Transparent"), NodePath("../Main/RedCoins/Coin4Transparent/Shadow"), NodePath("../Main/RedCoins/Coin5Transparent"), NodePath("../Main/RedCoins/Coin5Transparent/Shadow"), NodePath("../Main/RedCoins/BorderR"), NodePath("../Main/RedCoins/BorderR/Shadow"), NodePath("../Main/RedCoins/YoshiEgg"), NodePath("../Main/RedCoins/YoshiEgg/Shadow"), NodePath("../Main/RedCoins/ScoreMedalTransparent"), NodePath("../Main/RedCoins/ScoreMedalTransparent/Shadow"), NodePath("../Main/RedCoins/ScoreMedal"), NodePath("../Main/RedCoins/ScoreMedal/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderL"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderL/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin1"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin1/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin2"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin2/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin3"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin3/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin4"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin4/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin5"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin5/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin1Transparent"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin1Transparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin2Transparent"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin2Transparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin3Transparent"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin3Transparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin4Transparent"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin4Transparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin5Transparent"), NodePath("../ModernHUD/TopLeft/RedCoins/Coin5Transparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderR"), NodePath("../ModernHUD/TopLeft/RedCoins/BorderR/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/YoshiEgg"), NodePath("../ModernHUD/TopLeft/RedCoins/YoshiEgg/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/ScoreMedalTransparent"), NodePath("../ModernHUD/TopLeft/RedCoins/ScoreMedalTransparent/Shadow"), NodePath("../ModernHUD/TopLeft/RedCoins/ScoreMedal"), NodePath("../ModernHUD/TopLeft/RedCoins/ScoreMedal/Shadow")]
 
 [connection signal="timeout" from="Timer" to="." method="on_timeout"]
 [connection signal="updated" from="ColourPaletteSampler" to="TextShadowColourChanger" method="handle_shadow_colours"]
