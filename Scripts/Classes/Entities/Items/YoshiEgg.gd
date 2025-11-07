@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-var gave_points := false
-
 func _ready() -> void:
 	AudioManager.play_sfx("item_appear", global_position)
 	Global.score += 5000
