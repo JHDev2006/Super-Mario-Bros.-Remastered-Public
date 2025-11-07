@@ -4,7 +4,11 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Blooper.json" id="2_1tffw"]
 
 [node name="6-4" instance=ExtResource("1_ryiwt")]
+theme_time = "Night"
 world_id = 6
+
+[node name="LevelBG" parent="." index="0"]
+time_of_day = 1
 
 [node name="ChallengeNodes" parent="." index="5" node_paths=PackedStringArray("nodes_to_delete")]
 nodes_to_delete = [NodePath("../CastleToad")]
@@ -36,27 +40,5 @@ resource_json = ExtResource("2_1tffw")
 
 [node name="SecondQuestNode" parent="." index="10"]
 enabled = true
-
-[connection signal="area_entered" from="Tiles/DeathPit" to="Tiles/DeathPit" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83327" to="Tiles/@Area2D@83327" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83328" to="Tiles/@Area2D@83328" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83329" to="Tiles/@Area2D@83329" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83330" to="Tiles/@Area2D@83330" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83331" to="Tiles/@Area2D@83331" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83332" to="Tiles/@Area2D@83332" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83333" to="Tiles/@Area2D@83333" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83334" to="Tiles/@Area2D@83334" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83335" to="Tiles/@Area2D@83335" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83336" to="Tiles/@Area2D@83336" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83337" to="Tiles/@Area2D@83337" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83338" to="Tiles/@Area2D@83338" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83339" to="Tiles/@Area2D@83339" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83340" to="Tiles/@Area2D@83340" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83341" to="Tiles/@Area2D@83341" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83342" to="Tiles/@Area2D@83342" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83343" to="Tiles/@Area2D@83343" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83344" to="Tiles/@Area2D@83344" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83345" to="Tiles/@Area2D@83345" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@83346" to="Tiles/@Area2D@83346" method="area_entered"]
 
 [editable path="Bowser"]

@@ -1,0 +1,103 @@
+[gd_scene load_steps=14 format=4 uid="uid://k4j1hs6wkjwe"]
+
+[ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_jpr4x"]
+[ext_resource type="JSON" path="res://Assets/Audio/BGM/Sky.json" id="2_qep2u"]
+[ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="3_u0i8l"]
+[ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="4_2gb2m"]
+[ext_resource type="PackedScene" uid="uid://dkxkrqflg46b2" path="res://Scenes/Prefabs/Entities/Items/Vine.tscn" id="6_ytj6c"]
+[ext_resource type="PackedScene" uid="uid://c6loucilra6da" path="res://Scenes/Prefabs/LevelObjects/EndFlagpole.tscn" id="8_2gb2m"]
+[ext_resource type="PackedScene" uid="uid://byqmn8yi7iuac" path="res://Scenes/Prefabs/LevelObjects/EndSmallCastle.tscn" id="9_qep2u"]
+[ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="10_qep2u"]
+[ext_resource type="Script" uid="uid://cybpwmw4ywoow" path="res://Scripts/Parts/TileMapConverter.gd" id="10_ytj6c"]
+[ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="11_4fl3v"]
+[ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="11_mvfa1"]
+[ext_resource type="PackedScene" uid="uid://cmbpqnq10arts" path="res://Scenes/Prefabs/Entities/Items/RedCoin.tscn" id="12_hs6ay"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fl3v"]
+size = Vector2(16, 16)
+
+[node name="8-2b" type="Node"]
+script = ExtResource("1_jpr4x")
+music = ExtResource("2_qep2u")
+theme = "Skyland"
+theme_time = "Night"
+campaign = "SMBLL"
+world_id = 8
+level_id = 2
+metadata/_custom_type_script = "uid://bcqr1v25ygedb"
+
+[node name="Tiles" parent="." instance=ExtResource("3_u0i8l")]
+tile_map_data = PackedByteArray("AADw/wAAAAABAAMAAADx/wAAAAACAAMAAADy/wAAAAACAAMAAADz/wAAAAADAAMAAAD1/wAAAAABAAMAAAD2/wAAAAACAAMAAAD5/wAAAAACAAMAAAD6/wAAAAADAAMAAAD7//z/AAABAAMAAAD8//z/AAACAAMAAAD9//z/AAADAAMAAAAAAPj/AAABAAMAAAABAPj/AAADAAMAAAAKAAAAAAABAAMAAAALAAAAAAACAAMAAAAMAAAAAAACAAMAAAANAAAAAAACAAMAAAAOAAAAAAACAAMAAAAPAAAAAAACAAMAAAAQAAAAAAACAAMAAAARAAAAAAACAAMAAAASAAAAAAACAAMAAAATAAAAAAACAAMAAAAUAAAAAAACAAMAAAAVAAAAAAACAAMAAAD3/wAAAAACAAMAAAD4/wAAAAACAAMAAAALAP//AAAEAAIAAAAWAAAAAAACAAMAAAAXAAAAAAACAAMAAAAYAAAAAAACAAMAAAAZAAAAAAACAAMAAAAaAAAAAAADAAMAAADv/wIAAQAAAAAABADw/wIAAQAAAAAABADx/wIAAQAAAAAABADy/wIAAQAAAAAABAD2/wIAAQAAAAAABAD3/wIAAQAAAAAABAD4/wIAAQAAAAAABAD5/wIAAQAAAAAABAD6/wIAAQAAAAAABAD7/wIAAQAAAAAABAD8/wIAAQAAAAAABAD9/wIAAQAAAAAABAD+/wIAAQAAAAAABAD//wIAAQAAAAAABAAAAAIAAQAAAAAABAABAAIAAQAAAAAABAACAAIAAQAAAAAABAADAAIAAQAAAAAABAAEAAIAAQAAAAAABAAFAAIAAQAAAAAABAAGAAIAAQAAAAAABAAHAAIAAQAAAAAABAAIAAIAAQAAAAAABAAJAAIAAQAAAAAABAAKAAIAAQAAAAAABAALAAIAAQAAAAAABAAMAAIAAQAAAAAABAANAAIAAQAAAAAABAAOAAIAAQAAAAAABAAPAAIAAQAAAAAABAAQAAIAAQAAAAAABAA=")
+
+[node name="Player" parent="." instance=ExtResource("4_2gb2m")]
+position = Vector2(-232, 0)
+
+[node name="Vine" parent="." instance=ExtResource("6_ytj6c")]
+position = Vector2(-184, 40)
+top_point = -64
+cutscene = true
+can_tele = false
+
+[node name="EndFlagpole" parent="." instance=ExtResource("8_2gb2m")]
+position = Vector2(184, 0)
+
+[node name="EndSmallCastle" parent="." instance=ExtResource("9_qep2u")]
+position = Vector2(264, 0)
+
+[node name="DropShadow" parent="." instance=ExtResource("10_qep2u")]
+
+[node name="TileMapConverter" type="Node" parent="." node_paths=PackedStringArray("tilemap")]
+script = ExtResource("10_ytj6c")
+tilemap = NodePath("../Tiles")
+metadata/_custom_type_script = "uid://cybpwmw4ywoow"
+
+[node name="LevelBG" parent="." instance=ExtResource("11_4fl3v")]
+time_of_day = 1
+primary_layer = 2
+overlay_clouds = true
+
+[node name="ChallengeNodes" type="Node" parent="."]
+script = ExtResource("11_mvfa1")
+metadata/_custom_type_script = "uid://cgm3opb5qudc1"
+
+[node name="RedCoin" parent="ChallengeNodes" instance=ExtResource("12_hs6ay")]
+position = Vector2(96, -176)
+id = 4
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-184, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_4fl3v")
+
+[connection signal="area_entered" from="Tiles/DeathPit" to="Tiles/DeathPit" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67335" to="Tiles/@Area2D@67335" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67336" to="Tiles/@Area2D@67336" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67337" to="Tiles/@Area2D@67337" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67338" to="Tiles/@Area2D@67338" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67339" to="Tiles/@Area2D@67339" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67340" to="Tiles/@Area2D@67340" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67341" to="Tiles/@Area2D@67341" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67342" to="Tiles/@Area2D@67342" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67343" to="Tiles/@Area2D@67343" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67344" to="Tiles/@Area2D@67344" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67345" to="Tiles/@Area2D@67345" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67346" to="Tiles/@Area2D@67346" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67347" to="Tiles/@Area2D@67347" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67348" to="Tiles/@Area2D@67348" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67349" to="Tiles/@Area2D@67349" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67350" to="Tiles/@Area2D@67350" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67351" to="Tiles/@Area2D@67351" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67352" to="Tiles/@Area2D@67352" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67353" to="Tiles/@Area2D@67353" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67354" to="Tiles/@Area2D@67354" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67355" to="Tiles/@Area2D@67355" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67356" to="Tiles/@Area2D@67356" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67357" to="Tiles/@Area2D@67357" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67358" to="Tiles/@Area2D@67358" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67359" to="Tiles/@Area2D@67359" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67360" to="Tiles/@Area2D@67360" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67361" to="Tiles/@Area2D@67361" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67362" to="Tiles/@Area2D@67362" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67363" to="Tiles/@Area2D@67363" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@67364" to="Tiles/@Area2D@67364" method="area_entered"]

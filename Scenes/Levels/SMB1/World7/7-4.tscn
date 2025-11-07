@@ -26,6 +26,7 @@
 script = ExtResource("1_0cclm")
 music = ExtResource("2_7ps2v")
 theme = "Castle"
+theme_time = "Night"
 world_id = 7
 level_id = 4
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
@@ -137,38 +138,9 @@ item = ExtResource("21_gpae8")
 position = Vector2(3184, 0)
 
 [node name="LevelBG" parent="." instance=ExtResource("22_7ps2v")]
+time_of_day = 1
 particles = 3
 
-[connection signal="area_entered" from="Tiles/DeathPit" to="Tiles/DeathPit" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40822" to="Tiles/@Area2D@40822" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40823" to="Tiles/@Area2D@40823" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40824" to="Tiles/@Area2D@40824" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40825" to="Tiles/@Area2D@40825" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40826" to="Tiles/@Area2D@40826" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40827" to="Tiles/@Area2D@40827" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40828" to="Tiles/@Area2D@40828" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40829" to="Tiles/@Area2D@40829" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40830" to="Tiles/@Area2D@40830" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40831" to="Tiles/@Area2D@40831" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40832" to="Tiles/@Area2D@40832" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40833" to="Tiles/@Area2D@40833" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40834" to="Tiles/@Area2D@40834" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40835" to="Tiles/@Area2D@40835" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40836" to="Tiles/@Area2D@40836" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40837" to="Tiles/@Area2D@40837" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40838" to="Tiles/@Area2D@40838" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40839" to="Tiles/@Area2D@40839" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40840" to="Tiles/@Area2D@40840" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40841" to="Tiles/@Area2D@40841" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40842" to="Tiles/@Area2D@40842" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40843" to="Tiles/@Area2D@40843" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40844" to="Tiles/@Area2D@40844" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40845" to="Tiles/@Area2D@40845" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40846" to="Tiles/@Area2D@40846" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40847" to="Tiles/@Area2D@40847" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40848" to="Tiles/@Area2D@40848" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40849" to="Tiles/@Area2D@40849" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40850" to="Tiles/@Area2D@40850" method="area_entered"]
 [connection signal="axe_touched" from="CastleBridge" to="Bowser" method="bridge_fall"]
 [connection signal="victory_begin" from="CastleBridge" to="CastleToad" method="begin"]
 [connection signal="victory_begin" from="CastleBridge" to="ChallengeNodes/CastleChallengeEnd" method="begin"]

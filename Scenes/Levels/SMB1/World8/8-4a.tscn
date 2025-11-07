@@ -17,6 +17,7 @@
 script = ExtResource("1_3wadn")
 music = ExtResource("2_re01h")
 theme = "Castle"
+theme_time = "Night"
 world_id = 8
 level_id = 4
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
@@ -93,24 +94,8 @@ position = Vector2(488, 0)
 winged = true
 
 [node name="LevelBG" parent="." instance=ExtResource("13_yiphh")]
+time_of_day = 1
 particles = 3
 
 [node name="Tiles2" parent="." instance=ExtResource("3_gv410")]
 tile_map_data = PackedByteArray("AAAPAAAAAgAAAAIAAAAPAAEAAgAAAAMAAAAQAAAAAgAAAAIAAAAQAAEAAgAAAAMAAAARAAAAAgAAAAIAAAARAAEAAgAAAAMAAAASAAAAAgAAAAIAAAASAAEAAgAAAAMAAAA=")
-
-[connection signal="block_destroyed" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active"]
-[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="player_mushroom_check"]
-[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="dispense_item" unbinds=1]
-[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="dispense_item" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@78671" to="Tiles/@AnimatableBody2D@78671/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@78671" to="Tiles/@AnimatableBody2D@78671/LevelPersistance" method="set_as_active"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@78671" to="Tiles/@AnimatableBody2D@78671" method="player_mushroom_check"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@78671" to="Tiles/@AnimatableBody2D@78671" method="dispense_item" unbinds=1]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@78671" to="Tiles/@AnimatableBody2D@78671/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@78671" to="Tiles/@AnimatableBody2D@78671" method="dispense_item" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@78671" to="Tiles/@AnimatableBody2D@78671/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="area_entered" from="Tiles/DeathPit" to="Tiles/DeathPit" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@78672" to="Tiles/@Area2D@78672" method="area_entered"]
