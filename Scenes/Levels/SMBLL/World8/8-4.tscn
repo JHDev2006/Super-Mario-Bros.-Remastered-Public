@@ -24,6 +24,7 @@
 script = ExtResource("1_ra4xs")
 music = ExtResource("2_munar")
 theme = "Castle"
+theme_time = "Night"
 campaign = "SMBLL"
 world_id = 8
 level_id = 4
@@ -100,6 +101,7 @@ tilemap = NodePath("../Tiles")
 metadata/_custom_type_script = "uid://cybpwmw4ywoow"
 
 [node name="LevelBG" parent="." instance=ExtResource("17_h2e03")]
+time_of_day = 1
 particles = 3
 
 [node name="ChallengeNodes" type="Node" parent="."]
