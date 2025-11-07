@@ -34,6 +34,9 @@ position = Vector2(832, -32)
 [node name="PipeArea" parent="." index="11"]
 target_level = "uid://bq355ycinib3p"
 
+[node name="LevelBG" parent="." index="14"]
+time_of_day = 1
+
 [node name="DiscoLevel" type="Node" parent="." index="16"]
 script = ExtResource("2_swkpk")
 combo_meter_rate = 0.25
