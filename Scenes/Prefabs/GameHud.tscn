@@ -308,6 +308,85 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(8, 0, 8, 8)
 
+[node name="Coin1" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(-8, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin1"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin2" type="Sprite2D" parent="Main/RedCoins"]
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin2"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin3" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(8, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin3"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin4" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(16, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin4"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin5" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(24, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin5"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
 [node name="Coin1Transparent" type="Sprite2D" parent="Main/RedCoins"]
 material = SubResource("ShaderMaterial_cfljn")
 position = Vector2(-8, 0)
@@ -392,85 +471,6 @@ centered = false
 hframes = 2
 region_rect = Rect2(0, 0, 8, 8)
 
-[node name="Coin1" type="Sprite2D" parent="Main/RedCoins"]
-position = Vector2(-8, 0)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin1"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Coin2" type="Sprite2D" parent="Main/RedCoins"]
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin2"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Coin3" type="Sprite2D" parent="Main/RedCoins"]
-position = Vector2(8, 0)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin3"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Coin4" type="Sprite2D" parent="Main/RedCoins"]
-position = Vector2(16, 0)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin4"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Coin5" type="Sprite2D" parent="Main/RedCoins"]
-position = Vector2(24, 0)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/Coin5"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
 [node name="BorderR" type="Sprite2D" parent="Main/RedCoins"]
 position = Vector2(32, 0)
 texture = ExtResource("5_gmuut")
@@ -534,6 +534,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_cfljn")
 }
 
+[node name="ScoreMedal" type="Sprite2D" parent="Main/RedCoins"]
+position = Vector2(43, -2)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/ScoreMedal"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
 [node name="ScoreMedalTransparent" type="Sprite2D" parent="Main/RedCoins"]
 material = SubResource("ShaderMaterial_cfljn")
 position = Vector2(43, -2)
@@ -543,22 +559,6 @@ hframes = 2
 region_rect = Rect2(0, 0, 8, 8)
 
 [node name="Shadow" type="Sprite2D" parent="Main/RedCoins/ScoreMedalTransparent"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("9_m8toq")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="ScoreMedal" type="Sprite2D" parent="Main/RedCoins"]
-position = Vector2(43, -2)
-texture = ExtResource("9_m8toq")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="Main/RedCoins/ScoreMedal"]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_eon7h")
 position = Vector2(1, 1)
@@ -780,6 +780,85 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(8, 0, 8, 8)
 
+[node name="Coin1" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(-8, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin1"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin2" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin2"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin3" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(8, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin3"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin4" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(16, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin4"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Coin5" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(24, 0)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin5"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("6_2ww58")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
 [node name="Coin1Transparent" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
 material = SubResource("ShaderMaterial_cfljn")
 position = Vector2(-8, 0)
@@ -864,85 +943,6 @@ centered = false
 hframes = 2
 region_rect = Rect2(0, 0, 8, 8)
 
-[node name="Coin1" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
-position = Vector2(-8, 0)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin1"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Coin2" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin2"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Coin3" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
-position = Vector2(8, 0)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin3"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Coin4" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
-position = Vector2(16, 0)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin4"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Coin5" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
-position = Vector2(24, 0)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/Coin5"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("6_2ww58")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
 [node name="BorderR" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
 position = Vector2(32, 0)
 texture = ExtResource("5_gmuut")
@@ -1006,6 +1006,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_cfljn")
 }
 
+[node name="ScoreMedal" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
+position = Vector2(43, -2)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/ScoreMedal"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_eon7h")
+position = Vector2(1, 1)
+texture = ExtResource("9_m8toq")
+centered = false
+hframes = 2
+region_rect = Rect2(0, 0, 8, 8)
+
 [node name="ScoreMedalTransparent" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
 material = SubResource("ShaderMaterial_cfljn")
 position = Vector2(43, -2)
@@ -1015,22 +1031,6 @@ hframes = 2
 region_rect = Rect2(0, 0, 8, 8)
 
 [node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/ScoreMedalTransparent"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_eon7h")
-position = Vector2(1, 1)
-texture = ExtResource("9_m8toq")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="ScoreMedal" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins"]
-position = Vector2(43, -2)
-texture = ExtResource("9_m8toq")
-centered = false
-hframes = 2
-region_rect = Rect2(0, 0, 8, 8)
-
-[node name="Shadow" type="Sprite2D" parent="ModernHUD/TopLeft/RedCoins/ScoreMedal"]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_eon7h")
 position = Vector2(1, 1)
