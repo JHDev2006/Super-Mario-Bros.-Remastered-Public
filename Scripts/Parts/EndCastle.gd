@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	for i: Player in get_tree().get_nodes_in_group("Players"):
-		if i.can_pose and i.global_position >= global_position and i.sprite.sprite_frames.has_animation("PoseDoor"):
+		if i.state_machine.get_state() == "LevelExit" and i.can_pose and $PlayerDetection.is_player_in_area() and i.global_position >= global_position and i.sprite.sprite_frames.has_animation("PoseDoor"):
 			i.is_posing = true; i.can_pose = false
 			i.global_position = global_position
 			i.play_animation("PoseDoor")

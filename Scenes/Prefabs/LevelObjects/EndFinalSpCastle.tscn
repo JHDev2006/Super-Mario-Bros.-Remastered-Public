@@ -31,5 +31,5 @@ visible = false
 [node name="SmallCastleVisual2" parent="." index="4"]
 visible = true
 
-[node name="Overlay" parent="." index="7"]
+[node name="Overlay" parent="." index="8"]
 visible = true
