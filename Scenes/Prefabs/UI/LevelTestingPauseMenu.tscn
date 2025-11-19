@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b875xb333ty2y"]
+
+[ext_resource type="PackedScene" uid="uid://dekuqrdjmnr1m" path="res://Scenes/Prefabs/UI/BasePauseMenu.tscn" id="1_ctfeg"]
+[ext_resource type="Script" uid="uid://db1j3sjvar0hh" path="res://Scripts/UI/LevelTestingPauseMenu.gd" id="2_f5bwf"]
+
+[node name="LevelTestingPauseMenu" instance=ExtResource("1_ctfeg")]
+script = ExtResource("2_f5bwf")
+
+[node name="Label2" parent="Control/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+text = "PAUSE_EDITOR_RETURN"
+
+[node name="SettingsMenu" parent="." index="2"]
+unique_name_in_owner = true
+process_mode = 3
+
+[connection signal="option_1_selected" from="." to="." method="close"]
+[connection signal="option_2_selected" from="." to="." method="exit_to_editor"]
+[connection signal="option_4_selected" from="." to="." method="quit_to_menu"]
