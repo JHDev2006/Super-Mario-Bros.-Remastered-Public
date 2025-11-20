@@ -14,8 +14,6 @@ signal level_time_changed
 
 const BASE64_CHARSET := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
-const VERSION_CHECK_URL := "https://raw.githubusercontent.com/JHDev2006/smb1r-version/refs/heads/main/version.txt"
-
 var entity_gravity := 10.0
 var entity_max_fall_speed := 280
 
@@ -35,10 +33,6 @@ var ROM_PATH = config_path.path_join("baserom.nes")
 var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
 const ROM_PACK_NAME := "BaseAssets"
 const ROM_ASSETS_VERSION := 1
-
-var server_version := -1
-var current_version := -1
-var version_number := ""
 
 const LEVEL_THEMES := {
 	"SMB1": SMB1_LEVEL_THEMES,
@@ -175,12 +169,33 @@ var p_switch_timer_paused := false
 var debug_mode := false
 
 func _ready() -> void:
-	current_version = get_version_number()
-	get_server_version()
 	if OS.is_debug_build():
 		debug_mode = false
 	setup_config_dirs()
 	check_for_rom()
+
+static func get_version() -> String:
+	var path := "res://version.json"
+	if not FileAccess.file_exists(path):
+		return "0.0.0"
+
+	var f := FileAccess.open(path, FileAccess.READ)
+	if not f:
+		return "0.0.0"
+
+	var text := f.get_as_text()
+	f.close()
+
+	var parse_result = JSON.parse_string(text)
+	if parse_result == null:
+		print("Failed to parse version.json:")
+		return "0.0.0"
+
+	var data: Dictionary = parse_result
+	var version : String = data.get("version", "0.0.0")
+	var git_hash : String = data.get("git_hash", "")
+	return version + (("-" + git_hash) if git_hash != "" else "")
+
 
 func setup_config_dirs() -> void:
 	var dirs = [
@@ -280,11 +295,6 @@ func handle_p_switch(delta: float) -> void:
 
 func get_build_time() -> void:
 	print(int(Time.get_unix_time_from_system()))
-
-func get_version_number() -> int:
-	var number = (FileAccess.open("res://version.txt", FileAccess.READ).get_as_text())
-	version_number = str(number)
-	return int(number)
 
 func player_action_pressed(action := "", player_id := 0) -> bool:
 	return Input.is_action_pressed(action + "_" + str(player_id))
@@ -419,18 +429,6 @@ func open_disco_results() -> void:
 func on_score_sfx_finished() -> void:
 	if tallying_score:
 		$ScoreTally.play()
-
-func get_server_version() -> void:
-	var http = HTTPRequest.new()
-	add_child(http)
-	http.request_completed.connect(version_got)
-	http.request(VERSION_CHECK_URL, [], HTTPClient.METHOD_GET)
-
-func version_got(_result, response_code, _headers, body) -> void:
-	if response_code == 200:
-		server_version = int(body.get_string_from_utf8())
-	else:
-		server_version = -2
 
 func log_error(msg := "") -> void:
 	var error_message = $CanvasLayer/VBoxContainer/ErrorMessage.duplicate()

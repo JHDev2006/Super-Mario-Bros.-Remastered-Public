@@ -16,6 +16,7 @@ warnings/check_angle_interpolation_type_conflicting=false
 [application]
 
 config/name="SMB1R"
+config/version="1.0.2"
 run/main_scene="uid://bn66tnn8nlpi7"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.5", "Forward Plus")
@@ -25,6 +26,7 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.png"
 use_discord=true
+bake_hash=true
 
 [autoload]
 
@@ -65,7 +67,7 @@ naming/script_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addons/commitreminder/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/mod_loader/_export_plugin/plugin.cfg", "res://addons/mod_tool/plugin.cfg")
+enabled=PackedStringArray("res://addons/better-terrain/plugin.cfg", "res://addons/commitreminder/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/git_bake_export/plugin.cfg", "res://addons/mod_loader/_export_plugin/plugin.cfg", "res://addons/mod_tool/plugin.cfg")
 
 [file_customization]
 
