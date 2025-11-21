@@ -21,6 +21,7 @@
 		"res://Assets/Sprites/Backgrounds/DiscoToadOverlay.png",
 		
 		"res://Assets/Sprites/Blocks/QuestionBlock.png",
+		"res://Assets/Sprites/Blocks/EmptyBlock.png",
 		"res://Assets/Sprites/Blocks/Trampoline.png",
 		
 		"res://Assets/Sprites/Enemies/Blooper.png",

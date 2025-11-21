@@ -1,4 +1,4 @@
-[gd_scene load_steps=299 format=3 uid="uid://gbcmqonky63j"]
+[gd_scene load_steps=300 format=3 uid="uid://gbcmqonky63j"]
 
 [ext_resource type="Script" uid="uid://c2lnc7vnq3xth" path="res://Scripts/Classes/Editor/LevelEditor.gd" id="1_0qbyu"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="1_ujeu4"]
@@ -154,6 +154,7 @@
 [ext_resource type="Texture2D" uid="uid://boj5qawy6b6t2" path="res://Assets/Sprites/Editor/SmallCastle.png" id="96_lm8lu"]
 [ext_resource type="PackedScene" uid="uid://bney0cc8cfm5s" path="res://Scenes/Prefabs/LevelObjects/EndFinalCastle.tscn" id="97_d32e2"]
 [ext_resource type="Texture2D" uid="uid://m86epuy45c3u" path="res://Assets/Sprites/Editor/LargeCastle.png" id="98_2umvb"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/EmptyBlock.json" id="98_q3e2o"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Barrel.json" id="102_6c7k7"]
 [ext_resource type="PackedScene" uid="uid://byu7xm153ktle" path="res://Scenes/Prefabs/Entities/Enemies/Barrel.tscn" id="103_k6wox"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnOffSwitch.json" id="103_mbniv"]
@@ -1023,10 +1024,9 @@ tile_coords = Vector2i(4, 2)
 [node name="EmptyBlock" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "TILE_EMPTY"
-type = 1
 icon_texture = ExtResource("22_ulh3l")
-entity_scene = ExtResource("17_i2jbr")
-tile_offset = Vector2i(0, 0)
+tile_offset = Vector2i(4, 0)
+tile_coords = Vector2i(4, 0)
 
 [node name="TreeTop" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
@@ -3332,6 +3332,16 @@ entity_scene = ExtResource("29_ojsda")
 tile_offset = Vector2i(0, 0)
 metadata/_edit_group_ = true
 
+[node name="EmptyBlock" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Blocks/MarginContainer/GridContainer" groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 2
+tile_name = "BLOCK_EMPTY"
+type = 1
+icon_texture = ExtResource("98_q3e2o")
+icon_region_override = Rect2(0, 0, 16, 16)
+entity_scene = ExtResource("17_i2jbr")
+tile_offset = Vector2i(0, 0)
+metadata/_edit_group_ = true
+
 [node name="BrickBlock" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Blocks/MarginContainer/GridContainer" groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "BLOCK_BRICK"
@@ -5356,6 +5366,7 @@ metadata/_custom_type_script = "uid://dt2p68xl462v2"
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Barrel" to="." method="on_tile_selected"]
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/RockyWrench" to="." method="on_tile_selected"]
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Blocks/MarginContainer/GridContainer/QuestionBlock" to="." method="on_tile_selected"]
+[connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Blocks/MarginContainer/GridContainer/EmptyBlock" to="." method="on_tile_selected"]
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Blocks/MarginContainer/GridContainer/BrickBlock" to="." method="on_tile_selected"]
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Blocks/MarginContainer/GridContainer/TurnBlock" to="." method="on_tile_selected"]
 [connection signal="tile_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Blocks/MarginContainer/GridContainer/SpikeBlock" to="." method="on_tile_selected"]
