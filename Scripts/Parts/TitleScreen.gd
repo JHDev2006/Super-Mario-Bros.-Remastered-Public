@@ -207,13 +207,97 @@ func world_9_selected() -> void:
 	Global.level_num = 1
 	%ExtraWorldSelect.open()
 
+func round_down(value: float) -> int: # SkyanUltra: Used for new setup_stars() func.
+	return ceil(value) if (value - floor(value)) > 0.5 else floor(value)
+
 func setup_stars() -> void:
-	var idx := 0
-	$Logo/Control/HFlowContainer.position = Vector2(96, 12) + Vector2(star_offset_x, star_offset_y)
-	$Logo/Control/HFlowContainer.visible = Global.achievements.contains("1")
-	for i in Global.achievements:
-		$Logo/Control/HFlowContainer.get_child(idx).visible = (i == "1")
-		idx += 1
+	# SkyanUltra: Entirely reworked how stars (achievements) render on the title screen.
+	# Here, the stars will line around the border of the title screen in an orderly
+	# fashion. How it does this is with a whole lot of math, but ideally this should
+	# be mostly compatible with custom resources with their own width and height values.
+	$Logo/Control.visible = Global.achievements.contains("1")
+	if Global.achievements.contains("1"):
+		var logo_texture_size = $Logo.sprite_frames.get_frame_texture($Logo.animation, $Logo.frame).get_size()
+		var logo2_texture_size = $Logo/Logo2.sprite_frames.get_frame_texture($Logo/Logo2.animation, $Logo/Logo2.frame).get_size()
+		var star_texture_size = $Logo/Control/Star1/Main.sprite_frames.get_frame_texture($Logo/Control/Star1/Main.animation, $Logo/Control/Star1/Main.frame).get_size()
+		var logo_width: float = max(logo_texture_size.x, logo2_texture_size.x) + star_texture_size.x
+		var logo_height: float = logo_texture_size.y + logo2_texture_size.y  + star_texture_size.y
+		var logo_total = logo_width + logo_height
+		var star_idx := 0
+		var crown_present := false
+		for i in Global.achievements: if i == "1": star_idx += 1
+		for i in range(star_idx):
+			$Logo/Control.get_child(i).visible = true
+			if not $Logo/Control.get_child(i).name.contains("Star"):
+				star_idx -= 1
+				crown_present = true
+		# Calculate ratios
+		var x_total = round(star_idx * (logo_width / logo_total))
+		var y_total = round(star_idx * (logo_height / logo_total))
+		# Split top and bottom borders evenly. If they can't, prioritize top
+		var split_x_bottom: int = min(x_total / 2, 6)
+		if split_x_bottom % 2 != 0: split_x_bottom -= 1
+		var split_x_top: int = x_total - split_x_bottom
+		var split_y: int = y_total / 2
+		# Distribute leftovers safely to the top.
+		var total_used = split_x_top + split_x_bottom + (split_y * 2)
+		if total_used < star_idx:
+			split_x_top += star_idx - total_used
+		star_idx = 0
+		if split_x_top > 1:
+			for i in range(split_x_top): # Top Side
+				$Logo/Control.get_child(star_idx).position.x = (logo_width / (split_x_top - 1)) * i if i != split_x_top else logo_width - star_texture_size.x
+				$Logo/Control.get_child(star_idx).position.y = 0
+				
+				if crown_present and split_x_top % 2 != 0:
+					var middle_index: int = split_x_top * 0.5
+					if i == middle_index:
+						$Logo/Control.get_child(middle_index).visible = false
+				
+				star_idx += 1
+		elif split_x_top == 1:
+			$Logo/Control.get_child(star_idx).position.x = logo_width / 2
+			$Logo/Control.get_child(star_idx).position.y = 0
+			star_idx += 1
+		if split_x_bottom > 1: # Bottom Side
+			# SkyanUltra: The bottom will only ever have an even number of stars up to a max of 6,
+			# so it will split them up accordingly and will render with a large gap inbetween since
+			# otherwise the selection text (i.e. Play Game, Settings, etc.) would look cramped.
+			var gap_ratio = 0.6
+			var gap_width = logo_width * gap_ratio
+			var left_end = (logo_width - gap_width) / 2
+			var right_start = left_end + gap_width
+			var half = split_x_bottom * 0.5
+
+			for i in range(split_x_bottom):
+				var pos_x: float
+
+				if i < half:
+					if half > 1:
+						pos_x = (left_end / (half - 1)) * i
+					else:
+						pos_x = left_end / 2
+				else:
+					var j = i - half
+					var right_count = split_x_bottom - half
+
+					if right_count > 1:
+						pos_x = right_start + ((logo_width - right_start) / (right_count - 1)) * j
+					else:
+						pos_x = (right_start + logo_width) / 2
+
+				$Logo/Control.get_child(star_idx).position.x = pos_x
+				$Logo/Control.get_child(star_idx).position.y = logo_height
+				star_idx += 1
+
+		if split_y > 0:
+			for i in range(split_y): # Left/Right Side
+				$Logo/Control.get_child(star_idx).position.x = 0
+				$Logo/Control.get_child(star_idx).position.y = (logo_height / (split_y + 1)) * (i+1)
+				star_idx += 1
+				$Logo/Control.get_child(star_idx).position.x = logo_width
+				$Logo/Control.get_child(star_idx).position.y = (logo_height / (split_y + 1)) * (i+1)
+				star_idx += 1
 
 func go_to_achievement_menu() -> void:
 	Global.transition_to_scene("res://Scenes/Levels/AchievementMenu.tscn")
