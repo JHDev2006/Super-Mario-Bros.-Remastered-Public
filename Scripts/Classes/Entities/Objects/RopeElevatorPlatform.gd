@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	player_stood_on = player_detection.get_overlapping_areas().any(is_player)
 	if dropped:
-		velocity += (5 / delta) * delta
+		velocity += (5) * delta * 60.0
 		platform.position.y += velocity * delta
 		return
 	else:
@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 					AudioManager.play_sfx("lift_fall", global_position)
 				$Platform/ScoreNoteSpawner.spawn_note(1000)
 	if player_stood_on:
-		velocity += (2 / delta) * delta
+		velocity += (2) * delta * 60.0
 	else:
 		velocity = lerpf(velocity, 0, delta * 2)
 	linked_platform.velocity = -velocity

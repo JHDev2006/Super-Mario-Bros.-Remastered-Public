@@ -349,9 +349,13 @@ func apply_gravity(delta: float) -> void:
 	if in_water or flight_meter > 0:
 		gravity = SWIM_GRAVITY
 	else:
-		if sign(gravity_vector.y) * velocity.y + JUMP_HOLD_SPEED_THRESHOLD > 0.0:
-			gravity = FALL_GRAVITY
-	velocity += (gravity_vector * ((gravity / (1.5 if low_gravity else 1.0)) / delta)) * delta
+		if gravity_vector.y > 0:
+			if velocity.y > 0:
+				gravity = FALL_GRAVITY
+		elif gravity_vector.y < 0:
+			if velocity.y < 0:
+				gravity = FALL_GRAVITY
+	velocity += (gravity_vector * ((gravity / (1.5 if low_gravity else 1.0)))) * delta * 60.0
 	var target_fall: float = MAX_FALL_SPEED
 	if in_water:
 		target_fall = MAX_SWIM_FALL_SPEED
