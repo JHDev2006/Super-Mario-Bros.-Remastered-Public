@@ -190,10 +190,18 @@ func record_frame(player: Player) -> void:
 	current_recording += data + ","
 
 func format_time(time_time := 0.0) -> Dictionary:
-	var mils = abs(fmod(time_time, 1) * 100)
-	var secs = abs(fmod(time_time, 60))
-	var mins = abs(time_time / 60)
+	var floor_time = floor(abs(time_time * 100))
+	var mils = int(floor_time) % 100
+	var secs = int(floor_time / 100) % 60
+	var mins = floor_time / 6000
 	return {"mils": int(mils), "secs": int(secs), "mins": int(mins)}
+	
+func met_target_time(record_time := -1.0, target_time := 0.0) -> bool:
+	if record_time < 0.0:
+		return false
+	# Ignore units of time smaller than a centisecond, as they're not displayed.
+	# Matching time exactly counts as beating it.
+	return int(record_time * 100) <= int(target_time * 100)
 
 func gen_time_string(timer_dict := {}) -> String:
 	return str(int(timer_dict["mins"])).pad_zeros(2) + ":" + str(int(timer_dict["secs"])).pad_zeros(2) + ":" + str(int(timer_dict["mils"])).pad_zeros(2)
@@ -339,11 +347,11 @@ func check_for_medal_achievement() -> void:
 	
 	for i in LEVEL_GOLD_ANY_TIMES[Global.current_campaign]:
 		if best_level_any_times.has(i):
-			if best_level_any_times[i] > LEVEL_GOLD_ANY_TIMES[Global.current_campaign][i]:
+			if not met_target_time(best_level_any_times[i], LEVEL_GOLD_ANY_TIMES[Global.current_campaign][i]):
 				has_gold_levels_any = false
-			if best_level_any_times[i] > LEVEL_GOLD_ANY_TIMES[Global.current_campaign][i] * MEDAL_CONVERSIONS[1]:
+			if not met_target_time(best_level_any_times[i], LEVEL_GOLD_ANY_TIMES[Global.current_campaign][i] * MEDAL_CONVERSIONS[1]):
 				has_silver_levels_any = false
-			if best_level_any_times[i] > LEVEL_GOLD_ANY_TIMES[Global.current_campaign][i] * MEDAL_CONVERSIONS[0]:
+			if not met_target_time(best_level_any_times[i], LEVEL_GOLD_ANY_TIMES[Global.current_campaign][i] * MEDAL_CONVERSIONS[0]):
 				has_bronze_levels_any = false
 		else:
 			has_gold_levels_any = false
@@ -354,26 +362,24 @@ func check_for_medal_achievement() -> void:
 	for i in best_level_warpless_times:
 		var level := 0
 		for x in i:
-			if x < 0:
+			if not met_target_time(x, LEVEL_GOLD_WARPLESS_TIMES[Global.current_campaign][world][level]):
 				has_gold_levels_warpless = false
+			if not met_target_time(x, LEVEL_GOLD_WARPLESS_TIMES[Global.current_campaign][world][level] * MEDAL_CONVERSIONS[1]):
 				has_silver_levels_warpless = false
-				has_bronze_levels_warpless = false
-			if x > LEVEL_GOLD_WARPLESS_TIMES[Global.current_campaign][world][level]:
-				has_gold_levels_warpless = false
-			if x > LEVEL_GOLD_WARPLESS_TIMES[Global.current_campaign][world][level] * MEDAL_CONVERSIONS[1]:
-				has_silver_levels_warpless = false
-			if x > LEVEL_GOLD_WARPLESS_TIMES[Global.current_campaign][world][level] * MEDAL_CONVERSIONS[0]:
+			if not met_target_time(x, LEVEL_GOLD_WARPLESS_TIMES[Global.current_campaign][world][level] * MEDAL_CONVERSIONS[0]):
 				has_bronze_levels_warpless = false
 			level += 1
 		world += 1
 	
-	if marathon_best_any_time >= 0 and marathon_best_warpless_time >= 0:
-		if marathon_best_any_time <= GOLD_ANY_TIMES[Global.current_campaign] and marathon_best_warpless_time <= GOLD_WARPLESS_TIMES[Global.current_campaign]:
-			has_gold_full = true
-		if marathon_best_any_time <= GOLD_ANY_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[1] and marathon_best_warpless_time <= GOLD_WARPLESS_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[1]:
-			has_silver_full = true
-		if marathon_best_any_time <= GOLD_ANY_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[0] and marathon_best_warpless_time <= GOLD_WARPLESS_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[0]:
-			has_bronze_full = true
+	if (met_target_time(marathon_best_any_time, GOLD_ANY_TIMES[Global.current_campaign]) and 
+		met_target_time(marathon_best_warpless_time, GOLD_WARPLESS_TIMES[Global.current_campaign])):
+		has_gold_full = true
+	if (met_target_time(marathon_best_any_time, GOLD_ANY_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[1]) and 
+		met_target_time(marathon_best_warpless_time, GOLD_WARPLESS_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[1])):
+		has_silver_full = true
+	if (met_target_time(marathon_best_any_time, GOLD_ANY_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[0]) and 
+		met_target_time(marathon_best_warpless_time, GOLD_WARPLESS_TIMES[Global.current_campaign] * MEDAL_CONVERSIONS[0])):
+		has_bronze_full = true
 	
 	if has_gold_levels_warpless and has_gold_levels_any and has_gold_full:
 		match Global.current_campaign:

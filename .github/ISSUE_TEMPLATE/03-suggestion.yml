@@ -1,0 +1,37 @@
+name: Suggestion
+description: Submit a suggestion for Super Mario Bros. Remastered.
+labels: ["💡 Suggestion"]
+title: '[Suggestion]: '
+
+body:
+  - type: checkboxes
+    id: type
+    attributes:
+      label: "Type of Suggestion"
+      description: 'Select all applicable areas of the game that this suggestion touches on. (Select "Miscellaneous" if unsure.)'
+      options:
+        - label: ROM Verification
+        - label: Campaign
+        - label: Custom Level
+        - label: Level Editor
+        - label: Default Resources
+        - label: Custom Resources
+        - label: GML Modding
+        - label: Inaccuracy
+        - label: Localization
+        - label: UI (User Interface)
+        - label: Miscellaneous
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Please write a clear and concise description of the suggestion you have. Nothing too ambitious, please!"
+      
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Screenshots"
+      description: "If applicable, add screenshots to help explain the suggestion."

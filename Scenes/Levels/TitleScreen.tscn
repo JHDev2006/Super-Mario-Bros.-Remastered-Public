@@ -917,12 +917,11 @@ color = Color(0, 0, 0, 1)
 autostart = true
 
 [node name="DevBuildWarning" type="Label" parent="CanvasLayer2/VersionLabel"]
-visible = false
-layout_mode = 1
-offset_top = 16.0
-offset_right = 56.0
-offset_bottom = 32.0
-text = "DEVELOPMENT BUILD! EXPECT BUGS!"
+layout_mode = 0
+offset_top = 14.0
+offset_right = 128.0
+offset_bottom = 30.0
+text = "SNAPSHOT BUILD - EXPECT BUGS!"
 uppercase = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer2/VersionLabel/DevBuildWarning"]
@@ -934,7 +933,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0.49803922)
 
 [node name="DropShadow" parent="." instance=ExtResource("5_8t4ah")]
 

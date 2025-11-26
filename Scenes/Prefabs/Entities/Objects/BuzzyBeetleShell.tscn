@@ -92,12 +92,17 @@ one_way_collision = true
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(0, -8)
+scale = Vector2(1, 0.987)
+rect = Rect2(-128, -128, 256, 256)
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
 [connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
+[connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="on_player_hit"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="on_player_stomped_on"]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounced"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="queue_free"]

@@ -1,6 +1,6 @@
 name: Bug Report
-description: Report a bug with Super Mario Bros. Remastered
-labels: ["bug"]
+description: Report a bug or general issue with Super Mario Bros. Remastered
+labels: ["🪲 Bug"]
 title: '[Bug Report]: '
 
 body:
@@ -8,21 +8,31 @@ body:
     id: version
     attributes:
       label: "Version"
-      description: "Specify the version of the game you used when you encountered the bug. You can find the game version at the bottom-left of the title screen."
+      description: "Specify the exact version of the game you used when you encountered the bug/issue. (You can find the game version at the bottom-left of the title screen.)"
+      placeholder: "1.0.2"
+    validations:
+      required: true
 
   - type: checkboxes
-    id: bug_type
+    id: type
     attributes:
-      label: "Bug Type"
-      description: "Select all that apply (leave blank if unsure)."
+      label: "Type of Issue"
+      description: 'Select all applicable areas of the game that are affected by this bug/issue. (Select "Miscellaneous" if unsure.)'
       options:
-        - label: campaign bug
-        - label: editor bug
-        - label: custom pack bug
-        - label: ui bug
+        - label: ROM Verification
+        - label: Campaign
+        - label: Custom Level
+        - label: Level Editor
+        - label: Default Resources
+        - label: Custom Resources
+        - label: GML Modding
+        - label: Inaccuracy
+        - label: Localization
+        - label: UI (User Interface)
+        - label: Miscellaneous
     validations:
-      required: false
-      
+      required: true
+
   - type: textarea
     id: description
     attributes:
@@ -33,7 +43,7 @@ body:
     id: reproduction_steps
     attributes:
       label: "Reproduction Steps"
-      description: "Please list the steps taken to reproduce the bug, e.g. 1. Go to ... 2. Do ..."
+      description: "Please list the steps taken to reproduce the bug, if applicable. (e.g. 1. Go to ... 2. Do ...)"
       
   - type: textarea
     id: screenshots

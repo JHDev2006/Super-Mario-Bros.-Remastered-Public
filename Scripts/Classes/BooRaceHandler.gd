@@ -71,7 +71,7 @@ func player_win_race() -> void:
 	else:
 		var idx := 0
 		for boo_time in boo.time_needed:
-			if SpeedrunHandler.timer < boo_time and idx < 4:
+			if SpeedrunHandler.met_target_time(SpeedrunHandler.timer, boo_time) and idx < 4:
 				cleared_boo += 1
 			else:
 				break
