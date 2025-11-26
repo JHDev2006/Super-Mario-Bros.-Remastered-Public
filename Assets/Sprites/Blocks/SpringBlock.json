@@ -1,0 +1,45 @@
+{
+	"animations": {
+		"Bounce": {
+			"frames": [
+				[
+					16.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				]
+			],
+			"speed": 15.0,
+			"loop": false
+		},
+		"Idle": {
+			"frames": [
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		}
+	},
+	"variations": {
+		"default": {
+			"source": "SpringBlock.png",
+			"rect": [
+				0.0,
+				0.0,
+				32.0,
+				16.0
+			]
+		}
+	}
+}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ctx0nbkjf2osn"]
+[gd_scene load_steps=37 format=3 uid="uid://ctx0nbkjf2osn"]
 
 [ext_resource type="Script" uid="uid://c0c5ctrmxhpk7" path="res://Scripts/Classes/Entities/Items/YoshiEgg.gd" id="1_byuma"]
 [ext_resource type="Texture2D" uid="uid://c7jq6t1d2mhur" path="res://Assets/Sprites/Items/YoshiEgg.png" id="1_xcoq2"]
@@ -9,8 +9,10 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/YoshiEgg.json" id="4_r541a"]
 [ext_resource type="AudioStream" uid="uid://cl4e0p4fnpjn1" path="res://Assets/Audio/SFX/Yoshi.wav" id="5_ovuko"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/Yoshi.json" id="6_3ntsy"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_swra8"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="7_jen1s"]
+[ext_resource type="JSON" path="res://Assets/Audio/SFX/YoshiEgg.json" id="9_3ntsy"]
+[ext_resource type="JSON" path="res://Assets/Audio/SFX/Yoshi.json" id="11_6x77t"]
+[ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="12_4vchd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jlbu"]
 atlas = ExtResource("1_xcoq2")
@@ -325,11 +327,6 @@ script = ExtResource("7_jen1s")
 Overworld = ExtResource("4_ljpfp")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
-[sub_resource type="Resource" id="Resource_peoeq"]
-script = ExtResource("7_jen1s")
-Overworld = ExtResource("5_ovuko")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
 [node name="YoshiEgg" type="CharacterBody2D"]
 z_index = -1
 collision_layer = 8
@@ -381,20 +378,28 @@ metadata/_custom_type_script = "uid://5octqlf4ohel"
 stream = ExtResource("4_ljpfp")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="YoshiHatch" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("6_swra8")
+[node name="ResourceSetterNew" type="Node" parent="YoshiHatch" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_peoeq")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_2jlbu")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("9_3ntsy")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="YoshiSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ovuko")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="YoshiSFX" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("6_swra8")
+[node name="ResourceSetterNew" type="Node" parent="YoshiSFX" node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_peoeq")
 node_to_affect = NodePath("..")
 property_name = "stream"
-themed_resource = SubResource("Resource_peoeq")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
+mode = 2
+resource_json = ExtResource("11_6x77t")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ThemedToJSONConverter" type="Node" parent="."]
+script = ExtResource("12_4vchd")
+resource = SubResource("Resource_2jlbu")
+json_file_path = "res://Assets/Audio/SFX/YoshiEgg.json"
+metadata/_custom_type_script = "uid://cqif1li7otvpl"

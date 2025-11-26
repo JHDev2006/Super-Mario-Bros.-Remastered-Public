@@ -1,16 +1,12 @@
-[gd_resource type="Resource" script_class="ThemedResource" load_steps=22 format=3 uid="uid://dfmek6gee3f7r"]
+[gd_resource type="Resource" script_class="ThemedResource" load_steps=20 format=3 uid="uid://dfmek6gee3f7r"]
 
-[ext_resource type="Texture2D" uid="uid://deesmqkpjjwds" path="res://Assets/Sprites/Tilesets/CastleTiles.png" id="1_2o74h"]
-[ext_resource type="Texture2D" uid="uid://clpa81btp2ems" path="res://Assets/Sprites/Tilesets/CastleTilesLL.png" id="2_sh3ua"]
 [ext_resource type="Script" uid="uid://cixtosud3mfaq" path="res://Scripts/Classes/Resources/CampaignResource.gd" id="3_7qpnj"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="4_250cy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wtdsc"]
-atlas = ExtResource("1_2o74h")
 region = Rect2(0, 32, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oa5jq"]
-atlas = ExtResource("2_sh3ua")
 region = Rect2(0, 64, 48, 32)
 
 [sub_resource type="Resource" id="Resource_bsgsg"]
@@ -20,11 +16,9 @@ SMBLL = SubResource("AtlasTexture_oa5jq")
 metadata/_custom_type_script = ExtResource("3_7qpnj")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bsgsg"]
-atlas = ExtResource("1_2o74h")
 region = Rect2(48, 32, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpaid"]
-atlas = ExtResource("2_sh3ua")
 region = Rect2(0, 32, 48, 32)
 
 [sub_resource type="Resource" id="Resource_0ufea"]
@@ -34,15 +28,12 @@ SMBLL = SubResource("AtlasTexture_fpaid")
 metadata/_custom_type_script = "uid://cixtosud3mfaq"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2o74h"]
-atlas = ExtResource("1_2o74h")
 region = Rect2(0, 96, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ulvy5"]
-atlas = ExtResource("1_2o74h")
 region = Rect2(0, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjwyw"]
-atlas = ExtResource("2_sh3ua")
 region = Rect2(0, 0, 48, 32)
 
 [sub_resource type="Resource" id="Resource_tt5sy"]
@@ -52,11 +43,9 @@ SMBLL = SubResource("AtlasTexture_vjwyw")
 metadata/_custom_type_script = ExtResource("3_7qpnj")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oxmfh"]
-atlas = ExtResource("1_2o74h")
 region = Rect2(0, 64, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1inyt"]
-atlas = ExtResource("2_sh3ua")
 region = Rect2(0, 96, 48, 32)
 
 [sub_resource type="Resource" id="Resource_fpaid"]
@@ -66,11 +55,9 @@ SMBLL = SubResource("AtlasTexture_1inyt")
 metadata/_custom_type_script = ExtResource("3_7qpnj")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sh3ua"]
-atlas = ExtResource("1_2o74h")
 region = Rect2(48, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qpnj"]
-atlas = ExtResource("2_sh3ua")
 region = Rect2(48, 0, 48, 32)
 
 [sub_resource type="Resource" id="Resource_250cy"]
@@ -80,7 +67,6 @@ SMBLL = SubResource("AtlasTexture_7qpnj")
 metadata/_custom_type_script = ExtResource("3_7qpnj")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_250cy"]
-atlas = ExtResource("2_sh3ua")
 region = Rect2(48, 32, 48, 32)
 
 [resource]

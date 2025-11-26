@@ -1,7 +1,6 @@
-[gd_scene load_steps=78 format=4 uid="uid://bksxgpygrdjl7"]
+[gd_scene load_steps=72 format=4 uid="uid://bksxgpygrdjl7"]
 
 [ext_resource type="Script" uid="uid://erdjx03phltn" path="res://Scripts/Classes/LevelBGNew.gd" id="1_pkg8e"]
-[ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="3_6m0f5"]
 [ext_resource type="Texture2D" uid="uid://bha24bbe5qth1" path="res://Assets/Sprites/Backgrounds/Hills/Overworld.png" id="3_xdw86"]
 [ext_resource type="Texture2D" uid="uid://dtfe33kjuo60w" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/Trees.png" id="4_r8svn"]
 [ext_resource type="Script" uid="uid://cixtosud3mfaq" path="res://Scripts/Classes/Resources/CampaignResource.gd" id="5_vsau7"]
@@ -12,12 +11,10 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="10_lvidp"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/Hills/Hill.json" id="11_kmegu"]
 [ext_resource type="Texture2D" uid="uid://4d5oglq575l1" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/TreesLL.png" id="12_qbp4r"]
-[ext_resource type="Texture2D" uid="uid://bsssrchx6qe0i" path="res://Assets/Sprites/Backgrounds/Hills/Jungle.png" id="13_i5r0m"]
 [ext_resource type="Texture2D" uid="uid://cx54ubn3schon" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SnowTrees.png" id="13_kf1vm"]
 [ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="13_q0lxs"]
 [ext_resource type="Texture2D" uid="uid://wyrrj7wts6xe" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SnowTreesLL.png" id="14_ob0l2"]
 [ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="14_ugdi7"]
-[ext_resource type="Texture2D" uid="uid://d4kkcpn1bahcf" path="res://Assets/Sprites/Backgrounds/Hills/JungleLL.png" id="15_413gx"]
 [ext_resource type="AudioStream" uid="uid://mgub7yupxkau" path="res://Assets/Audio/SFX/ANNCheering1.wav" id="15_b1lev"]
 [ext_resource type="Texture2D" uid="uid://hiwsjulaojy1" path="res://Assets/Sprites/Backgrounds/CloudOverlays/CloudOverlay.png" id="15_whv0w"]
 [ext_resource type="AudioStream" uid="uid://dxpllussaq340" path="res://Assets/Audio/SFX/ANNCheering2.wav" id="16_ugdi7"]
@@ -41,6 +38,7 @@
 [ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="36_ekspk"]
 [ext_resource type="Texture2D" uid="uid://3y5hetq5n21x" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SnowNightTrees.png" id="36_ibh57"]
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="37_nfso6"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/NightTint.json" id="41_b1lev"]
 [ext_resource type="Texture2D" uid="uid://dfildm0squweg" path="res://Assets/Sprites/Players/ToadNPC.png" id="43_joqdr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b8hji"]
@@ -275,25 +273,6 @@ metadata/_snap_count = 3
 gradient = SubResource("Gradient_dmpyo")
 width = 3
 
-[sub_resource type="Gradient" id="Gradient_qkl8a"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.266667, 0.137255, 0.0235294, 1)
-
-[sub_resource type="Gradient" id="Gradient_b8hji"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.372549, 0.372549, 0.290196, 1)
-
-[sub_resource type="Gradient" id="Gradient_e5ylw"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.372549, 0.372549, 0.686275, 1)
-
-[sub_resource type="Resource" id="Resource_e5ylw"]
-script = ExtResource("6_m4ndh")
-Overworld = SubResource("Gradient_b8hji")
-Desert = SubResource("Gradient_qkl8a")
-Snow = SubResource("Gradient_e5ylw")
-metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
 [sub_resource type="Resource" id="Resource_q0lxs"]
 metadata/__load_path__ = "res://Assets/Sprites/Backgrounds/Trees/BeachTrees.png"
 
@@ -335,23 +314,23 @@ Snow = SubResource("Resource_wxktm")
 Beach = SubResource("Resource_q0lxs")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
-[sub_resource type="Resource" id="Resource_ekspk"]
-metadata/__load_path__ = "res://Assets/Sprites/Backgrounds/Trees/AutumnLL.png"
+[sub_resource type="Gradient" id="Gradient_qkl8a"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.266667, 0.137255, 0.0235294, 1)
 
-[sub_resource type="Resource" id="Resource_7urbp"]
-script = ExtResource("5_vsau7")
-SMB1 = ExtResource("13_i5r0m")
-SMBLL = ExtResource("15_413gx")
-metadata/_custom_type_script = "uid://cixtosud3mfaq"
+[sub_resource type="Gradient" id="Gradient_b8hji"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.372549, 0.372549, 0.290196, 1)
 
-[sub_resource type="Resource" id="Resource_t06j2"]
-metadata/__load_path__ = "res://Assets/Sprites/Backgrounds/Trees/Forest.png"
+[sub_resource type="Gradient" id="Gradient_e5ylw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.372549, 0.372549, 0.686275, 1)
 
-[sub_resource type="Resource" id="Resource_yxjfg"]
+[sub_resource type="Resource" id="Resource_e5ylw"]
 script = ExtResource("6_m4ndh")
-Overworld = SubResource("Resource_t06j2")
-Jungle = SubResource("Resource_7urbp")
-Autumn = SubResource("Resource_ekspk")
+Overworld = SubResource("Gradient_b8hji")
+Desert = SubResource("Gradient_qkl8a")
+Snow = SubResource("Gradient_e5ylw")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [node name="LevelBG" type="Node2D"]
@@ -797,15 +776,6 @@ tile_map_data = PackedByteArray("AAAwAAAAAgAAAAIAAQAwAAEAAgAAAAMAAQAxAAAAAgAAAAI
 process_mode = 1
 tile_map_data = PackedByteArray("AAAwAAAAAgAAAAYAAQAwAAEAAgAAAAcAAQAxAAAAAgAAAAYAAQAxAAEAAgAAAAcAAQAyAAAAAgAAAAYAAQAyAAEAAgAAAAcAAQAzAAAAAgAAAAYAAQAzAAEAAgAAAAcAAQA0AAAAAgAAAAYAAQA0AAEAAgAAAAcAAQA1AAAAAgAAAAYAAQA1AAEAAgAAAAcAAQA2AAAAAgAAAAYAAQA2AAEAAgAAAAcAAQA3AAAAAgAAAAYAAQA3AAEAAgAAAAcAAQA4AAAAAgAAAAYAAQA4AAEAAgAAAAcAAQA5AAAAAgAAAAYAAQA5AAEAAgAAAAcAAQA6AAAAAgAAAAYAAQA6AAEAAgAAAAcAAQA7AAAAAgAAAAYAAQA7AAEAAgAAAAcAAQA8AAAAAgAAAAYAAQA8AAEAAgAAAAcAAQA9AAAAAgAAAAYAAQA9AAEAAgAAAAcAAQA+AAAAAgAAAAYAAQA+AAEAAgAAAAcAAQA/AAAAAgAAAAYAAQA/AAEAAgAAAAcAAQBAAAAAAgAAAAYAAQBAAAEAAgAAAAcAAQBBAAAAAgAAAAYAAQBBAAEAAgAAAAcAAQBCAAAAAgAAAAYAAQBCAAEAAgAAAAcAAQBDAAAAAgAAAAYAAQBDAAEAAgAAAAcAAQBEAAAAAgAAAAYAAQBEAAEAAgAAAAcAAQBFAAAAAgAAAAYAAQBFAAEAAgAAAAcAAQBGAAAAAgAAAAYAAQBGAAEAAgAAAAcAAQBHAAAAAgAAAAYAAQBHAAEAAgAAAAcAAQBIAAAAAgAAAAYAAQBIAAEAAgAAAAcAAQBJAAAAAgAAAAYAAQBJAAEAAgAAAAcAAQBKAAAAAgAAAAYAAQBKAAEAAgAAAAcAAQBLAAAAAgAAAAYAAQBLAAEAAgAAAAcAAQBMAAAAAgAAAAYAAQBMAAEAAgAAAAcAAQBNAAAAAgAAAAYAAQBNAAEAAgAAAAcAAQBOAAAAAgAAAAYAAQBOAAEAAgAAAAcAAQBPAAAAAgAAAAYAAQBPAAEAAgAAAAcAAQA=")
 
-[node name="NightTint" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
-process_mode = 1
-script = ExtResource("3_6m0f5")
-node_to_affect = NodePath("..")
-property_name = "night_tint_texture"
-themed_resource = SubResource("Resource_e5ylw")
-use_classic_theming = true
-metadata/_custom_type_script = "uid://cq6f682453q6o"
-
 [node name="ThemedToJSONConverter" type="Node" parent="."]
 process_mode = 1
 script = ExtResource("37_nfso6")
@@ -999,6 +969,14 @@ metadata/_custom_type_script = "uid://364rywt44hy6"
 [node name="ThemedToJSONConverter2" type="Node" parent="."]
 process_mode = 1
 script = ExtResource("37_nfso6")
-resource = SubResource("Resource_yxjfg")
-json_file_path = "res://Assets/Sprites/Backgrounds/Trees/Trees.json"
+resource = SubResource("Resource_e5ylw")
+json_file_path = "res://Assets/Sprites/Backgrounds/NightTint.json"
 metadata/_custom_type_script = "uid://cqif1li7otvpl"
+
+[node name="NightTintNew" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_name = "night_tint_texture"
+mode = 1
+resource_json = ExtResource("41_b1lev")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
