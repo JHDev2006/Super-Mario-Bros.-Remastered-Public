@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://dkxkrqflg46b2"]
 
 [ext_resource type="Texture2D" uid="uid://ck2ac2a266r6i" path="res://Assets/Sprites/Items/Vine.png" id="1_pfdri"]
-[ext_resource type="AudioStream" uid="uid://bdm8wm7vy4r12" path="res://Assets/Audio/SFX/VineAppear.wav" id="2_ap2o3"]
 [ext_resource type="Script" uid="uid://cxtvy2qolon2f" path="res://Scripts/Classes/Entities/Items/Vine.gd" id="2_tlgk1"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ni768"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="4_m01lk"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Vine.json" id="4_q1cik"]
+[ext_resource type="AudioStream" uid="uid://i8n2yc6h84pe" path="res://Assets/Audio/SFX/VineAppear.ogg" id="5_e75m7"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_ohmvf"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="7_e75m7"]
 
@@ -15,16 +15,16 @@ size = Vector2(8, 16)
 
 [sub_resource type="Resource" id="Resource_cmcye"]
 script = ExtResource("7_e75m7")
-Overworld = ExtResource("2_ap2o3")
+Overworld = ExtResource("5_e75m7")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ssycu"]
 
-[node name="Vine" type="Node2D"]
+[node name="Vine" type="Node2D" unique_id=1027764903]
 z_index = -5
 script = ExtResource("2_tlgk1")
 
-[node name="Visuals" type="NinePatchRect" parent="."]
+[node name="Visuals" type="NinePatchRect" parent="." unique_id=1107521206]
 offset_left = -8.0
 offset_top = -8.0
 offset_right = 8.0
@@ -34,7 +34,7 @@ texture = ExtResource("1_pfdri")
 patch_margin_top = 16
 axis_stretch_vertical = 1
 
-[node name="ResourceSetterNew" type="Node" parent="Visuals" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Visuals" unique_id=2054281808 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_ni768")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -42,30 +42,30 @@ mode = 1
 resource_json = ExtResource("4_q1cik")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=458185777]
 position = Vector2(-8, -8)
 
-[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+[node name="Collision" type="CollisionShape2D" parent="Hitbox" unique_id=1710478548]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_ap2o3")
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_ap2o3")
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1027524401]
+stream = ExtResource("5_e75m7")
 autoplay = true
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="SFX" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="SFX" unique_id=776844218 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("6_ohmvf")
 node_to_affect = NodePath("..")
 property_name = "stream"
 themed_resource = SubResource("Resource_cmcye")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="WarpHitbox" type="Area2D" parent="."]
+[node name="WarpHitbox" type="Area2D" parent="." unique_id=1874546625]
 script = ExtResource("4_m01lk")
 metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WarpHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarpHitbox" unique_id=919517971]
 shape = SubResource("CircleShape2D_ssycu")
 disabled = true
 

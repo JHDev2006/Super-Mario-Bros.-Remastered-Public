@@ -10,8 +10,8 @@
 [ext_resource type="Script" uid="uid://cixtosud3mfaq" path="res://Scripts/Classes/Resources/CampaignResource.gd" id="7_6q27m"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="8_c20ch"]
 [ext_resource type="AudioStream" uid="uid://b26qanomle5ug" path="res://Assets/Audio/BGM/Setup.mp3" id="9_cloha"]
-[ext_resource type="AudioStream" uid="uid://c70oyr23fyxwb" path="res://Assets/Audio/SFX/1up.wav" id="11_4o1wk"]
-[ext_resource type="AudioStream" uid="uid://02i3v6iqndob" path="res://Assets/Audio/SFX/Bump.wav" id="12_2ok7u"]
+[ext_resource type="AudioStream" uid="uid://dc3i7bubf0m6" path="res://Assets/Audio/SFX/1up.ogg" id="11_2ok7u"]
+[ext_resource type="AudioStream" uid="uid://csd7xqgefyk8h" path="res://Assets/Audio/SFX/Bump.ogg" id="12_2ok7u"]
 
 [sub_resource type="Shader" id="Shader_mm3k3"]
 code = "shader_type canvas_item;
@@ -88,10 +88,10 @@ script = ExtResource("8_c20ch")
 Overworld = SubResource("Resource_euqtg")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
-[node name="ROMVerifier" type="Node"]
+[node name="ROMVerifier" type="Node" unique_id=1260134724]
 script = ExtResource("1_r85ci")
 
-[node name="BG" type="NinePatchRect" parent="."]
+[node name="BG" type="NinePatchRect" parent="." unique_id=1218184556]
 texture_repeat = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,7 +104,7 @@ region_rect = Rect2(0, 0, 16, 16)
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Border" type="NinePatchRect" parent="BG"]
+[node name="Border" type="NinePatchRect" parent="BG" unique_id=745238233]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -122,7 +122,7 @@ axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 script = ExtResource("4_2ok7u")
 
-[node name="BG" type="TextureRect" parent="BG/Border"]
+[node name="BG" type="TextureRect" parent="BG/Border" unique_id=19107180]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_6hpoa")
 layout_mode = 1
@@ -134,14 +134,14 @@ grow_vertical = 2
 texture = ExtResource("5_qwra1")
 stretch_mode = 1
 
-[node name="ResourceSetter" type="Node" parent="BG/Border" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="BG/Border" unique_id=623679896 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("6_y6sry")
 node_to_affect = NodePath("..")
 property_name = "texture"
 themed_resource = SubResource("Resource_v5xmg")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="MarginContainer" type="MarginContainer" parent="BG/Border"]
+[node name="MarginContainer" type="MarginContainer" parent="BG/Border" unique_id=890908702]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,11 +153,11 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="DefaultText" type="Control" parent="BG/Border/MarginContainer"]
+[node name="DefaultText" type="Control" parent="BG/Border/MarginContainer" unique_id=80673082]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
+[node name="Label" type="Label" parent="BG/Border/MarginContainer/DefaultText" unique_id=1995969851]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -168,7 +168,7 @@ text = "ROM VERIFICATION REQUIRED!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Label2" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
+[node name="Label2" type="Label" parent="BG/Border/MarginContainer/DefaultText" unique_id=1138251]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -181,7 +181,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
-[node name="Error" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
+[node name="Error" type="Label" parent="BG/Border/MarginContainer/DefaultText" unique_id=487128011]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0.99999994, 0.17417294, 0.12721592, 1)
@@ -200,7 +200,7 @@ ARE YOU SURE ITS A VALID VANILLA NES SMB1 ROM?"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ZipError" type="Label" parent="BG/Border/MarginContainer/DefaultText"]
+[node name="ZipError" type="Label" parent="BG/Border/MarginContainer/DefaultText" unique_id=1125838124]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0.99999994, 0.17417294, 0.12721592, 1)
@@ -217,7 +217,7 @@ text = "PLEASE EXTRACT THE ROM FILE, OUT OF THE ZIP FIRST"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="SuccessMSG" type="Label" parent="BG/Border/MarginContainer"]
+[node name="SuccessMSG" type="Label" parent="BG/Border/MarginContainer" unique_id=834541128]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0, 1, 0, 1)
@@ -228,20 +228,20 @@ PROCEEDING..."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="ResourceSetter" type="Node" parent="BG" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="BG" unique_id=149835754 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("6_y6sry")
 node_to_affect = NodePath("..")
 property_name = "texture"
 themed_resource = SubResource("Resource_e3hrc")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="BGM" type="AudioStreamPlayer" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=625618713]
 stream = ExtResource("9_cloha")
 autoplay = true
 bus = &"Music"
 
-[node name="SuccessSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_4o1wk")
+[node name="SuccessSFX" type="AudioStreamPlayer" parent="." unique_id=360508525]
+stream = ExtResource("11_2ok7u")
 
-[node name="ErrorSFX" type="AudioStreamPlayer" parent="."]
+[node name="ErrorSFX" type="AudioStreamPlayer" parent="." unique_id=633883492]
 stream = ExtResource("12_2ok7u")

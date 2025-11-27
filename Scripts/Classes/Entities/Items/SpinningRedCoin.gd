@@ -4,7 +4,7 @@ var velocity := Vector2(0, -300)
 
 var id := 0
 
-const collection_sounds := [preload("uid://drr1qqeuhmv6m"), preload("uid://de1tktivtggdv"), preload("uid://cdtlca36qsba5"), preload("uid://dd47k4c5sypwp"), preload("uid://chi2nogc2op4i")]
+const collection_sounds := [preload("uid://cwx2ychj0obsd"), preload("uid://duno6yejd1lhh"), preload("uid://lfjuutmj4epx"), preload("uid://ds1s234rnwpf2"), preload("uid://cwa52qm3frbtd")]
 
 var already_collected := false
 

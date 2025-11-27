@@ -76,11 +76,11 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="SpinningCoin" type="Node2D"]
+[node name="SpinningCoin" type="Node2D" unique_id=2072718970]
 visibility_layer = 3
 script = ExtResource("1_2dih8")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1330995882]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_oosg8")
 animation = &"Idle"
@@ -90,7 +90,7 @@ speed_scale = 2.5
 script = ExtResource("3_rnpac")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1420672159 node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("3_ke76m")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
@@ -98,12 +98,12 @@ property_name = "sprite_frames"
 resource_json = ExtResource("4_rnpac")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=885614541]
 wait_time = 0.5
 one_shot = true
 autostart = true
 
-[node name="ScoreNoteSpawner" type="Node" parent="."]
+[node name="ScoreNoteSpawner" type="Node" parent="." unique_id=577649260]
 script = ExtResource("3_oosg8")
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
