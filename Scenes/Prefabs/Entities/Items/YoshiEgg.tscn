@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://hdpdek7jitea" path="res://Assets/Sprites/Players/Yoshi.png" id="2_byuma"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_peoeq"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="4_f5bm0"]
-[ext_resource type="AudioStream" uid="uid://uc55fu866hkj" path="res://Assets/Audio/SFX/YoshiEgg.wav" id="4_ljpfp"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/YoshiEgg.json" id="4_r541a"]
-[ext_resource type="AudioStream" uid="uid://cl4e0p4fnpjn1" path="res://Assets/Audio/SFX/Yoshi.wav" id="5_ovuko"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/Yoshi.json" id="6_3ntsy"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_swra8"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="7_jen1s"]
+[ext_resource type="AudioStream" uid="uid://beu1xwrswnbe8" path="res://Assets/Audio/SFX/YoshiEgg.ogg" id="8_3ntsy"]
+[ext_resource type="AudioStream" uid="uid://dksb404ol6cut" path="res://Assets/Audio/SFX/Yoshi.ogg" id="12_6x77t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2jlbu"]
 atlas = ExtResource("1_xcoq2")
@@ -322,77 +322,77 @@ _data = {
 
 [sub_resource type="Resource" id="Resource_2jlbu"]
 script = ExtResource("7_jen1s")
-Overworld = ExtResource("4_ljpfp")
+Overworld = ExtResource("8_3ntsy")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="Resource" id="Resource_peoeq"]
 script = ExtResource("7_jen1s")
-Overworld = ExtResource("5_ovuko")
+Overworld = ExtResource("12_6x77t")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
-[node name="YoshiEgg" type="CharacterBody2D"]
+[node name="YoshiEgg" type="CharacterBody2D" unique_id=376079925]
 z_index = -1
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_byuma")
 
-[node name="Egg" type="AnimatedSprite2D" parent="."]
+[node name="Egg" type="AnimatedSprite2D" parent="." unique_id=18442885]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_r541a")
 animation = &"Yellow"
 speed_scale = 0.0
 
-[node name="ResourceSetterNew" type="Node" parent="Egg" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Egg" unique_id=1934654747 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_peoeq")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_r541a")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Yoshi" type="AnimatedSprite2D" parent="."]
+[node name="Yoshi" type="AnimatedSprite2D" parent="." unique_id=1275336778]
 visible = false
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_ytyif")
 animation = &"Green"
 autoplay = "Green"
 
-[node name="ResourceSetterNew" type="Node" parent="Yoshi" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Yoshi" unique_id=1657226257 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_peoeq")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_3ntsy")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2125762835]
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_h0v6r")
 
-[node name="Animation" type="AnimationPlayer" parent="."]
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=467627253]
 libraries = {
 &"": SubResource("AnimationLibrary_byuma")
 }
-autoplay = "new_animation"
+autoplay = &"new_animation"
 
-[node name="ScoreNoteSpawner" type="Node" parent="."]
+[node name="ScoreNoteSpawner" type="Node" parent="." unique_id=151465303]
 script = ExtResource("4_f5bm0")
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
-[node name="YoshiHatch" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_ljpfp")
+[node name="YoshiHatch" type="AudioStreamPlayer2D" parent="." unique_id=2050629135]
+stream = ExtResource("8_3ntsy")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="YoshiHatch" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="YoshiHatch" unique_id=2061520368 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("6_swra8")
 node_to_affect = NodePath("..")
 property_name = "stream"
 themed_resource = SubResource("Resource_2jlbu")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="YoshiSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_ovuko")
+[node name="YoshiSFX" type="AudioStreamPlayer2D" parent="." unique_id=1446683776]
+stream = ExtResource("12_6x77t")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="YoshiSFX" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="YoshiSFX" unique_id=2120456819 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("6_swra8")
 node_to_affect = NodePath("..")
 property_name = "stream"

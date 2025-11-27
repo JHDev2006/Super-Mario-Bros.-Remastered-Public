@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dmp6qqm3q16pc" path="res://Scripts/UI/AchievementUnlockPopup.gd" id="1_uc4d1"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="1_x3tc0"]
 [ext_resource type="Texture2D" uid="uid://bul3c11keqjfi" path="res://Assets/Sprites/UI/AchievementIcons.png" id="2_uc4d1"]
-[ext_resource type="AudioStream" uid="uid://yxb07387lw0o" path="res://Assets/Audio/SFX/AchievementUnlock.wav" id="3_r2311"]
 [ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="4_ok8j7"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="5_01gcg"]
+[ext_resource type="AudioStream" uid="uid://c5gqlfthfpl2e" path="res://Assets/Audio/SFX/AchievementUnlock.ogg" id="5_kt478"]
 [ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="5_ok8j7"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_wsi03"]
@@ -103,7 +103,7 @@ _data = {
 &"RESET": SubResource("Animation_wjo1g")
 }
 
-[node name="AchievementUnlock" type="Control"]
+[node name="AchievementUnlock" type="Control" unique_id=1499353278]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -114,12 +114,12 @@ grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("1_uc4d1")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=681689734]
 anchors_preset = 0
 offset_top = 96.0
 offset_bottom = 96.0
 
-[node name="Panel" type="PanelContainer" parent="Control"]
+[node name="Panel" type="PanelContainer" parent="Control" unique_id=1039858299]
 self_modulate = Color(1, 1, 1, 0.8)
 layout_mode = 1
 anchors_preset = 3
@@ -133,24 +133,24 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = ExtResource("1_x3tc0")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel" unique_id=585270932]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = -8
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = -8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer" unique_id=632743603]
 layout_mode = 2
 theme_override_constants/separation = -5
 
-[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer" unique_id=1967790633]
 layout_mode = 2
 text = "ACHIEVEMENT_UNLOCK"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="Control/Panel/MarginContainer/VBoxContainer/Label"]
+[node name="HSeparator" type="HSeparator" parent="Control/Panel/MarginContainer/VBoxContainer/Label" unique_id=655512875]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -161,12 +161,12 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/separator = SubResource("StyleBoxLine_wsi03")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel/MarginContainer/VBoxContainer" unique_id=652315912]
 layout_mode = 2
 size_flags_vertical = 6
 alignment = 1
 
-[node name="Icon" type="NinePatchRect" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Icon" type="NinePatchRect" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1166943033]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -176,18 +176,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("4_ok8j7")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Icon2" type="NinePatchRect" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("2_uc4d1")
-region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("4_ok8j7")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
-
-[node name="Icon3" type="NinePatchRect" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Icon2" type="NinePatchRect" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=177310441]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(32, 32)
@@ -198,7 +187,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("4_ok8j7")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Icon4" type="NinePatchRect" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Icon3" type="NinePatchRect" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=709217688]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(32, 32)
@@ -209,13 +198,24 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("4_ok8j7")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Extra" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Icon4" type="NinePatchRect" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1950240109]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_uc4d1")
+region_rect = Rect2(0, 0, 32, 32)
+script = ExtResource("4_ok8j7")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Extra" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1812353037]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "+1"
 
-[node name="AchievementName" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer"]
+[node name="AchievementName" type="Label" parent="Control/Panel/MarginContainer/VBoxContainer" unique_id=2115961366]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -224,18 +224,18 @@ horizontal_alignment = 1
 text_overrun_behavior = 3
 uppercase = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1617392189]
 libraries = {
 &"": SubResource("AnimationLibrary_wsi03")
 }
 
-[node name="SFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_r2311")
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=598393369]
+stream = ExtResource("5_kt478")
 bus = &"SFX"
 script = ExtResource("5_ok8j7")
 metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
-[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+[node name="LabelFontChanger" type="Node" parent="." unique_id=446215969 node_paths=PackedStringArray("labels")]
 script = ExtResource("5_01gcg")
 labels = [NodePath("../Control/Panel/MarginContainer/VBoxContainer/Label"), NodePath("../Control/Panel/MarginContainer/VBoxContainer/HBoxContainer/Extra"), NodePath("../Control/Panel/MarginContainer/VBoxContainer/AchievementName")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"

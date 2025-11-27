@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dimtvmmic8y1u" path="res://Assets/Sprites/Editor/WindGenerator.png" id="3_mtw7j"]
 [ext_resource type="Texture2D" uid="uid://dy3p03djelkb3" path="res://Assets/Sprites/Particles/Leaves.png" id="4_3cn4y"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_3cn4y"]
-[ext_resource type="AudioStream" uid="uid://g5cjhcnpp1fp" path="res://Assets/Audio/SFX/Wind.wav" id="5_u3e45"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Particles/WindParticles.json" id="6_u3e45"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_wacow"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="7_swgot"]
+[ext_resource type="AudioStream" uid="uid://cnc7i3tj7ce5x" path="res://Assets/Audio/SFX/Wind.ogg" id="7_wacow"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="8_mtw7j"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i3xr0"]
@@ -40,10 +40,10 @@ anim_offset_max = 1.0
 
 [sub_resource type="Resource" id="Resource_tvrnh"]
 script = ExtResource("7_swgot")
-Overworld = ExtResource("5_u3e45")
+Overworld = ExtResource("7_wacow")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
-[node name="EntityGenerator" instance=ExtResource("1_mpgoo")]
+[node name="EntityGenerator" unique_id=321444144 instance=ExtResource("1_mpgoo")]
 script = ExtResource("2_06nk3")
 wind_force = 4
 wind_direction = 0
@@ -52,10 +52,10 @@ entity_scene = null
 [node name="Sprite" parent="LevelEditorVisibleNode" index="0"]
 texture = ExtResource("3_mtw7j")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="2"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="2" unique_id=1806501750]
 layer = 0
 
-[node name="Left" type="Control" parent="CanvasLayer" index="0"]
+[node name="Left" type="Control" parent="CanvasLayer" index="0" unique_id=1722754441]
 visible = false
 layout_mode = 3
 anchors_preset = 4
@@ -64,7 +64,7 @@ anchor_bottom = 0.5
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Particles" type="GPUParticles2D" parent="CanvasLayer/Left" index="0"]
+[node name="Particles" type="GPUParticles2D" parent="CanvasLayer/Left" index="0" unique_id=88684074]
 unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_i3xr0")
 position = Vector2(-64, 0)
@@ -73,7 +73,7 @@ texture = ExtResource("4_3cn4y")
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_am6ww")
 
-[node name="ResourceSetterNew" type="Node" parent="CanvasLayer/Left/Particles" index="0" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="CanvasLayer/Left/Particles" index="0" unique_id=909232749 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("5_3cn4y")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -81,7 +81,7 @@ mode = 1
 resource_json = ExtResource("6_u3e45")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Right" type="Control" parent="CanvasLayer" index="1"]
+[node name="Right" type="Control" parent="CanvasLayer" index="1" unique_id=349523642]
 visible = false
 layout_mode = 3
 anchors_preset = 6
@@ -93,7 +93,7 @@ grow_horizontal = 0
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Particles" type="GPUParticles2D" parent="CanvasLayer/Right" index="0"]
+[node name="Particles" type="GPUParticles2D" parent="CanvasLayer/Right" index="0" unique_id=792381288]
 material = SubResource("CanvasItemMaterial_i3xr0")
 position = Vector2(64, 0)
 scale = Vector2(-1, 1)
@@ -102,7 +102,7 @@ texture = ExtResource("4_3cn4y")
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_am6ww")
 
-[node name="ResourceSetterNew" type="Node" parent="CanvasLayer/Right/Particles" index="0" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="CanvasLayer/Right/Particles" index="0" unique_id=691468520 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("5_3cn4y")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -110,18 +110,18 @@ mode = 1
 resource_json = ExtResource("6_u3e45")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="SFX" type="AudioStreamPlayer" parent="." index="3"]
-stream = ExtResource("5_u3e45")
+[node name="SFX" type="AudioStreamPlayer" parent="." index="3" unique_id=1742508241]
+stream = ExtResource("7_wacow")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="SFX" index="0" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="SFX" index="0" unique_id=1371084980 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("6_wacow")
 node_to_affect = NodePath("..")
 property_name = "stream"
 themed_resource = SubResource("Resource_tvrnh")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="EditorPropertyExposer" type="Node" parent="." index="4"]
+[node name="EditorPropertyExposer" type="Node" parent="." index="4" unique_id=1439422690]
 script = ExtResource("8_mtw7j")
 properties = Array[String](["wind_force", "wind_direction"])
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"

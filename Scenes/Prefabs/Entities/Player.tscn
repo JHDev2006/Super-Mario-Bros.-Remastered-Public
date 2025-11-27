@@ -26,7 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://bqra7e5xsdg5r" path="res://Assets/Sprites/Particles/SkidParticles.png" id="11_vijl6"]
 [ext_resource type="Texture2D" uid="uid://dq58glgwf2l3" path="res://Assets/Sprites/UI/CheckpointIcon.png" id="13_uo1a1"]
 [ext_resource type="Script" uid="uid://ugfx3sb3h6rj" path="res://Scripts/Classes/States/Player/NoClip.gd" id="16_cekpg"]
-[ext_resource type="AudioStream" uid="uid://cbxnq518x3jqe" path="res://Assets/Audio/SFX/Skid.wav" id="18_hofol"]
 [ext_resource type="Texture2D" uid="uid://daaycq24wiiph" path="res://Assets/Sprites/UI/ControllerOverlay.png" id="19_bc3q3"]
 [ext_resource type="Texture2D" uid="uid://c6pd7cdhx78od" path="res://Assets/Sprites/UI/Tab.png" id="20_34tqy"]
 [ext_resource type="Script" uid="uid://dgmaoklmc0wfa" path="res://Scripts/Parts/CameraHandler.gd" id="20_d7xah"]
@@ -38,11 +37,12 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/Mario/Small.json" id="26_o4wvw"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="27_6ws8x"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="28_hu5lw"]
+[ext_resource type="AudioStream" uid="uid://gp2wyd76vsc7" path="res://Assets/Audio/SFX/Skid.ogg" id="29_ny1wd"]
 [ext_resource type="Texture2D" uid="uid://cpoksuhnwvh5l" path="res://Assets/Sprites/UI/TimerIcons.png" id="29_uwhl4"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/InvinciblePalettes/InvinciblePalette.json" id="29_vphr8"]
 [ext_resource type="Script" uid="uid://dn5efttgugwvb" path="res://Scripts/Classes/Components/TimerSprite.gd" id="30_o70e0"]
 [ext_resource type="Script" uid="uid://cwti0ks5sfov3" path="res://Scripts/Classes/Components/ScalableCollisionPolygon.gd" id="35_nbkfn"]
-[ext_resource type="AudioStream" uid="uid://oghj2q665pfj" path="res://Assets/Audio/SFX/TimerRunningLow.wav" id="40_o70e0"]
+[ext_resource type="AudioStream" uid="uid://c7qmftu7pn5ee" path="res://Assets/Audio/SFX/TimerRunningLow.ogg" id="42_pm4ir"]
 
 [sub_resource type="Shader" id="Shader_7nbqp"]
 code = "shader_type canvas_item;
@@ -412,7 +412,7 @@ metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="Resource" id="Resource_cekpg"]
 script = ExtResource("24_hu5lw")
-Overworld = ExtResource("18_hofol")
+Overworld = ExtResource("29_ny1wd")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bc3q3"]
@@ -480,7 +480,7 @@ size = Vector2(4, 12)
 
 [sub_resource type="Resource" id="Resource_xy8gq"]
 script = ExtResource("24_hu5lw")
-Overworld = ExtResource("40_o70e0")
+Overworld = ExtResource("42_pm4ir")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pm4ir"]
@@ -489,7 +489,7 @@ particles_anim_h_frames = 5
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("power_state") groups=["Players"]]
+[node name="Player" type="CharacterBody2D" unique_id=545603257 node_paths=PackedStringArray("power_state") groups=["Players"]]
 process_priority = 1
 process_physics_priority = 1
 z_index = 1
@@ -503,9 +503,9 @@ platform_on_leave = 2
 script = ExtResource("1_f6bau")
 power_state = NodePath("PowerStates/Small")
 
-[node name="SpriteScaleJoint" type="Node2D" parent="."]
+[node name="SpriteScaleJoint" type="Node2D" parent="." unique_id=1560599454]
 
-[node name="Sprite" type="AnimatedSprite2D" parent="SpriteScaleJoint"]
+[node name="Sprite" type="AnimatedSprite2D" parent="SpriteScaleJoint" unique_id=1062900296]
 unique_name_in_owner = true
 physics_interpolation_mode = 2
 material = SubResource("ShaderMaterial_4ojwh")
@@ -516,7 +516,7 @@ offset = Vector2(0, 1)
 script = ExtResource("5_x2idl")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="Hammer" type="Sprite2D" parent="SpriteScaleJoint/Sprite"]
+[node name="Hammer" type="Sprite2D" parent="SpriteScaleJoint/Sprite" unique_id=1701703497]
 unique_name_in_owner = true
 visible = false
 position = Vector2(8, 8)
@@ -525,13 +525,13 @@ offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="Animation" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite/Hammer"]
+[node name="Animation" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite/Hammer" unique_id=499821870]
 libraries = {
 &"": SubResource("AnimationLibrary_bl5al")
 }
-autoplay = "Swing"
+autoplay = &"Swing"
 
-[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Hammer" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Hammer" unique_id=1100971732 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -539,22 +539,22 @@ mode = 1
 resource_json = ExtResource("7_2mfvl")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="HammerHitbox" type="Area2D" parent="SpriteScaleJoint/Sprite"]
+[node name="HammerHitbox" type="Area2D" parent="SpriteScaleJoint/Sprite" unique_id=1301406831]
 unique_name_in_owner = true
 visible = false
 position = Vector2(16, 16)
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteScaleJoint/Sprite/HammerHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteScaleJoint/Sprite/HammerHitbox" unique_id=1908996761]
 position = Vector2(-3.49691e-07, -8)
 shape = SubResource("RectangleShape2D_a1d2e")
 
-[node name="Wings" type="Node2D" parent="SpriteScaleJoint/Sprite"]
+[node name="Wings" type="Node2D" parent="SpriteScaleJoint/Sprite" unique_id=302905413]
 unique_name_in_owner = true
 visible = false
 
-[node name="BigWing" type="AnimatedSprite2D" parent="SpriteScaleJoint/Sprite/Wings"]
+[node name="BigWing" type="AnimatedSprite2D" parent="SpriteScaleJoint/Sprite/Wings" unique_id=427905615]
 unique_name_in_owner = true
 position = Vector2(-10, -3)
 sprite_frames = SubResource("SpriteFrames_uwhl4")
@@ -562,14 +562,14 @@ animation = &"Idle"
 frame_progress = 0.9603284
 flip_h = true
 
-[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Wings/BigWing" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Wings/BigWing" unique_id=200857837 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("9_o70e0")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="SmallWing" type="AnimatedSprite2D" parent="SpriteScaleJoint/Sprite/Wings"]
+[node name="SmallWing" type="AnimatedSprite2D" parent="SpriteScaleJoint/Sprite/Wings" unique_id=2087685231]
 unique_name_in_owner = true
 visible = false
 show_behind_parent = true
@@ -578,72 +578,72 @@ sprite_frames = SubResource("SpriteFrames_uwhl4")
 animation = &"Idle"
 flip_h = true
 
-[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Wings/SmallWing" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Wings/SmallWing" unique_id=788097583 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("9_o70e0")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite/Wings"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite/Wings" unique_id=1253308200]
 libraries = {
 &"": SubResource("AnimationLibrary_nbkfn")
 }
 
-[node name="GrowAnimation" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite"]
+[node name="GrowAnimation" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite" unique_id=27880002]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_pm4ir")
 }
 
-[node name="States" type="Node" parent="." node_paths=PackedStringArray("state")]
+[node name="States" type="Node" parent="." unique_id=1559972954 node_paths=PackedStringArray("state")]
 script = ExtResource("2_1y62l")
 state = NodePath("Normal")
 
-[node name="Normal" type="Node" parent="States"]
+[node name="Normal" type="Node" parent="States" unique_id=831521486]
 script = ExtResource("3_f6bau")
 
-[node name="Pipe" type="Node" parent="States"]
+[node name="Pipe" type="Node" parent="States" unique_id=1153960071]
 script = ExtResource("5_hodem")
 metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
-[node name="FlagPole" type="Node" parent="States"]
+[node name="FlagPole" type="Node" parent="States" unique_id=1023521809]
 script = ExtResource("7_8f1du")
 metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
-[node name="LevelExit" type="Node" parent="States"]
+[node name="LevelExit" type="Node" parent="States" unique_id=1589359009]
 script = ExtResource("8_mqpnb")
 metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
-[node name="Dead" type="Node" parent="States"]
+[node name="Dead" type="Node" parent="States" unique_id=1546015289]
 script = ExtResource("9_mqpnb")
 metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
-[node name="Freeze" type="Node" parent="States"]
+[node name="Freeze" type="Node" parent="States" unique_id=214315050]
 script = ExtResource("6_8f1du")
 metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
-[node name="Climb" type="Node" parent="States"]
+[node name="Climb" type="Node" parent="States" unique_id=490757389]
 script = ExtResource("10_shhao")
 metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
-[node name="WallSlide" type="Node" parent="States"]
+[node name="WallSlide" type="Node" parent="States" unique_id=1851705610]
 script = ExtResource("11_057py")
 metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
-[node name="NoClip" type="Node" parent="States"]
+[node name="NoClip" type="Node" parent="States" unique_id=778022082]
 script = ExtResource("16_cekpg")
 metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
-[node name="PowerStates" type="Node" parent="."]
+[node name="PowerStates" type="Node" parent="." unique_id=425596094]
 unique_name_in_owner = true
 
-[node name="Small" type="Node" parent="PowerStates"]
+[node name="Small" type="Node" parent="PowerStates" unique_id=1538912914]
 script = ExtResource("5_rs3l8")
 state_name = "Small"
 metadata/_custom_type_script = "uid://c8xvkkv34fjr4"
 
-[node name="Big" type="Node" parent="PowerStates" node_paths=PackedStringArray("damage_state")]
+[node name="Big" type="Node" parent="PowerStates" unique_id=701876282 node_paths=PackedStringArray("damage_state")]
 script = ExtResource("5_rs3l8")
 state_name = "Big"
 power_tier = 1
@@ -651,7 +651,7 @@ hitbox_size = "Big"
 damage_state = NodePath("../Small")
 metadata/_custom_type_script = "uid://c8xvkkv34fjr4"
 
-[node name="Fire" type="Node" parent="PowerStates" node_paths=PackedStringArray("damage_state")]
+[node name="Fire" type="Node" parent="PowerStates" unique_id=594684983 node_paths=PackedStringArray("damage_state")]
 script = ExtResource("6_7nbqp")
 state_name = "Fire"
 power_tier = 2
@@ -659,7 +659,7 @@ hitbox_size = "Big"
 damage_state = NodePath("../Big")
 metadata/_custom_type_script = "uid://c8xvkkv34fjr4"
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=1634346930]
 process_mode = 3
 top_level = true
 position = Vector2(0, -64)
@@ -668,18 +668,18 @@ limit_enabled = false
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=1024206899]
 position = Vector2(0, -10)
 collision_mask = 5
 
-[node name="SmallShape" type="CollisionShape2D" parent="Hitbox" groups=["SmallCollisions"]]
+[node name="SmallShape" type="CollisionShape2D" parent="Hitbox" unique_id=1665972792 groups=["SmallCollisions"]]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_nbkfn")
 debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 offset = Vector2(0, -10)
 
-[node name="BigShape" type="CollisionShape2D" parent="Hitbox" groups=["BigCollisions"]]
+[node name="BigShape" type="CollisionShape2D" parent="Hitbox" unique_id=1091765523 groups=["BigCollisions"]]
 position = Vector2(0, -4.75)
 shape = SubResource("RectangleShape2D_vijl6")
 disabled = true
@@ -687,20 +687,20 @@ debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 offset = Vector2(0, -10)
 
-[node name="WaterDetect" type="Area2D" parent="."]
+[node name="WaterDetect" type="Area2D" parent="." unique_id=511196370]
 visible = false
 position = Vector2(0, -13)
 collision_layer = 0
 collision_mask = 64
 
-[node name="SmallShape" type="CollisionShape2D" parent="WaterDetect" groups=["SmallCollisions"]]
+[node name="SmallShape" type="CollisionShape2D" parent="WaterDetect" unique_id=1747930247 groups=["SmallCollisions"]]
 position = Vector2(0, 5.25)
 shape = SubResource("RectangleShape2D_f6bau")
 debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 offset = Vector2(0, -13)
 
-[node name="BigShape" type="CollisionShape2D" parent="WaterDetect" groups=["BigCollisions"]]
+[node name="BigShape" type="CollisionShape2D" parent="WaterDetect" unique_id=561466020 groups=["BigCollisions"]]
 position = Vector2(0, -1.75)
 shape = SubResource("RectangleShape2D_sda2e")
 disabled = true
@@ -708,20 +708,20 @@ debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 offset = Vector2(0, -13)
 
-[node name="LavaPoisonDetect" type="Area2D" parent="."]
+[node name="LavaPoisonDetect" type="Area2D" parent="." unique_id=1317224726]
 visible = false
 position = Vector2(0, -13)
 collision_layer = 0
 collision_mask = 384
 
-[node name="SmallShape" type="CollisionShape2D" parent="LavaPoisonDetect" groups=["SmallCollisions"]]
+[node name="SmallShape" type="CollisionShape2D" parent="LavaPoisonDetect" unique_id=458116274 groups=["SmallCollisions"]]
 position = Vector2(0, 5.75)
 shape = SubResource("RectangleShape2D_uwhl4")
 debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 offset = Vector2(0, -14)
 
-[node name="BigShape" type="CollisionShape2D" parent="LavaPoisonDetect" groups=["BigCollisions"]]
+[node name="BigShape" type="CollisionShape2D" parent="LavaPoisonDetect" unique_id=1049238912 groups=["BigCollisions"]]
 position = Vector2(0, -1.25)
 shape = SubResource("RectangleShape2D_o70e0")
 disabled = true
@@ -729,44 +729,44 @@ debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 offset = Vector2(0, -14)
 
-[node name="CameraCenterJoint" type="Node2D" parent="."]
+[node name="CameraCenterJoint" type="Node2D" parent="." unique_id=1997285767]
 physics_interpolation_mode = 2
 top_level = true
 
-[node name="LeftWall" type="StaticBody2D" parent="CameraCenterJoint"]
+[node name="LeftWall" type="StaticBody2D" parent="CameraCenterJoint" unique_id=1707713504]
 position = Vector2(128, 0)
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraCenterJoint/LeftWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraCenterJoint/LeftWall" unique_id=130849578]
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_t1xso")
 one_way_collision = true
 
-[node name="RightWall" type="StaticBody2D" parent="CameraCenterJoint"]
+[node name="RightWall" type="StaticBody2D" parent="CameraCenterJoint" unique_id=617317525]
 position = Vector2(-128, 0)
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraCenterJoint/RightWall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraCenterJoint/RightWall" unique_id=11813342]
 rotation = -1.5707964
 shape = SubResource("RectangleShape2D_jl70t")
 one_way_collision = true
 
-[node name="Sprite2D" type="Sprite2D" parent="CameraCenterJoint"]
+[node name="Sprite2D" type="Sprite2D" parent="CameraCenterJoint" unique_id=2063991396]
 visible = false
 texture = ExtResource("20_34tqy")
 
-[node name="ScoreNoteSpawner" type="Node" parent="."]
+[node name="ScoreNoteSpawner" type="Node" parent="." unique_id=1263626848]
 script = ExtResource("8_4ojwh")
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
-[node name="StarTimer" type="Timer" parent="."]
+[node name="StarTimer" type="Timer" parent="." unique_id=367527967]
 process_mode = 1
 wait_time = 10.0
 one_shot = true
 
-[node name="Checkpoint" type="Sprite2D" parent="."]
+[node name="Checkpoint" type="Sprite2D" parent="." unique_id=1525082561]
 process_mode = 3
 physics_interpolation_mode = 2
 self_modulate = Color(1, 1, 1, 0)
@@ -775,13 +775,13 @@ z_as_relative = false
 position = Vector2(0, -40)
 texture = ExtResource("13_uo1a1")
 
-[node name="Animation" type="AnimationPlayer" parent="Checkpoint"]
+[node name="Animation" type="AnimationPlayer" parent="Checkpoint" unique_id=1339905023]
 libraries = {
 &"": SubResource("AnimationLibrary_f873f")
 }
 speed_scale = 2.0
 
-[node name="Label" type="Label" parent="Checkpoint"]
+[node name="Label" type="Label" parent="Checkpoint" unique_id=1134777834]
 visibility_layer = 2
 offset_left = -4.0
 offset_top = -4.0
@@ -793,33 +793,33 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResourceSetter" type="Node" parent="Checkpoint" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="Checkpoint" unique_id=856257129 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("27_6ws8x")
 node_to_affect = NodePath("..")
 property_name = "texture"
 themed_resource = SubResource("Resource_2mfvl")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="HammerTimer" type="Timer" parent="."]
+[node name="HammerTimer" type="Timer" parent="." unique_id=801345356]
 process_mode = 1
 wait_time = 10.0
 one_shot = true
 
-[node name="SkidSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("18_hofol")
+[node name="SkidSFX" type="AudioStreamPlayer2D" parent="." unique_id=533799757]
+stream = ExtResource("29_ny1wd")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="SkidSFX" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="SkidSFX" unique_id=1945452431 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("27_6ws8x")
 node_to_affect = NodePath("..")
 property_name = "stream"
 themed_resource = SubResource("Resource_cekpg")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1232049244]
 process_mode = 3
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=2137254689]
 visible = false
 layout_mode = 3
 anchors_preset = 2
@@ -828,14 +828,14 @@ anchor_bottom = 1.0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="ControllerOverlay" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="ControllerOverlay" type="Sprite2D" parent="CanvasLayer/Control" unique_id=1140152906]
 position = Vector2(4, -21)
 texture = ExtResource("19_bc3q3")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 36, 16)
 
-[node name="Up" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+[node name="Up" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay" unique_id=121558821]
 position = Vector2(5, 6)
 texture = SubResource("AtlasTexture_bc3q3")
 centered = false
@@ -844,7 +844,7 @@ action_name = "move_up"
 idle_texture = SubResource("AtlasTexture_bl5al")
 pressed_texture = SubResource("AtlasTexture_bc3q3")
 
-[node name="Down" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+[node name="Down" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay" unique_id=550991629]
 position = Vector2(5, 10)
 texture = SubResource("AtlasTexture_bc3q3")
 centered = false
@@ -853,7 +853,7 @@ action_name = "move_down"
 idle_texture = SubResource("AtlasTexture_bl5al")
 pressed_texture = SubResource("AtlasTexture_bc3q3")
 
-[node name="Right" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+[node name="Right" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay" unique_id=2053820822]
 position = Vector2(7, 8)
 texture = SubResource("AtlasTexture_bc3q3")
 centered = false
@@ -862,7 +862,7 @@ action_name = "move_right"
 idle_texture = SubResource("AtlasTexture_bl5al")
 pressed_texture = SubResource("AtlasTexture_bc3q3")
 
-[node name="Left" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+[node name="Left" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay" unique_id=1577201321]
 position = Vector2(3, 8)
 texture = SubResource("AtlasTexture_bc3q3")
 centered = false
@@ -871,7 +871,7 @@ action_name = "move_left"
 idle_texture = SubResource("AtlasTexture_bl5al")
 pressed_texture = SubResource("AtlasTexture_bc3q3")
 
-[node name="Run" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+[node name="Run" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay" unique_id=301483153]
 position = Vector2(23, 8)
 scale = Vector2(1.5, 1.5)
 texture = SubResource("AtlasTexture_x2idl")
@@ -881,7 +881,7 @@ action_name = "run"
 idle_texture = SubResource("AtlasTexture_bl5al")
 pressed_texture = SubResource("AtlasTexture_x2idl")
 
-[node name="Jump" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay"]
+[node name="Jump" type="Sprite2D" parent="CanvasLayer/Control/ControllerOverlay" unique_id=689924007]
 position = Vector2(29, 8)
 scale = Vector2(1.5, 1.5)
 texture = SubResource("AtlasTexture_x2idl")
@@ -891,7 +891,7 @@ action_name = "jump"
 idle_texture = SubResource("AtlasTexture_bl5al")
 pressed_texture = SubResource("AtlasTexture_x2idl")
 
-[node name="Control2" type="Control" parent="CanvasLayer"]
+[node name="Control2" type="Control" parent="CanvasLayer" unique_id=1376768395]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -900,7 +900,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2" unique_id=717702839]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -916,19 +916,19 @@ theme_override_constants/margin_left = 0
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Timers" type="VBoxContainer" parent="CanvasLayer/Control2/MarginContainer"]
+[node name="Timers" type="VBoxContainer" parent="CanvasLayer/Control2/MarginContainer" unique_id=996274226]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 2
 alignment = 2
 
-[node name="PSwitchTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers"]
+[node name="PSwitchTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers" unique_id=1316715714]
 custom_minimum_size = Vector2(8, 8)
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
 
-[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/PSwitchTimer" node_paths=PackedStringArray("warn_sfx")]
+[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/PSwitchTimer" unique_id=318509691 node_paths=PackedStringArray("warn_sfx")]
 texture = ExtResource("29_uwhl4")
 centered = false
 hframes = 7
@@ -941,13 +941,13 @@ warn_sfx = NodePath("../../../../../../TimerWarn")
 warn_threshold = 0.8500000000058208
 metadata/_custom_type_script = "uid://dn5efttgugwvb"
 
-[node name="StarTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers"]
+[node name="StarTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers" unique_id=158512359]
 custom_minimum_size = Vector2(8, 8)
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
 
-[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/StarTimer" node_paths=PackedStringArray("timer", "warn_sfx")]
+[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/StarTimer" unique_id=2069769467 node_paths=PackedStringArray("timer", "warn_sfx")]
 texture = ExtResource("29_uwhl4")
 centered = false
 hframes = 7
@@ -963,13 +963,13 @@ warn_sfx = NodePath("../../../../../../TimerWarn")
 warn_threshold = 0.8500000000058208
 metadata/_custom_type_script = "uid://dn5efttgugwvb"
 
-[node name="WingTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers"]
+[node name="WingTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers" unique_id=1093513117]
 custom_minimum_size = Vector2(8, 8)
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
 
-[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/WingTimer" node_paths=PackedStringArray("warn_sfx")]
+[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/WingTimer" unique_id=1493263063 node_paths=PackedStringArray("warn_sfx")]
 texture = ExtResource("29_uwhl4")
 centered = false
 hframes = 7
@@ -983,13 +983,13 @@ warn_sfx = NodePath("../../../../../../TimerWarn")
 warn_threshold = 0.8500000000058208
 metadata/_custom_type_script = "uid://dn5efttgugwvb"
 
-[node name="HammerTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers"]
+[node name="HammerTimer" type="Control" parent="CanvasLayer/Control2/MarginContainer/Timers" unique_id=175522578]
 custom_minimum_size = Vector2(8, 8)
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_filter = 2
 
-[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/HammerTimer" node_paths=PackedStringArray("timer", "warn_sfx")]
+[node name="TimerSprite" type="Sprite2D" parent="CanvasLayer/Control2/MarginContainer/Timers/HammerTimer" unique_id=1629452965 node_paths=PackedStringArray("timer", "warn_sfx")]
 texture = ExtResource("29_uwhl4")
 centered = false
 hframes = 7
@@ -1004,13 +1004,13 @@ warn_sfx = NodePath("../../../../../../TimerWarn")
 warn_threshold = 0.8500000000058208
 metadata/_custom_type_script = "uid://dn5efttgugwvb"
 
-[node name="ThemedToJSONConverter" type="Node" parent="."]
+[node name="ThemedToJSONConverter" type="Node" parent="." unique_id=1193112371]
 script = ExtResource("22_445e4")
 resource = SubResource("Resource_vphr8")
 json_file_path = "res://Assets/Sprites/Players/Luigi/Fire.json"
 metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
-[node name="ResourceSetterNew" type="Node" parent="." node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetterNew" type="Node" parent="." unique_id=853811337 node_paths=PackedStringArray("node_to_affect", "property_node")]
 unique_name_in_owner = true
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("../SpriteScaleJoint/Sprite")
@@ -1020,11 +1020,11 @@ resource_json = ExtResource("26_o4wvw")
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="InvinciblePalette" type="Sprite2D" parent="."]
+[node name="InvinciblePalette" type="Sprite2D" parent="." unique_id=1083042230]
 visible = false
 texture = ExtResource("2_bl5al")
 
-[node name="ResourceSetter" type="Node" parent="InvinciblePalette" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="InvinciblePalette" unique_id=1987940974 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -1032,13 +1032,13 @@ mode = 1
 resource_json = ExtResource("29_vphr8")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="PlayerPalette" type="Sprite2D" parent="."]
+[node name="PlayerPalette" type="Sprite2D" parent="." unique_id=1855647180]
 visible = false
 position = Vector2(0, -8)
 scale = Vector2(8, 8)
 texture = ExtResource("3_x2idl")
 
-[node name="ResourceSetterNew" type="Node" parent="PlayerPalette" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="PlayerPalette" unique_id=1082259713 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -1046,58 +1046,58 @@ mode = 1
 resource_json = ExtResource("10_xy8gq")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="SmallCollision" type="CollisionPolygon2D" parent="." groups=["SmallCollisions"]]
+[node name="SmallCollision" type="CollisionPolygon2D" parent="." unique_id=2090609848 groups=["SmallCollisions"]]
 polygon = PackedVector2Array(4, -2, 4, -8, 1, -14, -1, -14, -4, -8, -4, -2, -2, 0, 2, 0)
 one_way_collision = true
 script = ExtResource("35_nbkfn")
 
-[node name="BigCollision" type="CollisionPolygon2D" parent="." groups=["BigCollisions"]]
+[node name="BigCollision" type="CollisionPolygon2D" parent="." unique_id=1588861152 groups=["BigCollisions"]]
 polygon = PackedVector2Array(-4, -2, -2, 0, 2, 0, 4, -2, 4, -23, 1, -28, -1, -28, -4, -23)
 one_way_collision = true
 script = ExtResource("35_nbkfn")
 
-[node name="FootL" type="CollisionShape2D" parent="." groups=["StepCollision"]]
+[node name="FootL" type="CollisionShape2D" parent="." unique_id=1268672428 groups=["StepCollision"]]
 position = Vector2(-6, -4)
 shape = SubResource("SeparationRayShape2D_6ws8x")
 
-[node name="FootR" type="CollisionShape2D" parent="." groups=["StepCollision"]]
+[node name="FootR" type="CollisionShape2D" parent="." unique_id=838506552 groups=["StepCollision"]]
 position = Vector2(6, -4)
 shape = SubResource("SeparationRayShape2D_6ws8x")
 
-[node name="EditorPropertyExposer" type="Node" parent="."]
+[node name="EditorPropertyExposer" type="Node" parent="." unique_id=2016558933]
 script = ExtResource("28_hu5lw")
 properties = Array[String](["starting_power_state"])
 
-[node name="Node" type="Node" parent="."]
+[node name="Node" type="Node" parent="." unique_id=352159758]
 process_mode = 3
 script = SubResource("GDScript_hu5lw")
 
-[node name="CameraHandler" type="Node2D" parent="." node_paths=PackedStringArray("camera", "camera_center_joint")]
+[node name="CameraHandler" type="Node2D" parent="." unique_id=1600025737 node_paths=PackedStringArray("camera", "camera_center_joint")]
 unique_name_in_owner = true
 process_mode = 3
 script = ExtResource("20_d7xah")
 camera = NodePath("../Camera")
 camera_center_joint = NodePath("../CameraCenterJoint")
 
-[node name="StepWallChecks" type="Node2D" parent="."]
+[node name="StepWallChecks" type="Node2D" parent="." unique_id=1708349380]
 
-[node name="LWall" type="RayCast2D" parent="StepWallChecks"]
+[node name="LWall" type="RayCast2D" parent="StepWallChecks" unique_id=1516166094]
 position = Vector2(-6, -4)
 target_position = Vector2(-1, 0)
 collision_mask = 3
 hit_from_inside = true
 
-[node name="RWall" type="RayCast2D" parent="StepWallChecks"]
+[node name="RWall" type="RayCast2D" parent="StepWallChecks" unique_id=767408466]
 position = Vector2(6, -4)
 target_position = Vector2(1, 0)
 collision_mask = 3
 hit_from_inside = true
 
-[node name="BlockCollision" type="Area2D" parent="."]
+[node name="BlockCollision" type="Area2D" parent="." unique_id=139157159]
 collision_layer = 0
 collision_mask = 4
 
-[node name="SmallShape" type="CollisionShape2D" parent="BlockCollision" node_paths=PackedStringArray("link") groups=["SmallCollisions"]]
+[node name="SmallShape" type="CollisionShape2D" parent="BlockCollision" unique_id=821369306 node_paths=PackedStringArray("link") groups=["SmallCollisions"]]
 position = Vector2(0, -3.375)
 shape = SubResource("RectangleShape2D_d7xah")
 debug_color = Color(1, 0, 0, 0.419608)
@@ -1105,7 +1105,7 @@ script = ExtResource("21_jl70t")
 link = NodePath("../../SmallCollision")
 metadata/scalable = false
 
-[node name="BigShape" type="CollisionShape2D" parent="BlockCollision" node_paths=PackedStringArray("link") groups=["BigCollisions"]]
+[node name="BigShape" type="CollisionShape2D" parent="BlockCollision" unique_id=222645625 node_paths=PackedStringArray("link") groups=["BigCollisions"]]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_34tqy")
 disabled = true
@@ -1114,19 +1114,19 @@ script = ExtResource("21_jl70t")
 link = NodePath("../../BigCollision")
 metadata/scalable = false
 
-[node name="TimerWarn" type="AudioStreamPlayer" parent="."]
+[node name="TimerWarn" type="AudioStreamPlayer" parent="." unique_id=62979968]
 process_mode = 3
-stream = ExtResource("40_o70e0")
+stream = ExtResource("42_pm4ir")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="TimerWarn" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="TimerWarn" unique_id=2116777786 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("27_6ws8x")
 node_to_affect = NodePath("..")
 property_name = "stream"
 themed_resource = SubResource("Resource_xy8gq")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="SkidParticles" type="CPUParticles2D" parent="."]
+[node name="SkidParticles" type="CPUParticles2D" parent="." unique_id=689789697]
 unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_pm4ir")
 position = Vector2(0, -2)

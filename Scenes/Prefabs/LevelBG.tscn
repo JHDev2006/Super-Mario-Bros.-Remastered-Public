@@ -15,13 +15,13 @@
 [ext_resource type="Texture2D" uid="uid://bsssrchx6qe0i" path="res://Assets/Sprites/Backgrounds/Hills/Jungle.png" id="13_i5r0m"]
 [ext_resource type="Texture2D" uid="uid://cx54ubn3schon" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SnowTrees.png" id="13_kf1vm"]
 [ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="13_q0lxs"]
+[ext_resource type="AudioStream" uid="uid://cuobm4hjtuicr" path="res://Assets/Audio/SFX/ANNCheering1.ogg" id="13_ugdi7"]
 [ext_resource type="Texture2D" uid="uid://wyrrj7wts6xe" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SnowTreesLL.png" id="14_ob0l2"]
 [ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="14_ugdi7"]
 [ext_resource type="Texture2D" uid="uid://d4kkcpn1bahcf" path="res://Assets/Sprites/Backgrounds/Hills/JungleLL.png" id="15_413gx"]
-[ext_resource type="AudioStream" uid="uid://mgub7yupxkau" path="res://Assets/Audio/SFX/ANNCheering1.wav" id="15_b1lev"]
+[ext_resource type="AudioStream" uid="uid://s7xnqasyss8f" path="res://Assets/Audio/SFX/ANNCheering2.ogg" id="15_aw4cr"]
 [ext_resource type="Texture2D" uid="uid://hiwsjulaojy1" path="res://Assets/Sprites/Backgrounds/CloudOverlays/CloudOverlay.png" id="15_whv0w"]
-[ext_resource type="AudioStream" uid="uid://dxpllussaq340" path="res://Assets/Audio/SFX/ANNCheering2.wav" id="16_ugdi7"]
-[ext_resource type="AudioStream" uid="uid://cp0qfxaqq5v25" path="res://Assets/Audio/SFX/ANNCheering3.wav" id="17_aw4cr"]
+[ext_resource type="AudioStream" uid="uid://bwq5kfvvwwo6d" path="res://Assets/Audio/SFX/ANNCheering3.ogg" id="16_ww6w2"]
 [ext_resource type="Script" uid="uid://dpoo4pluhin8p" path="res://Scripts/Classes/Resources/TimedResource.gd" id="17_q1cch"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/Bushes/Bush.json" id="17_yxjfg"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/CloudOverlays/OverlayClouds.json" id="24_aw4cr"]
@@ -354,12 +354,12 @@ Jungle = SubResource("Resource_7urbp")
 Autumn = SubResource("Resource_ekspk")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
-[node name="LevelBG" type="Node2D"]
+[node name="LevelBG" type="Node2D" unique_id=1575694960]
 process_mode = 3
 z_index = -4096
 script = ExtResource("1_pkg8e")
 
-[node name="SkyLayer" type="Parallax2D" parent="."]
+[node name="SkyLayer" type="Parallax2D" parent="." unique_id=1145300928]
 process_mode = 1
 visibility_layer = 2
 z_index = -4096
@@ -369,14 +369,14 @@ repeat_size = Vector2(512, 512)
 autoscroll = Vector2(-4, 0)
 repeat_times = 4
 
-[node name="Sky" type="AnimatedSprite2D" parent="SkyLayer"]
+[node name="Sky" type="AnimatedSprite2D" parent="SkyLayer" unique_id=14446689]
 process_mode = 1
 sprite_frames = SubResource("SpriteFrames_e5ylw")
 autoplay = "default"
 frame_progress = 0.8146292
 centered = false
 
-[node name="ResourceSetter" type="Node" parent="SkyLayer/Sky" node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetter" type="Node" parent="SkyLayer/Sky" unique_id=1786954236 node_paths=PackedStringArray("node_to_affect", "property_node")]
 process_mode = 1
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
@@ -385,7 +385,7 @@ property_name = "sprite_frames"
 resource_json = ExtResource("34_78nlv")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="PrimaryLayer" type="Parallax2D" parent="."]
+[node name="PrimaryLayer" type="Parallax2D" parent="." unique_id=993058453]
 process_mode = 1
 visibility_layer = 2
 z_index = 1
@@ -394,7 +394,7 @@ scroll_offset = Vector2(0, 32)
 repeat_size = Vector2(512, 0)
 repeat_times = 4
 
-[node name="Hills" type="AnimatedSprite2D" parent="PrimaryLayer"]
+[node name="Hills" type="AnimatedSprite2D" parent="PrimaryLayer" unique_id=1833363632]
 process_mode = 1
 position = Vector2(0, -512)
 sprite_frames = SubResource("SpriteFrames_ekspk")
@@ -403,7 +403,7 @@ script = ExtResource("7_y7xk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Hills" node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Hills" unique_id=596735805 node_paths=PackedStringArray("node_to_affect", "property_node")]
 process_mode = 1
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
@@ -412,7 +412,7 @@ property_name = "sprite_frames"
 resource_json = ExtResource("11_kmegu")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Bush" type="AnimatedSprite2D" parent="PrimaryLayer"]
+[node name="Bush" type="AnimatedSprite2D" parent="PrimaryLayer" unique_id=702905147]
 process_mode = 1
 position = Vector2(0, -512)
 sprite_frames = SubResource("SpriteFrames_b1lev")
@@ -421,7 +421,7 @@ script = ExtResource("7_y7xk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Bush" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Bush" unique_id=211504743 node_paths=PackedStringArray("node_to_affect")]
 process_mode = 1
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
@@ -429,7 +429,7 @@ property_name = "sprite_frames"
 resource_json = ExtResource("17_yxjfg")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="TopEdge" type="ColorRect" parent="PrimaryLayer"]
+[node name="TopEdge" type="ColorRect" parent="PrimaryLayer" unique_id=638368647]
 process_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -440,21 +440,21 @@ grow_horizontal = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="DiscoBits" type="Node2D" parent="."]
+[node name="DiscoBits" type="Node2D" parent="." unique_id=1218932148]
 process_mode = 1
 visible = false
 z_index = 1
 
-[node name="Rainbow" type="Parallax2D" parent="DiscoBits"]
+[node name="Rainbow" type="Parallax2D" parent="DiscoBits" unique_id=577836007]
 process_mode = 1
 scroll_scale = Vector2(0.75, 1)
 repeat_size = Vector2(512, 0)
 repeat_times = 4
 
-[node name="Joint" type="Node2D" parent="DiscoBits/Rainbow"]
+[node name="Joint" type="Node2D" parent="DiscoBits/Rainbow" unique_id=1789760112]
 process_mode = 1
 
-[node name="DiscoRainbow" type="TextureRect" parent="DiscoBits/Rainbow/Joint"]
+[node name="DiscoRainbow" type="TextureRect" parent="DiscoBits/Rainbow/Joint" unique_id=302017752]
 process_mode = 1
 modulate = Color(1, 0, 0, 1)
 self_modulate = Color(1, 1, 1, 0.5)
@@ -471,28 +471,28 @@ stretch_mode = 1
 script = ExtResource("13_q0lxs")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DiscoBits/Rainbow/Joint/DiscoRainbow"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DiscoBits/Rainbow/Joint/DiscoRainbow" unique_id=1833344594]
 process_mode = 1
 libraries = {
 &"": SubResource("AnimationLibrary_joqdr")
 }
-autoplay = "Rainbow"
+autoplay = &"Rainbow"
 speed_scale = 0.1
 
-[node name="Rhythm" type="AnimationPlayer" parent="DiscoBits/Rainbow/Joint/DiscoRainbow"]
+[node name="Rhythm" type="AnimationPlayer" parent="DiscoBits/Rainbow/Joint/DiscoRainbow" unique_id=792536245]
 process_mode = 1
 libraries = {
 &"": SubResource("AnimationLibrary_lvidp")
 }
-autoplay = "Bob"
+autoplay = &"Bob"
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="DiscoBits/Rainbow/Joint/DiscoRainbow"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="DiscoBits/Rainbow/Joint/DiscoRainbow" unique_id=229606451]
 process_mode = 1
 position = Vector2(0, 230)
 remote_path = NodePath("../../../../../Parallax2D/Toads")
 use_global_coordinates = false
 
-[node name="SpotLights" type="Parallax2D" parent="DiscoBits"]
+[node name="SpotLights" type="Parallax2D" parent="DiscoBits" unique_id=458880454]
 process_mode = 1
 modulate = Color(1, 1, 1, 0.213)
 z_index = 10
@@ -501,14 +501,14 @@ scroll_offset = Vector2(0, 16)
 repeat_size = Vector2(1024, 0)
 repeat_times = 4
 
-[node name="L" type="Sprite2D" parent="DiscoBits/SpotLights"]
+[node name="L" type="Sprite2D" parent="DiscoBits/SpotLights" unique_id=863907320]
 process_mode = 1
 position = Vector2(0, 32)
 rotation = -0.436332
 texture = ExtResource("24_ibh57")
 offset = Vector2(128, -128)
 
-[node name="R" type="Sprite2D" parent="DiscoBits/SpotLights"]
+[node name="R" type="Sprite2D" parent="DiscoBits/SpotLights" unique_id=5014539]
 process_mode = 1
 position = Vector2(512, 32)
 rotation = 0.436332
@@ -516,39 +516,39 @@ texture = ExtResource("24_ibh57")
 offset = Vector2(-128, -128)
 flip_h = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DiscoBits/SpotLights"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DiscoBits/SpotLights" unique_id=2084074684]
 process_mode = 1
 libraries = {
 &"": SubResource("AnimationLibrary_34fd5")
 }
-autoplay = "Turn"
+autoplay = &"Turn"
 speed_scale = 0.2
 
-[node name="Parallax2D" type="Parallax2D" parent="DiscoBits"]
+[node name="Parallax2D" type="Parallax2D" parent="DiscoBits" unique_id=999658828]
 process_mode = 1
 
-[node name="Cheer1" type="AudioStreamPlayer" parent="DiscoBits"]
+[node name="Cheer1" type="AudioStreamPlayer" parent="DiscoBits" unique_id=1928812611]
 process_mode = 1
-stream = ExtResource("15_b1lev")
+stream = ExtResource("13_ugdi7")
 bus = &"SFX"
 script = ExtResource("14_ugdi7")
 metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
-[node name="Cheer2" type="AudioStreamPlayer" parent="DiscoBits"]
+[node name="Cheer2" type="AudioStreamPlayer" parent="DiscoBits" unique_id=1467591276]
 process_mode = 1
-stream = ExtResource("16_ugdi7")
+stream = ExtResource("15_aw4cr")
 bus = &"SFX"
 script = ExtResource("14_ugdi7")
 metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
-[node name="Cheer3" type="AudioStreamPlayer" parent="DiscoBits"]
+[node name="Cheer3" type="AudioStreamPlayer" parent="DiscoBits" unique_id=265688075]
 process_mode = 1
-stream = ExtResource("17_aw4cr")
+stream = ExtResource("16_ww6w2")
 bus = &"SFX"
 script = ExtResource("14_ugdi7")
 metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
-[node name="SecondaryLayer" type="Parallax2D" parent="."]
+[node name="SecondaryLayer" type="Parallax2D" parent="." unique_id=893008718]
 process_mode = 1
 visible = false
 visibility_layer = 2
@@ -557,7 +557,7 @@ scroll_offset = Vector2(80, 64)
 repeat_size = Vector2(512, 512)
 repeat_times = 4
 
-[node name="Trees" type="Sprite2D" parent="SecondaryLayer"]
+[node name="Trees" type="Sprite2D" parent="SecondaryLayer" unique_id=1539403302]
 process_mode = 1
 visible = false
 clip_children = 2
@@ -565,21 +565,21 @@ position = Vector2(0, -32)
 texture = ExtResource("4_r8svn")
 centered = false
 
-[node name="Tint" type="ColorRect" parent="SecondaryLayer/Trees"]
+[node name="Tint" type="ColorRect" parent="SecondaryLayer/Trees" unique_id=228406376]
 process_mode = 1
 modulate = Color(1, 1, 1, 0.7)
 offset_right = 512.0
 offset_bottom = 512.0
 color = Color(0.462745, 0.52549, 1, 1)
 
-[node name="ColourPaletteSampler" type="Node" parent="SecondaryLayer/Trees/Tint" node_paths=PackedStringArray("node_to_affect")]
+[node name="ColourPaletteSampler" type="Node" parent="SecondaryLayer/Trees/Tint" unique_id=1739837228 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("31_dmpyo")
 coords = Vector2i(192, 255)
 node_to_affect = NodePath("..")
 value_to_set = "color"
 metadata/_custom_type_script = "uid://dwtrmo82e12ud"
 
-[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees/Tint/ColourPaletteSampler" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees/Tint/ColourPaletteSampler" unique_id=1130960032 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -588,7 +588,7 @@ resource_json = ExtResource("34_78nlv")
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees" node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees" unique_id=1229061400 node_paths=PackedStringArray("node_to_affect", "property_node")]
 process_mode = 1
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
@@ -598,7 +598,7 @@ mode = 1
 resource_json = ExtResource("25_dmpyo")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Mushrooms" type="Sprite2D" parent="SecondaryLayer"]
+[node name="Mushrooms" type="Sprite2D" parent="SecondaryLayer" unique_id=198395702]
 process_mode = 1
 visible = false
 clip_children = 2
@@ -606,7 +606,7 @@ position = Vector2(0, -32)
 texture = ExtResource("29_7urbp")
 centered = false
 
-[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms" node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms" unique_id=828448561 node_paths=PackedStringArray("node_to_affect", "property_node")]
 process_mode = 1
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
@@ -616,21 +616,21 @@ mode = 1
 resource_json = ExtResource("32_nfso6")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Tint" type="ColorRect" parent="SecondaryLayer/Mushrooms"]
+[node name="Tint" type="ColorRect" parent="SecondaryLayer/Mushrooms" unique_id=1862131032]
 process_mode = 1
 modulate = Color(1, 1, 1, 0.7)
 offset_right = 512.0
 offset_bottom = 512.0
 color = Color(0.32156864, 0.36862746, 0.69803923, 1)
 
-[node name="ColourPaletteSampler" type="Node" parent="SecondaryLayer/Mushrooms/Tint" node_paths=PackedStringArray("node_to_affect")]
+[node name="ColourPaletteSampler" type="Node" parent="SecondaryLayer/Mushrooms/Tint" unique_id=235824012 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("31_dmpyo")
 coords = Vector2i(6, 255)
 node_to_affect = NodePath("..")
 value_to_set = "color"
 metadata/_custom_type_script = "uid://dwtrmo82e12ud"
 
-[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms/Tint/ColourPaletteSampler" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms/Tint/ColourPaletteSampler" unique_id=209746655 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -639,26 +639,26 @@ resource_json = ExtResource("34_78nlv")
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="OverlayLayer" type="Node2D" parent="."]
+[node name="OverlayLayer" type="Node2D" parent="." unique_id=573469251]
 process_mode = 1
 visibility_layer = 2
 z_index = 50
 z_as_relative = false
 
-[node name="CloudLayer" type="Parallax2D" parent="OverlayLayer"]
+[node name="CloudLayer" type="Parallax2D" parent="OverlayLayer" unique_id=347166656]
 process_mode = 1
 scroll_scale = Vector2(1.2, 1)
 repeat_size = Vector2(512, 321)
 autoscroll = Vector2(-12, 0)
 repeat_times = 4
 
-[node name="Clouds" type="Sprite2D" parent="OverlayLayer/CloudLayer"]
+[node name="Clouds" type="Sprite2D" parent="OverlayLayer/CloudLayer" unique_id=974375123]
 process_mode = 1
 self_modulate = Color(1, 1, 1, 0.52549)
 texture = ExtResource("15_whv0w")
 centered = false
 
-[node name="ResourceSetter" type="Node" parent="OverlayLayer/CloudLayer/Clouds" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="OverlayLayer/CloudLayer/Clouds" unique_id=734616745 node_paths=PackedStringArray("node_to_affect")]
 process_mode = 1
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
@@ -667,12 +667,12 @@ mode = 1
 resource_json = ExtResource("24_aw4cr")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Particles" type="Parallax2D" parent="OverlayLayer"]
+[node name="Particles" type="Parallax2D" parent="OverlayLayer" unique_id=2014045897]
 process_mode = 1
 repeat_size = Vector2(512, 512)
 repeat_times = 4
 
-[node name="Snow" type="CPUParticles2D" parent="OverlayLayer/Particles"]
+[node name="Snow" type="CPUParticles2D" parent="OverlayLayer/Particles" unique_id=873922129]
 process_mode = 1
 visible = false
 position = Vector2(256, 256)
@@ -689,7 +689,7 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 20.0
 initial_velocity_max = 50.0
 
-[node name="ResourceSetter" type="Node" parent="OverlayLayer/Particles/Snow" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="OverlayLayer/Particles/Snow" unique_id=1267951011 node_paths=PackedStringArray("node_to_affect")]
 process_mode = 1
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
@@ -698,7 +698,7 @@ mode = 1
 resource_json = ExtResource("25_aw4cr")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Leaves" type="CPUParticles2D" parent="OverlayLayer/Particles"]
+[node name="Leaves" type="CPUParticles2D" parent="OverlayLayer/Particles" unique_id=486909904]
 process_mode = 1
 visible = false
 material = SubResource("CanvasItemMaterial_7urbp")
@@ -719,7 +719,7 @@ angular_velocity_min = -720.0
 angular_velocity_max = 720.0
 anim_offset_max = 1.0
 
-[node name="ResourceSetterNew" type="Node" parent="OverlayLayer/Particles/Leaves" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="OverlayLayer/Particles/Leaves" unique_id=1489003170 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -727,7 +727,7 @@ mode = 1
 resource_json = ExtResource("28_ugdi7")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="LavaEmber" type="CPUParticles2D" parent="OverlayLayer/Particles"]
+[node name="LavaEmber" type="CPUParticles2D" parent="OverlayLayer/Particles" unique_id=1868850968]
 process_mode = 1
 visibility_layer = 2
 z_index = -50
@@ -749,7 +749,7 @@ initial_velocity_min = 5.0
 initial_velocity_max = 20.0
 anim_offset_max = 1.0
 
-[node name="FGLayer" type="Parallax2D" parent="."]
+[node name="FGLayer" type="Parallax2D" parent="." unique_id=1848852963]
 process_mode = 1
 visibility_layer = 2
 z_index = 51
@@ -759,12 +759,12 @@ scroll_offset = Vector2(0, 32)
 repeat_size = Vector2(512, 512)
 repeat_times = 4
 
-[node name="Sprite" type="Sprite2D" parent="FGLayer"]
+[node name="Sprite" type="Sprite2D" parent="FGLayer" unique_id=986883806]
 process_mode = 1
 texture = ExtResource("31_aw4cr")
 centered = false
 
-[node name="ResourceSetterNew" type="Node" parent="FGLayer/Sprite" node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetterNew" type="Node" parent="FGLayer/Sprite" unique_id=168619281 node_paths=PackedStringArray("node_to_affect", "property_node")]
 process_mode = 1
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
@@ -774,7 +774,7 @@ mode = 1
 resource_json = ExtResource("31_ugdi7")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="LiquidLayer" type="Parallax2D" parent="."]
+[node name="LiquidLayer" type="Parallax2D" parent="." unique_id=1208970868]
 process_mode = 1
 visible = false
 visibility_layer = 2
@@ -784,20 +784,20 @@ scroll_offset = Vector2(0, 8)
 repeat_size = Vector2(512, 0)
 repeat_times = 4
 
-[node name="Water" parent="LiquidLayer" instance=ExtResource("33_7urbp")]
+[node name="Water" parent="LiquidLayer" unique_id=817410017 instance=ExtResource("33_7urbp")]
 process_mode = 1
 z_as_relative = false
 tile_map_data = PackedByteArray("AAAwAAAAAgAAAAAAAAAwAAEAAgAAAAEAAAAxAAAAAgAAAAAAAAAxAAEAAgAAAAEAAAAyAAAAAgAAAAAAAAAyAAEAAgAAAAEAAAAzAAAAAgAAAAAAAAAzAAEAAgAAAAEAAAA0AAAAAgAAAAAAAAA0AAEAAgAAAAEAAAA1AAAAAgAAAAAAAAA1AAEAAgAAAAEAAAA2AAAAAgAAAAAAAAA2AAEAAgAAAAEAAAA3AAAAAgAAAAAAAAA3AAEAAgAAAAEAAAA4AAAAAgAAAAAAAAA4AAEAAgAAAAEAAAA5AAAAAgAAAAAAAAA5AAEAAgAAAAEAAAA6AAAAAgAAAAAAAAA6AAEAAgAAAAEAAAA7AAAAAgAAAAAAAAA7AAEAAgAAAAEAAAA8AAAAAgAAAAAAAAA8AAEAAgAAAAEAAAA9AAAAAgAAAAAAAAA9AAEAAgAAAAEAAAA+AAAAAgAAAAAAAAA+AAEAAgAAAAEAAAA/AAAAAgAAAAAAAAA/AAEAAgAAAAEAAABAAAAAAgAAAAAAAABAAAEAAgAAAAEAAABBAAAAAgAAAAAAAABBAAEAAgAAAAEAAABCAAAAAgAAAAAAAABCAAEAAgAAAAEAAABDAAAAAgAAAAAAAABDAAEAAgAAAAEAAABEAAAAAgAAAAAAAABEAAEAAgAAAAEAAABFAAAAAgAAAAAAAABFAAEAAgAAAAEAAABGAAAAAgAAAAAAAABGAAEAAgAAAAEAAABHAAAAAgAAAAAAAABHAAEAAgAAAAEAAABIAAAAAgAAAAAAAABIAAEAAgAAAAEAAABJAAAAAgAAAAAAAABJAAEAAgAAAAEAAABKAAAAAgAAAAAAAABKAAEAAgAAAAEAAABLAAAAAgAAAAAAAABLAAEAAgAAAAEAAABMAAAAAgAAAAAAAABMAAEAAgAAAAEAAABNAAAAAgAAAAAAAABNAAEAAgAAAAEAAABOAAAAAgAAAAAAAABOAAEAAgAAAAEAAABPAAAAAgAAAAAAAABPAAEAAgAAAAEAAAA=")
 
-[node name="Lava" parent="LiquidLayer" instance=ExtResource("33_7urbp")]
+[node name="Lava" parent="LiquidLayer" unique_id=1410148107 instance=ExtResource("33_7urbp")]
 process_mode = 1
 tile_map_data = PackedByteArray("AAAwAAAAAgAAAAIAAQAwAAEAAgAAAAMAAQAxAAAAAgAAAAIAAQAxAAEAAgAAAAMAAQAyAAAAAgAAAAIAAQAyAAEAAgAAAAMAAQAzAAAAAgAAAAIAAQAzAAEAAgAAAAMAAQA0AAAAAgAAAAIAAQA0AAEAAgAAAAMAAQA1AAAAAgAAAAIAAQA1AAEAAgAAAAMAAQA2AAAAAgAAAAIAAQA2AAEAAgAAAAMAAQA3AAAAAgAAAAIAAQA3AAEAAgAAAAMAAQA4AAAAAgAAAAIAAQA4AAEAAgAAAAMAAQA5AAAAAgAAAAIAAQA5AAEAAgAAAAMAAQA6AAAAAgAAAAIAAQA6AAEAAgAAAAMAAQA7AAAAAgAAAAIAAQA7AAEAAgAAAAMAAQA8AAAAAgAAAAIAAQA8AAEAAgAAAAMAAQA9AAAAAgAAAAIAAQA9AAEAAgAAAAMAAQA+AAAAAgAAAAIAAQA+AAEAAgAAAAMAAQA/AAAAAgAAAAIAAQA/AAEAAgAAAAMAAQBAAAAAAgAAAAIAAQBAAAEAAgAAAAMAAQBBAAAAAgAAAAIAAQBBAAEAAgAAAAMAAQBCAAAAAgAAAAIAAQBCAAEAAgAAAAMAAQBDAAAAAgAAAAIAAQBDAAEAAgAAAAMAAQBEAAAAAgAAAAIAAQBEAAEAAgAAAAMAAQBFAAAAAgAAAAIAAQBFAAEAAgAAAAMAAQBGAAAAAgAAAAIAAQBGAAEAAgAAAAMAAQBHAAAAAgAAAAIAAQBHAAEAAgAAAAMAAQBIAAAAAgAAAAIAAQBIAAEAAgAAAAMAAQBJAAAAAgAAAAIAAQBJAAEAAgAAAAMAAQBKAAAAAgAAAAIAAQBKAAEAAgAAAAMAAQBLAAAAAgAAAAIAAQBLAAEAAgAAAAMAAQBMAAAAAgAAAAIAAQBMAAEAAgAAAAMAAQBNAAAAAgAAAAIAAQBNAAEAAgAAAAMAAQBOAAAAAgAAAAIAAQBOAAEAAgAAAAMAAQBPAAAAAgAAAAIAAQBPAAEAAgAAAAMAAQA=")
 
-[node name="Poison" parent="LiquidLayer" instance=ExtResource("33_7urbp")]
+[node name="Poison" parent="LiquidLayer" unique_id=2115332649 instance=ExtResource("33_7urbp")]
 process_mode = 1
 tile_map_data = PackedByteArray("AAAwAAAAAgAAAAYAAQAwAAEAAgAAAAcAAQAxAAAAAgAAAAYAAQAxAAEAAgAAAAcAAQAyAAAAAgAAAAYAAQAyAAEAAgAAAAcAAQAzAAAAAgAAAAYAAQAzAAEAAgAAAAcAAQA0AAAAAgAAAAYAAQA0AAEAAgAAAAcAAQA1AAAAAgAAAAYAAQA1AAEAAgAAAAcAAQA2AAAAAgAAAAYAAQA2AAEAAgAAAAcAAQA3AAAAAgAAAAYAAQA3AAEAAgAAAAcAAQA4AAAAAgAAAAYAAQA4AAEAAgAAAAcAAQA5AAAAAgAAAAYAAQA5AAEAAgAAAAcAAQA6AAAAAgAAAAYAAQA6AAEAAgAAAAcAAQA7AAAAAgAAAAYAAQA7AAEAAgAAAAcAAQA8AAAAAgAAAAYAAQA8AAEAAgAAAAcAAQA9AAAAAgAAAAYAAQA9AAEAAgAAAAcAAQA+AAAAAgAAAAYAAQA+AAEAAgAAAAcAAQA/AAAAAgAAAAYAAQA/AAEAAgAAAAcAAQBAAAAAAgAAAAYAAQBAAAEAAgAAAAcAAQBBAAAAAgAAAAYAAQBBAAEAAgAAAAcAAQBCAAAAAgAAAAYAAQBCAAEAAgAAAAcAAQBDAAAAAgAAAAYAAQBDAAEAAgAAAAcAAQBEAAAAAgAAAAYAAQBEAAEAAgAAAAcAAQBFAAAAAgAAAAYAAQBFAAEAAgAAAAcAAQBGAAAAAgAAAAYAAQBGAAEAAgAAAAcAAQBHAAAAAgAAAAYAAQBHAAEAAgAAAAcAAQBIAAAAAgAAAAYAAQBIAAEAAgAAAAcAAQBJAAAAAgAAAAYAAQBJAAEAAgAAAAcAAQBKAAAAAgAAAAYAAQBKAAEAAgAAAAcAAQBLAAAAAgAAAAYAAQBLAAEAAgAAAAcAAQBMAAAAAgAAAAYAAQBMAAEAAgAAAAcAAQBNAAAAAgAAAAYAAQBNAAEAAgAAAAcAAQBOAAAAAgAAAAYAAQBOAAEAAgAAAAcAAQBPAAAAAgAAAAYAAQBPAAEAAgAAAAcAAQA=")
 
-[node name="NightTint" type="Node" parent="." node_paths=PackedStringArray("node_to_affect")]
+[node name="NightTint" type="Node" parent="." unique_id=940966516 node_paths=PackedStringArray("node_to_affect")]
 process_mode = 1
 script = ExtResource("3_6m0f5")
 node_to_affect = NodePath("..")
@@ -806,14 +806,14 @@ themed_resource = SubResource("Resource_e5ylw")
 use_classic_theming = true
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="ThemedToJSONConverter" type="Node" parent="."]
+[node name="ThemedToJSONConverter" type="Node" parent="." unique_id=1654089427]
 process_mode = 1
 script = ExtResource("37_nfso6")
 resource = SubResource("Resource_4apf8")
 json_file_path = "res://Assets/Sprites/Backgrounds/SecondaryTrees/Trees.json"
 metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=299469900]
 process_mode = 1
 visible = false
 modulate = Color(0, 0, 0, 1)
@@ -824,12 +824,12 @@ scroll_offset = Vector2(0, -200)
 repeat_size = Vector2(256, 0)
 repeat_times = 4
 
-[node name="Toads" type="Node2D" parent="Parallax2D"]
+[node name="Toads" type="Node2D" parent="Parallax2D" unique_id=676519953]
 process_mode = 1
 modulate = Color(1, 1, 1, 0.9)
 position = Vector2(0, 230)
 
-[node name="Toad1" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad1" type="Sprite2D" parent="Parallax2D/Toads" unique_id=633333194]
 process_mode = 1
 position = Vector2(56, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -839,7 +839,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad2" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad2" type="Sprite2D" parent="Parallax2D/Toads" unique_id=837081199]
 process_mode = 1
 position = Vector2(196, 24)
 texture = ExtResource("43_joqdr")
@@ -849,7 +849,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad17" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad17" type="Sprite2D" parent="Parallax2D/Toads" unique_id=339522639]
 process_mode = 1
 position = Vector2(99, 20.2981)
 texture = ExtResource("43_joqdr")
@@ -859,7 +859,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad3" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad3" type="Sprite2D" parent="Parallax2D/Toads" unique_id=2082068685]
 process_mode = 1
 position = Vector2(184, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -869,7 +869,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad4" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad4" type="Sprite2D" parent="Parallax2D/Toads" unique_id=1509070479]
 process_mode = 1
 position = Vector2(256, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -879,7 +879,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad5" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad5" type="Sprite2D" parent="Parallax2D/Toads" unique_id=1266030797]
 process_mode = 1
 position = Vector2(112, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -889,7 +889,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad6" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad6" type="Sprite2D" parent="Parallax2D/Toads" unique_id=272258699]
 process_mode = 1
 position = Vector2(224, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -899,7 +899,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad7" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad7" type="Sprite2D" parent="Parallax2D/Toads" unique_id=964929376]
 process_mode = 1
 position = Vector2(144, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -909,7 +909,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad8" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad8" type="Sprite2D" parent="Parallax2D/Toads" unique_id=880674598]
 process_mode = 1
 position = Vector2(24, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -919,7 +919,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad9" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad9" type="Sprite2D" parent="Parallax2D/Toads" unique_id=1152747667]
 process_mode = 1
 position = Vector2(88, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -928,7 +928,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad10" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad10" type="Sprite2D" parent="Parallax2D/Toads" unique_id=1354658368]
 process_mode = 1
 position = Vector2(-16, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -938,7 +938,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad11" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad11" type="Sprite2D" parent="Parallax2D/Toads" unique_id=1970389812]
 process_mode = 1
 position = Vector2(40, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -947,7 +947,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad12" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad12" type="Sprite2D" parent="Parallax2D/Toads" unique_id=1541601971]
 process_mode = 1
 position = Vector2(72, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -957,7 +957,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad13" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad13" type="Sprite2D" parent="Parallax2D/Toads" unique_id=2112074411]
 process_mode = 1
 position = Vector2(128, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -966,7 +966,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad14" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad14" type="Sprite2D" parent="Parallax2D/Toads" unique_id=1431895270]
 process_mode = 1
 position = Vector2(-48, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -976,7 +976,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad15" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad15" type="Sprite2D" parent="Parallax2D/Toads" unique_id=307308553]
 process_mode = 1
 position = Vector2(-83, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -986,7 +986,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Toad16" type="Sprite2D" parent="Parallax2D/Toads"]
+[node name="Toad16" type="Sprite2D" parent="Parallax2D/Toads" unique_id=856256808]
 process_mode = 1
 position = Vector2(-96, 17.7592)
 texture = ExtResource("43_joqdr")
@@ -996,7 +996,7 @@ region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("36_ekspk")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="ThemedToJSONConverter2" type="Node" parent="."]
+[node name="ThemedToJSONConverter2" type="Node" parent="." unique_id=2011950151]
 process_mode = 1
 script = ExtResource("37_nfso6")
 resource = SubResource("Resource_yxjfg")

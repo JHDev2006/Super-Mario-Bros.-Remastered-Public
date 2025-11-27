@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://hbpket74t6f7"]
 
 [ext_resource type="Script" uid="uid://vbyesiqqwfur" path="res://addons/commitreminder/Reminder.gd" id="1_dxju6"]
-[ext_resource type="AudioStream" uid="uid://o8wqcv7gjfkn" path="res://Assets/Audio/SFX/Pause.wav" id="2_kjwcf"]
+[ext_resource type="AudioStream" uid="uid://cobv5i3j7axm8" path="res://Assets/Audio/SFX/Pause.ogg" id="2_kjwcf"]
 
-[node name="Reminder" type="PanelContainer"]
+[node name="Reminder" type="PanelContainer" unique_id=1673750175]
 process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,47 +12,47 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dxju6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2057706294]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=628854891]
 layout_mode = 2
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer" unique_id=978479721]
 layout_mode = 2
 size_flags_horizontal = 3
 step = 0.0
 value = 2.5
 suffix = "Minutes"
 
-[node name="Start" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Start" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=547246987]
 layout_mode = 2
 text = "Start"
 
-[node name="Pause" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Pause" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=740188426]
 layout_mode = 2
 text = "Pause"
 
-[node name="Inactive" type="Label" parent="VBoxContainer"]
+[node name="Inactive" type="Label" parent="VBoxContainer" unique_id=781374171]
 modulate = Color(0.41215247, 0.41215247, 0.41215247, 1)
 layout_mode = 2
 text = "Timer Inactive."
 horizontal_alignment = 1
 
-[node name="TimerCountdown" type="Label" parent="VBoxContainer"]
+[node name="TimerCountdown" type="Label" parent="VBoxContainer" unique_id=333383775]
 visible = false
 layout_mode = 2
 text = "00:00:00 Left."
 horizontal_alignment = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=122956293]
 one_shot = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1276902721]
 stream = ExtResource("2_kjwcf")
 pitch_scale = 1.5
 
-[node name="Window" type="Window" parent="."]
+[node name="Window" type="Window" parent="." unique_id=1538043156]
 oversampling_override = 1.0
 title = "COMMIT"
 initial_position = 4
@@ -61,7 +61,7 @@ visible = false
 exclusive = true
 always_on_top = true
 
-[node name="Control" type="Control" parent="Window"]
+[node name="Control" type="Control" parent="Window" unique_id=761939745]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,7 +69,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Window/Control"]
+[node name="Label" type="Label" parent="Window/Control" unique_id=1502089395]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
