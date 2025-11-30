@@ -31,4 +31,6 @@ func on_shell_block_hit(_shell: Shell) -> void:
 		dispense_item()
 
 func set_coin_count() -> void:
-	item_amount = 2
+	if has_meta("r_coin_id") and Global.current_game_mode == Global.GameMode.CHALLENGE:
+		item = load("res://Scenes/Prefabs/Entities/Items/SpinningRedCoin.tscn")
+	item_amount = 1
