@@ -2,21 +2,21 @@
 
 [ext_resource type="PackedScene" uid="uid://dntk2js0tu3y2" path="res://Scenes/Prefabs/UI/WorldSelect.tscn" id="1_fvn0p"]
 
-[node name="WorldSelect" instance=ExtResource("1_fvn0p")]
+[node name="WorldSelect" unique_id=110172661 instance=ExtResource("1_fvn0p")]
 world_offset = 8
 num_of_worlds = 4
 
-[node name="Slot1" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" index="0"]
+[node name="Slot1" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" parent_id_path=PackedInt32Array(181733477) index="0" unique_id=1293243576]
 focus_neighbor_left = NodePath("../Slot5")
 
-[node name="Slot5" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" index="4"]
+[node name="Slot5" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" parent_id_path=PackedInt32Array(181733477) index="4" unique_id=286713451]
 focus_neighbor_right = NodePath("../Slot1")
 
-[node name="Slot6" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" index="5"]
+[node name="Slot6" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" parent_id_path=PackedInt32Array(181733477) index="5" unique_id=1911479070]
 visible = false
 
-[node name="Slot7" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" index="6"]
+[node name="Slot7" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" parent_id_path=PackedInt32Array(181733477) index="6" unique_id=1681952344]
 visible = false
 
-[node name="Slot8" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" index="7"]
+[node name="Slot8" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" parent_id_path=PackedInt32Array(181733477) index="7" unique_id=576787431]
 visible = false

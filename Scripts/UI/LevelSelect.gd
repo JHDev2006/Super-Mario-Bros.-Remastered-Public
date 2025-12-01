@@ -213,7 +213,6 @@ func setup_visuals() -> void:
 		var clamp_icon = clamp([cur_level[1][0] * icon_size[0], cur_level[1][1] * icon_size[1]], [0, 0], grid_size)
 		i.get_node("Icon").texture = cur_icon
 		i.get_node("Icon").region_rect = Rect2(clamp_icon[0], clamp_icon[1], icon_size[0], icon_size[1])
-		print(clamp_icon)
 		i.get_node("Icon/Number").region_rect.position.y = clamp(NUMBER_Y.find(level_theme) * 12, 0, 9999)
 		i.get_node("Icon/Number").region_rect.position.x = (idx) * 12
 		i.get_node("Icon/RankMedal").visible = Global.current_campaign == "SMBANN"
@@ -241,7 +240,6 @@ func update_score() -> void:
 func update_pb() -> void:
 	if has_speedrun_stuff == false: return
 	var best_warpless_time = SpeedrunHandler.best_level_warpless_times[Global.world_num - 1][selected_level]
-	print(SpeedrunHandler.best_level_warpless_times)
 	var best_any_time = SpeedrunHandler.best_level_any_times.get(str(Global.world_num) + "-" + str(selected_level + 1), -1)
 	%FullRunPB.text = "--:--:--" if best_warpless_time == -1 else SpeedrunHandler.gen_time_string(SpeedrunHandler.format_time(best_warpless_time))
 	%WarpRunPB.text = "--:--:--" if best_any_time == -1 else SpeedrunHandler.gen_time_string(SpeedrunHandler.format_time(best_any_time))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dntk2js0tu3y2"]
+[gd_scene load_steps=16 format=3 uid="uid://dntk2js0tu3y2"]
 
 [ext_resource type="Script" uid="uid://col2kvunpua7l" path="res://Scripts/UI/WorldSelect.gd" id="1_isg11"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_otmop"]
@@ -6,13 +6,43 @@
 [ext_resource type="Texture2D" uid="uid://chtjq1vr0rpso" path="res://Assets/Sprites/UI/CustomLevelIconDay.png" id="3_ldq6u"]
 [ext_resource type="Texture2D" uid="uid://dsi25p0odieg2" path="res://Assets/Sprites/UI/Numbers.png" id="4_bxh4e"]
 [ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="5_6gt41"]
+[ext_resource type="Texture2D" uid="uid://dhu46wvad72wp" path="res://Assets/Sprites/UI/MarathonIcons.png" id="6_ne7gv"]
+[ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="7_6uv8k"]
+[ext_resource type="Texture2D" uid="uid://sgrcmlktp2dk" path="res://Assets/Sprites/Particles/SRankParticles.png" id="8_ebcru"]
+[ext_resource type="Texture2D" uid="uid://cdaluetdpls0d" path="res://Assets/Sprites/Particles/PRankParticles.png" id="9_0frxk"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_d8v6d"]
 color = Color(1, 1, 1, 1)
 grow_begin = -4.0
 grow_end = -4.0
 
-[node name="WorldSelect" type="Control"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebcru"]
+atlas = ExtResource("6_ne7gv")
+region = Rect2(96, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0frxk"]
+atlas = ExtResource("6_ne7gv")
+region = Rect2(96, 16, 24, 8)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n7c7e"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ebcru"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 4.0
+emission_ring_radius = 5.0
+emission_ring_inner_radius = 4.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[node name="WorldSelect" type="Control" unique_id=1916971691]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 180.0
@@ -20,7 +50,7 @@ offset_bottom = 65.0
 script = ExtResource("1_isg11")
 num_of_worlds = 12
 
-[node name="Panel" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="." unique_id=1097733196]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,25 +59,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_otmop")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1964473894]
 layout_mode = 2
 theme_override_constants/margin_left = -8
 theme_override_constants/margin_top = -4
 theme_override_constants/margin_right = -8
 theme_override_constants/margin_bottom = -4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1323027087]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=923934861]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "MENU_WORLD_SELECT"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/Title"]
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/Title" unique_id=1123061520]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -58,15 +88,15 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/separator = SubResource("StyleBoxLine_d8v6d")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1085255846]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1428253935]
 layout_mode = 2
 text = "◄"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=947340452]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -74,18 +104,18 @@ follow_focus = true
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
-[node name="SlotContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer"]
+[node name="SlotContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer" unique_id=181733477]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Slot1" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot1" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=1293243576]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=1958932130]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -94,7 +124,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=1918539055]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -111,24 +141,78 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=716047762]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal" unique_id=629833483]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full" unique_id=84102829]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full" unique_id=685107613]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=962917386]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor" unique_id=1363872289]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot2" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot2" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=45905462]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2" unique_id=1192750125]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -137,7 +221,7 @@ region_rect = Rect2(96, 96, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=186166717]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -154,24 +238,79 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=711575966]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal" unique_id=326632138]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full" unique_id=1412236224]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full" unique_id=615899395]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2" unique_id=678217105]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Cursor" unique_id=1575560362]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot3" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot3" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=1826050388]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3" unique_id=1253139407]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -180,7 +319,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1673823276]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -197,24 +336,79 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1313099898]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal" unique_id=1628143260]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full" unique_id=1294883279]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full" unique_id=2002823722]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3" unique_id=1427039068]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Cursor" unique_id=1143558819]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot4" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot4" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=965703855]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4" unique_id=74277425]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -223,7 +417,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=320388694]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -240,24 +434,79 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=726790129]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal" unique_id=1860492291]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full" unique_id=2013574844]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full" unique_id=1031535140]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4" unique_id=1403222047]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Cursor" unique_id=2062529813]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot5" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot5" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=286713451]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5" unique_id=427105743]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -266,7 +515,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=2046085610]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -283,24 +532,79 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=337937248]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal" unique_id=160142331]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full" unique_id=1828655129]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full" unique_id=94814458]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5" unique_id=1116493561]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Cursor" unique_id=1080530315]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot6" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot6" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=1911479070]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6" unique_id=896202606]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -309,7 +613,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=1483262202]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -326,24 +630,79 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=406726759]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal" unique_id=938720989]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full" unique_id=24712633]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full" unique_id=455036506]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6" unique_id=40558589]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Cursor" unique_id=847809332]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot7" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot7" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=1681952344]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7" unique_id=982228727]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -352,7 +711,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=1510379970]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -369,25 +728,80 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=428613057]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal" unique_id=218543775]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full" unique_id=1156393694]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full" unique_id=65170113]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7" unique_id=1402950104]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Cursor" unique_id=1349921645]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot8" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot8" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=576787431]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8" unique_id=1960095985]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -396,7 +810,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=1001484543]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -413,25 +827,80 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=1104001070]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal" unique_id=184593335]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full" unique_id=730933666]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full" unique_id=1378679627]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8" unique_id=1581639456]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Cursor" unique_id=377006683]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot9" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot9" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=1710167712]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9" unique_id=302204713]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -440,7 +909,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=1366937693]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -457,24 +926,79 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=2082956184]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal" unique_id=1747352882]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full" unique_id=457191046]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full" unique_id=1739197925]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9" unique_id=1486201121]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Cursor" unique_id=1536907542]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot10" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot10" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=384300256]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10" unique_id=1476103037]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -483,7 +1007,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=1296578389]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -500,24 +1024,79 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=1576835858]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal" unique_id=575564737]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full" unique_id=1218177340]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full" unique_id=2024952460]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10" unique_id=1146334306]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Cursor" unique_id=1506366911]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot11" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot11" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=249261490]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11" unique_id=311843485]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -526,7 +1105,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=1913343380]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -543,24 +1122,79 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=862647710]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal" unique_id=1996689787]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal/Full" unique_id=1083226736]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal/Full" unique_id=1700716128]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11" unique_id=1592167668]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Cursor" unique_id=1577502168]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot12" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot12" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=3227524]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12" unique_id=1057329811]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -569,7 +1203,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=1891321671]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -586,18 +1220,73 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=560665330]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal" unique_id=2117443864]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal/Full" unique_id=45504787]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal/Full" unique_id=1482592529]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12" unique_id=10585167]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Cursor" unique_id=1907849882]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Slot13" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer"]
+[node name="Slot13" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=1469970956]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -605,7 +1294,7 @@ focus_neighbor_right = NodePath("../Slot1")
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13"]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13" unique_id=1661211998]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
@@ -614,7 +1303,7 @@ region_rect = Rect2(0, 0, 32, 32)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon"]
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=1798543807]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -631,22 +1320,77 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13"]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=150879538]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75000006
+anchor_top = 0.75000006
+anchor_right = 0.75000006
+anchor_bottom = 0.75000006
+offset_right = 7.999998
+offset_bottom = 7.999998
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ebcru")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal" unique_id=898764475]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full" unique_id=2073684274]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("8_ebcru")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full" unique_id=884329983]
+visible = false
+z_index = 1
+material = SubResource("CanvasItemMaterial_n7c7e")
+position = Vector2(4, 4)
+emitting = false
+amount = 1
+texture = ExtResource("9_0frxk")
+randomness = 0.12
+fixed_fps = 15
+interpolate = false
+fract_delta = false
+process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13" unique_id=399119636]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Cursor"]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Cursor" unique_id=1226157923]
 layout_mode = 2
 text = "^"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=272584904]
 layout_mode = 2
 text = "►"
 
-[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+[node name="LabelFontChanger" type="Node" parent="." unique_id=2052665518 node_paths=PackedStringArray("labels")]
 script = ExtResource("3_isg11")
 labels = [NodePath("../Panel/MarginContainer/VBoxContainer/Title")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"

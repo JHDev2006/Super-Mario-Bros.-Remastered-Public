@@ -54,6 +54,11 @@ var best_level_warpless_times := [
 	[-1, -1, -1, -1],
 	[-1, -1, -1, -1],
 	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
 	[-1, -1, -1, -1]
 ]
 
@@ -95,7 +100,12 @@ const SMB1_LEVEL_GOLD_WARPLESS_TIMES := [
 	[22, 22, 17, 16],  # World 5
 	[21, 25, 18, 16],  # World 6
 	[20, 38, 25, 23],  # World 7
-	[40, 24, 24, 50]   # World 8
+	[40, 24, 24, 50],  # World 8
+	[-1, -1, -1, -1],  # World 9
+	[-1, -1, -1, -1],  # World A
+	[-1, -1, -1, -1],  # World B
+	[-1, -1, -1, -1],  # World C
+	[-1, -1, -1, -1]   # World D
 ]
 
 const SMBLL_LEVEL_GOLD_WARPLESS_TIMES := [
@@ -107,6 +117,11 @@ const SMBLL_LEVEL_GOLD_WARPLESS_TIMES := [
 	[28, 39, 23, 29],
 	[21, 26, 32, 36],
 	[24, 27, 25, 60],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1]
 ]
 
 const SMB1_LEVEL_GOLD_ANY_TIMES := {
@@ -135,6 +150,11 @@ const SMBS_LEVEL_GOLD_TIMES := [
 	[24, 21, 23, 20],
 	[24, 40, 30, 27],
 	[30, 35, 30, 43],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1],
+	[-1, -1, -1, -1]
 ]
 
 const SMB1_WARP_LEVELS := ["1-2", "4-2"]
@@ -262,7 +282,7 @@ func load_best_times(campaign = Global.current_campaign) -> void:
 		return
 	best_time_campaign = campaign
 	best_level_any_times.clear()
-	for world_num in 8:
+	for world_num in 13:
 		for level_num in 4:
 			var path = Global.config_path.path_join("marathon_recordings/" + campaign + "/" + str(world_num + 1) + "-" + str(level_num + 1) + ".json")
 			if FileAccess.file_exists(path):
