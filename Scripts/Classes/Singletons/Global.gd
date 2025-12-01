@@ -507,3 +507,11 @@ func get_base_asset_version() -> int:
 
 func get_version_num_int(ver_num := "0.0.0") -> int:
 	return int(ver_num.replace(".", ""))
+
+func merge_dict(target: Dictionary, source: Dictionary) -> void:
+	# SkyanUltra: Used to properly merge dictionaries JSONs rather than out right overwriting entries.
+	for key in source.keys():
+		if target.has(key) and target[key] is Dictionary and source[key] is Dictionary:
+			merge_dict(target[key], source[key])
+		else:
+			target[key] = source[key]
