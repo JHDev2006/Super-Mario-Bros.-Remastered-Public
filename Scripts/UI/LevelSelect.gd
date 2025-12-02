@@ -156,7 +156,7 @@ const NUMBER_Y := [
 func _ready() -> void:
 	for i in %SlotContainer.get_children():
 		i.focus_entered.connect(slot_selected.bind(i.get_index()))
-	for i in [$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/RankMedal/SRankParticles, $Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/RankMedal/PRankParticles, $Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/RankMedal/SRankParticles, $Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/RankMedal/PRankParticles, $Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/RankMedal/SRankParticles, $Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/RankMedal/PRankParticles, $Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/RankMedal/SRankParticles, $Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/RankMedal/PRankParticles]:
+	for i in get_tree().get_nodes_in_group("Particles"):
 		start_particle(i)
 
 func start_particle(particle: GPUParticles2D) -> void:

@@ -32,37 +32,7 @@ const RANK_MEDALS := preload("res://Assets/Sprites/UI/RankMedals.png")
 func _ready() -> void:
 	for i in %SlotContainer.get_children():
 		i.focus_entered.connect(slot_focused.bind(i.get_index()))
-	# SkyanUltra: lowkey kind of hate you joe for how this
-	# is implemented but ngl it works so why complain i guess
-	var slot_container = [
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal/Full/PRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full/SRankParticles,
-		$Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full/PRankParticles,
-	]
-	for i in slot_container:
+	for i in get_tree().get_nodes_in_group("Particles"):
 		start_particle(i)
 
 func start_particle(particle: GPUParticles2D) -> void:

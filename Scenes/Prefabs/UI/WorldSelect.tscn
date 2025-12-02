@@ -167,7 +167,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full" unique_id=84102829]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full" unique_id=84102829 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -181,7 +181,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full" unique_id=685107613]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full" unique_id=685107613 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -265,7 +265,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full" unique_id=1412236224]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full" unique_id=1412236224 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -279,7 +279,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full" unique_id=615899395]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full" unique_id=615899395 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -363,7 +363,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full" unique_id=1294883279]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full" unique_id=1294883279 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -377,7 +377,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full" unique_id=2002823722]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full" unique_id=2002823722 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -461,7 +461,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full" unique_id=2013574844]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full" unique_id=2013574844 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -475,7 +475,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full" unique_id=1031535140]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full" unique_id=1031535140 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -559,7 +559,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full" unique_id=1828655129]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full" unique_id=1828655129 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -573,7 +573,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full" unique_id=94814458]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full" unique_id=94814458 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -657,7 +657,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full" unique_id=24712633]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full" unique_id=24712633 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -671,7 +671,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full" unique_id=455036506]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full" unique_id=455036506 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -755,7 +755,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full" unique_id=1156393694]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full" unique_id=1156393694 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -769,7 +769,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full" unique_id=65170113]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full" unique_id=65170113 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -854,7 +854,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full" unique_id=730933666]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full" unique_id=730933666 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -868,7 +868,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full" unique_id=1378679627]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full" unique_id=1378679627 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -953,7 +953,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full" unique_id=457191046]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full" unique_id=457191046 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -967,7 +967,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full" unique_id=1739197925]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full" unique_id=1739197925 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1051,7 +1051,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full" unique_id=1218177340]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full" unique_id=1218177340 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1065,7 +1065,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full" unique_id=2024952460]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full" unique_id=2024952460 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1163,7 +1163,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal/Full" unique_id=1700716128]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal/Full" unique_id=1700716128 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1261,7 +1261,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal/Full" unique_id=1482592529]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal/Full" unique_id=1482592529 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1347,7 +1347,7 @@ texture = SubResource("AtlasTexture_0frxk")
 region_rect = Rect2(16, 0, 8, 8)
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full" unique_id=2073684274]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full" unique_id=2073684274 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1361,7 +1361,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full" unique_id=884329983]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full" unique_id=884329983 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")

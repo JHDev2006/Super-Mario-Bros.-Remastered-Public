@@ -286,7 +286,7 @@ hframes = 8
 script = ExtResource("6_x05vu")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/RankMedal" unique_id=821330418]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/RankMedal" unique_id=821330418 groups=["Particles"]]
 z_index = 1
 material = SubResource("CanvasItemMaterial_ggm71")
 position = Vector2(8, 8)
@@ -299,7 +299,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_gxb4q")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/RankMedal" unique_id=1125265204]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/RankMedal" unique_id=1125265204 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_ggm71")
@@ -485,7 +485,7 @@ hframes = 8
 script = ExtResource("6_x05vu")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/RankMedal" unique_id=435258490]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/RankMedal" unique_id=435258490 groups=["Particles"]]
 z_index = 1
 material = SubResource("CanvasItemMaterial_ggm71")
 position = Vector2(8, 8)
@@ -498,7 +498,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_gxb4q")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/RankMedal" unique_id=158591703]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/RankMedal" unique_id=158591703 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_ggm71")
@@ -684,7 +684,7 @@ hframes = 8
 script = ExtResource("6_x05vu")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/RankMedal" unique_id=778146146]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/RankMedal" unique_id=778146146 groups=["Particles"]]
 z_index = 1
 material = SubResource("CanvasItemMaterial_ggm71")
 position = Vector2(8, 8)
@@ -697,7 +697,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_gxb4q")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/RankMedal" unique_id=1987634757]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/RankMedal" unique_id=1987634757 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_ggm71")
@@ -883,7 +883,7 @@ hframes = 8
 script = ExtResource("6_x05vu")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/RankMedal" unique_id=1697129146]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/RankMedal" unique_id=1697129146 groups=["Particles"]]
 z_index = 1
 material = SubResource("CanvasItemMaterial_ggm71")
 position = Vector2(8, 8)
@@ -896,7 +896,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_gxb4q")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/RankMedal" unique_id=1527080904]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/RankMedal" unique_id=1527080904 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_ggm71")
