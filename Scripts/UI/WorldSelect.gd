@@ -48,6 +48,7 @@ func open() -> void:
 	if starting_value == -1:
 		starting_value = Global.world_num
 	selected_world = Global.world_num - 1 - world_offset
+	if has_speedrun_stuff and not Global.current_game_mode in [Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE]: Global.current_game_mode = Global.GameMode.MARATHON
 	setup_visuals()
 	show()
 	await get_tree().process_frame
@@ -78,27 +79,26 @@ func setup_visuals() -> void:
 		i.get_node("Icon").texture = resource_getter.get_resource(CustomLevelContainer.ICON_TEXTURES[0 if (idx <= 3 or idx >= 8) and Global.current_campaign != "SMBANN" else 1])
 		i.get_node("Icon/Number").region_rect.position.y = clamp(NUMBER_Y.find(level_theme) * 12, 0, 9999)
 		i.get_node("Icon/Number").region_rect.position.x = (idx + world_offset) * 12
+		setup_challenge_mode_bits(i.get_node("Icon/RedCoins"), i.get_node("Icon/Egg"), i.get_node("Icon/Score"), i.get_node("Icon/RedCoins/Full"), i.get_node("Icon/Egg/Full"), i.get_node("Icon/Score/Full"), idx + world_offset)
 		setup_marathon_bits(i.get_node("Icon/Medal"), i.get_node("Icon/Medal/Full"), idx + world_offset)
 		setup_disco_bits(i.get_node("Icon/Medal"), i.get_node("Icon/Medal/Full"), i.get_node("Icon/Medal/Full/SRankParticles"), i.get_node("Icon/Medal/Full/PRankParticles"), idx + world_offset)
 		idx += 1
 
-func setup_disco_bits(medal_outline: TextureRect, medal: NinePatchRect, s_rank_pfx: GPUParticles2D, p_rank_pfx: GPUParticles2D, world_num := 1) -> void:
-	if has_disco_stuff == false: return
-	var saved_rank_ids = []
-	var lowest_rank = -1
-	for i in 4:
-		saved_rank_ids.append(DiscoLevel.level_ranks[SaveManager.get_level_idx(world_num + 1, i + 1)])
-		for rank in DiscoLevel.RANK_IDs.size():
-			if DiscoLevel.RANK_IDs[rank] == saved_rank_ids[i] and (lowest_rank > rank + 1 or lowest_rank < 0):
-				lowest_rank = rank + 1
-	medal_outline.visible = true
-	medal.texture = RANK_MEDALS
-	medal.visible = lowest_rank != -1
-	var medal_rect_x = lowest_rank * 8
-	medal.region_rect = Rect2(medal_rect_x, 16, 8, 8)
-	s_rank_pfx.visible = lowest_rank == 6
-	p_rank_pfx.visible = lowest_rank == 7
-	print(medal.region_rect)
+func setup_challenge_mode_bits(red_coins_outline: TextureRect, egg_outline: TextureRect, score_outline: TextureRect, red_coins: NinePatchRect, egg: NinePatchRect, score: NinePatchRect, world_num := 1) -> void:
+	if has_challenge_stuff == false: return
+	var red_coins_collected = []
+	var eggs_collected = []
+	var scores_collected = []
+	for level in 4:
+		for i in 5:
+			red_coins_collected.append(ChallengeModeHandler.is_coin_collected(i, ChallengeModeHandler.red_coins_collected[world_num][level]))
+		eggs_collected.append(ChallengeModeHandler.is_coin_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG, ChallengeModeHandler.red_coins_collected[world_num][level]))
+		scores_collected.append(ChallengeModeHandler.top_challenge_scores[world_num][level] >= ChallengeModeHandler.CHALLENGE_TARGETS[Global.current_campaign][world_num][level])
+	for i in [red_coins_outline, egg_outline, score_outline]:
+		i.visible = true
+	red_coins.visible = not red_coins_collected.has(false)
+	egg.visible = not eggs_collected.has(false)
+	score.visible = not scores_collected.has(false)
 
 func setup_marathon_bits(medal_outline: TextureRect, medal: NinePatchRect, world_num := 1) -> void:
 	if has_speedrun_stuff == false: return
@@ -125,6 +125,23 @@ func setup_marathon_bits(medal_outline: TextureRect, medal: NinePatchRect, world
 	medal.visible = saved_medal_ids.min() >= 0
 	var medal_rect_x = saved_medal_ids.min() * 8
 	medal.region_rect = Rect2(medal_rect_x, 0, 8, 8)
+
+func setup_disco_bits(medal_outline: TextureRect, medal: NinePatchRect, s_rank_pfx: GPUParticles2D, p_rank_pfx: GPUParticles2D, world_num := 1) -> void:
+	if has_disco_stuff == false: return
+	var saved_rank_ids = []
+	var lowest_rank = -1
+	for i in 4:
+		saved_rank_ids.append(DiscoLevel.level_ranks[SaveManager.get_level_idx(world_num + 1, i + 1)])
+		for rank in DiscoLevel.RANK_IDs.size():
+			if DiscoLevel.RANK_IDs[rank] == saved_rank_ids[i] and (lowest_rank > rank + 1 or lowest_rank < 0):
+				lowest_rank = rank + 1
+	medal_outline.visible = true
+	medal.texture = RANK_MEDALS
+	medal.visible = lowest_rank != -1
+	var medal_rect_x = lowest_rank * 8
+	medal.region_rect = Rect2(medal_rect_x, 16, 8, 8)
+	s_rank_pfx.visible = lowest_rank == 6
+	p_rank_pfx.visible = lowest_rank == 7
 
 func handle_input() -> void:
 	if Input.is_action_just_pressed("ui_accept"):

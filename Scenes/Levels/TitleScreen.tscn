@@ -1598,7 +1598,7 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [connection signal="option_1_selected" from="CanvasLayer/ChallengeOptions" to="." method="go_to_boo_menu"]
 [connection signal="option_2_selected" from="CanvasLayer/ChallengeOptions" to="." method="challenge_hunt_selected"]
 [connection signal="option_3_selected" from="CanvasLayer/ChallengeOptions" to="." method="world_9_selected"]
-[connection signal="cancelled" from="CanvasLayer/ChallengeHunt/WorldSelect" to="CanvasLayer/Options2Stripped" method="open"]
+[connection signal="cancelled" from="CanvasLayer/ChallengeHunt/WorldSelect" to="CanvasLayer/ChallengeOptions" method="open"]
 [connection signal="world_selected" from="CanvasLayer/ChallengeHunt/WorldSelect" to="CanvasLayer/ChallengeHunt/LevelSelect" method="open"]
 [connection signal="cancelled" from="CanvasLayer/ChallengeHunt/LevelSelect" to="CanvasLayer/ChallengeHunt/WorldSelect" method="open"]
 [connection signal="level_selected" from="CanvasLayer/ChallengeHunt/LevelSelect" to="CanvasLayer/ChallengeHunt/CharacterSelect" method="open"]

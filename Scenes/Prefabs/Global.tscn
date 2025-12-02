@@ -276,15 +276,15 @@ func update_texture() -> void:
 atlas = ExtResource("19_3l3ph")
 region = Rect2(0, 0, 8, 8)
 
-[node name="Global" type="Node"]
+[node name="Global" type="Node" unique_id=1506289717]
 process_mode = 3
 script = ExtResource("1_t23sr")
 
-[node name="Transition" type="CanvasLayer" parent="."]
+[node name="Transition" type="CanvasLayer" parent="." unique_id=240864005]
 layer = 128
 visible = false
 
-[node name="TransitionBlock" type="ColorRect" parent="Transition"]
+[node name="TransitionBlock" type="ColorRect" parent="Transition" unique_id=1940622078]
 unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -294,7 +294,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Freeze" type="TextureRect" parent="Transition"]
+[node name="Freeze" type="TextureRect" parent="Transition" unique_id=1013697456]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -302,15 +302,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=804731792]
 libraries = {
 &"": SubResource("AnimationLibrary_l7dvb")
 }
 
-[node name="GameHUD" parent="." instance=ExtResource("1_ctvpw")]
+[node name="GameHUD" parent="." unique_id=1073507466 instance=ExtResource("1_ctvpw")]
 layer = 1
 
-[node name="FPSCount" type="Label" parent="GameHUD"]
+[node name="FPSCount" type="Label" parent="GameHUD" unique_id=1476489533]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 3
@@ -325,64 +325,64 @@ grow_vertical = 0
 text = "120FPS"
 horizontal_alignment = 2
 
-[node name="ScoreTally" type="AudioStreamPlayer" parent="."]
+[node name="ScoreTally" type="AudioStreamPlayer" parent="." unique_id=1702522037]
 stream = ExtResource("3_vjpdy")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="ScoreTally" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="ScoreTally" unique_id=1337925757 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("4_7puui")
 node_to_affect = NodePath("..")
 property_name = "stream"
 themed_resource = SubResource("Resource_6jmk5")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="ScoreTallyEnd" type="AudioStreamPlayer" parent="."]
+[node name="ScoreTallyEnd" type="AudioStreamPlayer" parent="." unique_id=1222589524]
 stream = ExtResource("6_30rl1")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="ScoreTallyEnd" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="ScoreTallyEnd" unique_id=713410305 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("4_7puui")
 node_to_affect = NodePath("..")
 property_name = "stream"
 themed_resource = SubResource("Resource_l7dvb")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="SettingsApply" type="Node" parent="."]
+[node name="SettingsApply" type="Node" parent="." unique_id=897934208]
 
-[node name="Video" type="Node" parent="SettingsApply"]
+[node name="Video" type="Node" parent="SettingsApply" unique_id=1109441365]
 script = ExtResource("4_nxm2a")
 
-[node name="Audio" type="Node" parent="SettingsApply"]
+[node name="Audio" type="Node" parent="SettingsApply" unique_id=1780893547]
 script = ExtResource("5_l70br")
 
-[node name="Visuals" type="Node" parent="SettingsApply"]
+[node name="Visuals" type="Node" parent="SettingsApply" unique_id=115602530]
 script = ExtResource("6_pamiy")
 
-[node name="Difficulty" type="Node" parent="SettingsApply"]
+[node name="Difficulty" type="Node" parent="SettingsApply" unique_id=1395239814]
 script = ExtResource("7_3324c")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1047030680]
 autostart = true
 
-[node name="Framerule" type="Timer" parent="."]
+[node name="Framerule" type="Timer" parent="." unique_id=182874644]
 wait_time = 0.351
 autostart = true
 
-[node name="SpriteFramesToJSONConverter" type="Node" parent="."]
+[node name="SpriteFramesToJSONConverter" type="Node" parent="." unique_id=1797424646]
 script = ExtResource("10_nptu4")
 resource = SubResource("Resource_qalov")
 json_file_path = "res://Assets/Sprites/Blocks/BrickDestructionParticles.json"
 metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
-[node name="PlayerGhost" parent="." instance=ExtResource("14_6o310")]
+[node name="PlayerGhost" parent="." unique_id=2092747110 instance=ExtResource("14_6o310")]
 process_mode = 1
 visible = false
 z_index = 50
 z_as_relative = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=471195696]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1151066527]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -390,7 +390,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ErrorMessage" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="ErrorMessage" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1317877014]
 visible = false
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
@@ -399,7 +399,7 @@ text = "ERROR! PLEASE REPORT!"
 autowrap_mode = 1
 uppercase = true
 
-[node name="Warning" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="Warning" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1002195923]
 visible = false
 modulate = Color(1, 1, 0, 1)
 layout_mode = 2
@@ -408,7 +408,7 @@ text = "Warning!"
 autowrap_mode = 1
 uppercase = true
 
-[node name="Comment" type="Label" parent="CanvasLayer/VBoxContainer"]
+[node name="Comment" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1122997232]
 visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
@@ -416,22 +416,22 @@ text = "Comment"
 autowrap_mode = 1
 uppercase = true
 
-[node name="PanelSetter" type="Node" parent="."]
+[node name="PanelSetter" type="Node" parent="." unique_id=1346795200]
 script = SubResource("GDScript_30rl1")
 panel = ExtResource("16_l7dvb")
 texture = ExtResource("16_qalov")
 
-[node name="PanelSetter2" type="Node" parent="."]
+[node name="PanelSetter2" type="Node" parent="." unique_id=833840143]
 script = SubResource("GDScript_30rl1")
 panel = ExtResource("18_yyu8s")
 texture = ExtResource("19_xspbb")
 
-[node name="CursorSetter" type="Node" parent="."]
+[node name="CursorSetter" type="Node" parent="." unique_id=1281577356]
 script = SubResource("GDScript_l7dvb")
 cursor = ExtResource("18_xcxrh")
 texture = SubResource("AtlasTexture_m6bur")
 
-[node name="ResourceSetterNew" type="Node" parent="CursorSetter" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="CursorSetter" unique_id=1861402201 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("19_okfpr")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -439,11 +439,11 @@ mode = 1
 resource_json = ExtResource("20_3l3ph")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="FontUpdater" type="Node" parent="."]
+[node name="FontUpdater" type="Node" parent="." unique_id=573027079]
 script = ExtResource("18_1la0o")
 metadata/_custom_type_script = "uid://ctsjagoa5t33f"
 
-[node name="MainFontGetter" type="Node" parent="FontUpdater" node_paths=PackedStringArray("node_to_affect")]
+[node name="MainFontGetter" type="Node" parent="FontUpdater" unique_id=615367155 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("19_okfpr")
 node_to_affect = NodePath("..")
 property_name = "main_font"
@@ -451,7 +451,7 @@ mode = 4
 resource_json = ExtResource("23_3l3ph")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="ScoreFontGetter" type="Node" parent="FontUpdater" node_paths=PackedStringArray("node_to_affect")]
+[node name="ScoreFontGetter" type="Node" parent="FontUpdater" unique_id=1594194950 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("19_okfpr")
 node_to_affect = NodePath("..")
 property_name = "score_font"
@@ -459,7 +459,7 @@ mode = 4
 resource_json = ExtResource("24_m6bur")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="TextShadowColourChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+[node name="TextShadowColourChanger" type="Node" parent="." unique_id=1662063214 node_paths=PackedStringArray("labels")]
 script = ExtResource("19_l7dvb")
 labels = [NodePath("../CanvasLayer/VBoxContainer/ErrorMessage"), NodePath("../CanvasLayer/VBoxContainer/Comment"), NodePath("../CanvasLayer/VBoxContainer/Warning"), NodePath("../GameHUD/FPSCount")]
 metadata/_custom_type_script = "uid://dt2p68xl462v2"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dntk2js0tu3y2"]
+[gd_scene load_steps=23 format=3 uid="uid://dntk2js0tu3y2"]
 
 [ext_resource type="Script" uid="uid://col2kvunpua7l" path="res://Scripts/UI/WorldSelect.gd" id="1_isg11"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_otmop"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="7_6uv8k"]
 [ext_resource type="Texture2D" uid="uid://sgrcmlktp2dk" path="res://Assets/Sprites/Particles/SRankParticles.png" id="8_ebcru"]
 [ext_resource type="Texture2D" uid="uid://cdaluetdpls0d" path="res://Assets/Sprites/Particles/PRankParticles.png" id="9_0frxk"]
+[ext_resource type="Texture2D" uid="uid://de6otencrflfo" path="res://Assets/Sprites/UI/RedCoins.png" id="10_n7c7e"]
+[ext_resource type="Texture2D" uid="uid://bgfsdyjhoies2" path="res://Assets/Sprites/UI/ScoreMedal.png" id="11_gmk86"]
+[ext_resource type="Texture2D" uid="uid://ccqgekbac45f8" path="res://Assets/Sprites/UI/YoshiEggs.png" id="11_qbq5t"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_d8v6d"]
 color = Color(1, 1, 1, 1)
@@ -41,6 +44,22 @@ emission_ring_cone_angle = 90.0
 gravity = Vector3(0, 0, 0)
 anim_speed_min = 2.0
 anim_speed_max = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmk86"]
+atlas = ExtResource("10_n7c7e")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxrsx"]
+atlas = ExtResource("11_gmk86")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uhgh"]
+atlas = ExtResource("11_gmk86")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qaid0"]
+atlas = ExtResource("11_qbq5t")
+region = Rect2(0, 0, 8, 8)
 
 [node name="WorldSelect" type="Control" unique_id=1916971691]
 layout_mode = 3
@@ -196,6 +215,79 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=1840978743]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/RedCoins" unique_id=1903376811]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=1373624164]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Score" unique_id=1956610030]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=1814258114]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Egg" unique_id=438628992]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=962917386]
 visible = false
 layout_mode = 2
@@ -293,6 +385,79 @@ fixed_fps = 15
 interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=1824752377]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/RedCoins" unique_id=767188181]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=1015378854]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Score" unique_id=949568637]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=775599743]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Egg" unique_id=1859130298]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2" unique_id=678217105]
 visible = false
@@ -392,6 +557,79 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1033484778]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/RedCoins" unique_id=1501089176]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=223526529]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Score" unique_id=156144920]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1063457295]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Egg" unique_id=1101277882]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(0, 8, 8, 8)
+script = ExtResource("5_6gt41")
+
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3" unique_id=1427039068]
 visible = false
 layout_mode = 2
@@ -489,6 +727,79 @@ fixed_fps = 15
 interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=1267779505]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/RedCoins" unique_id=528352086]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=2059182781]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Score" unique_id=1928581200]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=254724978]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Egg" unique_id=1729405231]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(8, 8, 8, 8)
+script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4" unique_id=1403222047]
 visible = false
@@ -588,6 +899,79 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=399131927]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/RedCoins" unique_id=1296198948]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=555474621]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Score" unique_id=440823345]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=264996586]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Egg" unique_id=324505837]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5" unique_id=1116493561]
 visible = false
 layout_mode = 2
@@ -686,6 +1070,79 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=307952097]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/RedCoins" unique_id=1958419104]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=1886740464]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Score" unique_id=1545612438]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=506069993]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Egg" unique_id=1971626577]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6" unique_id=40558589]
 visible = false
 layout_mode = 2
@@ -783,6 +1240,79 @@ fixed_fps = 15
 interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=930345002]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/RedCoins" unique_id=1370091943]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=618931349]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Score" unique_id=728002231]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=1027775921]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Egg" unique_id=2144629702]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(0, 8, 8, 8)
+script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7" unique_id=1402950104]
 visible = false
@@ -883,6 +1413,79 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=1322800340]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/RedCoins" unique_id=286455458]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=895348948]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Score" unique_id=1448828340]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=736206935]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Egg" unique_id=476048352]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(8, 8, 8, 8)
+script = ExtResource("5_6gt41")
+
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8" unique_id=1581639456]
 visible = false
 layout_mode = 2
@@ -982,6 +1585,79 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=1967267140]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/RedCoins" unique_id=1461020804]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=1520299796]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Score" unique_id=330445920]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=106759724]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Egg" unique_id=2006318629]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9" unique_id=1486201121]
 visible = false
 layout_mode = 2
@@ -1079,6 +1755,79 @@ fixed_fps = 15
 interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=300817500]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/RedCoins" unique_id=1375667777]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=1415715775]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Score" unique_id=192359303]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=1088270708]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Egg" unique_id=573316898]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(16, 0, 8, 8)
+script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10" unique_id=1146334306]
 visible = false
@@ -1178,6 +1927,79 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=925610863]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/RedCoins" unique_id=57851256]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=969993164]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Score" unique_id=2005954415]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=1656521479]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Egg" unique_id=635944000]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(0, 8, 8, 8)
+script = ExtResource("5_6gt41")
+
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11" unique_id=1592167668]
 visible = false
 layout_mode = 2
@@ -1275,6 +2097,79 @@ fixed_fps = 15
 interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=1852597759]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/RedCoins" unique_id=1515551987]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=915826544]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Score" unique_id=750338357]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=1989963066]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Egg" unique_id=325437906]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(8, 8, 8, 8)
+script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12" unique_id=10585167]
 visible = false
@@ -1375,6 +2270,79 @@ fixed_fps = 15
 interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
+
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=1542460735]
+visible = false
+layout_mode = 0
+offset_left = 24.0
+offset_top = 12.0
+offset_right = 32.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_gmk86")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/RedCoins" unique_id=486106440]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_n7c7e")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=814063634]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 22.0
+offset_right = 34.0
+offset_bottom = 34.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Score" unique_id=1774578418]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5uhgh")
+script = ExtResource("5_6gt41")
+
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=294139809]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 32.0
+offset_bottom = 26.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qaid0")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Egg" unique_id=1977378048]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_qbq5t")
+region_rect = Rect2(8, 0, 8, 8)
+script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13" unique_id=399119636]
 visible = false
