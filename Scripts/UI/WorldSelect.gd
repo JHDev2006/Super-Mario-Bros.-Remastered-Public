@@ -97,6 +97,8 @@ func setup_challenge_mode_bits(red_coins_outline: TextureRect, egg_outline: Text
 		i.visible = true
 	red_coins.visible = not red_coins_collected.has(false)
 	egg.visible = not eggs_collected.has(false)
+	var egg_frame = 10 * (world_num % 4)
+	egg.region_rect = Rect2(egg_frame, 0, 10, 10)
 	score.visible = not scores_collected.has(false)
 
 func setup_marathon_bits(medal_outline: TextureRect, medal: NinePatchRect, world_num := 1) -> void:
