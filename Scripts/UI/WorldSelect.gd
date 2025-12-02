@@ -27,8 +27,6 @@ const NUMBER_Y := [
 	"Volcano"
 ]
 
-const RANK_MEDALS := preload("res://Assets/Sprites/UI/RankMedals.png")
-
 func _ready() -> void:
 	for i in %SlotContainer.get_children():
 		i.focus_entered.connect(slot_focused.bind(i.get_index()))
@@ -77,6 +75,7 @@ func setup_visuals() -> void:
 		var resource_getter = ResourceGetter.new() #Is it safe to be making a new one of these per icon?
 		i.get_node("Icon").region_rect = CustomLevelContainer.THEME_RECTS[level_theme]
 		i.get_node("Icon").texture = resource_getter.get_resource(CustomLevelContainer.ICON_TEXTURES[0 if (idx <= 3 or idx >= 8) and Global.current_campaign != "SMBANN" else 1])
+		i.get_node("Icon/Number").position.y = 10 if has_challenge_stuff else 17
 		i.get_node("Icon/Number").region_rect.position.y = clamp(NUMBER_Y.find(level_theme) * 12, 0, 9999)
 		i.get_node("Icon/Number").region_rect.position.x = (idx + world_offset) * 12
 		setup_challenge_mode_bits(i.get_node("Icon/RedCoins"), i.get_node("Icon/Egg"), i.get_node("Icon/Score"), i.get_node("Icon/RedCoins/Full"), i.get_node("Icon/Egg/Full"), i.get_node("Icon/Score/Full"), idx + world_offset)
@@ -123,8 +122,8 @@ func setup_marathon_bits(medal_outline: TextureRect, medal: NinePatchRect, world
 			saved_medal_ids.append(medal_id)
 	medal_outline.visible = true
 	medal.visible = saved_medal_ids.min() >= 0
-	var medal_rect_x = saved_medal_ids.min() * 8
-	medal.region_rect = Rect2(medal_rect_x, 0, 8, 8)
+	var medal_rect_x = saved_medal_ids.min() * 10
+	medal.region_rect = Rect2(10 + medal_rect_x, 10, 10, 10)
 
 func setup_disco_bits(medal_outline: TextureRect, medal: NinePatchRect, s_rank_pfx: GPUParticles2D, p_rank_pfx: GPUParticles2D, world_num := 1) -> void:
 	if has_disco_stuff == false: return
@@ -136,10 +135,9 @@ func setup_disco_bits(medal_outline: TextureRect, medal: NinePatchRect, s_rank_p
 			if DiscoLevel.RANK_IDs[rank] == saved_rank_ids[i] and (lowest_rank > rank + 1 or lowest_rank < 0):
 				lowest_rank = rank + 1
 	medal_outline.visible = true
-	medal.texture = RANK_MEDALS
 	medal.visible = lowest_rank != -1
-	var medal_rect_x = lowest_rank * 8
-	medal.region_rect = Rect2(medal_rect_x, 16, 8, 8)
+	var medal_rect_x = lowest_rank * 10
+	medal.region_rect = Rect2(medal_rect_x, 20, 10, 10)
 	s_rank_pfx.visible = lowest_rank == 6
 	p_rank_pfx.visible = lowest_rank == 7
 

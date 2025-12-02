@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dntk2js0tu3y2"]
+[gd_scene load_steps=22 format=3 uid="uid://dntk2js0tu3y2"]
 
 [ext_resource type="Script" uid="uid://col2kvunpua7l" path="res://Scripts/UI/WorldSelect.gd" id="1_isg11"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_otmop"]
@@ -6,26 +6,23 @@
 [ext_resource type="Texture2D" uid="uid://chtjq1vr0rpso" path="res://Assets/Sprites/UI/CustomLevelIconDay.png" id="3_ldq6u"]
 [ext_resource type="Texture2D" uid="uid://dsi25p0odieg2" path="res://Assets/Sprites/UI/Numbers.png" id="4_bxh4e"]
 [ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="5_6gt41"]
-[ext_resource type="Texture2D" uid="uid://dhu46wvad72wp" path="res://Assets/Sprites/UI/MarathonIcons.png" id="6_ne7gv"]
+[ext_resource type="Texture2D" uid="uid://cvchqrf0fdg5x" path="res://Assets/Sprites/UI/ProgressTrackerIcons.png" id="6_gmk86"]
 [ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="7_6uv8k"]
 [ext_resource type="Texture2D" uid="uid://sgrcmlktp2dk" path="res://Assets/Sprites/Particles/SRankParticles.png" id="8_ebcru"]
 [ext_resource type="Texture2D" uid="uid://cdaluetdpls0d" path="res://Assets/Sprites/Particles/PRankParticles.png" id="9_0frxk"]
-[ext_resource type="Texture2D" uid="uid://de6otencrflfo" path="res://Assets/Sprites/UI/RedCoins.png" id="10_n7c7e"]
-[ext_resource type="Texture2D" uid="uid://bgfsdyjhoies2" path="res://Assets/Sprites/UI/ScoreMedal.png" id="11_gmk86"]
-[ext_resource type="Texture2D" uid="uid://ccqgekbac45f8" path="res://Assets/Sprites/UI/YoshiEggs.png" id="11_qbq5t"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_d8v6d"]
 color = Color(1, 1, 1, 1)
 grow_begin = -4.0
 grow_end = -4.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ebcru"]
-atlas = ExtResource("6_ne7gv")
-region = Rect2(96, 24, 8, 8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qti0y"]
+atlas = ExtResource("6_gmk86")
+region = Rect2(0, 10, 10, 10)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0frxk"]
-atlas = ExtResource("6_ne7gv")
-region = Rect2(96, 16, 24, 8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgv5j"]
+atlas = ExtResource("6_gmk86")
+region = Rect2(30, 10, 10, 10)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n7c7e"]
 particles_animation = true
@@ -46,20 +43,28 @@ anim_speed_min = 2.0
 anim_speed_max = 2.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmk86"]
-atlas = ExtResource("10_n7c7e")
-region = Rect2(0, 0, 8, 8)
+atlas = ExtResource("6_gmk86")
+region = Rect2(0, 0, 10, 10)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oxrsx"]
-atlas = ExtResource("11_gmk86")
-region = Rect2(0, 0, 12, 12)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5uhgh"]
-atlas = ExtResource("11_gmk86")
-region = Rect2(12, 0, 12, 12)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebcru"]
+atlas = ExtResource("6_gmk86")
+region = Rect2(10, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qaid0"]
-atlas = ExtResource("11_qbq5t")
-region = Rect2(0, 0, 8, 8)
+atlas = ExtResource("6_gmk86")
+region = Rect2(20, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0frxk"]
+atlas = ExtResource("6_gmk86")
+region = Rect2(30, 0, 40, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxrsx"]
+atlas = ExtResource("6_gmk86")
+region = Rect2(40, 10, 20, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7c7e"]
+atlas = ExtResource("6_gmk86")
+region = Rect2(60, 10, 20, 10)
 
 [node name="WorldSelect" type="Control" unique_id=1916971691]
 layout_mode = 3
@@ -151,8 +156,9 @@ anchor_top = 0.9
 anchor_right = 0.5
 anchor_bottom = 0.9
 offset_left = -6.0
-offset_top = -12.0
+offset_top = -11.799999
 offset_right = 6.0
+offset_bottom = 0.20000076
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("4_bxh4e")
@@ -160,7 +166,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=716047762]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=383713797]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -168,26 +174,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal" unique_id=629833483]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal" unique_id=703731483]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full" unique_id=84102829 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full" unique_id=1878939581 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -201,7 +208,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full" unique_id=685107613 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Medal/Full" unique_id=1924578319 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -215,77 +222,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=1840978743]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=1580641003]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/RedCoins" unique_id=1903376811]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/RedCoins" unique_id=1266039106]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=1373624164]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Score" unique_id=1956610030]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=1814258114]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=1259739250]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Egg" unique_id=438628992]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Egg" unique_id=1139974238]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=590381106]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon/Score" unique_id=504250605]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=962917386]
@@ -331,7 +336,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=711575966]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=1701361911]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -339,26 +344,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal" unique_id=326632138]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal" unique_id=731289145]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full" unique_id=1412236224 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full" unique_id=1331572592 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -372,7 +378,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full" unique_id=615899395 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Medal/Full" unique_id=2145049593 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -386,77 +392,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=1824752377]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=796997613]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/RedCoins" unique_id=767188181]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/RedCoins" unique_id=269344074]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=1015378854]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Score" unique_id=949568637]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=775599743]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=1520846274]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Egg" unique_id=1859130298]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Egg" unique_id=1379035048]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=922455755]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon/Score" unique_id=374356067]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2" unique_id=678217105]
@@ -502,7 +506,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1313099898]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1029739111]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -510,26 +514,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal" unique_id=1628143260]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal" unique_id=167650357]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full" unique_id=1294883279 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full" unique_id=1173181408 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -543,7 +548,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full" unique_id=2002823722 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Medal/Full" unique_id=520622557 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -557,77 +562,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1033484778]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1035405883]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/RedCoins" unique_id=1501089176]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/RedCoins" unique_id=525797333]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=223526529]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Score" unique_id=156144920]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1063457295]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1914412431]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Egg" unique_id=1101277882]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Egg" unique_id=1115591667]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(0, 8, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=882029376]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon/Score" unique_id=1455680713]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3" unique_id=1427039068]
@@ -673,7 +676,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=726790129]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=1892216616]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -681,26 +684,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal" unique_id=1860492291]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal" unique_id=501177783]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full" unique_id=2013574844 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full" unique_id=1219227909 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -714,7 +718,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full" unique_id=1031535140 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Medal/Full" unique_id=1879604578 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -728,77 +732,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=1267779505]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=1204511438]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/RedCoins" unique_id=528352086]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/RedCoins" unique_id=147350852]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=2059182781]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Score" unique_id=1928581200]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=254724978]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=1756743072]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Egg" unique_id=1729405231]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Egg" unique_id=213635648]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(8, 8, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=174860434]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon/Score" unique_id=1961012359]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4" unique_id=1403222047]
@@ -844,7 +846,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=337937248]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=542030204]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -852,26 +854,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal" unique_id=160142331]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal" unique_id=2039405747]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full" unique_id=1828655129 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full" unique_id=269217139 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -885,7 +888,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full" unique_id=94814458 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Medal/Full" unique_id=334579935 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -899,77 +902,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=399131927]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=2080311951]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/RedCoins" unique_id=1296198948]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/RedCoins" unique_id=1166741400]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=555474621]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Score" unique_id=440823345]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=264996586]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=136646079]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Egg" unique_id=324505837]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Egg" unique_id=176592182]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=208704616]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon/Score" unique_id=385473230]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5" unique_id=1116493561]
@@ -1015,7 +1016,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=406726759]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=1135852953]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1023,26 +1024,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal" unique_id=938720989]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal" unique_id=1313076768]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full" unique_id=24712633 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full" unique_id=1646410554 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1056,7 +1058,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full" unique_id=455036506 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Medal/Full" unique_id=2086344241 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1070,77 +1072,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=307952097]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=985795556]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/RedCoins" unique_id=1958419104]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/RedCoins" unique_id=1238229551]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=1886740464]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Score" unique_id=1545612438]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=506069993]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=1459307198]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Egg" unique_id=1971626577]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Egg" unique_id=1431133434]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=2084297961]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon/Score" unique_id=1527474213]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6" unique_id=40558589]
@@ -1186,7 +1186,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=428613057]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=2041247140]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1194,26 +1194,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal" unique_id=218543775]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal" unique_id=2054062859]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full" unique_id=1156393694 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full" unique_id=1577756584 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1227,7 +1228,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full" unique_id=65170113 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Medal/Full" unique_id=187422959 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1241,77 +1242,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=930345002]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=1838536544]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/RedCoins" unique_id=1370091943]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/RedCoins" unique_id=2068133402]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=618931349]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Score" unique_id=728002231]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=1027775921]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=1606234005]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Egg" unique_id=2144629702]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Egg" unique_id=1499813504]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(0, 8, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=209744736]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon/Score" unique_id=1383515160]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7" unique_id=1402950104]
@@ -1358,7 +1357,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=1104001070]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=1258552180]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1366,26 +1365,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal" unique_id=184593335]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal" unique_id=1520872527]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full" unique_id=730933666 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full" unique_id=1057397591 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1399,7 +1399,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full" unique_id=1378679627 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Medal/Full" unique_id=1204145313 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1413,77 +1413,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=1322800340]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=46192596]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/RedCoins" unique_id=286455458]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/RedCoins" unique_id=994316992]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=895348948]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Score" unique_id=1448828340]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=736206935]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=375328143]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Egg" unique_id=476048352]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Egg" unique_id=1451969911]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(8, 8, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=419826951]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon/Score" unique_id=1454858994]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8" unique_id=1581639456]
@@ -1530,7 +1528,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=2082956184]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=569686756]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1538,26 +1536,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal" unique_id=1747352882]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal" unique_id=1409686282]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full" unique_id=457191046 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full" unique_id=307041948 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1571,7 +1570,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full" unique_id=1739197925 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Medal/Full" unique_id=1173549498 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1585,77 +1584,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=1967267140]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=729535259]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/RedCoins" unique_id=1461020804]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/RedCoins" unique_id=1949362447]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=1520299796]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Score" unique_id=330445920]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=106759724]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=742457150]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Egg" unique_id=2006318629]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Egg" unique_id=474427091]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=71966645]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon/Score" unique_id=1310175494]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9" unique_id=1486201121]
@@ -1701,7 +1698,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=1576835858]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=1210404318]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1709,26 +1706,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal" unique_id=575564737]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal" unique_id=1877329875]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full" unique_id=1218177340 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full" unique_id=1483493493 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1742,7 +1740,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full" unique_id=2024952460 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Medal/Full" unique_id=1690200017 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1756,77 +1754,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=300817500]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=411203474]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/RedCoins" unique_id=1375667777]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/RedCoins" unique_id=822127635]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=1415715775]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Score" unique_id=192359303]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=1088270708]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=108524793]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Egg" unique_id=573316898]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Egg" unique_id=244688263]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=617296762]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon/Score" unique_id=508421570]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10" unique_id=1146334306]
@@ -1872,7 +1868,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=862647710]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=718873876]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -1880,26 +1876,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal" unique_id=1996689787]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal" unique_id=1755119250]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal/Full" unique_id=1083226736]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal/Full" unique_id=636317037 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1913,7 +1910,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal/Full" unique_id=1700716128 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Medal/Full" unique_id=615022735 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -1927,77 +1924,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=925610863]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=1361753020]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/RedCoins" unique_id=57851256]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/RedCoins" unique_id=1879543118]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=969993164]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Score" unique_id=2005954415]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=1656521479]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=2128935096]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Egg" unique_id=635944000]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Egg" unique_id=410057010]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(0, 8, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=17465279]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon/Score" unique_id=1436396735]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11" unique_id=1592167668]
@@ -2043,7 +2038,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=560665330]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=1487759798]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -2051,26 +2046,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal" unique_id=2117443864]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal" unique_id=1732984641]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal/Full" unique_id=45504787]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal/Full" unique_id=1732975909 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -2084,7 +2080,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal/Full" unique_id=1482592529 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Medal/Full" unique_id=1163202048 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -2098,77 +2094,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=1852597759]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=2104820647]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/RedCoins" unique_id=1515551987]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/RedCoins" unique_id=240992340]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=915826544]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Score" unique_id=750338357]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=1989963066]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=925946766]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Egg" unique_id=325437906]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Egg" unique_id=2018549695]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(8, 8, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=1808426910]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon/Score" unique_id=338964166]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12" unique_id=10585167]
@@ -2216,7 +2210,7 @@ region_rect = Rect2(0, 0, 12, 12)
 script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=150879538]
+[node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=930166354]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -2224,26 +2218,27 @@ anchor_left = 0.75000006
 anchor_top = 0.75000006
 anchor_right = 0.75000006
 anchor_bottom = 0.75000006
+offset_left = -2.0
+offset_top = -2.0
 offset_right = 7.999998
 offset_bottom = 7.999998
 size_flags_horizontal = 10
 size_flags_vertical = 4
-texture = SubResource("AtlasTexture_ebcru")
+texture = SubResource("AtlasTexture_qti0y")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal" unique_id=898764475]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal" unique_id=1854883148]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_0frxk")
-region_rect = Rect2(16, 0, 8, 8)
+texture = SubResource("AtlasTexture_cgv5j")
 script = ExtResource("5_6gt41")
 
-[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full" unique_id=2073684274 groups=["Particles"]]
+[node name="SRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full" unique_id=2044642028 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -2257,7 +2252,7 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full" unique_id=884329983 groups=["Particles"]]
+[node name="PRankParticles" type="GPUParticles2D" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Medal/Full" unique_id=275919581 groups=["Particles"]]
 visible = false
 z_index = 1
 material = SubResource("CanvasItemMaterial_n7c7e")
@@ -2271,77 +2266,75 @@ interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_ebcru")
 
-[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=1542460735]
+[node name="RedCoins" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=2137239439]
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 12.0
-offset_right = 32.0
-offset_bottom = 20.0
+offset_top = 22.0
+offset_right = 10.0
+offset_bottom = 32.0
 size_flags_horizontal = 8
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_gmk86")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/RedCoins" unique_id=486106440]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/RedCoins" unique_id=1135513600]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_n7c7e")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_ebcru")
 script = ExtResource("5_6gt41")
 
-[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=814063634]
-visible = false
-z_index = 2
-layout_mode = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 34.0
-offset_bottom = 34.0
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture = SubResource("AtlasTexture_oxrsx")
-stretch_mode = 3
-script = ExtResource("7_6uv8k")
-
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Score" unique_id=1774578418]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_5uhgh")
-script = ExtResource("5_6gt41")
-
-[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=294139809]
+[node name="Egg" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=204842318]
 visible = false
 z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 18.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = 11.0
+offset_top = 23.0
+offset_right = 21.0
+offset_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qaid0")
 stretch_mode = 3
 script = ExtResource("7_6uv8k")
 
-[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Egg" unique_id=1977378048]
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Egg" unique_id=1805367080]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("11_qbq5t")
-region_rect = Rect2(8, 0, 8, 8)
+texture = SubResource("AtlasTexture_0frxk")
+region_rect = Rect2(0, 0, 10, 10)
+script = ExtResource("5_6gt41")
+
+[node name="Score" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=276588036]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 17.0
+offset_top = 21.0
+offset_right = 37.0
+offset_bottom = 31.0
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_oxrsx")
+stretch_mode = 3
+script = ExtResource("7_6uv8k")
+
+[node name="Full" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon/Score" unique_id=1950798847]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13" unique_id=399119636]
