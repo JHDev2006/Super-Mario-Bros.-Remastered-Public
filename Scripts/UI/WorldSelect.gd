@@ -98,7 +98,7 @@ func setup_disco_bits(medal_outline: TextureRect, medal: NinePatchRect, s_rank_p
 	medal.region_rect = Rect2(medal_rect_x, 16, 8, 8)
 	s_rank_pfx.visible = lowest_rank == 6
 	p_rank_pfx.visible = lowest_rank == 7
-	
+	print(medal.region_rect)
 
 func setup_marathon_bits(medal_outline: TextureRect, medal: NinePatchRect, world_num := 1) -> void:
 	if has_speedrun_stuff == false: return

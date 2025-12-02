@@ -71,14 +71,14 @@ func _process(_delta: float) -> void:
 		$BGM.play()
 
 func campaign_selected() -> void:
+	$CanvasLayer/Options1.close()
 	if last_campaign != Global.current_campaign:
 		last_campaign = Global.current_campaign
 		update_title()
 	if Global.current_campaign == "SMBANN":
 		Global.current_game_mode = Global.GameMode.CAMPAIGN
-		$CanvasLayer/AllNightNippon/WorldSelect.open()
+		$CanvasLayer/Options2Stripped.open()
 		return
-	$CanvasLayer/Options1.close()
 	$CanvasLayer/Options2.open()
 
 func open_story_options() -> void:

@@ -142,6 +142,7 @@ script = ExtResource("5_6gt41")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Medal" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=716047762]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75000006

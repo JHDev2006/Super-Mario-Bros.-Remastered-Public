@@ -409,6 +409,38 @@ custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 
+[node name="Options2Stripped" type="VBoxContainer" parent="CanvasLayer" unique_id=1380814024 node_paths=PackedStringArray("options")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(9, 0)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -64.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/separation = 0
+script = ExtResource("9_dsf7o")
+options = [NodePath("LevelSelect")]
+
+[node name="LevelSelect" type="Label" parent="CanvasLayer/Options2Stripped" unique_id=1533418499]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "MENU_LEVEL_SELECT"
+uppercase = true
+
+[node name="Buffer" type="Control" parent="CanvasLayer/Options2Stripped" unique_id=647277270]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+
 [node name="Extras" type="VBoxContainer" parent="CanvasLayer" unique_id=1702414525 node_paths=PackedStringArray("options")]
 unique_name_in_owner = true
 visible = false
@@ -1532,6 +1564,9 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [connection signal="option_2_selected" from="CanvasLayer/Options2" to="CanvasLayer/Options2" method="close"]
 [connection signal="option_2_selected" from="CanvasLayer/Options2" to="CanvasLayer/ChallengeOptions" method="open"]
 [connection signal="option_3_selected" from="CanvasLayer/Options2" to="CanvasLayer/MarathonMode/MarathonSelect" method="open"]
+[connection signal="closed" from="CanvasLayer/Options2Stripped" to="CanvasLayer/Options1" method="open"]
+[connection signal="option_1_selected" from="CanvasLayer/Options2Stripped" to="." method="get_highscore"]
+[connection signal="option_1_selected" from="CanvasLayer/Options2Stripped" to="CanvasLayer/AllNightNippon/WorldSelect" method="open"]
 [connection signal="closed" from="CanvasLayer/Extras" to="CanvasLayer/Options1" method="open"]
 [connection signal="option_1_selected" from="CanvasLayer/Extras" to="." method="go_to_achievement_menu"]
 [connection signal="option_2_selected" from="CanvasLayer/Extras" to="." method="go_to_credits"]
@@ -1563,7 +1598,7 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [connection signal="option_1_selected" from="CanvasLayer/ChallengeOptions" to="." method="go_to_boo_menu"]
 [connection signal="option_2_selected" from="CanvasLayer/ChallengeOptions" to="." method="challenge_hunt_selected"]
 [connection signal="option_3_selected" from="CanvasLayer/ChallengeOptions" to="." method="world_9_selected"]
-[connection signal="cancelled" from="CanvasLayer/ChallengeHunt/WorldSelect" to="CanvasLayer/ChallengeOptions" method="open"]
+[connection signal="cancelled" from="CanvasLayer/ChallengeHunt/WorldSelect" to="CanvasLayer/Options2Stripped" method="open"]
 [connection signal="world_selected" from="CanvasLayer/ChallengeHunt/WorldSelect" to="CanvasLayer/ChallengeHunt/LevelSelect" method="open"]
 [connection signal="cancelled" from="CanvasLayer/ChallengeHunt/LevelSelect" to="CanvasLayer/ChallengeHunt/WorldSelect" method="open"]
 [connection signal="level_selected" from="CanvasLayer/ChallengeHunt/LevelSelect" to="CanvasLayer/ChallengeHunt/CharacterSelect" method="open"]
@@ -1575,7 +1610,7 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [connection signal="level_selected" from="CanvasLayer/World9/ExtraLevelSelect" to="CanvasLayer/World9/CharacterSelect" method="open"]
 [connection signal="cancelled" from="CanvasLayer/World9/CharacterSelect" to="CanvasLayer/World9/ExtraLevelSelect" method="open"]
 [connection signal="selected" from="CanvasLayer/World9/CharacterSelect" to="." method="start_game"]
-[connection signal="cancelled" from="CanvasLayer/AllNightNippon/WorldSelect" to="CanvasLayer/Options1" method="open"]
+[connection signal="cancelled" from="CanvasLayer/AllNightNippon/WorldSelect" to="CanvasLayer/Options2Stripped" method="open"]
 [connection signal="world_selected" from="CanvasLayer/AllNightNippon/WorldSelect" to="CanvasLayer/AllNightNippon/LevelSelect" method="open"]
 [connection signal="cancelled" from="CanvasLayer/AllNightNippon/LevelSelect" to="CanvasLayer/AllNightNippon/WorldSelect" method="open"]
 [connection signal="level_selected" from="CanvasLayer/AllNightNippon/LevelSelect" to="CanvasLayer/AllNightNippon/CharacterSelect" method="open"]

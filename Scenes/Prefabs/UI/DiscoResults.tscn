@@ -14,7 +14,7 @@ color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_lfyeb"]
 color = Color(1, 1, 1, 1)
 
-[node name="DiscoResults" type="Control"]
+[node name="DiscoResults" type="Control" unique_id=1298188288]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_up7vl")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1498395662]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -38,15 +38,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_nfk08")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1061658617]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1367824242]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "YOUR RESULTS"
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/Label"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/Label" unique_id=1977156132]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -57,28 +57,28 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/separator = SubResource("StyleBoxLine_6886a")
 
-[node name="Score" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Score" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=277801092]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/Score"]
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/Score" unique_id=168254607]
 layout_mode = 2
 text = "SCORE:"
 
-[node name="Score" type="Label" parent="PanelContainer/VBoxContainer/Score"]
+[node name="Score" type="Label" parent="PanelContainer/VBoxContainer/Score" unique_id=1767125717]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "000000"
 
-[node name="Rank" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Rank" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1686368771]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/Rank"]
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer/Rank" unique_id=678139659]
 layout_mode = 2
 size_flags_vertical = 0
 text = "RANK:"
 
-[node name="Medal" type="NinePatchRect" parent="PanelContainer/VBoxContainer/Rank"]
+[node name="Medal" type="NinePatchRect" parent="PanelContainer/VBoxContainer/Rank" unique_id=52736512]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
@@ -88,45 +88,45 @@ region_rect = Rect2(16, 0, 16, 16)
 script = ExtResource("3_up7vl")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="RankMessage" type="Label" parent="PanelContainer/VBoxContainer/Rank"]
+[node name="RankMessage" type="Label" parent="PanelContainer/VBoxContainer/Rank" unique_id=571890284]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "FAIL!"
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=1051377687]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_lfyeb")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1493933591]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1607230461]
 layout_mode = 2
 
-[node name="Continue" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_lxtk8")]
+[node name="Continue" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1776656853 instance=ExtResource("4_lxtk8")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "CONTINUE"
 
-[node name="Retry" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_lxtk8")]
+[node name="Retry" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1308037190 instance=ExtResource("4_lxtk8")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "RETRY"
 
-[node name="LevelSelect" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_lxtk8")]
+[node name="LevelSelect" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=84515105 instance=ExtResource("4_lxtk8")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "LEVEL SELECT"
 
-[node name="ReturnMenu" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_lxtk8")]
+[node name="ReturnMenu" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2105400998 instance=ExtResource("4_lxtk8")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "RETURN TO MENU"
 
-[node name="WorldSelect" parent="." instance=ExtResource("6_lfyeb")]
+[node name="WorldSelect" parent="." unique_id=2048757589 instance=ExtResource("6_lfyeb")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -140,8 +140,9 @@ offset_right = 90.0
 offset_bottom = 32.5
 grow_horizontal = 2
 grow_vertical = 2
+has_disco_stuff = true
 
-[node name="LevelSelect" parent="." instance=ExtResource("7_mjrut")]
+[node name="LevelSelect" parent="." unique_id=1828692017 instance=ExtResource("7_mjrut")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -164,8 +165,8 @@ grow_vertical = 2
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/LevelSelect" to="WorldSelect" method="open"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/LevelSelect" to="." method="set_focus" binds= [false]]
 [connection signal="focus_entered" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ReturnMenu" to="." method="set_index" binds= [3]]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ReturnMenu" to="." method="go_to_menu"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ReturnMenu" to="." method="close"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/ReturnMenu" to="." method="go_to_menu"]
 [connection signal="cancelled" from="WorldSelect" to="." method="open"]
 [connection signal="cancelled" from="WorldSelect" to="." method="set_focus" binds= [true]]
 [connection signal="world_selected" from="WorldSelect" to="LevelSelect" method="open"]
