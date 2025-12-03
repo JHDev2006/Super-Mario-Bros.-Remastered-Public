@@ -222,7 +222,7 @@ script = ExtResource("6_pvhfi")
 Overworld = SubResource("SpriteFrames_mcog5")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
-[node name="Bowser" type="CharacterBody2D" node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Bowser", "Enemies"]]
+[node name="Bowser" type="CharacterBody2D" unique_id=1487129753 node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Bowser", "Enemies"]]
 z_index = 1
 collision_layer = 16
 collision_mask = 2
@@ -231,10 +231,10 @@ on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
 score_note_adder = NodePath("ScoreNoteSpawner")
 metadata/block_launch_velocity = -50.0
 
-[node name="SpriteScaleJoint" type="Node2D" parent="."]
+[node name="SpriteScaleJoint" type="Node2D" parent="." unique_id=239188381]
 position = Vector2(-8, -13)
 
-[node name="Sprite" type="AnimatedSprite2D" parent="SpriteScaleJoint"]
+[node name="Sprite" type="AnimatedSprite2D" parent="SpriteScaleJoint" unique_id=756073436]
 clip_children = 2
 position = Vector2(0, -11)
 scale = Vector2(-1, 1)
@@ -248,30 +248,30 @@ script = ExtResource("4_2qn7a")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="Hitbox" type="Area2D" parent="SpriteScaleJoint/Sprite"]
+[node name="Hitbox" type="Area2D" parent="SpriteScaleJoint/Sprite" unique_id=1256158208]
 position = Vector2(0, 24)
 rotation = 3.14159
 scale = Vector2(1, -1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteScaleJoint/Sprite/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteScaleJoint/Sprite/Hitbox" unique_id=1859867718]
 visible = false
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_ma5fd")
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SpriteScaleJoint/Sprite"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="SpriteScaleJoint/Sprite" unique_id=112798433]
 position = Vector2(8, -8)
 rotation = 3.14159
 scale = Vector2(1, -1)
 remote_path = NodePath("../../../Hammer")
 
-[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite" unique_id=555266942 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("5_17x2r")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_nf6hu")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="ColorRect" type="ColorRect" parent="SpriteScaleJoint/Sprite"]
+[node name="ColorRect" type="ColorRect" parent="SpriteScaleJoint/Sprite" unique_id=1674277261]
 modulate = Color(1, 1, 1, 0.552941)
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -35.1663
@@ -280,13 +280,13 @@ offset_right = 28.8337
 offset_bottom = 42.0
 color = Color(1, 0, 0, 1)
 
-[node name="HurtAnimation" type="AnimationPlayer" parent="SpriteScaleJoint"]
+[node name="HurtAnimation" type="AnimationPlayer" parent="SpriteScaleJoint" unique_id=1252199300]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_6fvct")
 }
 
-[node name="DeathSprite" type="AnimatedSprite2D" parent="SpriteScaleJoint"]
+[node name="DeathSprite" type="AnimatedSprite2D" parent="SpriteScaleJoint" unique_id=1311530935]
 visible = false
 position = Vector2(8, 5)
 sprite_frames = SubResource("SpriteFrames_ckuah")
@@ -295,7 +295,7 @@ script = ExtResource("4_2qn7a")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/DeathSprite" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/DeathSprite" unique_id=381174695 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("5_17x2r")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
@@ -303,55 +303,55 @@ resource_json = ExtResource("6_nf6hu")
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=2093833923]
 visible = false
 position = Vector2(0, -9)
 shape = SubResource("RectangleShape2D_va0n6")
 
-[node name="MoveAnimation" type="AnimationPlayer" parent="."]
+[node name="MoveAnimation" type="AnimationPlayer" parent="." unique_id=725232348]
 libraries = {
 &"": SubResource("AnimationLibrary_v5oyl")
 }
-autoplay = "Move"
+autoplay = &"Move"
 
-[node name="JumpTimer" type="Timer" parent="."]
+[node name="JumpTimer" type="Timer" parent="." unique_id=508462891]
 one_shot = true
 
-[node name="HammerTime" type="Timer" parent="."]
+[node name="HammerTime" type="Timer" parent="." unique_id=1639990064]
 one_shot = true
 
-[node name="FlameTimer" type="Timer" parent="."]
+[node name="FlameTimer" type="Timer" parent="." unique_id=1040115668]
 wait_time = 0.5
 one_shot = true
 
-[node name="FallSFX" type="AudioStreamPlayer2D" parent="."]
+[node name="FallSFX" type="AudioStreamPlayer2D" parent="." unique_id=1284726920]
 stream = ExtResource("3_mliv7")
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="FallSFX" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="FallSFX" unique_id=1991985954 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("5_v5oyl")
 node_to_affect = NodePath("..")
 property_name = "stream"
 themed_resource = SubResource("Resource_5b235")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="FireballDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="FireballDetection" type="Node" parent="." unique_id=1940832858 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("4_kfwlq")
 hitbox = NodePath("../SpriteScaleJoint/Sprite/Hitbox")
 metadata/_custom_type_script = "uid://dri2d5jtu0fbq"
 
-[node name="GibSpawner" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+[node name="GibSpawner" type="Node" parent="." unique_id=383912089 node_paths=PackedStringArray("visuals")]
 script = ExtResource("6_va0n6")
 visuals = NodePath("../SpriteScaleJoint/DeathSprite")
 gib_type = 1
 metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 
-[node name="ScoreNoteSpawner" type="Node" parent="."]
+[node name="ScoreNoteSpawner" type="Node" parent="." unique_id=149036831]
 script = ExtResource("11_pvhfi")
 add_score = true
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
-[node name="Hammer" type="Sprite2D" parent="."]
+[node name="Hammer" type="Sprite2D" parent="." unique_id=1682440283]
 visible = false
 show_behind_parent = true
 position = Vector2(-16, -32)
@@ -359,7 +359,7 @@ texture = ExtResource("4_vubm2")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="ResourceSetter" type="Node" parent="Hammer" node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetter" type="Node" parent="Hammer" unique_id=650587338 node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("5_17x2r")
 node_to_affect = NodePath("..")
 property_node = NodePath("..")
@@ -368,43 +368,43 @@ mode = 1
 resource_json = ExtResource("15_yggkc")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1469437747]
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(-1.42109e-14, -16)
 scale = Vector2(1.85, 2.1)
 
-[node name="ThemedToJSONConverter" type="Node" parent="."]
+[node name="ThemedToJSONConverter" type="Node" parent="." unique_id=510890767]
 script = ExtResource("14_nf6hu")
 resource = SubResource("Resource_exf4b")
 json_file_path = "res://Assets/Sprites/Enemies/Bowser.json"
 metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
-[node name="EditorPropertyExposer" type="Node" parent="."]
+[node name="EditorPropertyExposer" type="Node" parent="." unique_id=415274022]
 script = ExtResource("15_nf6hu")
 properties = Array[String](["can_hammer", "can_fire", "is_real"])
 
-[node name="TrackJoint" type="Node" parent="."]
+[node name="TrackJoint" type="Node" parent="." unique_id=1232552939]
 script = ExtResource("17_5b235")
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
-[node name="ShellDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="ShellDetection" type="Node" parent="." unique_id=785980241 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("19_ymlbw")
 hitbox = NodePath("../SpriteScaleJoint/Sprite/Hitbox")
 metadata/_custom_type_script = "uid://bbww34oiexbx2"
 
-[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="EnemyPlayerDetection" type="Node" parent="." unique_id=1200979227 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("20_ckuah")
 hitbox = NodePath("../SpriteScaleJoint/Sprite/Hitbox")
 metadata/_custom_type_script = "uid://chj8hu207lrh"
 
-[node name="ExplosionDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="ExplosionDetection" type="Node" parent="." unique_id=587090740 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("21_mcog5")
 hitbox = NodePath("../SpriteScaleJoint/Sprite/Hitbox")
 metadata/_custom_type_script = "uid://ba18grqjixded"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
-[connection signal="killed" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [5000]]
 [connection signal="killed" from="." to="." method="show_smoke" unbinds=1]
+[connection signal="killed" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [5000]]
 [connection signal="area_entered" from="SpriteScaleJoint/Sprite/Hitbox" to="." method="on_area_entered"]
 [connection signal="timeout" from="JumpTimer" to="." method="jump"]
 [connection signal="timeout" from="HammerTime" to="." method="throw_hammers"]

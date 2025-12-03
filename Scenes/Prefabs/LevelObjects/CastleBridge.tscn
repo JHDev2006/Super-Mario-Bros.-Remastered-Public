@@ -43,20 +43,20 @@ animations = [{
 "texture": SubResource("AtlasTexture_tmf7w")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
 "speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7m65m"]
 size = Vector2(2, 8)
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tmf7w"]
+normal = Vector2(-1, 0)
+
 [sub_resource type="Resource" id="Resource_8q7qv"]
 script = ExtResource("8_geany")
 Overworld = ExtResource("1_030qv")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tmf7w"]
-normal = Vector2(-1, 0)
 
 [sub_resource type="GDScript" id="GDScript_wgdlx"]
 script/source = "@tool
@@ -76,126 +76,145 @@ func _process(_delta: float) -> void:
 		
 "
 
-[node name="CastleBridge" type="Node2D" groups=["CastleBridges"]]
+[node name="CastleBridge" type="Node2D" unique_id=1454074578 groups=["CastleBridges"]]
 process_mode = 3
 script = ExtResource("1_7m65m")
 
-[node name="Bridge" type="Node2D" parent="."]
+[node name="Bridge" type="Node2D" parent="." unique_id=1389252244]
 
-[node name="CastleBridgeSegment" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment" parent="Bridge" unique_id=1507955674 instance=ExtResource("2_rdab3")]
 position = Vector2(192, 0)
 
-[node name="CastleBridgeSegment2" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment2" parent="Bridge" unique_id=278319918 instance=ExtResource("2_rdab3")]
 position = Vector2(176, 0)
 
-[node name="CastleBridgeSegment3" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment3" parent="Bridge" unique_id=49611166 instance=ExtResource("2_rdab3")]
 position = Vector2(160, 0)
 
-[node name="CastleBridgeSegment4" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment4" parent="Bridge" unique_id=443879360 instance=ExtResource("2_rdab3")]
 position = Vector2(144, 0)
 
-[node name="CastleBridgeSegment5" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment5" parent="Bridge" unique_id=488378564 instance=ExtResource("2_rdab3")]
 position = Vector2(128, 0)
 
-[node name="CastleBridgeSegment6" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment6" parent="Bridge" unique_id=451101729 instance=ExtResource("2_rdab3")]
 position = Vector2(112, 0)
 
-[node name="CastleBridgeSegment7" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment7" parent="Bridge" unique_id=640211980 instance=ExtResource("2_rdab3")]
 position = Vector2(96, 0)
 
-[node name="CastleBridgeSegment8" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment8" parent="Bridge" unique_id=2108951897 instance=ExtResource("2_rdab3")]
 position = Vector2(80, 0)
 
-[node name="CastleBridgeSegment9" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment9" parent="Bridge" unique_id=2114650867 instance=ExtResource("2_rdab3")]
 position = Vector2(64, 0)
 
-[node name="CastleBridgeSegment10" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment10" parent="Bridge" unique_id=1627902871 instance=ExtResource("2_rdab3")]
 position = Vector2(48, 0)
 
-[node name="CastleBridgeSegment11" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment11" parent="Bridge" unique_id=757147707 instance=ExtResource("2_rdab3")]
 position = Vector2(32, 0)
 
-[node name="CastleBridgeSegment12" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment12" parent="Bridge" unique_id=701831054 instance=ExtResource("2_rdab3")]
 position = Vector2(16, 0)
 
-[node name="CastleBridgeSegment13" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment13" parent="Bridge" unique_id=641403732 instance=ExtResource("2_rdab3")]
 
-[node name="CastleBridgeSegment14" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment14" parent="Bridge" unique_id=115300263 instance=ExtResource("2_rdab3")]
 visible = false
 position = Vector2(-999, 0)
 
-[node name="CastleBridgeSegment15" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment15" parent="Bridge" unique_id=1244829237 instance=ExtResource("2_rdab3")]
 visible = false
 position = Vector2(-999, 0)
 
-[node name="CastleBridgeSegment16" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment16" parent="Bridge" unique_id=676271033 instance=ExtResource("2_rdab3")]
 visible = false
 position = Vector2(-999, 0)
 
-[node name="CastleBridgeSegment17" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment17" parent="Bridge" unique_id=1847729921 instance=ExtResource("2_rdab3")]
 visible = false
 position = Vector2(-999, 0)
 
-[node name="CastleBridgeSegment18" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment18" parent="Bridge" unique_id=2122926096 instance=ExtResource("2_rdab3")]
 visible = false
 position = Vector2(-999, 0)
 
-[node name="CastleBridgeSegment19" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment19" parent="Bridge" unique_id=1657029500 instance=ExtResource("2_rdab3")]
 visible = false
 position = Vector2(-999, 0)
 
-[node name="CastleBridgeSegment20" parent="Bridge" instance=ExtResource("2_rdab3")]
+[node name="CastleBridgeSegment20" parent="Bridge" unique_id=1471292361 instance=ExtResource("2_rdab3")]
 visible = false
 position = Vector2(-999, 0)
 
-[node name="Axe" type="AnimatedSprite2D" parent="."]
-process_mode = 1
-position = Vector2(208, -32)
+[node name="AxeAnim" type="AnimatedSprite2D" parent="." unique_id=447443895]
+process_mode = 3
+position = Vector2(208, -24)
 sprite_frames = SubResource("SpriteFrames_13fwi")
-autoplay = "default"
-frame_progress = 0.124132
+animation = &"Idle"
+autoplay = "Idle"
+offset = Vector2(0, -8)
 script = ExtResource("4_s4k02")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="Hitbox" type="Area2D" parent="Axe"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Axe/Hitbox"]
-shape = SubResource("RectangleShape2D_7m65m")
-
-[node name="Sprite2D14" type="Sprite2D" parent="Axe"]
-position = Vector2(-16, 16)
-texture = ExtResource("1_030qv")
-region_enabled = true
-region_rect = Rect2(208, 128, 16, 16)
-region_filter_clip_enabled = true
-
-[node name="ResourceSetterNew" type="Node" parent="Axe/Sprite2D14" node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("5_vt2ac")
-node_to_affect = NodePath("..")
-property_name = "texture"
-themed_resource = SubResource("Resource_8q7qv")
-metadata/_custom_type_script = "uid://cq6f682453q6o"
-
-[node name="CameraRightLimit" type="Node2D" parent="Axe"]
-position = Vector2(24, 8)
-script = ExtResource("4_tmf7w")
-metadata/_custom_type_script = "uid://bdq0373j5n5o0"
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Axe"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Axe/StaticBody2D"]
-position = Vector2(8, 0)
-shape = SubResource("WorldBoundaryShape2D_tmf7w")
-
-[node name="ResourceSetterNew" type="Node" parent="Axe" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="AxeAnim" unique_id=1088984355 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("9_m5y50")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("10_kvynl")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Axe" type="AnimatedSprite2D" parent="." unique_id=99773570]
+process_mode = 1
+visible = false
+position = Vector2(208, -32)
+sprite_frames = SubResource("SpriteFrames_13fwi")
+animation = &"Idle"
+autoplay = "Idle"
+script = ExtResource("4_s4k02")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="Hitbox" type="Area2D" parent="Axe" unique_id=1816879694]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Axe/Hitbox" unique_id=1237174637]
+shape = SubResource("RectangleShape2D_7m65m")
+
+[node name="CameraRightLimit" type="Node2D" parent="Axe" unique_id=1025344155]
+position = Vector2(24, 8)
+script = ExtResource("4_tmf7w")
+metadata/_custom_type_script = "uid://bdq0373j5n5o0"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Axe" unique_id=1035029581]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Axe/StaticBody2D" unique_id=725752346]
+position = Vector2(8, 0)
+shape = SubResource("WorldBoundaryShape2D_tmf7w")
+
+[node name="ResourceSetterNew" type="Node" parent="Axe" unique_id=634664480 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("9_m5y50")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("10_kvynl")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="BridgeChain" type="Sprite2D" parent="." unique_id=1002244871]
+position = Vector2(192, -16)
+texture = ExtResource("1_030qv")
+region_enabled = true
+region_rect = Rect2(208, 128, 16, 16)
+region_filter_clip_enabled = true
+
+[node name="ResourceSetterNew" type="Node" parent="BridgeChain" unique_id=364332794 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("5_vt2ac")
+node_to_affect = NodePath("..")
+property_name = "texture"
+themed_resource = SubResource("Resource_8q7qv")
+metadata/_custom_type_script = "uid://cq6f682453q6o"
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1968732919]
 position = Vector2(216, -56)
 process_callback = 0
 limit_left = -256
@@ -203,25 +222,25 @@ limit_top = -208
 limit_bottom = 32
 editor_draw_limits = true
 
-[node name="EditorPropertyExposer" type="Node" parent="."]
+[node name="EditorPropertyExposer" type="Node" parent="." unique_id=1761088113]
 script = ExtResource("10_wgdlx")
 properties = Array[String](["length"])
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
-[node name="Node" type="Node" parent="."]
+[node name="Node" type="Node" parent="." unique_id=1651990252]
 process_mode = 3
 script = SubResource("GDScript_wgdlx")
 
-[node name="LevelEditorVisibleNode" type="Node2D" parent="."]
+[node name="LevelEditorVisibleNode" type="Node2D" parent="." unique_id=649003436]
 script = ExtResource("11_puc3y")
 metadata/_custom_type_script = "uid://cpwloakvp672a"
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelEditorVisibleNode"]
+[node name="Sprite2D" type="Sprite2D" parent="LevelEditorVisibleNode" unique_id=208144054]
 z_index = 4096
 position = Vector2(192, 0)
 texture = ExtResource("12_do8w3")
 
-[node name="EditorToggleDetection" type="Node" parent="."]
+[node name="EditorToggleDetection" type="Node" parent="." unique_id=1042719247]
 script = ExtResource("13_do8w3")
 
 [connection signal="area_entered" from="Axe/Hitbox" to="." method="on_area_entered" flags=3]

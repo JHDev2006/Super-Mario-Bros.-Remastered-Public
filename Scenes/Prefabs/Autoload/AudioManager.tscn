@@ -4,20 +4,20 @@
 [ext_resource type="Script" uid="uid://db0uolj5jvlca" path="res://Scripts/Classes/Singletons/AudioManager.gd" id="1_gwo7i"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_yp3lf"]
 
-[node name="AudioManager" type="Node"]
+[node name="AudioManager" type="Node" unique_id=190002463]
 process_mode = 3
 script = ExtResource("1_gwo7i")
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1310528240]
 process_mode = 3
 stream = ExtResource("1_6s2eu")
 bus = &"Music"
 parameters/looping = true
 
-[node name="MusicOverride" type="AudioStreamPlayer" parent="."]
+[node name="MusicOverride" type="AudioStreamPlayer" parent="." unique_id=2076997238]
 bus = &"Music"
 
-[node name="ResourceSetterNew" type="Node" parent="."]
+[node name="ResourceSetterNew" type="Node" parent="." unique_id=1350556774]
 script = ExtResource("3_yp3lf")
 mode = 3
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

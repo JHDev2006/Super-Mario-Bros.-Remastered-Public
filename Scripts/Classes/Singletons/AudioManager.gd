@@ -11,6 +11,7 @@ const DEFAULT_SFX_LIBRARY := {
 	"power_up": ("res://Assets/Audio/SFX/Powerup.wav"),
 	"item_appear": ("res://Assets/Audio/SFX/ItemAppear.wav"),
 	"block_break": ("res://Assets/Audio/SFX/BreakBlock.wav"),
+	"bridge_break": ("res://Assets/Audio/SFX/BreakBridge.wav"),
 	"enemy_stomp": ("res://Assets/Audio/SFX/Stomp.wav"),
 	"kick": ("res://Assets/Audio/SFX/Kick.wav"),
 	"fireball": ("res://Assets/Audio/SFX/Fireball.wav"),
