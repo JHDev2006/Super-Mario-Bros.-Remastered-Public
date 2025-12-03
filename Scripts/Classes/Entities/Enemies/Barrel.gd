@@ -13,7 +13,6 @@ func handle_movement(delta: float) -> void:
 	if is_on_floor() and get_floor_angle() != 0:
 		var floor_normal = get_floor_normal()
 		floor_normal = sign(floor_normal[0]) if abs(floor_normal[0]) < 0.5 else 1.5 * sign(floor_normal[0])
-		print(floor_normal)
 		if MOVE_SPEED <= 0:
 			direction = sign(floor_normal)
 		MOVE_SPEED = clamp(MOVE_SPEED + (2 * (direction * floor_normal)) * delta * 60.0, 0, MAX_MOVE_SPEED)
