@@ -49,6 +49,8 @@ func setup_visuals() -> void:
 		%WarpedRunPB.text = SpeedrunHandler.gen_time_string(SpeedrunHandler.format_time(SpeedrunHandler.marathon_best_any_time))
 
 	for i in %FullMedals.get_children():
-		i.get_node("Full").visible = SpeedrunHandler.marathon_best_warpless_time <= SpeedrunHandler.GOLD_WARPLESS_TIMES[Global.current_campaign] * SpeedrunHandler.MEDAL_CONVERSIONS[i.get_index()] and SpeedrunHandler.marathon_best_warpless_time > 0
+		i.get_node("Full").visible = SpeedrunHandler.met_target_time(
+			SpeedrunHandler.marathon_best_warpless_time, SpeedrunHandler.GOLD_WARPLESS_TIMES[Global.current_campaign] * SpeedrunHandler.MEDAL_CONVERSIONS[i.get_index()])
 	for i in %WarpedMedals.get_children():
-		i.get_node("Full").visible = SpeedrunHandler.marathon_best_any_time <= SpeedrunHandler.GOLD_ANY_TIMES[Global.current_campaign] * SpeedrunHandler.MEDAL_CONVERSIONS[i.get_index()] and SpeedrunHandler.marathon_best_any_time > 0
+		i.get_node("Full").visible = SpeedrunHandler.met_target_time(
+			SpeedrunHandler.marathon_best_any_time, SpeedrunHandler.GOLD_ANY_TIMES[Global.current_campaign] * SpeedrunHandler.MEDAL_CONVERSIONS[i.get_index()])

@@ -34,11 +34,12 @@ var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
 var ROM_PATH = config_path.path_join("baserom.nes")
 var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
 const ROM_PACK_NAME := "BaseAssets"
-const ROM_ASSETS_VERSION := 1
+const ROM_ASSETS_VERSION := 2
 
 var server_version := -1
 var current_version := -1
 var version_number := ""
+var is_snapshot := true
 
 const LEVEL_THEMES := {
 	"SMB1": SMB1_LEVEL_THEMES,
@@ -175,10 +176,10 @@ var p_switch_timer_paused := false
 var debug_mode := false
 
 func _ready() -> void:
+	if is_snapshot: get_build_time()
+	if OS.is_debug_build(): debug_mode = false
 	current_version = get_version_number()
 	get_server_version()
-	if OS.is_debug_build():
-		debug_mode = false
 	setup_config_dirs()
 	check_for_rom()
 
@@ -279,7 +280,25 @@ func handle_p_switch(delta: float) -> void:
 			AudioManager.stop_music_override(AudioManager.MUSIC_OVERRIDES.PSWITCH)
 
 func get_build_time() -> void:
-	print(int(Time.get_unix_time_from_system()))
+	# SkyanUltra: Slightly expanded function to make it easier to get snapshot build numbers.
+	var date = Time.get_date_dict_from_system()
+	var year_last_two = date.year % 100
+	var now = Time.get_unix_time_from_system()
+	print("[b][color=cyan]Current unix time:[/color][/b] ", int(now))
+	var start_of_year = Time.get_unix_time_from_datetime_dict({
+		"year": date.year,
+		"month": 1,
+		"day": 1,
+		"hour": 0,
+		"minute": 0,
+		"second": 0
+	})
+
+	var days_since_year_start = int((now - start_of_year) / 86400)
+	@warning_ignore("integer_division")
+	var week = int(days_since_year_start / 7) + 1
+	var build_date = "%02dw%02d" % [year_last_two, week]
+	print_rich("[b][color=cyan]Partial snapshot build ID:[/color][/b] ", build_date)
 
 func get_version_number() -> int:
 	var number = (FileAccess.open("res://version.txt", FileAccess.READ).get_as_text())
@@ -482,9 +501,17 @@ func sanitize_string(string := "") -> String:
 	return string
 
 func get_base_asset_version() -> int:
-	var json = JSON.parse_string(FileAccess.open("user://BaseAssets/pack_info.json", FileAccess.READ).get_as_text())
+	var json = JSON.parse_string(FileAccess.open(Global.config_path.path_join("BaseAssets/pack_info.json"), FileAccess.READ).get_as_text())
 	var version = json.version
 	return get_version_num_int(version)
 
 func get_version_num_int(ver_num := "0.0.0") -> int:
 	return int(ver_num.replace(".", ""))
+
+func merge_dict(target: Dictionary, source: Dictionary) -> void:
+	# SkyanUltra: Used to properly merge dictionaries JSONs rather than out right overwriting entries.
+	for key in source.keys():
+		if target.has(key) and target[key] is Dictionary and source[key] is Dictionary:
+			merge_dict(target[key], source[key])
+		else:
+			target[key] = source[key]

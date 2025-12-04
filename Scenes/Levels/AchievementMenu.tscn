@@ -94,17 +94,17 @@ func get_progress() -> int:
 	for x in SpeedrunHandler.best_level_warpless_times:
 		var level := 0
 		for i in x:
-			if i <= SpeedrunHandler.LEVEL_GOLD_WARPLESS_TIMES[campaign][world][level] * SpeedrunHandler.MEDAL_CONVERSIONS[medal_index] and i > 0:
+			if SpeedrunHandler.met_target_time(i, SpeedrunHandler.LEVEL_GOLD_WARPLESS_TIMES[campaign][world][level] * SpeedrunHandler.MEDAL_CONVERSIONS[medal_index]):
 				medal_amount += 1
 			level += 1
 		world += 1
 	for x in SpeedrunHandler.best_level_any_times:
-		if SpeedrunHandler.best_level_any_times[x] <= SpeedrunHandler.LEVEL_GOLD_ANY_TIMES[campaign][x] * SpeedrunHandler.MEDAL_CONVERSIONS[medal_index] and SpeedrunHandler.best_level_any_times[x] > 0:
+		if SpeedrunHandler.met_target_time(SpeedrunHandler.best_level_any_times[x], SpeedrunHandler.LEVEL_GOLD_ANY_TIMES[campaign][x] * SpeedrunHandler.MEDAL_CONVERSIONS[medal_index]):
 			medal_amount += 1
 	var save = JSON.parse_string(FileAccess.open(Global.config_path.path_join(\"saves/\" + campaign + \".sav\"), FileAccess.READ).get_as_text())
-	if save.get(\"BestWarplessTime\", -1) <= SpeedrunHandler.GOLD_WARPLESS_TIMES[campaign] and save.get(\"BestWarplessTime\", -1) > 0:
+	if SpeedrunHandler.met_target_time(save.get(\"BestWarplessTime\", -1), SpeedrunHandler.GOLD_WARPLESS_TIMES[campaign] * SpeedrunHandler.MEDAL_CONVERSIONS[medal_index]):
 		medal_amount += 1
-	if save.get(\"BestAnyTime\", -1) <= SpeedrunHandler.GOLD_ANY_TIMES[campaign] and save.get(\"BestAnyTime\", -1) > 0:
+	if SpeedrunHandler.met_target_time(save.get(\"BestAnyTime\", -1), SpeedrunHandler.GOLD_ANY_TIMES[campaign] * SpeedrunHandler.MEDAL_CONVERSIONS[medal_index]):
 		medal_amount += 1
 	return medal_amount
 "

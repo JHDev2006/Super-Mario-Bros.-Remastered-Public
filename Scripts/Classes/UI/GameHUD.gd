@@ -100,54 +100,78 @@ func handle_challenge_mode_hud() -> void:
 	%ModernLifeCount.hide()
 	%CharacterIcon.hide()
 	var red_coins_collected = ChallengeModeHandler.current_run_red_coins_collected
-	var idx := 0
+
 	if Global.world_num > 8:
 		return
 	if Global.in_title_screen:
 		red_coins_collected = int(ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num - 1])
+	
+	var idx := 0
 	for i in [$Main/RedCoins/Coin1, $Main/RedCoins/Coin2, $Main/RedCoins/Coin3, $Main/RedCoins/Coin4, $Main/RedCoins/Coin5]:
 		i.frame = int(ChallengeModeHandler.is_coin_collected(idx, red_coins_collected))
 		idx += 1
+	idx = 0
+	for i in [$Main/RedCoins/Coin1Transparent, $Main/RedCoins/Coin2Transparent, $Main/RedCoins/Coin3Transparent, $Main/RedCoins/Coin4Transparent, $Main/RedCoins/Coin5Transparent]:
+		i.visible = false
+		if ChallengeModeHandler.is_coin_permanently_collected(idx) and not ChallengeModeHandler.is_coin_collected(idx, red_coins_collected):
+			i.visible = true
+			i.frame = 1
+		idx += 1
+	
+	$Main/RedCoins/ScoreMedal.frame = 0
+	$Main/RedCoins/ScoreMedalTransparent.visible = false
+	var score_target = ChallengeModeHandler.CHALLENGE_TARGETS[Global.current_campaign][Global.world_num - 1][Global.level_num - 1]
+	if Global.score >= score_target or ChallengeModeHandler.top_challenge_scores[Global.world_num - 1][Global.level_num - 1] >= score_target:
+		$Main/RedCoins/ScoreMedal.frame = 1
+	elif Global.score > 0 and (Global.score + (Global.time * 50)) >= score_target:
+		$Main/RedCoins/ScoreMedalTransparent.frame = 1
+		$Main/RedCoins/ScoreMedalTransparent.visible = true
+	
 	if ChallengeModeHandler.is_coin_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG, red_coins_collected):
 		$Main/RedCoins/YoshiEgg.frame = Global.level_num
 	else:
 		$Main/RedCoins/YoshiEgg.frame = 0
 	
-	$Main/RedCoins/ScoreMedal.frame = (Global.score > ChallengeModeHandler.CHALLENGE_TARGETS[Global.current_campaign][Global.world_num - 1][Global.level_num - 1] or ChallengeModeHandler.top_challenge_scores[Global.world_num - 1][Global.level_num - 1] >= ChallengeModeHandler.CHALLENGE_TARGETS[Global.current_campaign][Global.world_num - 1][Global.level_num - 1])
-	
-	if is_instance_valid(Global.current_level):
-		handle_yoshi_radar()
+	handle_yoshi_radar()
 	
 	for i in $Main/RedCoins.get_children():
 		i.get_node("Shadow").frame = i.frame
+		i.get_node("Shadow").visible = i.visible
 	for i in $ModernHUD/TopLeft/RedCoins.get_child_count():
 		$ModernHUD/TopLeft/RedCoins.get_child(i).frame = $Main/RedCoins.get_child(i).frame
+		$ModernHUD/TopLeft/RedCoins.get_child(i).visible = $Main/RedCoins.get_child(i).visible
 		$ModernHUD/TopLeft/RedCoins.get_child(i).get_node("Shadow").frame = $Main/RedCoins.get_child(i).frame
+		$ModernHUD/TopLeft/RedCoins.get_child(i).get_node("Shadow").visible = $Main/RedCoins.get_child(i).visible
 
 func handle_yoshi_radar() -> void:
+	if not is_instance_valid(Global.current_level) or ChallengeModeHandler.is_coin_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG):
+		%Radar.get_node("AnimationPlayer").play("RESET")
+		%ModernRadar.get_node("AnimationPlayer").play("RESET")
+		return
+	
 	var has_egg = false
 	var egg_position = Vector2.ZERO
+	var distance = 999
 	for i in get_tree().get_nodes_in_group("Blocks"):
 		if i.item != null:
 			if i.item.resource_path == "res://Scenes/Prefabs/Entities/Items/YoshiEgg.tscn":
 				has_egg = true
 				egg_position = i.global_position
 				break
+	if has_egg:
+		var player_position = get_tree().get_first_node_in_group("Players").global_position
+		distance = (egg_position - player_position).length()
+		
 	%Radar.frame = Global.level_num
-	%ModernRadar.frame = Global.level_num
-	if has_egg == false or ChallengeModeHandler.is_coin_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG): 
-		%Radar.get_node("AnimationPlayer").play("RESET")
-		%ModernRadar.get_node("AnimationPlayer").play("RESET")
-		return
-
-	var player_position = get_tree().get_first_node_in_group("Players").global_position
-	var distance = (egg_position - player_position).length()
-	
-	%Radar.get_node("AnimationPlayer").speed_scale = (250 / distance)
-	%ModernRadar.get_node("AnimationPlayer").speed_scale = $Main/RedCoins/YoshiEgg/Radar/AnimationPlayer.speed_scale
+		
 	if distance < 512:
+		%Radar.get_node("AnimationPlayer").speed_scale = (250 / distance)
+		%ModernRadar.get_node("AnimationPlayer").speed_scale = $Main/RedCoins/YoshiEgg/Radar/AnimationPlayer.speed_scale
 		%Radar.get_node("AnimationPlayer").play("Flash")
 		%ModernRadar.get_node("AnimationPlayer").play("Flash")
+	elif ChallengeModeHandler.is_coin_permanently_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG):
+		%Radar.get_node("AnimationPlayer").play("AlwaysOn")
+		%ModernRadar.get_node("AnimationPlayer").play("AlwaysOn")
 	else:
 		%Radar.get_node("AnimationPlayer").play("RESET")
 		%ModernRadar.get_node("AnimationPlayer").play("RESET")

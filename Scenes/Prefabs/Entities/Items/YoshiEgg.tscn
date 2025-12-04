@@ -375,7 +375,6 @@ autoplay = "new_animation"
 
 [node name="ScoreNoteSpawner" type="Node" parent="."]
 script = ExtResource("4_f5bm0")
-add_score = true
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
 [node name="YoshiHatch" type="AudioStreamPlayer2D" parent="."]

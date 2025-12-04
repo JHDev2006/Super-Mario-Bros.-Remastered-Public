@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://byqmn8yi7iuac"]
+[gd_scene load_steps=22 format=4 uid="uid://byqmn8yi7iuac"]
 
 [ext_resource type="Script" uid="uid://qq26qw7ltflb" path="res://Scripts/Parts/EndCastle.gd" id="1_4yifo"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_l3xjf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_1x3lf"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/CastleFlag.json" id="4_7xlhl"]
 [ext_resource type="PackedScene" uid="uid://qn4g0qkjcuiy" path="res://Scenes/Parts/SmallCastleVisual.tscn" id="5_an8pi"]
+[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="7_oyrq2"]
 [ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="7_xg4af"]
 [ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="8_l3xjf"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="9_oyrq2"]
@@ -52,6 +53,10 @@ _data = {
 &"RESET": SubResource("Animation_fyn5h"),
 &"Raise": SubResource("Animation_7xlhl")
 }
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_76jrx"]
+a = Vector2(0, -16)
+b = Vector2(0, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2hcdu"]
 texture = ExtResource("7_xg4af")
@@ -125,6 +130,14 @@ autostart = true
 
 [node name="SmallCastleVisual" parent="." instance=ExtResource("5_an8pi")]
 position = Vector2(0, -40)
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+script = ExtResource("7_oyrq2")
+metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(0, -16)
+shape = SubResource("SegmentShape2D_76jrx")
 
 [node name="Overlay" type="TileMapLayer" parent="."]
 visible = false

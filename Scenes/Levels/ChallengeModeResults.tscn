@@ -607,13 +607,13 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="ChallengeModeResults" type="Node"]
+[node name="ChallengeModeResults" type="Node" unique_id=1344692039]
 script = ExtResource("1_3x4fv")
 
-[node name="BG" type="CanvasLayer" parent="."]
+[node name="BG" type="CanvasLayer" parent="." unique_id=2056593822]
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="BG"]
+[node name="ColorRect" type="ColorRect" parent="BG" unique_id=398032741]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -621,10 +621,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=2090750111]
 process_callback = 0
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1857730228]
 visible = false
 modulate = Color(0.261477, 0.261477, 0.261477, 1)
 visibility_layer = 2
@@ -633,14 +633,14 @@ texture = ExtResource("3_um36a")
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=606335083]
 visibility_layer = 2
 z_index = -4096
 position = Vector2(0, -8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D"]
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D" unique_id=1044616586]
 visibility_layer = 2
 z_index = 5
 z_as_relative = false
@@ -648,7 +648,7 @@ position = Vector2(-76, 56)
 region_enabled = true
 region_rect = Rect2(0, 0, 8, 64)
 
-[node name="Overlay" type="ColorRect" parent="Sprite2D/Sprite2D3"]
+[node name="Overlay" type="ColorRect" parent="Sprite2D/Sprite2D3" unique_id=442302167]
 visible = false
 offset_left = -60.0
 offset_top = -32.0
@@ -656,7 +656,7 @@ offset_right = -4.0
 offset_bottom = 32.0
 color = Color(0, 0, 0, 1)
 
-[node name="Score" type="Label" parent="Sprite2D/Sprite2D3"]
+[node name="Score" type="Label" parent="Sprite2D/Sprite2D3" unique_id=542029849]
 offset_left = 8.0
 offset_top = 56.0
 offset_right = 56.0
@@ -664,7 +664,7 @@ offset_bottom = 64.0
 text = "CHALLENGE_DIALOGUE_SCORE"
 uppercase = true
 
-[node name="ScoreText" type="Label" parent="Sprite2D/Sprite2D3"]
+[node name="ScoreText" type="Label" parent="Sprite2D/Sprite2D3" unique_id=1218819375]
 offset_left = 44.0
 offset_top = 56.0
 offset_right = 108.0
@@ -672,7 +672,7 @@ offset_bottom = 79.0
 text = "0"
 horizontal_alignment = 2
 
-[node name="Target" type="Label" parent="Sprite2D/Sprite2D3/ScoreText"]
+[node name="Target" type="Label" parent="Sprite2D/Sprite2D3/ScoreText" unique_id=700581250]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -684,7 +684,7 @@ theme_override_colors/font_color = Color(0.462745, 0.52549, 1, 1)
 text = "/00000"
 horizontal_alignment = 2
 
-[node name="Coins2" type="Label" parent="Sprite2D/Sprite2D3"]
+[node name="Coins2" type="Label" parent="Sprite2D/Sprite2D3" unique_id=1876682854]
 offset_left = 8.0
 offset_top = 40.0
 offset_right = 56.0
@@ -692,11 +692,11 @@ offset_bottom = 48.0
 text = "CHALLENGE_DIALOGUE_COINS"
 uppercase = true
 
-[node name="Coins" type="Node2D" parent="Sprite2D/Sprite2D3"]
+[node name="Coins" type="Node2D" parent="Sprite2D/Sprite2D3" unique_id=897187102]
 visible = false
 position = Vector2(72, 12)
 
-[node name="1" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins"]
+[node name="1" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins" unique_id=1528461058]
 position = Vector2(-5, 36)
 texture = ExtResource("10_d76il")
 hframes = 2
@@ -704,7 +704,7 @@ region_rect = Rect2(8, 0, 8, 8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="2" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins"]
+[node name="2" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins" unique_id=1836829558]
 position = Vector2(3, 36)
 texture = ExtResource("10_d76il")
 hframes = 2
@@ -713,7 +713,7 @@ region_rect = Rect2(8, 0, 8, 8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="3" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins"]
+[node name="3" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins" unique_id=831763568]
 position = Vector2(11, 36)
 texture = ExtResource("10_d76il")
 hframes = 2
@@ -722,7 +722,7 @@ region_rect = Rect2(8, 0, 8, 8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="4" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins"]
+[node name="4" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins" unique_id=696674550]
 position = Vector2(19, 36)
 texture = ExtResource("10_d76il")
 hframes = 2
@@ -731,7 +731,7 @@ region_rect = Rect2(8, 0, 8, 8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="5" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins"]
+[node name="5" type="Sprite2D" parent="Sprite2D/Sprite2D3/Coins" unique_id=1701753957]
 position = Vector2(27, 36)
 texture = ExtResource("10_d76il")
 hframes = 2
@@ -740,15 +740,15 @@ region_rect = Rect2(8, 0, 8, 8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=849347414]
 position = Vector2(-28, 44)
 texture = ExtResource("6_moc5y")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=1148794137]
 position = Vector2(-28, 60)
 texture = ExtResource("6_moc5y")
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("resource_setter")]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1537245075 node_paths=PackedStringArray("resource_setter")]
 position = Vector2(-96, 0)
 sprite_frames = ExtResource("4_u7ohs")
 animation = &"Move"
@@ -759,15 +759,15 @@ script = ExtResource("5_x1tpn")
 resource_setter = NodePath("ResourceSetterNew")
 metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
 
-[node name="ResourceSetterNew" type="Node" parent="PlayerSprite"]
+[node name="ResourceSetterNew" type="Node" parent="PlayerSprite" unique_id=951425779]
 script = ExtResource("7_bob8r")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="ChallengeResults" type="AudioStreamPlayer" parent="."]
+[node name="ChallengeResults" type="AudioStreamPlayer" parent="." unique_id=1689039047]
 stream = ExtResource("7_6dwpv")
 bus = &"Music"
 
-[node name="ResourceSetterNew" type="Node" parent="ChallengeResults" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="ChallengeResults" unique_id=127176486 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "stream"
@@ -775,11 +775,11 @@ mode = 2
 resource_json = ExtResource("12_fb45j")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="ChallengeEnd" type="AudioStreamPlayer" parent="."]
+[node name="ChallengeEnd" type="AudioStreamPlayer" parent="." unique_id=377169015]
 stream = ExtResource("12_x7w5s")
 bus = &"Music"
 
-[node name="ResourceSetterNew" type="Node" parent="ChallengeEnd" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="ChallengeEnd" unique_id=593640018 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "stream"
@@ -787,21 +787,21 @@ mode = 2
 resource_json = ExtResource("12_y63tt")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="MainSequence" type="AnimationPlayer" parent="."]
+[node name="MainSequence" type="AnimationPlayer" parent="." unique_id=877815898]
 libraries = {
 &"": SubResource("AnimationLibrary_nud7a")
 }
-autoplay = "Main"
+autoplay = &"Main"
 speed_scale = 0.8
 
-[node name="Toad" type="AnimatedSprite2D" parent="."]
+[node name="Toad" type="AnimatedSprite2D" parent="." unique_id=130158692]
 position = Vector2(56, 0)
 sprite_frames = SubResource("SpriteFrames_woqpu")
 animation = &"1Idle"
 autoplay = "Idle"
 speed_scale = 2.0
 
-[node name="ResourceSetterNew" type="Node" parent="Toad" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Toad" unique_id=826345731 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
@@ -809,7 +809,7 @@ resource_json = ExtResource("14_sv6qk")
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="SpeechBubble" type="Sprite2D" parent="."]
+[node name="SpeechBubble" type="Sprite2D" parent="." unique_id=579725043]
 visible = false
 visibility_layer = 2
 position = Vector2(-24, -40)
@@ -818,7 +818,7 @@ centered = false
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Your" type="Label" parent="SpeechBubble"]
+[node name="Your" type="Label" parent="SpeechBubble" unique_id=1272803665]
 visible = false
 material = SubResource("ShaderMaterial_1l20f")
 offset_left = 1.0
@@ -828,7 +828,7 @@ offset_bottom = 27.0
 text = "your"
 uppercase = true
 
-[node name="Results" type="Label" parent="SpeechBubble/Your"]
+[node name="Results" type="Label" parent="SpeechBubble/Your" unique_id=1456303163]
 use_parent_material = true
 layout_mode = 0
 offset_left = 27.0
@@ -838,7 +838,7 @@ offset_bottom = 31.0
 text = "results"
 uppercase = true
 
-[node name="Coins" type="Label" parent="SpeechBubble"]
+[node name="Coins" type="Label" parent="SpeechBubble" unique_id=893262062]
 visible = false
 material = SubResource("ShaderMaterial_1l20f")
 offset_left = -1.0
@@ -848,10 +848,10 @@ offset_bottom = 27.0
 text = "CHALLENGE_DIALOGUE_COINS"
 uppercase = true
 
-[node name="Node2D" type="Node2D" parent="SpeechBubble/Coins"]
+[node name="Node2D" type="Node2D" parent="SpeechBubble/Coins" unique_id=1703833338]
 visible = false
 
-[node name="1" type="Sprite2D" parent="SpeechBubble/Coins/Node2D"]
+[node name="1" type="Sprite2D" parent="SpeechBubble/Coins/Node2D" unique_id=277536899]
 position = Vector2(52, 12)
 texture = ExtResource("10_d76il")
 centered = false
@@ -861,7 +861,7 @@ region_rect = Rect2(8, 0, 8, 8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="2" type="Sprite2D" parent="SpeechBubble/Coins/Node2D"]
+[node name="2" type="Sprite2D" parent="SpeechBubble/Coins/Node2D" unique_id=158042035]
 position = Vector2(60, 12)
 texture = ExtResource("10_d76il")
 centered = false
@@ -871,7 +871,7 @@ region_rect = Rect2(8, 0, 8, 8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="3" type="Sprite2D" parent="SpeechBubble/Coins/Node2D"]
+[node name="3" type="Sprite2D" parent="SpeechBubble/Coins/Node2D" unique_id=1546774830]
 position = Vector2(68, 12)
 texture = ExtResource("10_d76il")
 centered = false
@@ -881,7 +881,7 @@ region_rect = Rect2(8, 0, 8, 8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="4" type="Sprite2D" parent="SpeechBubble/Coins/Node2D"]
+[node name="4" type="Sprite2D" parent="SpeechBubble/Coins/Node2D" unique_id=1306926662]
 position = Vector2(76, 12)
 texture = ExtResource("10_d76il")
 centered = false
@@ -891,7 +891,7 @@ region_rect = Rect2(8, 0, 8, 8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="5" type="Sprite2D" parent="SpeechBubble/Coins/Node2D"]
+[node name="5" type="Sprite2D" parent="SpeechBubble/Coins/Node2D" unique_id=1225162184]
 position = Vector2(84, 12)
 texture = ExtResource("10_d76il")
 centered = false
@@ -901,7 +901,7 @@ region_rect = Rect2(8, 0, 8, 8)
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Score" type="Label" parent="SpeechBubble"]
+[node name="Score" type="Label" parent="SpeechBubble" unique_id=784135289]
 visible = false
 material = SubResource("ShaderMaterial_1l20f")
 offset_left = -1.0
@@ -911,7 +911,7 @@ offset_bottom = 27.0
 text = "CHALLENGE_DIALOGUE_SCORE"
 uppercase = true
 
-[node name="ScoreLabel" type="Label" parent="SpeechBubble/Score"]
+[node name="ScoreLabel" type="Label" parent="SpeechBubble/Score" unique_id=427565371]
 visible = false
 material = SubResource("ShaderMaterial_1l20f")
 layout_mode = 0
@@ -924,14 +924,14 @@ horizontal_alignment = 2
 vertical_alignment = 2
 uppercase = true
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1441403262]
 position = Vector2(58, -112)
 texture = ExtResource("11_02i7h")
 centered = false
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="RedCoins" type="Sprite2D" parent="Sprite2D3"]
+[node name="RedCoins" type="Sprite2D" parent="Sprite2D3" unique_id=1811034064]
 visible = false
 position = Vector2(14, 13)
 texture = ExtResource("14_woqpu")
@@ -939,7 +939,7 @@ hframes = 2
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="Score" type="Sprite2D" parent="Sprite2D3"]
+[node name="Score" type="Sprite2D" parent="Sprite2D3" unique_id=1066650364]
 visible = false
 position = Vector2(30, 13)
 texture = ExtResource("14_woqpu")
@@ -948,7 +948,7 @@ frame = 1
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="YoshiEgg" type="Sprite2D" parent="Sprite2D3"]
+[node name="YoshiEgg" type="Sprite2D" parent="Sprite2D3" unique_id=1296085224]
 visible = false
 position = Vector2(46, 12)
 texture = ExtResource("16_1h3k2")
@@ -957,27 +957,27 @@ vframes = 4
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="TalkSFX" type="AudioStreamPlayer" parent="."]
+[node name="TalkSFX" type="AudioStreamPlayer" parent="." unique_id=414429401]
 stream = ExtResource("9_qaelr")
 bus = &"SFX"
 script = ExtResource("21_xk7j8")
 metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2109458546]
 process_mode = 3
 stream = ExtResource("11_nym8o")
 bus = &"SFX"
 script = ExtResource("21_xk7j8")
 metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1824179585]
 process_mode = 3
 stream = ExtResource("16_eupxr")
 bus = &"SFX"
 script = ExtResource("21_xk7j8")
 metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
-[node name="Yoshi" type="AnimatedSprite2D" parent="."]
+[node name="Yoshi" type="AnimatedSprite2D" parent="." unique_id=227881632]
 process_mode = 3
 visible = false
 position = Vector2(16, 0)
@@ -986,34 +986,34 @@ animation = &"1"
 autoplay = "1"
 frame_progress = 0.466158
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Yoshi"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Yoshi" unique_id=1372566037]
 visible = false
 stream = ExtResource("19_n4lt1")
 volume_db = 5.0
 bus = &"SFX"
 
-[node name="ResourceSetter" type="Node" parent="Yoshi/AudioStreamPlayer2D" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="Yoshi/AudioStreamPlayer2D" unique_id=377762125 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("9_iyieq")
 node_to_affect = NodePath("..")
 property_name = "stream"
 themed_resource = SubResource("Resource_vohx7")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
-[node name="ResourceSetterNew" type="Node" parent="Yoshi" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Yoshi" unique_id=1898262442 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("23_vohx7")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="SmokeParticle" type="AnimatedSprite2D" parent="."]
+[node name="SmokeParticle" type="AnimatedSprite2D" parent="." unique_id=865577033]
 position = Vector2(16, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_bob8r")
 frame = 4
 frame_progress = 1.0
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=373370055]
 offset_left = -112.0
 offset_top = -112.0
 offset_right = -64.0
@@ -1021,7 +1021,7 @@ offset_bottom = -89.0
 text = "world"
 uppercase = true
 
-[node name="WorldLevel" type="Label" parent="."]
+[node name="WorldLevel" type="Label" parent="." unique_id=1548529906]
 offset_left = -104.0
 offset_top = -104.0
 offset_right = -72.0
@@ -1030,9 +1030,9 @@ text = "1-1"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="DropShadow" parent="." instance=ExtResource("21_bob8r")]
+[node name="DropShadow" parent="." unique_id=357749683 instance=ExtResource("21_bob8r")]
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="." unique_id=706098611]
 visible = false
 visibility_layer = 2
 z_index = 4096
@@ -1047,39 +1047,39 @@ horizontal_alignment = 1
 vertical_alignment = 2
 uppercase = true
 
-[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+[node name="LabelFontChanger" type="Node" parent="." unique_id=1370610741 node_paths=PackedStringArray("labels")]
 script = ExtResource("24_cq5a1")
 labels = [NodePath("../Sprite2D/Sprite2D3/Score"), NodePath("../Sprite2D/Sprite2D3/Coins2"), NodePath("../Sprite2D/Sprite2D3/ScoreText"), NodePath("../Sprite2D/Sprite2D3/ScoreText/Target"), null, NodePath("../SpeechBubble/Your"), NodePath("../SpeechBubble/Your/Results"), NodePath("../SpeechBubble/Coins"), NodePath("../SpeechBubble/Score"), NodePath("../SpeechBubble/Score/ScoreLabel"), NodePath("../Label"), NodePath("../WorldLevel"), NodePath("../Label2")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
-[node name="BG2" type="Node2D" parent="."]
+[node name="BG2" type="Node2D" parent="." unique_id=2095273623]
 z_index = -50
 position = Vector2(0, -8)
 
-[node name="PackSprite3" type="Sprite2D" parent="BG2"]
+[node name="PackSprite3" type="Sprite2D" parent="BG2" unique_id=986269619]
 visibility_layer = 2
 z_index = -4096
 texture = ExtResource("27_w3bjn")
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="PackSprite2" type="Sprite2D" parent="BG2"]
+[node name="PackSprite2" type="Sprite2D" parent="BG2" unique_id=1934819400]
 texture = ExtResource("28_vohx7")
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="PackSprite4" type="Sprite2D" parent="BG2"]
+[node name="PackSprite4" type="Sprite2D" parent="BG2" unique_id=934123746]
 texture = ExtResource("29_1l20f")
 script = ExtResource("3_xe6g7")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2137081576]
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("31_1l20f")]
+[node name="PauseMenu" parent="CanvasLayer" unique_id=461587507 instance=ExtResource("31_1l20f")]
 visible = false
 can_exit = false
 
-[node name="WorldSelect" parent="CanvasLayer" instance=ExtResource("32_xk7j8")]
+[node name="WorldSelect" parent="CanvasLayer" unique_id=978391179 instance=ExtResource("32_xk7j8")]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -1092,8 +1092,9 @@ offset_right = 90.0
 offset_bottom = 32.5
 grow_horizontal = 2
 grow_vertical = 2
+has_challenge_stuff = true
 
-[node name="LevelSelect" parent="CanvasLayer" instance=ExtResource("33_x7w5s")]
+[node name="LevelSelect" parent="CanvasLayer" unique_id=178968045 instance=ExtResource("33_x7w5s")]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5

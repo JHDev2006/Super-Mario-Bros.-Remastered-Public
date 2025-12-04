@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wb67mbrs5u05"
-path="res://.godot/imported/LevelIcons.png-4b08ffadb3e3163a4d083656ccffc674.ctex"
+uid="uid://cvchqrf0fdg5x"
+path="res://.godot/imported/ProgressTrackerIcons.png-0767a59884d1e021b878d6efc1d518dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/LevelIcons.png"
-dest_files=["res://.godot/imported/LevelIcons.png-4b08ffadb3e3163a4d083656ccffc674.ctex"]
+source_file="res://Assets/Sprites/UI/ProgressTrackerIcons.png"
+dest_files=["res://.godot/imported/ProgressTrackerIcons.png-0767a59884d1e021b878d6efc1d518dd.ctex"]
 
 [params]
 

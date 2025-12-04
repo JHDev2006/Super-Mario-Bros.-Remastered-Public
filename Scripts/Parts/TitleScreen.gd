@@ -27,6 +27,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	setup_stars()
+	$CanvasLayer2/VersionLabel/DevBuildWarning.visible = Global.is_snapshot
 	Global.level_theme_changed.connect(setup_stars)
 	DiscoLevel.in_disco_level = false
 	get_tree().paused = false
@@ -70,14 +71,13 @@ func _process(_delta: float) -> void:
 		$BGM.play()
 
 func campaign_selected() -> void:
+	$CanvasLayer/Options1.close()
 	if last_campaign != Global.current_campaign:
 		last_campaign = Global.current_campaign
 		update_title()
 	if Global.current_campaign == "SMBANN":
-		Global.current_game_mode = Global.GameMode.CAMPAIGN
-		$CanvasLayer/AllNightNippon/WorldSelect.open()
+		$CanvasLayer/Options2Stripped.open()
 		return
-	$CanvasLayer/Options1.close()
 	$CanvasLayer/Options2.open()
 
 func open_story_options() -> void:
@@ -194,7 +194,7 @@ func challenge_hunt_start() -> void:
 
 
 	LevelTransition.level_to_transition_to = Level.get_scene_string(Global.world_num, Global.level_num)
-	ChallengeModeHandler.current_run_red_coins_collected = ChallengeModeHandler.red_coins_collected[Global.world_num - 1][Global.level_num -1]
+	ChallengeModeHandler.current_run_red_coins_collected = 0
 	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
 
 func world_9_selected() -> void:

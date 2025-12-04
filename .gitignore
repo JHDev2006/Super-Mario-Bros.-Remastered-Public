@@ -2,6 +2,10 @@
 .godot/
 /android/
 Exports/
+
+# SMB1R specific ignores
+/mods
+/mods-unpacked
 Assets/LevelGuides
 addons/discord-rpc-gd/bin/windows/~discord_game_sdk_binding_debug.dll
 godotgif/bin/~godotgif.windows.template_debug.x86_64.dll

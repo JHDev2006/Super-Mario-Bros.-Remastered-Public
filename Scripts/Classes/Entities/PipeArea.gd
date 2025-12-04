@@ -43,10 +43,13 @@ func run_pipe_check() -> void:
 		exit_pipe()
 
 func _physics_process(_delta: float) -> void:
+	# SkyanUltra: Adjusted logic to offset pipe hitbox rather than stretching it,
+	# as it allowed characters to clip the edge of the pipe and get counted as
+	# grounded, getting warped into pipes from above.
 	if enter_direction >= 2:
-		$Hitbox.scale.y = 8
+		$Hitbox.position.y = 14
 	else:
-		$Hitbox.scale.y = 1
+		$Hitbox.position.y = 0
 	
 	if Engine.is_editor_hint() == false:
 		in_game()
@@ -111,8 +114,9 @@ func in_game() -> void:
 
 func run_player_check(player: Player) -> void:
 	# guzlad: Added support for characters with a hitbox height below 1.0 to enter pipes underwater
-	print(player.is_actually_on_floor())
-	if Global.player_action_pressed(get_input_direction(enter_direction), player.player_id) and (player.is_on_floor() or enter_direction == 1):
+	# SkyanUltra: Added distance check to prevent entering pipes from too low.
+	var distance = player.global_position.distance_to(hitbox.global_position)
+	if distance <= 6 and Global.player_action_pressed(get_input_direction(enter_direction), player.player_id) and (player.is_actually_on_floor() or enter_direction == 1):
 		can_enter = false
 		pipe_entered.emit()
 		DiscoLevel.can_meter_tick = false

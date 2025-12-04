@@ -1,0 +1,31 @@
+name: Question
+description: Ask a question regarding Super Mario Bros. Remastered
+labels: ["❔ Question"]
+title: '[Question]: '
+
+body:
+  - type: checkboxes
+    id: type
+    attributes:
+      label: "Type of Issue"
+      description: "Please select any applicable areas of the game that are affected by this question. (Leave blank if unsure.)"
+      options:
+        - label: ROM Verification
+        - label: Campaign
+        - label: Custom Level
+        - label: Level Editor
+        - label: Default Resources
+        - label: Custom Resources
+        - label: GML Modding
+        - label: Inaccuracy
+        - label: Localization
+        - label: UI (User Interface)
+        - label: Miscellaneous
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Please write your question in a clear and concise manner."

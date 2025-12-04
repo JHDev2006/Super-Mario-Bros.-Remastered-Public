@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bney0cc8cfm5s"]
+[gd_scene load_steps=22 format=4 uid="uid://bney0cc8cfm5s"]
 
 [ext_resource type="Script" uid="uid://qq26qw7ltflb" path="res://Scripts/Parts/EndCastle.gd" id="1_hwcne"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_1kswc"]
@@ -7,6 +7,7 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/CastleFlag.json" id="4_wqi45"]
 [ext_resource type="PackedScene" uid="uid://bikdod5ra10ra" path="res://Scenes/Parts/LargeCastleVisual.tscn" id="6_w7qld"]
 [ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="8_akqko"]
+[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="8_rgjtr"]
 [ext_resource type="PackedScene" uid="uid://bem5ht17ukgcs" path="res://Scenes/Parts/LargeSPCastleVisual.tscn" id="10_kd4m5"]
 [ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="10_wqi45"]
 [ext_resource type="Texture2D" uid="uid://dkcs5i8l1y4y6" path="res://Assets/Sprites/Tilesets/EndingFinalCastleSprite.png" id="11_wqi45"]
@@ -50,6 +51,10 @@ _data = {
 &"RESET": SubResource("Animation_an8pi"),
 &"Raise": SubResource("Animation_1x3lf")
 }
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_657we"]
+a = Vector2(0, -16)
+b = Vector2(0, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqi45"]
 texture = ExtResource("10_wqi45")
@@ -122,6 +127,14 @@ position = Vector2(0, -40)
 [node name="SmallCastleVisual2" parent="." instance=ExtResource("10_kd4m5")]
 visible = false
 position = Vector2(32, -40)
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+script = ExtResource("8_rgjtr")
+metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(0, -16)
+shape = SubResource("SegmentShape2D_657we")
 
 [node name="OverlaySprite" type="Sprite2D" parent="."]
 visible = false
