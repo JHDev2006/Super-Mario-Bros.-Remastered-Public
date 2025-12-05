@@ -303,7 +303,7 @@ func run_finished() -> void:
 	if Global.current_game_mode == Global.GameMode.BOO_RACE:
 		pass
 	else:
-		var best := -1
+		var best: float = -1
 		if Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
 			if is_warp_run:
 				best = best_level_any_times.get(str(Global.world_num) + "-" + str(Global.level_num), -1)
@@ -314,7 +314,6 @@ func run_finished() -> void:
 				best = marathon_best_any_time
 			else:
 				best = marathon_best_warpless_time
-		
 		if best <= 0 or best > timer:
 			if Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
 				save_recording()

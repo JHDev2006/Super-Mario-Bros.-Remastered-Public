@@ -175,6 +175,7 @@ offset_right = 90.0
 offset_bottom = 32.5
 grow_horizontal = 2
 grow_vertical = 2
+has_speedrun_stuff = true
 
 [node name="LevelSelect" parent="." instance=ExtResource("8_orie5")]
 visible = false
