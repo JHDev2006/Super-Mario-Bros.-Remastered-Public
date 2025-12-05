@@ -1,7 +1,7 @@
 extends Enemy
 
-var MOVE_SPEED := 32
-var MAX_MOVE_SPEED := 108
+var MOVE_SPEED := 32.0
+var MAX_MOVE_SPEED := 108.0
 
 const BARREL_DESTRUCTION_PARTICLE = preload("res://Scenes/Prefabs/Particles/BarrelDestructionParticle.tscn")
 func _physics_process(delta: float) -> void:
@@ -17,6 +17,7 @@ func handle_movement(delta: float) -> void:
 			direction = sign(floor_normal)
 		MOVE_SPEED = clamp(MOVE_SPEED + (2 * (direction * floor_normal)) * delta * 60.0, 0, MAX_MOVE_SPEED)
 		$BasicEnemyMovement.move_speed = MOVE_SPEED
+	$Sprite.speed_scale = clamp(MOVE_SPEED / 32.0 if MOVE_SPEED > 0.0 else 0.0, 0, 3) * -direction
 	
 func die() -> void:
 	destroy()
