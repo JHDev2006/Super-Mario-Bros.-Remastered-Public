@@ -84,7 +84,6 @@ static var can_set_time := true
 
 func _enter_tree() -> void:
 	Global.current_level = self
-	update_theme()
 	SpeedrunHandler.timer_active = true
 	SpeedrunHandler.ghost_active = true
 	if can_set_time:
@@ -102,6 +101,7 @@ func _enter_tree() -> void:
 	else:
 		level_id = Global.level_num
 		world_id = Global.world_num
+	update_theme()
 	if Settings.file.difficulty.back_scroll == 1 and Global.current_game_mode != Global.GameMode.CUSTOM_LEVEL:
 		can_backscroll = true
 	first_load = false

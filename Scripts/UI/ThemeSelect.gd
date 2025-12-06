@@ -34,6 +34,6 @@ func theme_selected(theme_name := "") -> void:
 	level_theme_changed.emit()
 	ResourceSetterNew.cache.clear()
 	ResourceSetter.cache.clear()
-	Global.level_theme_changed.emit()
+	Global.update_theme()
 	update()
 	close()
