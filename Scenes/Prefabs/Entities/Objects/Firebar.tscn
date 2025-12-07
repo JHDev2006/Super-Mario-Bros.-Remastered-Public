@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://iq86u4w60yee"]
+[gd_scene load_steps=19 format=3 uid="uid://iq86u4w60yee"]
 
 [ext_resource type="Texture2D" uid="uid://b7n5kp30whnb3" path="res://Assets/Sprites/Blocks/FireBar.png" id="1_e2e05"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_kpo86"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="2_ym371"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_kpo86"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="3_p4n6u"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="3_vk8wt"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="4_vag0n"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/FireBarFireBall.json" id="4_ym371"]
 [ext_resource type="Texture2D" uid="uid://dsncqqhfsnq6s" path="res://Assets/Sprites/Editor/RotationIcon.png" id="5_ytedt"]
@@ -11,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://c8ojbqg4q4qh6" path="res://Resources/ThemedResources/EditorRotationIcon.tres" id="7_3irkc"]
 
 [sub_resource type="GDScript" id="GDScript_e2e05"]
-script/source = "extends Node2D
+script/source = "extends Block
 
 # guzlad: Changed from 16 to 18 to mimick SMM
 @export_range(4, 18) var length := 6
@@ -20,11 +22,32 @@ script/source = "extends Node2D
 
 @export_enum(\"C-Clockwise\", \"Clockwise\") var direction := 0
 
+@export var block_visible := false:
+	set(value):
+		block_visible = value
+		handle_block_collision(true)
+
+@onready var track_joint = $TrackJoint
+
 var smooth_rotation := false
 
 var bar_rotation := 0.0
 
+func _ready() -> void:
+	handle_block_collision(true)
+
+func handle_block_collision(force := false):
+	if force or $Sprite.visible != block_visible:
+		$Sprite.visible = block_visible
+		$BlockCollision.visible = block_visible
+		$BlockCollision.disabled = !block_visible
+		if block_visible:
+			add_child(track_joint)
+		else:
+			remove_child(track_joint)
+
 func _physics_process(delta: float) -> void:
+	handle_block_collision()
 	bar_rotation += 108 * delta * [-1, 1][direction]
 	if Settings.file.visuals.firebar_style == 1:
 		$RotationJoint.global_rotation_degrees = bar_rotation
@@ -35,6 +58,9 @@ func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player and area.name != \"HammerHitbox\":
 		area.owner.damage()
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vk8wt"]
+size = Vector2(16, 16)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_p4n6u"]
 resource_local_to_scene = true
@@ -101,15 +127,20 @@ func _process(_delta: float) -> void:
 	$\"../Node2D/Sprite2D\".scale.x = [-1, 1][owner.direction]
 "
 
-[node name="Firebar" type="Node2D"]
+[node name="Firebar" type="AnimatableBody2D"]
 physics_interpolation_mode = 2
 script = SubResource("GDScript_e2e05")
+metadata/_custom_type_script = "uid://b5ejlbl0vp1gm"
 
-[node name="FireBar" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 visible = false
-top_level = true
-z_index = -5
 texture = ExtResource("1_e2e05")
+script = ExtResource("2_ym371")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="BlockCollision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_vk8wt")
 
 [node name="RotationJoint" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -586,17 +617,24 @@ resource_json = ExtResource("4_ym371")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
-remote_path = NodePath("../FireBar")
+remote_path = NodePath("../Sprite")
 update_rotation = false
 update_scale = false
 
 [node name="EditorPropertyExposer" type="Node" parent="."]
 script = ExtResource("3_p4n6u")
-properties = Array[String](["length", "starting_angle", "direction"])
+properties = Array[String](["length", "starting_angle", "direction", "block_visible"])
 
 [node name="FireballHandler" type="Node" parent="."]
 process_mode = 3
 script = SubResource("GDScript_p4n6u")
+
+[node name="TrackJoint" type="Node" parent="." node_paths=PackedStringArray("exclude_areas")]
+script = ExtResource("3_vk8wt")
+offset = Vector2(0, 0)
+disable_physics = false
+exclude_areas = [NodePath("../RotationJoint/Hitbox")]
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("4_vag0n")

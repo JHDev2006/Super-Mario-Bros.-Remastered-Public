@@ -27,13 +27,13 @@ func start() -> void:
 
 func check_for_entities() -> void:
 	for i in $Hitbox.get_overlapping_bodies():
-		print(i)
+		#print(i)
 		if i.has_node("TrackJoint"):
 			attach_to_joint(i)
 			return
 	for i in $Hitbox.get_overlapping_areas():
-		print(i)
-		if i.owner.has_node("TrackJoint"):
+		#print(i)
+		if i.owner.has_node("TrackJoint") and !i.owner.get_node("TrackJoint").exclude_areas.has(i):
 			attach_to_joint(i.owner)
 			return
 

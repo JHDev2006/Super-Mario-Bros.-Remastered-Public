@@ -6,6 +6,8 @@ signal attached
 @export var offset := Vector2(0, 8)
 @export var movement_node: Node = null
 @export var disable_physics := true
+@export var exclude_areas: Array[Area2D]
+
 var rider: TrackRider = null
 var is_attached := false
 
