@@ -173,6 +173,7 @@ rect = Rect2(-128, -128, 256, 256)
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="on_player_hit"]
+[connection signal="player_stomped_below" from="EnemyPlayerDetection" to="." method="on_player_stomped_on"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="on_player_stomped_on"]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
 [connection signal="fireball_hit" from="FireballDetection" to="." method="die_from_object"]

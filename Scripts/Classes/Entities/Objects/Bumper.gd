@@ -9,7 +9,7 @@ func bounce_player(player: Player) -> void:
 	if player.global_position.y + 8 < global_position.y:
 		player.velocity.x *= 0.8
 		if Global.player_action_pressed("jump", player.player_id):
-			player.gravity = player.JUMP_GRAVITY
+			player.gravity = player.calculate_speed_param("JUMP_GRAVITY")
 			player.jump_cancelled = false
 			player.velocity.y = HIGH_STRENGTH
 			player.has_jumped = true
@@ -20,7 +20,7 @@ func bounce_player(player: Player) -> void:
 	else:
 		player.velocity = global_position.direction_to(player.global_position) * 200
 		if Global.player_action_pressed("jump", player.player_id):
-			player.gravity = player.JUMP_GRAVITY
+			player.gravity = player.calculate_speed_param("JUMP_GRAVITY")
 			player.velocity.y = LOW_STRENGTH
 			player.has_jumped = true
 			AudioManager.play_sfx("bumper_high", global_position)

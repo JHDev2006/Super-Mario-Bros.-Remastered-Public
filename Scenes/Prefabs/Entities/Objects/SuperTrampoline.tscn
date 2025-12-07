@@ -14,7 +14,7 @@ Overworld = ExtResource("2_dij8c")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [node name="SuperTrampoline" instance=ExtResource("1_6t2fx")]
-bounce_height = -1200
+trampoline_type = "SUPER_TRAMPOLINE"
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_p1ygu")

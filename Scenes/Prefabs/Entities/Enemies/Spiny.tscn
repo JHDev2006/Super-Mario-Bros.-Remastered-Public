@@ -165,6 +165,7 @@ metadata/_custom_type_script = "uid://33no4mylhh1r"
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_below" from="EnemyPlayerDetection" to="." method="stomped"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="OffScreenDespawner" method="on_screen_exited"]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]

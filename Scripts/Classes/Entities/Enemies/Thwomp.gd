@@ -49,7 +49,7 @@ func handle_block_breaking() -> void:
 			i.destroy()
 
 func land() -> void:
-	AudioManager.play_sfx("cannon", global_position)
+	AudioManager.play_sfx("thwomp_land", global_position)
 	current_state = States.LANDED
 	await get_tree().create_timer(1, false).timeout
 	current_state = States.RISING

@@ -12,7 +12,6 @@ func _ready() -> void:
 		i.text = tr(i.text).replace("{PLAYER}", tr(Player.CHARACTER_NAMES[int(Global.player_characters[0])]))
 
 func begin() -> void:
-	$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
 	%PBMessage.modulate.a = int(SpeedrunHandler.timer < SpeedrunHandler.best_time)
 	if play_end_music:
 		Global.game_beaten = true

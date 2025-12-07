@@ -1,6 +1,6 @@
 {
 	"properties": {
-		"can_turn": true
+		"can_turn": false
 	},
 	"animations": {
 		"Walk": {

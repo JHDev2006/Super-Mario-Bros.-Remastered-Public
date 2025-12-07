@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://o573jl3f2hvk"]
+[gd_scene load_steps=3 format=3 uid="uid://o573jl3f2hvk"]
 
 [ext_resource type="PackedScene" uid="uid://ckrna543ixu1b" path="res://Scenes/Prefabs/LevelObjects/CastlePeach.tscn" id="1_v6xdq"]
+[ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="2_1smyj"]
 
 [node name="CastlePeach" instance=ExtResource("1_v6xdq")]
 
@@ -15,3 +16,7 @@ text = "CUTSCENE_SP_PEACH_3"
 
 [node name="AnotherCastle6" parent="EndingSpeech" index="2"]
 text = ""
+
+[node name="TextShadowColourChanger" parent="." index="5"]
+script = ExtResource("2_1smyj")
+metadata/_custom_type_script = "uid://dt2p68xl462v2"

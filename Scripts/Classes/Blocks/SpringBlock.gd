@@ -4,6 +4,7 @@ extends StaticBody2D
 
 func on_player_entered(player: Player) -> void:
 	player.enemy_bounce_off(false)
+	player.has_spring_jumped = true
 	play_animation()
 	AudioManager.play_sfx("spring", global_position)
 	if is_super:

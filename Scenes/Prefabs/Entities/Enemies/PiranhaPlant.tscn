@@ -314,6 +314,7 @@ script = SubResource("GDScript_ofvpu")
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_below" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="fireball_hit" from="FireballDetection" to="." method="die_from_object"]
 [connection signal="fireball_hit" from="FireballDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]

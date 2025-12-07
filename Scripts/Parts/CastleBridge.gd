@@ -24,9 +24,7 @@ func on_area_entered(area: Area2D) -> void:
 func destroy_bridge(player: Player) -> void:
 	Global.can_pause = false
 	for i in get_tree().get_nodes_in_group("Enemies"):
-		if i is BowserFlame:
-			i.queue_free()
-		elif i is Hammer:
+		if i is Projectile:
 			i.queue_free()
 	if (end_timer and Global.current_game_mode == Global.GameMode.MARATHON) or Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
 		SpeedrunHandler.run_finished()

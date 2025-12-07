@@ -9,7 +9,7 @@ func _physics_process(delta: float) -> void:
 		global_position.x += 48 * delta
 
 func on_player_entered(player: Player) -> void:
-	if player.velocity.y > -player.FALL_GRAVITY:
+	if player.velocity.y > -player.calculate_speed_param("FALL_GRAVITY", player.velocity_x_jump_stored):
 		active = true
 
 func reset() -> void:

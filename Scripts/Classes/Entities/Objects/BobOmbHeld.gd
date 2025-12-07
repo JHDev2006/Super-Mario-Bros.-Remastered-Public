@@ -33,4 +33,5 @@ func kick(object: Node2D) -> void:
 func summon_explosion() -> void:
 	var node = EXPLOSION.instantiate()
 	node.global_position = global_position + Vector2(0, -8)
+	AudioManager.play_sfx("explode", node.global_position)
 	add_sibling(node)

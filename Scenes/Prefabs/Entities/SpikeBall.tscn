@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7il83r4ab05d"]
+[gd_scene load_steps=18 format=3 uid="uid://c7il83r4ab05d"]
 
 [ext_resource type="Script" uid="uid://dlq222ogmfken" path="res://Scripts/Classes/Entities/Objects/SpikeBall.gd" id="1_orfe8"]
 [ext_resource type="Texture2D" uid="uid://dtn3el3cobo42" path="res://Assets/Sprites/Items/SpikeBall.png" id="2_2juko"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://15cikmjhl2f8" path="res://Scripts/Classes/Resources/RandomizedResource.gd" id="5_vgefa"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="6_1nkq5"]
 [ext_resource type="Script" uid="uid://dkjpfs3sm3go3" path="res://Scripts/Classes/Components/BlockHitter.gd" id="9_d8yxl"]
+[ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="10_vgefa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpvvo"]
 radius = 7.0
@@ -85,6 +86,11 @@ hitbox = NodePath("../BlockHitbox")
 can_break_bricks = true
 enabled = null
 metadata/_custom_type_script = "uid://dkjpfs3sm3go3"
+
+[node name="GibSpawner" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+script = ExtResource("10_vgefa")
+visuals = NodePath("../Sprite")
+metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
 [connection signal="area_entered" from="BlockHitbox" to="." method="on_area_entered"]

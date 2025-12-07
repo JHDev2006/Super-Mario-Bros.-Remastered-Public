@@ -107,6 +107,8 @@ Coins=""
 Doors=""
 Lakitus=""
 CameraLimits=""
+EndCastles="Defines all ending castles."
+CastleNPCs="Defines all castle NPCs which appear at the end of castle levels."
 
 [gui]
 

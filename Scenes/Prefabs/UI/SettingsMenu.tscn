@@ -591,12 +591,20 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_DIFFICULTY"
-options = [NodePath("DamageStyle"), NodePath("Checkpoints"), NodePath("ExtraCheckpoints"), NodePath("Lives"), NodePath("FlagpoleLives"), NodePath("GameOverStyle"), NodePath("LevelDesign"), NodePath("BackScroll"), NodePath("TimeLimit"), NodePath("LakituStyle")]
+options = [NodePath("PhysicsStyle"), NodePath("DamageStyle"), NodePath("Checkpoints"), NodePath("ExtraCheckpoints"), NodePath("Lives"), NodePath("FlagpoleLives"), NodePath("GameOverStyle"), NodePath("LevelDesign"), NodePath("BackScroll"), NodePath("TimeLimit"), NodePath("LakituStyle")]
 description_node = NodePath("Description/AutoScrollContainer/MarginContainer/Desc")
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
+
+[node name="PhysicsStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "physics_style"
+title = "DIFFI_PHYSICS"
+value_descs = Array[String](["DESC_PHYSICS_0", "DESC_PHYSICS_1"])
+values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
+settings_category = "difficulty"
 
 [node name="DamageStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
@@ -1021,6 +1029,7 @@ script = ExtResource("19_k6yev")
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode2" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ResourcePackLoader" method="get_resource_packs"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" to="ResourcePackTemplateCreator" method="create_template"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" method="set_title" binds= ["Creating Resource Pack..."]]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/PhysicsStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="physics_style_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DamageStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="damage_style_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Checkpoints" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="checkpoint_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ExtraCheckpoints" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="extra_checkpoints_changed"]

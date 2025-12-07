@@ -179,7 +179,7 @@ Underground = SubResource("SpriteFrames_5o1ie")
 Castle = SubResource("SpriteFrames_6r0gb")
 metadata/_custom_type_script = ExtResource("6_hx42c")
 
-[node name="HammerBro" type="CharacterBody2D" node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
+[node name="HammerBro" type="CharacterBody2D" unique_id=1170982352 node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_8mo24")
@@ -187,28 +187,27 @@ on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
 score_note_adder = NodePath("ScoreNoteSpawner")
 metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
-[node name="MovementJoint" type="Node2D" parent="."]
+[node name="MovementJoint" type="Node2D" parent="." unique_id=1502297511]
 
-[node name="Sprite" type="AnimatedSprite2D" parent="MovementJoint"]
+[node name="Sprite" type="AnimatedSprite2D" parent="MovementJoint" unique_id=1172243773]
 position = Vector2(0, -12)
 rotation = 3.1415927
 scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_cl1av")
 animation = &"Idle"
-frame_progress = 0.755197
 offset = Vector2(2, 1)
 flip_h = true
 script = ExtResource("3_hx42c")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="Hammer" type="Sprite2D" parent="MovementJoint/Sprite"]
+[node name="Hammer" type="Sprite2D" parent="MovementJoint/Sprite" unique_id=1721362037]
 visible = false
 show_behind_parent = true
 position = Vector2(0, -17)
 texture = SubResource("AtlasTexture_hx42c")
 flip_h = true
 
-[node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite/Hammer" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite/Hammer" unique_id=2076926331 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("7_pvn5i")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -216,100 +215,100 @@ mode = 1
 resource_json = ExtResource("6_0w8yj")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite" node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite" unique_id=736820869 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("7_pvn5i")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("8_0w8yj")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="MovementAnimations" type="AnimationPlayer" parent="."]
+[node name="MovementAnimations" type="AnimationPlayer" parent="." unique_id=1948208230]
 libraries = {
 &"": SubResource("AnimationLibrary_2vqj5")
 }
 
-[node name="Collision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1660982748]
 visible = false
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_dywvb")
 
-[node name="BlockDetect" type="RayCast2D" parent="."]
+[node name="BlockDetect" type="RayCast2D" parent="." unique_id=1118067681]
 position = Vector2(0, 17)
 target_position = Vector2(0, 24)
 collision_mask = 2
 hit_from_inside = true
 
-[node name="UpBlock" type="RayCast2D" parent="."]
+[node name="UpBlock" type="RayCast2D" parent="." unique_id=2086267845]
 visible = false
 position = Vector2(0, -32)
 target_position = Vector2(0, -24)
 collision_mask = 2
 hit_from_inside = true
 
-[node name="JumpTimer" type="Timer" parent="."]
+[node name="JumpTimer" type="Timer" parent="." unique_id=1202288313]
 wait_time = 4.0
 one_shot = true
 
-[node name="HammerTimer" type="Timer" parent="."]
+[node name="HammerTimer" type="Timer" parent="." unique_id=362627693]
 one_shot = true
 
-[node name="EnemyPlayerDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="EnemyPlayerDetection" type="Node" parent="." unique_id=1861928028 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("5_i0wjw")
 hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://chj8hu207lrh"
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." unique_id=266857878]
 
-[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+[node name="Shape" type="CollisionShape2D" parent="Hitbox" unique_id=1508852547]
 visible = false
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_2vqj5")
 
-[node name="BlockBouncingDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="BlockBouncingDetection" type="Node" parent="." unique_id=77333112 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("6_1mp8k")
 hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://cmg61722ktg2m"
 
-[node name="FireballDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="FireballDetection" type="Node" parent="." unique_id=1008102968 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("7_scjjh")
 hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://dri2d5jtu0fbq"
 
-[node name="GibSpawner" type="Node" parent="." node_paths=PackedStringArray("visuals")]
+[node name="GibSpawner" type="Node" parent="." unique_id=1566717279 node_paths=PackedStringArray("visuals")]
 script = ExtResource("8_1mp8k")
 visuals = NodePath("../MovementJoint/Sprite")
 metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=766482215]
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -15)
 scale = Vector2(1, 1.7)
 
-[node name="ScoreNoteSpawner" type="Node" parent="."]
+[node name="ScoreNoteSpawner" type="Node" parent="." unique_id=1663886927]
 script = ExtResource("9_scjjh")
 add_score = true
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1442625721]
 wait_time = 10.0
 one_shot = true
 
-[node name="ShellDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="ShellDetection" type="Node" parent="." unique_id=1444325387 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("12_hx42c")
 hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://bbww34oiexbx2"
 
-[node name="ThemedToJSONConverter" type="Node" parent="."]
+[node name="ThemedToJSONConverter" type="Node" parent="." unique_id=1288765018]
 script = ExtResource("15_2r2js")
 resource = SubResource("Resource_pvn5i")
 json_file_path = "res://Assets/Sprites/Enemies/HammerBro.json"
 metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
-[node name="ExplosionDetection" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="ExplosionDetection" type="Node" parent="." unique_id=778971182 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("16_0w8yj")
 hitbox = NodePath("../Hitbox")
 
-[node name="TrackJoint" type="Node" parent="."]
+[node name="TrackJoint" type="Node" parent="." unique_id=558490017]
 script = ExtResource("17_2r2js")
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
@@ -321,6 +320,8 @@ metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_below" from="EnemyPlayerDetection" to="GibSpawner" method="stomp_die" binds= [false]]
+[connection signal="player_stomped_below" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="GibSpawner" method="stomp_die" binds= [false]]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="die_from_object"]

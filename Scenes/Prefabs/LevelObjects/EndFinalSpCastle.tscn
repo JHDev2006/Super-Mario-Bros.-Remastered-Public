@@ -18,7 +18,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EndFinalCastle" instance=ExtResource("1_fa5ur")]
+[node name="EndFinalCastle" groups=["EndCastles"] instance=ExtResource("1_fa5ur")]
 
 [node name="Flag" parent="FlagJoint" index="0"]
 position = Vector2(0, 8.00001)

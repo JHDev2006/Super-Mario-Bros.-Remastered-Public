@@ -59,8 +59,8 @@ vertical_alignment = 3
 autowrap_mode = 2
 uppercase = true
 
-[node name="TextShadowColourChanger" parent="." index="6" node_paths=PackedStringArray("labels")]
+[node name="TextShadowColourChanger" parent="." index="5" node_paths=PackedStringArray("labels")]
 labels = [NodePath("../StandardMSG/ThankYou"), NodePath("../StandardMSG/AnotherCastle"), NodePath("../SpeedrunMSG/ThankYou"), NodePath("../SpeedrunMSG/Time"), NodePath("../SpeedrunMSG/PBMessage"), NodePath("../EndingSpeech/AnotherCastle4"), NodePath("../EndingSpeech/AnotherCastle5"), NodePath("../EndingSpeech/AnotherCastle6")]
 
-[node name="LabelFontChanger" parent="." index="7" node_paths=PackedStringArray("labels")]
+[node name="LabelFontChanger" parent="." index="6" node_paths=PackedStringArray("labels")]
 labels = [NodePath("../StandardMSG/ThankYou"), NodePath("../StandardMSG/AnotherCastle"), NodePath("../EndingSpeech/AnotherCastle4"), NodePath("../EndingSpeech/AnotherCastle5"), NodePath("../EndingSpeech/AnotherCastle6"), NodePath("../SpeedrunMSG/ThankYou"), NodePath("../SpeedrunMSG/Time"), NodePath("../SpeedrunMSG/PBMessage")]

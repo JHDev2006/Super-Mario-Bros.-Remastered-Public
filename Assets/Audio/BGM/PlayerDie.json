@@ -1,5 +1,5 @@
 {
 	"variations": {
-		"default": { "source": "PlayerDie.mp3" }
+		"default": { "source": "PlayerDie.wav" }
 	}
 }

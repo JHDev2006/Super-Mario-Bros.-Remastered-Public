@@ -9,6 +9,7 @@ extends Sprite2D
 
 @export var warn_sfx: AudioStreamPlayer = null
 
+@export_enum("Percent", "Remaining") var threshold_type := 0
 @export var warn_threshold := 0.7
 
 var can_warn := false
@@ -25,7 +26,7 @@ func _process(_delta: float) -> void:
 	percent = clamp(percent, 0, 1)
 	get_parent().visible = percent < 1 and Settings.file.visuals.visible_timers
 	frame = lerp(0, 6, percent)
-	if percent >= warn_threshold and Settings.file.audio.extra_sfx == 1:
+	if (threshold_type == 0 and percent >= warn_threshold) or (threshold_type == 1 and value <= warn_threshold) and Settings.file.audio.extra_sfx == 1:
 		if node is Timer:
 			if node.is_stopped(): return
 		if can_warn:

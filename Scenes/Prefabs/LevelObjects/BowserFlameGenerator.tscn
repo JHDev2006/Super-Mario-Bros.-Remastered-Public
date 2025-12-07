@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://blbarreyjem4l" path="res://Scenes/Prefabs/Entities/Enemies/BowserFlame.tscn" id="2_fevce"]
 [ext_resource type="Texture2D" uid="uid://dtgpkjj1dy7pu" path="res://Assets/Sprites/Editor/BowserFlameGenerator.png" id="3_fevce"]
 
+
 [node name="EntityGenerator" instance=ExtResource("1_4xckd")]
 y_pos = 1
 direction = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cdrgm3154qxxy"]
+[gd_scene load_steps=14 format=3 uid="uid://cdrgm3154qxxy"]
 
 [ext_resource type="Texture2D" uid="uid://fy7jlabgyewp" path="res://Assets/Sprites/Blocks/Trampoline.png" id="1_83ba8"]
 [ext_resource type="Script" uid="uid://bof8ieprith1d" path="res://Scripts/Classes/Entities/Objects/Trampoline.gd" id="1_bwrr1"]
@@ -15,9 +15,6 @@ metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwrr1"]
 size = Vector2(16, 23.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_butnk"]
-size = Vector2(14, 28)
 
 [sub_resource type="Animation" id="Animation_cot4p"]
 resource_name = "Bounce"
@@ -141,9 +138,9 @@ position = Vector2(0, -12)
 
 [node name="Hitbox" type="Area2D" parent="."]
 
-[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+[node name="Shape" type="CollisionPolygon2D" parent="Hitbox"]
 position = Vector2(0, -22)
-shape = SubResource("RectangleShape2D_butnk")
+polygon = PackedVector2Array(7, 14, 7, -7, 8, -9, 8, -13, -8, -13, -8, -9, -7, -7, -7, 14)
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {

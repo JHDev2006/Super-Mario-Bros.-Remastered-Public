@@ -12,6 +12,6 @@ func pressed() -> void:
 	is_pressed = true
 	$Sprite.play("Pressed")
 	AudioManager.play_global_sfx("switch")
-	AudioManager.play_global_sfx("cannon")
+	AudioManager.play_global_sfx("pswitch_pressed")
 	$AnimationPlayer.play("Pressed")
 	Global.activate_p_switch()

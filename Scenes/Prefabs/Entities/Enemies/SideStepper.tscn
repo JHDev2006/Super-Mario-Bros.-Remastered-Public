@@ -46,6 +46,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7cy7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orhyp")
+}],
+"loop": true,
+"name": &"Stomped",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_22ule")
 }, {
 "duration": 1.0,
@@ -66,14 +77,15 @@ size = Vector2(14, 14)
 collision_layer = 16
 collision_mask = 50
 script = ExtResource("1_vwosn")
+hit_count = 2
+stomp_death_style = 1
 on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
 score_note_adder = NodePath("ScoreNoteSpawner")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_877ec")
-animation = &"Walk"
-frame_progress = 0.9589298
+animation = &"Stomped"
 offset = Vector2(0, 1)
 script = ExtResource("3_qknq8")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
@@ -151,6 +163,7 @@ metadata/_custom_type_script = "uid://ba18grqjixded"
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [100]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_below" from="EnemyPlayerDetection" to="." method="stomped_on"]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="damage"]
 [connection signal="fireball_hit" from="FireballDetection" to="." method="damage"]

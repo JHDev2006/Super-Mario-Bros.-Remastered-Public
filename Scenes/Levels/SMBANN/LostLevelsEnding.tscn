@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://caugelxhwlvl0" path="res://Scripts/Parts/LostLevelsEnding.gd" id="1_d3n3y"]
 [ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="5_2k64g"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="6_cg4ss"]
+[ext_resource type="PackedScene" uid="uid://ckrna543ixu1b" path="res://Scenes/Prefabs/LevelObjects/CastlePeach.tscn" id="7_1jjur"]
 [ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="7_40pis"]
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="8_gnn3a"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="9_3f2f2"]
-[ext_resource type="Texture2D" uid="uid://boivfkpqvnx45" path="res://Assets/Sprites/Players/Peach.png" id="10_5xkvw"]
 [ext_resource type="FontVariation" uid="uid://bl7sbw4nx3l1t" path="res://Resources/ThemedResources/FontMain.tres" id="11_yglne"]
 [ext_resource type="Texture2D" uid="uid://fdn41mmtnhdt" path="res://Assets/Sprites/Players/ToadNPCLL.png" id="12_gvpv4"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="13_2i527"]
@@ -384,11 +384,8 @@ libraries = {
 }
 autoplay = "Main"
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(16, -16)
-texture = ExtResource("10_5xkvw")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 32)
+[node name="Peach" parent="." instance=ExtResource("7_1jjur")]
+position = Vector2(-8, -1)
 
 [node name="ThankYou" type="Label" parent="."]
 visible = false

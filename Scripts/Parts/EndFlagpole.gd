@@ -24,13 +24,18 @@ func player_touch(player: Player) -> void:
 	get_tree().call_group("Enemies", "flag_die")
 	give_points(player)
 	Global.can_time_tick = false
-	if player.can_pose == false:
+	if player.can_pose_anim == false:
 		player.z_index = -2
 	player.global_position.x = $Flag.global_position.x + 3
 	$Animation.play("FlagDown")
 	player.state_machine.transition_to("FlagPole")
-	AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.FLAG_POLE, 99, false)
-	await get_tree().create_timer(1.5, false).timeout
+	if not player.physics_params("FLAG_SKIP_GRAB", player.ENDING_PARAMETERS):
+		AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.SILENCE, 99, false)
+		AudioManager.play_global_sfx("flag_slide")
+		if player.physics_params("FLAG_HANG_TIMER", player.ENDING_PARAMETERS) > 0:
+			await get_tree().create_timer(player.physics_params("FLAG_HANG_TIMER", player.ENDING_PARAMETERS), false).timeout
+	else:
+		AudioManager.play_global_sfx("flag_slide")
 	sequence_begin.emit()
 	if Global.current_game_mode == Global.GameMode.BOO_RACE:
 		AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.RACE_WIN, 99, false)

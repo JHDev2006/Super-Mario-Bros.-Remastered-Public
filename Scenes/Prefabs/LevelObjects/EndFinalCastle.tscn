@@ -80,7 +80,7 @@ sources/0 = SubResource("TileSetAtlasSource_wqi45")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fi1c"]
 size = Vector2(6, 20)
 
-[node name="EndFinalCastle" type="Node2D"]
+[node name="EndFinalCastle" type="Node2D" groups=["EndCastles"]]
 process_mode = 3
 script = ExtResource("1_hwcne")
 

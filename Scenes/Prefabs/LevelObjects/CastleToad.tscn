@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2ntyej6ddm72"]
+[gd_scene load_steps=15 format=3 uid="uid://c2ntyej6ddm72"]
 
 [ext_resource type="Script" uid="uid://j76u1aqhwey4" path="res://Scripts/Parts/CastleToad.gd" id="1_hytso"]
 [ext_resource type="Texture2D" uid="uid://dfildm0squweg" path="res://Assets/Sprites/Players/ToadNPC.png" id="2_griru"]
@@ -44,12 +44,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_an0bx"]
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d5sl2"]
 normal = Vector2(-1, 0)
 
-[node name="CastleToad" type="Node2D"]
+[node name="CastleToad" type="Node2D" groups=["CastleNPCs"]]
 script = ExtResource("1_hytso")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -142,12 +140,6 @@ horizontal_alignment = 1
 vertical_alignment = 3
 autowrap_mode = 2
 uppercase = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_an0bx")
-disabled = true
 
 [node name="CameraRightLimit" type="Node2D" parent="."]
 position = Vector2(128, -80)

@@ -5,6 +5,8 @@ const DEFAULT_SFX_LIBRARY := {
 	"big_jump": ("res://Assets/Audio/SFX/BigJump.wav"),
 	"coin": ("res://Assets/Audio/SFX/Coin.wav"),
 	"bump": ("res://Assets/Audio/SFX/Bump.wav"),
+	"walk": ("res://Assets/Audio/BGM/Silence.json"),
+	"run": ("res://Assets/Audio/BGM/Silence.json"),
 	"skid": ("res://Assets/Audio/SFX/Skid.wav"),
 	"pipe": ("res://Assets/Audio/SFX/Pipe.wav"),
 	"damage": ("res://Assets/Audio/SFX/Damage.wav"),
@@ -16,8 +18,13 @@ const DEFAULT_SFX_LIBRARY := {
 	"kick": ("res://Assets/Audio/SFX/Kick.wav"),
 	"fireball": ("res://Assets/Audio/SFX/Fireball.wav"),
 	"1_up": ("res://Assets/Audio/SFX/1up.wav"),
+	"die_sting": ("res://Assets/Audio/SFX/DieSting.wav"),
 	"cannon": ("res://Assets/Audio/SFX/Cannon.wav"),
+	"explode": ("res://Assets/Audio/SFX/Cannon.wav"),
+	"pswitch_pressed": ("res://Assets/Audio/SFX/Cannon.wav"),
+	"thwomp_land": ("res://Assets/Audio/SFX/Cannon.wav"),
 	"checkpoint": ("res://Assets/Audio/SFX/Checkpoint.wav"),
+	"flag_slide": ("res://Assets/Audio/SFX/FlagSlide.json"),
 	"magic": ("res://Assets/Audio/SFX/Magic.wav"),
 	"beep": ("res://Assets/Audio/SFX/Score.wav"),
 	"switch": ("res://Assets/Audio/SFX/Switch.wav"),
@@ -28,6 +35,10 @@ const DEFAULT_SFX_LIBRARY := {
 	"score_end": "res://Assets/Audio/SFX/Score.wav",
 	"pause": ("res://Assets/Audio/SFX/Pause.wav"),
 	"spring": ("res://Assets/Audio/SFX/Spring.wav"),
+	"small_trampoline": ("res://Assets/Audio/SFX/TrampolineSmall.wav"),
+	"big_trampoline": ("res://Assets/Audio/SFX/TrampolineBig.wav"),
+	"small_used_trampoline": ("res://Assets/Audio/SFX/TrampolineUsedSmall.wav"),
+	"big_used_trampoline": ("res://Assets/Audio/SFX/TrampolineUsedBig.wav"),
 	"swim": ("res://Assets/Audio/SFX/Swim.wav"),
 	"dry_bones_crumble": ("res://Assets/Audio/SFX/DryBonesCrumble.wav"),
 	"clock_get": ("res://Assets/Audio/SFX/ClockGet.wav"),
@@ -78,7 +89,7 @@ var queued_sfxs := []
 
 var current_music_override: MUSIC_OVERRIDES
 
-enum MUSIC_OVERRIDES{NONE=-1, STAR=0, DEATH, PSWITCH, BOWSER, TIME_WARNING, LEVEL_COMPLETE, CASTLE_COMPLETE, ENDING, FLAG_POLE, HAMMER, RACE_LOSE, RACE_WIN, WING, COIN_HEAVEN_BONUS}
+enum MUSIC_OVERRIDES{NONE=-1, STAR=0, DEATH, PSWITCH, BOWSER, TIME_WARNING, LEVEL_COMPLETE, CASTLE_COMPLETE, ENDING, FLAG_POLE, HAMMER, RACE_LOSE, RACE_WIN, WING, COIN_HEAVEN_BONUS, SILENCE}
 
 const OVERRIDE_STREAMS := [
 	("res://Assets/Audio/BGM/StarMan.json"),
@@ -89,12 +100,13 @@ const OVERRIDE_STREAMS := [
 	"res://Assets/Audio/BGM/LevelFinish.json",
 	"res://Assets/Audio/BGM/CastleFinish.json",
 	"res://Assets/Audio/BGM/Ending.json",
-	"res://Assets/Audio/SFX/FlagSlide.wav",
+	"res://Assets/Audio/SFX/FlagSlide.json",
 	("res://Assets/Audio/BGM/Hammer.json"),
 	("res://Assets/Audio/BGM/LoseRace.json"),
 	("res://Assets/Audio/BGM/WinRace.json"),
 	"res://Assets/Audio/BGM/Wing.json",
-	"res://Assets/Audio/BGM/PerfectCoinHeaven.mp3"
+	"res://Assets/Audio/BGM/PerfectCoinHeaven.mp3",
+	"res://Assets/Audio/BGM/Silence.json"
 ]
 
 const MUSIC_BASE = preload("uid://da4vqkrpqnma0")
@@ -104,37 +116,37 @@ var character_sfx_map := {}
 var audio_override_queue := []
 #var audio_override_queue: Array[Dictionary] = []
 
-func play_sfx(stream_name = "", position := Vector2.ZERO, pitch := 1.0) -> void:
+func play_sfx(stream_name = "", position := Vector2.ZERO, pitch := 1.0, can_overlap := true) -> void:
+	if sfx_library.has(stream_name): # SkyanUltra: Simple check that allows for custom optional sounds.
+		if (not can_overlap and active_sfxs.has(stream_name)) or queued_sfxs.has(stream_name):
+			return
+		queued_sfxs.append(stream_name)
+		if stream_name is String:
+			if active_sfxs.has(stream_name):
+				active_sfxs[stream_name].queue_free()
+		var player = AudioStreamPlayer2D.new()
+		player.global_position = position
+		var stream = stream_name
+		var is_custom = false
+		if stream_name is String:
+			is_custom = sfx_library[stream_name].contains(Global.config_path.path_join("custom_characters"))
+			stream = import_stream(sfx_library[stream_name])
+		if is_custom == false:
+			player.stream = ResourceSetter.get_resource(stream, player)
+		else:
+			player.stream = stream
+		player.autoplay = true
+		player.pitch_scale = pitch
+		player.max_distance = 99999
+		player.bus = "SFX"
+		add_child(player)
+		active_sfxs[stream_name] = player
+		queued_sfxs.erase(stream_name)
+		await player.finished
+		active_sfxs.erase(stream_name)
+		player.queue_free()
 
-	if queued_sfxs.has(stream_name):
-		return
-	queued_sfxs.append(stream_name)
-	if stream_name is String:
-		if active_sfxs.has(stream_name):
-			active_sfxs[stream_name].queue_free()
-	var player = AudioStreamPlayer2D.new()
-	player.global_position = position
-	var stream = stream_name
-	var is_custom = false
-	if stream_name is String:
-		is_custom = sfx_library[stream_name].contains(Global.config_path.path_join("custom_characters"))
-		stream = import_stream(sfx_library[stream_name])
-	if is_custom == false:
-		player.stream = ResourceSetter.get_resource(stream, player)
-	else:
-		player.stream = stream
-	player.autoplay = true
-	player.pitch_scale = pitch
-	player.max_distance = 99999
-	player.bus = "SFX"
-	add_child(player)
-	active_sfxs[stream_name] = player
-	queued_sfxs.erase(stream_name)
-	await player.finished
-	active_sfxs.erase(stream_name)
-	player.queue_free()
-
-func play_global_sfx(stream_name := "") -> void:
+func play_global_sfx(stream_name = "") -> void:
 	if get_viewport().get_camera_2d() == null:
 		return
 	play_sfx(stream_name, get_viewport().get_camera_2d().get_screen_center_position())
@@ -153,7 +165,7 @@ func stop_all_music() -> void:
 	AudioManager.stop_music_override(MUSIC_OVERRIDES.NONE, true)
 
 func kill_sfx(sfx_name := "") -> void:
-	print(active_sfxs)
+	#print(active_sfxs) SkyanUltra: log spam what are we doing
 	if active_sfxs.has(sfx_name):
 		active_sfxs[sfx_name].queue_free()
 		active_sfxs.erase(sfx_name)
@@ -171,7 +183,7 @@ func set_music_override(stream: MUSIC_OVERRIDES, priority := 0, stop_on_finish :
 	else:
 		audio_override_queue.append(stream)
 	current_music_override = stream
-	print(OVERRIDE_STREAMS[stream])
+	#print(OVERRIDE_STREAMS[stream])
 	music_override_player.stream = create_stream_from_json(OVERRIDE_STREAMS[stream])
 	music_override_player.bus = "Music" if stream != MUSIC_OVERRIDES.FLAG_POLE else "SFX"
 	music_override_player.play()
@@ -251,7 +263,7 @@ func handle_music_override() -> void:
 
 func create_stream_from_json(json_path := "") -> AudioStream:
 	var path := ""
-	if json_path.contains(".json") == false:
+	if json_path.ends_with(".json") == false:
 		path = ResourceSetter.get_pure_resource_path(json_path)
 		if path.contains(Global.config_path):
 			match json_path.get_slice(".", 1):
@@ -272,14 +284,14 @@ func create_stream_from_json(json_path := "") -> AudioStream:
 	var bgm_file = $ResourceSetterNew.get_variation_json(JSON.parse_string(FileAccess.open(ResourceSetter.get_pure_resource_path(json_path), FileAccess.READ).get_as_text()).variations).source
 	path = ResourceSetter.get_pure_resource_path(json_path.replace(json_path.get_file(), bgm_file))
 	var stream = null
-	if path.get_file().contains(".bgm"):
+	if path.get_file().ends_with(".bgm"):
 		stream = generate_interactive_stream(JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text()))
 	else:
-		if path.contains("res://"):
+		if path.begins_with("res://"):
 			stream = load(path)
-		elif path.contains(".mp3"):
+		elif path.ends_with(".mp3"):
 			stream = AudioStreamMP3.load_from_file(path)
-		elif path.contains(".ogg"):
+		elif path.ends_with(".ogg"):
 			stream = AudioStreamOggVorbis.load_from_file(path)
 	return stream
 
@@ -294,20 +306,22 @@ func generate_interactive_stream(bgm_file := {}) -> AudioStreamInteractive:
 func import_stream(file_path := "", loop_point := -1.0) -> AudioStream:
 	var path = file_path
 	var stream = null
-	if path.contains("res://"):
+	if path.begins_with("res://"):
 		stream = load(path)
-	elif path.contains(".mp3"):
+	elif path.ends_with(".mp3"):
 		stream = AudioStreamMP3.load_from_file(ResourceSetter.get_pure_resource_path(file_path))
-	elif path.contains(".ogg"):
+	elif path.ends_with(".ogg"):
 		stream = AudioStreamOggVorbis.load_from_file(ResourceSetter.get_pure_resource_path(file_path))
-	elif path.contains(".wav"):
+	elif path.ends_with(".wav"):
 		stream = AudioStreamWAV.load_from_file(path)
-		print([path, stream])
-	if path.contains(".mp3"):
+		#print([path, stream])
+	if path.ends_with(".mp3"):
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
-	elif path.contains(".ogg"):
+	elif path.ends_with(".ogg"):
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
+	elif path.ends_with(".json"):
+		stream = create_stream_from_json(path)
 	return stream
 	

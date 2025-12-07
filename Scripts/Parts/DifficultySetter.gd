@@ -30,6 +30,11 @@ func extra_checkpoints_changed(new_value := 0) -> void:
 func lakitu_style_changed(new_value := 0) -> void:
 	Settings.file.difficulty.lakitu_style = new_value
 
+func physics_style_changed(new_value := 0):
+	Settings.file.difficulty.physics_style = new_value
+	for player in get_tree().get_nodes_in_group("Players"):
+		player.apply_character_physics()
+
 func set_value(value_name := "", value := 0) -> void:
 	{
 		"damage_style": damage_style_changed,
@@ -40,5 +45,6 @@ func set_value(value_name := "", value := 0) -> void:
 		"game_over_behaviour": game_over_changed,
 		"level_design": level_design_changed,
 		"extra_checkpoints": extra_checkpoints_changed,
-		"back_scroll": backscroll_changed
+		"back_scroll": backscroll_changed,
+		"physics_style": physics_style_changed
 	}[value_name].call(value)

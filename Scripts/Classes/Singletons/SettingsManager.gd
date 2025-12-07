@@ -84,7 +84,8 @@ var file := {
 		"extra_checkpoints": 0,
 		"back_scroll": 0,
 		"time_limit": 1,
-		"lakitu_style": 0
+		"lakitu_style": 0,
+		"physics_style": 1
 	}
 }
 

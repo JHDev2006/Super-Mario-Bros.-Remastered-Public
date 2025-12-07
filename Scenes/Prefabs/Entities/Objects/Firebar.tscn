@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 
 func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player and area.name != \"HammerHitbox\":
-		area.owner.damage()
+		area.owner.damage(\"Fire\")
 "
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_p4n6u"]

@@ -21,4 +21,9 @@ func handle_movement(_delta: float) -> void:
 	else:
 		$Sprite.play("Walk")
 		$Sprite.scale.x = direction
-	
+		
+func stomped(player: Player):
+	if in_egg:
+		damage_player(player)
+	else:
+		$GibSpawner.stomp_die(player)

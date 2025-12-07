@@ -41,7 +41,6 @@
 [sub_resource type="GDScript" id="GDScript_8peil"]
 script/source = "extends Label
 
-
 func _ready() -> void:
 	text = \"V\" + Global.version_number
 "
@@ -978,12 +977,12 @@ metadata/_custom_type_script = "uid://bdq0373j5n5o0"
 
 [node name="LabelFontChanger" type="Node" parent="." unique_id=1630842878 node_paths=PackedStringArray("labels")]
 script = ExtResource("21_qti1l")
-labels = [NodePath("../CanvasLayer/Options2/Story"), NodePath("../CanvasLayer/Options2/Challenges"), NodePath("../CanvasLayer/Options2/Marathon"), NodePath("../CanvasLayer/StoryMode/StoryOptions/New Game"), NodePath("../CanvasLayer/StoryMode/StoryOptions/Continue"), NodePath("../CanvasLayer/StoryMode/StoryOptions/HighScore"), NodePath("../CanvasLayer/Extras/Achiements"), NodePath("../CanvasLayer/Extras/Credits"), null, NodePath("../CanvasLayer/ChallengeOptions/BooRace"), NodePath("../CanvasLayer/ChallengeOptions/ChallengeHunt"), null, NodePath("../CanvasLayer2/VersionLabel"), NodePath("../CanvasLayer/Options1/PlayGame"), NodePath("../CanvasLayer/Options1/Settings"), NodePath("../CanvasLayer/Options1/Quit Game"), NodePath("../CanvasLayer2/VersionLabel")]
+labels = [NodePath("../CanvasLayer/Options2/Story"), NodePath("../CanvasLayer/Options2/Challenges"), NodePath("../CanvasLayer/Options2/Marathon"), NodePath("../CanvasLayer/StoryMode/StoryOptions/New Game"), NodePath("../CanvasLayer/StoryMode/StoryOptions/Continue"), NodePath("../CanvasLayer/StoryMode/StoryOptions/HighScore"), NodePath("../CanvasLayer/Extras/Achiements"), NodePath("../CanvasLayer/Extras/Credits"), null, NodePath("../CanvasLayer/ChallengeOptions/BooRace"), NodePath("../CanvasLayer/ChallengeOptions/ChallengeHunt"), null, NodePath("../CanvasLayer2/VersionLabel"), NodePath("../CanvasLayer/Options1/PlayGame"), NodePath("../CanvasLayer/Options1/Settings"), NodePath("../CanvasLayer/Options1/Quit Game"), NodePath("../CanvasLayer2/VersionLabel"), NodePath("../CanvasLayer2/VersionLabel/DevBuildWarning")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [node name="TextShadowColourChanger" type="Node" parent="." unique_id=1317010022 node_paths=PackedStringArray("labels")]
 script = ExtResource("23_s06mt")
-labels = [NodePath("../CanvasLayer/Options2/Story"), NodePath("../CanvasLayer/Options2/Challenges"), NodePath("../CanvasLayer/Options2/Marathon"), NodePath("../CanvasLayer/StoryMode/StoryOptions/New Game"), NodePath("../CanvasLayer/StoryMode/StoryOptions/Continue"), NodePath("../CanvasLayer/StoryMode/StoryOptions/HighScore"), NodePath("../CanvasLayer/Extras/Achiements"), NodePath("../CanvasLayer/Extras/Credits"), null, NodePath("../CanvasLayer/ChallengeOptions/BooRace"), NodePath("../CanvasLayer/ChallengeOptions/ChallengeHunt"), null, NodePath("../CanvasLayer2/VersionLabel"), NodePath("../CanvasLayer/Options1/PlayGame"), NodePath("../CanvasLayer/Options1/Settings"), NodePath("../CanvasLayer/Options1/Quit Game"), NodePath("../CanvasLayer2/VersionLabel"), null]
+labels = [NodePath("../CanvasLayer/Options2/Story"), NodePath("../CanvasLayer/Options2/Challenges"), NodePath("../CanvasLayer/Options2/Marathon"), NodePath("../CanvasLayer/StoryMode/StoryOptions/New Game"), NodePath("../CanvasLayer/StoryMode/StoryOptions/Continue"), NodePath("../CanvasLayer/StoryMode/StoryOptions/HighScore"), NodePath("../CanvasLayer/Extras/Achiements"), NodePath("../CanvasLayer/Extras/Credits"), null, NodePath("../CanvasLayer/ChallengeOptions/BooRace"), NodePath("../CanvasLayer/ChallengeOptions/ChallengeHunt"), null, NodePath("../CanvasLayer2/VersionLabel"), NodePath("../CanvasLayer/Options1/PlayGame"), NodePath("../CanvasLayer/Options1/Settings"), NodePath("../CanvasLayer/Options1/Quit Game"), NodePath("../CanvasLayer2/VersionLabel"), NodePath("../CanvasLayer2/VersionLabel/DevBuildWarning")]
 
 [node name="Logo" type="AnimatedSprite2D" parent="." unique_id=74595451]
 position = Vector2(0, -120)

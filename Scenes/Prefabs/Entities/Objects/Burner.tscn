@@ -244,6 +244,7 @@ offset = Vector2(0, 0)
 disable_physics = false
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
-[connection signal="player_hit" from="RotationJoint/EnemyPlayerDetection" to="." method="damage_player"]
-[connection signal="player_stomped_on" from="RotationJoint/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="RotationJoint/EnemyPlayerDetection" to="." method="damage_player" binds= ["Fire"]]
+[connection signal="player_stomped_below" from="RotationJoint/EnemyPlayerDetection" to="." method="damage_player" binds= ["Fire"]]
+[connection signal="player_stomped_on" from="RotationJoint/EnemyPlayerDetection" to="." method="damage_player" binds= ["Fire"]]
 [connection signal="timeout" from="Timer" to="." method="do_cycle"]

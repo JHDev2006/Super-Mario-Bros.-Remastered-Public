@@ -38,13 +38,14 @@ func do_jump() -> void:
 	await get_tree().physics_frame
 	can_jump = true
 
-func damage_player(player: Player) -> void:
-	player.damage()
-
 func calculate_jump_height() -> float:
 	global_position.y = BASE_LINE
 	return -sqrt(2 * 5 * abs(starting_y - (global_position.y))) * 8
 	
+
+func damage_player(player: Player, type: String = "Normal") -> void:
+	player.damage(type if type != "Normal" else "")
+
 const SMOKE_PARTICLE = preload("uid://d08nv4qtfouv1")
 
 func flag_die() -> void:

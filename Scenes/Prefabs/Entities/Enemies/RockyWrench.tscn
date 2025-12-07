@@ -395,6 +395,7 @@ hitbox = NodePath("../Sprite/EntityHitbox")
 metadata/_custom_type_script = "uid://cmg61722ktg2m"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
+[connection signal="player_stomped_below" from="Sprite/StompHitbox/EnemyPlayerDetection" to="." method="on_player_stomped_on"]
 [connection signal="player_stomped_on" from="Sprite/StompHitbox/EnemyPlayerDetection" to="." method="on_player_stomped_on"]
 [connection signal="hammer_player_hit" from="Sprite/EntityHitbox/EnemyPlayerDetection" to="." method="die_from_hammer"]
 [connection signal="invincible_player_hit" from="Sprite/EntityHitbox/EnemyPlayerDetection" to="." method="die_from_object"]

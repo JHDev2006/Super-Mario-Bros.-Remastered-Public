@@ -78,7 +78,10 @@ func throw_hammer() -> void:
 func spawn_hammer() -> void:
 	var node = HAMMER.instantiate()
 	node.global_position = $MovementJoint/Sprite/Hammer.global_position
+	node.velocity.y = -200
 	node.direction = direction
+	if Settings.file.audio.extra_sfx == 1:
+		AudioManager.play_sfx("hammer_throw", global_position)
 	if $TrackJoint.is_attached:
 		get_parent().owner.add_sibling(node)
 	else:

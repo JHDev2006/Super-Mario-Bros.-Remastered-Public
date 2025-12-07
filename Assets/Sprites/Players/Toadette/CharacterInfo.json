@@ -1,43 +1,255 @@
 {
 	"name": "CHAR_TOADETTE",
 	"physics": {
-		"JUMP_GRAVITY": 11.0,
-		"JUMP_HEIGHT": 300.0,
-		"JUMP_INCR": 8.0,
-		"JUMP_CANCEL_DIVIDE": 1.5,
-		"JUMP_HOLD_SPEED_THRESHOLD": 0.0,
+		"PHYSICS_PARAMETERS": {
+			"Default": {
+				"HITBOX_SCALE": [1.0, 1.0],
+				"CROUCH_SCALE": 0.5,
+				"CAN_AIR_TURN": false,
+				"CAN_BREAK_BRICKS": true,
+				"CAN_BE_WALL_EJECTED": true,
+				
+				"JUMP_WALK_THRESHOLD": 60.0,
+				"JUMP_RUN_THRESHOLD": 135.0,
+				
+				"JUMP_GRAVITY_IDLE": 11.0,
+				"JUMP_GRAVITY_WALK": 11.0,
+				"JUMP_GRAVITY_RUN": 11.0,
+				"JUMP_SPEED_IDLE": 300.0,
+				"JUMP_SPEED_WALK": 300.0,
+				"JUMP_SPEED_RUN": 300.0,
+				"JUMP_INCR": 8.0,
+				"JUMP_CANCEL_DIVIDE": 1.5,
+				"JUMP_HOLD_SPEED_THRESHOLD": 0.0,
+				
+				"CLASSIC_BOUNCE_BEHAVIOR": false,
+				"BOUNCE_SPEED": 200.0,
+				"BOUNCE_JUMP_SPEED": 300.0,
+				
+				"FALL_GRAVITY_PREDETERMINED": false,
+				"FALL_GRAVITY_IDLE": 25.0,
+				"FALL_GRAVITY_WALK": 25.0,
+				"FALL_GRAVITY_RUN": 25.0,
+				"MAX_FALL_SPEED": 280.0,
+				"CEILING_BUMP_SPEED": 45.0,
+				
+				"CLAMP_GROUND_SPEED": false,
+				"MINIMUM_SPEED": 0.0,
+				
+				"WALK_SPEED": 96.0,
+				"GROUND_WALK_ACCEL": 4.0,
+				"WALK_SKID": 8.0,
+				
+				"CAN_RUN_ACCEL_EARLY": false,
+				"RUN_STOP_BUFFER": 0.0,
+				"RUN_SPEED": 160.0,
+				"GROUND_RUN_ACCEL": 1.25,
+				"RUN_SKID": 8.0,
+				
+				"CLASSIC_SKID_CONDITIONS": false,
+				"CAN_INSTANT_STOP_SKID": false,
+				"SKID_THRESHOLD": 100.0,
+				"SKID_STOP_THRESHOLD": 10.0,
+				
+				"GROUND_DECEL": 3.0,
+				
+				"AIR_DECEL": 0.0,
+				"AIR_WALK_ACCEL": 3.0,
+				"AIR_WALK_SKID_ACCEL": 4.5,
+				"AIR_RUN_ACCEL": 3.0,
+				"AIR_RUN_SKID_ACCEL": 4.5,
+				"AIR_BACKWARDS_ACCEL": 3.0,
+				"AIR_BACKWARDS_SKID_ACCEL": 4.5,
+				"AIR_SKID_JUMP_SPEED_MINIMUM": 0.0,
 
-		"BOUNCE_HEIGHT": 200.0,
-		"BOUNCE_JUMP_HEIGHT": 300.0,
+				"LOCK_AIR_SPEED": false,
+				"USE_BACKWARDS_ACCEL": false,
+				"CAN_AIR_RUN_WITHOUT_RUN_BUTTON": false,
+				"CAN_AIR_SKID_ALWAYS": true,
+				"CAN_AIR_RUN_EARLY": false,
+				
+				"CLIMB_OFFSET": 5.0,
+				"CLIMB_UP_SPEED": 50.0,
+				"CLIMB_DOWN_SPEED": 120.0,
 
-		"FALL_GRAVITY": 25.0,
-		"MAX_FALL_SPEED": 280.0,
-		"CEILING_BUMP_SPEED": 45.0,
+				"TRAMPOLINE_SPEED": 500.0,
+				"SUPER_TRAMPOLINE_SPEED": 1200.0,
+				
+				"SWIM_SPEED": 95.0,
+				"SWIM_GROUND_SPEED": 45.0,
+				"SWIM_DECEL": 3.0,
+				"SWIM_HEIGHT": 100.0,
+				"SWIM_EXIT_SPEED": 250.0,
+				"SWIM_GRAVITY": 2.5,
+				"MAX_SWIM_FALL_SPEED": 200.0,
+			},
+			"Small": {
+				"CROUCH_SCALE": 0.75,
+				"CAN_BREAK_BRICKS": false,
+				"CAN_BE_WALL_EJECTED": false,
+			},
+			"Big": {},
+			"Fire": {},
+		},
+		"CLASSIC_PARAMETERS": {
+			"Default": {
+				"HITBOX_SCALE": [1.0, 1.0],
+				"CROUCH_SCALE": 0.5,
+				"CAN_AIR_TURN": false,
+				"CAN_BREAK_BRICKS": true,
+				"CAN_BE_WALL_EJECTED": true,
+				
+				"JUMP_WALK_THRESHOLD": 60.0,
+				"JUMP_RUN_THRESHOLD": 135.0,
+				
+				"JUMP_GRAVITY_IDLE": 7.5,
+				"JUMP_GRAVITY_WALK": 7.03,
+				"JUMP_GRAVITY_RUN": 9.375,
+				"JUMP_SPEED_IDLE": 248.0,
+				"JUMP_SPEED_WALK": 248.0,
+				"JUMP_SPEED_RUN": 310.0,
+				"JUMP_INCR": 0.0,
+				"JUMP_CANCEL_DIVIDE": 1.0,
+				"JUMP_HOLD_SPEED_THRESHOLD": 0.0,
+				
+				"CLASSIC_BOUNCE_BEHAVIOR": true,
+				"BOUNCE_SPEED": 248.0,
+				"BOUNCE_JUMP_SPEED": 310.0,
+				
+				"FALL_GRAVITY_PREDETERMINED": true,
+				"FALL_GRAVITY_IDLE": 26.25,
+				"FALL_GRAVITY_WALK": 22.5,
+				"FALL_GRAVITY_RUN": 33.75,
+				"MAX_FALL_SPEED": 255.0,
+				"CEILING_BUMP_SPEED": 45.0,
+				
+				"CLAMP_GROUND_SPEED": true,
+				"MINIMUM_SPEED": 4.46,
+				
+				"WALK_SPEED": 90.0,
+				"GROUND_WALK_ACCEL": 2.23,
+				"WALK_SKID": 6.1,
+				
+				"CAN_RUN_ACCEL_EARLY": true,
+				"RUN_STOP_BUFFER": 0.167,
+				"RUN_SPEED": 150.0,
+				"GROUND_RUN_ACCEL": 3.34,
+				"RUN_SKID": 6.1,
+				
+				"CLASSIC_SKID_CONDITIONS": true,
+				"CAN_INSTANT_STOP_SKID": true,
+				"SKID_THRESHOLD": 100.0,
+				"SKID_STOP_THRESHOLD": 33.75,
+				
+				"GROUND_DECEL": 2.23,
+				
+				"AIR_DECEL": 0.0,
+				"AIR_WALK_ACCEL": 2.23,
+				"AIR_WALK_SKID_ACCEL": 3.04,
+				"AIR_RUN_ACCEL": 3.34,
+				"AIR_RUN_SKID_ACCEL": 3.34,
+				"AIR_BACKWARDS_ACCEL": 4.46,
+				"AIR_BACKWARDS_SKID_ACCEL": 4.46,
+				"AIR_SKID_JUMP_SPEED_MINIMUM": 105.0,
 
-		"WALK_SPEED": 96.0,
-		"GROUND_WALK_ACCEL": 4.0,
-		"WALK_SKID": 8.0,
+				"LOCK_AIR_SPEED": true,
+				"USE_BACKWARDS_ACCEL": true,
+				"CAN_AIR_RUN_WITHOUT_RUN_BUTTON": true,
+				"CAN_AIR_SKID_ALWAYS": false,
+				"CAN_AIR_RUN_EARLY": false,
+				
+				"CLIMB_OFFSET": 5.0,
+				"CLIMB_UP_SPEED": 50.0,
+				"CLIMB_DOWN_SPEED": 120.0,
 
-		"RUN_SPEED": 160.0,
-		"GROUND_RUN_ACCEL": 1.25,
-		"RUN_SKID": 8.0,
-
-		"DECEL": 3.0,
-		"AIR_ACCEL": 3.0,
-		"AIR_SKID": 1.5,
-
-		"SWIM_SPEED": 95.0,
-		"SWIM_GROUND_SPEED": 45.0,
-		"SWIM_HEIGHT": 100.0,
-		"SWIM_GRAVITY": 2.5,
-		"MAX_SWIM_FALL_SPEED": 200.0,
-
-		"DEATH_JUMP_HEIGHT": 300.0,
-		
-		"can_air_turn": false
+				"TRAMPOLINE_SPEED": 500.0,
+				"SUPER_TRAMPOLINE_SPEED": 1200.0,
+				
+				"SWIM_SPEED": 95.0,
+				"SWIM_GROUND_SPEED": 45.0,
+				"SWIM_DECEL": 0.0,
+				"SWIM_HEIGHT": 100.0,
+				"SWIM_EXIT_SPEED": 250.0,
+				"SWIM_GRAVITY": 2.5,
+				"MAX_SWIM_FALL_SPEED": 200.0,
+			},
+			"Small": {
+				"CROUCH_SCALE": 1.0,
+				"CAN_BREAK_BRICKS": false,
+				"CAN_BE_WALL_EJECTED": false,
+			},
+			"Big": {},
+			"Fire": {},
+		},
+		"ENDING_PARAMETERS": {
+			"Default": {
+				"FLAG_SKIP_GRAB": false,
+				"FLAG_HANG_TIMER": 1.5,
+				"FLAG_SLIDE_SPEED": 125.0,
+				
+				"FLAG_INITIAL_X_VELOCITY": 0.0,
+				"FLAG_JUMP_SPEED": 0.0,
+				"FLAG_JUMP_INCR": 8.0,
+				
+				"FLAG_SPEED_MULT": 1.0,
+				"FLAG_ACCEL_MULT": 1.0,
+				"TOAD_SPEED_MULT": 1.0,
+				"TOAD_ACCEL_MULT": 1.0,
+				"PEACH_SPEED_MULT": 1.0,
+				"PEACH_ACCEL_MULT": 1.0,
+				
+				"DOOR_POSE_OFFSET": 0.0,
+				"TOAD_POSE_OFFSET": -12.0,
+				"PEACH_POSE_OFFSET": -12.0,
+			},
+			"Small": {},
+			"Big": {},
+			"Fire": {},
+		},
+		"DEATH_PARAMETERS": {
+			"Default": {
+				"DEATH_COLLISION": false,
+				"DEATH_HANG_TIMER": 0.5,
+				"DEATH_X_VELOCITY": 0,
+				"DEATH_DECEL": 3.0,
+				"DEATH_JUMP_SPEED": 300.0,
+				"DEATH_FALL_GRAVITY": 11.0,
+				"DEATH_MAX_FALL_SPEED": 280.0,
+			},
+			"Fire": {},
+		},
+		"COSMETIC_PARAMETERS": {
+			"Default": {
+				"WING_OFFSET": [0.0, 0.0],
+				"HAMMER_OFFSET": [0.0, -8.0],
+				
+				"MOVE_ANIM_SPEED_DIV": 32,
+				
+				"RAINBOW_STAR_FX_SPEED": 15.0,
+				"RAINBOW_STAR_SLOW_FX_SPEED": 7.5,
+				"RAINBOW_POWERUP_FX": true,
+				"RAINBOW_FX_SPEED": 15.0,
+				
+				"WALK_SFX": "walk",
+				"RUN_SFX": "run",
+				"SKID_SFX": "skid",
+				"JUMP_SFX": "big_jump",
+				"TRAMPOLINE_SFX": "big_trampoline",
+				"TRAMPOLINE_USED_SFX": "big_used_trampoline",
+				"GROUNDED_WALK_SFX": true,
+				"GROUNDED_RUN_SFX": true,
+			},
+			"Small": {
+				"WING_OFFSET": [0.0, 10.0],
+				"RAINBOW_POWERUP_FX": false,
+				"JUMP_SFX": "small_jump",
+				"TRAMPOLINE_SFX": "small_trampoline",
+				"TRAMPOLINE_USED_SFX": "small_used_trampoline",
+			},
+			"Big": {
+				"RAINBOW_POWERUP_FX": false,
+			},
+			"Fire": {},
+		},
 	},
-	"small_hitbox_scale": [1.0, 1.0],
-	"small_crouch_scale": 0.75,
-	"big_hitbox_scale": [1.0, 1.0],
-	"big_crouch_scale": 0.5
 }

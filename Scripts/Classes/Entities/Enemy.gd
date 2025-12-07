@@ -10,8 +10,8 @@ signal killed(direction: int)
 var direction := -1
 var ignore_flag_die := false
 
-func damage_player(player: Player) -> void:
-	player.damage()
+func damage_player(player: Player, type: String = "Normal") -> void:
+	player.damage(type if type != "Normal" else "")
 
 func apply_enemy_gravity(delta: float) -> void:
 	velocity.y += (Global.entity_gravity / delta) * delta

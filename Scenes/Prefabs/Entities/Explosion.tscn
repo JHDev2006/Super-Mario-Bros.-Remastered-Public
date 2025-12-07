@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://byy3k1pdrp77" path="res://Assets/Sprites/Particles/Smoke.png" id="3_dvv3e"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_dvv3e"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="4_hjivi"]
-[ext_resource type="AudioStream" uid="uid://d12v455mw8uvu" path="res://Assets/Audio/SFX/Cannon.wav" id="5_8imqq"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Particles/FireballExplosion.json" id="5_hjivi"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="8_hjivi"]
 
@@ -241,6 +240,9 @@ _data = {
 &"RESET": SubResource("Animation_anr6o")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjivi"]
+size = Vector2(14, 14)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6tdk1"]
 radius = 24.0
 
@@ -307,11 +309,8 @@ libraries = {
 }
 autoplay = "Go"
 
-[node name="SFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_8imqq")
-autoplay = true
-max_distance = 256.0
-bus = &"SFX"
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hjivi")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 255
@@ -324,5 +323,6 @@ script = ExtResource("8_hjivi")
 hitbox = NodePath("../Hitbox")
 
 [connection signal="body_entered" from="Hitbox" to="." method="on_body_entered"]
-[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
-[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player" binds= ["Fire"]]
+[connection signal="player_stomped_below" from="EnemyPlayerDetection" to="." method="damage_player" binds= ["Fire"]]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player" binds= ["Fire"]]
