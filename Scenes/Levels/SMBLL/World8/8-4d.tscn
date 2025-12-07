@@ -24,6 +24,7 @@
 script = ExtResource("1_c42te")
 music = ExtResource("2_o6woj")
 theme = "Castle"
+theme_time = "Night"
 campaign = "SMBLL"
 world_id = 8
 level_id = 4
@@ -86,6 +87,7 @@ tilemap = NodePath("../Tiles")
 metadata/_custom_type_script = "uid://cybpwmw4ywoow"
 
 [node name="LevelBG" parent="." instance=ExtResource("17_jtpt3")]
+time_of_day = 1
 
 [node name="ChallengeNodes" type="Node" parent="." node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("17_8y1pn")
@@ -99,20 +101,6 @@ id = 4
 [node name="CastleChallengeEnd" parent="ChallengeNodes" instance=ExtResource("19_jtpt3")]
 position = Vector2(1472, 0)
 
-[connection signal="block_destroyed" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active"]
-[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="player_mushroom_check"]
-[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="dispense_item" unbinds=1]
-[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="dispense_item" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@46683" to="Tiles/@AnimatableBody2D@46683/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@46683" to="Tiles/@AnimatableBody2D@46683/LevelPersistance" method="set_as_active"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@46683" to="Tiles/@AnimatableBody2D@46683" method="player_mushroom_check"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@46683" to="Tiles/@AnimatableBody2D@46683" method="dispense_item" unbinds=1]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@46683" to="Tiles/@AnimatableBody2D@46683/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@46683" to="Tiles/@AnimatableBody2D@46683" method="dispense_item" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@46683" to="Tiles/@AnimatableBody2D@46683/BlockAnimations" method="bounce_block" unbinds=1]
 [connection signal="axe_touched" from="CastleBridge" to="Bowser" method="bridge_fall"]
 [connection signal="victory_begin" from="CastleBridge" to="LostLevelsEndingDoor" method="begin"]
 [connection signal="victory_begin" from="CastleBridge" to="ChallengeNodes/CastleChallengeEnd" method="begin"]

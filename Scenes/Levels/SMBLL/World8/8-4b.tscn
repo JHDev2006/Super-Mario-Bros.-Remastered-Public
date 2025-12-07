@@ -20,6 +20,7 @@
 script = ExtResource("1_3qsc3")
 music = ExtResource("2_wnowg")
 theme = "Castle"
+theme_time = "Night"
 campaign = "SMBLL"
 world_id = 8
 level_id = 4
@@ -57,6 +58,7 @@ tilemap = NodePath("../Tiles")
 metadata/_custom_type_script = "uid://cybpwmw4ywoow"
 
 [node name="LevelBG" parent="." instance=ExtResource("10_7icic")]
+time_of_day = 1
 particles = 3
 
 [node name="ChallengeNodes" type="Node" parent="."]
@@ -88,10 +90,3 @@ optional = true
 position = Vector2(-232, -56)
 
 [connection signal="ready" from="Camera2D" to="Camera2D" method="make_current"]
-[connection signal="block_destroyed" from="SettingObjectNode/Tiles2/QuestionBlock" to="SettingObjectNode/Tiles2/QuestionBlock/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="SettingObjectNode/Tiles2/QuestionBlock" to="SettingObjectNode/Tiles2/QuestionBlock/LevelPersistance" method="set_as_active"]
-[connection signal="player_block_hit" from="SettingObjectNode/Tiles2/QuestionBlock" to="SettingObjectNode/Tiles2/QuestionBlock" method="player_mushroom_check"]
-[connection signal="player_block_hit" from="SettingObjectNode/Tiles2/QuestionBlock" to="SettingObjectNode/Tiles2/QuestionBlock" method="dispense_item" unbinds=1]
-[connection signal="player_block_hit" from="SettingObjectNode/Tiles2/QuestionBlock" to="SettingObjectNode/Tiles2/QuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="SettingObjectNode/Tiles2/QuestionBlock" to="SettingObjectNode/Tiles2/QuestionBlock" method="dispense_item" unbinds=1]
-[connection signal="shell_block_hit" from="SettingObjectNode/Tiles2/QuestionBlock" to="SettingObjectNode/Tiles2/QuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
