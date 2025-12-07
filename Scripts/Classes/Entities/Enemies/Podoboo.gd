@@ -17,7 +17,7 @@ func _ready() -> void:
 		Global.log_warning("Podoboo is too low! Forgot to update!")
 
 func _physics_process(delta: float) -> void:
-	velocity += (5 / delta) * delta
+	velocity += (5) * delta * 60.0
 	velocity = clamp(velocity, -INF, 280)
 	global_position.y += velocity * delta
 	global_position.y = clamp(global_position.y, -INF, BASE_LINE)

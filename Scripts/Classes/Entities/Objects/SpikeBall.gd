@@ -10,7 +10,7 @@ func _physics_process(delta: float) -> void:
 
 func handle_movement(delta: float) -> void:
 	if can_gravity:
-		velocity.y += (Global.entity_gravity / delta) * delta
+		velocity.y += (Global.entity_gravity) * delta * 60.0
 	if is_on_floor():
 		can_gravity = true
 		velocity.x += get_floor_normal().x * 4

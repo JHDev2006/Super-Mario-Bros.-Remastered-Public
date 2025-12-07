@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	$Sprite.scale.x = direction
 	$Sprite/Animation.speed_scale = direction * 2
 	velocity.x = MOVE_SPEED * direction
-	velocity.y += (15 / delta) * delta
+	velocity.y += (15) * delta * 60.0
 	velocity.y = clamp(velocity.y, -INF, 150)
 	if is_on_floor():
 		velocity.y = -125

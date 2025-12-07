@@ -16,5 +16,5 @@ func handle_movement(delta: float) -> void:
 	owner.move_and_slide()
 
 func apply_gravity(delta: float) -> void:
-	owner.velocity.y += (Global.entity_gravity / delta) * delta
+	owner.velocity.y += (Global.entity_gravity ) * delta * 60.0
 	owner.velocity.y = clamp(owner.velocity.y, -INF, Global.entity_max_fall_speed)

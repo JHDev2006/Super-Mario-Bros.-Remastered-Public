@@ -23,7 +23,7 @@ func physics_update(delta: float) -> void:
 	player.sprite.speed_scale = 1
 	if can_fall:
 		# nabbup : Flip death gravity when upside down
-		player.velocity.y += (player.JUMP_GRAVITY / delta) * delta * player.gravity_vector.y
+		player.velocity.y += (player.JUMP_GRAVITY) * delta * 60.0 * player.gravity_vector.y
 		player.velocity.y = clamp(player.velocity.y, -player.MAX_FALL_SPEED, player.MAX_FALL_SPEED) # wish this could be better than just substituting -INF but you can't win em all ~ nabbup
 		player.move_and_slide()
 		if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("jump_0"):
