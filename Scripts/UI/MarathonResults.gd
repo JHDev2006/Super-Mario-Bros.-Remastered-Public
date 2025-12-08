@@ -84,6 +84,8 @@ func restart_level() -> void:
 	close()
 
 func go_to_menu() -> void:
+	TitleScreen.return_to = TitleScreen.TITLE_RETURN.OPTIONS2
+	TitleScreen.return_selected_index = 2
 	Global.transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
 
 func close() -> void:
