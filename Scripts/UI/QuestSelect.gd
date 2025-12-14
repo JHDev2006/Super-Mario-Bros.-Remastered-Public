@@ -30,7 +30,9 @@ func handle_input() -> void:
 		return
 
 func set_index(idx := false) -> void:
-	selected_index = int(idx)
+	selected_index = wrapi(int(idx), 0, 2)
+	if Settings.file.audio.extra_sfx == 1:
+		AudioManager.play_global_sfx("menu_move")
 
 func select() -> void:
 	Global.second_quest = bool(selected_index)

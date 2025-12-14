@@ -262,7 +262,7 @@ func update_pb() -> void:
 			i.get_node("Full").hide()
 
 func handle_input() -> void:
-	selected_level = clamp(selected_level, 0, 3)
+	selected_level = wrapi(selected_level, 0, 4)
 	if Input.is_action_just_pressed("ui_accept"):
 		if visited_levels[selected_level] == "0" and selected_level != 0 and not Global.debug_mode:
 			AudioManager.play_sfx("bump")

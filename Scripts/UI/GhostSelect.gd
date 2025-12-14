@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 		selected_index += 1
 	elif Input.is_action_just_pressed("ui_up"):
 		selected_index -= 1
-	selected_index = clamp(selected_index, 0, 1)
+	selected_index = wrapi(selected_index, 0, 2)
 	if Input.is_action_just_pressed("ui_accept"):
 		selected.emit()
 		SpeedrunHandler.ghost_enabled = bool(selected_index)

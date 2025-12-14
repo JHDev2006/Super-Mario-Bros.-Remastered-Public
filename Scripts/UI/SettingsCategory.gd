@@ -40,7 +40,7 @@ func handle_input() -> void:
 			AudioManager.play_global_sfx("menu_move")
 	if scroll_container != null:
 		scroll_container.scroll_vertical = float(lerpf(0.0, scroll_container.get_v_scroll_bar().max_value, inverse_lerp(0.0, options.size() - 1, selected_index - 2)))
-	selected_index = clamp(selected_index, minimum_idx, options.size() - 1)
+	selected_index = wrapi(selected_index, minimum_idx, options.size())
 
 func auto_get_options() -> void:
 	options.clear()
