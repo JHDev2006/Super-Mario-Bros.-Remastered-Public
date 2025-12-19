@@ -22,6 +22,7 @@ static var state := [0, 0, 0]
 
 static var pack_configs := {}
 
+var pack_format := 0
 var config_to_use := {}
 
 var is_random := false
@@ -66,6 +67,7 @@ func update_resource() -> void:
 
 func get_resource(json_file: JSON) -> Resource:
 	if cache.has(json_file.resource_path) and use_cache and force_properties.is_empty():
+		current_json_path = json_file.resource_path
 		if property_cache.has(json_file.resource_path):
 			apply_properties(property_cache[json_file.resource_path])
 		return cache[json_file.resource_path]
@@ -80,6 +82,7 @@ func get_resource(json_file: JSON) -> Resource:
 			current_resource_pack = i
 		resource_path = new_path
 	
+	current_json_path = resource_path
 	var source_json = JSON.parse_string(FileAccess.open(resource_path, FileAccess.READ).get_as_text())
 	if source_json == null:
 		Global.log_error("Error parsing " + resource_path + "!")
@@ -193,116 +196,126 @@ func apply_properties(properties := {}) -> void:
 					obj.set(p, properties[i])
 					continue
 
-
-
 func get_variation_json(json := {}) -> Dictionary:
-	var level_theme = Global.level_theme
-	if force_properties.has("Theme"):
-		level_theme = force_properties.Theme
+	get_pack_format(current_resource_pack)
+	get_config_file(current_resource_pack)
+	if pack_format == 1:
+		return get_variation_json_new(json)
+	return get_variation_json_old(json)
+
+func get_variation_json_new(json := {}, default := {}) -> Dictionary:
+	if json.has("source"):
+		return json
+	if json.has("choices"):
+		is_random = true
+		var random_json = json.choices.pick_random()
+		if random_json.has("link"):
+			return get_variation_json_new(json[random_json.link], default)
+		else:
+			return get_variation_json_new(random_json, default)
+	if json.has("default"):
+		default = json.default
+	
+	if config_to_use != {}:
+		var options: Array = config_to_use.options.keys()
+		for i: String in options:
+			if json.has("config:" + i):
+				var value = config_to_use.options[i]
+				if json["config:" + i].has(value):
+					return get_variation_json_new(json["config:" + i][value])
+	
+	var valid_variations := {
+		"Theme": Global.level_theme,
+		"Time": Global.theme_time,
+		"Campaign": Global.current_campaign,
+		"World": "World" + str(Global.world_num),
+		"Level": "Level" + str(Global.level_num),
+		"Room": Global.room_strings[Global.current_room],
+		"GameMode": Global.game_mode_strings[Global.current_game_mode],
+		"Character": "Character:" + Player.CHARACTERS[int(Global.player_characters[0])],
+		"RaceBoo": "RaceBoo:" + str(BooRaceHandler.boo_colour)
+	}
+	for i: String in valid_variations.keys():
+		if force_properties.has(i):
+			valid_variations[i] = force_properties[i]
+		var variation: String = valid_variations[i]
+		if json.has(variation):
+			if json[variation].has("link"):
+				return get_variation_json_new(json[json[variation].link], default)
+			else:
+				return get_variation_json_new(json[variation], default)
+	
+	return get_variation_json_new(default)
+
+func get_variation_json_old(json := {}) -> Dictionary:
 	for i in json.keys().filter(func(key): return key.contains("config:")):
-		get_config_file(current_resource_pack)
 		if config_to_use != {}:
 			var option_name = i.get_slice(":", 1)
 			if config_to_use.options.has(option_name):
 				var config_json = json[i][config_to_use.options[option_name]]
 				if config_json.has("link"):
-					json = get_variation_json(json[config_json.get("link")])
+					json = get_variation_json_old(json[config_json.get("link")])
 				else:
-					json = get_variation_json(config_json)
+					json = get_variation_json_old(config_json)
 				break
-	
-	if json.has(level_theme) == false:
-		level_theme = "default"
-	if json.has(level_theme):
-		if json.get(level_theme).has("link"):
-			json = get_variation_json(json[json.get(level_theme).get("link")])
-		else:
-			json = get_variation_json(json[level_theme])
-	
-	var level_time = Global.theme_time
-	if force_properties.has("Time"):
-		level_time = force_properties.Time
-	if json.has(level_time):
-		json = get_variation_json(json[level_time])
-	
-	var campaign = Global.current_campaign
-	if force_properties.has("Campaign"):
-		campaign = force_properties.Campaign
-	if json.has(campaign) == false:
-		campaign = "SMB1"
-	if json.has(campaign):
-		if json.get(campaign).has("link"):
-			json = get_variation_json(json[json.get(campaign).get("link")])
-		else:
-			json = get_variation_json(json[campaign])
 	
 	if json.has("choices"):
 		is_random = true
 		var random_json = json.choices.pick_random()
 		if random_json.has("link"):
-			json = get_variation_json(json[random_json.get("link")])
+			json = get_variation_json_old(json[random_json.get("link")])
 		else:
-			json = get_variation_json(random_json)
+			json = get_variation_json_old(random_json)
 	
-	var world = "World" + str(Global.world_num)
-	if force_properties.has("World"):
-		world = "World" + str(force_properties.World)
-	if json.has(world) == false:
-		world = "World1"
-	if json.has(world):
-		if json.get(world).has("link"):
-			json = get_variation_json(json[json.get(world).get("link")])
-		else:
-			json = get_variation_json(json[world])
+	var valid_variations := {
+		"Theme": Global.level_theme,
+		"Time": Global.theme_time,
+		"Campaign": Global.current_campaign,
+		"World": "World" + str(Global.world_num),
+		"Level": "Level" + str(Global.level_num),
+		"Room": Global.room_strings[Global.current_room],
+		"GameMode": Global.game_mode_strings[Global.current_game_mode],
+		"Character": "Character:" + Player.CHARACTERS[int(Global.player_characters[0])],
+		"RaceBoo": "RaceBoo:" + str(BooRaceHandler.boo_colour)
+	}
+	var defaults := {
+		"Theme": "default",
+		"Time": "Day",
+		"Campaign": "SMB1",
+		"World": "World1",
+		"Level": "Level1",
+		"Room": Global.room_strings[0],
+		"GameMode": Global.game_mode_strings[0],
+		"Character": "Character:default",
+		"RaceBoo": "RaceBoo:0"
+	}
 	
-	var level_string = "Level" + str(Global.level_num)
-	if json.has(level_string) == false:
-		level_string = "Level1"
-	if json.has(level_string):
-		if json.get(level_string).has("link"):
-			json = get_variation_json(json[json.get(level_string).get("link")])
-		else:
-			json = get_variation_json(json[level_string])
-	
-	var room = Global.room_strings[Global.current_room]
-	if json.has(room) == false:
-		room = Global.room_strings[0]
-	if json.has(room):
-		if json.get(room).has("link"):
-			json = get_variation_json(json[json.get(room).get("link")])
-		else:
-			json = get_variation_json(json[room])
-	
-	var game_mode = "GameMode:" + Global.game_mode_strings[Global.current_game_mode]
-	if json.has(game_mode) == false:
-		game_mode = "GameMode:" + Global.game_mode_strings[0]
-	if json.has(game_mode):
-		if json.get(game_mode).has("link"):
-			json = get_variation_json(json[json.get(game_mode).get("link")])
-		else:
-			json = get_variation_json(json[game_mode])
-	
-	var chara = "Character:" + Player.CHARACTERS[int(Global.player_characters[0])]
-	if json.has(chara) == false:
-		chara = "Character:default"
-	if json.has(chara):
-		if json.get(chara).has("link"):
-			json = get_variation_json(json[json.get(chara).get("link")])
-		else:
-			json = get_variation_json(json[chara])
-	
-	var boo = "RaceBoo:" + str(BooRaceHandler.boo_colour)
-	if json.has(boo) == false:
-		boo = "RaceBoo:0"
-	if force_properties.has("RaceBoo"):
-		boo = "RaceBoo:" + str(force_properties["RaceBoo"])
-	if json.has(boo):
-		if json.get(boo).has("link"):
-			json = get_variation_json(json[json.get(boo).get("link")])
-		else:
-			json = get_variation_json(json[boo])
+	for i: String in valid_variations.keys():
+		if force_properties.has(i):
+			valid_variations[i] = force_properties[i]
+		var variation: String = valid_variations[i]
+		if not json.has(variation):
+			variation = defaults[i]
+		if json.has(variation):
+			if json[variation].has("link"):
+				return get_variation_json_old(json[json[variation].link])
+			else:
+				return get_variation_json_old(json[variation])
 	
 	return json
+
+func get_pack_format(resource_pack := "") -> void:
+	pack_format = 0
+	if current_json_path.begins_with("res://") or resource_pack == Global.ROM_PACK_NAME:
+		return
+	
+	var path: String = Global.config_path.path_join("resource_packs/" + resource_pack + "/pack_info.json")
+	if FileAccess.file_exists(path):
+		var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
+		if json is Dictionary:
+			pack_format = json.get("format", 0)
+		else:
+			Global.log_error("Error parsing Pack Info File! (" + resource_pack + ")")
 
 func get_config_file(resource_pack := "") -> void:
 	if FileAccess.file_exists(Global.config_path.path_join("resource_packs/" + resource_pack + "/config.json")):
