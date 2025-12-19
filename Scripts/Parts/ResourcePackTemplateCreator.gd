@@ -13,9 +13,10 @@ const base_info_json := {
 	"name": "New Pack",
 	"description": "Template, give me a description!",
 	"author": "Me, until you change it",
-	"version": "1.0"
-	}
-	
+	"version": "1.0",
+	"format": 0
+}
+
 const disallowed_files := ["bgm","ctex","json","fnt", "svg"]
 
 func create_template() -> void:
@@ -79,7 +80,7 @@ func create_template() -> void:
 	var pack_info_path = Global.config_path.path_join("resource_packs/new_pack/pack_info.json")
 	DirAccess.make_dir_recursive_absolute(pack_info_path.get_base_dir())
 	var file = FileAccess.open(pack_info_path, FileAccess.WRITE)
-	file.store_string(JSON.stringify(base_info_json, "\t"))
+	file.store_string(JSON.stringify(base_info_json, "\t", false))
 	file.close()
 	print("Done")
 	pack_created.emit()
