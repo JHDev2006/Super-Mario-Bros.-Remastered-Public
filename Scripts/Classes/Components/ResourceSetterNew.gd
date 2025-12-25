@@ -208,7 +208,7 @@ func get_variation_json_new(json := {}, default := {}) -> Dictionary:
 		return json
 	if json.has("choices"):
 		is_random = true
-		var random_json = json.choices.pick_random()
+		var random_json = get_random_json(json.choices)
 		if random_json.has("link"):
 			return get_variation_json_new(json[random_json.link], default)
 		else:
@@ -261,7 +261,7 @@ func get_variation_json_old(json := {}) -> Dictionary:
 	
 	if json.has("choices"):
 		is_random = true
-		var random_json = json.choices.pick_random()
+		var random_json = get_random_json(json.choices)
 		if random_json.has("link"):
 			json = get_variation_json_old(json[random_json.get("link")])
 		else:
@@ -303,6 +303,13 @@ func get_variation_json_old(json := {}) -> Dictionary:
 				return get_variation_json_old(json[variation])
 	
 	return json
+
+func get_random_json(choices: Array) -> Dictionary:
+	var rng := RandomNumberGenerator.new()
+	var weights: PackedFloat32Array = []
+	for i in choices:
+		weights.append(i.get("weight", 1))
+	return choices[rng.rand_weighted(weights)]
 
 func get_pack_format(resource_pack := "") -> void:
 	pack_format = 0
