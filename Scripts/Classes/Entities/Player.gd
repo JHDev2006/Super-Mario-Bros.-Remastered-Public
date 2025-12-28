@@ -736,6 +736,7 @@ func check_for_block() -> void:
 func power_up_animation(new_power_state := "") -> void:
 	if normal_state.jump_buffer > 0:
 		normal_state.jump_buffer += 10
+	var can_powerup_jump = not Global.player_action_pressed("jump", player_id)
 	var old_frames = sprite.sprite_frames
 	var new_frames = $ResourceSetterNew.get_resource(load(get_character_sprite_path(new_power_state)))
 	sprite.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -784,7 +785,7 @@ func power_up_animation(new_power_state := "") -> void:
 			transforming = false
 	get_tree().paused = false
 	sprite.process_mode = Node.PROCESS_MODE_INHERIT
-	if Global.player_action_just_pressed("jump", player_id):
+	if Global.player_action_pressed("jump", player_id) and can_powerup_jump:
 		jump()
 	return
 
