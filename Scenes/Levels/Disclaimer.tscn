@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bn66tnn8nlpi7"]
+[gd_scene format=3 uid="uid://bn66tnn8nlpi7"]
 
 [ext_resource type="Script" uid="uid://bjsdmqxwrb6sd" path="res://Scripts/Parts/Disclaimer.gd" id="1_esyiu"]
 [ext_resource type="AudioStream" uid="uid://o8wqcv7gjfkn" path="res://Assets/Audio/SFX/Pause.wav" id="3_x4k0q"]
@@ -141,10 +141,10 @@ _data = {
 [sub_resource type="SystemFont" id="SystemFont_x4k0q"]
 font_names = PackedStringArray("Monospace")
 
-[node name="Disclaimer" type="Node"]
+[node name="Disclaimer" type="Node" unique_id=221632394]
 script = ExtResource("1_esyiu")
 
-[node name="BG" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="." unique_id=907592391]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -152,17 +152,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_f4ecw")
-}
-autoplay = "Go"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1829814800]
+libraries/ = SubResource("AnimationLibrary_f4ecw")
+autoplay = &"Go"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=139107273]
 volume_db = -5.0
 bus = &"SFX"
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=959598179]
 visible = false
 modulate = Color(0.968627, 0.223529, 0.0627451, 1)
 anchors_preset = 10
@@ -175,7 +173,7 @@ text = "TITLE_DISCLAIMER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="1" type="Label" parent="."]
+[node name="1" type="Label" parent="." unique_id=847078022]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -189,7 +187,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="2" type="Label" parent="."]
+[node name="2" type="Label" parent="." unique_id=936578666]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -203,7 +201,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Enjoy" type="Label" parent="."]
+[node name="Enjoy" type="Label" parent="." unique_id=1847812149]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0

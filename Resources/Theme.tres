@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=57 format=3 uid="uid://dtn507x2b5de7"]
+[gd_resource type="Theme" format=3 uid="uid://dtn507x2b5de7"]
 
 [ext_resource type="FontVariation" uid="uid://bl7sbw4nx3l1t" path="res://Resources/ThemedResources/FontMain.tres" id="1_kpcpn"]
 [ext_resource type="Texture2D" uid="uid://7qtdxl2cjxeh" path="res://Assets/Sprites/UI/Checkbox.png" id="1_rioqa"]
