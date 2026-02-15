@@ -7,11 +7,9 @@
 				[32, 0, 16, 16],
 				[48, 0, 16, 16],
 			],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		}
 	},
-	"variations": {
-		"default": {"source": "SmallOneWayPanel.png"}
-	}
+	"variations": {"source": "SmallOneWayPanel.png"}
 }

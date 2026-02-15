@@ -7,16 +7,17 @@
 				[32, 0, 16, 48],
 				[48, 0, 16, 48]
 			],
-			"speed": 30.0,
+			"speed": 30,
 			"loop": true
 		},
 		"Off": {
 			"frames": [[0, 0, 16, 48]],
-			"speed": 30.0,
+			"speed": 30,
 			"loop": true
 		}
 	},
 	"variations": {
-		"default": {"source": "OnOffFan.png", "rect": [0, 48, 64, 48]}
+		"source": "OnOffFan.png",
+		"rect": [0, 48, 64, 48]
 	}
 }
