@@ -2,8 +2,8 @@
 	"animations": {
 		"default": {
 			"frames": [[0, 0, 32, 32]],
-			"speed": 5.0,
-			"loop": false
+			"speed": 5,
+			"loop": true
 		}
 	},
 	"variations": {
@@ -15,8 +15,8 @@
 			"source": "LakituCloud.png",
 			"rect": [32, 0, 32, 32]
 		},
-		"Castle": {"link": "Underground"},
 		"GhostHouse": {"link": "Underground"},
+		"Castle": {"link": "Underground"},
 		"Underwater": {
 			"source": "LakituCloud.png",
 			"rect": [64, 0, 32, 32]

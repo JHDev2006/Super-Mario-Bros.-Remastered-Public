@@ -1,7 +1,15 @@
 {
 	"animations": {
-		"Normal": {"frames": [[0, 0, 32, 32]], "speed": 5.0, "loop": true},
-		"Angry": {"frames": [[32, 0, 32, 32]], "speed": 5.0, "loop": true}
+		"Normal": {
+			"frames": [[0, 0, 32, 32]],
+			"speed": 5,
+			"loop": true
+		},
+		"Angry": {
+			"frames": [[32, 0, 32, 32]],
+			"speed": 5,
+			"loop": true
+		}
 	},
-	"variations": {"default": {"source": "WigglerHead.png"}}
+	"variations": {"source": "WigglerHead.png"}
 }

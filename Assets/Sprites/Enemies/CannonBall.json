@@ -8,10 +8,7 @@
 			"source": "CannonBall.png",
 			"rect": [16, 0, 16, 16]
 		},
-		"GhostHouse": {
-			"source": "CannonBall.png",
-			"rect": [16, 0, 16, 16]
-		},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {
 			"source": "CannonBall.png",
 			"rect": [32, 0, 16, 16]
@@ -20,10 +17,7 @@
 			"source": "CannonBall.png",
 			"rect": [48, 0, 16, 16]
 		},
-		"CastleWater": {
-			"source": "CannonBall.png",
-			"rect": [48, 0, 16, 16]
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Desert": {
 			"source": "CannonBall.png",
 			"rect": [0, 16, 16, 16]
@@ -52,6 +46,7 @@
 			"source": "CannonBall.png",
 			"rect": [32, 32, 16, 16]
 		},
+		"Airship": {"link": "Mountain"},
 		"Space": {
 			"source": "CannonBall.png",
 			"rect": [48, 32, 16, 16]

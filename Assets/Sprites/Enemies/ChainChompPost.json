@@ -8,10 +8,7 @@
 			"source": "ChainChompPost.png",
 			"rect": [16, 0, 16, 16]
 		},
-		"GhostHouse": {
-			"source": "ChainChompPost.png",
-			"rect": [16, 0, 16, 16]
-		},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {
 			"source": "ChainChompPost.png",
 			"rect": [32, 0, 16, 16]
@@ -20,10 +17,7 @@
 			"source": "ChainChompPost.png",
 			"rect": [48, 0, 16, 16]
 		},
-		"CastleWater": {
-			"source": "ChainChompPost.png",
-			"rect": [48, 0, 16, 16]
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Desert": {
 			"source": "ChainChompPost.png",
 			"rect": [0, 16, 16, 16]
@@ -52,6 +46,7 @@
 			"source": "ChainChompPost.png",
 			"rect": [32, 32, 16, 16]
 		},
+		"Airship": {"link": "Mountain"},
 		"Space": {
 			"source": "ChainChompPost.png",
 			"rect": [48, 32, 16, 16]

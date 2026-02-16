@@ -2,20 +2,10 @@
 	"animations": {
 		"Walk": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					32.0
-				],
-				[
-					16.0,
-					0.0,
-					16.0,
-					32.0
-				]
+				[0, 0, 16, 32],
+				[16, 0, 16, 32]
 			],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		}
 	},
@@ -28,9 +18,13 @@
 			"source": "KoopaTroopa.png",
 			"rect": [96, 0, 32, 32]
 		},
-		"Castle": {"link": "Underground"},
 		"GhostHouse": {"link": "Underground"},
-		"Underwater": {"source": "KoopaTroopa.png", "rect": [192, 0, 32, 32]},
+		"Castle": {"link": "Underground"},
+		"Underwater": {
+			"source": "KoopaTroopa.png",
+			"rect": [192, 0, 32, 32]
+		},
+		"CastleWater": {"link": "Underwater"},
 		"Snow": {
 			"source": "KoopaTroopa.png",
 			"rect": [0, 32, 32, 32]

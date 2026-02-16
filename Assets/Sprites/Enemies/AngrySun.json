@@ -2,21 +2,18 @@
 	"animations": {
 		"Idle": {
 			"frames": [[0, 0, 32, 32]],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": false
 		},
-		"Charge": {
-			"frames": [[0, 0, 32, 32]],
-			"speed": 5.0,
-			"loop": false
-		},
+		"Charge": {"link": "Idle"},
 		"Dive": {
-			"frames": [[32, 0, 32, 32], [0, 0, 32, 32]],
-			"speed": 5.0,
+			"frames": [
+				[32, 0, 32, 32],
+				[0, 0, 32, 32]
+			],
+			"speed": 5,
 			"loop": true
 		}
 	},
-	"variations": {
-		"default": {"source": "AngrySun.png"}
-	}
+	"variations": {"source": "AngrySun.png"}
 }

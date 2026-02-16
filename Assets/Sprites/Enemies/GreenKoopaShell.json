@@ -1,138 +1,60 @@
 {
 	"animations": {
 		"Idle": {
-			"frames": [
-				[
-					0.0,
-					16.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 5.0,
+			"frames": [[0, 16, 16, 16]],
+			"speed": 5,
 			"loop": true
 		},
 		"Spin": {
 			"frames": [
-				[
-					16.0,
-					16.0,
-					16.0,
-					16.0
-				],
-				[
-					32.0,
-					16.0,
-					16.0,
-					16.0
-				],
-				[
-					48.0,
-					16.0,
-					16.0,
-					16.0
-				],
-				[
-					0.0,
-					16.0,
-					16.0,
-					16.0
-				]
+				[16, 16, 16, 16],
+				[32, 16, 16, 16],
+				[48, 16, 16, 16],
+				[0, 16, 16, 16]
 			],
-			"speed": 15.0,
+			"speed": 15,
 			"loop": true
 		},
 		"Wake": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				],
-				[
-					0.0,
-					16.0,
-					16.0,
-					16.0
-				]
+				[0, 0, 16, 16],
+				[0, 16, 16, 16]
 			],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		}
 	},
 	"variations": {
 		"default": {
 			"source": "KoopaTroopa.png",
-			"rect": [
-				32.0,
-				0.0,
-				64.0,
-				32.0
-			]
+			"rect": [32, 0, 64, 32]
 		},
 		"Underground": {
 			"source": "KoopaTroopa.png",
-			"rect": [
-				128.0,
-				0.0,
-				64.0,
-				32.0
-			]
+			"rect": [128, 0, 64, 32]
 		},
-		"Castle": {
-			"link": "Underground"
-		},
-		"GhostHouse": {
-			"link": "Underground"
-		},
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {"link": "Underground"},
 		"Underwater": {
 			"source": "KoopaTroopa.png",
-			"rect": [
-				224.0,
-				0.0,
-				64.0,
-				32.0
-			]
+			"rect": [224, 0, 64, 32]
 		},
-		"CastleWater": {
-			"link": "Underwater"
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Snow": {
 			"source": "KoopaTroopa.png",
-			"rect": [
-				32.0,
-				32.0,
-				64.0,
-				32.0
-			]
+			"rect": [32, 32, 64, 32]
 		},
 		"Space": {
 			"source": "KoopaTroopa.png",
-			"rect": [
-				128.0,
-				32.0,
-				64.0,
-				32.0
-			]
+			"rect": [128, 32, 64, 32]
 		},
 		"Volcano": {
 			"source": "KoopaTroopa.png",
-			"rect": [
-				224.0,
-				32.0,
-				64.0,
-				32.0
-			]
+			"rect": [224, 32, 64, 32]
 		},
 		"Bonus": {
 			"source": "KoopaTroopa.png",
-			"rect": [
-				32.0,
-				64.0,
-				64.0,
-				32.0
-			]
+			"rect": [32, 64, 64, 32]
 		}
 	}
 }

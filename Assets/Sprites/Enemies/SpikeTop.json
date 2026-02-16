@@ -5,11 +5,9 @@
 				[0, 0, 24, 24],
 				[24, 0, 24, 24]
 			],
-			"speed": 6.5,
+			"speed": 7,
 			"loop": true
 		}
 	},
-	"variations": {
-		"default": {"source": "SpikeTop.png"}
-	}
+	"variations": {"source": "SpikeTop.png"}
 }

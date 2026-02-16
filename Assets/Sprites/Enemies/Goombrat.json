@@ -1,40 +1,19 @@
 {
+	"properties": {"can_turn": false},
 	"animations": {
 		"Walk": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				],
-				[
-					16.0,
-					0.0,
-					16.0,
-					16.0
-				]
+				[0, 0, 16, 16],
+				[16, 0, 16, 16]
 			],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		},
 		"Stomped": {
-			"frames": [
-				[
-					32.0,
-					0.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 5.0,
+			"frames": [[32, 0, 16, 16]],
+			"speed": 5,
 			"loop": true
 		}
 	},
-	"variations": {
-		"default": {
-			"source": "Goombrat.png",
-			"rect": [0, 0, 48, 16]
-		}
-	}
+	"variations": {"source": "Goombrat.png"}
 }
