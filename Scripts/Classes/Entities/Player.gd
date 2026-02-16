@@ -1059,7 +1059,7 @@ func handle_wing_flight(delta: float) -> void:
 	%Wing.offset = Vector2(wing_offset[0], wing_offset[1])
 	if flight_meter <= 0:
 		return
-	if actual_velocity_y() < 0:
+	if normal_state.swim_up_meter > 0:
 		%Wing.play("Flap")
 	else:
 		%Wing.play("Idle")
