@@ -1,12 +1,12 @@
 {
 	"variations": {
 		"default": {"source": "Leaves.png"},
-		"Autumn": {"source": "AutumnLeaves.png"},
 		"Desert": {"source": "DesertWind.png"},
 		"Snow": {"source": "SnowWind.png"},
+		"Autumn": {"source": "AutumnLeaves.png"},
 		"Underwater": {"source": "WaterWind.png"},
 		"CastleWater": {"link": "Underwater"},
-		"Castle": {"source": "FireWind.png"},
-		"Volcano": {"link": "Castle"}
+		"Volcano": {"source": "FireWind.png"},
+		"Castle": {"link": "Volcano"}
 	}
 }

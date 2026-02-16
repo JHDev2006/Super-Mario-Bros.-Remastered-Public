@@ -5,5 +5,5 @@
 		"material.particles_anim_h_frames": 5,
 		"lifetime": 0.25
 	},
-	"variations": {"default": {"source": "SkidParticles.png"}}
+	"variations": {"source": "SkidParticles.png"}
 }
