@@ -2,11 +2,12 @@
 	"animations": {
 		"default": {
 			"frames": [[0, 0, 16, 16]],
-			"speed": 1.0,
+			"speed": 5,
 			"loop": true
 		}
 	},
 	"variations": {
-		"default": {"source": "SPItems.png", "rect": [16, 64, 16, 16]}
+		"source": "SPItems.png",
+		"rect": [16, 64, 16, 16]
 	}
 }

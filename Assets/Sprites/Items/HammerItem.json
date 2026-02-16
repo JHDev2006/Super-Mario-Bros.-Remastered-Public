@@ -2,123 +2,58 @@
 	"variations": {
 		"default": {
 			"source": "SPItems.png",
-			"rect": [
-				0.0,
-				0.0,
-				16.0,
-				16.0
-			]
+			"rect": [0, 0, 16, 16]
 		},
 		"Underground": {
 			"source": "SPItems.png",
-			"rect": [
-				32.0,
-				0.0,
-				16.0,
-				16.0
-			]
+			"rect": [32, 0, 16, 16]
 		},
-		"GhostHouse": {
-			"link": "Underground"
-		},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {
 			"source": "SPItems.png",
-			"rect": [
-				64.0,
-				0.0,
-				16.0,
-				16.0
-			]
+			"rect": [64, 0, 16, 16]
 		},
 		"Underwater": {
 			"source": "SPItems.png",
-			"rect": [
-				96.0,
-				0.0,
-				16.0,
-				16.0
-			]
+			"rect": [96, 0, 16, 16]
 		},
+		"CastleWater": {"link": "Underwater"},
 		"Desert": {
 			"source": "SPItems.png",
-			"rect": [
-				0.0,
-				16.0,
-				16.0,
-				16.0
-			]
+			"rect": [0, 16, 16, 16]
 		},
 		"Jungle": {
 			"source": "SPItems.png",
-			"rect": [
-				32.0,
-				16.0,
-				16.0,
-				16.0
-			]
+			"rect": [32, 16, 16, 16]
 		},
 		"Snow": {
 			"source": "SPItems.png",
-			"rect": [
-				64.0,
-				16.0,
-				16.0,
-				16.0
-			]
+			"rect": [64, 16, 16, 16]
 		},
 		"Volcano": {
 			"source": "SPItems.png",
-			"rect": [
-				96.0,
-				16.0,
-				16.0,
-				16.0
-			]
+			"rect": [96, 16, 16, 16]
 		},
 		"Autumn": {
 			"source": "SPItems.png",
-			"rect": [
-				0.0,
-				32.0,
-				16.0,
-				16.0
-			]
+			"rect": [0, 32, 16, 16]
 		},
 		"Beach": {
 			"source": "SPItems.png",
-			"rect": [
-				32.0,
-				32.0,
-				16.0,
-				16.0
-			]
+			"rect": [32, 32, 16, 16]
 		},
 		"Mountain": {
 			"source": "SPItems.png",
-			"rect": [
-				64.0,
-				32.0,
-				16.0,
-				16.0
-			]
+			"rect": [64, 32, 16, 16]
 		},
+		"Airship": {"link": "Mountain"},
 		"Space": {
 			"source": "SPItems.png",
-			"rect": [
-				96.0,
-				32.0,
-				16.0,
-				16.0
-			]
+			"rect": [96, 32, 16, 16]
 		},
 		"Bonus": {
 			"source": "SPItems.png",
-			"rect": [
-				0.0,
-				48.0,
-				16.0,
-				16.0
-			]
+			"rect": [0, 48, 16, 16]
 		}
 	}
 }
