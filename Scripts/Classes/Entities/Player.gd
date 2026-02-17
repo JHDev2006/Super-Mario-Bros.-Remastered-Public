@@ -487,6 +487,7 @@ const ANIMATION_FALLBACKS := {
 	"Crouch": "Idle",
 	"WaterCrouch": "Crouch",
 	"WingCrouch": "WaterCrouch",
+	"Stunned": "Idle",
 	
 	# --- Cutscene States ---
 	"PosePeach": "PoseToad",
@@ -498,22 +499,33 @@ const ANIMATION_FALLBACKS := {
 	"CrouchFall": "Crouch",
 	"CrouchJump": "Crouch",
 	"CrouchBump": "Bump",
+	"JogJump": "Jump",
+	"JogJumpFall": "JumpFall",
+	"JogJumpBump": "JumpBump",
 	"RunJump": "Jump",
 	"RunJumpFall": "JumpFall",
 	"RunJumpBump": "JumpBump",
 	"SpringJump": "Jump",
 	"SpringJumpBump": "JumpBump",
+	
+	# --- Star Jump & Fall States ---
 	"StarJump": "Jump",
 	"StarFall": "JumpFall",
 	"StarJumpFall": "StarFall", # SkyanUltra: Legacy fallback for >1.0.2.
 	"StarJumpBump": "JumpBump",
+	
+	"StarRunJump": "StarJump",
+	"StarRunJumpFall": "StarJumpFall",
+	"StarRunJumpBump": "StarJumpBump",
+	
+	"StarSpringJump": "StarJump",
+	"StarSpringFall": "StarJumpFall",
+	"StarSpringBump": "StarJumpBump",
 
 	# --- Movement/Interaction States ---
 	"Walk": "Move",
 	"Run": "Move",
 	"CrouchMove": "Crouch",
-	"WaterCrouchMove": "CrouchMove",
-	"WingCrouchMove": "WaterCrouchMove",
 	"Pipe": "Idle",
 	"PipeWalk": "Walk",
 	"FlagSlide": "Climb",
@@ -524,6 +536,7 @@ const ANIMATION_FALLBACKS := {
 	"SmallShrink": "SmallGrow",
 	"NormalShrink": "NormalGrow",
 	"FireShrink": "FireGrow",
+	"SuperballShrink": "SuperballGrow",
 
 	# --- Attack States ---
 	"IdleAttack": "MoveAttack",
@@ -536,15 +549,29 @@ const ANIMATION_FALLBACKS := {
 	# --- Water & Flying States ---
 	"WaterIdle": "Idle",
 	"WaterMove": "Move",
+	"WaterWalk": "WaterMove",
+	"WaterJog": "WaterMove",
+	"WaterRun": "WaterMove",
+	"WaterCrouchMove": "CrouchMove",
+	"WaterCrouchFall": "CrouchFall",
+	"WaterIdleAttack": "IdleAttack",
+	"WaterWalkAttack": "WalkAttack",
+	"WaterRunAttack": "RunAttack",
 	"SwimBump": "Bump",
 	"WingIdle": "WaterIdle",
 	"WingMove": "WaterMove",
+	"WingWalk": "WaterWalk",
+	"WingJog": "WaterJog",
+	"WingRun": "WaterRun",
+	"WingCrouchMove": "WaterCrouchMove",
+	"WingCrouchFall": "WaterCrouchFall",
+	"WingIdleAttack": "WaterIdleAttack",
+	"WingWalkAttack": "WaterWalkAttack",
+	"WingRunAttack": "WaterRunAttack",
 	"FlyIdle": "SwimIdle",
 	"FlyUp": "SwimUp",
 	"FlyAttack": "SwimAttack",
 	"FlyBump": "SwimBump",
-
-	"Stunned": "Idle",
 
 	# --- Death States ---
 	"DieFreeze": "DieFall",

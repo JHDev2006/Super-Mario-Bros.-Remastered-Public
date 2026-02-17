@@ -274,11 +274,14 @@ func get_animation_name() -> String:
 	var has_flight := player.has_wings
 	var moving := vel_x >= 5 and not on_wall
 	var pushing := player.input_direction != 0 and on_wall
-	var running: float = vel_x >= player.physics_params("RUN_SPEED") - 10
+	var running: bool = vel_x >= player.physics_params("RUN_SPEED") - 10
+	var jogging: bool = vel_x > player.physics_params("WALK_SPEED") and not running
 	var run_jump: bool = abs(player.velocity_x_jump_stored) >= player.physics_params("RUN_SPEED") - 10
+	var jog_jump: bool = abs(player.velocity_x_jump_stored) > player.physics_params("WALK_SPEED") and not running
 
 	var state_context := ""
-	if player.in_water: state_context = "Water"
+	if player.has_star: state_context = "Star"
+	elif player.in_water: state_context = "Water"
 	elif has_flight: state_context = "Wing"
 
 	var state = func(anim_name: String) -> String:
@@ -286,8 +289,9 @@ func get_animation_name() -> String:
 
 	var jump_context := ""
 	if player.has_spring_jumped: jump_context = "Spring"
-	elif player.has_star: jump_context = "Star"
 	elif run_jump: jump_context = "Run"
+	elif jog_jump: jump_context = "Jog"
+	if player.has_star: jump_context = "Star" + jump_context
 	
 	var jump = func(anim_name: String) -> String:
 		return jump_context + anim_name
@@ -295,17 +299,13 @@ func get_animation_name() -> String:
 	# --- Attack Animations ---
 	if player.attacking:
 		if player.crouching:
-			return "CrouchAttack"
+			return state.call("CrouchAttack")
 		if on_floor:
 			if player.skidding:
 				return "SkidAttack"
-			if player.in_water:
-				return "SwimAttack"
-			if has_flight:
-				return "FlyAttack"
 			if moving:
-				return "RunAttack" if running else "WalkAttack"
-			return "IdleAttack"
+				return state.call("RunAttack") if running else state.call("WalkAttack")
+			return state.call("IdleAttack")
 		else:
 			if player.in_water:
 				return "SwimAttack"
@@ -322,7 +322,7 @@ func get_animation_name() -> String:
 		if player.bumping and player.can_bump_crouch_anim:
 			return "CrouchBump"
 		if airborne:
-			return "CrouchFall" if vel_y >= 0 else "CrouchJump"
+			return state.call("CrouchFall") if vel_y >= 0 else "CrouchJump"
 		if moving:
 			return state.call("CrouchMove")
 		return state.call("Crouch")
@@ -332,18 +332,16 @@ func get_animation_name() -> String:
 		if player.spring_bouncing and player.can_spring_land_anim:
 			return "SpringLand"
 		if player.skidding:
-			return "Skid"
+			return state.call("Skid")
 		if pushing and player.can_push_anim:
 			return state.call("Push")
 		if moving:
-			if state_context != "":
-				return state.call("Move")
 			if running:
-				return "Run"
-			elif abs(vel_x) > player.physics_params("WALK_SPEED") and player.sprite.sprite_frames.has_animation("Jog"):
-				return "Jog"
+				return state.call("Run")
+			elif jogging and player.sprite.sprite_frames.has_animation("Jog"):
+				return state.call("Jog")
 			else:
-				return "Walk"
+				return state.call("Walk")
 		# Idle States
 		if player.looking_up:
 			return state.call("LookUp")
