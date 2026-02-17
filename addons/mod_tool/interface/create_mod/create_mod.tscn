@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://glui2s46v4x4"]
+
+[ext_resource type="Script" path="res://addons/mod_tool/interface/create_mod/create_mod.gd" id="1"]
+[ext_resource type="PackedScene" path="res://addons/mod_tool/interface/global/input_string.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dyunxqcmy4esi" path="res://addons/mod_tool/interface/global/input_options.tscn" id="3"]
+
+[node name="CreateMod" type="Window"]
+position = Vector2i(0, 36)
+script = ExtResource("1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Settings" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Scroll" type="ScrollContainer" parent="MarginContainer/Settings"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/Settings/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="Namespace" parent="MarginContainer/Settings/Scroll/VBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+input_placeholder = "Namespace"
+is_required = true
+key = "namespace"
+label_text = "Namespace ( Author Name )"
+
+[node name="ModName" parent="MarginContainer/Settings/Scroll/VBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+input_placeholder = "ModName"
+is_required = true
+key = "name"
+label_text = "Mod Name"
+
+[node name="ModId" parent="MarginContainer/Settings/Scroll/VBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+is_editable = false
+input_placeholder = "Namespace-ModName"
+is_required = true
+key = "mod_id"
+label_text = "Mod ID"
+
+[node name="Space" type="Control" parent="MarginContainer/Settings/Scroll/VBox"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="ModTemplate" parent="MarginContainer/Settings/Scroll/VBox" instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 2
+input_options = Array[String]([])
+is_required = true
+key = "mod_template"
+label_text = "Template"
+
+[node name="Buttons" type="PanelContainer" parent="MarginContainer/Settings"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MarginContainer/Settings/Buttons"]
+layout_mode = 2
+
+[node name="btn_create_mod" type="Button" parent="MarginContainer/Settings/Buttons/VBox"]
+layout_mode = 2
+text = "Create"
+
+[connection signal="about_to_popup" from="." to="." method="_on_CreateMod_about_to_show"]
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="value_changed" from="MarginContainer/Settings/Scroll/VBox/Namespace" to="." method="_on_Namespace_value_changed"]
+[connection signal="value_changed" from="MarginContainer/Settings/Scroll/VBox/ModName" to="." method="_on_ModName_value_changed"]
+[connection signal="value_changed" from="MarginContainer/Settings/Scroll/VBox/ModId" to="." method="_on_ModId_value_changed"]
+[connection signal="value_changed" from="MarginContainer/Settings/Scroll/VBox/ModTemplate" to="." method="_on_ModTemplate_value_changed"]
+[connection signal="pressed" from="MarginContainer/Settings/Buttons/VBox/btn_create_mod" to="." method="_on_btn_create_mod_pressed"]
