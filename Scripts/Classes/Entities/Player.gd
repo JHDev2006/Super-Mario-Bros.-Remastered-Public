@@ -115,7 +115,7 @@ extends CharacterBody2D
 		"CAN_BE_WALL_EJECTED": true,       # Determines if the player gets pushed out of blocks if inside of them.
 		"ROUNDED_FLOOR_COLLISION": true,
 		"JUMP_WALK_THRESHOLD": 60.0,       # The minimum velocity the player must move at to perform a walking jump.
-		"JUMP_RUN_THRESHOLD": 135.0,       # The minimum velocity the player must move at to perform a running jump.
+		"JUMP_RUN_THRESHOLD": 93.75,       # The minimum velocity the player must move at to perform a running jump.
 		"JUMP_BUFFER": 2,
 		"JUMP_GRAVITY_IDLE": 7.5,          # The player's gravity while jumping from an idle state, measured in px/frame.
 		"JUMP_GRAVITY_WALK": 7.03,         # The player's gravity while jumping from a walking state, measured in px/frame.
