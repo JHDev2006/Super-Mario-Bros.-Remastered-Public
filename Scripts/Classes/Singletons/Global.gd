@@ -3,11 +3,23 @@ extends Node
 var level_theme := "Overworld":
 	set(value):
 		level_theme = value
-		level_theme_changed.emit()
+		update_theme()
+	get:
+		if theme_override:
+			return theme_override
+		return level_theme
 var theme_time := "Day":
 	set(value):
 		theme_time = value
-		level_time_changed.emit()
+		update_theme()
+	get:
+		if time_override:
+			return time_override
+		return theme_time
+
+var theme_override := ""
+var time_override := ""
+var music_override := ""
 
 signal level_theme_changed
 signal level_time_changed
@@ -200,6 +212,13 @@ func _ready() -> void:
 	check_for_rom()
 	load_default_translations()
 	level_theme_changed.connect(load_default_translations)
+
+func update_theme() -> void:
+	theme_override = ""
+	time_override = ""
+	music_override = ""
+	$ThemeGetter.update_resource()
+	level_theme_changed.emit()
 
 func setup_config_dirs() -> void:
 	var dirs = [

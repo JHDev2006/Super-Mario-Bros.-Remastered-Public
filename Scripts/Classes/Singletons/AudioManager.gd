@@ -249,6 +249,11 @@ func handle_music() -> void:
 	AudioServer.set_bus_effect_enabled(1, 0, Global.game_paused and Settings.file.audio.pause_bgm == 1)
 	
 	if is_instance_valid(Global.current_level):
+		var music := Global.current_level.music
+		if Global.music_override:
+			var path := "res://Assets/Audio/BGM/" + Global.music_override + ".json"
+			if ResourceLoader.exists(path):
+				music = load(path)
 		if Global.current_level.music == null or current_music_override != MUSIC_OVERRIDES.NONE:
 			music_player.stop()
 			handle_music_override()

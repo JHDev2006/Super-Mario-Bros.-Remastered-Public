@@ -26,6 +26,7 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/UI/FontMain.json" id="23_3l3ph"]
 [ext_resource type="JSON" path="res://Assets/Sprites/UI/ScoreFont.json" id="24_m6bur"]
 [ext_resource type="Script" uid="uid://ci0mnknqe2d7d" path="res://Scripts/Classes/Components/ScreenShaker.gd" id="26_mpjtu"]
+[ext_resource type="JSON" path="res://Assets/themes.json" id="27_81m3w"]
 
 [sub_resource type="Shader" id="Shader_m6bur"]
 code = "shader_type canvas_item;
@@ -499,7 +500,14 @@ metadata/_custom_type_script = "uid://dt2p68xl462v2"
 [node name="ScreenShaker" type="Node" parent="." unique_id=1052498364]
 script = ExtResource("26_mpjtu")
 
-[node name="ResourceSetterNew" type="Node" parent="." unique_id=985375576]
+[node name="ThemeGetter" type="Node" parent="." unique_id=985375576 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("19_okfpr")
+node_to_affect = NodePath("..")
+mode = 5
+resource_json = ExtResource("27_81m3w")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ResourceSetterNew" type="Node" parent="." unique_id=1980776324]
 script = ExtResource("19_okfpr")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
