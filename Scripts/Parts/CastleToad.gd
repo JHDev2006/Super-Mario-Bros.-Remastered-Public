@@ -11,8 +11,8 @@ func _ready() -> void:
 	for i in [$SpeedrunMSG/ThankYou, $StandardMSG/ThankYou]:
 		i.text = tr(i.text).replace("{PLAYER}", tr(Player.CHARACTER_NAMES[int(Global.player_characters[0])]))
 	if play_end_music and (Global.level_editor != null or Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL):
-		$EndingSpeech/AnotherCastle5.queue_free()
-		$EndingSpeech/AnotherCastle6.queue_free()
+		$EndingSpeech/AnotherCastle5.modulate.a = 0
+		$EndingSpeech/AnotherCastle6.modulate.a = 0
 
 func begin() -> void:
 	$Sprite.play("Await")

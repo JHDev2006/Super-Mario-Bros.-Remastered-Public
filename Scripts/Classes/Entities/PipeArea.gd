@@ -66,8 +66,6 @@ func update_visuals() -> void:
 		$ArrowJoint/Arrow.flip_v = exit_only
 		var id := pipe_id
 		$Node2D/CenterContainer/Label.text = str(id)
-	else:
-		hide()
 
 func exit_pipe() -> void:
 	can_enter = false
@@ -122,9 +120,10 @@ func run_player_check(player: Player) -> void:
 	# guzlad: Added support for characters with a hitbox height below 1.0 to enter pipes underwater
 	# SkyanUltra: Added distance check to prevent entering pipes from too low.
 	var distance = player.global_position.distance_to(hitbox.global_position)
-	var max_distance = player.physics_params("COLLISION_SIZE")[0] - 2
+	var max_distance = max(4, player.physics_params("COLLISION_SIZE")[0] - 2)
 	if enter_direction <= 2:
 		max_distance = 999
+	print([distance, max_distance])
 	if distance <= max_distance and Global.player_action_pressed(get_input_direction(enter_direction), player.player_id) and (player.is_actually_on_floor() or enter_direction == 1):
 		can_enter = false
 		pipe_entered.emit()

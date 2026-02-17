@@ -9,11 +9,13 @@ static var valid := true
 static var checked := false
 
 func on_level_start() -> void:
+	$CanvasLayer.hide()
 	if checked == false:
 		valid = on_power
 		if statement != "":
 			%Title.text = "Clear Condition" if on_power == 0 else "Fail Condition"
 			%Description.text = statement
+			$CanvasLayer.show()
 			$CanvasLayer/AnimationPlayer.play("Show")
 			$CanvasLayer/PauseDisplay/VBoxContainer/Title.text = %Title.text
 			$CanvasLayer/Description/VBoxContainer/Description.text = %Description.text

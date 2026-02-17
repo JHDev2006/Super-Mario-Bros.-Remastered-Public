@@ -143,7 +143,10 @@ func play_sfx(stream_name = "", position := Vector2.ZERO, pitch := 1.0, can_over
 		var is_custom = false
 		if stream_name is String:
 			is_custom = sfx_library[stream_name].contains(Global.config_path.path_join("custom_characters"))
-			stream = import_stream(sfx_library[stream_name])
+			var stream_path = sfx_library[stream_name]
+			if stream_path is Array:
+				stream_path = stream_path.pick_random()
+			stream = import_stream(stream_path)
 		if is_custom == false:
 			player.stream = ResourceSetter.get_resource(stream, player)
 		else:

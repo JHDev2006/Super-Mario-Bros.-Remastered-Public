@@ -218,9 +218,9 @@ extends CharacterBody2D
 		
 		"PROJ_TYPE": "",
 		"PROJ_PARTICLE": "",
-		# Determines what projectile/particle scene is used, starting from
-		# "res://Scenes/Prefabs/". Leaving this blank disables firing
-		# projectiles and displaying particles respectively.
+		# Determines what projectile/particle scene is used. Leaving
+		# this blank disables firing projectiles and displaying
+		# particles respectively.
 		"PROJ_PARTICLE_ON_CONTACT": false, # Defines if the particle will play when making contact without being destroyed.
 		"PROJ_SFX_THROW": "fireball",      # Defines the sound effect that plays when this projectile is fired.
 		"PROJ_SFX_COLLIDE": "bump",        # Defines the sound effect that plays when this projectile collides.
@@ -801,6 +801,9 @@ func apply_character_sfx_map() -> void:
 		custom_character = true
 		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 	path = ResourceSetter.get_pure_resource_path(path)
+	if FileAccess.file_exists(path) == false:
+		AudioManager.load_sfx_map({})
+		return
 	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
 	
 	for i in json:
@@ -923,7 +926,7 @@ func handle_invincible_palette() -> void:
 
 func handle_block_collision_detection() -> void:
 	if ["Pipe"].has(state_machine.state.name): return
-	if actual_velocity_y() <= calculate_speed_param("FALL_GRAVITY", velocity_x_jump_stored) and is_on_ceiling():
+	if is_on_ceiling():
 		for i in %BlockCollision.get_overlapping_bodies():
 			if i is Block:
 				i.player_block_hit.emit(self)
@@ -1059,7 +1062,7 @@ func handle_wing_flight(delta: float) -> void:
 	%Wing.offset = Vector2(wing_offset[0], wing_offset[1])
 	if flight_meter <= 0:
 		return
-	if actual_velocity_y() < 0:
+	if normal_state.swim_up_meter > 0:
 		%Wing.play("Flap")
 	else:
 		%Wing.play("Idle")

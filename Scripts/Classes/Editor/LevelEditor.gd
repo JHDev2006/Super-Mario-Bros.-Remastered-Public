@@ -187,6 +187,11 @@ func _physics_process(delta: float) -> void:
 			open_tile_menu()
 		elif current_state == EditorState.TILE_MENU:
 			close_tile_menu()
+		elif current_state == EditorState.SELECTING_TILE_SCENE:
+			close_tile_menu()
+			current_state = EditorState.MODIFYING_TILE
+			Input.flush_buffered_events()
+			%TileModifierMenu.can_exit = true
 	if Input.is_action_just_pressed("editor_play") and (current_state == EditorState.IDLE or current_state == EditorState.PLAYTESTING) and Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
 		Checkpoint.passed_checkpoints.clear()
 		if current_state == EditorState.PLAYTESTING:
@@ -815,6 +820,9 @@ func show_scroll_preview() -> void:
 
 func open_tile_selection_menu_scene_ref(selector: TilePropertySceneRef) -> void:
 	open_tile_menu()
+	for i in [$TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES, $TileMenu/MarginContainer/VBoxContainer/PanelContainer/LEVEL, $TileMenu/MarginContainer/VBoxContainer/PanelContainer/BG, $TileMenu/MarginContainer/VBoxContainer/PanelContainer/Blueprints]:
+		i.hide()
+	$TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES.show()
 	$TileMenu/MarginContainer/VBoxContainer/TabButtons.hide()
 	current_state = EditorState.SELECTING_TILE_SCENE
 	selection_filter = selector.editing_node.get_node("EditorPropertyExposer").filters[selector.tile_property_name]
