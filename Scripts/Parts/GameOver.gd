@@ -7,7 +7,7 @@ extends Node
 var can_continue := false
 
 func _enter_tree() -> void:
-	Global.level_theme = "Underground"
+	Global.theme_override = "Underground"
 	Global.level_theme_changed.emit()
 	AudioManager.stop_all_music()
 
