@@ -88,7 +88,6 @@ func _ready() -> void:
 				primary_layer = 0
 		get_parent().move_child(self, 0)
 		Global.level_theme_changed.connect(update_visuals)
-		Global.level_time_changed.connect(update_visuals)
 		update_visuals()
 	handle_disco_visuals(1)
 

@@ -43,7 +43,6 @@ func _init() -> void:
 
 func _ready() -> void:
 	if mode != ResourceMode.THEME:
-		Global.level_time_changed.connect(update_resource)
 		Global.level_theme_changed.connect(update_resource)
 
 func _enter_tree() -> void:

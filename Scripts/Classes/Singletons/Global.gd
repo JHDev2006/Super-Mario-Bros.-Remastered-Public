@@ -22,7 +22,6 @@ var time_override := ""
 var music_override := ""
 
 signal level_theme_changed
-signal level_time_changed
 
 const BASE64_CHARSET := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
