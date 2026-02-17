@@ -1,48 +1,232 @@
 {
+	"properties": {
+		"star_offset_x": 0,
+		"star_offset_y": 0
+	},
 	"variations": {
 		"SMB1": {
-			"default": {"source": "TitleSMB1.png", "rect": [0, 0, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Desert": {"source": "TitleSMB1.png", "rect": [176, 0, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Jungle": {"source": "TitleSMB1.png", "rect": [352, 0, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Snow": {"source": "TitleSMB1.png", "rect": [0, 88, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Volcano": {"source": "TitleSMB1.png", "rect": [176, 88, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Autumn": {"source": "TitleSMB1.png", "rect": [352, 88, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Beach": {"source": "TitleSMB1.png", "rect": [0, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Mountain": {"source": "TitleSMB1.png", "rect": [176, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Space": {"source": "TitleSMB1.png", "rect": [352, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}}
-		},
-		"SMBS": {
-			"default": {"source": "TitleSMBS.png", "rect": [0, 0, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Desert": {"source": "TitleSMBS.png", "rect": [176, 0, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Jungle": {"source": "TitleSMBS.png", "rect": [352, 0, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Snow": {"source": "TitleSMBS.png", "rect": [0, 88, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Volcano": {"source": "TitleSMBS.png", "rect": [176, 88, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Autumn": {"source": "TitleSMBS.png", "rect": [352, 88, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Beach": {"source": "TitleSMBS.png", "rect": [0, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Mountain": {"source": "TitleSMBS.png", "rect": [176, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}},
-			"Space": {"source": "TitleSMBS.png", "rect": [352, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -0}}
+			"default": {
+				"source": "TitleSMB1.png",
+				"rect": [0, 0, 176, 88]
+			},
+			"Desert": {
+				"source": "TitleSMB1.png",
+				"rect": [176, 0, 176, 88]
+			},
+			"Jungle": {
+				"source": "TitleSMB1.png",
+				"rect": [352, 0, 176, 88]
+			},
+			"Snow": {
+				"source": "TitleSMB1.png",
+				"rect": [0, 88, 176, 88]
+			},
+			"Volcano": {
+				"source": "TitleSMB1.png",
+				"rect": [176, 88, 176, 88]
+			},
+			"Autumn": {
+				"source": "TitleSMB1.png",
+				"rect": [352, 88, 176, 88]
+			},
+			"Beach": {
+				"source": "TitleSMB1.png",
+				"rect": [0, 176, 176, 88]
+			},
+			"Mountain": {
+				"source": "TitleSMB1.png",
+				"rect": [176, 176, 176, 88]
+			},
+			"Space": {
+				"source": "TitleSMB1.png",
+				"rect": [352, 176, 176, 88]
+			}
 		},
 		"SMBLL": {
-			"default": {"source": "TitleSMBLL.png", "rect": [0, 0, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
-			"Desert": {"source": "TitleSMBLL.png", "rect": [176, 0, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
-			"Jungle": {"source": "TitleSMBLL.png", "rect": [352, 0, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
-			"Snow": {"source": "TitleSMBLL.png", "rect": [0, 88, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
-			"Volcano": {"source": "TitleSMBLL.png", "rect": [176, 88, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
-			"Autumn": {"source": "TitleSMBLL.png", "rect": [352, 88, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
-			"Beach": {"source": "TitleSMBLL.png", "rect": [0, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
-			"Mountain": {"source": "TitleSMBLL.png", "rect": [176, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}},
-			"Space": {"source": "TitleSMBLL.png", "rect": [352, 176, 176, 88], "properties": {"star_offset_x": 0, "star_offset_y": -4}}
+			"default": {
+				"source": "TitleSMBLL.png",
+				"rect": [0, 0, 176, 88],
+				"properties": {
+					"star_offset_x": 0,
+					"star_offset_y": -4
+				}
+			},
+			"Desert": {
+				"source": "TitleSMBLL.png",
+				"rect": [176, 0, 176, 88],
+				"properties": {
+					"star_offset_x": 0,
+					"star_offset_y": -4
+				}
+			},
+			"Jungle": {
+				"source": "TitleSMBLL.png",
+				"rect": [352, 0, 176, 88],
+				"properties": {
+					"star_offset_x": 0,
+					"star_offset_y": -4
+				}
+			},
+			"Snow": {
+				"source": "TitleSMBLL.png",
+				"rect": [0, 88, 176, 88],
+				"properties": {
+					"star_offset_x": 0,
+					"star_offset_y": -4
+				}
+			},
+			"Volcano": {
+				"source": "TitleSMBLL.png",
+				"rect": [176, 88, 176, 88],
+				"properties": {
+					"star_offset_x": 0,
+					"star_offset_y": -4
+				}
+			},
+			"Autumn": {
+				"source": "TitleSMBLL.png",
+				"rect": [352, 88, 176, 88],
+				"properties": {
+					"star_offset_x": 0,
+					"star_offset_y": -4
+				}
+			},
+			"Beach": {
+				"source": "TitleSMBLL.png",
+				"rect": [0, 176, 176, 88],
+				"properties": {
+					"star_offset_x": 0,
+					"star_offset_y": -4
+				}
+			},
+			"Mountain": {
+				"source": "TitleSMBLL.png",
+				"rect": [176, 176, 176, 88],
+				"properties": {
+					"star_offset_x": 0,
+					"star_offset_y": -4
+				}
+			},
+			"Space": {
+				"source": "TitleSMBLL.png",
+				"rect": [352, 176, 176, 88],
+				"properties": {
+					"star_offset_x": 0,
+					"star_offset_y": -4
+				}
+			}
+		},
+		"SMBS": {
+			"default": {
+				"source": "TitleSMBS.png",
+				"rect": [0, 0, 176, 88]
+			},
+			"Desert": {
+				"source": "TitleSMBS.png",
+				"rect": [176, 0, 176, 88]
+			},
+			"Jungle": {
+				"source": "TitleSMBS.png",
+				"rect": [352, 0, 176, 88]
+			},
+			"Snow": {
+				"source": "TitleSMBS.png",
+				"rect": [0, 88, 176, 88]
+			},
+			"Volcano": {
+				"source": "TitleSMBS.png",
+				"rect": [176, 88, 176, 88]
+			},
+			"Autumn": {
+				"source": "TitleSMBS.png",
+				"rect": [352, 88, 176, 88]
+			},
+			"Beach": {
+				"source": "TitleSMBS.png",
+				"rect": [0, 176, 176, 88]
+			},
+			"Mountain": {
+				"source": "TitleSMBS.png",
+				"rect": [176, 176, 176, 88]
+			},
+			"Space": {
+				"source": "TitleSMBS.png",
+				"rect": [352, 176, 176, 88]
+			}
 		},
 		"SMBANN": {
-			"default": {"source": "TitleSMBANN.png", "rect": [0, 0, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
-			"Desert": {"source": "TitleSMBANN.png", "rect": [176, 0, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
-			"Jungle": {"source": "TitleSMBANN.png", "rect": [352, 0, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
-			"Snow": {"source": "TitleSMBANN.png", "rect": [0, 88, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
-			"Volcano": {"source": "TitleSMBANN.png", "rect": [176, 88, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
-			"Autumn": {"source": "TitleSMBANN.png", "rect": [352, 88, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
-			"Beach": {"source": "TitleSMBANN.png", "rect": [0, 176, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
-			"Mountain": {"source": "TitleSMBANN.png", "rect": [176, 176, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}},
-			"Space": {"source": "TitleSMBANN.png", "rect": [352, 176, 176, 88], "properties": {"star_offset_x": -88, "star_offset_y": 4}}
+			"default": {
+				"source": "TitleSMBANN.png",
+				"rect": [0, 0, 176, 88],
+				"properties": {
+					"star_offset_x": -88,
+					"star_offset_y": 4
+				}
+			},
+			"Desert": {
+				"source": "TitleSMBANN.png",
+				"rect": [176, 0, 176, 88],
+				"properties": {
+					"star_offset_x": -88,
+					"star_offset_y": 4
+				}
+			},
+			"Jungle": {
+				"source": "TitleSMBANN.png",
+				"rect": [352, 0, 176, 88],
+				"properties": {
+					"star_offset_x": -88,
+					"star_offset_y": 4
+				}
+			},
+			"Snow": {
+				"source": "TitleSMBANN.png",
+				"rect": [0, 88, 176, 88],
+				"properties": {
+					"star_offset_x": -88,
+					"star_offset_y": 4
+				}
+			},
+			"Volcano": {
+				"source": "TitleSMBANN.png",
+				"rect": [176, 88, 176, 88],
+				"properties": {
+					"star_offset_x": -88,
+					"star_offset_y": 4
+				}
+			},
+			"Autumn": {
+				"source": "TitleSMBANN.png",
+				"rect": [352, 88, 176, 88],
+				"properties": {
+					"star_offset_x": -88,
+					"star_offset_y": 4
+				}
+			},
+			"Beach": {
+				"source": "TitleSMBANN.png",
+				"rect": [0, 176, 176, 88],
+				"properties": {
+					"star_offset_x": -88,
+					"star_offset_y": 4
+				}
+			},
+			"Mountain": {
+				"source": "TitleSMBANN.png",
+				"rect": [176, 176, 176, 88],
+				"properties": {
+					"star_offset_x": -88,
+					"star_offset_y": 4
+				}
+			},
+			"Space": {
+				"source": "TitleSMBANN.png",
+				"rect": [352, 176, 176, 88],
+				"properties": {
+					"star_offset_x": -88,
+					"star_offset_y": 4
+				}
+			}
 		}
 	}
 }

@@ -2,212 +2,79 @@
 	"animations": {
 		"default": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					8.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					16.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					8.0,
-					0.0,
-					8.0,
-					8.0
-				]
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[8, 0, 8, 8],
+				[16, 0, 8, 8],
+				[8, 0, 8, 8]
 			],
-			"speed": 10.0,
+			"speed": 10,
 			"loop": true
 		}
 	},
 	"variations": {
 		"default": {
 			"source": "CoinIcon.png",
-			"rect": [
-				0.0,
-				0.0,
-				24.0,
-				8.0
-			]
+			"rect": [0, 0, 24, 8]
 		},
 		"Underground": {
 			"source": "CoinIcon.png",
-			"rect": [
-				24.0,
-				0.0,
-				24.0,
-				8.0
-			]
+			"rect": [24, 0, 24, 8]
 		},
-		"GhostHouse": {
-			"link": "Underground"
-		},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {
 			"source": "CoinIcon.png",
-			"rect": [
-				48.0,
-				0.0,
-				24.0,
-				8.0
-			]
-		},
-		"CastleWater": {
-			"link": "Underwater"
+			"rect": [48, 0, 24, 8]
 		},
 		"Underwater": {
 			"source": "CoinIcon.png",
-			"rect": [
-				72.0,
-				0.0,
-				24.0,
-				8.0
-			]
+			"rect": [72, 0, 24, 8]
 		},
+		"CastleWater": {"link": "Underwater"},
 		"Desert": {
 			"source": "CoinIcon.png",
-			"rect": [
-				0.0,
-				8.0,
-				24.0,
-				8.0
-			]
+			"rect": [0, 8, 24, 8]
 		},
 		"Jungle": {
 			"source": "CoinIcon.png",
-			"rect": [
-				24.0,
-				8.0,
-				24.0,
-				8.0
-			]
+			"rect": [24, 8, 24, 8]
 		},
 		"Snow": {
 			"source": "CoinIcon.png",
-			"rect": [
-				48.0,
-				8.0,
-				24.0,
-				8.0
-			]
+			"rect": [48, 8, 24, 8]
 		},
 		"Volcano": {
 			"source": "CoinIcon.png",
-			"rect": [
-				72.0,
-				8.0,
-				24.0,
-				8.0
-			]
+			"rect": [72, 8, 24, 8]
 		},
 		"Autumn": {
 			"source": "CoinIcon.png",
-			"rect": [
-				0.0,
-				16.0,
-				24.0,
-				8.0
-			]
+			"rect": [0, 16, 24, 8]
 		},
 		"Beach": {
 			"source": "CoinIcon.png",
-			"rect": [
-				24.0,
-				16.0,
-				24.0,
-				8.0
-			]
+			"rect": [24, 16, 24, 8]
 		},
 		"Mountain": {
 			"source": "CoinIcon.png",
-			"rect": [
-				48.0,
-				16.0,
-				24.0,
-				8.0
-			]
+			"rect": [48, 16, 24, 8]
 		},
+		"Airship": {"link": "Mountain"},
 		"Space": {
 			"source": "CoinIcon.png",
-			"rect": [
-				72.0,
-				16.0,
-				24.0,
-				8.0
-			]
+			"rect": [72, 16, 24, 8]
 		},
 		"Bonus": {
 			"source": "CoinIcon.png",
-			"rect": [
-				0.0,
-				24.0,
-				24.0,
-				8.0
-			]
+			"rect": [0, 24, 24, 8]
 		}
 	}
 }

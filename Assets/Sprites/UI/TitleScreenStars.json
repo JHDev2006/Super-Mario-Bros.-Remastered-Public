@@ -2,96 +2,53 @@
 	"animations": {
 		"default": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					0.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					8.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					16.0,
-					0.0,
-					8.0,
-					8.0
-				],
-				[
-					8.0,
-					0.0,
-					8.0,
-					8.0
-				]
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[0, 0, 8, 8],
+				[8, 0, 8, 8],
+				[16, 0, 8, 8],
+				[8, 0, 8, 8]
 			],
-			"speed": 10.0,
+			"speed": 10,
 			"loop": true
 		}
 	},
 	"variations": {
-		"default": {"source": "TitleScreenStars.png", "rect": [0, 0, 24, 8]},
-		"Underground": {"source": "TitleScreenStars.png", "rect": [0, 8, 24, 8]},
+		"default": {
+			"source": "TitleScreenStars.png",
+			"rect": [0, 0, 24, 8]
+		},
+		"Underground": {
+			"source": "TitleScreenStars.png",
+			"rect": [0, 8, 24, 8]
+		},
 		"GhostHouse": {"link": "Underground"},
-		"Castle": {"source": "TitleScreenStars.png", "rect": [0, 16, 24, 8]},
-		"Snow": {"source": "TitleScreenStars.png", "rect": [0, 24, 24, 8]},
-		"Space": {"source": "TitleScreenStars.png", "rect": [0, 32, 24, 8]},
-		"Volcano": {"source": "TitleScreenStars.png", "rect": [0, 40, 24, 8]}
+		"Castle": {
+			"source": "TitleScreenStars.png",
+			"rect": [0, 16, 24, 8]
+		},
+		"Snow": {
+			"source": "TitleScreenStars.png",
+			"rect": [0, 24, 24, 8]
+		},
+		"Space": {
+			"source": "TitleScreenStars.png",
+			"rect": [0, 32, 24, 8]
+		},
+		"Volcano": {
+			"source": "TitleScreenStars.png",
+			"rect": [0, 40, 24, 8]
+		},
+		"Bonus": {
+			"source": "TitleScreenStars.png",
+			"rect": [0, 48, 24, 8]
+		}
 	}
 }
