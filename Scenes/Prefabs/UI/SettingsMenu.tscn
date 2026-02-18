@@ -614,7 +614,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_DIFFICULTY"
-options = [NodePath("ScrollContainer/VBoxContainer/PhysicsStyle"), NodePath("ScrollContainer/VBoxContainer/DamageStyle"), NodePath("ScrollContainer/VBoxContainer/Checkpoints"), NodePath("ScrollContainer/VBoxContainer/ExtraCheckpoints"), NodePath("ScrollContainer/VBoxContainer/Lives"), NodePath("ScrollContainer/VBoxContainer/FlagpoleLives"), NodePath("ScrollContainer/VBoxContainer/GameOverStyle"), NodePath("ScrollContainer/VBoxContainer/LevelDesign"), NodePath("ScrollContainer/VBoxContainer/BackScroll"), NodePath("ScrollContainer/VBoxContainer/TimeLimit"), NodePath("ScrollContainer/VBoxContainer/LakituStyle")]
+options = [NodePath("ScrollContainer/VBoxContainer/PhysicsStyle"), NodePath("ScrollContainer/VBoxContainer/DamageStyle"), NodePath("ScrollContainer/VBoxContainer/Checkpoints"), NodePath("ScrollContainer/VBoxContainer/ExtraCheckpoints"), NodePath("ScrollContainer/VBoxContainer/Lives"), NodePath("ScrollContainer/VBoxContainer/FlagpoleLives"), NodePath("ScrollContainer/VBoxContainer/GameOverStyle"), NodePath("ScrollContainer/VBoxContainer/LevelDesign"), NodePath("ScrollContainer/VBoxContainer/BackScroll"), NodePath("ScrollContainer/VBoxContainer/TimeLimit"), NodePath("ScrollContainer/VBoxContainer/SpinyBehaviour"), NodePath("ScrollContainer/VBoxContainer/LakituBehaviour"), NodePath("ScrollContainer/VBoxContainer/HammerBroBehaviour"), NodePath("ScrollContainer/VBoxContainer/BowserBehaviour")]
 description_node = NodePath("Description/AutoScrollContainer/MarginContainer/Desc")
 scroll_container = NodePath("ScrollContainer")
 
@@ -713,12 +713,36 @@ value_descs = Array[String](["DESC_TIME_0", "DESC_TIME_1", "DESC_TIME_2"])
 values = ["SETTING_OFF", "SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "difficulty"
 
-[node name="LakituStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer" unique_id=1587417561 groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="SpinyBehaviour" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer" unique_id=215292564 groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "spiny_style"
+title = "DIFFI_SPINY"
+value_descs = Array[String](["DESC_SPINY_0", "DESC_SPINY_1"])
+values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
+settings_category = "difficulty"
+
+[node name="LakituBehaviour" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer" unique_id=1587417561 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "lakitu_style"
 title = "DIFFI_LAKITU"
 value_descs = Array[String](["DESC_LAKITU_0", "DESC_LAKITU_1"])
 values = ["DIFFI_LAKITU_0", "DIFFI_LAKITU_1"]
+settings_category = "difficulty"
+
+[node name="HammerBroBehaviour" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer" unique_id=1997355696 groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "hammer_bro_style"
+title = "DIFFI_HAMMER_BRO"
+value_descs = Array[String](["DESC_HAMMER_BRO_0", "DESC_HAMMER_BRO_1"])
+values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
+settings_category = "difficulty"
+
+[node name="BowserBehaviour" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer" unique_id=799903366 groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "bowser_style"
+title = "DIFFI_BOWSER"
+value_descs = Array[String](["DESC_BOWSER_0", "DESC_BOWSER_1"])
+values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "difficulty"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=863097764]
@@ -1122,7 +1146,10 @@ uppercase = true
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/LevelDesign" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="level_design_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/BackScroll" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="backscroll_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/TimeLimit" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="time_limit_changed"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/LakituStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="lakitu_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/SpinyBehaviour" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="enemy_behaviour_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/LakituBehaviour" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="lakitu_style_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/HammerBroBehaviour" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="enemy_behaviour_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/BowserBehaviour" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="bowser_style_changed"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/CampaignData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_story"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/ChallengeModeData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_challenge"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/BooRaceData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_boo"]
@@ -1130,8 +1157,8 @@ uppercase = true
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/AchievementData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_achievement"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/Everything" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_everything"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/Data/RegenROM" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="regen_rom"]
-[connection signal="pack_created" from="ResourcePackTemplateCreator" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/VBoxContainer/SelectableOptionNode3" method="play_sfx" binds= ["correct"]]
 [connection signal="pack_created" from="ResourcePackTemplateCreator" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/VBoxContainer/SelectableOptionNode3" method="set_title" binds= ["RESOURCE_PACK_CREATE"]]
+[connection signal="pack_created" from="ResourcePackTemplateCreator" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/VBoxContainer/SelectableOptionNode3" method="play_sfx" binds= ["correct"]]
 
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Video/Language"]
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode"]

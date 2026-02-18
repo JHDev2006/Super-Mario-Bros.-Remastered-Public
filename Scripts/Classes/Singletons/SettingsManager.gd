@@ -76,6 +76,7 @@ var file := {
 	},
 	"difficulty":
 	{
+		"physics_style": 1,
 		"damage_style": 1,
 		"checkpoint_style": 0,
 		"inf_lives": 0,
@@ -85,8 +86,10 @@ var file := {
 		"extra_checkpoints": 0,
 		"back_scroll": 0,
 		"time_limit": 1,
+		"spiny_style": 1,
 		"lakitu_style": 0,
-		"physics_style": 1
+		"hammer_bro_style": 1,
+		"bowser_style": 1,
 	}
 }
 

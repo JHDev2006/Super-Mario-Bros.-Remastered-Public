@@ -8,6 +8,7 @@ signal killed(direction: int)
 @export var score_note_adder: ScoreNoteSpawner = null
 
 var direction := -1
+var bounced := false
 var ignore_flag_die := false
 
 func _enter_tree() -> void:
@@ -25,6 +26,13 @@ func die() -> void:
 	DiscoLevel.combo_amount += 1
 	DiscoLevel.combo_meter = 100
 	queue_free()
+
+func bounce_from_object(obj: Node2D) -> void:
+	var dir = sign(global_position.x - obj.global_position.x)
+	if dir == 0:
+		dir = [-1, 1].pick_random()
+	bounced = true
+	velocity = Vector2(64, -160)
 
 func die_from_object(obj: Node2D) -> void:
 	var dir = sign(global_position.x - obj.global_position.x)

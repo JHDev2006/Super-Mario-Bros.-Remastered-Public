@@ -27,8 +27,17 @@ func level_design_changed(new_value := 0) -> void:
 func extra_checkpoints_changed(new_value := 0) -> void:
 	Settings.file.difficulty.extra_checkpoints = new_value
 
+func spiny_style_changed(new_value := 0) -> void:
+	Settings.file.difficulty.spiny_style = new_value
+
 func lakitu_style_changed(new_value := 0) -> void:
 	Settings.file.difficulty.lakitu_style = new_value
+
+func hammer_bro_style_changed(new_value := 0) -> void:
+	Settings.file.difficulty.hammer_bro_style = new_value
+
+func bowser_style_changed(new_value := 0) -> void:
+	Settings.file.difficulty.bowser_style = new_value
 
 func physics_style_changed(new_value := 0):
 	Settings.file.difficulty.physics_style = new_value

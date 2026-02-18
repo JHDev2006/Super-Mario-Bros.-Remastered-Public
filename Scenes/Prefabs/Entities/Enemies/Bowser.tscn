@@ -98,7 +98,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ma5fd"]
-size = Vector2(20, 24)
+size = Vector2(16, 22.000002)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5b235"]
+size = Vector2(16, 20.000013)
 
 [sub_resource type="Animation" id="Animation_pvhfi"]
 resource_name = "Hurt"
@@ -234,7 +237,6 @@ scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_mcog5")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.687669
 offset = Vector2(0, 1)
 flip_h = true
 script = ExtResource("4_2qn7a")
@@ -247,9 +249,12 @@ rotation = 3.14159
 scale = Vector2(1, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteScaleJoint/Sprite/Hitbox" unique_id=1859867718]
-visible = false
-position = Vector2(0, -12)
+position = Vector2(7.9999695, -11.000018)
 shape = SubResource("RectangleShape2D_ma5fd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SpriteScaleJoint/Sprite/Hitbox" unique_id=102296478]
+position = Vector2(-8.00005, -19.999989)
+shape = SubResource("RectangleShape2D_5b235")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="SpriteScaleJoint/Sprite" unique_id=112798433]
 position = Vector2(8, -8)
@@ -347,7 +352,7 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1469437747]
 self_modulate = Color(1, 1, 1, 0)
-position = Vector2(-1.42109e-14, -16)
+position = Vector2(-3.3881318e-21, -16)
 scale = Vector2(1.85, 2.1)
 
 [node name="ThemedToJSONConverter" type="Node" parent="." unique_id=510890767]
@@ -380,8 +385,8 @@ hitbox = NodePath("../SpriteScaleJoint/Sprite/Hitbox")
 metadata/_custom_type_script = "uid://ba18grqjixded"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
-[connection signal="killed" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [5000]]
 [connection signal="killed" from="." to="." method="show_smoke" unbinds=1]
+[connection signal="killed" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [5000]]
 [connection signal="area_entered" from="SpriteScaleJoint/Sprite/Hitbox" to="." method="on_area_entered"]
 [connection signal="timeout" from="JumpTimer" to="." method="jump"]
 [connection signal="timeout" from="HammerTime" to="." method="throw_hammers"]
