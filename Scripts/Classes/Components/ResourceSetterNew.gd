@@ -189,6 +189,9 @@ func get_resource(json_file: JSON) -> Resource:
 			Global.theme_override = json.get("theme", "")
 			Global.time_override = json.get("time", "")
 			Global.music_override = json.get("music", "")
+			Global.primary_bg_override = json.get("primary_bg", -1)
+			Global.secondary_bg_override = json.get("secondary_bg", -1)
+			Global.particle_override = json.get("particles", -1)
 	if cache.has(json_file.resource_path) == false and use_cache and not is_random:
 		cache[json_file.resource_path] = resource
 	return resource
