@@ -215,7 +215,6 @@ func _ready() -> void:
 func update_theme() -> void:
 	theme_override = ""
 	time_override = ""
-	music_override = ""
 	$ThemeGetter.update_resource()
 	level_theme_changed.emit()
 
@@ -283,7 +282,7 @@ func _process(delta: float) -> void:
 		ResourceSetterNew.clear_cache()
 		ResourceGetter.cache.clear()
 		AudioManager.current_level_theme = ""
-		level_theme_changed.emit()
+		update_theme()
 		TranslationServer.reload_pseudolocalization()
 		log_comment("Reloaded resource packs!")
 	
