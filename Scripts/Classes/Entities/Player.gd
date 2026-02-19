@@ -919,6 +919,7 @@ func handle_invincible_palette() -> void:
 	sprite.material.set_shader_parameter("mode", !Settings.file.visuals.rainbow_style)
 	sprite.material.set_shader_parameter("player_palette", $PlayerPalette.texture)
 	sprite.material.set_shader_parameter("palette_size", colour_palette.get_width())
+	sprite.material.set_shader_parameter("palette_height", POWER_STATES.size())
 	sprite.material.set_shader_parameter("invincible_palette", $InvinciblePalette.texture)
 	sprite.material.set_shader_parameter("invincible_palette_size", $InvinciblePalette.texture.get_height())
 	sprite.material.set_shader_parameter("palette_idx", POWER_STATES.find(power_state.state_name))

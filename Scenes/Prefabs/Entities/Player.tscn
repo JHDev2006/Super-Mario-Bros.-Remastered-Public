@@ -83,7 +83,7 @@ vec4 mode_1(vec4 colour)
     for (int i = 0; i < palette_count; i++)
 {
     float x_coord = (float(i) + 0.5) / palette_size;
-    float y_coord = (float(palette_idx)) / float(invincible_palette_size);
+    float y_coord = (float(palette_idx)) / float(palette_height);
 
     vec4 sampled = texture(player_palette, vec2(x_coord, y_coord));
 
