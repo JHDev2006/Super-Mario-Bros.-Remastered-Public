@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dnksdgorle8su"]
+[gd_scene format=3 uid="uid://dnksdgorle8su"]
 
 [ext_resource type="Script" uid="uid://cj6858gmexp11" path="res://Scripts/UI/SettingsMenu.gd" id="1_hnwhb"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_t6b48"]
@@ -195,7 +195,7 @@ func regen_rom() -> void:
 	Global.transition_to_scene(\"res://Scenes/Levels/RomVerifier.tscn\")
 "
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("containers")]
+[node name="SettingsMenu" type="Control" unique_id=1203610908 node_paths=PackedStringArray("containers")]
 process_mode = 4
 visible = false
 custom_minimum_size = Vector2(250, 0)
@@ -211,7 +211,7 @@ grow_vertical = 2
 script = ExtResource("1_hnwhb")
 containers = [NodePath("PanelContainer/MarginContainer/VBoxContainer/Video"), NodePath("PanelContainer/MarginContainer/VBoxContainer/Audio"), NodePath("PanelContainer/MarginContainer/VBoxContainer/Visuals"), NodePath("PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"), NodePath("PanelContainer/MarginContainer/VBoxContainer/Difficulty"), NodePath("PanelContainer/MarginContainer/VBoxContainer/KeyboardControls"), NodePath("PanelContainer/MarginContainer/VBoxContainer/Controller"), NodePath("PanelContainer/MarginContainer/VBoxContainer/Data")]
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1681443211]
 custom_minimum_size = Vector2(222, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -221,14 +221,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_t6b48")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1152739159]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1725163580]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=75559963]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -236,7 +236,7 @@ text = "MENU_SETTINGS"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Title"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Title" unique_id=1229891726]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -247,25 +247,25 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/separator = SubResource("StyleBoxLine_ksnto")
 
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=720240610]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
-[node name="CategorySelect" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="CategorySelect" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=46591937]
 layout_mode = 2
 theme_override_constants/separation = -4
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect" unique_id=469697281]
 layout_mode = 2
 theme_override_constants/separation = -8
 
-[node name="LeftArrow" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer"]
+[node name="LeftArrow" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer" unique_id=163000494]
 unique_name_in_owner = true
 layout_mode = 2
 text = "◄"
 
-[node name="Category" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer"]
+[node name="Category" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer" unique_id=981997142]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
@@ -273,7 +273,7 @@ text = "video"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer/Category"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer/Category" unique_id=465265257]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -284,12 +284,12 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/separator = SubResource("StyleBoxLine_oh4w7")
 
-[node name="RightArrow" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer"]
+[node name="RightArrow" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer" unique_id=688499536]
 unique_name_in_owner = true
 layout_mode = 2
 text = "►"
 
-[node name="Video" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+[node name="Video" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=977396254 node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -298,18 +298,18 @@ script = ExtResource("4_avtty")
 category_name = "SETTINGS_VIDEO"
 options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle"), NodePath("FrameLimit")]
 
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=271576779]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="Language" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="Language" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=114389432 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "lang"
 title = "SETTINGS_LANGUAGE"
-values = ["LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME"]
+values = ["LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME"]
 settings_category = "game"
 
-[node name="Flag" type="NinePatchRect" parent="PanelContainer/MarginContainer/VBoxContainer/Video/Language/HBoxContainer" index="0"]
+[node name="Flag" type="NinePatchRect" parent="PanelContainer/MarginContainer/VBoxContainer/Video/Language/HBoxContainer" index="0" unique_id=163611819]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
@@ -317,59 +317,59 @@ size_flags_horizontal = 8
 texture = ExtResource("5_q6iis")
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="WindowMode" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="WindowMode" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=1016604992 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "mode"
 title = "VIDEO_MODE"
 values = ["VIDEO_MODE_WINDOWED", "VIDEO_MODE_BORDERLESS", "VIDEO_MODE_FULLSCREEN"]
 
-[node name="Size" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="Size" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=328473164 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "size"
 title = "VIDEO_SIZE"
 values = ["VIDEO_ASPECT_OG", "VIDEO_ASPECT_WIDE"]
 selected = true
 
-[node name="Visuals" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="Visuals" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=1866957450 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "visuals"
 title = "VIDEO_RENDER"
 values = ["VIDEO_VISUALS_PIXEL", "VIDEO_VISUALS_SMOOTH"]
 
-[node name="Scaling" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="Scaling" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=244949329 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "scaling"
 title = "VIDEO_SCALING"
 values = ["VIDEO_SCALING_INT", "VIDEO_SCALING_FRACT"]
 
-[node name="VSync" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="VSync" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=1821702462 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "vsync"
 title = "VIDEO_VSYNC"
 values = ["SETTING_OFF", "SETTING_ON"]
 
-[node name="DropShadows" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="DropShadows" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=423537750 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "drop_shadows"
 title = "VIDEO_SHADOWS"
 values = ["SETTING_OFF", "SETTING_ON"]
 
-[node name="HudStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="HudStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=763473548 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "hud_scaling"
 title = "VIDEO_HUD_SCALING"
 values = ["VIDEO_HUD_STRETCHED", "VIDEO_HUD_CENTER"]
 
-[node name="FrameLimit" parent="PanelContainer/MarginContainer/VBoxContainer/Video" instance=ExtResource("3_dl6kk")]
+[node name="FrameLimit" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=1298063766 instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "frame_limit"
 title = "FRAME LIMIT"
 values = ["Unlimited", "60fps", "120fps", "144fps", "240fps"]
 
-[node name="WindowChanger" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
+[node name="WindowChanger" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=569272354]
 script = ExtResource("5_hnwhb")
 
-[node name="Audio" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+[node name="Audio" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=75383988 node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = -4
@@ -377,11 +377,11 @@ script = ExtResource("4_avtty")
 category_name = "SETTINGS_AUDIO"
 options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3"), NodePath("AthleticMusic"), NodePath("SkidSFX"), NodePath("ExtraSFX"), NodePath("PauseBGM"), NodePath("MenuBGM")]
 
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Audio"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" unique_id=1382384491]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="SelectableOptionNode" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("7_om3lc")]
+[node name="SelectableOptionNode" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" unique_id=1487449199 groups=["Options"] instance=ExtResource("7_om3lc")]
 layout_mode = 2
 option_key = "master"
 title = "AUDIO_MASTER"
@@ -389,7 +389,7 @@ title = "AUDIO_MASTER"
 [node name="SFX" parent="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode" index="3"]
 bus = &"Master"
 
-[node name="SelectableOptionNode2" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("7_om3lc")]
+[node name="SelectableOptionNode2" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" unique_id=331825337 groups=["Options"] instance=ExtResource("7_om3lc")]
 layout_mode = 2
 option_key = "music"
 title = "AUDIO_MUSIC"
@@ -397,50 +397,50 @@ title = "AUDIO_MUSIC"
 [node name="SFX" parent="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2" index="3"]
 bus = &"Music"
 
-[node name="SelectableOptionNode3" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("7_om3lc")]
+[node name="SelectableOptionNode3" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" unique_id=789423284 groups=["Options"] instance=ExtResource("7_om3lc")]
 layout_mode = 2
 option_key = "sfx"
 title = "AUDIO_SFX"
 
-[node name="AthleticMusic" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="AthleticMusic" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" unique_id=1063277269 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "extra_bgm"
 title = "AUDIO_EXTRA_BGM"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "audio"
 
-[node name="SkidSFX" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="SkidSFX" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" unique_id=628951799 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "skid_sfx"
 title = "AUDIO_SKID_SFX"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "audio"
 
-[node name="ExtraSFX" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="ExtraSFX" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" unique_id=420156004 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "extra_sfx"
 title = "AUDIO_EXTRA_SFX"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "audio"
 
-[node name="PauseBGM" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="PauseBGM" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" unique_id=1433076942 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "pause_bgm"
 title = "AUDIO_PAUSE_BGM"
 values = ["SETTING_OFF", "SETTING_MUFFLED", "SETTING_ON"]
 settings_category = "audio"
 
-[node name="MenuBGM" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="MenuBGM" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" unique_id=1548007201 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "menu_bgm"
 title = "AUDIO_MENU_BGM"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "audio"
 
-[node name="AudioAdjuster" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Audio"]
+[node name="AudioAdjuster" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Audio" unique_id=1703151847]
 script = ExtResource("8_yclde")
 
-[node name="Visuals" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+[node name="Visuals" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=553588803 node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -449,98 +449,98 @@ script = ExtResource("4_avtty")
 category_name = "SETTINGS_VISUALS"
 options = [NodePath("ParallaxStyle"), NodePath("BGParticles"), NodePath("HUDStyle"), NodePath("RainbowEffect"), NodePath("TransformationEffect"), NodePath("TextShadows"), NodePath("BridgeDestructionAnimation"), NodePath("VisibleTimers"), NodePath("TransitionAnimation"), NodePath("ColourfulPipes"), NodePath("FirebarStyle"), NodePath("ExtraParticles")]
 
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=254359174]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="ParallaxStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="ParallaxStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=283817748 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "parallax_style"
 title = "VISUALS_PARALLAX"
 values = ["VISUAL_PARALLAX_NONE", "VISUAL_PARALLAX_BASIC", "VISUAL_PARALLAX_DETAIL"]
 settings_category = "visuals"
 
-[node name="BGParticles" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="BGParticles" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=975923025 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "bg_particles"
 title = "VISUAL_PARTICLES"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "visuals"
 
-[node name="HUDStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="HUDStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=66419626 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "modern_hud"
 title = "VISUAL_HUD_STYLE"
 values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "visuals"
 
-[node name="RainbowEffect" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="RainbowEffect" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=305723186 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "rainbow_style"
 title = "VISUAL_RAINBOW"
 values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "visuals"
 
-[node name="TransformationEffect" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="TransformationEffect" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=628679004 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "transform_style"
 title = "VISUAL_TRANSFORM"
 values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "visuals"
 
-[node name="TextShadows" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="TextShadows" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=710709798 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "text_shadows"
 title = "VISUAL_TEXT_SHADOWS"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "visuals"
 
-[node name="BridgeDestructionAnimation" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="BridgeDestructionAnimation" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=816594480 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "bridge_animation"
 title = "VISUAL_BRIDGE_ANIMATION"
 values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "visuals"
 
-[node name="VisibleTimers" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="VisibleTimers" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=1497379043 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "visible_timers"
 title = "VISUAL_VISIBLE_TIMERS"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "visuals"
 
-[node name="TransitionAnimation" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="TransitionAnimation" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=705887942 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "transition_animation"
 title = "VISUAL_TRANSITION_EFFECT"
 values = ["VISUAL_TRANSITION_CLASSIC", "VISUAL_TRANSITION_SMOOTH"]
 settings_category = "visuals"
 
-[node name="ColourfulPipes" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="ColourfulPipes" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=1118536108 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "colour_pipes"
 title = "VISUAL_COLOURFUL_PIPES"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "visuals"
 
-[node name="FirebarStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="FirebarStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=1664591638 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "firebar_style"
 title = "FIREBAR STYLE"
 values = ["Classic", "Modern"]
 settings_category = "visuals"
 
-[node name="ExtraParticles" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="ExtraParticles" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=1629712849 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "extra_particles"
 title = "EXTRA EFFECTS"
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "visuals"
 
-[node name="VisualsSetter" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals"]
+[node name="VisualsSetter" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Visuals" unique_id=1962258746]
 script = ExtResource("9_kfq5n")
 
-[node name="ResourcePacks" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+[node name="ResourcePacks" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=550836560 node_paths=PackedStringArray("options")]
 visible = false
 custom_minimum_size = Vector2(0, 171)
 layout_mode = 2
@@ -550,40 +550,40 @@ script = ExtResource("4_avtty")
 category_name = "SETTINGS_RESOURCE_PACK"
 options = [NodePath("SelectableOptionNode"), NodePath("SelectableOptionNode2"), NodePath("SelectableOptionNode3")]
 
-[node name="SelectableOptionNode" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" groups=["Options"] instance=ExtResource("9_t6b48")]
+[node name="SelectableOptionNode" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" unique_id=328972665 groups=["Options"] instance=ExtResource("9_t6b48")]
 layout_mode = 2
 title = "RESOURCE_OPEN_FOLDER"
 
-[node name="SelectableOptionNode2" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" groups=["Options"] instance=ExtResource("9_t6b48")]
+[node name="SelectableOptionNode2" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" unique_id=1670155159 groups=["Options"] instance=ExtResource("9_t6b48")]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 title = "RESOURCE_REFRESH"
 
-[node name="SelectableOptionNode3" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" instance=ExtResource("9_t6b48")]
+[node name="SelectableOptionNode3" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" unique_id=199669294 instance=ExtResource("9_t6b48")]
 layout_mode = 2
 title = "RESOURCE_PACK_CREATE"
 press_sfx = ""
 
-[node name="ResourcePackLoader" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
+[node name="ResourcePackLoader" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" unique_id=600615533]
 script = ExtResource("9_2qqpf")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" unique_id=719315710]
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/ScrollContainer" unique_id=951690359]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 1
 
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks" unique_id=1962798176]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
-[node name="Difficulty" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options", "description_node")]
+[node name="Difficulty" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=211619708 node_paths=PackedStringArray("options", "description_node")]
 visible = false
 custom_minimum_size = Vector2(0, 134)
 layout_mode = 2
@@ -594,11 +594,11 @@ category_name = "SETTINGS_DIFFICULTY"
 options = [NodePath("DamageStyle"), NodePath("Checkpoints"), NodePath("ExtraCheckpoints"), NodePath("Lives"), NodePath("FlagpoleLives"), NodePath("GameOverStyle"), NodePath("LevelDesign"), NodePath("BackScroll"), NodePath("TimeLimit"), NodePath("LakituStyle")]
 description_node = NodePath("Description/AutoScrollContainer/MarginContainer/Desc")
 
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=657153450]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="DamageStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="DamageStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=1184567436 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "damage_style"
 title = "DIFFI_DAMAGE_STYLE"
@@ -606,7 +606,7 @@ value_descs = Array[String](["DESC_DMG_STYLE_0", "DESC_DMG_STYLE_1"])
 values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "difficulty"
 
-[node name="Checkpoints" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="Checkpoints" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=1099019654 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "checkpoint_style"
 title = "DIFFI_CHECKPOINT"
@@ -614,7 +614,7 @@ value_descs = Array[String](["DESC_FLAG_0", "DESC_FLAG_1", "DESC_FLAG_2"])
 values = ["DIFFI_CHECK_NO_FLAG", "DIFFI_CHECK_FLAG", "DIFFI_CHECK_FLAG+"]
 settings_category = "difficulty"
 
-[node name="ExtraCheckpoints" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="ExtraCheckpoints" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=84712620 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "extra_checkpoints"
 title = "DIFFI_EXTRA_CHECK"
@@ -622,7 +622,7 @@ value_descs = Array[String](["DESC_EXTRA_CHECK_0", "DESC_EXTRA_CHECK_1"])
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "difficulty"
 
-[node name="Lives" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="Lives" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=1454251876 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "inf_lives"
 title = "DIFFI_INF_LIVES"
@@ -630,7 +630,7 @@ value_descs = Array[String](["DESC_INF_LIVES_0", "DESC_INF_LIVES_1"])
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "difficulty"
 
-[node name="FlagpoleLives" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="FlagpoleLives" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=876228131 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "flagpole_lives"
 title = "DIFFI_FLAG_LIVES"
@@ -638,7 +638,7 @@ value_descs = Array[String](["DESC_FLAG_LIVES_0", "DESC_FLAG_LIVES_1"])
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "difficulty"
 
-[node name="GameOverStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="GameOverStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=2123476751 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "game_over_behaviour"
 title = "DIFFI_GAME_OVER"
@@ -646,7 +646,7 @@ value_descs = Array[String](["DESC_GAME_OVER_0", "DESC_GAME_OVER_1", "DESC_GAME_
 values = ["DIFFI_GAME_OVER_WLD", "DIFFI_GAME_OVER_LVL", "DIFFI_GAME_OVER_GME"]
 settings_category = "difficulty"
 
-[node name="LevelDesign" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="LevelDesign" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=2011341046 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "level_design"
 title = "DIFFI_LEVEL_DESIGN"
@@ -654,7 +654,7 @@ value_descs = Array[String](["DESC_LEVEL_DESIGN_0", "DESC_LEVEL_DESIGN_1"])
 values = ["SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "difficulty"
 
-[node name="BackScroll" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="BackScroll" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=1138198578 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "back_scroll"
 title = "DIFFI_BACKSCROLL"
@@ -662,7 +662,7 @@ value_descs = Array[String](["DESC_BACKSCROLL_0", "DESC_BACKSCROLL_1"])
 values = ["SETTING_OFF", "SETTING_ON"]
 settings_category = "difficulty"
 
-[node name="TimeLimit" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="TimeLimit" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=1912567810 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "time_limit"
 title = "DIFFI_TIME"
@@ -670,7 +670,7 @@ value_descs = Array[String](["DESC_TIME_0", "DESC_TIME_1", "DESC_TIME_2"])
 values = ["SETTING_OFF", "SETTINGS_CLASSIC", "SETTINGS_MODERN"]
 settings_category = "difficulty"
 
-[node name="LakituStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="LakituStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=95712598 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "lakitu_style"
 title = "DIFFI_LAKITU"
@@ -678,17 +678,17 @@ value_descs = Array[String](["DESC_LAKITU_0", "DESC_LAKITU_1"])
 values = ["DIFFI_LAKITU_0", "DIFFI_LAKITU_1"]
 settings_category = "difficulty"
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=533268612]
 custom_minimum_size = Vector2(0, 11)
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_2qqpf")
 
-[node name="Description" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
+[node name="Description" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=1324897018]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ksnto")
 
-[node name="AutoScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description"]
+[node name="AutoScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description" unique_id=726288401]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 horizontal_scroll_mode = 0
@@ -699,22 +699,22 @@ is_active = true
 auto_connect_focus = false
 metadata/_custom_type_script = "uid://d63p6qr5a748"
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer" unique_id=491858346]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_bottom = -4
 
-[node name="Desc" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer/MarginContainer"]
+[node name="Desc" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer/MarginContainer" unique_id=1262359228]
 layout_mode = 2
 size_flags_vertical = 0
 autowrap_mode = 2
 uppercase = true
 
-[node name="DifficultySetter" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty"]
+[node name="DifficultySetter" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Difficulty" unique_id=1726852883]
 script = ExtResource("10_2qqpf")
 
-[node name="KeyboardControls" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+[node name="KeyboardControls" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1418578589 node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -723,71 +723,71 @@ script = ExtResource("4_avtty")
 category_name = "SETTINGS_KEYBOARD"
 options = [NodePath("Jump"), NodePath("Run"), NodePath("Action"), NodePath("Left"), NodePath("Right"), NodePath("Up"), NodePath("Down"), NodePath("Accept"), NodePath("Back"), NodePath("Pause")]
 
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=1853585371]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="Jump" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Jump" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=1400306564 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 action_names = ["jump"]
 title = "ACTION_JUMP"
 
-[node name="Run" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Run" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=1098858301 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 action_names = ["run"]
 title = "ACTION_RUN"
 
-[node name="Action" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Action" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=1435586090 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 action_names = ["action"]
 title = "ACTION_ACTION"
 
-[node name="Left" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Left" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=295945047 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 action_names = ["move_left", "ui_left"]
 title = "ACTION_LEFT"
 
-[node name="Right" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Right" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=46724565 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 action_names = ["move_right", "ui_right"]
 title = "ACTION_RIGHT"
 
-[node name="Up" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Up" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=1855867024 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 action_names = ["move_up", "ui_up"]
 title = "ACTION_UP"
 
-[node name="Down" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Down" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=614268559 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 action_names = ["move_down", "ui_down"]
 title = "ACTION_DOWN"
 
-[node name="Accept" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Accept" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=524906425 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 action_names = ["ui_accept"]
 title = "ACCEPT"
 
-[node name="Back" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Back" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=655335823 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 action_names = ["ui_back"]
 title = "BACK"
 
-[node name="Pause" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Pause" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=370798933 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 action_names = ["pause"]
 title = "PAUSE"
 
-[node name="InputMapSaving" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" groups=["Options"]]
+[node name="InputMapSaving" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=52261403 groups=["Options"]]
 process_mode = 3
 script = SubResource("GDScript_ksnto")
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls" unique_id=246786976]
 layout_mode = 2
 size_flags_vertical = 10
 text = "PRESS F5 TO RESET BINDINGS."
 uppercase = true
 
-[node name="Controller" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+[node name="Controller" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=55494585 node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -796,91 +796,91 @@ script = ExtResource("4_avtty")
 category_name = "SETTINGS_CONTROLLER"
 options = [NodePath("Jump"), NodePath("Run"), NodePath("Action"), NodePath("Left"), NodePath("Right"), NodePath("Up"), NodePath("Down"), NodePath("Accept"), NodePath("Back"), NodePath("Pause")]
 
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Controller"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=872378670]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="Jump" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Jump" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=569168917 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
 action_names = ["jump"]
 title = "ACTION_JUMP"
 type = 1
 
-[node name="Run" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Run" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=1290379170 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
 action_names = ["run"]
 title = "ACTION_RUN"
 type = 1
 
-[node name="Action" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Action" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=122890737 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
 action_names = ["action"]
 title = "ACTION_ACTION"
 type = 1
 
-[node name="Left" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Left" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=246294252 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
 action_names = ["move_left", "ui_left"]
 title = "ACTION_LEFT"
 type = 1
 
-[node name="Right" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Right" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=1392807837 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
 action_names = ["move_right", "ui_right"]
 title = "ACTION_RIGHT"
 type = 1
 
-[node name="Up" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Up" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=305667878 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
 action_names = ["move_up", "ui_up"]
 title = "ACTION_UP"
 type = 1
 
-[node name="Down" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Down" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=527125809 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
 action_names = ["move_down", "ui_down"]
 title = "ACTION_DOWN"
 type = 1
 
-[node name="Accept" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Accept" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=1234078331 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
 action_names = ["ui_accept"]
 title = "ACCEPT"
 type = 1
 
-[node name="Back" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Back" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=460521259 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
 action_names = ["ui_back"]
 title = "BACK"
 type = 1
 
-[node name="Pause" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"] instance=ExtResource("9_ksnto")]
+[node name="Pause" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=167228628 groups=["Options"] instance=ExtResource("9_ksnto")]
 layout_mode = 2
 settings_category = "controller"
 action_names = ["pause"]
 title = "PAUSE"
 type = 1
 
-[node name="InputMapSaving" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" groups=["Options"]]
+[node name="InputMapSaving" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=1544340066 groups=["Options"]]
 script = SubResource("GDScript_ksnto")
 type = 1
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Controller"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=258486741]
 layout_mode = 2
 size_flags_vertical = 10
 text = "PRESS F5 TO RESET BINDINGS."
 uppercase = true
 
-[node name="Data" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("options")]
+[node name="Data" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1996028112 node_paths=PackedStringArray("options")]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = -4
@@ -888,72 +888,72 @@ script = ExtResource("4_avtty")
 category_name = "SETTINGS_DATA"
 options = [NodePath("CampaignData"), NodePath("ChallengeModeData"), NodePath("BooRaceData"), NodePath("MarathonData"), NodePath("AchievementData"), NodePath("Everything"), NodePath("RegenROM")]
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=7815907]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Data/MarginContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Data/MarginContainer" unique_id=1049857444]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 text = "DELETION_WARNING"
 autowrap_mode = 2
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=700171660]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_k6yev")
 
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=526204496]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
-[node name="CampaignData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+[node name="CampaignData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=1733358712 instance=ExtResource("15_oh4w7")]
 layout_mode = 2
 title = "DELETION_CAMPAIGN"
 
-[node name="ChallengeModeData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+[node name="ChallengeModeData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=1359975783 instance=ExtResource("15_oh4w7")]
 layout_mode = 2
 title = "DELETION_CHALLENGE"
 campaigns = Array[String](["SMB1", "SMBLL", "SMBS"])
 
-[node name="BooRaceData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+[node name="BooRaceData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=1283977131 instance=ExtResource("15_oh4w7")]
 layout_mode = 2
 title = "DELETION_BOO"
 campaigns = Array[String](["SMB1", "SMBLL", "SMBS"])
 
-[node name="MarathonData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+[node name="MarathonData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=528775182 instance=ExtResource("15_oh4w7")]
 layout_mode = 2
 title = "DELETION_MARATHON"
 campaigns = Array[String](["SMB1", "SMBLL", "SMBS"])
 
-[node name="AchievementData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+[node name="AchievementData" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=160185898 instance=ExtResource("15_oh4w7")]
 layout_mode = 2
 title = "DELETION_ACHIEVEMENT"
 campaigns = Array[String](["EDITOR_MAIN_LEVEL_DELETE"])
 
-[node name="Everything" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("15_oh4w7")]
+[node name="Everything" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=1348176570 instance=ExtResource("15_oh4w7")]
 layout_mode = 2
 title = "DELETION_ALL"
 extra_confirm = true
 
-[node name="DataDeletion" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+[node name="DataDeletion" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=2001800047]
 script = SubResource("GDScript_oh4w7")
 
-[node name="Control2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Data"]
+[node name="Control2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=85730938]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
-[node name="RegenROM" parent="PanelContainer/MarginContainer/VBoxContainer/Data" instance=ExtResource("9_t6b48")]
+[node name="RegenROM" parent="PanelContainer/MarginContainer/VBoxContainer/Data" unique_id=1633266475 instance=ExtResource("9_t6b48")]
 layout_mode = 2
 title = "Reverify ROM"
 
-[node name="Control" type="Control" parent="PanelContainer"]
+[node name="Control" type="Control" parent="PanelContainer" unique_id=923536416]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="Icon" type="NinePatchRect" parent="PanelContainer/Control"]
+[node name="Icon" type="NinePatchRect" parent="PanelContainer/Control" unique_id=527939964]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(24, 23)
 layout_mode = 1
@@ -970,12 +970,12 @@ grow_vertical = 2
 texture = ExtResource("3_7l5ko")
 region_rect = Rect2(0, 0, 24, 23)
 
-[node name="LabelFontChanger" type="Node" parent="." node_paths=PackedStringArray("labels")]
+[node name="LabelFontChanger" type="Node" parent="." unique_id=1533215880 node_paths=PackedStringArray("labels")]
 script = ExtResource("13_iwu7d")
 labels = [NodePath("../PanelContainer/MarginContainer/VBoxContainer/Title"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer/Category"), null, null, null, null, null, null, null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3/Value"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer/MarginContainer/Desc")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
-[node name="ResourcePackConfigMenu" parent="." instance=ExtResource("16_78q3k")]
+[node name="ResourcePackConfigMenu" parent="." unique_id=1461128871 instance=ExtResource("16_78q3k")]
 visible = false
 layout_mode = 1
 anchor_left = 0.05
@@ -983,7 +983,7 @@ anchor_top = 0.05
 anchor_right = 0.95
 anchor_bottom = 0.95
 
-[node name="ResourcePackTemplateCreator" type="Node" parent="."]
+[node name="ResourcePackTemplateCreator" type="Node" parent="." unique_id=2115953673]
 script = ExtResource("19_k6yev")
 
 [connection signal="closed" from="." to="PanelContainer/MarginContainer/VBoxContainer/KeyboardControls/InputMapSaving" method="save_inputs"]
@@ -1038,8 +1038,8 @@ script = ExtResource("19_k6yev")
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/AchievementData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_achievement"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/Everything" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_everything"]
 [connection signal="button_pressed" from="PanelContainer/MarginContainer/VBoxContainer/Data/RegenROM" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="regen_rom"]
-[connection signal="pack_created" from="ResourcePackTemplateCreator" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" method="set_title" binds= ["RESOURCE_PACK_CREATE"]]
 [connection signal="pack_created" from="ResourcePackTemplateCreator" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" method="play_sfx" binds= ["correct"]]
+[connection signal="pack_created" from="ResourcePackTemplateCreator" to="PanelContainer/MarginContainer/VBoxContainer/ResourcePacks/SelectableOptionNode3" method="set_title" binds= ["RESOURCE_PACK_CREATE"]]
 
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Video/Language"]
 [editable path="PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode"]

@@ -2,18 +2,18 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://bfae4pqxl2ljh"
+uid="uid://bkry52r1nd5a2"
 
 [deps]
 
-files=["res://Resources/Locale/locale.description.translation", "res://Resources/Locale/locale.en.translation", "res://Resources/Locale/locale.fr.translation", "res://Resources/Locale/locale.pl.translation", "res://Resources/Locale/locale.ru.translation", "res://Resources/Locale/locale.es.translation", "res://Resources/Locale/locale.it.translation", "res://Resources/Locale/locale.ga.translation", "res://Resources/Locale/locale.fil.translation", "res://Resources/Locale/locale.de.translation", "res://Resources/Locale/locale.tr.translation", "res://Resources/Locale/locale.id.translation", "res://Resources/Locale/locale.pt.translation", "res://Resources/Locale/locale.jp.translation"]
+files=["res://Resources/Locale/locale.description.translation", "res://Resources/Locale/locale.en.translation", "res://Resources/Locale/locale.fr.translation", "res://Resources/Locale/locale.pl.translation", "res://Resources/Locale/locale.ru.translation", "res://Resources/Locale/locale.es.translation", "res://Resources/Locale/locale.it.translation", "res://Resources/Locale/locale.ga.translation", "res://Resources/Locale/locale.fil.translation", "res://Resources/Locale/locale.de.translation", "res://Resources/Locale/locale.tr.translation", "res://Resources/Locale/locale.id.translation", "res://Resources/Locale/locale.pt.translation", "res://Resources/Locale/locale.jp.translation", "res://Resources/Locale/locale.tok.translation"]
 
 source_file="res://Resources/Locale/locale.csv"
-dest_files=["res://Resources/Locale/locale.description.translation", "res://Resources/Locale/locale.en.translation", "res://Resources/Locale/locale.fr.translation", "res://Resources/Locale/locale.pl.translation", "res://Resources/Locale/locale.ru.translation", "res://Resources/Locale/locale.es.translation", "res://Resources/Locale/locale.it.translation", "res://Resources/Locale/locale.ga.translation", "res://Resources/Locale/locale.fil.translation", "res://Resources/Locale/locale.de.translation", "res://Resources/Locale/locale.tr.translation", "res://Resources/Locale/locale.id.translation", "res://Resources/Locale/locale.pt.translation", "res://Resources/Locale/locale.jp.translation"]
+dest_files=["res://Resources/Locale/locale.description.translation", "res://Resources/Locale/locale.en.translation", "res://Resources/Locale/locale.fr.translation", "res://Resources/Locale/locale.pl.translation", "res://Resources/Locale/locale.ru.translation", "res://Resources/Locale/locale.es.translation", "res://Resources/Locale/locale.it.translation", "res://Resources/Locale/locale.ga.translation", "res://Resources/Locale/locale.fil.translation", "res://Resources/Locale/locale.de.translation", "res://Resources/Locale/locale.tr.translation", "res://Resources/Locale/locale.id.translation", "res://Resources/Locale/locale.pt.translation", "res://Resources/Locale/locale.jp.translation", "res://Resources/Locale/locale.tok.translation"]
 
 [params]
 
-compress=true
+compress=1
 delimiter=0
 unescape_keys=false
 unescape_translations=true

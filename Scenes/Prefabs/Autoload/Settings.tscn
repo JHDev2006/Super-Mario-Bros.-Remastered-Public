@@ -1,20 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://qbdhck2rgjwk"]
+[gd_scene format=3 uid="uid://qbdhck2rgjwk"]
 
 [ext_resource type="Script" uid="uid://ckwnap31rqfru" path="res://Scripts/Classes/Singletons/SettingsManager.gd" id="1_4dj5d"]
 [ext_resource type="Script" uid="uid://26yissv8bnqw" path="res://Scripts/UI/WindowChanger.gd" id="2_uhh15"]
 [ext_resource type="Script" uid="uid://bdgvsycico544" path="res://Scripts/UI/AudioAdjuster.gd" id="3_mxpdm"]
 [ext_resource type="Script" uid="uid://hb401vacltfw" path="res://Scripts/Parts/VisualsSetter.gd" id="4_uhh15"]
 
-[node name="Settings" type="Node"]
+[node name="Settings" type="Node" unique_id=81580014]
 script = ExtResource("1_4dj5d")
 
-[node name="Apply" type="Node" parent="."]
+[node name="Apply" type="Node" parent="." unique_id=1173266017]
 
-[node name="Video" type="Node" parent="Apply"]
+[node name="Video" type="Node" parent="Apply" unique_id=947213532]
 script = ExtResource("2_uhh15")
 
-[node name="Audio" type="Node" parent="Apply"]
+[node name="Audio" type="Node" parent="Apply" unique_id=512004556]
 script = ExtResource("3_mxpdm")
 
-[node name="Visuals" type="Node" parent="Apply"]
+[node name="Visuals" type="Node" parent="Apply" unique_id=602705266]
 script = ExtResource("4_uhh15")
