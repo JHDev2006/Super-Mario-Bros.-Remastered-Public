@@ -8,7 +8,7 @@
 		}
 	},
 	"variations": {
-		"default": {"source": "SpikeBall.png", "rect": [0, 0, 16, 32]},
+		"default": {"source": "SpikeBall.png", "rect": [0, 0, 16, 16]},
 		"Underground": {"source": "SpikeBall.png", "rect": [0, 16, 16, 16]},
 		"GhostHouse": {"link": "Underground"},
 		"Castle": {"source": "SpikeBall.png", "rect": [0, 32, 16, 16]},
