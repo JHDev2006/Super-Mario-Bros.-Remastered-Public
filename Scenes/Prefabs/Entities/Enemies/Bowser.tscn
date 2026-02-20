@@ -380,8 +380,8 @@ hitbox = NodePath("../SpriteScaleJoint/Sprite/Hitbox")
 metadata/_custom_type_script = "uid://ba18grqjixded"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
-[connection signal="killed" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [5000]]
 [connection signal="killed" from="." to="." method="show_smoke" unbinds=1]
+[connection signal="killed" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [5000]]
 [connection signal="area_entered" from="SpriteScaleJoint/Sprite/Hitbox" to="." method="on_area_entered"]
 [connection signal="timeout" from="JumpTimer" to="." method="jump"]
 [connection signal="timeout" from="HammerTime" to="." method="throw_hammers"]

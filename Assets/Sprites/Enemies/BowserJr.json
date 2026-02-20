@@ -23,6 +23,7 @@
 			"speed": 5.0,
 			"loop": false
 		},
+		"Hop": {"link": "Jump"},
 		"GroundPoundAir": {"link": "Jump"},
 		"GroundPoundLand": {"link": "Jump"},
 		"Damage": {"link": "Idle"},

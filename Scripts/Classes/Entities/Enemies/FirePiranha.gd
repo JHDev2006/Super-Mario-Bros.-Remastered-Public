@@ -62,11 +62,17 @@ func shoot() -> void:
 func spawn_fireball() -> void:
 	var node = fireball_scene.instantiate()
 	node.global_position = %Sprite.global_position
-	AudioManager.play_sfx("fireball", node.global_position)
+	if Settings.file.audio.extra_sfx == 1:
+		AudioManager.play_sfx("plant_fireball", node.global_position)
 	var shoot_angle = node.global_position.direction_to(target_player.global_position).angle()
-	if direction.x > 0:
-		shoot_angle = clamp(shoot_angle, deg_to_rad(-45), deg_to_rad(45))
-	else:
-		shoot_angle = clamp(shoot_angle, deg_to_rad(-135), deg_to_rad(135))
-	node.direction = Vector2.from_angle(shoot_angle)
+	match direction:
+		Vector2(1, -1):
+			shoot_angle = clamp(snapped(shoot_angle, 22.5), deg_to_rad(-45), deg_to_rad(-22.5))
+		Vector2(1, 1):
+			shoot_angle = clamp(snapped(shoot_angle, 22.5), deg_to_rad(22.5), deg_to_rad(45))
+		Vector2(-1, 1):
+			shoot_angle = clamp(snapped(shoot_angle, 22.5), deg_to_rad(135), deg_to_rad(157.5))
+		Vector2(-1, -1):
+			shoot_angle = clamp(snapped(shoot_angle, 22.5), deg_to_rad(-157.5), deg_to_rad(-135.5))
+	node.MOVE_ANGLE = Vector2.from_angle(shoot_angle)
 	plant.add_sibling(node)

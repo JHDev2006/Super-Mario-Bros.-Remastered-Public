@@ -5,6 +5,8 @@ extends Enemy
 @export var is_friendly := false
 ## Which particle scene to load.
 @export var PARTICLE: Resource = null
+## Determines the offset of the particle when it is created.
+@export var PARTICLE_OFFSET: Vector2 = Vector2(0, 0)
 ## Determines if the projectile will display a particle upon making contact with something, but hasn't been destroyed.
 @export var PARTICLE_ON_CONTACT := false
 ## Determines what sound will play when the projectile makes contact with something.
@@ -27,10 +29,12 @@ extends Enemy
 @export var COLLECT_COINS := false
 ## Controls how long the projectile will exist for in seconds.
 @export var LIFETIME := -1
-## Controls the horizontal speed of the projectile.
+## Controls the speed of the projectile.
 @export var MOVE_SPEED := 0
-## Controls the horizontal speed of the projectile.
+## Controls the maximum speed of the projectile.
 @export var MOVE_SPEED_CAP := [-INF, INF]
+## Controls the initial angle the projectile travels at.
+@export var MOVE_ANGLE: Vector2 = Vector2.ZERO
 ## Controls the amount of deceleration the projectile will experience on the ground.
 @export var GROUND_DECEL := 0
 ## Controls the amount of deceleration the projectile will experience in the air.
@@ -60,12 +64,15 @@ func _physics_process(delta: float) -> void:
 func handle_movement(delta: float) -> void:
 	var CUR_GRAVITY = GRAVITY * (Global.entity_gravity * 0.1)
 	var DECEL_TYPE = GROUND_DECEL if is_on_floor() else AIR_DECEL
-	velocity.y += (CUR_GRAVITY / delta) * delta
-	velocity.y = clamp(velocity.y, -INF, MAX_FALL_SPEED)
+	if MOVE_ANGLE == Vector2.ZERO:
+		velocity.y += (CUR_GRAVITY / delta) * delta
+		velocity.y = clamp(velocity.y, -INF, MAX_FALL_SPEED)
 	if HAS_COLLISION:
 		projectile_bounce()
 	MOVE_SPEED = clamp(move_toward(MOVE_SPEED, 0, (DECEL_TYPE / delta) * delta), MOVE_SPEED_CAP[0], MOVE_SPEED_CAP[1])
 	velocity.x = MOVE_SPEED * direction
+	if MOVE_ANGLE != Vector2.ZERO:
+		velocity = MOVE_ANGLE * velocity.length()
 	move_and_slide()
 
 func projectile_bounce() -> void:
@@ -109,5 +116,5 @@ func hit(play_sfx := true, force_destroy := false) -> void:
 func summon_explosion() -> void:
 	if PARTICLE is PackedScene and PARTICLE.can_instantiate():
 		var node = PARTICLE.instantiate()
-		node.global_position = global_position
+		node.global_position = global_position + PARTICLE_OFFSET
 		add_sibling(node)
