@@ -64,15 +64,15 @@ func _physics_process(delta: float) -> void:
 func handle_movement(delta: float) -> void:
 	var CUR_GRAVITY = GRAVITY * (Global.entity_gravity * 0.1)
 	var DECEL_TYPE = GROUND_DECEL if is_on_floor() else AIR_DECEL
-	if MOVE_ANGLE == Vector2.ZERO:
-		velocity.y += (CUR_GRAVITY / delta) * delta
-		velocity.y = clamp(velocity.y, -INF, MAX_FALL_SPEED)
+	velocity.y += (CUR_GRAVITY / delta) * delta
+	velocity.y = clamp(velocity.y, -INF, MAX_FALL_SPEED)
+	MOVE_SPEED = clamp(move_toward(MOVE_SPEED, 0, (DECEL_TYPE / delta) * delta), MOVE_SPEED_CAP[0], MOVE_SPEED_CAP[1])
 	if HAS_COLLISION:
 		projectile_bounce()
-	MOVE_SPEED = clamp(move_toward(MOVE_SPEED, 0, (DECEL_TYPE / delta) * delta), MOVE_SPEED_CAP[0], MOVE_SPEED_CAP[1])
-	velocity.x = MOVE_SPEED * direction
-	if MOVE_ANGLE != Vector2.ZERO:
-		velocity = MOVE_ANGLE * velocity.length()
+	if MOVE_ANGLE == Vector2.ZERO:
+		velocity.x = MOVE_SPEED * direction
+	else:
+		global_position += (MOVE_SPEED * MOVE_ANGLE) * delta
 	move_and_slide()
 
 func projectile_bounce() -> void:

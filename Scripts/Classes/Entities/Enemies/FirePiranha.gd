@@ -67,12 +67,12 @@ func spawn_fireball() -> void:
 	var shoot_angle = node.global_position.direction_to(target_player.global_position).angle()
 	match direction:
 		Vector2(1, -1):
-			shoot_angle = clamp(snapped(shoot_angle, 22.5), deg_to_rad(-45), deg_to_rad(-22.5))
+			shoot_angle = clamp(snapped(shoot_angle, deg_to_rad(22.5)), deg_to_rad(-45), deg_to_rad(-22.5))
 		Vector2(1, 1):
-			shoot_angle = clamp(snapped(shoot_angle, 22.5), deg_to_rad(22.5), deg_to_rad(45))
+			shoot_angle = clamp(snapped(shoot_angle, deg_to_rad(22.5)), deg_to_rad(22.5), deg_to_rad(45))
 		Vector2(-1, 1):
-			shoot_angle = clamp(snapped(shoot_angle, 22.5), deg_to_rad(135), deg_to_rad(157.5))
+			shoot_angle = clamp(snapped(shoot_angle, deg_to_rad(22.5)), deg_to_rad(135), deg_to_rad(157.5))
 		Vector2(-1, -1):
-			shoot_angle = clamp(snapped(shoot_angle, 22.5), deg_to_rad(-157.5), deg_to_rad(-135.5))
+			shoot_angle = clamp(snapped(shoot_angle, deg_to_rad(22.5)), deg_to_rad(-157.5), deg_to_rad(-135))
 	node.MOVE_ANGLE = Vector2.from_angle(shoot_angle)
 	plant.add_sibling(node)
