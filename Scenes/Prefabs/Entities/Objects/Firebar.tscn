@@ -83,6 +83,8 @@ _data = {
 script/source = "@tool
 extends Node
 
+var can_rotate := true
+
 func _ready() -> void:
 	await get_tree().physics_frame
 	%RotationJoint.global_rotation_degrees = owner.starting_angle
@@ -91,6 +93,11 @@ func _process(_delta: float) -> void:
 	var idx := 0
 	for i in $\"../Fireballs\".get_children():
 		i.visible = idx < owner.length
+		var animation: AnimationPlayer = i.get_node(\"Animation\")
+		if can_rotate:
+			animation.play(\"Spin\")
+		elif animation.is_playing():
+			animation.play(\"RESET\")
 		idx += 1
 	if Engine.is_editor_hint() == false:
 		if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR and LevelEditor.playing_level == false:
@@ -241,9 +248,10 @@ metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 libraries/ = SubResource("AnimationLibrary_ytedt")
 autoplay = &"Spin"
 
-[node name="ResourceSetter" type="Node" parent="Fireballs/Fireball1" unique_id=745166207 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="Fireballs/Fireball1" unique_id=745166207 node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
+property_node = NodePath("../../../FireballHandler")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_ym371")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
