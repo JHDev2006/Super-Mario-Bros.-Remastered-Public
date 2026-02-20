@@ -1,6 +1,14 @@
 {
+	"properties": {"can_rotate": true},
+	"animations": {
+		"default": {
+			"frames": [[0, 0, 16, 16]],
+			"speed": 5,
+			"loop": true
+		}
+	},
 	"variations": {
-		"default": {"source": "SpikeBall.png", "rect": [0, 0, 16, 16]},
+		"default": {"source": "SpikeBall.png", "rect": [0, 0, 16, 32]},
 		"Underground": {"source": "SpikeBall.png", "rect": [0, 16, 16, 16]},
 		"GhostHouse": {"link": "Underground"},
 		"Castle": {"source": "SpikeBall.png", "rect": [0, 32, 16, 16]},
