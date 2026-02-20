@@ -81,12 +81,12 @@ sprite_frames = SubResource("SpriteFrames_ghtuo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" unique_id=1314762623]
 libraries/ = SubResource("AnimationLibrary_t6bbl")
-autoplay = &"Spin"
 speed_scale = 2.0
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=2060036098 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=2060036098 node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("4_ghtuo")
 node_to_affect = NodePath("..")
+property_node = NodePath("../..")
 property_name = "sprite_frames"
 resource_json = ExtResource("5_aw0ec")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

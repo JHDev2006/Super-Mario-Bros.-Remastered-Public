@@ -1,6 +1,14 @@
 {
 	"properties": {
+		"can_rotate": true,
 		"play_sfx": false
+	},
+	"animations": {
+		"default": {
+			"frames": [[0, 0, 16, 16]],
+			"speed": 5,
+			"loop": true
+		}
 	},
 	"variations": {
 		"default": {

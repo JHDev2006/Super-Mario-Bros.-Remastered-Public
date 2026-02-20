@@ -59,9 +59,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hx42c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmlpp"]
 atlas = ExtResource("3_dywvb")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g65ak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmlpp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_1mp8k"]
 resource_name = "Movement"
@@ -200,18 +211,17 @@ flip_h = true
 script = ExtResource("3_hx42c")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="Hammer" type="Sprite2D" parent="MovementJoint/Sprite" unique_id=1842956900]
+[node name="Hammer" type="AnimatedSprite2D" parent="MovementJoint/Sprite" unique_id=1527044886]
 visible = false
 show_behind_parent = true
 position = Vector2(0, -17)
-texture = SubResource("AtlasTexture_hx42c")
+sprite_frames = SubResource("SpriteFrames_g65ak")
 flip_h = true
 
 [node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite/Hammer" unique_id=1182534042 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("7_pvn5i")
 node_to_affect = NodePath("..")
-property_name = "texture"
-mode = 1
+property_name = "sprite_frames"
 resource_json = ExtResource("6_0w8yj")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

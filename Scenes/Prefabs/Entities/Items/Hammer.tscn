@@ -6,9 +6,20 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Hammer.json" id="4_2dg23"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="5_3cdd7"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2tvg3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmlpp"]
 atlas = ExtResource("2_7yb3k")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g65ak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmlpp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_vmyq7"]
 length = 0.001
@@ -63,21 +74,21 @@ MOVE_SPEED = 120
 GRAVITY = 10
 metadata/_custom_type_script = "uid://c5elnt7uap15b"
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=605746372]
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=414837106]
 physics_interpolation_mode = 2
-texture = SubResource("AtlasTexture_2tvg3")
+sprite_frames = SubResource("SpriteFrames_g65ak")
+autoplay = "default"
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1106373086 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1106373086 node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("3_i5dos")
 node_to_affect = NodePath("..")
-property_name = "texture"
-mode = 1
+property_node = NodePath("../..")
+property_name = "sprite_frames"
 resource_json = ExtResource("4_2dg23")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Animations" type="AnimationPlayer" parent="." unique_id=1562732192]
 libraries/ = SubResource("AnimationLibrary_k3c6x")
-autoplay = &"Rotate"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=597767872]
 shape = SubResource("RectangleShape2D_pmlpp")

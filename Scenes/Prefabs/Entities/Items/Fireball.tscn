@@ -72,12 +72,12 @@ z_index = 2
 
 [node name="Animation" type="AnimationPlayer" parent="Sprite" unique_id=504353265]
 libraries/ = SubResource("AnimationLibrary_an01s")
-autoplay = &"Spin"
 speed_scale = 2.0
 
-[node name="ResourceSetter" type="Node" parent="Sprite" unique_id=1274639605 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="Sprite" unique_id=1274639605 node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("2_gfqet")
 node_to_affect = NodePath("..")
+property_node = NodePath("../..")
 property_name = "sprite_frames"
 resource_json = ExtResource("3_an01s")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
