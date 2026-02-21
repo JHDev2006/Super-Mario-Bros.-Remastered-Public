@@ -9,6 +9,12 @@ extends Enemy
 @export var PARTICLE_OFFSET: Vector2 = Vector2(0, 0)
 ## Determines if the projectile will display a particle upon making contact with something, but hasn't been destroyed.
 @export var PARTICLE_ON_CONTACT := false
+## Which projectile scene to load.
+@export var EXTRA_PROJECTILE: NodePath = ""
+## Determines the offset of the extra projectile when it is created.
+@export var EXTRA_PROJECTILE_OFFSET: Vector2 = Vector2(0, 0)
+## Determines if the projectile will create an extra projectile upon making contact with something, but hasn't been destroyed.
+@export var EXTRA_PROJECTILE_ON_CONTACT := false
 ## Determines what sound will play when the projectile makes contact with something.
 @export var SFX_COLLIDE := ""
 ## Determines how many entities a projectile can hit before being destroyed. Negative values are considered infinite.
@@ -102,19 +108,27 @@ func hit(play_sfx := true, force_destroy := false) -> void:
 	if play_sfx and SFX_COLLIDE != "":
 		AudioManager.play_sfx(SFX_COLLIDE, global_position)
 	if PIERCE_COUNT == 0 or BOUNCE_COUNT == 0 or force_destroy:
-		summon_explosion()
+		summon_particle()
+		summon_extra_projectile()
 		queue_free()
 	else:
 		var hitbox = get_node_or_null("Hitbox")
 		PIERCE_COUNT -= 1
-		if PARTICLE_ON_CONTACT: summon_explosion()
+		if PARTICLE_ON_CONTACT: summon_particle()
+		if EXTRA_PROJECTILE_ON_CONTACT: summon_extra_projectile()
 		if PIERCE_HITRATE >= 0 and hitbox != null:
 			hitbox.monitoring = false
 			await get_tree().create_timer(PIERCE_HITRATE, false).timeout
 			hitbox.monitoring = true
 
-func summon_explosion() -> void:
+func summon_particle() -> void:
 	if PARTICLE is PackedScene and PARTICLE.can_instantiate():
-		var node = PARTICLE.instantiate()
-		node.global_position = global_position + PARTICLE_OFFSET
-		add_sibling(node)
+		var particle = PARTICLE.instantiate()
+		particle.global_position = global_position + PARTICLE_OFFSET
+		add_sibling(particle)
+
+func summon_extra_projectile() -> void:
+	if get_node_or_null(EXTRA_PROJECTILE):
+		var proj = load(EXTRA_PROJECTILE)
+		proj.global_position = global_position + EXTRA_PROJECTILE_OFFSET
+		add_sibling(proj)

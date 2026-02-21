@@ -216,12 +216,16 @@ extends CharacterBody2D
 		"WING_TIME": 10.0,                 # Determines how long Wings will last for.
 		"HAMMER_TIME": 10.0,               # Determines how long a Hammer will last for.
 		
-		"PROJ_TYPE": "",
-		"PROJ_PARTICLE": "",
-		# Determines what projectile/particle scene is used. Leaving
-		# this blank disables firing projectiles and displaying
-		# particles respectively.
+		"PROJ_TYPE": "",                   # Determines what projectile scene is used. Leaving this blank disables firing projectiles entirely.
+		
+		"PROJ_PARTICLE": "",               # Determines what particle scene is used. Leaving this blank disables particles from spawning.
+		"PROJ_PARTICLE_OFFSET": [0, 0],    # Determines the spawn location of the projectile's particle.
 		"PROJ_PARTICLE_ON_CONTACT": false, # Defines if the particle will play when making contact without being destroyed.
+		
+		"PROJ_EXTRA_PROJ": "",             # Determines if an extra projectile will be spawned. Leaving this blank will prevent any additional projectiles.
+		"PROJ_EXTRA_PROJ_OFFSET": [0, 0],  # Determines the spawn location of the extra projectile spawned when destroyed.
+		"PROJ_EXTRA_PROJ_ON_CONTACT": false,    # Defines if the extra projectile will spawn when the original makes contact without being destroyed.
+		
 		"PROJ_SFX_THROW": "fireball",      # Defines the sound effect that plays when this projectile is fired.
 		"PROJ_SFX_COLLIDE": "bump",        # Defines the sound effect that plays when this projectile collides.
 		#"PROJ_SFX_HIT": "kick",           # Defines the sound effect that plays when this projectile damages an enemy.
@@ -237,6 +241,7 @@ extends CharacterBody2D
 		
 		"PROJ_LIFETIME": -1,               # Determines how long the projectile will last for. -1 and below count as infinite.
 		"PROJ_OFFSET": [-4.0, 16.0],       # Determines the offset for where the projectile will spawn.
+		"PROJ_ANGLE" : null,               # Determines the exact angle the projectile is sent at in degrees. Leaving this blank disables angled behavior entirely.
 		"PROJ_SPEED": [220.0, -100.0],     # Determines the initial velocity of the projectile.
 		"PROJ_SPEED_CAP": [-220.0, 220.0], # Determines the minimum and maximum X velocity of the projectile.
 		"PROJ_SPEED_SCALING": false,       # Determines if the projectile will have its initial speed scale with the player's movement.
@@ -252,7 +257,7 @@ extends CharacterBody2D
 	},
 	"Big": {},
 	"Fire": {
-		"PROJ_TYPE": "res://Scenes/Prefabs/Entities/Items/Fireball",
+		"PROJ_TYPE": "es://Scenes/Prefabs/Entities/Items/Fireball",
 		"PROJ_PARTICLE": "res://Scenes/Prefabs/Particles/FireballExplosion",
 	},
 	"Superball": {
@@ -945,7 +950,10 @@ var projectile_amount = 0
 var projectile_type = load("res://Scenes/Prefabs/Entities/Items/Fireball.tscn")
 
 const POWER_PARAM_LIST = {
+	"PARTICLE_OFFSET": "PROJ_PARTICLE_OFFSET",
 	"PARTICLE_ON_CONTACT": "PROJ_PARTICLE_ON_CONTACT",
+	"EXTRA_PROJECTILE_OFFSET": "PROJ_EXTRA_PROJ_OFFSET",
+	"EXTRA_PROJECTILE_ON_CONTACT": "PROJ_EXTRA_PROJ_ON_CONTACT",
 	"SFX_COLLIDE": "PROJ_SFX_COLLIDE",
 	"HAS_COLLISION": "PROJ_COLLISION",
 	"PIERCE_COUNT": "PROJ_PIERCE_COUNT",
@@ -975,6 +983,7 @@ func throw_projectile() -> void:
 	projectile_type = load(physics_params("PROJ_TYPE", POWER_PARAMETERS) + ".tscn")
 	var node = projectile_type.instantiate()
 	var offset = physics_params("PROJ_OFFSET", POWER_PARAMETERS)
+	var angle = Vector2.ZERO if physics_params("PROJ_ANGLE", POWER_PARAMETERS) == null else Vector2.from_angle(deg_to_rad(physics_params("PROJ_ANGLE", POWER_PARAMETERS)))
 	var speed = physics_params("PROJ_SPEED", POWER_PARAMETERS)
 	var speed_scaling = 0
 	if physics_params("PROJ_SPEED_SCALING", POWER_PARAMETERS):
@@ -991,6 +1000,7 @@ func throw_projectile() -> void:
 		for param in POWER_PARAM_LIST:
 			node.set(param, physics_params(POWER_PARAM_LIST[param], POWER_PARAMETERS))
 		node.MOVE_SPEED = speed[0] + speed_scaling
+		node.MOVE_ANGLE = angle
 	call_deferred("add_sibling", node)
 	projectile_amount += 1
 	node.tree_exited.connect(func(): projectile_amount -= 1)
