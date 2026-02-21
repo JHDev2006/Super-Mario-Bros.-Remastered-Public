@@ -1,15 +1,38 @@
 {
 	"variations": {
 		"choices": [
-			{"source": "IcicleDestructionParticles.png", "rect": [0, 0, 8, 8]},
-			{"source": "IcicleDestructionParticles.png", "rect": [8, 0, 8, 8]},
-			{"source": "IcicleDestructionParticles.png", "rect": [8, 8, 8, 8]},
-			{"source": "IcicleDestructionParticles.png", "rect": [0, 8, 8, 8]},
-			
-			{"source": "IcicleDestructionParticles.png", "rect": [16, 0, 8, 8]},
-			{"source": "IcicleDestructionParticles.png", "rect": [24, 0, 8, 8]},
-			{"source": "IcicleDestructionParticles.png", "rect": [16, 8, 8, 8]},
-			{"source": "IcicleDestructionParticles.png", "rect": [24, 8, 8, 8]},
+			{
+				"source": "IcicleDestructionParticles.png",
+				"rect": [0, 0, 8, 8]
+			},
+			{
+				"source": "IcicleDestructionParticles.png",
+				"rect": [8, 0, 8, 8]
+			},
+			{
+				"source": "IcicleDestructionParticles.png",
+				"rect": [8, 8, 8, 8]
+			},
+			{
+				"source": "IcicleDestructionParticles.png",
+				"rect": [0, 8, 8, 8]
+			},
+			{
+				"source": "IcicleDestructionParticles.png",
+				"rect": [16, 0, 8, 8]
+			},
+			{
+				"source": "IcicleDestructionParticles.png",
+				"rect": [24, 0, 8, 8]
+			},
+			{
+				"source": "IcicleDestructionParticles.png",
+				"rect": [16, 8, 8, 8]
+			},
+			{
+				"source": "IcicleDestructionParticles.png",
+				"rect": [24, 8, 8, 8]
+			}
 		]
 	}
 }

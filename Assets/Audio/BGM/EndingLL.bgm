@@ -1,4 +1,10 @@
 {
-    "Normal": {"source": "SMBLLEnding.mp3", "loop": -1.0},
-    "Hurry": {"source": "SMBLLEnding.mp3", "loop": -1.0}
+    "Normal": {
+		"source": "SMBLLEnding.mp3",
+		"loop": -1
+	},
+    "Hurry": {
+		"source": "SMBLLEnding.mp3",
+		"loop": -1
+	}
 }

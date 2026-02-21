@@ -2,72 +2,88 @@
 	"animations": {
 		"default": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				],
-				[
-					16.0,
-					0.0,
-					16.0,
-					16.0
-				],
-				[
-					32.0,
-					0.0,
-					16.0,
-					16.0
-				],
-				[
-					48.0,
-					0.0,
-					16.0,
-					16.0
-				]
+				[0, 0, 16, 16],
+				[16, 0, 16, 16],
+				[32, 0, 16, 16],
+				[48, 0, 16, 16]
 			],
-			"speed": 15.0,
+			"speed": 15,
 			"loop": true
 		}
 	},
 	"variations": {
 		"default": {
-			"SMB1": {"source": "SuperballFlower.png", "rect": [0.0,0.0,64.0,16.0]},
-			"SMBS": {"source": "SuperballFlowerSP.png", "rect": [0.0,0.0,64.0,16.0]}
+			"SMB1": {
+				"source": "SuperballFlower.png",
+				"rect": [0, 0, 64, 16]
+			},
+			"SMBS": {
+				"source": "SuperballFlowerSP.png",
+				"rect": [0, 0, 64, 16]
+			}
 		},
 		"Underground": {
-			"SMB1": {"source": "SuperballFlower.png", "rect": [0.0,16.0,64.0,16.0]},
-			"SMBS": {"source": "SuperballFlowerSP.png", "rect": [0.0,16.0,64.0,16.0]}
+			"SMB1": {
+				"source": "SuperballFlower.png",
+				"rect": [0, 16, 64, 16]
+			},
+			"SMBS": {
+				"source": "SuperballFlowerSP.png",
+				"rect": [0, 16, 64, 16]
+			}
 		},
-		"Castle": {
-			"link": "Underground"
-		},
-		"GhostHouse": {
-			"link": "Underground"
-		},
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {"link": "Underground"},
 		"Underwater": {
-			"SMB1": {"source": "SuperballFlower.png", "rect": [0.0,32.0,64.0,16.0]},
-			"SMBS": {"source": "SuperballFlowerSP.png", "rect": [0.0,32.0,64.0,16.0]}
+			"SMB1": {
+				"source": "SuperballFlower.png",
+				"rect": [0, 32, 64, 16]
+			},
+			"SMBS": {
+				"source": "SuperballFlowerSP.png",
+				"rect": [0, 32, 64, 16]
+			}
 		},
-		"CastleWater": {
-			"link": "Underwater"
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Snow": {
-			"SMB1": {"source": "SuperballFlower.png", "rect": [0.0,48.0,64.0,16.0]},
-			"SMBS": {"source": "SuperballFlowerSP.png", "rect": [0.0,48.0,64.0,16.0]}
+			"SMB1": {
+				"source": "SuperballFlower.png",
+				"rect": [0, 48, 64, 16]
+			},
+			"SMBS": {
+				"source": "SuperballFlowerSP.png",
+				"rect": [0, 48, 64, 16]
+			}
 		},
 		"Space": {
-			"SMB1": {"source": "SuperballFlower.png", "rect": [0.0,64.0,64.0,16.0]},
-			"SMBS": {"source": "SuperballFlowerSP.png", "rect": [0.0,64.0,64.0,16.0]}
+			"SMB1": {
+				"source": "SuperballFlower.png",
+				"rect": [0, 64, 64, 16]
+			},
+			"SMBS": {
+				"source": "SuperballFlowerSP.png",
+				"rect": [0, 64, 64, 16]
+			}
 		},
 		"Volcano": {
-			"SMB1": {"source": "SuperballFlower.png", "rect": [0.0,80.0,64.0,16.0]},
-			"SMBS": {"source": "SuperballFlowerSP.png", "rect": [0.0,80.0,64.0,16.0]}
+			"SMB1": {
+				"source": "SuperballFlower.png",
+				"rect": [0, 80, 64, 16]
+			},
+			"SMBS": {
+				"source": "SuperballFlowerSP.png",
+				"rect": [0, 80, 64, 16]
+			}
 		},
 		"Bonus": {
-			"SMB1": {"source": "SuperballFlower.png", "rect": [0.0,96.0,64.0,16.0]},
-			"SMBS": {"source": "SuperballFlowerSP.png", "rect": [0.0,96.0,64.0,16.0]}
+			"SMB1": {
+				"source": "SuperballFlower.png",
+				"rect": [0, 96, 64, 16]
+			},
+			"SMBS": {
+				"source": "SuperballFlowerSP.png",
+				"rect": [0, 96, 64, 16]
+			}
 		}
 	}
 }

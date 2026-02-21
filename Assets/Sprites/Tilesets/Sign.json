@@ -1,13 +1,38 @@
 {
 	"variations": {
-		"default": {"source": "Sign.png", "rect": [0, 0, 96, 96]},
-		"Underground": {"source": "Sign.png", "rect": [96, 0, 96, 96]},
+		"default": {
+			"source": "Sign.png",
+			"rect": [0, 0, 96, 96]
+		},
+		"Underground": {
+			"source": "Sign.png",
+			"rect": [96, 0, 96, 96]
+		},
 		"GhostHouse": {"link": "Underground"},
-		"Snow": {"source": "Sign.png", "rect": [192, 0, 96, 96]},
-		"Castle": {"source": "Sign.png", "rect": [288, 0, 96, 96]},
-		"Space": {"source": "Sign.png", "rect": [0, 96, 96, 96]},
-		"Underwater": {"source": "Sign.png", "rect": [96, 96, 96, 96]},
-		"Volcano": {"source": "Sign.png", "rect": [192, 96, 96, 96]},
-		"Bonus": {"source": "Sign.png", "rect": [288, 96, 96, 96]}
+		"Snow": {
+			"source": "Sign.png",
+			"rect": [192, 0, 96, 96]
+		},
+		"Castle": {
+			"source": "Sign.png",
+			"rect": [288, 0, 96, 96]
+		},
+		"Space": {
+			"source": "Sign.png",
+			"rect": [0, 96, 96, 96]
+		},
+		"Underwater": {
+			"source": "Sign.png",
+			"rect": [96, 96, 96, 96]
+		},
+		"CastleWater": {"link": "Underwater"},
+		"Volcano": {
+			"source": "Sign.png",
+			"rect": [192, 96, 96, 96]
+		},
+		"Bonus": {
+			"source": "Sign.png",
+			"rect": [288, 96, 96, 96]
+		}
 	}
 }

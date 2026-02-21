@@ -1,18 +1,59 @@
 {
 	"variations": {
-		"default": {"source": "SPItems.png", "rect": [16, 0, 16, 16]},
-		"Underground": {"source": "SPItems.png", "rect": [48, 0, 16, 16]},
+		"default": {
+			"source": "SPItems.png",
+			"rect": [16, 0, 16, 16]
+		},
+		"Underground": {
+			"source": "SPItems.png",
+			"rect": [48, 0, 16, 16]
+		},
 		"GhostHouse": {"link": "Underground"},
-		"Castle": {"source": "SPItems.png", "rect": [80, 0, 16, 16]},
-		"Underwater": {"source": "SPItems.png", "rect": [112, 0, 16, 16]},
-		"Desert": {"source": "SPItems.png", "rect": [16, 16, 16, 16]},
-		"Jungle": {"source": "SPItems.png", "rect": [48, 16, 16, 16]},
-		"Snow": {"source": "SPItems.png", "rect": [80, 16, 16, 16]},
-		"Volcano": {"source": "SPItems.png", "rect": [112, 16, 16, 16]},
-		"Autumn": {"source": "SPItems.png", "rect": [16, 32, 16, 16]},
-		"Beach": {"source": "SPItems.png", "rect": [48, 32, 16, 16]},
-		"Mountain": {"source": "SPItems.png", "rect": [80, 32, 16, 16]},
-		"Space": {"source": "SPItems.png", "rect": [112, 32, 16, 16]},
-		"Bonus": {"source": "SPItems.png", "rect": [16, 48, 16, 16]}
+		"Castle": {
+			"source": "SPItems.png",
+			"rect": [80, 0, 16, 16]
+		},
+		"Underwater": {
+			"source": "SPItems.png",
+			"rect": [112, 0, 16, 16]
+		},
+		"CastleWater": {"link": "Underwater"},
+		"Desert": {
+			"source": "SPItems.png",
+			"rect": [16, 16, 16, 16]
+		},
+		"Jungle": {
+			"source": "SPItems.png",
+			"rect": [48, 16, 16, 16]
+		},
+		"Snow": {
+			"source": "SPItems.png",
+			"rect": [80, 16, 16, 16]
+		},
+		"Volcano": {
+			"source": "SPItems.png",
+			"rect": [112, 16, 16, 16]
+		},
+		"Autumn": {
+			"source": "SPItems.png",
+			"rect": [16, 32, 16, 16]
+		},
+		"Beach": {
+			"source": "SPItems.png",
+			"rect": [48, 32, 16, 16]
+		},
+		"Mountain": {
+			"source": "SPItems.png",
+			"rect": [80, 32, 16, 16]
+		},
+		"Airship": {"link": "Mountain"},
+		"Space": {
+			"source": "SPItems.png",
+			"rect": [112, 32, 16, 16]
+		},
+		"Bonus": {
+			"source": "SPItems.png",
+			"rect": [16, 48, 16, 16]
+		}
 	}
 }

@@ -1,33 +1,16 @@
 {
 	"animations": {
 		"Jump": {
-			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 5.0,
+			"frames": [[0, 0, 16, 16]],
+			"speed": 5,
 			"loop": true
 		},
 		"Walk": {
 			"frames": [
-				[
-					16.0,
-					0.0,
-					16.0,
-					16.0
-				],
-				[
-					32.0,
-					0.0,
-					16.0,
-					16.0
-				]
+				[16, 0, 16, 16],
+				[32, 0, 16, 16]
 			],
-			"speed": 10.0,
+			"speed": 10,
 			"loop": true
 		}
 	},
@@ -40,10 +23,7 @@
 			"source": "MontyMole.png",
 			"rect": [48, 0, 48, 16]
 		},
-		"GhostHouse": {
-			"source": "MontyMole.png",
-			"rect": [48, 0, 48, 16]
-		},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {
 			"source": "MontyMole.png",
 			"rect": [96, 0, 48, 16]
@@ -52,10 +32,7 @@
 			"source": "MontyMole.png",
 			"rect": [144, 0, 48, 16]
 		},
-		"CastleWater": {
-			"source": "MontyMole.png",
-			"rect": [144, 0, 48, 16]
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Desert": {
 			"source": "MontyMole.png",
 			"rect": [0, 16, 48, 16]
@@ -84,6 +61,7 @@
 			"source": "MontyMole.png",
 			"rect": [96, 32, 48, 16]
 		},
+		"Airship": {"link": "Mountain"},
 		"Space": {
 			"source": "MontyMole.png",
 			"rect": [144, 32, 48, 16]

@@ -1,7 +1,5 @@
 {
-	"properties": {
-		"play_sfx": false
-	},
+	"properties": {"play_sfx": false},
 	"variations": {
 		"default": {
 			"source": "Hammer.png",
@@ -11,10 +9,7 @@
 			"source": "Hammer.png",
 			"rect": [16, 0, 16, 16]
 		},
-		"GhostHouse": {
-			"source": "Hammer.png",
-			"rect": [16, 0, 16, 16]
-		},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {
 			"source": "Hammer.png",
 			"rect": [32, 0, 16, 16]
@@ -23,10 +18,7 @@
 			"source": "Hammer.png",
 			"rect": [48, 0, 16, 16]
 		},
-		"CastleWater": {
-			"source": "Hammer.png",
-			"rect": [48, 0, 16, 16]
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Desert": {
 			"source": "Hammer.png",
 			"rect": [0, 16, 16, 16]
@@ -55,6 +47,7 @@
 			"source": "Hammer.png",
 			"rect": [32, 32, 16, 16]
 		},
+		"Airship": {"link": "Mountain"},
 		"Space": {
 			"source": "Hammer.png",
 			"rect": [48, 32, 16, 16]

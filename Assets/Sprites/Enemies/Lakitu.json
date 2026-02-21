@@ -1,27 +1,13 @@
 {
 	"animations": {
 		"Idle": {
-			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					24.0
-				]
-			],
-			"speed": 5.0,
+			"frames": [[0, 0, 16, 24]],
+			"speed": 5,
 			"loop": true
 		},
 		"Throw": {
-			"frames": [
-				[
-					16.0,
-					0.0,
-					16.0,
-					24.0
-				]
-			],
-			"speed": 5.0,
+			"frames": [[16, 0, 16, 24]],
+			"speed": 5,
 			"loop": true
 		}
 	},
@@ -34,8 +20,8 @@
 			"source": "Lakitu.png",
 			"rect": [32, 0, 32, 24]
 		},
-		"Castle": {"link": "Underground"},
 		"GhostHouse": {"link": "Underground"},
+		"Castle": {"link": "Underground"},
 		"Underwater": {
 			"source": "Lakitu.png",
 			"rect": [64, 0, 32, 24]

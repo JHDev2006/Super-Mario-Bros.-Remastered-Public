@@ -1,43 +1,71 @@
 {
 	"animations": {
-		"Fall": {
-			"frames": [
-				[
-					16.0,
-					0.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 5.0,
+		"Idle": {
+			"frames": [[0, 0, 16, 16]],
+			"speed": 5,
 			"loop": true
 		},
-		"Idle": {
-			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 5.0,
+		"Fall": {
+			"frames": [[16, 0, 16, 16]],
+			"speed": 5,
 			"loop": true
 		}
 	},
 	"variations": {
-		"default": {"source": "DonutBlock.png", "rect": [0, 0, 32, 16]},
-		"Underground": {"source": "DonutBlock.png", "rect": [32, 0, 32, 16]},
-		"Castle": {"source": "DonutBlock.png", "rect": [64, 0, 32, 16]},
-		"Underwater": {"source": "DonutBlock.png", "rect": [96, 0, 32, 16]},
-		"Desert": {"source": "DonutBlock.png", "rect": [0, 16, 32, 16]},
-		"Jungle": {"source": "DonutBlock.png", "rect": [32, 16, 32, 16]},
-		"Snow": {"source": "DonutBlock.png", "rect": [64, 16, 32, 16]},
-		"Volcano": {"source": "DonutBlock.png", "rect": [96, 16, 32, 16]},
-		"Autumn": {"source": "DonutBlock.png", "rect": [0, 32, 32, 16]},
-		"Beach": {"source": "DonutBlock.png", "rect": [32, 32, 32, 16]},
-		"Mountain": {"source": "DonutBlock.png", "rect": [64, 32, 32, 16]},
-		"Space": {"source": "DonutBlock.png", "rect": [96, 32, 32, 16]},
-		"Bonus": {"source": "DonutBlock.png", "rect": [0, 48, 32, 16]}
+		"default": {
+			"source": "DonutBlock.png",
+			"rect": [0, 0, 32, 16]
+		},
+		"Underground": {
+			"source": "DonutBlock.png",
+			"rect": [32, 0, 32, 16]
+		},
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {
+			"source": "DonutBlock.png",
+			"rect": [64, 0, 32, 16]
+		},
+		"Underwater": {
+			"source": "DonutBlock.png",
+			"rect": [96, 0, 32, 16]
+		},
+		"CastleWater": {"link": "Underwater"},
+		"Desert": {
+			"source": "DonutBlock.png",
+			"rect": [0, 16, 32, 16]
+		},
+		"Jungle": {
+			"source": "DonutBlock.png",
+			"rect": [32, 16, 32, 16]
+		},
+		"Snow": {
+			"source": "DonutBlock.png",
+			"rect": [64, 16, 32, 16]
+		},
+		"Volcano": {
+			"source": "DonutBlock.png",
+			"rect": [96, 16, 32, 16]
+		},
+		"Autumn": {
+			"source": "DonutBlock.png",
+			"rect": [0, 32, 32, 16]
+		},
+		"Beach": {
+			"source": "DonutBlock.png",
+			"rect": [32, 32, 32, 16]
+		},
+		"Mountain": {
+			"source": "DonutBlock.png",
+			"rect": [64, 32, 32, 16]
+		},
+		"Airship": {"link": "Mountain"},
+		"Space": {
+			"source": "DonutBlock.png",
+			"rect": [96, 32, 32, 16]
+		},
+		"Bonus": {
+			"source": "DonutBlock.png",
+			"rect": [0, 48, 32, 16]
+		}
 	}
 }

@@ -5,22 +5,22 @@
 				[0, 0, 32, 32],
 				[32, 0, 32, 32]
 			],
-			"speed": 10.0,
+			"speed": 10,
 			"loop": true
 		},
 		"Breathe": {
 			"frames": [[0, 32, 32, 32]],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": false
 		},
 		"Fire": {
 			"frames": [[32, 32, 32, 32]],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": false
 		},
 		"Jump": {
 			"frames": [[0, 0, 32, 32]],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": false
 		},
 		"Hop": {"link": "Jump"},
@@ -34,7 +34,7 @@
 				[32, 64, 16, 16],
 				[48, 64, 16, 16]
 			],
-			"speed": 15.0,
+			"speed": 15,
 			"loop": true
 		}
 	},

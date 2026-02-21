@@ -1,15 +1,20 @@
 {
-	"variations": {
+	"animations": {
 		"default": {
-			"SMB1": {
-				"source": "1UP.png",
-				"rect": [0, 0, 16, 16]
-			},
-			"SMBLL": {
-				"source": "1UP.png",
-				"rect": [16, 0, 16, 16]
-			},
-			"SMBANN": {"link": "SMBLL"}
+			"frames": [[0, 0, 16, 16]],
+			"speed": 5,
+			"loop": true
 		}
+	},
+	"variations": {
+		"SMB1": {
+			"source": "1UP.png",
+			"rect": [0, 0, 16, 16]
+		},
+		"SMBLL": {
+			"source": "1UP.png",
+			"rect": [16, 0, 16, 16]
+		},
+		"SMBANN": {"link": "SMBLL"}
 	}
 }

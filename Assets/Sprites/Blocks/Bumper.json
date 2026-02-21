@@ -18,9 +18,9 @@
 				[0, 0, 48, 48],
 				[0, 0, 48, 48],
 				[0, 0, 48, 48],
-				[48, 0, 48, 48],
+				[48, 0, 48, 48]
 			],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		},
 		"Bounce": {
@@ -28,11 +28,9 @@
 				[48, 0, 48, 48],
 				[0, 0, 48, 48]
 			],
-			"speed": 10.0,
+			"speed": 10,
 			"loop": false
 		}
 	},
-	"variations": {
-		"default": {"source": "Bumper.png"}
-	}
+	"variations": {"source": "Bumper.png"}
 }

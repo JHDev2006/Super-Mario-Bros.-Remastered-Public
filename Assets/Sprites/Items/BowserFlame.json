@@ -2,32 +2,12 @@
 	"animations": {
 		"default": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					24.0,
-					16.0
-				],
-				[
-					24.0,
-					0.0,
-					24.0,
-					16.0
-				]
+				[0, 0, 24, 16],
+				[24, 0, 24, 16]
 			],
-			"speed": 15.0,
+			"speed": 15,
 			"loop": true
 		}
 	},
-	"variations": {
-		"default": {
-			"source": "BowserFlame.png",
-			"rect": [
-				0.0,
-				0.0,
-				48.0,
-				16.0
-			]
-		}
-	}
+	"variations": {"source": "BowserFlame.png"}
 }

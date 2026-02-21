@@ -2,126 +2,58 @@
 	"variations": {
 		"default": {
 			"source": "Cursor.png",
-			"rect": [
-				0.0,
-				0.0,
-				8.0,
-				8.0
-			]
+			"rect": [0, 0, 8, 8]
 		},
 		"Underground": {
 			"source": "Cursor.png",
-			"rect": [
-				8.0,
-				0.0,
-				8.0,
-				8.0
-			]
+			"rect": [8, 0, 8, 8]
 		},
-		"GhostHouse": {
-			"link": "Underground"
-		},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {
 			"source": "Cursor.png",
-			"rect": [
-				16.0,
-				0.0,
-				8.0,
-				8.0
-			]
+			"rect": [16, 0, 8, 8]
 		},
 		"Underwater": {
 			"source": "Cursor.png",
-			"rect": [
-				24.0,
-				0.0,
-				8.0,
-				8.0
-			]
+			"rect": [24, 0, 8, 8]
 		},
-		"CastleWater": {
-			"link": "Underwater"
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Desert": {
 			"source": "Cursor.png",
-			"rect": [
-				0.0,
-				8.0,
-				8.0,
-				8.0
-			]
+			"rect": [0, 8, 8, 8]
 		},
 		"Jungle": {
 			"source": "Cursor.png",
-			"rect": [
-				8.0,
-				8.0,
-				8.0,
-				8.0
-			]
+			"rect": [8, 8, 8, 8]
 		},
 		"Snow": {
 			"source": "Cursor.png",
-			"rect": [
-				16.0,
-				8.0,
-				8.0,
-				8.0
-			]
+			"rect": [16, 8, 8, 8]
 		},
 		"Volcano": {
 			"source": "Cursor.png",
-			"rect": [
-				24.0,
-				8.0,
-				8.0,
-				8.0
-			]
+			"rect": [24, 8, 8, 8]
 		},
 		"Autumn": {
 			"source": "Cursor.png",
-			"rect": [
-				0.0,
-				16.0,
-				8.0,
-				8.0
-			]
+			"rect": [0, 16, 8, 8]
 		},
 		"Beach": {
 			"source": "Cursor.png",
-			"rect": [
-				8.0,
-				16.0,
-				8.0,
-				8.0
-			]
+			"rect": [8, 16, 8, 8]
 		},
 		"Mountain": {
 			"source": "Cursor.png",
-			"rect": [
-				16.0,
-				16.0,
-				8.0,
-				8.0
-			]
+			"rect": [16, 16, 8, 8]
 		},
+		"Airship": {"link": "Mountain"},
 		"Space": {
 			"source": "Cursor.png",
-			"rect": [
-				24.0,
-				16.0,
-				8.0,
-				8.0
-			]
+			"rect": [24, 16, 8, 8]
 		},
 		"Bonus": {
 			"source": "Cursor.png",
-			"rect": [
-				0.0,
-				24.0,
-				8.0,
-				8.0
-			]
+			"rect": [0, 24, 8, 8]
 		}
 	}
 }

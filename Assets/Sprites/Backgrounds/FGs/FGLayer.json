@@ -1,5 +1,3 @@
 {
-	"variations": {
-		"default": {"source": "Default.png"}
-	}
+	"variations": {"source": "Default.png"}
 }

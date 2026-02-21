@@ -1,7 +1,10 @@
 {
 	"animations": {
-		"Locked": { "frames": [[0, 0, 16, 32]], "speed": 5, "loop": true },
-		"Idle": { "frames": [[16, 0, 16, 32]], "speed": 5, "loop": true },
+		"Idle": {
+			"frames": [[16, 0, 16, 32]],
+			"speed": 5,
+			"loop": true
+		},
 		"Open": {
 			"frames": [
 				[16, 0, 16, 32],
@@ -19,28 +22,51 @@
 			],
 			"speed": 15,
 			"loop": false
+		},
+		"Locked": {
+			"frames": [[0, 0, 16, 32]],
+			"speed": 5,
+			"loop": true
 		}
 	},
 	"variations": {
-		"SMB1": {
-			"default": { "source": "Doors.png", "rect": [0, 0, 64, 32] },
-			"Underground": { "source": "Doors.png", "rect": [0, 32, 64, 32] },
-			"Bonus": { "link": "Underground" },
-			"Castle": { "link": "Underground" },
-			"GhostHouse": { "link": "Underground" },
-			"Space": { "link": "Underground" },
-			"Volcano": { "link": "Underground" },
-			"Snow": { "source": "Doors.png", "rect": [0, 64, 64, 32] }
+		"default": {
+			"SMB1": {
+				"source": "Doors.png",
+				"rect": [0, 0, 64, 32]
+			},
+			"SMBLL": {
+				"source": "LLDoors.png",
+				"rect": [0, 0, 64, 32]
+			},
+			"SMBANN": {"link": "SMBLL"}
 		},
-		"SMBLL": {
-			"default": { "source": "LLDoors.png", "rect": [0, 0, 64, 32] },
-			"Underground": { "source": "LLDoors.png", "rect": [0, 32, 64, 32] },
-			"Bonus": { "link": "Underground" },
-			"Castle": { "link": "Underground" },
-			"GhostHouse": { "link": "Underground" },
-			"Space": { "link": "Underground" },
-			"Volcano": { "link": "Underground" },
-			"Snow": { "source": "LLDoors.png", "rect": [0, 64, 64, 32] }
-		}
+		"Underground": {
+			"SMB1": {
+				"source": "Doors.png",
+				"rect": [0, 32, 64, 32]
+			},
+			"SMBLL": {
+				"source": "LLDoors.png",
+				"rect": [0, 32, 64, 32]
+			},
+			"SMBANN": {"link": "SMBLL"}
+		},
+		"Snow": {
+			"SMB1": {
+				"source": "Doors.png",
+				"rect": [0, 64, 64, 32]
+			},
+			"SMBLL": {
+				"source": "LLDoors.png",
+				"rect": [0, 64, 64, 32]
+			},
+			"SMBANN": {"link": "SMBLL"}
+		},
+		"Space": {"link": "Underground"},
+		"Volcano": {"link": "Underground"},
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {"link": "Underground"},
+		"Bonus": {"link": "Underground"}
 	}
 }

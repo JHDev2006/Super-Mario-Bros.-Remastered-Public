@@ -1,15 +1,16 @@
 {
-	"properties": {
-		"sky_scroll_speed": -4
-	},
+	"properties": {"sky_scroll_speed": -4},
 	"variations": {
-		 "Day": {
+		"Day": {
 			"default": {
 				"SMB1": {"source": "DaySky.png"},
 				"SMBLL": {"source": "DaySkyLL.png"}
 			},
-			"Beach":
-			{
+			"Underground": {
+				"SMB1": {"source": "TheVoid.png"},
+				"SMBLL": {"source": "TheVoidLL.png"}
+			},
+			"Beach": {
 				"SMB1": {"source": "BeachSky.png"},
 				"SMBLL": {"source": "BeachSkyLL.png"}
 			},
@@ -17,52 +18,68 @@
 				"SMB1": {"source": "AutumnSky.png"},
 				"SMBLL": {"source": "AutumnSkyLL.png"}
 			},
+			"Space": {
+				"source": "SpaceStars.png",
+				"properties": {"sky_scroll_speed": 0},
+				"animations": {
+					"default": {
+						"frames": [
+							[0, 0, 512, 512],
+							[512, 0, 512, 512]
+						],
+						"speed": 5,
+						"loop": true
+					}
+				}
+			},
 			"Volcano": {
 				"SMB1": {"source": "VolcanoSky.png"},
 				"SMBLL": {"source": "VolcanoSkyLL.png"}
 			},
-			"Underground": {
-				"SMB1": {"source": "TheVoid.png"},
-				"SMBLL": {"source": "TheVoidLL.png"}
-			},
-			"GhostHouse": {"link": "Underground"},
-			"Space": {
-				"source": "SpaceStars.png",
-				"properties": {"sky_scroll_speed": 0},
-				"animations": {"default": {
-					"frames": [[0, 0, 512, 512], [512, 0, 512, 512]],
-					"speed": 5.0,
-					"loop": true
-				}}
-			}
+			"GhostHouse": {"link": "Underground"}
 		},
 		"Night": {
 			"default": {
 				"source": "NightStars.png",
 				"properties": {"sky_scroll_speed": 0},
-				"animations": {"default": {
-					"frames": [[0, 0, 512, 512], [512, 0, 512, 512]],
-					"speed": 5.0,
-					"loop": true
-				}}
-			},
-			"Space": {
-				"source": "SpaceStars.png",
-				"properties": {"sky_scroll_speed": 0},
-				"animations": {"default": {
-					"frames": [[0, 0, 512, 512], [512, 0, 512, 512]],
-					"speed": 5.0,
-					"loop": true
-				}}
+				"animations": {
+					"default": {
+						"frames": [
+							[0, 0, 512, 512],
+							[512, 0, 512, 512]
+						],
+						"speed": 5,
+						"loop": true
+					}
+				}
 			},
 			"Snow": {
 				"source": "SnowNightStars.png",
 				"properties": {"sky_scroll_speed": 0},
-				"animations": {"default": {
-					"frames": [[0, 0, 512, 512], [512, 0, 512, 512]],
-					"speed": 5.0,
-					"loop": true
-				}}
+				"animations": {
+					"default": {
+						"frames": [
+							[0, 0, 512, 512],
+							[512, 0, 512, 512]
+						],
+						"speed": 5,
+						"loop": true
+					}
+				}
+			},
+			"Space": {
+				"source": "SpaceStars.png",
+				"properties": {"sky_scroll_speed": 0},
+				"animations": {
+					"default": {
+						"frames": [
+							[0, 0, 512, 512],
+							[512, 0, 512, 512]
+						],
+						"speed": 5,
+						"loop": true
+					}
+				}
 			}
 		}
 	}

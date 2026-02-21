@@ -1,51 +1,19 @@
 {
 	"animations": {
 		"Idle": {
-			"frames": [
-				[
-					32.0,
-					0.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 5.0,
+			"frames": [[32, 0, 16, 16]],
+			"speed": 5,
 			"loop": true
 		},
 		"Spin": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				],
-				[
-					16.0,
-					0.0,
-					16.0,
-					16.0
-				],
-				[
-					48.0,
-					0.0,
-					16.0,
-					16.0
-				]
+				[0, 0, 16, 16],
+				[16, 0, 16, 16],
+				[48, 0, 16, 16]
 			],
-			"speed": 15.0,
+			"speed": 15,
 			"loop": true
 		}
 	},
-	"variations": {
-		"default": {
-			"source": "WrenchProjectile.png",
-			"rect": [
-				0.0,
-				0.0,
-				64.0,
-				16.0
-			]
-		}
-	}
+	"variations": {"source": "WrenchProjectile.png"}
 }

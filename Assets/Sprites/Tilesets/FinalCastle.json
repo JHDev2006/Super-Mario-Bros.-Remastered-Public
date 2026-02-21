@@ -1,14 +1,7 @@
 {
-	"properties":
-	{
+	"properties": {
 		"use_sprite": false,
 		"show_walls": true
 	},
-	"variations":
-	{
-		"default":
-		{
-			"source": "EndingFinalCastleSprite.png"
-		}
-	}
+	"variations": {"source": "EndingFinalCastleSprite.png"}
 }

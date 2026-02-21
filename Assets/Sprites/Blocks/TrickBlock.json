@@ -2,7 +2,7 @@
 	"animations": {
 		"Idle": {
 			"frames": [[0, 0, 16, 16]],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": false
 		},
 		"Turn": {
@@ -12,18 +12,39 @@
 				[48, 0, 16, 16],
 				[0, 0, 16, 16]
 			],
-			"speed": 15.0,
+			"speed": 15,
 			"loop": true
 		}
 	},
 	"variations": {
-		"default": {"source": "TrickBlock.png", "rect": [0, 0, 64, 16]},
-		"Underground": {"source": "TrickBlock.png", "rect": [0, 16, 64, 16]},
+		"default": {
+			"source": "TrickBlock.png",
+			"rect": [0, 0, 64, 16]
+		},
+		"Underground": {
+			"source": "TrickBlock.png",
+			"rect": [0, 16, 64, 16]
+		},
 		"GhostHouse": {"link": "Underground"},
-		"Castle": {"source": "TrickBlock.png", "rect": [0, 32, 64, 16]},
-		"Snow": {"source": "TrickBlock.png", "rect": [0, 48, 64, 16]},
-		"Space": {"source": "TrickBlock.png", "rect": [0, 64, 64, 16]},
-		"Volcano": {"source": "TrickBlock.png", "rect": [0, 80, 64, 16]},
-		"Bonus": {"source": "TrickBlock.png", "rect": [0, 96, 64, 16]}
+		"Castle": {
+			"source": "TrickBlock.png",
+			"rect": [0, 32, 64, 16]
+		},
+		"Snow": {
+			"source": "TrickBlock.png",
+			"rect": [0, 48, 64, 16]
+		},
+		"Space": {
+			"source": "TrickBlock.png",
+			"rect": [0, 64, 64, 16]
+		},
+		"Volcano": {
+			"source": "TrickBlock.png",
+			"rect": [0, 80, 64, 16]
+		},
+		"Bonus": {
+			"source": "TrickBlock.png",
+			"rect": [0, 96, 64, 16]
+		}
 	}
 }

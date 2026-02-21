@@ -1,8 +1,8 @@
 {
 	"animations": {
 		"default": {
-		"frames": [[0, 0, 16, 16]],
-			"speed": 5.0,
+			"frames": [[0, 0, 16, 16]],
+			"speed": 5,
 			"loop": true
 		}
 	},
@@ -15,10 +15,7 @@
 			"source": "BulletBill.png",
 			"rect": [16, 0, 16, 16]
 		},
-		"GhostHouse": {
-			"source": "BulletBill.png",
-			"rect": [16, 0, 16, 16]
-		},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {
 			"source": "BulletBill.png",
 			"rect": [32, 0, 16, 16]
@@ -27,10 +24,7 @@
 			"source": "BulletBill.png",
 			"rect": [48, 0, 16, 16]
 		},
-		"CastleWater": {
-			"source": "BulletBill.png",
-			"rect": [48, 0, 16, 16]
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Desert": {
 			"source": "BulletBill.png",
 			"rect": [0, 16, 16, 16]
@@ -59,6 +53,7 @@
 			"source": "BulletBill.png",
 			"rect": [32, 32, 16, 16]
 		},
+		"Airship": {"link": "Mountain"},
 		"Space": {
 			"source": "BulletBill.png",
 			"rect": [48, 32, 16, 16]

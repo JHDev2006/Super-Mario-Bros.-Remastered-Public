@@ -1,135 +1,63 @@
 {
 	"animations": {
-		"Fall": {
+		"Idle": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					48.0,
-					48.0
-				],
-				[
-					0.0,
-					48.0,
-					48.0,
-					48.0
-				]
+				[0, 0, 48, 48],
+				[48, 0, 48, 48]
 			],
-			"speed": 15.0,
-			"loop": true
-		},
-		"FireBreathe": {
-			"frames": [
-				[
-					0.0,
-					0.0,
-					48.0,
-					48.0
-				],
-				[
-					48.0,
-					0.0,
-					48.0,
-					48.0
-				]
-			],
-			"speed": 10.0,
+			"speed": 8,
 			"loop": true
 		},
 		"FireCharge": {
 			"frames": [
-				[
-					0.0,
-					48.0,
-					48.0,
-					48.0
-				],
-				[
-					48.0,
-					48.0,
-					48.0,
-					48.0
-				]
+				[0, 48, 48, 48],
+				[48, 48, 48, 48]
 			],
-			"speed": 10.0,
+			"speed": 10,
 			"loop": true
 		},
-		"Idle": {
+		"FireBreathe": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					48.0,
-					48.0
-				],
-				[
-					48.0,
-					0.0,
-					48.0,
-					48.0
-				]
+				[0, 0, 48, 48],
+				[48, 0, 48, 48]
 			],
-			"speed": 8.0,
+			"speed": 10,
+			"loop": true
+		},
+		"Fall": {
+			"frames": [
+				[0, 0, 48, 48],
+				[0, 48, 48, 48]
+			],
+			"speed": 15,
 			"loop": true
 		}
 	},
 	"variations": {
 		"default": {
 			"source": "BowsersBro.png",
-			"rect": [
-				0.0,
-				0.0,
-				96.0,
-				96.0
-			]
+			"rect": [0, 0, 96, 96]
 		},
 		"Underwater": {
 			"source": "BowsersBro.png",
-			"rect": [
-				96.0,
-				0.0,
-				96.0,
-				96.0
-			]
+			"rect": [96, 0, 96, 96]
 		},
-		"CastleWater": {
-			"link": "Underwater"
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Snow": {
 			"source": "BowsersBro.png",
-			"rect": [
-				192.0,
-				0.0,
-				96.0,
-				96.0
-			]
+			"rect": [192, 0, 96, 96]
 		},
 		"Space": {
 			"source": "BowsersBro.png",
-			"rect": [
-				0.0,
-				96.0,
-				96.0,
-				96.0
-			]
+			"rect": [0, 96, 96, 96]
 		},
 		"Volcano": {
 			"source": "BowsersBro.png",
-			"rect": [
-				96.0,
-				96.0,
-				96.0,
-				96.0
-			]
+			"rect": [96, 96, 96, 96]
 		},
 		"Bonus": {
 			"source": "BowsersBro.png",
-			"rect": [
-				192.0,
-				96.0,
-				96.0,
-				96.0
-			]
+			"rect": [192, 96, 96, 96]
 		}
 	}
 }

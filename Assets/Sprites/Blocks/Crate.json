@@ -2,11 +2,9 @@
 	"animations": {
 		"default": {
 			"frames": [[0, 0, 16, 16]],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": false
 		}
 	},
-	"variations": {
-		"default": {"source": "Crate.png"}
-	}
+	"variations": {"source": "Crate.png"}
 }

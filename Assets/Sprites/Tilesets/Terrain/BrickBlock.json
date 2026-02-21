@@ -2,100 +2,257 @@
 	"animations": {
 		"default": {
 			"frames": [[0, 0, 16, 16]],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		}
 	},
 	"variations": {
 		"default": {
-			"SMB1": { "source": "Overworld.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "OverworldLL.png", "rect": [0, 64, 16, 16] },
-			"SMBANN": { "source": "OverworldANN.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Overworld.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "OverworldLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBANN": {
+				"source": "OverworldANN.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Underground": {
-			"SMB1": { "source": "Underground.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "UndergroundLL.png", "rect": [0, 64, 16, 16] },
-			"SMBANN": { "source": "UndergroundANN.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Underground.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "UndergroundLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBANN": {
+				"source": "UndergroundANN.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Desert": {
-			"SMB1": { "source": "Desert.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "DesertLL.png", "rect": [0, 64, 16, 16] },
-			"SMBS": { "source": "DesertSP.png", "rect": [0, 64, 16, 16] },
-			"SMBANN": { "source": "DesertANN.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Desert.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "DesertLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBS": {
+				"source": "DesertSP.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBANN": {
+				"source": "DesertANN.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Snow": {
-			"SMB1": { "source": "Snow.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "SnowLL.png", "rect": [0, 64, 16, 16] },
-			"SMBANN": { "source": "SnowANN.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Snow.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "SnowLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBANN": {
+				"source": "SnowANN.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Jungle": {
-			"SMB1": { "source": "Jungle.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "JungleLL.png", "rect": [0, 64, 16, 16] },
-			"SMBANN": { "source": "JungleANN.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Jungle.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "JungleLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBANN": {
+				"source": "JungleANN.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Beach": {
-			"SMB1": { "source": "Beach.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "BeachLL.png", "rect": [0, 64, 16, 16] },
-			"SMBS": { "source": "BeachSP.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Beach.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "BeachLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBS": {
+				"source": "BeachSP.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Garden": {
-			"SMB1": { "source": "Garden.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "GardenLL.png", "rect": [0, 64, 16, 16] },
-			"SMBS": { "source": "GardenSP.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Garden.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "GardenLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBS": {
+				"source": "GardenSP.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Mountain": {
-			"SMB1": { "source": "Mountain.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "MountainLL.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Mountain.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "MountainLL.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Skyland": {
-			"SMB1": { "source": "Sky.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "SkyLL.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Sky.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "SkyLL.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Autumn": {
-			"SMB1": { "source": "Autumn.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "AutumnLL.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Autumn.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "AutumnLL.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Pipeland": {
-			"SMB1": { "source": "PipeLand.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "PipeLandLL.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "PipeLand.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "PipeLandLL.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Space": {
-			"SMB1": { "source": "Space.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "SpaceLL.png", "rect": [0, 64, 16, 16] },
-			"SMBS": { "source": "SpaceSP.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Space.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "SpaceLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBS": {
+				"source": "SpaceSP.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Underwater": {
-			"SMB1": { "source": "Underwater.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "UnderwaterLL.png", "rect": [0, 64, 16, 16] },
-			"SMBS": { "source": "UnderwaterSP.png", "rect": [0, 64, 16, 16] },
-			"SMBANN": { "source": "UnderwaterANN.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Underwater.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "UnderwaterLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBS": {
+				"source": "UnderwaterSP.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBANN": {
+				"source": "UnderwaterANN.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Volcano": {
-			"SMB1": { "source": "Volcano.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "VolcanoLL.png", "rect": [0, 64, 16, 16] },
-			"SMBS": { "source": "VolcanoSP.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Volcano.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "VolcanoLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBS": {
+				"source": "VolcanoSP.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"GhostHouse": {
-			"SMB1": { "source": "GhostHouse.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "GhostHouseLL.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "GhostHouse.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "GhostHouseLL.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Castle": {
-			"SMB1": { "source": "Castle.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "CastleLL.png", "rect": [0, 64, 16, 16] },
-			"SMBANN": { "source": "CastleANN.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Castle.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "CastleLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBANN": {
+				"source": "CastleANN.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"CastleWater": {
-			"SMB1": { "source": "CastleWater.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "CastleWaterLL.png", "rect": [0, 64, 16, 16] },
-			"SMBS": { "source": "CastleWaterSP.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "CastleWater.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "CastleWaterLL.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBS": {
+				"source": "CastleWaterSP.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBANN": {"link": "SMBLL"}
 		},
 		"Airship": {
-			"SMB1": { "source": "Airship.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "AirshipLL.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Airship.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "AirshipLL.png",
+				"rect": [0, 64, 16, 16]
+			}
 		},
 		"Bonus": {
-			"SMB1": { "source": "Bonus.png", "rect": [0, 64, 16, 16] },
-			"SMBLL": { "source": "BonusLL.png", "rect": [0, 64, 16, 16] }
+			"SMB1": {
+				"source": "Bonus.png",
+				"rect": [0, 64, 16, 16]
+			},
+			"SMBLL": {
+				"source": "BonusLL.png",
+				"rect": [0, 64, 16, 16]
+			}
 		}
 	}
 }
