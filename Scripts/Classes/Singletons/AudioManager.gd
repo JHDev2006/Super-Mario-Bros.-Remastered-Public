@@ -298,7 +298,7 @@ func create_stream_from_json(json_path := "") -> AudioStream:
 	path = ResourceSetter.get_pure_resource_path(json_path)
 	$ResourceSetterNew.current_resource_pack = ResourceGetter.get_resource_pack_from_path(path)
 	var final_json = $ResourceSetterNew.get_variation_json(JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text()).variations)
-	print(final_json)
+	#print(final_json)
 	var bgm_file = final_json.source
 	path = ResourceSetter.get_pure_resource_path(json_path.replace(json_path.get_file(), bgm_file))
 	var stream = null

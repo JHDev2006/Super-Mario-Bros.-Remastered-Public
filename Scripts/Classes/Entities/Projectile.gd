@@ -17,6 +17,8 @@ extends Enemy
 @export var EXTRA_PROJECTILE_ON_CONTACT := false
 ## Determines what sound will play when the projectile makes contact with something.
 @export var SFX_COLLIDE := ""
+## Determines what sound will play when the projectile is fully destroyed.
+@export var SFX_HIT := ""
 ## Determines how many entities a projectile can hit before being destroyed. Negative values are considered infinite.
 @export var PIERCE_COUNT: int = -1
 ## Determines how much time must pass in seconds before the projectile can hit the same enemy it is currently intersecting with again. Negative values are considered infinite.
@@ -104,6 +106,10 @@ func damage_player(player: Player, type: String = "Normal") -> void:
 		player.damage(type if type != "Normal" else "")
 		hit()
 
+func on_enemy_collide():
+	if SFX_HIT != "":
+		AudioManager.play_sfx(SFX_HIT, global_position)
+
 func hit(play_sfx := true, force_destroy := false) -> void:
 	if play_sfx and SFX_COLLIDE != "":
 		AudioManager.play_sfx(SFX_COLLIDE, global_position)
@@ -128,7 +134,13 @@ func summon_particle() -> void:
 		add_sibling(particle)
 
 func summon_extra_projectile() -> void:
-	if get_node_or_null(EXTRA_PROJECTILE):
-		var proj = load(EXTRA_PROJECTILE)
-		proj.global_position = global_position + EXTRA_PROJECTILE_OFFSET
-		add_sibling(proj)
+	var path := str(EXTRA_PROJECTILE) + ".tscn"
+	var scene := load(path)
+	
+	if scene != null:
+		var node = scene.instantiate()
+		node.global_position = global_position + EXTRA_PROJECTILE_OFFSET
+		if node is Projectile:
+			node.is_friendly = is_friendly
+			node.HAS_COLLISION = HAS_COLLISION
+		add_sibling(node)

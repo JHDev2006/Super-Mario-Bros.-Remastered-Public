@@ -54,7 +54,7 @@ extends CharacterBody2D
 		"RUN_SKID": 8.0,     
 		"ICE_ACCEL_MOD": 0.25,
 		"ICE_DECEL_MOD": 0.25,
-		"ICE_SKID_MOD": 0.25,             # The player's turning deceleration while running, measured in px/frame.
+		"ICE_SKID_MOD": 0.25,              # The player's turning deceleration while running, measured in px/frame.
 		
 		"CLASSIC_SKID_CONDITIONS": false,  # Determines if the player's speed must be over SKID_THRESHOLD to begin skidding.
 		"CAN_INSTANT_STOP_SKID": false,    # Determines if the player will instantly stop upon reaching the skid threshold.
@@ -62,10 +62,10 @@ extends CharacterBody2D
 		"SKID_STOP_THRESHOLD": 10.0,       # The maximum velocity required before the player will stop skidding.
 		
 		"GROUND_WALK_DECEL": 3.0,          # The player's grounded deceleration while no buttons are pressed, measured in px/frame.
-		"GROUND_RUN_DECEL": 3.0,
-		"DECEL_THRESHOLD": 0, 
-		"AIR_DECEL": 0.0,                 # The player's airborne deceleration while no buttons are pressed, measured in px/frame.
-					  
+		"GROUND_RUN_DECEL": 3.0,           # The player's grounded deceleration while no buttons are pressed from running speed, measured in px/frame.
+		"DECEL_THRESHOLD": 0,
+		"AIR_DECEL": 0.0,                  # The player's airborne deceleration while no buttons are pressed, measured in px/frame.
+		
 		"AIR_WALK_ACCEL": 3.0,             # The player's usual acceleration while in midair, measured in px/frame.
 		"AIR_WALK_SKID_ACCEL": 4.5,        # The player's usual skid acceleration while in midair, measured in px/frame.
 		"AIR_RUN_ACCEL": 3.0,              # The player's running acceleration while in midair, measured in px/frame.
@@ -228,7 +228,7 @@ extends CharacterBody2D
 		
 		"PROJ_SFX_THROW": "fireball",      # Defines the sound effect that plays when this projectile is fired.
 		"PROJ_SFX_COLLIDE": "bump",        # Defines the sound effect that plays when this projectile collides.
-		#"PROJ_SFX_HIT": "kick",           # Defines the sound effect that plays when this projectile damages an enemy.
+		"PROJ_SFX_HIT": "fireball_hit",    # Defines the sound effect that plays when this projectile hits an enemy.
 		"PROJ_COLLECT_COINS": false,
 		"MAX_PROJ_COUNT": 2,               # How many projectiles can be fired at once. -1 and below count as infinite.
 		"PROJ_COLLISION": true,            # Determines if the projectile can interact with collidable surfaces.
@@ -257,13 +257,14 @@ extends CharacterBody2D
 	},
 	"Big": {},
 	"Fire": {
-		"PROJ_TYPE": "es://Scenes/Prefabs/Entities/Items/Fireball",
+		"PROJ_TYPE": "res://Scenes/Prefabs/Entities/Items/Fireball",
 		"PROJ_PARTICLE": "res://Scenes/Prefabs/Particles/FireballExplosion",
 	},
 	"Superball": {
 		"PROJ_TYPE": "res://Scenes/Prefabs/Entities/Items/SuperballProjectile",
 		"PROJ_PARTICLE": "res://Scenes/Prefabs/Particles/SmokeParticle",
 		"PROJ_SFX_THROW": "superball",
+		"PROJ_SFX_HIT": "superball_hit",
 		"PROJ_GRAVITY": 0.0, 
 		"PROJ_LIFETIME": 10.0,
 		"PROJ_WALL_BOUNCE": true,
@@ -362,6 +363,7 @@ var input_direction := 0
 var star_meter := 0.0
 var flight_meter := 0.0
 var hammer_meter := 0.0
+var powerup_timers := ["star_meter", "flight_meter", "hammer_meter"]
 
 var velocity_direction := 1
 var velocity_x_jump_stored := 0
@@ -917,7 +919,7 @@ func kick_anim() -> void:
 var colour_palette: Texture = null
 
 func stop_all_timers() -> void:
-	for i in ["star_meter", "flight_meter", "hammer_meter"]:
+	for i in powerup_timers:
 		set(i, 0)
 
 func handle_invincible_palette() -> void:
@@ -952,9 +954,11 @@ var projectile_type = load("res://Scenes/Prefabs/Entities/Items/Fireball.tscn")
 const POWER_PARAM_LIST = {
 	"PARTICLE_OFFSET": "PROJ_PARTICLE_OFFSET",
 	"PARTICLE_ON_CONTACT": "PROJ_PARTICLE_ON_CONTACT",
+	"EXTRA_PROJECTILE": "PROJ_EXTRA_PROJ",
 	"EXTRA_PROJECTILE_OFFSET": "PROJ_EXTRA_PROJ_OFFSET",
 	"EXTRA_PROJECTILE_ON_CONTACT": "PROJ_EXTRA_PROJ_ON_CONTACT",
 	"SFX_COLLIDE": "PROJ_SFX_COLLIDE",
+	"SFX_HIT": "PROJ_SFX_HIT",
 	"HAS_COLLISION": "PROJ_COLLISION",
 	"PIERCE_COUNT": "PROJ_PIERCE_COUNT",
 	"PIERCE_HITRATE": "PROJ_PIERCE_HITRATE",
