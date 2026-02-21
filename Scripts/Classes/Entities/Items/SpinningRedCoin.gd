@@ -25,7 +25,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
-	velocity.y += (15 / delta) * delta
+	velocity.y += (15) * delta * 60.0
 
 func vanish() -> void:
 	if can_spawn_particles and Settings.file.visuals.extra_particles == 1:

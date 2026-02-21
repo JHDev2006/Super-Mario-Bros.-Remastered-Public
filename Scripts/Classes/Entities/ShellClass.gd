@@ -171,6 +171,6 @@ func handle_movement(delta: float) -> void:
 		velocity.x = 0
 	if is_on_floor() and velocity.y >= 0:
 		can_air_kick = false
-	velocity.y += (Global.entity_gravity / delta) * delta
+	velocity.y += (Global.entity_gravity) * delta * 60.0
 	velocity.y = clamp(velocity.y, -INF, Global.entity_max_fall_speed)
 	move_and_slide()

@@ -40,7 +40,7 @@ func jump() -> void:
 	$JumpTimer.start(randf_range(1, 2.5))
 
 func apply_enemy_gravity(delta: float) -> void:
-	velocity.y += (2.5 / delta) * delta
+	velocity.y += (2.5) * delta * 60.0
 	velocity.y = clamp(velocity.y, -INF, Global.entity_max_fall_speed)
 
 func get_target_y(player: Player) -> float:
