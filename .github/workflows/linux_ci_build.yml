@@ -1,0 +1,32 @@
+name: Godot Linux Build Test
+on: [push, pull_request]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Godot 4.5-beta3 (Linux headless)
+        run: |
+          wget https://github.com/godotengine/godot-builds/releases/download/4.5-beta3/Godot_v4.5-beta3_linux.x86_64.zip -O godot.zip
+          unzip godot.zip -d godot-bin
+          chmod +x godot-bin/Godot_v4.5-beta3_linux.x86_64
+
+      - name: Install export templates
+        run: |
+          mkdir -p ~/.local/share/godot/export_templates/4.5.beta3
+          wget https://github.com/godotengine/godot-builds/releases/download/4.5-beta3/Godot_v4.5-beta3_export_templates.tpz -O templates.tpz
+          unzip -q templates.tpz -d /tmp
+          mv /tmp/templates/* ~/.local/share/godot/export_templates/4.5.beta3/
+
+      - name: Prepare build directory
+        run: |
+          rm -rf build
+          mkdir -p build
+
+      - name: Export Linux build
+        run: |
+          godot-bin/Godot_v4.5-beta3_linux.x86_64 \
+            --headless --verbose --path . \
+            --export-release "Linux x86" build/SMB1R.x86_64
