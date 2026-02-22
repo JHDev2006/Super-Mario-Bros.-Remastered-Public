@@ -85,7 +85,7 @@ func throw_spiny() -> void:
 	node.set("in_egg", true)
 	node.global_position = $Cloud/Sprite.global_position
 	node.set("velocity", Vector2(0, -200))
-	if Settings.file.difficulty.lakitu_style == 1:
+	if Settings.file.gameplay.lakitu_style == 1:
 		node.velocity.x = 50 * (sign(player.global_position.x - global_position.x))
 		node.set("direction", sign(node.velocity.x))
 	add_sibling(node)

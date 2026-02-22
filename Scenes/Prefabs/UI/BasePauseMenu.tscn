@@ -105,7 +105,30 @@ metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 layout_mode = 1
 disabled_containers = [NodePath("PanelContainer/MarginContainer/VBoxContainer/Data")]
 
-[node name="Difficulty" parent="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(740137315, 1014393390) index="7" unique_id=508103354 node_paths=PackedStringArray("options")]
+[node name="Gameplay" parent="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(740137315, 1014393390) index="7" unique_id=1489558406 node_paths=PackedStringArray("options")]
+options = []
+
+[node name="Label" type="Label" parent="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Gameplay" index="1" unique_id=1134931550]
+layout_mode = 2
+text = "ONLY ON THE TITLE SCREEN!"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Gameplay" index="2" unique_id=2028721094]
+modulate = Color(0.47397572, 0.47397572, 0.47397572, 1)
+custom_minimum_size = Vector2(0, 11)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_2qqpf")
+
+[node name="ScrollContainer" parent="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Gameplay" index="3" unique_id=909412409]
+modulate = Color(0.4745098, 0.4745098, 0.4745098, 1)
+
+[node name="HSeparator" parent="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Gameplay" index="4" unique_id=1702276510]
+visible = false
+
+[node name="Description" parent="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Gameplay" index="5" unique_id=721453470]
+visible = false
+
+[node name="Difficulty" parent="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(740137315, 1014393390) index="8" unique_id=508103354 node_paths=PackedStringArray("options")]
 options = []
 
 [node name="Label" type="Label" parent="SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Difficulty" index="1" unique_id=447880847]

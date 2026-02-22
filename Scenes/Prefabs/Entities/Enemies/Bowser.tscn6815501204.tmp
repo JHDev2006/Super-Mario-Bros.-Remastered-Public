@@ -185,10 +185,6 @@ z_index = 1
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_ma5fd")
-can_hammer = null
-can_fire = null
-is_real = null
-music_enabled = null
 on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
 score_note_adder = NodePath("ScoreNoteSpawner")
 metadata/block_launch_velocity = -50.0
@@ -316,7 +312,6 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(-3.3881318e-21, -16)
 scale = Vector2(1.85, 2.1)
-rect = Rect2(-15, -10, 24, 20)
 
 [node name="ThemedToJSONConverter" type="Node" parent="." unique_id=510890767]
 script = ExtResource("14_nf6hu")

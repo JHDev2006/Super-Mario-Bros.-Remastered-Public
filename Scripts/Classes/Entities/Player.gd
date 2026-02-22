@@ -657,7 +657,7 @@ func apply_character_physics() -> void:
 	# preventing physics changes to stop potential cheating in modes like You VS. Boo
 	# and Marathon mode.
 	if apply_gameplay_changes:
-		physics_dict = PHYSICS_PARAMETERS if Settings.file.difficulty.physics_style else CLASSIC_PARAMETERS
+		physics_dict = PHYSICS_PARAMETERS if Settings.file.gameplay.physics_style else CLASSIC_PARAMETERS
 	for key in json.physics:
 		if key in ["PHYSICS_PARAMETERS", "CLASSIC_PARAMETERS", "POWER_PARAMETERS", "ENDING_PARAMETERS"]:
 			if apply_gameplay_changes:
@@ -1103,7 +1103,7 @@ func point_to_camera_limit_y(point := 0, point_dir := -1) -> float:
 	return point + ((get_viewport_rect().size.y / 2.0) * -point_dir)
 
 func passed_checkpoint() -> void:
-	if Settings.file.difficulty.checkpoint_style == 0:
+	if Settings.file.gameplay.checkpoint_style == 0:
 		$Checkpoint/Animation.play("Show")
 	AudioManager.play_sfx("checkpoint", global_position)
 

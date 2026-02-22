@@ -5,7 +5,7 @@ var in_egg := false
 const MOVE_SPEED := 40
 
 func _ready():
-	if Settings.file.difficulty.spiny_style == 1:
+	if Settings.file.gameplay.spiny_style == 1:
 		$BlockBouncingDetection.block_bounced.connect(die_from_object.bind())
 		$BlockBouncingDetection.block_bounced.connect($ScoreNoteSpawner.spawn_note.bind(200))
 	else:

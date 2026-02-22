@@ -32,10 +32,10 @@ func _ready() -> void:
 		return
 	if has_meta("is_flag") == false:
 		hide()
-		if Settings.file.difficulty.checkpoint_style != 0:
+		if Settings.file.gameplay.checkpoint_style != 0:
 			queue_free()
 			return
-	elif Settings.file.difficulty.checkpoint_style == 0 and [Global.GameMode.CUSTOM_LEVEL, Global.GameMode.LEVEL_EDITOR].has(Global.current_game_mode) == false:
+	elif Settings.file.gameplay.checkpoint_style == 0 and [Global.GameMode.CUSTOM_LEVEL, Global.GameMode.LEVEL_EDITOR].has(Global.current_game_mode) == false:
 		queue_free()
 		return
 	if passed and PipeArea.exiting_pipe_id == -1 and Global.current_game_mode != Global.GameMode.LEVEL_EDITOR and Level.vine_return_level == "" and passed_checkpoints[passed_checkpoints.size() - 1] == id:
@@ -69,7 +69,7 @@ func on_area_entered(area: Area2D) -> void:
 		elif Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
 			sublevel_id = Global.current_level.sublevel_id
 			print(sublevel_id)
-		if Settings.file.difficulty.checkpoint_style == 2 and has_meta("is_flag"):
+		if Settings.file.gameplay.checkpoint_style == 2 and has_meta("is_flag"):
 			if player.power_state.state_name == "Small":
 				player.get_power_up("Big", false)
 		respawn_position = global_position

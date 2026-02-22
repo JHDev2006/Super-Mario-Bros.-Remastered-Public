@@ -4,7 +4,7 @@ func damage_style_changed(new_value := 0) -> void:
 	Settings.file.difficulty.damage_style = new_value
 
 func checkpoint_changed(new_value := 0) -> void:
-	Settings.file.difficulty.checkpoint_style = new_value
+	Settings.file.gameplay.checkpoint_style = new_value
 
 func inf_lives_changed(new_value := 0) -> void:
 	Settings.file.difficulty.inf_lives = new_value
@@ -19,7 +19,7 @@ func game_over_changed(new_value := 0) -> void:
 	Settings.file.difficulty.game_over_behaviour = new_value
 
 func backscroll_changed(new_value := 0) -> void:
-	Settings.file.difficulty.back_scroll = new_value
+	Settings.file.gameplay.back_scroll = new_value
 
 func level_design_changed(new_value := 0) -> void:
 	Settings.file.difficulty.level_design = new_value
@@ -28,19 +28,19 @@ func extra_checkpoints_changed(new_value := 0) -> void:
 	Settings.file.difficulty.extra_checkpoints = new_value
 
 func spiny_style_changed(new_value := 0) -> void:
-	Settings.file.difficulty.spiny_style = new_value
+	Settings.file.gameplay.spiny_style = new_value
 
 func lakitu_style_changed(new_value := 0) -> void:
-	Settings.file.difficulty.lakitu_style = new_value
+	Settings.file.gameplay.lakitu_style = new_value
 
 func hammer_bro_style_changed(new_value := 0) -> void:
-	Settings.file.difficulty.hammer_bro_style = new_value
+	Settings.file.gameplay.hammer_bro_style = new_value
 
 func bowser_style_changed(new_value := 0) -> void:
-	Settings.file.difficulty.bowser_style = new_value
+	Settings.file.gameplay.bowser_style = new_value
 
 func physics_style_changed(new_value := 0):
-	Settings.file.difficulty.physics_style = new_value
+	Settings.file.gameplay.physics_style = new_value
 	for player in get_tree().get_nodes_in_group("Players"):
 		player.apply_character_physics()
 

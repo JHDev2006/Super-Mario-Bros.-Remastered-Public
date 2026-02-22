@@ -6,10 +6,10 @@ var jump_direction := 0
 @export var auto_charge := false
 
 var charging := false
-var charge_timer := 10 if Settings.file.difficulty.hammer_bro_style == 1 else 50
-var charge_speed := 50 if Settings.file.difficulty.hammer_bro_style == 1 else 32
-var hammer_timer := 1.0 if Settings.file.difficulty.hammer_bro_style == 1 else 0.133
-var hammer_held_timer = 0.5 if Settings.file.difficulty.hammer_bro_style == 1 else 0.233
+var charge_timer := 10 if Settings.file.gameplay.hammer_bro_style == 1 else 50
+var charge_speed := 50 if Settings.file.gameplay.hammer_bro_style == 1 else 32
+var hammer_timer := 1.0 if Settings.file.gameplay.hammer_bro_style == 1 else 0.133
+var hammer_held_timer = 0.5 if Settings.file.gameplay.hammer_bro_style == 1 else 0.233
 
 var wall_jump := false
 var target_player: Player = null
@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 		if is_on_wall() and is_on_floor():
 			jump(true)
 		velocity.x = charge_speed * direction
-		if ((direction > 0 and global_position.x >= target_player.global_position.x) or (direction < 0 and global_position.x <= target_player.global_position.x)) and Settings.file.difficulty.hammer_bro_style == 0:
+		if ((direction > 0 and global_position.x >= target_player.global_position.x) or (direction < 0 and global_position.x <= target_player.global_position.x)) and Settings.file.gameplay.hammer_bro_style == 0:
 			charging = false
 			$MovementAnimations.play("Movement")
 			$Timer.start(charge_timer)
@@ -70,7 +70,7 @@ func jump(wall := false) -> void:
 	$JumpTimer.start(randf_range(1, 5))
 
 func do_hammer_throw() -> void:
-	if Settings.file.difficulty.hammer_bro_style == 1:
+	if Settings.file.gameplay.hammer_bro_style == 1:
 		for i in randi_range(1, 6):
 			await throw_hammer()
 			await get_tree().create_timer(0.25, false).timeout
@@ -82,21 +82,21 @@ func do_hammer_throw() -> void:
 
 func throw_hammer() -> void:
 	$MovementJoint/Sprite/Hammer.show()
-	if Settings.file.difficulty.hammer_bro_style == 0: $HammerHitbox/Shape.disabled = false
+	if Settings.file.gameplay.hammer_bro_style == 0: $HammerHitbox/Shape.disabled = false
 	$MovementJoint/Sprite.play("Hammer")
 	await get_tree().create_timer(hammer_held_timer, false).timeout
 	spawn_hammer()
 	$MovementJoint/Sprite.play("Idle")
-	if Settings.file.difficulty.hammer_bro_style == 0: $HammerHitbox/Shape.disabled = true
+	if Settings.file.gameplay.hammer_bro_style == 0: $HammerHitbox/Shape.disabled = true
 	$MovementJoint/Sprite/Hammer.hide()
 
 func spawn_hammer() -> void:
 	var node = HAMMER.instantiate()
-	if Settings.file.difficulty.hammer_bro_style == 0:
+	if Settings.file.gameplay.hammer_bro_style == 0:
 		node.MOVE_SPEED = 64
 		node.GRAVITY = 4
 	node.global_position = $MovementJoint/Sprite/Hammer.global_position
-	node.velocity.y = -200 if Settings.file.difficulty.hammer_bro_style == 1 else -100
+	node.velocity.y = -200 if Settings.file.gameplay.hammer_bro_style == 1 else -100
 	node.direction = direction
 	if Settings.file.audio.extra_sfx == 1:
 		AudioManager.play_sfx("hammer_throw", global_position)
