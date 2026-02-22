@@ -186,16 +186,19 @@ func classic_hammers() -> void:
 	hammers_spawned += 1
 	sprite.play("Hammer")
 	$Hammer.show()
+	$HammerHitbox/Shape.disabled = false
 	await get_tree().create_timer(0.233, false).timeout
 	if ignore_flag_die:
 		sprite.play("Idle")
 		$Hammer.hide()
+		$HammerHitbox/Shape.disabled = true
 		return
 	spawn_hammer()
 	hammers_queued -= 1
 	if hammers_queued <= 0:
 		sprite.play("Idle")
 		$Hammer.hide()
+		$HammerHitbox/Shape.disabled = true
 
 func despawn_hammer() -> void:
 	hammers_spawned -= 1

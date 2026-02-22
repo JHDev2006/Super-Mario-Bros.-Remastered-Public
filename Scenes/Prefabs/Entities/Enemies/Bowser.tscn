@@ -175,6 +175,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va0n6"]
 size = Vector2(16, 18)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yggkc"]
+size = Vector2(6, 6)
+
 [sub_resource type="Resource" id="Resource_exf4b"]
 script = ExtResource("6_pvhfi")
 Overworld = SubResource("SpriteFrames_mcog5")
@@ -185,10 +188,6 @@ z_index = 1
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_ma5fd")
-can_hammer = null
-can_fire = null
-is_real = null
-music_enabled = null
 on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
 score_note_adder = NodePath("ScoreNoteSpawner")
 metadata/block_launch_velocity = -50.0
@@ -295,6 +294,20 @@ script = ExtResource("11_pvhfi")
 add_score = true
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
+[node name="HammerPlayerDetection" type="Node" parent="." unique_id=265170628 node_paths=PackedStringArray("hitbox")]
+script = ExtResource("20_ckuah")
+hitbox = NodePath("../HammerHitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
+[node name="HammerHitbox" type="Area2D" parent="." unique_id=2072522469]
+position = Vector2(-16, -32)
+
+[node name="Shape" type="CollisionShape2D" parent="HammerHitbox" unique_id=1668529648]
+visible = false
+position = Vector2(-1.040307e-05, -4)
+shape = SubResource("RectangleShape2D_yggkc")
+disabled = true
+
 [node name="Hammer" type="Sprite2D" parent="." unique_id=1682440283]
 visible = false
 show_behind_parent = true
@@ -356,6 +369,9 @@ metadata/_custom_type_script = "uid://ba18grqjixded"
 [connection signal="timeout" from="FlameTimer" to="." method="breathe_fire"]
 [connection signal="fireball_hit" from="FireballDetection" to="." method="fireball_hit" unbinds=1]
 [connection signal="gib_about_to_spawn" from="GibSpawner" to="." method="on_gib_about_to_spawn"]
+[connection signal="player_hit" from="HammerPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_below" from="HammerPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="HammerPlayerDetection" to="." method="damage_player"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="play_music" flags=6]
 [connection signal="moving_shell_entered" from="ShellDetection" to="ShellDetection" method="destroy_shell"]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="fireball_hit" unbinds=1]
