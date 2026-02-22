@@ -732,7 +732,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_DIFFICULTY"
-options = [NodePath("ScrollContainer/VBoxContainer/DamageStyle"), NodePath("ScrollContainer/VBoxContainer/ExtraCheckpoints"), NodePath("ScrollContainer/VBoxContainer/LevelDesign"), NodePath("ScrollContainer/VBoxContainer/Lives"), NodePath("ScrollContainer/VBoxContainer/FlagpoleLives"), NodePath("ScrollContainer/VBoxContainer/GameOverStyle"), NodePath("ScrollContainer/VBoxContainer/TimeLimit")]
+options = [NodePath("ScrollContainer/VBoxContainer/DamageStyle"), NodePath("ScrollContainer/VBoxContainer/ExtraCheckpoints"), NodePath("ScrollContainer/VBoxContainer/Lives"), NodePath("ScrollContainer/VBoxContainer/FlagpoleLives"), NodePath("ScrollContainer/VBoxContainer/GameOverStyle"), NodePath("ScrollContainer/VBoxContainer/LevelDesign"), NodePath("ScrollContainer/VBoxContainer/TimeLimit")]
 description_node = NodePath("Description/AutoScrollContainer/MarginContainer/Desc")
 scroll_container = NodePath("ScrollContainer")
 
