@@ -32,6 +32,8 @@ buses/default_bus_layout="uid://bc65qkbkya885"
 
 [autoload]
 
+ModLoaderStore="*uid://jv5kxtsw7sfj"
+ModLoader="*uid://bd8npc3ai2vv3"
 NewLevelBuilder="*res://Scenes/Prefabs/Autoload/NewLevelBuilder.gd"
 Global="*res://Scenes/Prefabs/Global.tscn"
 Settings="*res://Scenes/Prefabs/Autoload/Settings.tscn"
@@ -69,7 +71,7 @@ naming/script_name_casing=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/anim_player_refactor/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/helper/plugin.cfg")
+enabled=PackedStringArray("res://addons/anim_player_refactor/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/helper/plugin.cfg", "res://addons/mod_loader/_export_plugin/plugin.cfg", "res://addons/mod_tool/plugin.cfg")
 
 [file_customization]
 

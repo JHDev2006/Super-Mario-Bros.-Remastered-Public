@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ModLoaderOptionsProfile" load_steps=2 format=3 uid="uid://bodsw0jyh6rn5"]
+
+[ext_resource type="Script" path="res://addons/mod_loader/resources/options_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+enable_mods = true
+locked_mods = []
+log_level = 2
+disabled_mods = []
+allow_modloader_autoloads_anywhere = false
+steam_id = 0
+override_path_to_mods = ""
+override_path_to_configs = ""
+override_path_to_workshop = ""
+ignore_deprecated_errors = false
+ignored_mod_names_in_log = []
+load_from_steam_workshop = false
+load_from_local = true

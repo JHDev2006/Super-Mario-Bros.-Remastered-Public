@@ -1,4 +1,4 @@
-[gd_resource type="AtlasTexture" format=3 uid="uid://dktb2ljmou31p"]
+[gd_resource type="AtlasTexture" load_steps=3 format=3 uid="uid://dktb2ljmou31p"]
 
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="1_gbotb"]
 
