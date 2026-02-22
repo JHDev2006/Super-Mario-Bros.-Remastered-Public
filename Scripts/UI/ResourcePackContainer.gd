@@ -76,7 +76,7 @@ func select() -> void:
 		Settings.file.visuals.resource_packs.erase(pack_name)
 	Global.load_default_translations()
 	TranslationServer.reload_pseudolocalization()
-	Global.level_theme_changed.emit()
+	Global.update_theme()
 	if loaded:
 		AudioManager.play_global_sfx("coin")
 	else:
