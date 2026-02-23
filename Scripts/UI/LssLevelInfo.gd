@@ -57,7 +57,7 @@ func setup_visuals(container: OnlineLevelContainer) -> void:
 	%OnlinePlay.visible = has_downloaded
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_back"):
+	if Global.multibind_action_just_pressed("ui_back"):
 		close()
 
 func close() -> void:

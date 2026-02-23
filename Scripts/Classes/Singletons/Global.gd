@@ -263,7 +263,7 @@ func check_for_rom() -> void:
 			OS.move_to_trash(ROM_ASSETS_PATH)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug_reload"):
+	if multibind_action_just_pressed("debug_reload"):
 		ResourceSetter.cache.clear()
 		ResourceSetterNew.clear_cache()
 		ResourceGetter.cache.clear()
@@ -276,7 +276,7 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ALT) and Input.is_key_pressed(KEY_4):
 		get_tree().quit()
 	
-	if Input.is_action_just_pressed("toggle_fps_count"):
+	if multibind_action_just_pressed("toggle_fps_count"):
 		%FPSCount.visible = !%FPSCount.visible
 	%FPSCount.text = str(int(Engine.get_frames_per_second())) + " FPS"
 
@@ -286,7 +286,7 @@ func _process(delta: float) -> void:
 		debug_mode = true
 		log_comment("Debug Mode enabled! some bugs may occur!")
 		
-	if Input.is_action_just_pressed("ui_screenshot"):
+	if multibind_action_just_pressed("ui_screenshot"):
 		take_screenshot()
 
 func take_screenshot() -> void:
@@ -345,7 +345,7 @@ func player_action_pressed(action := "", player_id = 0) -> bool:
 func player_action_just_pressed(action := "", player_id = 0) -> bool:
 	if SpeedrunHandler.simulating_inputs:
 		player_id = "s"
-	return Input.is_action_just_pressed(action + "_" + str(player_id))
+	return multibind_action_just_pressed(action + "_" + str(player_id))
 
 func player_action_just_released(action := "", player_id = 0) -> bool:
 	if SpeedrunHandler.simulating_inputs:

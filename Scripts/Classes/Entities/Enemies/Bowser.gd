@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	if can_fall:
 		apply_enemy_gravity(delta)
 	move_and_slide()
-	if Input.is_action_just_pressed("editor_move_player") and Global.debug_mode:
+	if Global.multibind_action_just_pressed("editor_move_player") and Global.debug_mode:
 		die()
 
 func get_new_target_position():

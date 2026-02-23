@@ -31,9 +31,9 @@ func _process(_delta: float) -> void:
 
 func handle_input() -> void:
 	var old_idx := selected_index
-	if Input.is_action_just_pressed("ui_down"):
+	if Global.multibind_action_just_pressed("ui_down"):
 		selected_index += 1
-	if Input.is_action_just_pressed("ui_up"):
+	if Global.multibind_action_just_pressed("ui_up"):
 		selected_index -= 1
 	if scroll_container != null:
 		scroll_container.follow_focus = selected_index > minimum_idx

@@ -79,7 +79,7 @@ func handle_editor_stuff() -> void:
 					add_piece(SnakeBlock.DIRECTIONS[i])
 				break
 	if editing and Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
-		if Input.is_action_just_pressed("editor_open_menu") or Input.is_action_just_pressed("ui_cancel"):
+		if Global.multibind_action_just_pressed("editor_open_menu") or Global.multibind_action_just_pressed("ui_cancel"):
 			editing = false
 			Global.level_editor.current_state = LevelEditor.EditorState.IDLE
 			update_pieces()

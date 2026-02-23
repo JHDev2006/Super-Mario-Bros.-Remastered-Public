@@ -8,7 +8,7 @@ func _ready() -> void:
 	set_process(false)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("editor_open_menu"):
+	if Global.multibind_action_just_pressed("ui_cancel") or Global.multibind_action_just_pressed("editor_open_menu"):
 		close()
 
 func open() -> void:

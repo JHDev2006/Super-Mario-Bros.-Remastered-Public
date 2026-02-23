@@ -98,9 +98,9 @@ func update_pb() -> void:
 func handle_input() -> void:
 	if active == false:
 		return
-	if Input.is_action_just_pressed("ui_back"):
+	if Global.multibind_action_just_pressed("ui_back"):
 		Global.transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		level_selected()
 
 func regrab_focus() -> void:

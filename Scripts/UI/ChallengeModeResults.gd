@@ -24,7 +24,7 @@ func _ready() -> void:
 	setup_results()
 
 func _process(_delta: float) -> void:
-	if can_exit and Input.is_action_just_pressed("jump_0"):
+	if can_exit and Global.multibind_action_just_pressed("jump_0"):
 		can_exit = false
 		exiting = true
 		save_results()

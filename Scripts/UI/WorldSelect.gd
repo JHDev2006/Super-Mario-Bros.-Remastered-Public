@@ -151,12 +151,12 @@ func setup_disco_bits(medal_outline: TextureRect, medal: NinePatchRect, s_rank_p
 	p_rank_pfx.visible = lowest_rank == 7
 
 func handle_input() -> void:
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		if SaveManager.visited_levels.substr((selected_world + world_offset) * 4, 4) == "0000" and not Global.debug_mode and selected_world != 0:
 			AudioManager.play_sfx("bump")
 		else:
 			select_world()
-	elif Input.is_action_just_pressed("ui_back"):
+	elif Global.multibind_action_just_pressed("ui_back"):
 		close()
 		cleanup()
 		cancelled.emit()

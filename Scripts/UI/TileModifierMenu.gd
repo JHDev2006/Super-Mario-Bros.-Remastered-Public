@@ -35,7 +35,7 @@ var can_exit := true:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("mb_left"): left_click_release.emit()
-	if active and (Input.is_action_just_pressed("ui_back") or Input.is_action_just_pressed("editor_open_menu")):
+	if active and (Global.multibind_action_just_pressed("ui_back") or Global.multibind_action_just_pressed("editor_open_menu")):
 		if can_exit:
 			close()
 		else:

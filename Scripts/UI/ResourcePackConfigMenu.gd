@@ -26,7 +26,7 @@ func clear_options() -> void:
 	%Options.options.clear()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_back") and active:
+	if Global.multibind_action_just_pressed("ui_back") and active:
 		close()
 
 func spawn_options() -> void:
