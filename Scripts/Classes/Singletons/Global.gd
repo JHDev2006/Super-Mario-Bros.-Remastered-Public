@@ -191,6 +191,9 @@ var custom_campaign_jsons := {}
 
 var level_sequence_captured := false
 
+var process_multibind_pressed_buttons: Dictionary[StringName, int] = {}
+var physics_multibind_pressed_buttons: Dictionary[StringName, int] = {}
+
 func _ready() -> void:
 	if is_snapshot: get_build_time()
 	if OS.is_debug_build(): debug_mode = false
@@ -676,3 +679,21 @@ func nice_json_format(json_string := "") -> String:
 					json_string = json_string.insert(i + 2, "\t")
 					i += 1
 	return json_string
+
+# Like Input.is_action_just_pressed, but it allows pressing
+# a button while another bind for it is already pressed.
+func multibind_action_just_pressed(action: StringName) -> bool:
+	if Engine.is_in_physics_frame():
+		return physics_multibind_pressed_buttons.get(action, -1) \
+			== Engine.get_physics_frames()
+	return process_multibind_pressed_buttons.get(action, -1) \
+		== Engine.get_process_frames()
+
+func _input(event: InputEvent) -> void:
+	if not event.is_action_type() or not event.is_pressed():
+		return
+	for action in InputMap.get_actions():
+		if event.is_action_pressed(action):
+			process_multibind_pressed_buttons[action] = Engine.get_process_frames()
+			# add 1 frame so buttons in physics frames work (????)
+			physics_multibind_pressed_buttons[action] = (Engine.get_physics_frames() + 1)
