@@ -80,8 +80,8 @@ const BLANK_FILE := {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
 static var level_file = {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
 
 var current_layer := 0
-@onready var tile_layer_nodes: Array[TileMapLayer] = [%TileLayer1, %TileLayer2, %TileLayer3, %TileLayer4, %TileLayer5]
-@onready var entity_layer_nodes := [%EntityLayer1, %EntityLayer2, %EntityLayer3, %EntityLayer4, %EntityLayer5]
+@onready var tile_layer_nodes: Array[TileMapLayer] = [null, null, null, null, null]
+@onready var entity_layer_nodes := [null, null, null, null, null]
 
 var copied_node: Node = null
 var copied_tile_offset := Vector2.ZERO
