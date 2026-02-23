@@ -695,5 +695,7 @@ func _input(event: InputEvent) -> void:
 	for action in InputMap.get_actions():
 		if event.is_action_pressed(action):
 			process_multibind_pressed_buttons[action] = Engine.get_process_frames()
-			# add 1 frame so buttons in physics frames work (????)
-			physics_multibind_pressed_buttons[action] = (Engine.get_physics_frames() + 1)
+			# Add 1 physics frame, like Godot also does,
+			# because "input may come in part way through a physics tick"
+			# https://github.com/godotengine/godot/blob/2327a823578a30f09068f97272598521896d5633/core/input/input.cpp#L1025
+			physics_multibind_pressed_buttons[action] = Engine.get_physics_frames() + 1
