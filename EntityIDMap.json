@@ -835,4 +835,8 @@
 		"res://Scenes/Prefabs/Gizmos/Inputs/ObjectDetection.tscn",
 		"0,0"
 	],
+	"Dd": [
+		"res://Scenes/Prefabs/Gizmos/Outputs/Flinger.tscn",
+		"0,0"
+	]
 }

@@ -206,6 +206,8 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SwitchBlocks.json" id="211_bcg6t"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Hachisuke.json" id="211_fe6cg"]
 [ext_resource type="PackedScene" uid="uid://k4bgruingvi0" path="res://Scenes/Prefabs/UI/EditorGuide.tscn" id="211_numt2"]
+[ext_resource type="Texture2D" uid="uid://b40xfep1drlm1" path="res://Assets/Sprites/Editor/Gizmos/PlayerFlinger.png" id="212_vcpfp"]
+[ext_resource type="PackedScene" uid="uid://07ukmj7s77wu" path="res://Scenes/Prefabs/Gizmos/Outputs/Flinger.tscn" id="213_uk8sr"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/WingItem.json" id="221_o0k3u"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/LuckyStar.json" id="224_vjdbd"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Key.json" id="229_u1728"]
@@ -6298,13 +6300,13 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("194_24ald")
 
-[node name="Counters" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=235610923]
+[node name="Teleportation" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=235610923]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
 script = ExtResource("20_jc7xg")
 
-[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Counters" unique_id=1943617514]
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation" unique_id=1943617514]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -6316,7 +6318,7 @@ texture = ExtResource("22_3cjpb")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="Teleporter" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Counters" unique_id=1161625026 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+[node name="Teleporter" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation" unique_id=1161625026 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
@@ -6329,7 +6331,7 @@ secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ct"
 entity_scene = ExtResource("176_uggri")
 
-[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Counters/Teleporter" unique_id=1202098081]
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation/Teleporter" unique_id=1202098081]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -6339,7 +6341,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("194_24ald")
 
-[node name="Warper" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Counters" unique_id=991496675 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+[node name="Warper" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation" unique_id=991496675 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
@@ -6352,7 +6354,7 @@ secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DU"
 entity_scene = ExtResource("176_uggri")
 
-[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Counters/Warper" unique_id=725773224]
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation/Warper" unique_id=725773224]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -6362,7 +6364,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("194_24ald")
 
-[node name="TextureRect2" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Counters" unique_id=828735854]
+[node name="TextureRect2" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation" unique_id=828735854]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -6428,6 +6430,27 @@ entity_id = "DI"
 entity_scene = ExtResource("176_uggri")
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/ConditionalClear" unique_id=236414212]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("194_24ald")
+
+[node name="Flinger" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=687653173 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 2
+tile_name = "GIZMO_FLING"
+tile_desc = "Changes the player's velocity."
+type = 1
+icon_texture = ExtResource("212_vcpfp")
+icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
+entity_id = "Dd"
+entity_scene = ExtResource("213_uk8sr")
+
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Flinger" unique_id=1339492676]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

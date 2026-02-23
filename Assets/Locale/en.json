@@ -556,6 +556,7 @@
 	"GIZMO_QUESTION_SWITCH": "? Switch",
 	"GIZMO_SWITCH_BLOCK": "Switch Block",
 	"GIZMO_OBJECT_DETECTION": "Object Detection",
+	"GIZMO_FLING": "Player Flinger",
 	"LEVEL_SETTINGS_THEME": "Theme:",
 	"THEME_OVERWORLD": "Overworld",
 	"THEME_UNDERGROUND": "Underground",
