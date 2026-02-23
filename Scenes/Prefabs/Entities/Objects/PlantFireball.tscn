@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="1_eqrf8"]
 [ext_resource type="Script" uid="uid://c11i71w03bckd" path="res://Scripts/Classes/Entities/Objects/PlantFireball.gd" id="1_wo14a"]
+[ext_resource type="PackedScene" uid="uid://d08nv4qtfouv1" path="res://Scenes/Prefabs/Particles/SmokeParticle.tscn" id="2_aw0ec"]
 [ext_resource type="Texture2D" uid="uid://bir050juri13b" path="res://Assets/Sprites/Enemies/PlantFireball.png" id="2_wo14a"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_ghtuo"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/PlantFireball.json" id="5_aw0ec"]
@@ -66,20 +67,25 @@ collision_layer = 0
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_wo14a")
+PARTICLE = ExtResource("2_aw0ec")
+PARTICLE_OFFSET = Vector2(0, 8)
+PIERCE_COUNT = 0
+HAS_COLLISION = true
+MOVE_SPEED = 75
 
-[node name="PlayerDetection" type="Area2D" parent="." unique_id=998813736]
+[node name="Hitbox" type="Area2D" parent="." unique_id=998813736]
 collision_layer = 1025
 script = ExtResource("1_eqrf8")
 metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" unique_id=565068034]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=565068034]
 shape = SubResource("CircleShape2D_42myg")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1619062268]
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_ghtuo")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite" unique_id=1314762623]
+[node name="Animation" type="AnimationPlayer" parent="Sprite" unique_id=1314762623]
 libraries/ = SubResource("AnimationLibrary_t6bbl")
 autoplay = &"Spin"
 speed_scale = 2.0
@@ -96,5 +102,5 @@ shape = SubResource("CircleShape2D_106mo")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=995118794]
 
-[connection signal="player_entered" from="PlayerDetection" to="." method="damage_player"]
+[connection signal="player_entered" from="Hitbox" to="." method="damage_player"]
 [connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="queue_free"]

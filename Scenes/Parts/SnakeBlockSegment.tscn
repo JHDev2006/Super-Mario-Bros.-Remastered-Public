@@ -35,7 +35,7 @@ animations = [{
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgnxe"]
-size = Vector2(10, 10)
+size = Vector2(10, 20)
 
 [node name="SnakeBlockSegment" type="StaticBody2D" unique_id=1396098118]
 collision_layer = 6
@@ -63,5 +63,4 @@ script = ExtResource("5_bnqcv")
 metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
 [node name="Shape" type="CollisionShape2D" parent="PlayerDetection" unique_id=1987409195]
-position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_fgnxe")

@@ -14,9 +14,16 @@ script = ExtResource("2_5h4i2")
 size_x = 1
 size_y = 1
 type = 1
+detect_items = true
+detect_shells = true
+detect_blocks = true
+detect_projectiles = true
 
 [node name="Sprite2D" parent="." index="0" unique_id=1224179792]
 texture = ExtResource("3_mw3ff")
+
+[node name="SignalExposer" parent="." index="1" unique_id=634423865]
+do_animation = false
 
 [node name="EditorPropertyExposer" type="Node" parent="." index="2" unique_id=666886942]
 script = ExtResource("5_j8xxk")

@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="15_yygs4"]
 [ext_resource type="Script" uid="uid://dq860i312isk" path="res://Scripts/Classes/Components/IcicleDetection.gd" id="16_11y13"]
 [ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="17_7dmm8"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="18_7dmm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48u40"]
 size = Vector2(16, 16)
@@ -86,11 +87,13 @@ mode = 1
 resource_json = ExtResource("6_xko1t")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Enemy" type="CharacterBody2D" parent="." unique_id=492617984]
+[node name="Enemy" type="CharacterBody2D" parent="." unique_id=492617984 node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
 position = Vector2(0, -8)
 collision_layer = 16
 collision_mask = 18
 script = ExtResource("1_50rwk")
+on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
+score_note_adder = NodePath("ScoreNoteSpawner")
 metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Enemy" unique_id=1853879053]
@@ -155,8 +158,15 @@ script = ExtResource("17_7dmm8")
 hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://ba18grqjixded"
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="Enemy" unique_id=1099702968]
+
+[node name="ScoreNoteSpawner" type="Node" parent="Enemy" unique_id=560802101]
+script = ExtResource("18_7dmm8")
+metadata/_custom_type_script = "uid://5octqlf4ohel"
+
 [connection signal="killed" from="Enemy" to="." method="enemy_killed"]
 [connection signal="killed" from="Enemy" to="Enemy/GibSpawner" method="summon_gib"]
+[connection signal="tree_exiting" from="Enemy" to="." method="set_physics_process" binds= [false]]
 [connection signal="moving_shell_entered" from="Enemy/ShellDetection" to="Enemy" method="die_from_object"]
 [connection signal="hammer_player_hit" from="Enemy/EnemyPlayerDetection" to="Enemy" method="die_from_hammer"]
 [connection signal="invincible_player_hit" from="Enemy/EnemyPlayerDetection" to="Enemy" method="die_from_object"]

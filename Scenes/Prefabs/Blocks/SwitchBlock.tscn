@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dvd2o2mnmyl5b"]
+
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="1_1yrj2"]
+[ext_resource type="Script" uid="uid://d2rg8orsey56v" path="res://Scripts/Classes/Blocks/SwitchBlock.gd" id="1_uudpb"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_uudpb"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SwitchBlocks.json" id="3_w8k5l"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="5_w8k5l"]
+[ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="6_jfwde"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfwde"]
+size = Vector2(16, 16)
+
+[node name="SwitchBlock" type="AnimatableBody2D" unique_id=1143190692]
+collision_layer = 6
+collision_mask = 0
+script = ExtResource("1_uudpb")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=720262624]
+shape = SubResource("RectangleShape2D_jfwde")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=460434361]
+script = ExtResource("1_1yrj2")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=977202021 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("2_uudpb")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("3_w8k5l")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="EditorPropertyExposer" type="Node" parent="." unique_id=278807074]
+script = ExtResource("5_w8k5l")
+properties = Array[String](["colour", "active"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[node name="SignalExposer" type="Node2D" parent="." unique_id=1164916696]
+script = ExtResource("6_jfwde")
+can_output = false
+metadata/_custom_type_script = "uid://b3bokos5jcpr7"
+
+[connection signal="modifier_applied" from="EditorPropertyExposer" to="." method="update_collision"]
+[connection signal="modifier_applied" from="EditorPropertyExposer" to="." method="update_sprite"]
+[connection signal="lost_power" from="SignalExposer" to="." method="turn_off"]
+[connection signal="recieved_power" from="SignalExposer" to="." method="turn_on"]
+[connection signal="recieved_pulse" from="SignalExposer" to="." method="toggle"]

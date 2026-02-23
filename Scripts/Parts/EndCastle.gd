@@ -18,6 +18,7 @@ static var is_transitioning := false
 func _ready() -> void:
 	Global.level_sequence_captured = false
 	await Global.level_complete_begin
+	update_cam_limit()
 	Global.level_sequence_captured = true
 	$Overlay.visible = not use_sprite
 	$OverlaySprite.visible = use_sprite

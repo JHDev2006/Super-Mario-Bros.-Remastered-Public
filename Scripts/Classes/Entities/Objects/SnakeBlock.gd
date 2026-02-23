@@ -30,7 +30,7 @@ var last_direction := Vector2i.RIGHT
 
 func _ready() -> void:
 	for i in pieces:
-		i.get_node("PlayerDetection").player_entered.connect(start_travelling.unbind(1))
+		i.get_node("PlayerDetection").player_entered.connect(player_touched_segment.bind(i))
 	print(path)
 	update_pieces()
 	update_sprites()
@@ -48,6 +48,13 @@ func update_pieces() -> void:
 	for i in $PlacePreview.get_children():
 		i.modulate = Color.RED if -last_direction == DIRECTIONS[i.get_index()] else Color.YELLOW
 	queue_redraw()
+
+func player_touched_segment(player: Player, segment: Node2D) -> void:
+	if player.gravity_vector == Vector2.DOWN:
+		if player.global_position.y < segment.global_position.y:
+			start_travelling()
+	elif player.global_position.y > segment.global_position.y:
+		start_travelling()
 
 func _physics_process(delta: float) -> void:
 	if Global.level_editor != null:

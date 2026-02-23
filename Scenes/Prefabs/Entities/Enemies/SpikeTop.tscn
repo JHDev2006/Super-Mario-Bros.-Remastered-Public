@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="10_aexo1"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="11_5smfw"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="12_dwwms"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="13_bxsyc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_as5ol"]
 atlas = ExtResource("2_7s4ia")
@@ -41,13 +42,15 @@ size = Vector2(10, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_as5ol"]
 size = Vector2(4, 4)
 
-[node name="SpikeTop" type="CharacterBody2D" unique_id=1562484431]
+[node name="SpikeTop" type="CharacterBody2D" unique_id=1562484431 node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
 collision_layer = 16
 collision_mask = 2
 floor_stop_on_slope = false
 floor_constant_speed = true
 floor_block_on_wall = false
 script = ExtResource("1_ol6o0")
+on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
+score_note_adder = NodePath("ScoreNoteSpawner")
 metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
 [node name="RotationJoint" type="Node2D" parent="." unique_id=1188855388]
@@ -164,6 +167,10 @@ metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 script = ExtResource("12_dwwms")
 properties = Array[String](["starting_direction", "movement_direction"])
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[node name="ScoreNoteSpawner" type="Node" parent="." unique_id=1760637221]
+script = ExtResource("13_bxsyc")
+metadata/_custom_type_script = "uid://5octqlf4ohel"
 
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
 [connection signal="level_start" from="LevelEditorToggleDetection" to="." method="_ready"]

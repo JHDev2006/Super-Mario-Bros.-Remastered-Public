@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="7_1w7q1"]
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="9_i4nd2"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="10_eeyhw"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="11_12hsl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnfbm"]
 atlas = ExtResource("1_x602l")
@@ -194,7 +195,13 @@ script = ExtResource("10_eeyhw")
 properties = Array[String](["one_time"])
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
+[node name="BlockBouncingDetection" type="Node" parent="." unique_id=45239333 node_paths=PackedStringArray("hitbox")]
+script = ExtResource("11_12hsl")
+hitbox = NodePath("")
+metadata/_custom_type_script = "uid://cmg61722ktg2m"
+
 [connection signal="switch_pressed" from="." to="SignalExposer" method="emit_pulse"]
 [connection signal="player_entered" from="PlayerDetection" to="." method="on_player_entered"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="pressed" binds= [false]]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="pressed" binds= [false]]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="bump_up" unbinds=1]

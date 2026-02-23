@@ -74,19 +74,25 @@ var file := {
 		"firebar_style": 0,
 		"extra_particles": 0
 	},
+	"gameplay":
+	{
+		"physics_style": 1,
+		"checkpoint_style": 0,
+		"back_scroll": 0,
+		"spiny_style": 1,
+		"lakitu_style": 0,
+		"hammer_bro_style": 1,
+		"bowser_style": 1,
+	},
 	"difficulty":
 	{
 		"damage_style": 1,
-		"checkpoint_style": 0,
+		"level_design": 0,
+		"time_limit": 1,
 		"inf_lives": 0,
 		"flagpole_lives": 0,
 		"game_over_behaviour": 0,
-		"level_design": 0,
 		"extra_checkpoints": 0,
-		"back_scroll": 0,
-		"time_limit": 1,
-		"lakitu_style": 0,
-		"physics_style": 1
 	}
 }
 

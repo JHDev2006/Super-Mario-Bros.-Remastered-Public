@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bqra7e5xsdg5r" path="res://Assets/Sprites/Particles/SkidParticles.png" id="6_2c5fb"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/WigglerHead.json" id="8_h7jtn"]
 [ext_resource type="Script" uid="uid://blfnd65xcx78c" path="res://Scripts/Classes/Components/LedgeDetectionCast.gd" id="9_h7jtn"]
+[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="9_volwr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n20q3"]
 atlas = ExtResource("3_r77rc")
@@ -89,7 +90,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Wiggler" type="CharacterBody2D" unique_id=601622491]
+[node name="Wiggler" type="CharacterBody2D" unique_id=601622491 node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
 collision_layer = 16
 collision_mask = 18
 floor_stop_on_slope = false
@@ -98,6 +99,8 @@ floor_block_on_wall = false
 floor_max_angle = 1.3962634
 floor_snap_length = 4.0
 script = ExtResource("1_h7jtn")
+on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
+score_note_adder = NodePath("ScoreNoteSpawner")
 metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
 [node name="BasicEnemyMovement" type="Node" parent="." unique_id=1301769216 node_paths=PackedStringArray("ledge_detection_cast")]
@@ -147,6 +150,13 @@ position = Vector2(4, -20)
 sprite_frames = SubResource("SpriteFrames_n20q3")
 frame = 4
 frame_progress = 1.0
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=880844047]
+rect = Rect2(-24, -32, 48, 48)
+
+[node name="ScoreNoteSpawner" type="Node" parent="." unique_id=612499821]
+script = ExtResource("9_volwr")
+metadata/_custom_type_script = "uid://5octqlf4ohel"
 
 [connection signal="moving_shell_entered" from="Parts/Body4/ShellDetection" to="." method="die_from_object"]
 [connection signal="hammer_player_hit" from="Parts/Body4/EnemyPlayerDetection" to="." method="die_from_object"]

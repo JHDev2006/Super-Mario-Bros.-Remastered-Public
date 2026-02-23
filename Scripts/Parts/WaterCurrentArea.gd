@@ -13,5 +13,5 @@ func _physics_process(delta: float) -> void:
 func pull_player(player: Player, delta: float) -> void:
 	for x in strength:
 		player.apply_gravity(delta * 1.5)
-	if Settings.file.difficulty.physics_style == 0:
+	if Settings.file.gameplay.physics_style == 0:
 		player.global_position.x += 48 * sign(global_position.x - player.global_position.x) * delta

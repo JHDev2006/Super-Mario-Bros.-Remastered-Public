@@ -37,3 +37,6 @@ func restore() -> void:
 func delete() -> void:
 	queue_free()
 	$GibSpawner.summon_poof()
+
+func bump_up() -> void:
+	velocity.y = -150

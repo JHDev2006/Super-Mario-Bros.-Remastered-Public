@@ -5,10 +5,20 @@ extends Enemy
 @export var is_friendly := false
 ## Which particle scene to load.
 @export var PARTICLE: Resource = null
+## Determines the offset of the particle when it is created.
+@export var PARTICLE_OFFSET: Vector2 = Vector2(0, 0)
 ## Determines if the projectile will display a particle upon making contact with something, but hasn't been destroyed.
 @export var PARTICLE_ON_CONTACT := false
+## Which projectile scene to load.
+@export var EXTRA_PROJECTILE: NodePath = ""
+## Determines the offset of the extra projectile when it is created.
+@export var EXTRA_PROJECTILE_OFFSET: Vector2 = Vector2(0, 0)
+## Determines if the projectile will create an extra projectile upon making contact with something, but hasn't been destroyed.
+@export var EXTRA_PROJECTILE_ON_CONTACT := false
 ## Determines what sound will play when the projectile makes contact with something.
 @export var SFX_COLLIDE := ""
+## Determines what sound will play when the projectile is fully destroyed.
+@export var SFX_HIT := ""
 ## Determines how many entities a projectile can hit before being destroyed. Negative values are considered infinite.
 @export var PIERCE_COUNT: int = -1
 ## Determines how much time must pass in seconds before the projectile can hit the same enemy it is currently intersecting with again. Negative values are considered infinite.
@@ -27,10 +37,12 @@ extends Enemy
 @export var COLLECT_COINS := false
 ## Controls how long the projectile will exist for in seconds.
 @export var LIFETIME := -1
-## Controls the horizontal speed of the projectile.
+## Controls the speed of the projectile.
 @export var MOVE_SPEED := 0
-## Controls the horizontal speed of the projectile.
+## Controls the maximum speed of the projectile.
 @export var MOVE_SPEED_CAP := [-INF, INF]
+## Controls the initial angle the projectile travels at.
+@export var MOVE_ANGLE: Vector2 = Vector2.ZERO
 ## Controls the amount of deceleration the projectile will experience on the ground.
 @export var GROUND_DECEL := 0
 ## Controls the amount of deceleration the projectile will experience in the air.
@@ -62,10 +74,13 @@ func handle_movement(delta: float) -> void:
 	var DECEL_TYPE = GROUND_DECEL if is_on_floor() else AIR_DECEL
 	velocity.y += (CUR_GRAVITY / delta) * delta
 	velocity.y = clamp(velocity.y, -INF, MAX_FALL_SPEED)
+	MOVE_SPEED = clamp(move_toward(MOVE_SPEED, 0, (DECEL_TYPE / delta) * delta), MOVE_SPEED_CAP[0], MOVE_SPEED_CAP[1])
 	if HAS_COLLISION:
 		projectile_bounce()
-	MOVE_SPEED = clamp(move_toward(MOVE_SPEED, 0, (DECEL_TYPE / delta) * delta), MOVE_SPEED_CAP[0], MOVE_SPEED_CAP[1])
-	velocity.x = MOVE_SPEED * direction
+	if MOVE_ANGLE == Vector2.ZERO:
+		velocity.x = MOVE_SPEED * direction
+	else:
+		global_position += (MOVE_SPEED * MOVE_ANGLE) * delta
 	move_and_slide()
 
 func projectile_bounce() -> void:
@@ -91,23 +106,41 @@ func damage_player(player: Player, type: String = "Normal") -> void:
 		player.damage(type if type != "Normal" else "")
 		hit()
 
+func on_enemy_collide():
+	if SFX_HIT != "":
+		AudioManager.play_sfx(SFX_HIT, global_position)
+
 func hit(play_sfx := true, force_destroy := false) -> void:
 	if play_sfx and SFX_COLLIDE != "":
 		AudioManager.play_sfx(SFX_COLLIDE, global_position)
 	if PIERCE_COUNT == 0 or BOUNCE_COUNT == 0 or force_destroy:
-		summon_explosion()
+		summon_particle()
+		summon_extra_projectile()
 		queue_free()
 	else:
 		var hitbox = get_node_or_null("Hitbox")
 		PIERCE_COUNT -= 1
-		if PARTICLE_ON_CONTACT: summon_explosion()
+		if PARTICLE_ON_CONTACT: summon_particle()
+		if EXTRA_PROJECTILE_ON_CONTACT: summon_extra_projectile()
 		if PIERCE_HITRATE >= 0 and hitbox != null:
 			hitbox.monitoring = false
 			await get_tree().create_timer(PIERCE_HITRATE, false).timeout
 			hitbox.monitoring = true
 
-func summon_explosion() -> void:
+func summon_particle() -> void:
 	if PARTICLE is PackedScene and PARTICLE.can_instantiate():
-		var node = PARTICLE.instantiate()
-		node.global_position = global_position
+		var particle = PARTICLE.instantiate()
+		particle.global_position = global_position + PARTICLE_OFFSET
+		add_sibling(particle)
+
+func summon_extra_projectile() -> void:
+	var path := str(EXTRA_PROJECTILE) + ".tscn"
+	var scene := load(path)
+	
+	if scene != null:
+		var node = scene.instantiate()
+		node.global_position = global_position + EXTRA_PROJECTILE_OFFSET
+		if node is Projectile:
+			node.is_friendly = is_friendly
+			node.HAS_COLLISION = HAS_COLLISION
 		add_sibling(node)

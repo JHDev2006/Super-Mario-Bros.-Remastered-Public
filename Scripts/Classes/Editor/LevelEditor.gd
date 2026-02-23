@@ -260,6 +260,7 @@ func open_save_dialog() -> void:
 func stop_testing() -> void:
 	if current_state == EditorState.IDLE:
 		return
+	current_state = EditorState.IDLE
 	cleanup()
 	return_to_editor.call_deferred()
 

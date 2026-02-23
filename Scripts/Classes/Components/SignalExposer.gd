@@ -34,6 +34,7 @@ var accepting_inputs := true
 
 @export_storage var connections := []
 @export var do_animation := true
+@export_storage var position_offset := position
 
 var wire_node: Node2D = null
 var save_string := ""
@@ -69,14 +70,8 @@ func _ready() -> void:
 		apply_string(save_string)
 		owner.remove_meta("save_string")
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	show_behind_parent = true
-	if top_level == false:
-		var pos_save = global_position
-		saved_offset = position
-		top_level = true
-		global_position = pos_save
-	else:
-		global_position = owner.position + saved_offset
+	z_index = 10
+	global_position = owner.global_position + position_offset
 	call_deferred("connect_pre_existing_signals")
 	queue_redraw()
 	if Global.level_editor != null:
@@ -85,6 +80,7 @@ func _ready() -> void:
 		get_tree().call_group("Gizmos", "hide")
 
 func _process(_delta: float) -> void:
+	global_scale = Vector2.ONE
 	if editing:
 		queue_redraw()
 	elif Global.level_editor_is_editing() == false and no_moving != true:
@@ -104,7 +100,7 @@ func _draw() -> void:
 		hide()
 		return
 	if editing:
-		draw_square_line(Vector2.ZERO, (get_local_mouse_position() + Vector2(0, 0)).snapped(Vector2(16, 16)) + Vector2(0, 0), WIRE_COLOURS[connections.size()])
+		draw_square_line(Vector2.ZERO, (get_local_mouse_position() + Vector2(0, 0)).snapped(Vector2(16, 16)) + Vector2(0, 0), WIRE_COLOURS[connections.size() % WIRE_COLOURS.size()])
 	var idx := 0
 	for x in connections:
 		var target_node = get_node_from_tile(x[0], x[1])

@@ -54,7 +54,7 @@ extends CharacterBody2D
 		"RUN_SKID": 8.0,     
 		"ICE_ACCEL_MOD": 0.25,
 		"ICE_DECEL_MOD": 0.25,
-		"ICE_SKID_MOD": 0.25,             # The player's turning deceleration while running, measured in px/frame.
+		"ICE_SKID_MOD": 0.25,              # The player's turning deceleration while running, measured in px/frame.
 		
 		"CLASSIC_SKID_CONDITIONS": false,  # Determines if the player's speed must be over SKID_THRESHOLD to begin skidding.
 		"CAN_INSTANT_STOP_SKID": false,    # Determines if the player will instantly stop upon reaching the skid threshold.
@@ -62,10 +62,10 @@ extends CharacterBody2D
 		"SKID_STOP_THRESHOLD": 10.0,       # The maximum velocity required before the player will stop skidding.
 		
 		"GROUND_WALK_DECEL": 3.0,          # The player's grounded deceleration while no buttons are pressed, measured in px/frame.
-		"GROUND_RUN_DECEL": 3.0,
-		"DECEL_THRESHOLD": 0, 
-		"AIR_DECEL": 0.0,                 # The player's airborne deceleration while no buttons are pressed, measured in px/frame.
-					  
+		"GROUND_RUN_DECEL": 3.0,           # The player's grounded deceleration while no buttons are pressed from running speed, measured in px/frame.
+		"DECEL_THRESHOLD": 0,
+		"AIR_DECEL": 0.0,                  # The player's airborne deceleration while no buttons are pressed, measured in px/frame.
+		
 		"AIR_WALK_ACCEL": 3.0,             # The player's usual acceleration while in midair, measured in px/frame.
 		"AIR_WALK_SKID_ACCEL": 4.5,        # The player's usual skid acceleration while in midair, measured in px/frame.
 		"AIR_RUN_ACCEL": 3.0,              # The player's running acceleration while in midair, measured in px/frame.
@@ -216,15 +216,19 @@ extends CharacterBody2D
 		"WING_TIME": 10.0,                 # Determines how long Wings will last for.
 		"HAMMER_TIME": 10.0,               # Determines how long a Hammer will last for.
 		
-		"PROJ_TYPE": "",
-		"PROJ_PARTICLE": "",
-		# Determines what projectile/particle scene is used. Leaving
-		# this blank disables firing projectiles and displaying
-		# particles respectively.
+		"PROJ_TYPE": "",                   # Determines what projectile scene is used. Leaving this blank disables firing projectiles entirely.
+		
+		"PROJ_PARTICLE": "",               # Determines what particle scene is used. Leaving this blank disables particles from spawning.
+		"PROJ_PARTICLE_OFFSET": [0, 0],    # Determines the spawn location of the projectile's particle.
 		"PROJ_PARTICLE_ON_CONTACT": false, # Defines if the particle will play when making contact without being destroyed.
+		
+		"PROJ_EXTRA_PROJ": "",             # Determines if an extra projectile will be spawned. Leaving this blank will prevent any additional projectiles.
+		"PROJ_EXTRA_PROJ_OFFSET": [0, 0],  # Determines the spawn location of the extra projectile spawned when destroyed.
+		"PROJ_EXTRA_PROJ_ON_CONTACT": false,    # Defines if the extra projectile will spawn when the original makes contact without being destroyed.
+		
 		"PROJ_SFX_THROW": "fireball",      # Defines the sound effect that plays when this projectile is fired.
 		"PROJ_SFX_COLLIDE": "bump",        # Defines the sound effect that plays when this projectile collides.
-		#"PROJ_SFX_HIT": "kick",           # Defines the sound effect that plays when this projectile damages an enemy.
+		"PROJ_SFX_HIT": "fireball_hit",    # Defines the sound effect that plays when this projectile hits an enemy.
 		"PROJ_COLLECT_COINS": false,
 		"MAX_PROJ_COUNT": 2,               # How many projectiles can be fired at once. -1 and below count as infinite.
 		"PROJ_COLLISION": true,            # Determines if the projectile can interact with collidable surfaces.
@@ -237,6 +241,7 @@ extends CharacterBody2D
 		
 		"PROJ_LIFETIME": -1,               # Determines how long the projectile will last for. -1 and below count as infinite.
 		"PROJ_OFFSET": [-4.0, 16.0],       # Determines the offset for where the projectile will spawn.
+		"PROJ_ANGLE" : null,               # Determines the exact angle the projectile is sent at in degrees. Leaving this blank disables angled behavior entirely.
 		"PROJ_SPEED": [220.0, -100.0],     # Determines the initial velocity of the projectile.
 		"PROJ_SPEED_CAP": [-220.0, 220.0], # Determines the minimum and maximum X velocity of the projectile.
 		"PROJ_SPEED_SCALING": false,       # Determines if the projectile will have its initial speed scale with the player's movement.
@@ -259,6 +264,7 @@ extends CharacterBody2D
 		"PROJ_TYPE": "res://Scenes/Prefabs/Entities/Items/SuperballProjectile",
 		"PROJ_PARTICLE": "res://Scenes/Prefabs/Particles/SmokeParticle",
 		"PROJ_SFX_THROW": "superball",
+		"PROJ_SFX_HIT": "superball_hit",
 		"PROJ_GRAVITY": 0.0, 
 		"PROJ_LIFETIME": 10.0,
 		"PROJ_WALL_BOUNCE": true,
@@ -357,6 +363,7 @@ var input_direction := 0
 var star_meter := 0.0
 var flight_meter := 0.0
 var hammer_meter := 0.0
+var powerup_timers := ["star_meter", "flight_meter", "hammer_meter"]
 
 var velocity_direction := 1
 var velocity_x_jump_stored := 0
@@ -487,6 +494,7 @@ const ANIMATION_FALLBACKS := {
 	"Crouch": "Idle",
 	"WaterCrouch": "Crouch",
 	"WingCrouch": "WaterCrouch",
+	"Stunned": "Idle",
 	
 	# --- Cutscene States ---
 	"PosePeach": "PoseToad",
@@ -498,22 +506,34 @@ const ANIMATION_FALLBACKS := {
 	"CrouchFall": "Crouch",
 	"CrouchJump": "Crouch",
 	"CrouchBump": "Bump",
+	"JogJump": "Jump",
+	"JogJumpFall": "JumpFall",
+	"JogJumpBump": "JumpBump",
 	"RunJump": "Jump",
 	"RunJumpFall": "JumpFall",
 	"RunJumpBump": "JumpBump",
 	"SpringJump": "Jump",
 	"SpringJumpBump": "JumpBump",
+	
+	# --- Star Jump & Fall States ---
 	"StarJump": "Jump",
 	"StarFall": "JumpFall",
 	"StarJumpFall": "StarFall", # SkyanUltra: Legacy fallback for >1.0.2.
 	"StarJumpBump": "JumpBump",
+	
+	"StarRunJump": "StarJump",
+	"StarRunJumpFall": "StarJumpFall",
+	"StarRunJumpBump": "StarJumpBump",
+	"StarRun": "Run",
+	
+	"StarSpringJump": "StarJump",
+	"StarSpringFall": "StarJumpFall",
+	"StarSpringBump": "StarJumpBump",
 
 	# --- Movement/Interaction States ---
 	"Walk": "Move",
 	"Run": "Move",
 	"CrouchMove": "Crouch",
-	"WaterCrouchMove": "CrouchMove",
-	"WingCrouchMove": "WaterCrouchMove",
 	"Pipe": "Idle",
 	"PipeWalk": "Walk",
 	"FlagSlide": "Climb",
@@ -524,6 +544,7 @@ const ANIMATION_FALLBACKS := {
 	"SmallShrink": "SmallGrow",
 	"NormalShrink": "NormalGrow",
 	"FireShrink": "FireGrow",
+	"SuperballShrink": "SuperballGrow",
 
 	# --- Attack States ---
 	"IdleAttack": "MoveAttack",
@@ -536,15 +557,29 @@ const ANIMATION_FALLBACKS := {
 	# --- Water & Flying States ---
 	"WaterIdle": "Idle",
 	"WaterMove": "Move",
+	"WaterWalk": "WaterMove",
+	"WaterJog": "WaterMove",
+	"WaterRun": "WaterMove",
+	"WaterCrouchMove": "CrouchMove",
+	"WaterCrouchFall": "CrouchFall",
+	"WaterIdleAttack": "IdleAttack",
+	"WaterWalkAttack": "WalkAttack",
+	"WaterRunAttack": "RunAttack",
 	"SwimBump": "Bump",
 	"WingIdle": "WaterIdle",
 	"WingMove": "WaterMove",
+	"WingWalk": "WaterWalk",
+	"WingJog": "WaterJog",
+	"WingRun": "WaterRun",
+	"WingCrouchMove": "WaterCrouchMove",
+	"WingCrouchFall": "WaterCrouchFall",
+	"WingIdleAttack": "WaterIdleAttack",
+	"WingWalkAttack": "WaterWalkAttack",
+	"WingRunAttack": "WaterRunAttack",
 	"FlyIdle": "SwimIdle",
 	"FlyUp": "SwimUp",
 	"FlyAttack": "SwimAttack",
 	"FlyBump": "SwimBump",
-
-	"Stunned": "Idle",
 
 	# --- Death States ---
 	"DieFreeze": "DieFall",
@@ -657,7 +692,7 @@ func apply_character_physics() -> void:
 	# preventing physics changes to stop potential cheating in modes like You VS. Boo
 	# and Marathon mode.
 	if apply_gameplay_changes:
-		physics_dict = PHYSICS_PARAMETERS if Settings.file.difficulty.physics_style else CLASSIC_PARAMETERS
+		physics_dict = PHYSICS_PARAMETERS if Settings.file.gameplay.physics_style else CLASSIC_PARAMETERS
 	for key in json.physics:
 		if key in ["PHYSICS_PARAMETERS", "CLASSIC_PARAMETERS", "POWER_PARAMETERS", "ENDING_PARAMETERS"]:
 			if apply_gameplay_changes:
@@ -690,7 +725,7 @@ func actual_velocity_y():
 		return -velocity.y
 
 func editor_level_start() -> void:
-	if PipeArea.exiting_pipe_id == -1:
+	if PipeArea.exiting_pipe_id == -1 and CoinHeavenWarpPoint.subarea_return == -1:
 		power_state = get_node("PowerStates").get_child(starting_power_state)
 	handle_power_up_states(0)
 	set_power_state_frame()
@@ -912,13 +947,14 @@ func kick_anim() -> void:
 var colour_palette: Texture = null
 
 func stop_all_timers() -> void:
-	for i in ["star_meter", "flight_meter", "hammer_meter"]:
+	for i in powerup_timers:
 		set(i, 0)
 
 func handle_invincible_palette() -> void:
 	sprite.material.set_shader_parameter("mode", !Settings.file.visuals.rainbow_style)
 	sprite.material.set_shader_parameter("player_palette", $PlayerPalette.texture)
 	sprite.material.set_shader_parameter("palette_size", colour_palette.get_width())
+	sprite.material.set_shader_parameter("palette_height", POWER_STATES.size())
 	sprite.material.set_shader_parameter("invincible_palette", $InvinciblePalette.texture)
 	sprite.material.set_shader_parameter("invincible_palette_size", $InvinciblePalette.texture.get_height())
 	sprite.material.set_shader_parameter("palette_idx", POWER_STATES.find(power_state.state_name))
@@ -945,8 +981,13 @@ var projectile_amount = 0
 var projectile_type = load("res://Scenes/Prefabs/Entities/Items/Fireball.tscn")
 
 const POWER_PARAM_LIST = {
+	"PARTICLE_OFFSET": "PROJ_PARTICLE_OFFSET",
 	"PARTICLE_ON_CONTACT": "PROJ_PARTICLE_ON_CONTACT",
+	"EXTRA_PROJECTILE": "PROJ_EXTRA_PROJ",
+	"EXTRA_PROJECTILE_OFFSET": "PROJ_EXTRA_PROJ_OFFSET",
+	"EXTRA_PROJECTILE_ON_CONTACT": "PROJ_EXTRA_PROJ_ON_CONTACT",
 	"SFX_COLLIDE": "PROJ_SFX_COLLIDE",
+	"SFX_HIT": "PROJ_SFX_HIT",
 	"HAS_COLLISION": "PROJ_COLLISION",
 	"PIERCE_COUNT": "PROJ_PIERCE_COUNT",
 	"PIERCE_HITRATE": "PROJ_PIERCE_HITRATE",
@@ -975,6 +1016,7 @@ func throw_projectile() -> void:
 	projectile_type = load(physics_params("PROJ_TYPE", POWER_PARAMETERS) + ".tscn")
 	var node = projectile_type.instantiate()
 	var offset = physics_params("PROJ_OFFSET", POWER_PARAMETERS)
+	var angle = Vector2.ZERO if physics_params("PROJ_ANGLE", POWER_PARAMETERS) == null else Vector2.from_angle(deg_to_rad(physics_params("PROJ_ANGLE", POWER_PARAMETERS)))
 	var speed = physics_params("PROJ_SPEED", POWER_PARAMETERS)
 	var speed_scaling = 0
 	if physics_params("PROJ_SPEED_SCALING", POWER_PARAMETERS):
@@ -991,6 +1033,7 @@ func throw_projectile() -> void:
 		for param in POWER_PARAM_LIST:
 			node.set(param, physics_params(POWER_PARAM_LIST[param], POWER_PARAMETERS))
 		node.MOVE_SPEED = speed[0] + speed_scaling
+		node.MOVE_ANGLE = angle
 	call_deferred("add_sibling", node)
 	projectile_amount += 1
 	node.tree_exited.connect(func(): projectile_amount -= 1)
@@ -1103,7 +1146,7 @@ func point_to_camera_limit_y(point := 0, point_dir := -1) -> float:
 	return point + ((get_viewport_rect().size.y / 2.0) * -point_dir)
 
 func passed_checkpoint() -> void:
-	if Settings.file.difficulty.checkpoint_style == 0:
+	if Settings.file.gameplay.checkpoint_style == 0:
 		$Checkpoint/Animation.play("Show")
 	AudioManager.play_sfx("checkpoint", global_position)
 
@@ -1261,7 +1304,10 @@ func get_power_up(power_name := "", give_points := true) -> void:
 	check_for_block()
 
 func check_for_block() -> void:
-	if test_move(global_transform, (Vector2.UP * gravity_vector) * 4):
+	var check_direction = Vector2.UP
+	if gravity_vector == Vector2.UP:
+		check_direction = Vector2(0, -2)
+	if test_move(global_transform, (check_direction * gravity_vector) * 4):
 		crouching = true
 
 func power_up_animation(new_power_state := "") -> void:
@@ -1472,7 +1518,10 @@ func teleport_player(new_position := Vector2.ZERO) -> void:
 func do_smoke_effect() -> void:
 	for i in 2:
 		var node = SMOKE_PARTICLE.instantiate()
-		node.global_position = global_position - Vector2(0, 16 * i)
+		var target_position = global_position
+		if gravity_vector == Vector2.UP:
+			target_position += Vector2(0, 16)
+		node.global_position = target_position - Vector2(0, (16 * gravity_vector.y) * i)
 		add_sibling(node)
 		if power_state.hitbox_size == "Small":
 			break

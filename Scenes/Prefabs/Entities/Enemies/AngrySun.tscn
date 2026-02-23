@@ -7,6 +7,8 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/AngrySun.json" id="4_vwhva"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="6_2ut7f"]
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="7_q5u7b"]
+[ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="8_sri10"]
+[ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="9_sgfee"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ut7f"]
 atlas = ExtResource("2_4q5i4")
@@ -110,6 +112,17 @@ script = ExtResource("7_q5u7b")
 can_output = false
 metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 
+[node name="ShellDetection" type="Node" parent="." unique_id=965785671 node_paths=PackedStringArray("hitbox")]
+script = ExtResource("8_sri10")
+hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://bbww34oiexbx2"
+
+[node name="GibSpawner" type="Node" parent="." unique_id=1838979363 node_paths=PackedStringArray("visuals")]
+script = ExtResource("9_sgfee")
+visuals = NodePath("../Sprite")
+gib_type = 2
+metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
+
 [connection signal="timeout" from="IdleMeter" to="." method="start_charging"]
 [connection signal="timeout" from="ChargeMeter" to="." method="start_diving"]
 [connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
@@ -118,3 +131,4 @@ metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="damage_player" flags=18]
 [connection signal="recieved_power" from="SignalExposer" to="." method="start_idle"]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="start_idle"]
+[connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]

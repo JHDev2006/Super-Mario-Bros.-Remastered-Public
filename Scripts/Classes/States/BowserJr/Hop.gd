@@ -24,7 +24,7 @@ func enter(_msg := {}) -> void:
 		owner.velocity.x = 150 * direction
 	if await wait(1) == false:
 		return
-	if randi_range(0, 1) == 0 and times_hopped < 3:
+	if randi_range(0, 2) != 0 and times_hopped < 3:
 		exit()
 		enter()
 	else:
@@ -32,14 +32,16 @@ func enter(_msg := {}) -> void:
 
 func exit() -> void:
 	direction = 0
-	times_hopped = 0
 
 func physics_update(delta: float) -> void:
 	if can_move:
 		%Movement.handle_movement(delta)
 		if can_hop == false:
 			can_move = %FloorCheck.is_colliding()
+		if owner.is_on_floor():
+			%Sprite.play("Idle")
 
 func hop(direction := 1) -> void:
+	%Sprite.play("Hop")
 	owner.velocity.x = 90 * direction
 	owner.velocity.y = -150

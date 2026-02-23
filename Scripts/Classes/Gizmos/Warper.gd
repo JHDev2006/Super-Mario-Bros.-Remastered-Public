@@ -18,6 +18,7 @@ func run_check() -> void:
 		target_channel = -1
 		for i: Player in get_tree().get_nodes_in_group("Players"):
 			i.global_position = global_position + Vector2(0, 8)
+			i.recenter_camera()
 		await get_tree().create_timer(0.1, false).timeout
 		for i: Player in get_tree().get_nodes_in_group("Players"):
 			i.velocity = saved_velocity

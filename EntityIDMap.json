@@ -818,5 +818,21 @@
 	"DY": [
 		"res://Scenes/Prefabs/LevelObjects/WaterArea.tscn",
 		"0,0"
-	]
+	],
+	"DZ": [
+		"res://Scenes/Prefabs/Blocks/BumpBlock.tscn",
+		"0,0"
+	],
+	"Da": [
+		"res://Scenes/Prefabs/Entities/Objects/QuestionSwitch.tscn",
+		"0,0"
+	],
+	"Db": [
+		"res://Scenes/Prefabs/Blocks/SwitchBlock.tscn",
+		"0,0"
+	],
+	"Dc": [
+		"res://Scenes/Prefabs/Gizmos/Inputs/ObjectDetection.tscn",
+		"0,0"
+	],
 }

@@ -5,8 +5,12 @@ const SMOKE_PARTICLE = preload("uid://d08nv4qtfouv1")
 
 var melting := false
 
+var melted_node: Node = null
+
 func _ready() -> void:
-	pass
+	melted_node = melted_scene.instantiate()
+	add_child(melted_node)
+	melted_node.global_position = Vector2(-INF, -INF)
 
 func fireball_entered(ball: Node2D) -> void:
 	ball.hit()
@@ -15,9 +19,8 @@ func fireball_entered(ball: Node2D) -> void:
 func melt() -> void:
 	if melting: return
 	melting = true
-	var node = melted_scene.instantiate()
-	node.global_position = global_position
-	add_sibling(node)
+	melted_node.global_position = global_position
+	melted_node.reparent(get_parent(), true)
 	summon_smoke()
 	queue_free()
 

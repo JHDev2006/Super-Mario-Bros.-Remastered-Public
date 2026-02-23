@@ -386,7 +386,7 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-text = "DEVELOPMENT BUILD! EXPECT BUGS!"
+text = "VERSION_DEV"
 uppercase = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer2/VBoxContainer/DevBuildWarning" unique_id=1506329783]
@@ -1024,6 +1024,12 @@ offset_right = 0.0
 
 [node name="LabelFontChanger" parent="CanvasLayer/SettingsMenu" index="1" unique_id=1797639177 node_paths=PackedStringArray("labels")]
 labels = [NodePath("../PanelContainer/MarginContainer/VBoxContainer/Title"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer/Category"), null, null, null, null, null, null, null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3/Value"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer/MarginContainer/Desc")]
+
+[node name="Label" parent="CanvasLayer/SettingsMenu/CanvasLayer/Panel/VBoxContainer" parent_id_path=PackedInt32Array(1402202267, 1535374695) index="0" unique_id=725078764]
+text = "EDITOR_DELETION_WARNING"
+
+[node name="Label2" parent="CanvasLayer/SettingsMenu/CanvasLayer/Panel/VBoxContainer" parent_id_path=PackedInt32Array(1402202267, 1535374695) index="1" unique_id=165644100]
+text = "DIFFI_PHYSICS_STYLE_WARNING"
 
 [node name="CampaignSelect" parent="CanvasLayer" unique_id=1532379340 instance=ExtResource("14_1wnbq")]
 unique_name_in_owner = true
