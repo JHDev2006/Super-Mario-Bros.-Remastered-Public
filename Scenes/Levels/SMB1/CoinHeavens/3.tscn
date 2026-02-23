@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cnn6e523gkoa0" path="res://Scenes/Levels/SMB1/CoinHeavens/1.tscn" id="1_ilew6"]
 
 [node name="Level" instance=ExtResource("1_ilew6")]
+theme = "Desert"
 theme_time = "Night"
 
 [node name="LevelBG" parent="." index="8"]

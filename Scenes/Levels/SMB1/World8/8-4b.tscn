@@ -17,6 +17,7 @@
 script = ExtResource("1_mujna")
 music = ExtResource("2_gxynq")
 theme = "Castle"
+theme_time = "Night"
 world_id = 8
 level_id = 4
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
@@ -67,6 +68,7 @@ position = Vector2(424, -152)
 id = 2
 
 [node name="LevelBG" parent="." instance=ExtResource("12_mm7ke")]
+time_of_day = 1
 particles = 3
 
 [node name="EntityGenerator" parent="." instance=ExtResource("12_6r5rx")]

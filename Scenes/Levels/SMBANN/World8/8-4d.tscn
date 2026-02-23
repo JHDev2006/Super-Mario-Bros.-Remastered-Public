@@ -35,22 +35,10 @@ target_level = "uid://bij088rfbprdk"
 [node name="LostLevelsEndingDoor" parent="." index="8"]
 scene = "uid://b712pxr3iuo7x"
 
+[node name="LevelBG" parent="." index="13"]
+time_of_day = 1
+
 [node name="DiscoLevel" type="Node" parent="." index="14"]
 script = ExtResource("2_63pcd")
 combo_meter_rate = 0.25
 metadata/_custom_type_script = "uid://bjs5mlc3xrxud"
-
-[connection signal="block_destroyed" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active"]
-[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="player_mushroom_check"]
-[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="dispense_item" unbinds=1]
-[connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="dispense_item" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986/LevelPersistance" method="set_as_active"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986" method="player_mushroom_check"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986" method="dispense_item" unbinds=1]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986" method="dispense_item" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@137986" to="Tiles/@AnimatableBody2D@137986/BlockAnimations" method="bounce_block" unbinds=1]

@@ -19,6 +19,7 @@
 script = ExtResource("1_i4r4w")
 music = ExtResource("2_33k2a")
 theme = "Castle"
+theme_time = "Night"
 world_id = 8
 level_id = 4
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
@@ -85,19 +86,5 @@ position = Vector2(872, -136)
 id = 1
 
 [node name="LevelBG" parent="." instance=ExtResource("15_5iq7w")]
+time_of_day = 1
 particles = 3
-
-[connection signal="area_entered" from="Tiles/DeathPit" to="Tiles/DeathPit" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48181" to="Tiles/@Area2D@48181" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48182" to="Tiles/@Area2D@48182" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48183" to="Tiles/@Area2D@48183" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48184" to="Tiles/@Area2D@48184" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48185" to="Tiles/@Area2D@48185" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48186" to="Tiles/@Area2D@48186" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48187" to="Tiles/@Area2D@48187" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48188" to="Tiles/@Area2D@48188" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48189" to="Tiles/@Area2D@48189" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48190" to="Tiles/@Area2D@48190" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48191" to="Tiles/@Area2D@48191" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48192" to="Tiles/@Area2D@48192" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@48193" to="Tiles/@Area2D@48193" method="area_entered"]

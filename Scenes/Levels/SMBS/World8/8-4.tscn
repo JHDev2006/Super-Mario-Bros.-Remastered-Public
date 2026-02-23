@@ -23,12 +23,14 @@
 script = ExtResource("1_fmauv")
 music = ExtResource("2_lqus0")
 theme = "Castle"
+theme_time = "Night"
 campaign = "SMBS"
 world_id = 8
 level_id = 4
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
 
 [node name="LevelBG" parent="." instance=ExtResource("3_xsf85")]
+time_of_day = 1
 particles = 3
 
 [node name="Player" parent="." instance=ExtResource("5_ef10u")]
