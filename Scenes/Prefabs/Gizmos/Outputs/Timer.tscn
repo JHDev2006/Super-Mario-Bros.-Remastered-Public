@@ -45,13 +45,15 @@ one_shot = true
 
 [node name="EditorPropertyExposer" type="Node" parent="." unique_id=1294009337]
 script = ExtResource("4_855jj")
-properties = Array[String](["duration", "loop"])
+properties = Array[String](["duration", "loop", "reset_when_lost_power"])
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
 [node name="LevelEditorToggleDetection" type="Node" parent="." unique_id=544234059]
 script = ExtResource("5_7kkwh")
 metadata/_custom_type_script = "uid://b8vmbtoaaq5nc"
 
+[connection signal="lost_power" from="SignalExposer" to="." method="on_lost_power"]
+[connection signal="powered_off" from="SignalExposer" to="." method="on_powered_off"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="start_timer"]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="start_timer"]
 [connection signal="timeout" from="Timer" to="." method="timeout"]

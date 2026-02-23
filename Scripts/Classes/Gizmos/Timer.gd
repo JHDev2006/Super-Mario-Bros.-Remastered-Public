@@ -6,6 +6,7 @@ extends Node2D
 		$Timer.wait_time = duration
 
 @export var loop := false
+@export var reset_when_lost_power := false
 
 func level_start() -> void:
 	await get_tree().physics_frame
@@ -25,7 +26,13 @@ func _process(_delta: float) -> void:
 			%Label.text = str(float(duration)).substr(0, 3)
 	else:
 		%Label.text = str(float($Timer.time_left)).substr(0, 3)
-
+		
 func start_timer() -> void:
 	$Timer.start(duration)
 	%Label.modulate = Color.WHITE
+
+func on_lost_power() -> void:
+	if reset_when_lost_power:
+		%Label.modulate = Color.RED
+		$Timer.stop()
+		%Label.text = "0.0"
