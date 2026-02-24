@@ -12,19 +12,20 @@ extends Node2D
 @export var additive := true
 
 func launch() -> void:
-	for i: Player in get_tree().get_nodes_in_group("Players"):
-		i.has_flung = true
-		if additive:
-			i.velocity.y = i.velocity.y + upwards_speed*-100
-			if relative_to_direction:
-				i.velocity.x = horizontal_speed*50*i.direction
-			else:
-				i.velocity.x = horizontal_speed*50
-		else:
-			if upwards_speed != 0:
-				i.velocity.y = upwards_speed*-100
-			if horizontal_speed != 0:
+	if get_tree():
+		for i: Player in get_tree().get_nodes_in_group("Players"):
+			i.has_flung = true
+			if additive:
+				i.velocity.y = i.velocity.y + upwards_speed*-100
 				if relative_to_direction:
 					i.velocity.x = horizontal_speed*50*i.direction
 				else:
 					i.velocity.x = horizontal_speed*50
+			else:
+				if upwards_speed != 0:
+					i.velocity.y = upwards_speed*-100
+				if horizontal_speed != 0:
+					if relative_to_direction:
+						i.velocity.x = horizontal_speed*50*i.direction
+					else:
+						i.velocity.x = horizontal_speed*50
