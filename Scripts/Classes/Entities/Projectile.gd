@@ -45,8 +45,10 @@ extends Enemy
 @export var MOVE_ANGLE: Vector2 = Vector2.ZERO
 ## Controls the amount of deceleration the projectile will experience on the ground.
 @export var GROUND_DECEL := 0
-## Controls the amount of deceleration the projectile will experience in the air.
+## Controls the amount of horizontal deceleration the projectile will experience in the air.
 @export var AIR_DECEL := 0
+## Controls the amount of vertical deceleration the projectile will experience in the air. Useful for projectiles with no gravity.
+@export var AIR_DECEL_VERTICAL := 0
 ## Controls the value of gravity the projectile will experience.
 @export var GRAVITY := 0
 ## Controls the velocity the projectile will gain when bouncing off of the floor or ceiling.
@@ -73,7 +75,7 @@ func handle_movement(delta: float) -> void:
 	var CUR_GRAVITY = GRAVITY * (Global.entity_gravity * 0.1)
 	var DECEL_TYPE = GROUND_DECEL if is_on_floor() else AIR_DECEL
 	velocity.y += (CUR_GRAVITY / delta) * delta
-	velocity.y = clamp(velocity.y, -INF, MAX_FALL_SPEED)
+	velocity.y = clamp(move_toward(velocity.y, 0, (AIR_DECEL_VERTICAL / delta) * delta), -INF, MAX_FALL_SPEED)
 	MOVE_SPEED = clamp(move_toward(MOVE_SPEED, 0, (DECEL_TYPE / delta) * delta), MOVE_SPEED_CAP[0], MOVE_SPEED_CAP[1])
 	if HAS_COLLISION:
 		projectile_bounce()

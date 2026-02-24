@@ -243,11 +243,16 @@ extends CharacterBody2D
 		"PROJ_OFFSET": [-4.0, 16.0],       # Determines the offset for where the projectile will spawn.
 		"PROJ_ANGLE" : null,               # Determines the exact angle the projectile is sent at in degrees. Leaving this blank disables angled behavior entirely.
 		"PROJ_SPEED": [220.0, -100.0],     # Determines the initial velocity of the projectile.
+		"PROJ_SPEED_UP": null,             # Changes the speed of the projectile if you hold UP.
+		"PROJ_SPEED_DOWN": null,           # Changes the speed of the projectile if you hold DOWN.
+		"PROJ_SPEED_UP_FORWARD": null,             # Changes the speed of the projectile if you hold UP amd LEFT/RIGHT.
+		"PROJ_SPEED_DOWN_FORWARD": null,           # Changes the speed of the projectile if you hold DOWN and LEFT/RIGHT.
 		"PROJ_SPEED_CAP": [-220.0, 220.0], # Determines the minimum and maximum X velocity of the projectile.
 		"PROJ_SPEED_SCALING": false,       # Determines if the projectile will have its initial speed scale with the player's movement.
 		
 		"PROJ_GROUND_DECEL": 0.0,          # The projectile's deceleration on the ground, measured in px/frame
-		"PROJ_AIR_DECEL": 0.0,             # The projectile's deceleration in the air, measured in px/frame
+		"PROJ_AIR_DECEL": 0.0,             # The projectile's (horizontal) deceleration in the air, measured in px/frame
+		"PROJ_AIR_DECEL_VERTICAL": 0.0,    # The projectile's (vertical) deceleration in the air, measured in px/frame. Useful for projectiles that have no gravity.
 		"PROJ_GRAVITY": 15.0,              # The projectile's gravity, measured in px/frame
 		"PROJ_BOUNCE_HEIGHT": 125.0,       # The projectile's bounce velocity upon landing on the ground.
 		"PROJ_MAX_FALL_SPEED": 150.0,      # The projectile's maximum fall speed, measured in px/sec
@@ -1006,6 +1011,7 @@ const POWER_PARAM_LIST = {
 	"LIFETIME": "PROJ_LIFETIME",
 	"GROUND_DECEL": "PROJ_GROUND_DECEL",
 	"AIR_DECEL": "PROJ_AIR_DECEL",
+	"AIR_DECEL_VERTICAL": "PROJ_AIR_DECEL_VERTICAL",
 	"GRAVITY": "PROJ_GRAVITY",
 	"BOUNCE_HEIGHT": "PROJ_BOUNCE_HEIGHT",
 	"MAX_FALL_SPEED": "PROJ_MAX_FALL_SPEED",
@@ -1025,6 +1031,20 @@ func throw_projectile() -> void:
 	var offset = physics_params("PROJ_OFFSET", POWER_PARAMETERS)
 	var angle = Vector2.ZERO if physics_params("PROJ_ANGLE", POWER_PARAMETERS) == null else Vector2.from_angle(deg_to_rad(physics_params("PROJ_ANGLE", POWER_PARAMETERS)))
 	var speed = physics_params("PROJ_SPEED", POWER_PARAMETERS)
+	
+	var vert_input = sign(Input.get_axis("move_up" + "_" + str(player_id),"move_down" + "_" + str(player_id)))
+	var horiz_input = sign(Input.get_axis("move_right" + "_" + str(player_id),"move_left" + "_" + str(player_id)))
+	if physics_params("PROJ_SPEED_UP_FORWARD", POWER_PARAMETERS) && (vert_input < 0) && (horiz_input != 0):
+		speed = physics_params("PROJ_SPEED_UP_FORWARD", POWER_PARAMETERS)
+	elif physics_params("PROJ_SPEED_DOWN_FORWARD", POWER_PARAMETERS) && (vert_input > 0) && (horiz_input != 0):
+		speed = physics_params("PROJ_SPEED_DOWN_FORWARD", POWER_PARAMETERS)
+	elif physics_params("PROJ_SPEED_UP", POWER_PARAMETERS) && (vert_input < 0):
+		speed = physics_params("PROJ_SPEED_UP", POWER_PARAMETERS)
+	elif physics_params("PROJ_SPEED_DOWN", POWER_PARAMETERS) && (vert_input > 0):
+		speed = physics_params("PROJ_SPEED_DOWN", POWER_PARAMETERS)
+	else:
+		speed = physics_params("PROJ_SPEED", POWER_PARAMETERS)
+	
 	var speed_scaling = 0
 	if physics_params("PROJ_SPEED_SCALING", POWER_PARAMETERS):
 		speed_scaling = velocity.x * direction
