@@ -33,6 +33,7 @@ func start_timer() -> void:
 
 func on_lost_power() -> void:
 	if reset_when_lost_power:
-		%Label.modulate = Color.RED
 		$Timer.stop()
-		%Label.text = "0.0"
+		if Global.level_editor_is_playtesting():
+			%Label.text = "0.0"
+			%Label.modulate = Color.RED

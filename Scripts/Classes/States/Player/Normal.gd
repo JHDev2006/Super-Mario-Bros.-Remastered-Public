@@ -66,6 +66,7 @@ func grounded(delta: float) -> void:
 	if player.velocity.y >= 0:
 		player.has_jumped = false
 		player.has_spring_jumped = false
+		player.has_flung = false
 	if Global.player_action_just_pressed("jump", player.player_id):
 		player.handle_water_detection()
 		if player.in_water or player.flight_meter > 0:
@@ -294,7 +295,8 @@ func get_animation_name() -> String:
 		return anim_name
 
 	var jump_context := ""
-	if player.has_spring_jumped: jump_context = "Spring"
+	if player.has_flung: jump_context = "Fling"
+	elif player.has_spring_jumped: jump_context = "Spring"
 	elif run_jump: jump_context = "Run"
 	elif jog_jump: jump_context = "Jog"
 	if player.has_star: jump_context = "Star" + jump_context

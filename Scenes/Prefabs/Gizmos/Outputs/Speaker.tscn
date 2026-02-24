@@ -14,6 +14,9 @@ sfx = 0
 texture = ExtResource("2_k3ibs")
 hframes = 1
 
+[node name="SignalExposer" parent="." index="1" unique_id=1403115602]
+can_output = false
+
 [node name="EditorPropertyExposer" type="Node" parent="." index="2" unique_id=1367816059]
 script = ExtResource("4_11ukq")
 properties = Array[String](["sfx"])

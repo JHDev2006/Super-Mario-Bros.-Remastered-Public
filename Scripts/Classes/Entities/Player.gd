@@ -356,6 +356,7 @@ extends CharacterBody2D
 
 var has_jumped := false
 var has_spring_jumped := false
+var has_flung := false
 
 var direction := 1
 var input_direction := 0
@@ -1282,6 +1283,7 @@ func set_power_state_frame() -> void:
 		can_push_anim = frames.has_animation("Push")
 		can_spring_land_anim = frames.has_animation("SpringLand")
 		can_spring_fall_anim = frames.has_animation("SpringFall")
+		
 	$Checkpoint.position.y = physics_params("CHECKPOINT_ICON_HEIGHT", COSMETIC_PARAMETERS)
 func get_power_up(power_name := "", give_points := true) -> void:
 	if is_dead:

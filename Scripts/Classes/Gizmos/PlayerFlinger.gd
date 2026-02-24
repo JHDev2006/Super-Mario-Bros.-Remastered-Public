@@ -1,10 +1,10 @@
 extends Node2D
 
-@export_range(-5.0, 5.0, 0.1) var horizontal_speed := 0.0:
+@export_range(-8.0, 8.0, 0.1) var horizontal_speed := 0.0:
 	set(value):
 		horizontal_speed = value
 
-@export_range(-5.0, 5.0, 0.1) var upwards_speed := 0.0:
+@export_range(-8.0, 8.0, 0.1) var upwards_speed := 0.0:
 	set(value):
 		upwards_speed = value
 
@@ -13,6 +13,7 @@ extends Node2D
 
 func launch() -> void:
 	for i: Player in get_tree().get_nodes_in_group("Players"):
+		i.has_flung = true
 		if additive:
 			i.velocity.y = i.velocity.y + upwards_speed*-100
 			if relative_to_direction:
