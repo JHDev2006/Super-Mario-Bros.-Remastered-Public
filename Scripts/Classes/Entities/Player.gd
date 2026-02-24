@@ -469,6 +469,7 @@ signal moved
 signal dead
 signal jumped
 signal crouch_started
+signal landed
 signal damaged
 signal attacked
 signal powered_up
@@ -934,6 +935,7 @@ func add_stomp_combo(award_score := true) -> void:
 		stomp_combo += 1
 
 func land_on_ground() -> void:
+	landed.emit()
 	if can_land_sfx:
 		AudioManager.play_sfx("land", global_position)
 		just_landed = true

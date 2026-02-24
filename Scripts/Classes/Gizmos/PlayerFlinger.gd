@@ -18,9 +18,9 @@ func launch() -> void:
 			if additive:
 				i.velocity.y = i.velocity.y + upwards_speed*-100
 				if relative_to_direction:
-					i.velocity.x = horizontal_speed*50*i.direction
+					i.velocity.x = i.velocity.x + horizontal_speed*50*i.direction
 				else:
-					i.velocity.x = horizontal_speed*50
+					i.velocity.x = i.velocity.x + horizontal_speed*50
 			else:
 				if upwards_speed != 0:
 					i.velocity.y = upwards_speed*-100
