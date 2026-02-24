@@ -85,6 +85,7 @@ const DEFAULT_SFX_LIBRARY := {
 	"plant_fireball": ("res://Assets/Audio/SFX/Fireball.wav"),
 	"bowser_jr_fireball": ("res://Assets/Audio/SFX/Fireball.wav"),
 	"shell_spin": ("res://Assets/Audio/SFX/ShellSpin.wav"),
+	"bubble_bounce": ("res://Assets/Audio/SFX/Stomp.wav")
 }
 
 @onready var sfx_library = DEFAULT_SFX_LIBRARY.duplicate()
