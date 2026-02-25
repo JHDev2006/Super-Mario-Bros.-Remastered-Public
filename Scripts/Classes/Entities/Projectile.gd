@@ -36,7 +36,7 @@ extends Enemy
 ## Controls if the projectile will collect coins when it comes in contact with them.
 @export var COLLECT_COINS := false
 ## Controls how long the projectile will exist for in seconds.
-@export var LIFETIME := -1
+@export var LIFETIME: float = -1.0
 ## Controls the speed of the projectile.
 @export var MOVE_SPEED := 0
 ## Controls the maximum speed of the projectile.

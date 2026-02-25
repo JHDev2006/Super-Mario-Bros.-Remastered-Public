@@ -239,7 +239,7 @@ extends CharacterBody2D
 		"PROJ_WALL_BOUNCE": false,         # Determines if the projectile can bounce off of wals.
 		"PROJ_CEIL_BOUNCE": false,         # Determines if the projectile can bounce off of ceilings.
 		
-		"PROJ_LIFETIME": -1,               # Determines how long the projectile will last for. -1 and below count as infinite.
+		"PROJ_LIFETIME": -1.0,               # Determines how long the projectile will last for. -1 and below count as infinite.
 		"PROJ_OFFSET": [-4.0, 16.0],       # Determines the offset for where the projectile will spawn.
 		"PROJ_ANGLE" : null,               # Determines the exact angle the projectile is sent at in degrees. Leaving this blank disables angled behavior entirely.
 		"PROJ_SPEED": [220.0, -100.0],     # Determines the initial velocity of the projectile.
