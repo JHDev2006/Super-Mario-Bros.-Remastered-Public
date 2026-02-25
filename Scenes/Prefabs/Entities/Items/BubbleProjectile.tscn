@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://tck6535ksbj2"]
+[gd_scene format=3 uid="uid://bain8e6ypmgua"]
 
-[ext_resource type="Script" uid="uid://woaoe0cj285v" path="res://Scripts/Classes/Entities/Items/BubbleProjectile.gd" id="1_06sja"]
+[ext_resource type="Script" uid="uid://ckbssy74cbsba" path="res://Scripts/Classes/Entities/Items/BubbleProjectile.gd" id="1_06sja"]
 [ext_resource type="Texture2D" uid="uid://bndkbi70f3tvx" path="res://Assets/Sprites/Items/Bubble.png" id="2_06sja"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ujt3a"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/BubbleProjectile.json" id="4_06sja"]
