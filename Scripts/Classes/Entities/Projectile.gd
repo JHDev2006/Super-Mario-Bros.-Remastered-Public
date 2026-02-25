@@ -53,6 +53,10 @@ extends Enemy
 @export var GRAVITY := 0
 ## Controls the velocity the projectile will gain when bouncing off of the floor or ceiling.
 @export var BOUNCE_HEIGHT := 0
+## If this higher than 0, the projectile will bounce off the floor with the same velocity it fell from, multiplied by this value.
+@export var ELASTIC_BOUNCE: float = 0.0
+## Controls the maximum and minimum Elastic Bounce of the projectile.
+@export var ELASTIC_BOUNCE_LIMIT := [-INF, INF]
 ## Controls the maximum speed the projectile can fall at.
 @export var MAX_FALL_SPEED := 280.0
 
@@ -74,6 +78,7 @@ func _physics_process(delta: float) -> void:
 func handle_movement(delta: float) -> void:
 	var CUR_GRAVITY = GRAVITY * (Global.entity_gravity * 0.1)
 	var DECEL_TYPE = GROUND_DECEL if is_on_floor() else AIR_DECEL
+	var recoil = velocity.y
 	velocity.y += (CUR_GRAVITY / delta) * delta
 	velocity.y = clamp(move_toward(velocity.y, 0, (AIR_DECEL_VERTICAL / delta) * delta), -INF, MAX_FALL_SPEED)
 	MOVE_SPEED = clamp(move_toward(MOVE_SPEED, 0, (DECEL_TYPE / delta) * delta), MOVE_SPEED_CAP[0], MOVE_SPEED_CAP[1])
@@ -84,6 +89,8 @@ func handle_movement(delta: float) -> void:
 	else:
 		global_position += (MOVE_SPEED * MOVE_ANGLE) * delta
 	move_and_slide()
+	if is_on_floor() and (ELASTIC_BOUNCE > 0):
+		velocity.y = -clamp(recoil*abs(ELASTIC_BOUNCE),ELASTIC_BOUNCE_LIMIT[0],ELASTIC_BOUNCE_LIMIT[1])
 
 func projectile_bounce() -> void:
 	if get_slide_collision_count() <= 0:
@@ -93,7 +100,7 @@ func projectile_bounce() -> void:
 	else:
 		hit(true, true)
 		return
-	if is_on_floor() and GROUND_BOUNCE:
+	if is_on_floor() and GROUND_BOUNCE and not ELASTIC_BOUNCE:
 		if not GROUND_BOUNCE: hit(true, true)
 		velocity.y = -BOUNCE_HEIGHT
 	if is_on_ceiling() and CEIL_BOUNCE:
