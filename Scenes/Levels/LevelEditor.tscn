@@ -94,6 +94,7 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Platform.json" id="104_111c4"]
 [ext_resource type="Texture2D" uid="uid://dsncqqhfsnq6s" path="res://Assets/Sprites/Editor/RotationIcon.png" id="106_3c4c7"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/AngrySun.json" id="106_ji0c6"]
+[ext_resource type="Texture2D" uid="uid://cga6aikeh2mv0" path="res://Assets/Sprites/Editor/GoalPipeArea.png" id="106_vcpfp"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/ChainChomp.json" id="107_0p3ev"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnOffBlockRed.json" id="107_mbniv"]
 [ext_resource type="Texture2D" uid="uid://h2ceiq5q4i15" path="res://Assets/Sprites/Editor/PlatformIcons/SideToSideHori.png" id="108_73mr2"]
@@ -4572,21 +4573,63 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("194_24ald")
 
-[node name="Pipe" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer" unique_id=891117282 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+[node name="Pipes" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer" unique_id=1332652802]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
+mouse_force_pass_scroll_events = false
+script = ExtResource("20_jc7xg")
+
+[node name="PipeArea" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Pipes" unique_id=891117282 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
 tile_name = "OBJ_PIPEAREA"
 type = 1
 icon_texture = ExtResource("84_wu64b")
 entity_id = "Am"
 
-[node name="PipeGenerator" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer" unique_id=1099316097 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
-layout_mode = 2
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Pipes/PipeArea" unique_id=273640337]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("22_3cjpb")
+
+[node name="GoalPipe" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Pipes" unique_id=384952247 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+tile_name = "OBJ_GOALPIPE"
+tile_desc = "Instantly clears the level. In a custom campaign, warps you to another level."
+type = 1
+icon_texture = ExtResource("106_vcpfp")
+entity_id = "De"
+
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Pipes/GoalPipe" unique_id=313252572]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("22_3cjpb")
+
+[node name="PipeGenerator" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Pipes" unique_id=1099316097 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
 tile_name = "OBJ_PIPE_GENERATOR"
 type = 1
 icon_texture = ExtResource("86_gixmk")
 entity_id = "An"
 
-[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/PipeGenerator" unique_id=35728952]
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Pipes/PipeGenerator" unique_id=35728952]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1412,7 +1412,7 @@ func get_character_sprite_path(power_stateto_use := power_state.state_name) -> S
 			Global.log_error("No sprite found for: " + character + "/" + power_stateto_use  + "!")
 	return path
 
-func enter_pipe(pipe: PipeArea, warp_to_level := true) -> void:
+func enter_pipe(pipe: PipeArea, warp_to_level := true, wait_forever := false) -> void:
 	z_index = -10
 	can_bump_sfx = false
 	Global.can_pause = false
@@ -1424,15 +1424,16 @@ func enter_pipe(pipe: PipeArea, warp_to_level := true) -> void:
 	state_machine.transition_to("Pipe")
 	PipeArea.exiting_pipe_id = pipe.pipe_id
 	hide_pipe_animation()
-	if warp_to_level:
-		await get_tree().create_timer(1, false).timeout
-		if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
-			LevelEditor.play_pipe_transition = true
-			Global.level_editor.transition_to_sublevel(pipe.target_sub_level)
-		elif Global.current_level is CustomLevel:
-			Global.transition_to_scene(NewLevelBuilder.sub_levels[pipe.target_sub_level])
-		else:
-			Global.transition_to_scene(pipe.target_level)
+	if !wait_forever:
+		if warp_to_level:
+			await get_tree().create_timer(1, false).timeout
+			if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
+				LevelEditor.play_pipe_transition = true
+				Global.level_editor.transition_to_sublevel(pipe.target_sub_level)
+			elif Global.current_level is CustomLevel:
+				Global.transition_to_scene(NewLevelBuilder.sub_levels[pipe.target_sub_level])
+			else:
+				Global.transition_to_scene(pipe.target_level)
 
 func hide_pipe_animation() -> void:
 	if pipe_enter_direction.x != 0:
