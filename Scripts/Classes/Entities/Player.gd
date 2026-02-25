@@ -841,7 +841,7 @@ func play_animation(animation_name := "", force := false) -> void:
 	animation_name = get_fallback_animation(animation_name)
 	if sprite.scale.x == -1 and sprite.sprite_frames.has_animation("Left" + animation_name):
 		animation_name = "Left" + animation_name
-	if not can_fire_projectile():
+	if not can_fire_projectile() and sprite.sprite_frames.has_animation(animation_name + "Cooldown"):
 		animation_name = animation_name + "Cooldown"
 	if sprite.animation != animation_name or force:
 		sprite.play(animation_name)
