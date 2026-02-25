@@ -34,10 +34,10 @@ static var can_enter := true
 static var exiting_pipe_id := -1
 
 func _ready() -> void:
-	update_visuals()
 	if Engine.is_editor_hint() == false:
 		run_pipe_check.call_deferred()
 		hide()
+	update_visuals()
 
 func run_pipe_check() -> void:
 	if exiting_pipe_id == pipe_id and exit_only:
@@ -60,7 +60,7 @@ func _exit_tree() -> void:
 	can_enter = true
 
 func update_visuals() -> void:
-	if Engine.is_editor_hint() or (Global.current_game_mode == Global.GameMode.LEVEL_EDITOR and LevelEditor.playing_level == false):
+	if Engine.is_editor_hint() or (Global.current_game_mode == Global.GameMode.LEVEL_EDITOR):
 		show()
 		$ArrowJoint.show()
 		$ArrowJoint.rotation = get_vector(enter_direction).angle() - deg_to_rad(90)

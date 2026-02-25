@@ -461,6 +461,7 @@
 	"OBJ_CANNON": "Cannon",
 	"OBJ_BLASTER": "Bill Cannon",
 	"OBJ_PIPEAREA": "Pipe Area",
+	"OBJ_GOALPIPE": "Goal Pipe",
 	"OBJ_PIPE_GENERATOR": "Pipe Generator",
 	"OBJ_FLAGPOLE": "Flag Pole",
 	"OBJ_ENDCASTLE_SMALL": "Small End Castle",

@@ -835,4 +835,8 @@
 		"res://Scenes/Prefabs/Gizmos/Inputs/ObjectDetection.tscn",
 		"0,0"
 	],
+	"De": [
+		"res://Scenes/Parts/WarpPipeArea.tscn",
+		"8,-8"
+	]
 }
