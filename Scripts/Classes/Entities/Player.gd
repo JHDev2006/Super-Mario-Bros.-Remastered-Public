@@ -256,6 +256,8 @@ extends CharacterBody2D
 		"PROJ_GRAVITY": 15.0,              # The projectile's gravity, measured in px/frame
 		"PROJ_BOUNCE_HEIGHT": 125.0,       # The projectile's bounce velocity upon landing on the ground.
 		"PROJ_MAX_FALL_SPEED": 150.0,      # The projectile's maximum fall speed, measured in px/sec
+		
+		"PROJ_COOLDOWN": 1.0,
 	},
 	"Small": {
 		"PROJ_OFFSET": [-4.0, 8.0],
@@ -625,6 +627,7 @@ var swim_stroke := false
 var skid_frames := 0
 
 var on_ice := false
+var cooldown := false
 
 var simulated_velocity := Vector2.ZERO
 
@@ -637,6 +640,7 @@ func _ready() -> void:
 	character = CHARACTERS[int(Global.player_characters[player_id])]
 	apply_character_physics()
 	apply_character_sfx_map()
+	cooldown = false
 	Global.can_pause = true
 	Global.can_time_tick = true
 	Global.level_theme_changed.connect(apply_character_physics)
@@ -780,6 +784,7 @@ func _physics_process(delta: float) -> void:
 		bump_ceiling()
 	elif is_actually_on_floor() and not is_invincible:
 		land_on_ground()
+		projectiles_fired_since_left_ground = 0
 		stomp_combo = 0
 	elif actual_velocity_y() > 15:
 		can_bump_sfx = true
@@ -827,12 +832,17 @@ func apply_gravity(delta: float) -> void:
 func camera_make_current() -> void:
 	camera.enabled = true
 	camera.make_current()
+	
+func can_fire_projectile():
+	return (not cooldown) and ((projectile_amount < physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) or physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) < 0)) and (physics_params("MAX_PROJ_COUNT_PER_JUMP", POWER_PARAMETERS) == null or (physics_params("MAX_PROJ_COUNT_PER_JUMP", POWER_PARAMETERS) < 0) or projectiles_fired_since_left_ground < physics_params("MAX_PROJ_COUNT_PER_JUMP", POWER_PARAMETERS))
 
 func play_animation(animation_name := "", force := false) -> void:
 	if sprite.sprite_frames == null: return
 	animation_name = get_fallback_animation(animation_name)
 	if sprite.scale.x == -1 and sprite.sprite_frames.has_animation("Left" + animation_name):
 		animation_name = "Left" + animation_name
+	if not can_fire_projectile():
+		animation_name = animation_name + "Cooldown"
 	if sprite.animation != animation_name or force:
 		sprite.play(animation_name)
 
@@ -992,6 +1002,7 @@ func handle_directions() -> void:
 # SkyanUltra: Moved projectile handling code into Player for compatibility
 # with other power-states, and easier manipulation through parameters.
 var projectile_amount = 0
+var projectiles_fired_since_left_ground = 0
 var projectile_type = load("res://Scenes/Prefabs/Entities/Items/Fireball.tscn")
 
 const POWER_PARAM_LIST = {
@@ -1020,13 +1031,48 @@ const POWER_PARAM_LIST = {
 	"BOUNCE_HEIGHT": "PROJ_BOUNCE_HEIGHT",
 	"MAX_FALL_SPEED": "PROJ_MAX_FALL_SPEED",
 	"MOVE_SPEED_CAP": "PROJ_SPEED_CAP",
+	"HARMLESS": "PROJ_HARMLESS",
 }
 
 func handle_projectile_firing(delta: float) -> void:
-	if physics_params("PROJ_TYPE", POWER_PARAMETERS) == "" or state_machine.state.name != "Normal":
-		return
-	if Global.player_action_just_pressed("action", player_id) and (projectile_amount < physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) or physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) < 0) and delta > 0:
-		throw_projectile()
+	if state_machine.state.name == "Normal":
+		if Global.player_action_just_pressed("action", player_id) and can_fire_projectile() and delta > 0:
+			var recoil = calculate_angle_param("PROJ_RECOIL")
+			if recoil:
+				var recoilx = recoil[0]
+				var recoily = recoil[1]
+				if physics_params("PROJ_RECOIL_ADDITIVE_X", POWER_PARAMETERS):
+					velocity.x += recoilx * direction
+				else:
+					velocity.x = recoilx * direction
+				if physics_params("PROJ_RECOIL_ADDITIVE_Y", POWER_PARAMETERS):
+					velocity.y += recoily
+				else:
+					velocity.y = recoily
+				
+			if physics_params("PROJ_TYPE", POWER_PARAMETERS) != "":
+				throw_projectile()
+			if physics_params("PROJ_COOLDOWN", POWER_PARAMETERS) and (physics_params("PROJ_COOLDOWN", POWER_PARAMETERS) > 0):
+				cooldown = true
+				await get_tree().create_timer(physics_params("PROJ_COOLDOWN", POWER_PARAMETERS)).timeout
+				cooldown = false
+				if physics_params("PROJ_SFX_COOLDOWN_END", POWER_PARAMETERS):
+					AudioManager.play_sfx(physics_params("PROJ_SFX_COOLDOWN_END", POWER_PARAMETERS), global_position)
+	
+func calculate_angle_param(prefix):
+	var vert_input = sign(Input.get_axis("move_up" + "_" + str(player_id),"move_down" + "_" + str(player_id)))
+	var horiz_input = sign(Input.get_axis("move_right" + "_" + str(player_id),"move_left" + "_" + str(player_id)))
+	var word_out = prefix
+	if physics_params(word_out + "_UP", POWER_PARAMETERS) && (vert_input < 0):
+		word_out = word_out + "_UP"
+	elif physics_params(word_out + "_DOWN", POWER_PARAMETERS) && (vert_input > 0):
+		word_out = word_out + "_DOWN"
+	if physics_params(word_out + "_FORWARD", POWER_PARAMETERS) && (horiz_input != 0):
+		word_out = word_out + "_FORWARD"
+	if physics_params(word_out + "_AIR", POWER_PARAMETERS) && !is_on_floor():
+		word_out = word_out + "_AIR"
+		
+	return physics_params(word_out, POWER_PARAMETERS)
 
 func throw_projectile() -> void:
 	attacked.emit()
@@ -1036,18 +1082,7 @@ func throw_projectile() -> void:
 	var angle = Vector2.ZERO if physics_params("PROJ_ANGLE", POWER_PARAMETERS) == null else Vector2.from_angle(deg_to_rad(physics_params("PROJ_ANGLE", POWER_PARAMETERS)))
 	var speed = physics_params("PROJ_SPEED", POWER_PARAMETERS)
 	
-	var vert_input = sign(Input.get_axis("move_up" + "_" + str(player_id),"move_down" + "_" + str(player_id)))
-	var horiz_input = sign(Input.get_axis("move_right" + "_" + str(player_id),"move_left" + "_" + str(player_id)))
-	if physics_params("PROJ_SPEED_UP_FORWARD", POWER_PARAMETERS) && (vert_input < 0) && (horiz_input != 0):
-		speed = physics_params("PROJ_SPEED_UP_FORWARD", POWER_PARAMETERS)
-	elif physics_params("PROJ_SPEED_DOWN_FORWARD", POWER_PARAMETERS) && (vert_input > 0) && (horiz_input != 0):
-		speed = physics_params("PROJ_SPEED_DOWN_FORWARD", POWER_PARAMETERS)
-	elif physics_params("PROJ_SPEED_UP", POWER_PARAMETERS) && (vert_input < 0):
-		speed = physics_params("PROJ_SPEED_UP", POWER_PARAMETERS)
-	elif physics_params("PROJ_SPEED_DOWN", POWER_PARAMETERS) && (vert_input > 0):
-		speed = physics_params("PROJ_SPEED_DOWN", POWER_PARAMETERS)
-	else:
-		speed = physics_params("PROJ_SPEED", POWER_PARAMETERS)
+	speed = calculate_angle_param("PROJ_SPEED")
 	
 	var speed_scaling = 0
 	if physics_params("PROJ_SPEED_SCALING", POWER_PARAMETERS):
@@ -1066,6 +1101,8 @@ func throw_projectile() -> void:
 		node.MOVE_SPEED = speed[0] + speed_scaling
 		node.MOVE_ANGLE = angle
 	call_deferred("add_sibling", node)
+	if not (is_on_floor() or in_water):
+		projectiles_fired_since_left_ground += 1
 	projectile_amount += 1
 	node.tree_exited.connect(func(): projectile_amount -= 1)
 	AudioManager.play_sfx(physics_params("PROJ_SFX_THROW", POWER_PARAMETERS), global_position)
@@ -1636,6 +1673,7 @@ func on_area_exited(area: Area2D) -> void:
 		water_exited()
 
 func water_entered() -> void:
+	projectiles_fired_since_left_ground = 0
 	velocity.y = max(-physics_params("SWIM_HEIGHT"), velocity.y)
 
 

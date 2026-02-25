@@ -59,6 +59,8 @@ extends Enemy
 @export var ELASTIC_BOUNCE_LIMIT := [-INF, INF]
 ## Controls the maximum speed the projectile can fall at.
 @export var MAX_FALL_SPEED := 280.0
+## If true, the projectile will not harm enemies.
+@export var HARMLESS := false
 
 func _ready() -> void:
 	var collision = get_node_or_null("Collision")
