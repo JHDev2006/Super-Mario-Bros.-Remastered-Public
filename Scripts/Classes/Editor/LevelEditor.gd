@@ -446,15 +446,9 @@ func handle_tile_cursor() -> void:
 		if Global.multibind_action_just_pressed("scroll_down"):
 			selected_tile_index += 1
 
-<<<<<<< 1.1-multibind-press
-		if Global.multibind_action_just_pressed("ui_copy") and pasting_area == false:
+		if Global.multibind_action_just_pressed("ui_copy") and pasting_area == false and not multi_selecting:
 			copy_tile(tile_position, current_layer)
-		elif Global.multibind_action_just_pressed("ui_cut") and pasting_area == false:
-=======
-		if Input.is_action_just_pressed("ui_copy") and pasting_area == false and not multi_selecting:
-			copy_tile(tile_position, current_layer)
-		elif Input.is_action_just_pressed("ui_cut") and pasting_area == false and not multi_selecting:
->>>>>>> 1.1
+		elif Global.multibind_action_just_pressed("ui_cut") and pasting_area == false and not multi_selecting:
 			copy_tile(tile_position, current_layer)
 			remove_tile(tile_position, current_layer)
 		elif Input.is_action_pressed("ui_paste"):
