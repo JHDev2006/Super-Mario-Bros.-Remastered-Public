@@ -22,11 +22,11 @@ func enter(_msg := {}) -> void:
 	jump_queued = false
 
 func physics_update(delta: float) -> void:
+	handle_animations()
 	if player.is_actually_on_floor():
 		grounded(delta)
 	else:
 		in_air()
-	handle_animations()
 	handle_movement(delta)
 	handle_death_pits()
 
@@ -256,6 +256,7 @@ func swim_up() -> void:
 func handle_animations() -> void:
 	var animation = get_animation_name()
 	player.sprite.speed_scale = 1
+	player.sprite.scale.x = player.direction * player.gravity_vector.y
 	for i in ["Walk", "Move", "Run", "Jog"]:
 		if animation.ends_with(i):
 			player.sprite.speed_scale = abs(player.velocity.x) / player.physics_params("MOVE_ANIM_SPEED_DIV", player.COSMETIC_PARAMETERS)
@@ -266,7 +267,6 @@ func handle_animations() -> void:
 	var player_anim = player.sprite.animation
 	if player_anim.ends_with("Move") or player_anim.ends_with("Walk") or player_anim.ends_with("Jog") or player_anim.ends_with("Run"):
 		walk_frame = player.sprite.frame
-	player.sprite.scale.x = player.direction * player.gravity_vector.y
 
 func get_animation_name() -> String:
 	# SkyanUltra: Simplified animation table and optimized nesting.

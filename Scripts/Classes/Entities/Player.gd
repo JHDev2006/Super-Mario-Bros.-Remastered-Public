@@ -738,6 +738,7 @@ func _physics_process(delta: float) -> void:
 			Global.log_comment("NOCLIP Enabled")
 
 	up_direction = -gravity_vector
+	handle_water_detection()
 	handle_collision_shapes()
 	handle_step_collision()
 	handle_directions()
@@ -757,7 +758,6 @@ func _physics_process(delta: float) -> void:
 		can_bump_sfx = true
 	if not is_actually_on_floor() and not just_landed:
 		can_land_sfx = true
-	handle_water_detection()
 
 const BUBBLE_PARTICLE = preload("uid://bwjae1h1airtr")
 
@@ -803,7 +803,7 @@ func camera_make_current() -> void:
 func play_animation(animation_name := "", force := false) -> void:
 	if sprite.sprite_frames == null: return
 	animation_name = get_fallback_animation(animation_name)
-	if sprite.scale.x == -1 and sprite.sprite_frames.has_animation("Left" + animation_name):
+	if sprite.scale.x < 0 and sprite.sprite_frames.has_animation("Left" + animation_name):
 		animation_name = "Left" + animation_name
 	if sprite.animation != animation_name or force:
 		sprite.play(animation_name)
