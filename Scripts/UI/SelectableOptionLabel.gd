@@ -22,8 +22,12 @@ func handle_inputs() -> void:
 	var old := selected_index
 	if Input.is_action_just_pressed("ui_left"):
 		selected_index -= 1
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
 	if Input.is_action_just_pressed("ui_right"):
 		selected_index += 1
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
 	selected_index = clamp(selected_index, 0, values.size() - 1)
 	if old != selected_index:
 		value_changed.emit(selected_index)

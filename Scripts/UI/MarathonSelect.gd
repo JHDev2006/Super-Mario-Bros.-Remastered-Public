@@ -32,7 +32,7 @@ func _process(_delta: float) -> void:
 			selected -= 1
 		if Input.is_action_just_pressed("ui_right"):
 			selected += 1
-		selected = clamp(selected, 0, 1)
+		selected = wrapi(selected, 0, 2)
 		%MarathonName.text = ["MARATHON_FULL", "MARATHON_LEVEL"][selected]
 		for i in [$PanelContainer/VBoxContainer/HBoxContainer/Full, $PanelContainer/VBoxContainer/HBoxContainer/Level]:
 			i.get_node("Label").visible = selected == i.get_index()
