@@ -57,6 +57,7 @@ func setup_rating_stars() -> void:
 		idx += 1
 
 func get_thumbnail() -> void:
+	%LevelIcon.texture = null
 	if cached_thumbnails.has(level_id):
 		%LevelIcon.texture = cached_thumbnails[level_id]
 		$MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelIcon/Error.hide()

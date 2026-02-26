@@ -21,5 +21,3 @@ points = PackedVector2Array(0, 0, 0, 96)
 width = 1.0
 texture = ExtResource("3_q8ix4")
 texture_mode = 1
-
-[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounced" unbinds=1]

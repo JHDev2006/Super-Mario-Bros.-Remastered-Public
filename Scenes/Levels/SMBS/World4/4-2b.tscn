@@ -74,3 +74,4 @@ id = 4
 [connection signal="player_reached" from="EndFlagpole" to="CameraRightLimit" method="_enter_tree"]
 [connection signal="player_entered" from="WarpZoneCameraLimit/PlayerDetection" to="WarpZoneCameraLimit" method="return_to_normal" unbinds=1]
 [editable path="EndSmallCastle"]
+[editable path="EndSmallCastle/SmallCastleVisual"]

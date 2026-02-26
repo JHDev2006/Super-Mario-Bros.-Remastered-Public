@@ -13,15 +13,20 @@ signal killed
 
 const BASE_LINE := 48
 
+@onready var old_position = global_position
+
 func _physics_process(delta: float) -> void:
-	var old_position = global_position
 	if $TrackJoint.is_attached == false:
 		handle_movement(delta)
 		$Sprite.flip_v = velocity > 0
 	else:
-		await get_tree().physics_frame
-		$Sprite.flip_v = false
-		$Sprite.rotation = (old_position - global_position).normalized().angle() - deg_to_rad(90)
+		handle_rotation.call_deferred()
+
+func handle_rotation() -> void:
+	$Sprite.flip_v = false
+	var direction = old_position - global_position
+	$Sprite.rotation = (old_position - global_position).normalized().angle() - deg_to_rad(90)
+	old_position = global_position
 
 func handle_movement(delta: float) -> void:
 	velocity += (5 / delta) * delta

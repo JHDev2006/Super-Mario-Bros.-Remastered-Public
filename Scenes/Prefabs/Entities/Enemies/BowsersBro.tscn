@@ -12,5 +12,5 @@ resource_json = ExtResource("2_qcxx5")
 [node name="ResourceSetterNew" parent="SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(1311530935) index="0" unique_id=381174695]
 resource_json = ExtResource("2_qcxx5")
 
-[node name="GibSpawner" parent="." index="8" unique_id=383912089 node_paths=PackedStringArray("visuals")]
+[node name="GibSpawner" parent="." index="6" unique_id=383912089 node_paths=PackedStringArray("visuals")]
 visuals = NodePath("../SpriteScaleJoint/DeathSprite")

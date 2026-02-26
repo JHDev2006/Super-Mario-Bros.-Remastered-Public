@@ -1,0 +1,19 @@
+{
+	"name": "ModName",
+	"namespace": "AuthorName",
+	"version_number": "0.0.1",
+	"description": "Description of your mod...",
+	"website_url": "https://github.com/exampleauthor/examplemod",
+	"dependencies": [],
+	"extra": {
+		"godot": {
+			"authors": ["AuthorName"],
+			"optional_dependencies": [],
+			"load_before": [],
+			"incompatibilities": [],
+			"compatible_mod_loader_version": ["7.0.0"],
+			"compatible_game_version": ["0.0.1"],
+			"config_schema": {}
+		}
+	}
+}

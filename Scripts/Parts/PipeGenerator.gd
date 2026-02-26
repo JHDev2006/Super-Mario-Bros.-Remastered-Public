@@ -45,6 +45,8 @@ func on_timeout() -> void:
 		node.set_process(true)
 		node.z_index = z_old
 		node.set_physics_process(true)
+		if direction >= 2:
+			node.set("direction", [0, 0, -1, 1][direction])
 
 func item_deleted() -> void:
 	item_amount -= 1

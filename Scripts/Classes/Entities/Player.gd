@@ -1509,6 +1509,7 @@ const SMOKE_PARTICLE = preload("res://Scenes/Prefabs/Particles/SmokeParticle.tsc
 
 func teleport_player(new_position := Vector2.ZERO) -> void:
 	hide()
+	can_hurt = false
 	do_smoke_effect()
 	var old_state = state_machine.state.name
 	state_machine.transition_to("Freeze")
@@ -1517,6 +1518,7 @@ func teleport_player(new_position := Vector2.ZERO) -> void:
 	recenter_camera()
 	await get_tree().create_timer(0.5, false).timeout
 	state_machine.transition_to(old_state)
+	can_hurt = true
 	show()
 	velocity = Vector2.ZERO
 	do_smoke_effect()

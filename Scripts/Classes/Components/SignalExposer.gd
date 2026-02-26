@@ -50,13 +50,14 @@ const WIRE_COLOURS := [
   "#800080"
 ]
 
-@onready var recursive_check := Timer.new()
+var recursive_check: Timer = null
 
 var no_moving = null
 
 var saved_offset := Vector2.ZERO
 
-func _ready() -> void:
+func _enter_tree() -> void:
+	recursive_check = Timer.new()
 	add_child(recursive_check)
 	if get_process_delta_time() > 0:
 		recursive_check.wait_time = get_process_delta_time()
