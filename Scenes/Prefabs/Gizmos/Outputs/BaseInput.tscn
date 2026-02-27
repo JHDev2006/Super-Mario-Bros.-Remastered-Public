@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b2r255cb4tt7t" path="res://Scenes/Prefabs/Gizmos/Inputs/BaseInput.tscn" id="1_ls4vr"]
 [ext_resource type="Script" uid="uid://bh02gxmetuqxk" path="res://Scripts/Classes/Gizmos/Warper.gd" id="2_qamsa"]
-[ext_resource type="Texture2D" uid="uid://bwqwdrxx2t2tb" path="res://Assets/Sprites/Editor/Warper.png" id="3_obfqk"]
+[ext_resource type="Texture2D" uid="uid://ds7hexn5nb4vt" path="res://Assets/Sprites/Editor/Gizmos/Warper.png" id="3_obfqk"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="4_qamsa"]
 
 [node name="BaseInput" unique_id=515746201 instance=ExtResource("1_ls4vr")]

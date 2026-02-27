@@ -20,7 +20,6 @@ anim_speed_max = 2.0
 
 [node name="CoinSparkle" type="GPUParticles2D" unique_id=426407593]
 material = SubResource("CanvasItemMaterial_0guw6")
-emitting = false
 amount = 3
 texture = ExtResource("1_0guw6")
 lifetime = 0.5

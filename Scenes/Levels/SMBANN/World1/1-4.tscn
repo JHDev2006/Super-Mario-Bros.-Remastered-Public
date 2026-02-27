@@ -10,3 +10,4 @@ script = ExtResource("2_kutpd")
 combo_meter_rate = 0.25
 max_combo = 1
 metadata/_custom_type_script = "uid://bjs5mlc3xrxud"
+[editable path="Bowser"]

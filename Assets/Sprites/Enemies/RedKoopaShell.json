@@ -1,4 +1,8 @@
 {
+	"properties": {
+		"flipped_offset": [0, 2],
+		"can_turn": true
+	},
 	"animations": {
 		"Idle": {
 			"frames": [

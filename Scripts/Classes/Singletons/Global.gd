@@ -15,6 +15,7 @@ signal level_time_changed
 const BASE64_CHARSET := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 const VERSION_CHECK_URL := "https://cdn.jsdelivr.net/gh/JHDev2006/Super-Mario-Bros.-Remastered-Public@main/version.txt"
+const SNAPSHOT_CHECK_URL := "https://cdn.jsdelivr.net/gh/JHDev2006/Super-Mario-Bros.-Remastered-Public@refs/heads/1.1/snapshot_version.txt"
 @onready var screen_shaker: Node = $ScreenShaker
 
 var entity_gravity := 10.0
@@ -35,10 +36,11 @@ var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
 var ROM_PATH = config_path.path_join("baserom.nes")
 var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
 const ROM_PACK_NAME := "BaseAssets"
-const ROM_ASSETS_VERSION := 3
+const ROM_ASSETS_VERSION := 4
 
 var server_version := -1
 var current_version := -1
+var current_snapshot := ""
 var version_number := ""
 var is_snapshot := true
 
@@ -192,9 +194,11 @@ var custom_campaign_jsons := {}
 var level_sequence_captured := false
 
 func _ready() -> void:
-	if is_snapshot: get_build_time()
-	if OS.is_debug_build(): debug_mode = false
+	if is_snapshot: 
+		get_build_time()
+		current_snapshot = get_snapshot_version()
 	current_version = get_version_number()
+	if OS.is_debug_build(): debug_mode = false
 	get_server_version()
 	setup_config_dirs()
 	check_for_rom()
@@ -330,6 +334,11 @@ func get_version_number() -> int:
 	var number = (FileAccess.open("res://version.txt", FileAccess.READ).get_as_text())
 	version_number = str(number).replace("\n", "")
 	return int(number)
+
+func get_snapshot_version() -> String:
+	var number = (FileAccess.open("res://snapshot_version.txt", FileAccess.READ).get_as_text())
+	number = number.replace("\n", "")
+	return number
 
 func get_int_version_num(version_num := "") -> int:
 	return int(version_num.replace(".", "").pad_zeros(3))
@@ -489,13 +498,22 @@ func on_score_sfx_finished() -> void:
 func get_server_version() -> void:
 	var http = HTTPRequest.new()
 	add_child(http)
+	var url = VERSION_CHECK_URL
+	if is_snapshot:
+		url = SNAPSHOT_CHECK_URL
 	http.request_completed.connect(version_got)
-	http.request(VERSION_CHECK_URL, [], HTTPClient.METHOD_GET)
+	http.request(url, [], HTTPClient.METHOD_GET)
 
 func version_got(_result, response_code, _headers, body) -> void:
-	current_version = get_version_num_int(version_number)
+	if is_snapshot:
+		current_version = get_snapshot_num_int(current_snapshot)
+	else:
+		current_version = get_version_num_int(version_number)
 	if response_code == 200:
-		server_version = int(get_version_num_int(body.get_string_from_utf8()))
+		if is_snapshot:
+			server_version = int(get_snapshot_num_int(body.get_string_from_utf8()))
+		else:
+			server_version = int(get_version_num_int(body.get_string_from_utf8()))
 	else:
 		server_version = -2
 
@@ -573,6 +591,15 @@ func get_base_asset_version() -> int:
 
 func get_version_num_int(ver_num := "0.0.0") -> int:
 	return int(ver_num.replace(".", ""))
+
+func get_snapshot_num_int(ver_num := "26w00a") -> int:
+	var year = ver_num.substr(0, 2)
+	var week = ver_num.substr(3, 2)
+	var num = ver_num[5]
+	
+	print([year, week, num])
+	
+	return (int(year) * int(week)) + int(num)
 
 func load_default_translations() -> void:
 	for i in lang_codes:
@@ -676,3 +703,7 @@ func nice_json_format(json_string := "") -> String:
 					json_string = json_string.insert(i + 2, "\t")
 					i += 1
 	return json_string
+
+func warper_cooldown() -> void:
+	await get_tree().create_timer(1, false).timeout
+	Warper.can_warp = true

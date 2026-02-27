@@ -45,7 +45,7 @@ script/source = "extends Label
 func _ready() -> void:
 	text = \"V\" + Global.version_number
 	if Global.is_snapshot:
-		text += \" - \" + Global.get_build_time()
+		text += \"\\n\" + Global.current_snapshot
 "
 
 [sub_resource type="GDScript" id="GDScript_wjo1g"]

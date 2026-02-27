@@ -1,7 +1,7 @@
 extends Node2D
 
 @export_range(2, 99) var amount := 2
-@export_range(0.0, 1, 0.1) var delay := 0.0
+@export_range(0, 1, 0) var delay := 0.0
 
 func recieved_pulse() -> void:
 	for i in amount:

@@ -6,7 +6,8 @@
 
 [node name="BuzzyBeetleShell" unique_id=1536039732 instance=ExtResource("1_1cla3")]
 
-[node name="ResourceSetter" parent="Sprite" parent_id_path=PackedInt32Array(606427555) index="0" unique_id=113289807]
+[node name="ResourceSetter" parent="Sprite" parent_id_path=PackedInt32Array(606427555) index="0" unique_id=113289807 node_paths=PackedStringArray("property_node")]
+property_node = NodePath("../..")
 resource_json = ExtResource("4_7m7wg")
 
 [node name="FireballDetection" parent="." index="8" unique_id=1977263003]

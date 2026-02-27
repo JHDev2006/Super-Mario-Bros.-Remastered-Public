@@ -9,9 +9,6 @@ num_of_worlds = 4
 [node name="Slot1" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" parent_id_path=PackedInt32Array(181733477) index="0" unique_id=1293243576]
 focus_neighbor_left = NodePath("../Slot5")
 
-[node name="Cursor" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" index="1" unique_id=962917386]
-visible = true
-
 [node name="Slot5" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" parent_id_path=PackedInt32Array(181733477) index="4" unique_id=286713451]
 focus_neighbor_right = NodePath("../Slot1")
 

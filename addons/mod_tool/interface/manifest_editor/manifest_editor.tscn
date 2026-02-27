@@ -1,0 +1,289 @@
+[gd_scene load_steps=5 format=3 uid="uid://hpefgw6k5qpq"]
+
+[ext_resource type="PackedScene" path="res://addons/mod_tool/interface/global/input_string_multiline.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://addons/mod_tool/interface/global/input_string.tscn" id="2"]
+[ext_resource type="Script" path="res://addons/mod_tool/interface/manifest_editor/manifest_editor.gd" id="4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pun0q"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.365, 0.365, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_detail = 1
+
+[node name="ModManifest" type="PanelContainer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("4")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBox2" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/HBox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Metadata required for your mod"
+
+[node name="ErrorLabel" type="Label" parent="VBox/HBox2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Manifest is valid"
+
+[node name="ShouldValidate" type="CheckButton" parent="VBox/HBox2"]
+unique_name_in_owner = true
+layout_mode = 2
+flat = true
+
+[node name="VSeparator" type="VSeparator" parent="VBox/HBox2"]
+layout_mode = 2
+
+[node name="SaveManifest" type="Button" parent="VBox/HBox2"]
+layout_mode = 2
+text = "Save to manifest.json"
+
+[node name="Panel" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pun0q")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBox/Panel"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="InputVBox" type="VBoxContainer" parent="VBox/Panel/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Category" type="LineEdit" parent="VBox/Panel/ScrollContainer/InputVBox"]
+layout_mode = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+text = "Manifest"
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="ModName" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Name of the Mod.
+Only letters, numbers and underscores allowed."
+mouse_default_cursor_shape = 16
+is_required = true
+key = "name"
+label_text = "Mod Name"
+hint_text = "Name of the Mod.
+Only letters, numbers and underscores allowed."
+
+[node name="Namespace" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Namespace of the Mod.
+Often just the main author or team name.
+Only letters, numbers and underscores allowed."
+mouse_default_cursor_shape = 16
+is_required = true
+key = "mod_namespace"
+label_text = "Namespace"
+hint_text = "Namespace of the Mod.
+Often just the main author or team name.
+Only letters, numbers and underscores allowed."
+
+[node name="Version" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Semantic version string.
+Only integers and periods allowed.
+Format: {major}.{minor}.{patch}
+For reference, see https://semver.org"
+mouse_default_cursor_shape = 16
+input_text = "0.0.1"
+is_required = true
+key = "version_number"
+label_text = "Version"
+hint_text = "Semantic version string.
+Only integers and periods allowed.
+Format: {major}.{minor}.{patch}
+For reference, see https://semver.org"
+
+[node name="WebsiteUrl" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "URL for your website or repository."
+mouse_default_cursor_shape = 16
+input_placeholder = "https://example.com"
+key = "website_url"
+label_text = "Mod website URL"
+hint_text = "URL for your website or repository."
+
+[node name="Dependencies" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Comma-separated list of mod IDs.
+Only letters, numbers and underscores allowed.
+A single dash in the middle is required.
+Format: {namespace}-{name}
+Dependencies can't be in Incompatibilities or Optional Dependencies.
+"
+mouse_default_cursor_shape = 16
+input_placeholder = "Namespace-ModName, Author-Name"
+key = "dependencies"
+label_text = "Dependencies"
+hint_text = "Comma-separated list of mod IDs.
+Only letters, numbers and underscores allowed.
+A single dash in the middle is required.
+Format: {namespace}-{name}
+Dependencies can't be in Incompatibilities or Optional Dependencies.
+"
+
+[node name="Description" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("1")]
+unique_name_in_owner = true
+layout_mode = 2
+key = "description"
+label_text = "Description"
+
+[node name="Category2" type="LineEdit" parent="VBox/Panel/ScrollContainer/InputVBox"]
+layout_mode = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+text = "Manifest Extra"
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="Authors" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Comma-separated list of Authors"
+mouse_default_cursor_shape = 16
+input_placeholder = "Author1, Autor2"
+key = "authors"
+label_text = "Authors"
+hint_text = "Comma-separated list of Authors"
+
+[node name="Incompatibilities" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Comma-separated list of mod IDs.
+Only letters, numbers and underscores allowed.
+A single dash in the middle is required.
+Format: {namespace}-{name}
+Incompatible Mods can't be in dependencies or optional dependencies."
+mouse_default_cursor_shape = 16
+input_placeholder = "Namespace-ModName, Author-Name"
+key = "incompatibilities"
+label_text = "Incompatible Mods"
+hint_text = "Comma-separated list of mod IDs.
+Only letters, numbers and underscores allowed.
+A single dash in the middle is required.
+Format: {namespace}-{name}
+Incompatible Mods can't be in dependencies or optional dependencies."
+
+[node name="OptionalDependencies" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Comma-separated list of mod IDs.
+Only letters, numbers and underscores allowed.
+A single dash in the middle is required.
+Format: {namespace}-{name}
+Optional Dependencies can't be in Incompatibilities or Dependencies."
+mouse_default_cursor_shape = 16
+input_placeholder = "Namespace-ModName, Author-Name"
+key = "optional_dependencies"
+label_text = "Optional Dependencies"
+hint_text = "Comma-separated list of mod IDs.
+Only letters, numbers and underscores allowed.
+A single dash in the middle is required.
+Format: {namespace}-{name}
+Optional Dependencies can't be in Incompatibilities or Dependencies."
+
+[node name="LoadBefore" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Comma-separated list of mod IDs.
+Only letters, numbers and underscores allowed.
+A single dash in the middle is required.
+Format: {namespace}-{name}
+Should be handled as optional dependency adding it to \"dependencies\" will cancel out the desired effect.
+Can be viewed as optional dependency, please remove duplicate mod-id from \"optional_dependencies\"."
+mouse_default_cursor_shape = 16
+input_placeholder = "Namespace-ModName, Author-Name"
+key = "load_before"
+label_text = "Load Before"
+hint_text = "Comma-separated list of mod IDs.
+Only letters, numbers and underscores allowed.
+A single dash in the middle is required.
+Format: {namespace}-{name}
+Should be handled as optional dependency adding it to \"dependencies\" will cancel out the desired effect.
+Can be viewed as optional dependency, please remove duplicate mod-id from \"optional_dependencies\"."
+
+[node name="CompatibleGameVersions" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Comma-separated list of valid game versions."
+mouse_default_cursor_shape = 16
+input_placeholder = "1.0.0, 1.2.0"
+key = "compatible_game_version"
+label_text = "Compatible Game Versions"
+hint_text = "Comma-separated list of valid game versions."
+
+[node name="CompatibleModLoaderVersions" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Comma-separated list of ModLoader versions."
+mouse_default_cursor_shape = 16
+input_placeholder = "5.0.0, 4.1.0"
+is_required = true
+key = "compatible_mod_loader_version"
+label_text = "Compatible Mod Loader Versions"
+hint_text = "Comma-separated list of ModLoader versions."
+
+[node name="Tags" parent="VBox/Panel/ScrollContainer/InputVBox" instance=ExtResource("2")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Comma-separated list of tags that describe your mod.."
+mouse_default_cursor_shape = 16
+input_placeholder = "Tag1, Tag2"
+key = "tags"
+label_text = "Tags"
+hint_text = "Comma-separated list of tags that describe your mod.."
+
+[connection signal="pressed" from="VBox/HBox2/SaveManifest" to="." method="_on_SaveManifest_pressed"]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/ModName" to="." method="_on_ModName_value_changed"]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Namespace" to="." method="_on_Namespace_value_changed"]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Version" to="." method="_on_Version_value_changed"]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/WebsiteUrl" to="." method="_on_WebsiteUrl_value_changed"]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Dependencies" to="." method="_on_OptionalDependencies_value_changed" flags=3 binds= [true]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Dependencies" to="." method="_on_Incompatibilities_value_changed" flags=3 binds= [true]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Dependencies" to="." method="_on_Dependencies_value_changed" binds= [false]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Description" to="." method="_on_Description_value_changed"]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Authors" to="." method="_on_Authors_value_changed"]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Incompatibilities" to="." method="_on_OptionalDependencies_value_changed" flags=3 binds= [true]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Incompatibilities" to="." method="_on_Incompatibilities_value_changed" binds= [false]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Incompatibilities" to="." method="_on_Dependencies_value_changed" flags=3 binds= [true]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/OptionalDependencies" to="." method="_on_OptionalDependencies_value_changed" binds= [false]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/OptionalDependencies" to="." method="_on_Incompatibilities_value_changed" flags=3 binds= [true]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/OptionalDependencies" to="." method="_on_Dependencies_value_changed" flags=3 binds= [true]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/LoadBefore" to="." method="_on_OptionalDependencies_value_changed" flags=3 binds= [true]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/LoadBefore" to="." method="_on_LoadBefore_value_changed" binds= [false]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/LoadBefore" to="." method="_on_Dependencies_value_changed" flags=3 binds= [true]]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/CompatibleGameVersions" to="." method="_on_CompatibleGameVersions_value_changed"]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/CompatibleModLoaderVersions" to="." method="_on_CompatibleModLoaderVersions_value_changed"]
+[connection signal="value_changed" from="VBox/Panel/ScrollContainer/InputVBox/Tags" to="." method="_on_Tags_value_changed"]

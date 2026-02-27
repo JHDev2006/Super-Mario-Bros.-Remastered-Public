@@ -1,6 +1,6 @@
 extends Node2D
 
-@export_range(0.1, 5.0, 0.1) var duration := 1.0:
+@export_range(0, 5.0, 0) var duration := 1.0:
 	set(value):
 		duration = value
 		$Timer.wait_time = duration

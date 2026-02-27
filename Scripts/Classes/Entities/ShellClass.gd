@@ -26,12 +26,15 @@ var can_update := true
 
 var can_air_kick := false
 
+var flipped_offset := Vector2(0, 1)
+var can_turn := false
+
 var times_kicked := 0
 
 func _ready() -> void:
 	$Sprite.flip_v = flipped
 	if flipped:
-		$Sprite.offset.y = 1
+		$Sprite.offset = flipped_offset
 	for i in 4:
 		await get_tree().physics_frame
 	can_kick = true
@@ -170,6 +173,8 @@ func handle_movement(delta: float) -> void:
 		velocity.x = 0
 	if is_on_floor() and velocity.y >= 0:
 		can_air_kick = false
+	if can_turn:
+		$Sprite.speed_scale = sign(direction)
 	velocity.y += (Global.entity_gravity / delta) * delta
 	velocity.y = clamp(velocity.y, -INF, Global.entity_max_fall_speed)
 	move_and_slide()

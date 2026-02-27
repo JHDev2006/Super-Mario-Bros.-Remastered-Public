@@ -41,6 +41,7 @@ func do_cutscene() -> void:
 	can_stop = true
 	for i: Player in get_tree().get_nodes_in_group("Players"):
 		i.global_position = Vector2(global_position.x, 64)
+		i.recenter_camera()
 		i.hide()
 		i.auto_death_pit = false
 		i.state_machine.transition_to("Freeze")
@@ -107,7 +108,7 @@ func on_player_entered(_player: Player) -> void:
 	if Global.level_editor_is_playtesting():
 		CoinHeavenWarpPoint.subarea_return = Global.level_editor.sub_level_id
 		Global.level_editor.transition_to_sublevel(CoinHeavenWarpPoint.subarea_to_warp_to)
-	elif Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
+	elif Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL or Global.in_custom_campaign(Global.current_campaign):
 		Global.transition_to_scene(NewLevelBuilder.sub_levels[CoinHeavenWarpPoint.subarea_to_warp_to])
 	else:
 		Global.transition_to_scene(Level.vine_warp_level)
