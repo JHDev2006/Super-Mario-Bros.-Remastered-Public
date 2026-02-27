@@ -426,6 +426,7 @@ var is_posing := false
 var can_big_grow_anim = false
 var can_bump_jump_anim = false
 var can_bump_crouch_anim = false
+var can_bump_fling_anim = false
 var can_bump_swim_anim = false
 var can_bump_fly_anim = false
 var can_kick_anim = false
@@ -495,18 +496,18 @@ static var CHARACTER_PALETTES := [
 ]
 
 #region Animation Fallbacks, these determine what animations will use as a back-up if they aren't present.
-const ANIMATION_FALLBACKS := {
+static var ANIMATION_FALLBACKS: Dictionary = {
 	# --- Idle States ---
 	"LookUp": "Idle",
-	"WaterLookUp": "LookUp",
-	"WingLookUp": "WaterLookUp",
 	"Crouch": "Idle",
-	"WaterCrouch": "Crouch",
-	"WingCrouch": "WaterCrouch",
 	"Stunned": "Idle",
 	
 	# --- Cutscene States ---
 	"PosePeach": "PoseToad",
+	
+	"FlingJump": "Jump",
+	"FlingJumpFall": "JumpFall",
+	"FlingBump": "Bump",
 
 	# --- Jump & Fall States ---
 	"Fall": "Move",
@@ -515,35 +516,6 @@ const ANIMATION_FALLBACKS := {
 	"CrouchFall": "Crouch",
 	"CrouchJump": "Crouch",
 	"CrouchBump": "Bump",
-	"JogJump": "Jump",
-	"JogJumpFall": "JumpFall",
-	"JogJumpBump": "JumpBump",
-	"RunJump": "Jump",
-	"RunJumpFall": "JumpFall",
-	"RunJumpBump": "JumpBump",
-	"SpringJump": "Jump",
-	"SpringJumpBump": "JumpBump",
-	
-	# --- Star Jump & Fall States ---
-	"StarJump": "Jump",
-	"StarFall": "JumpFall",
-	"StarJumpFall": "StarFall", # SkyanUltra: Legacy fallback for >1.0.2.
-	"StarJumpBump": "JumpBump",
-	
-	"StarRunJump": "StarJump",
-	"StarRunJumpFall": "StarJumpFall",
-	"StarRunJumpBump": "StarJumpBump",
-	"StarRun": "Run",
-	"StarWalk": "Walk",
-	"StarMove": "Move",
-	"StarJog": "Jog",
-	"StarIdle": "Idle",
-	"StarSkid": "Skid",
-	"StarCrouch": "Crouch",
-	
-	"StarSpringJump": "StarJump",
-	"StarSpringFall": "StarJumpFall",
-	"StarSpringBump": "StarJumpBump",
 
 	# --- Movement/Interaction States ---
 	"Walk": "Move",
@@ -569,45 +541,58 @@ const ANIMATION_FALLBACKS := {
 	"RunAttack": "MoveAttack",
 	"SkidAttack": "MoveAttack",
 
-	# --- Water & Flying States ---
-	"WaterIdle": "Idle",
-	"WaterMove": "Move",
-	"WaterWalk": "WaterMove",
-	"WaterJog": "WaterMove",
-	"WaterRun": "WaterMove",
-	"WaterCrouchMove": "CrouchMove",
-	"WaterCrouchFall": "CrouchFall",
-	"WaterIdleAttack": "IdleAttack",
-	"WaterWalkAttack": "WalkAttack",
-	"WaterRunAttack": "RunAttack",
-	"SwimBump": "Bump",
-	"WingIdle": "WaterIdle",
-	"WingMove": "WaterMove",
-	"WingWalk": "WaterWalk",
-	"WingJog": "WaterJog",
-	"WingRun": "WaterRun",
-	"WingCrouchMove": "WaterCrouchMove",
-	"WingCrouchFall": "WaterCrouchFall",
-	"WingIdleAttack": "WaterIdleAttack",
-	"WingWalkAttack": "WaterWalkAttack",
-	"WingRunAttack": "WaterRunAttack",
-	"FlyIdle": "SwimIdle",
-	"FlyUp": "SwimUp",
-	"FlyAttack": "SwimAttack",
-	"FlyBump": "SwimBump",
-
 	# --- Death States ---
 	"DieFreeze": "DieFall",
 	"DieIdle": "DieFall",
 	"DieMove": "DieIdle",
 	"DieRise": "DieFall",
 	"DieFall": "Die", # SkyanUltra: Legacy fallback for death animations in 1.0.2.
-	"FireDieFreeze": "DieFreeze",
-	"FireDieIdle": "DieIdle",
-	"FireDieMove": "DieMove",
-	"FireDieRise": "DieRise",
-	"FireDieFall": "DieFall",
 }
+
+# SkyanUltra: Relatively automated fallback system. This automatically handles all
+# state-based animation fallbacks by defining contexts, what they fallback onto,
+# and which animations make use of them. Basic animations still need to be
+# manually handled on their own, but this should get rid of a LOT of the headache
+# that comes with these different states.
+func set_animation_fallbacks() -> void:
+	var state_contexts = {
+		"Star": "",
+		"Water": "",
+		"Wing": "Water",
+	}
+	var state_anims = [
+		"CrouchAttack", "RunAttack", "WalkAttack", "MoveAttack", "IdleAttack",
+		"SwimAttack", "FlyAttack", "AirAttack", "Kick", "CrouchFall",
+		"CrouchMove", "Crouch", "Skid", "Push", "Run",
+		"Jog", "Walk", "Move", "LookUp", "Idle",
+	]
+	var jump_contexts = {
+		"Spring": "",
+		"Run": "",
+		"Jog": "",
+		"Star": "",
+		"StarSpring": "Star",
+		"StarRun": "Star",
+		"StarJog": "Star",
+	}
+	var jump_anims = [
+		"Fall", "Jump", "JumpFall", "JumpBump",
+	]
+	var death_contexts = {
+		"Fire": ""
+	}
+	var death_anims = [
+		"DieFreeze", "DieIdle", "DieMove", "DieRise", "DieFall",
+	]
+	add_anim_fallbacks(state_contexts, state_anims)
+	add_anim_fallbacks(jump_contexts, jump_anims)
+	add_anim_fallbacks(death_contexts, death_anims)
+
+func add_anim_fallbacks(contexts_dict: Dictionary, anims: Array) -> void:
+	for context in contexts_dict:
+		var fallback_prefix = contexts_dict[context]
+		for anim in anims:
+			ANIMATION_FALLBACKS[context + anim] = fallback_prefix + anim
 #endregion
 
 var palette_transform := true
@@ -621,8 +606,6 @@ static var times_hit := 0
 var can_run := true
 
 var air_frames := 0
-
-var swim_stroke := false
 
 var skid_frames := 0
 
@@ -638,6 +621,7 @@ func _ready() -> void:
 	$Checkpoint/Label.modulate = [Color("5050FF"), Color("F73910"), Color("1A912E"), Color("FFB762")][player_id]
 	$Checkpoint/Label.visible = Global.connected_players > 1
 	character = CHARACTERS[int(Global.player_characters[player_id])]
+	set_animation_fallbacks()
 	apply_character_physics()
 	apply_character_sfx_map()
 	cooldown = false
@@ -770,6 +754,7 @@ func _physics_process(delta: float) -> void:
 			Global.log_comment("NOCLIP Enabled")
 
 	up_direction = -gravity_vector
+	handle_water_detection()
 	handle_collision_shapes()
 	handle_step_collision()
 	handle_directions()
@@ -782,15 +767,16 @@ func _physics_process(delta: float) -> void:
 	air_frames = (air_frames + 1 if is_on_floor() == false else 0)
 	if is_actually_on_ceiling() and can_bump_sfx:
 		bump_ceiling()
-	elif is_actually_on_floor() and not is_invincible:
-		land_on_ground()
+	elif is_actually_on_floor():
+		has_flung = false
 		projectiles_fired_since_left_ground = 0
-		stomp_combo = 0
+		if not is_invincible:
+			land_on_ground()
+			stomp_combo = 0
 	elif actual_velocity_y() > 15:
 		can_bump_sfx = true
 	if not is_actually_on_floor() and not just_landed:
 		can_land_sfx = true
-	handle_water_detection()
 
 const BUBBLE_PARTICLE = preload("uid://bwjae1h1airtr")
 
@@ -839,7 +825,7 @@ func can_fire_projectile():
 func play_animation(animation_name := "", force := false) -> void:
 	if sprite.sprite_frames == null: return
 	animation_name = get_fallback_animation(animation_name)
-	if sprite.scale.x == -1 and sprite.sprite_frames.has_animation("Left" + animation_name):
+	if sprite.scale.x < 0 and sprite.sprite_frames.has_animation("Left" + animation_name):
 		animation_name = "Left" + animation_name
 	if not can_fire_projectile() and sprite.sprite_frames.has_animation(animation_name + "Cooldown"):
 		animation_name = animation_name + "Cooldown"
@@ -945,8 +931,8 @@ func add_stomp_combo(award_score := true) -> void:
 		stomp_combo += 1
 
 func land_on_ground() -> void:
-	landed.emit()
 	if can_land_sfx:
+		landed.emit()
 		AudioManager.play_sfx("land", global_position)
 		just_landed = true
 		can_land_sfx = false
@@ -1035,7 +1021,7 @@ const POWER_PARAM_LIST = {
 }
 
 func handle_projectile_firing(delta: float) -> void:
-	if state_machine.state.name == "Normal":
+	if (state_machine.state.name == "Normal") and not (physics_params("PROJ_TYPE", POWER_PARAMETERS) == ""):
 		if Global.player_action_just_pressed("action", player_id) and can_fire_projectile() and delta > 0:
 			var recoil = calculate_angle_param("PROJ_RECOIL")
 			if recoil:
@@ -1338,13 +1324,13 @@ func set_power_state_frame() -> void:
 		can_pose_castle_anim = frames.has_animation("PoseToad") or frames.has_animation("PosePeach")
 		can_bump_jump_anim = frames.has_animation("JumpBump")
 		can_bump_crouch_anim = frames.has_animation("CrouchBump")
+		can_bump_fling_anim = frames.has_animation("FlingJumpBump")
 		can_bump_swim_anim = frames.has_animation("SwimBump")
 		can_bump_fly_anim = frames.has_animation("FlyBump")
 		can_kick_anim = frames.has_animation("Kick")
 		can_push_anim = frames.has_animation("Push")
 		can_spring_land_anim = frames.has_animation("SpringLand")
 		can_spring_fall_anim = frames.has_animation("SpringFall")
-		
 	$Checkpoint.position.y = physics_params("CHECKPOINT_ICON_HEIGHT", COSMETIC_PARAMETERS)
 func get_power_up(power_name := "", give_points := true) -> void:
 	if is_dead:
