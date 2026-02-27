@@ -126,7 +126,10 @@ func select() -> void:
 	Settings.save_settings()
 	if Global.in_custom_campaign():
 		if Global.custom_campaign_jsons[Global.current_custom_campaign].has("resource_pack"):
-			Global.custom_pack = Global.custom_campaign_jsons[Global.current_custom_campaign].resource_pack
+			var pack = Global.custom_campaign_jsons[Global.current_custom_campaign].get("resource_pack", "")
+			if pack == null:
+				pack = ""
+			Global.custom_pack = pack
 		else:
 			Global.custom_pack = ""
 		Global.current_game_mode = Global.GameMode.CAMPAIGN
@@ -146,6 +149,7 @@ func select() -> void:
 		ResourceSetterNew.clear_cache()
 		ResourceGetter.cache.clear()
 		Global.level_theme_changed.emit()
+		Global.get_node("Transition").hide()
 		for i in 2:
 			await get_tree().process_frame
 		Global.close_freeze()

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="4_85no8"]
 [ext_resource type="Texture2D" uid="uid://3ai0ggxah360" path="res://Assets/Sprites/UI/MenuBorder.png" id="6_25fff"]
 [ext_resource type="Texture2D" uid="uid://26v45a5r1gpd" path="res://Assets/Sprites/UI/AchievementBG.png" id="7_761rq"]
+[ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="7_flkjp"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="7_khc1b"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="8_flkjp"]
 [ext_resource type="AudioStream" uid="uid://cj5eemp85esmq" path="res://Assets/Audio/BGM/Achievements.mp3" id="8_khc1b"]
@@ -159,7 +160,7 @@ axis_stretch_vertical = 2
 script = ExtResource("4_85no8")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="BG" type="TextureRect" parent="BG/Border" unique_id=994027382]
+[node name="BG" type="TextureRect" parent="BG/Border" unique_id=1991451538]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_6w7a6")
 layout_mode = 1
@@ -171,6 +172,8 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("7_761rq")
 stretch_mode = 1
+script = ExtResource("7_flkjp")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="MarginContainer" type="MarginContainer" parent="BG/Border" unique_id=1577698595]
 layout_mode = 1

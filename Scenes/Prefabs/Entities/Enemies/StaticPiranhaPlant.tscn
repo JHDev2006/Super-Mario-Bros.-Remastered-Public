@@ -138,7 +138,7 @@ visuals = NodePath("../RotationJoint/SmokeParticleJoint")
 gib_type = 2
 metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 
-[node name="Node" type="Node" parent="." unique_id=1285741073]
+[node name="RotationStuff" type="Node" parent="." unique_id=1285741073]
 process_mode = 3
 script = SubResource("GDScript_qutrf")
 

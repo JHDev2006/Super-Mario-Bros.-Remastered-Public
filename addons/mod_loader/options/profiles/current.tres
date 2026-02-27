@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bevs2mhkw1isv"]
+
+[ext_resource type="Script" path="res://addons/mod_loader/resources/options_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+enable_mods = true
+log_level = 3
+disabled_mods = []
+steam_workshop_enabled = false
+override_path_to_mods = ""
+override_path_to_configs = ""
+override_path_to_workshop = ""

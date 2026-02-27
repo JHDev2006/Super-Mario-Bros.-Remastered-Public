@@ -51,10 +51,13 @@ func handle_movement(delta: float) -> void:
 	current_speed = abs(owner.velocity.x)
 	if current_speed < move_speed:
 		current_speed = move_speed
-	if owner.is_on_floor():
+	var is_bounced = false if "bounced" not in owner else owner.bounced
+	if owner.is_on_floor() and not is_bounced:
 		current_speed = move_speed
 		if bounce_on_land:
 			owner.velocity.y = bounce_height
+	if owner.is_on_floor() and owner.velocity.y > 0 and is_bounced:
+		owner.bounced = false
 	owner.velocity.x = (current_speed if can_move else 0) * owner.direction
 	owner.move_and_slide()
 

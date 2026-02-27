@@ -18,7 +18,7 @@ shape = SubResource("RectangleShape2D_bxfwm")
 [node name="Projection" parent="." index="4" unique_id=1165185292]
 region_rect = Rect2(0, 8, 24, 8)
 
-[node name="OnOffToggle" parent="." index="6" unique_id=175323262]
+[node name="OnOffToggle" parent="." index="6" unique_id=431716092]
 frame = 1
 region_rect = Rect2(24, 8, 16, 8)
 

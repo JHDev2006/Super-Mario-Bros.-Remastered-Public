@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dlldh5aks0wff" path="res://Assets/Sprites/Editor/GhostTile.png" id="4_xu70c"]
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="6_a0wqs"]
 [ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="7_6pkd4"]
+[ext_resource type="Texture2D" uid="uid://d3w3ydebdoimy" path="res://Assets/Sprites/Editor/PipeOutline.png" id="8_uajdv"]
+[ext_resource type="Script" uid="uid://bbsgktlhfpqad" path="res://Scripts/Classes/Components/EntityRotator.gd" id="9_uir4n"]
 
 [node name="PipeGenerator" type="Node2D" unique_id=1592039539]
 script = ExtResource("1_amwyv")
@@ -50,6 +52,24 @@ metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 [node name="LevelEditorToggleDetection" type="Node" parent="." unique_id=1117170392]
 script = ExtResource("7_6pkd4")
 metadata/_custom_type_script = "uid://b8vmbtoaaq5nc"
+
+[node name="RotationJoint" type="Node2D" parent="." unique_id=1311956937]
+
+[node name="ColorRect" type="Sprite2D" parent="RotationJoint" unique_id=1950665845]
+show_behind_parent = true
+position = Vector2(0, 8)
+texture = ExtResource("8_uajdv")
+
+[node name="EntityRotator" type="Node" parent="." unique_id=1108309235 node_paths=PackedStringArray("rotation_joint")]
+script = ExtResource("9_uir4n")
+rotation_joint = NodePath("../RotationJoint")
+directions = {
+0: 0,
+1: 180,
+2: 270,
+3: 90
+}
+metadata/_custom_type_script = "uid://bbsgktlhfpqad"
 
 [connection signal="timeout" from="Timer" to="." method="on_timeout"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="on_timeout" flags=3]

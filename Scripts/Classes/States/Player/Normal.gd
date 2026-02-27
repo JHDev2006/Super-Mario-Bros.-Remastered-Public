@@ -22,15 +22,17 @@ func enter(_msg := {}) -> void:
 	jump_queued = false
 
 func physics_update(delta: float) -> void:
+	handle_animations()
 	if player.is_actually_on_floor():
 		grounded(delta)
 	else:
 		in_air()
 	handle_movement(delta)
-	handle_animations()
 	handle_death_pits()
 
 func handle_death_pits() -> void:
+	if Warper.warping:
+		return
 	if player.global_position.y > 64 and not Level.in_vine_level and player.auto_death_pit and player.gravity_vector == Vector2.DOWN:
 		player.die(true)
 	elif player.global_position.y < Global.current_level.vertical_height - 32 and player.gravity_vector == Vector2.UP:
@@ -232,7 +234,8 @@ func handle_swimming(delta: float) -> void:
 	if bubble_meter >= 1 and player.flight_meter <= 0 and player.global_position.y >= Global.current_level.vertical_height + 64:
 		player.summon_bubble()
 		bubble_meter = 0
-	swim_up_meter -= delta
+	if swim_up_meter > 0:
+		swim_up_meter -= delta
 	player.skidding = (player.input_direction != player.velocity_direction) and player.input_direction != 0 and abs(player.velocity.x) > 100 and not player.crouching
 	if player.skidding:
 		ground_skid(delta)
@@ -245,8 +248,6 @@ func swim_acceleration(delta: float) -> void:
 	player.velocity.x = move_toward(player.velocity.x, player.physics_params("SWIM_SPEED") * player.input_direction, (player.physics_params("GROUND_WALK_ACCEL") / delta) * delta)
 
 func swim_up() -> void:
-	if player.swim_stroke:
-		player.play_animation("SwimIdle")
 	player.velocity.y = -player.physics_params("SWIM_HEIGHT") * player.gravity_vector.y
 	AudioManager.play_sfx("swim", player.global_position)
 	swim_up_meter = 0.5
@@ -255,14 +256,17 @@ func swim_up() -> void:
 func handle_animations() -> void:
 	var animation = get_animation_name()
 	player.sprite.speed_scale = 1
-	if ["Walk", "Move", "Run", "Jog"].has(animation):
-		player.sprite.speed_scale = abs(player.velocity.x) / player.physics_params("MOVE_ANIM_SPEED_DIV", player.COSMETIC_PARAMETERS)
-		if player.on_ice:
-			player.sprite.speed_scale *= player.physics_params("ICE_SPEED_MOD", player.COSMETIC_PARAMETERS)
-	player.play_animation(animation)
-	if player.sprite.animation == "Move":
-		walk_frame = player.sprite.frame
 	player.sprite.scale.x = player.direction * player.gravity_vector.y
+	for i in ["Walk", "Move", "Run", "Jog"]:
+		if animation.ends_with(i):
+			player.sprite.speed_scale = abs(player.velocity.x) / player.physics_params("MOVE_ANIM_SPEED_DIV", player.COSMETIC_PARAMETERS)
+			if player.on_ice:
+				player.sprite.speed_scale *= player.physics_params("ICE_SPEED_MOD", player.COSMETIC_PARAMETERS)
+			break
+	player.play_animation(animation)
+	var player_anim = player.sprite.animation
+	if player_anim.ends_with("Move") or player_anim.ends_with("Walk") or player_anim.ends_with("Jog") or player_anim.ends_with("Run"):
+		walk_frame = player.sprite.frame
 
 func get_animation_name() -> String:
 	# SkyanUltra: Simplified animation table and optimized nesting.
@@ -274,38 +278,49 @@ func get_animation_name() -> String:
 	var has_flight := player.has_wings
 	var moving := vel_x >= 5 and not on_wall
 	var pushing := player.input_direction != 0 and on_wall
-	var running: float = vel_x >= player.physics_params("RUN_SPEED") - 10
+	var running: bool = vel_x >= player.physics_params("RUN_SPEED") - 10
+	var jogging: bool = vel_x > player.physics_params("WALK_SPEED") and not running
 	var run_jump: bool = abs(player.velocity_x_jump_stored) >= player.physics_params("RUN_SPEED") - 10
+	var jog_jump: bool = abs(player.velocity_x_jump_stored) > player.physics_params("WALK_SPEED") and not running
 
 	var state_context := ""
-	if player.in_water: state_context = "Water"
+	if player.has_star: state_context = "Star"
+	elif player.in_water: state_context = "Water"
 	elif has_flight: state_context = "Wing"
 
 	var state = func(anim_name: String) -> String:
-		return state_context + anim_name
+		if player.sprite.sprite_frames.has_animation(state_context + anim_name):
+			return state_context + anim_name
+		return anim_name
 
 	var jump_context := ""
 	if player.has_spring_jumped: jump_context = "Spring"
-	elif player.has_star: jump_context = "Star"
 	elif run_jump: jump_context = "Run"
+	elif jog_jump: jump_context = "Jog"
+	if player.has_star: jump_context = "Star" + jump_context
 	
 	var jump = func(anim_name: String) -> String:
-		return jump_context + anim_name
+		if player.sprite.sprite_frames.has_animation(state_context + anim_name):
+			return jump_context + anim_name
+		return anim_name
 
 	# --- Attack Animations ---
 	if player.attacking:
 		if player.crouching:
-			return "CrouchAttack"
+			return state.call("CrouchAttack")
 		if on_floor:
 			if player.skidding:
 				return "SkidAttack"
-			if player.in_water:
-				return "SwimAttack"
-			if has_flight:
-				return "FlyAttack"
 			if moving:
-				return "RunAttack" if running else "WalkAttack"
-			return "IdleAttack"
+				if running:
+					return state.call("RunAttack")
+				elif jogging and player.sprite.sprite_frames.has_animation(state.call("JogAttack")):
+					return state.call("JogAttack")
+				elif player.sprite.sprite_frames.has_animation(state.call("WalkAttack")):
+					return state.call("WalkAttack")
+				else:
+					return state.call("MoveAttack")
+			return state.call("IdleAttack")
 		else:
 			if player.in_water:
 				return "SwimAttack"
@@ -322,7 +337,7 @@ func get_animation_name() -> String:
 		if player.bumping and player.can_bump_crouch_anim:
 			return "CrouchBump"
 		if airborne:
-			return "CrouchFall" if vel_y >= 0 else "CrouchJump"
+			return state.call("CrouchFall") if vel_y >= 0 else "CrouchJump"
 		if moving:
 			return state.call("CrouchMove")
 		return state.call("Crouch")
@@ -332,18 +347,18 @@ func get_animation_name() -> String:
 		if player.spring_bouncing and player.can_spring_land_anim:
 			return "SpringLand"
 		if player.skidding:
-			return "Skid"
-		if pushing and player.can_push_anim:
+			return state.call("Skid")
+		if pushing and player.sprite.sprite_frames.has_animation(state.call("Push")):
 			return state.call("Push")
 		if moving:
-			if state_context != "":
-				return state.call("Move")
 			if running:
-				return "Run"
-			elif abs(vel_x) > player.physics_params("WALK_SPEED") and player.sprite.sprite_frames.has_animation("Jog"):
-				return "Jog"
+				return state.call("Run")
+			elif jogging and player.sprite.sprite_frames.has_animation(state.call("Jog")):
+				return state.call("Jog")
+			elif player.sprite.sprite_frames.has_animation(state.call("Walk")):
+				return state.call("Walk")
 			else:
-				return "Walk"
+				return state.call("Move")
 		# Idle States
 		if player.looking_up:
 			return state.call("LookUp")
@@ -351,16 +366,16 @@ func get_animation_name() -> String:
 
 	# --- Airborne Animations ---
 	if player.in_water:
+		if player.bumping and player.can_bump_swim_anim:
+			return "SwimBump"
 		if swim_up_meter > 0:
-			if player.bumping and player.can_bump_swim_anim:
-				return "SwimBump"
 			return "SwimUp"
 		return "SwimIdle"
 
 	if has_flight:
+		if player.bumping and player.can_bump_fly_anim:
+			return "FlyBump"
 		if swim_up_meter > 0:
-			if player.bumping and player.can_bump_fly_anim:
-				return "FlyBump"
 			return "FlyUp"
 		return "FlyIdle"
 
@@ -369,13 +384,12 @@ func get_animation_name() -> String:
 			return jump.call("JumpBump")
 		if vel_y < 0:
 			return jump.call("Jump")
-		else:
-			return jump.call("JumpFall")
+		return jump.call("JumpFall")
 	else:
 		# guzlad: Fixes characters with fall anims not playing them, but also prevents old characters without that anim not being accurate
-		if not player.sprite.sprite_frames.has_animation("Fall"):
+		if not player.sprite.sprite_frames.has_animation(jump.call("Fall")):
 			player.sprite.frame = walk_frame
-		return "Fall"
+		return jump.call("Fall")
 
 func exit() -> void:
 	owner.skidding = false

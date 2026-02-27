@@ -50,3 +50,10 @@ body:
     attributes:
       label: "Screenshots"
       description: "If applicable, add screenshots to help explain the bug."
+
+  - type: textarea
+    id: crashlog
+    attributes:
+      label: "Crash Log"
+      description: "If it's a crash, please can you copy paste a crash log containing the crash, these can be found in the same directory as resource packs, custom levels, saves, etc\n```%AppData%/Roaming/SMB1R/logs/godot.log``` / ```local/share/SMB1R/logs/godot.log```."
+      render: shell

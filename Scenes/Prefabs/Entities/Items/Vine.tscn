@@ -3,16 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://ck2ac2a266r6i" path="res://Assets/Sprites/Items/Vine.png" id="1_pfdri"]
 [ext_resource type="AudioStream" uid="uid://bdm8wm7vy4r12" path="res://Assets/Audio/SFX/VineAppear.wav" id="2_ap2o3"]
 [ext_resource type="Script" uid="uid://cxtvy2qolon2f" path="res://Scripts/Classes/Entities/Items/Vine.gd" id="2_tlgk1"]
-[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ni768"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="3_e75m7"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="4_cmcye"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="4_m01lk"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Vine.json" id="4_q1cik"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_ohmvf"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="7_e75m7"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="9_e75m7"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ohmvf"]
-atlas = ExtResource("1_pfdri")
-region = Rect2(0, 0, 16, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ap2o3"]
 resource_local_to_scene = true
@@ -28,7 +24,6 @@ radius = 4.0
 
 [sub_resource type="GDScript" id="GDScript_ohmvf"]
 script/source = "extends Node
-@onready var visuals: NinePatchRect = $\"../Visuals\"
 @onready var collision: CollisionShape2D = $\"../Hitbox/Collision\"
 
 func _physics_process(delta: float) -> void:
@@ -36,7 +31,9 @@ func _physics_process(delta: float) -> void:
 		handle_sizing()
 
 func handle_sizing() -> void:
-	visuals.size.y = owner.length * 16
+	%Middle.position.y = %Top.position.y + 8
+	%Middle.size.y = abs(%Top.global_position.y - %Bottom.global_position.y) - 16
+	%Bottom.position.y = owner.length * 16 - 16
 	collision.shape.size.y = owner.length * 16
 	collision.position.y = collision.shape.size.y / 2
 "
@@ -44,32 +41,38 @@ func handle_sizing() -> void:
 [node name="Vine" type="Node2D" unique_id=1927177956]
 z_index = -5
 script = ExtResource("2_tlgk1")
+top_point = -99999
 can_tele = false
 
-[node name="Visuals" type="NinePatchRect" parent="." unique_id=338275435]
+[node name="Visuals" type="Node2D" parent="." unique_id=1356050465]
+
+[node name="Top" type="Sprite2D" parent="Visuals" unique_id=478949018]
+unique_name_in_owner = true
+texture = ExtResource("1_pfdri")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+script = ExtResource("3_e75m7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
+
+[node name="Middle" type="NinePatchRect" parent="Visuals" unique_id=302753971]
+unique_name_in_owner = true
 offset_left = -8.0
-offset_top = -8.0
+offset_top = 8.0
 offset_right = 8.0
 offset_bottom = 8.0
-pivot_offset = Vector2(8, 8)
-texture = SubResource("AtlasTexture_ohmvf")
-patch_margin_top = 8
-patch_margin_bottom = 8
+texture = ExtResource("1_pfdri")
+region_rect = Rect2(0, 16, 16, 16)
 axis_stretch_vertical = 1
+script = ExtResource("4_cmcye")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
-[node name="ResourceSetterNew" type="Node" parent="Visuals" unique_id=1311715829 node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("3_ni768")
-node_to_affect = NodePath("..")
-property_name = "texture"
-mode = 1
-resource_json = ExtResource("4_q1cik")
-metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
-[node name="CeilingCheck" type="RayCast2D" parent="Visuals" unique_id=699406085]
+[node name="Bottom" type="Sprite2D" parent="Visuals" unique_id=915739104]
 unique_name_in_owner = true
-position = Vector2(8, 16)
-target_position = Vector2(0, -8)
-collision_mask = 2
+texture = ExtResource("1_pfdri")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
+script = ExtResource("3_e75m7")
+metadata/_custom_type_script = "uid://364rywt44hy6"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1558826366]
 position = Vector2(-8, -8)
@@ -105,6 +108,12 @@ script = SubResource("GDScript_ohmvf")
 script = ExtResource("9_e75m7")
 properties = Array[String](["length"])
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[node name="CeilingCheck" type="RayCast2D" parent="." unique_id=699406085]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+target_position = Vector2(0, -8)
+collision_mask = 2
 
 [connection signal="area_exited" from="Hitbox" to="." method="on_area_exited"]
 [connection signal="player_entered" from="WarpHitbox" to="." method="on_player_entered"]

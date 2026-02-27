@@ -51,5 +51,6 @@ properties_force_selector = Dictionary[String, PackedScene]({
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
 [connection signal="total_reached" from="." to="SignalExposer" method="emit_pulse"]
+[connection signal="visibility_changed" from="." to="." method="on_visibility_changed"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="increment"]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="increment"]

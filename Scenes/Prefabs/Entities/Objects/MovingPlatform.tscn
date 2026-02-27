@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dpdrrkqtcedgm" path="res://Assets/Sprites/Tilesets/DottedLine.png" id="7_vsshs"]
 [ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="8_5vlu6"]
 [ext_resource type="Texture2D" uid="uid://dfpbjnd1o5tig" path="res://Assets/Sprites/Tilesets/OnOffPlatform.png" id="9_ni7i0"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="10_dkrgw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svgdm"]
 resource_local_to_scene = true
@@ -84,7 +85,7 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 script = ExtResource("8_5vlu6")
 metadata/_custom_type_script = "uid://b8vmbtoaaq5nc"
 
-[node name="OnOffToggle" type="Sprite2D" parent="." unique_id=175323262]
+[node name="OnOffToggle" type="Sprite2D" parent="." unique_id=431716092]
 visible = false
 position = Vector2(0, 4)
 texture = ExtResource("9_ni7i0")
@@ -92,5 +93,7 @@ hframes = 2
 frame = 1
 region_enabled = true
 region_rect = Rect2(24, 0, 16, 8)
+script = ExtResource("10_dkrgw")
+metadata/_custom_type_script = "uid://364rywt44hy6"
 
 [connection signal="level_start" from="LevelEditorToggleDetection" to="." method="_ready"]

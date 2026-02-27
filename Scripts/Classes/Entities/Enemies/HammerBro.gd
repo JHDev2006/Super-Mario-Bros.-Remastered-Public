@@ -5,7 +5,14 @@ var jump_direction := 0
 
 @export var auto_charge := false
 
+var modern = Settings.file.gameplay.hammer_bro_style == 1
+
+var old_direction := 1
 var charging := false
+var charge_timer := 10 if modern else 50
+var charge_speed := 50 if modern else 32
+var hammer_timer := 1.0 if modern else 0.133
+var hammer_held_timer = 0.5 if modern else 0.233
 
 var wall_jump := false
 var target_player: Player = null
@@ -13,12 +20,13 @@ const HAMMER = preload("res://Scenes/Prefabs/Entities/Items/Hammer.tscn")
 
 func _ready() -> void:
 	$MovementAnimations.play("Movement")
-	$Timer.start()
+	$Timer.start(charge_timer)
 	$JumpTimer.start()
-	$HammerTimer.start()
+	$HammerTimer.start(hammer_timer)
 
 func _process(delta: float) -> void:
 	target_player = get_tree().get_first_node_in_group("Players")
+	old_direction = direction
 	direction = sign(target_player.global_position.x - global_position.x)
 
 	$MovementJoint/Sprite.scale.x = direction
@@ -29,7 +37,11 @@ func _physics_process(delta: float) -> void:
 	if charging and target_player != null:
 		if is_on_wall() and is_on_floor():
 			jump(true)
-		velocity.x = 50 * direction
+		velocity.x = charge_speed * direction
+		if old_direction != direction and not modern:
+			charging = false
+			$MovementAnimations.play("Movement")
+			$Timer.start(charge_timer)
 	else:
 		velocity.x = 0
 	move_and_slide()
@@ -62,23 +74,33 @@ func jump(wall := false) -> void:
 	$JumpTimer.start(randf_range(1, 5))
 
 func do_hammer_throw() -> void:
-	for i in randi_range(1, 6):
-		await throw_hammer()
-		await get_tree().create_timer(0.25, false).timeout
-	$HammerTimer.start(randf_range(2, 5))
+	if modern:
+		for i in randi_range(1, 6):
+			await throw_hammer()
+			await get_tree().create_timer(0.25, false).timeout
+		$HammerTimer.start(randf_range(2, 5))
+	else:
+		if randi_range(1, 4) == 1:
+			await throw_hammer()
+		$HammerTimer.start(hammer_timer)
 
 func throw_hammer() -> void:
 	$MovementJoint/Sprite/Hammer.show()
+	if not modern: $HammerHitbox/Shape.disabled = false
 	$MovementJoint/Sprite.play("Hammer")
-	await get_tree().create_timer(0.5, false).timeout
+	await get_tree().create_timer(hammer_held_timer, false).timeout
 	spawn_hammer()
 	$MovementJoint/Sprite.play("Idle")
+	if not modern: $HammerHitbox/Shape.disabled = true
 	$MovementJoint/Sprite/Hammer.hide()
 
 func spawn_hammer() -> void:
 	var node = HAMMER.instantiate()
+	if not modern:
+		node.MOVE_SPEED = 64
+		node.GRAVITY = 4
 	node.global_position = $MovementJoint/Sprite/Hammer.global_position
-	node.velocity.y = -200
+	node.velocity.y = -200 if modern else -100
 	node.direction = direction
 	if Settings.file.audio.extra_sfx == 1:
 		AudioManager.play_sfx("hammer_throw", global_position)
@@ -90,7 +112,6 @@ func spawn_hammer() -> void:
 func charge() -> void:
 	charging = true
 	$MovementAnimations.play("RESET")
-
 
 func on_screen_entered() -> void:
 	if auto_charge:

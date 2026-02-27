@@ -57,6 +57,12 @@ func reset_values() -> void:
 	Global.coins = 0
 	if Global.current_game_mode == Global.GameMode.CHALLENGE:
 		return
+	if Global.current_game_mode == Global.GameMode.MARATHON:
+		Global.level_num = 1
+		Global.world_num = 1
+		Global.custom_level_idx = 0
+		SpeedrunHandler.timer = 0
+		SpeedrunHandler.paused_time = 0
 	match Settings.file.difficulty.game_over_behaviour:
 		0:
 			Global.level_num = 1

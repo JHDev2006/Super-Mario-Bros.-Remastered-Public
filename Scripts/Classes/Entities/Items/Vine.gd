@@ -5,7 +5,6 @@ extends Node2D
 
 const SPEED := 32.0
 @onready var collision: CollisionShape2D = $Hitbox/Collision
-@onready var visuals: NinePatchRect = $Visuals
 @onready var hitbox: Area2D = $Hitbox
 
 
@@ -23,10 +22,13 @@ var can_grow := false
 func _ready() -> void:
 	if cutscene and Global.level_editor_is_editing() == false:
 		do_cutscene()
+	else:
+		if Global.current_level != null:
+			top_point = Global.current_level.vertical_height - 48
 	if has_meta("block_item"):
 		$SFX.play()
 		can_grow = true
-		global_position.y -= 1
+		global_position.y += 8
 
 func do_cutscene() -> void:
 	Level.in_vine_level = true
@@ -39,6 +41,7 @@ func do_cutscene() -> void:
 	can_stop = true
 	for i: Player in get_tree().get_nodes_in_group("Players"):
 		i.global_position = Vector2(global_position.x, 64)
+		i.recenter_camera()
 		i.hide()
 		i.auto_death_pit = false
 		i.state_machine.transition_to("Freeze")
@@ -67,7 +70,9 @@ func do_cutscene() -> void:
 func _physics_process(delta: float) -> void:
 	if global_position.y >= top_point and can_grow:
 		global_position.y -= SPEED * delta
-		visuals.size.y += SPEED * delta
+		%Middle.position.y = %Top.position.y + 8
+		%Bottom.position.y += SPEED * delta
+		%Middle.size.y = abs(%Top.global_position.y - %Bottom.global_position.y) - 1
 		collision.shape.size.y += SPEED * delta
 		collision.position.y += (SPEED / 2) * delta
 		if %CeilingCheck.is_colliding() and not cutscene:
@@ -92,17 +97,18 @@ func handle_player_interaction(delta: float) -> void:
 				i.owner.state_machine.transition_to("Climb", {"Vine": self})
 			elif i.owner.state_machine.state.name == "Climb" and global_position.y >= top_point and can_grow:
 				i.owner.global_position.y -= SPEED * delta
+			if i.global_position.y <= top_point + 16:
+				on_player_entered(i.owner)
 
 
 func on_player_entered(_player: Player) -> void:
-	print(can_tele)
 	if can_tele == false:
 		return
 	Level.vine_return_level = Global.current_level.scene_file_path
 	if Global.level_editor_is_playtesting():
 		CoinHeavenWarpPoint.subarea_return = Global.level_editor.sub_level_id
 		Global.level_editor.transition_to_sublevel(CoinHeavenWarpPoint.subarea_to_warp_to)
-	elif Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
+	elif Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL or Global.in_custom_campaign(Global.current_campaign):
 		Global.transition_to_scene(NewLevelBuilder.sub_levels[CoinHeavenWarpPoint.subarea_to_warp_to])
 	else:
 		Global.transition_to_scene(Level.vine_warp_level)

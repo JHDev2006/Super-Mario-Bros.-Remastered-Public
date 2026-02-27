@@ -107,7 +107,7 @@ func _enter_tree() -> void:
 	else:
 		level_id = Global.level_num
 		world_id = Global.world_num
-	if Settings.file.difficulty.back_scroll == 1 and Global.current_game_mode != Global.GameMode.CUSTOM_LEVEL:
+	if Settings.file.gameplay.back_scroll == 1 and Global.current_game_mode != Global.GameMode.CUSTOM_LEVEL:
 		can_backscroll = true
 	first_load = false
 	if Global.connected_players > 1:

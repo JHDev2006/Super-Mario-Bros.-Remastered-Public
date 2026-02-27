@@ -115,7 +115,7 @@ func _exit_tree() -> void:
 	AudioManager.kill_sfx("score")
 
 func level_finished() -> void:
-	if Global.world_num != 8 && Global.level_num != 4:
+	if !(Global.world_num == 8 && Global.level_num == 4):
 		SaveManager.visited_levels[SaveManager.get_level_idx(Global.world_num, Global.level_num) + 1] = "1"
 	Global.score += (combo_amount * 500)
 	combo_meter = 100

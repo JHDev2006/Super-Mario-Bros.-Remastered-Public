@@ -26,7 +26,9 @@ func respawn() -> void:
 	can_fall = true
 	falling = false
 	global_position = starting_position
+	$Sprite.scale = Vector2.ZERO
 	$AnimationPlayer.play("Grow")
+	reset_physics_interpolation()
 
 
 func on_player_entered() -> void:

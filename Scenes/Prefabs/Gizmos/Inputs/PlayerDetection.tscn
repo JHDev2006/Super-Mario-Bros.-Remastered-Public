@@ -15,6 +15,11 @@ script = ExtResource("2_00yji")
 size_x = 1
 size_y = 1
 type = 0
+detect_items = true
+detect_shells = true
+detect_blocks = true
+detect_projectiles = true
+detect_physics_objs = true
 
 [node name="Sprite2D" parent="." index="0" unique_id=1224179792]
 texture = ExtResource("2_1x2ni")

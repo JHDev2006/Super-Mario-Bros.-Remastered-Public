@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3heyyx506fnu" path="res://Scripts/Classes/Entities/Objects/Track.gd" id="1_5apin"]
 [ext_resource type="Texture2D" uid="uid://50hm4xgnw8ks" path="res://Assets/Sprites/Tilesets/Tracks.png" id="1_jn31b"]
 [ext_resource type="PackedScene" uid="uid://4gxhnql5bjk6" path="res://Scenes/Prefabs/Entities/Objects/TrackPiece.tscn" id="2_4k6gi"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="3_hxi2f"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="4_kxiuq"]
 [ext_resource type="PackedScene" uid="uid://byv4sv3cayrmo" path="res://Scenes/Prefabs/Editor/EditorProperties/TilePropertyTrackPath.tscn" id="5_ivm63"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="6_r3crv"]
@@ -20,19 +21,23 @@ physics_interpolation_mode = 2
 z_index = -20
 script = ExtResource("1_5apin")
 
-[node name="Point" type="Sprite2D" parent="." unique_id=62342976]
+[node name="Point" type="Sprite2D" parent="." unique_id=1237301472]
 texture = ExtResource("1_jn31b")
 hframes = 2
 frame = 1
 region_enabled = true
 region_rect = Rect2(0, 16, 32, 16)
+script = ExtResource("3_hxi2f")
+metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[node name="End" type="Sprite2D" parent="." unique_id=1437832407]
+[node name="End" type="Sprite2D" parent="." unique_id=1379707574]
 texture = ExtResource("1_jn31b")
 hframes = 2
 frame = 1
 region_enabled = true
 region_rect = Rect2(0, 16, 32, 16)
+script = ExtResource("3_hxi2f")
+metadata/_custom_type_script = "uid://364rywt44hy6"
 
 [node name="Pieces" type="Node2D" parent="." unique_id=66185304]
 show_behind_parent = true

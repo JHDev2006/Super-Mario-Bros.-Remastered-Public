@@ -100,7 +100,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Introduction" unique_id=534263787]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "INTRODUCTION"
+text = "GUIDE_INTRO_TITLE"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Introduction/Title" unique_id=1227336600]
@@ -131,12 +131,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Introduction/ScrollContainer/VBoxContainer" unique_id=496830112]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Welcome to the level editor!
-
-Although this may seem a bit complex, the editor itself, is quite simple to understand. It's not as polished or seamless as Super Mario Maker, but it gets the job done, and can actually do some extra things aswell if you know what you're doing!
-Feel free to take your time, reading through all the features the editor has to offer.
-
-If you ever need to open this guide again, simply press this icon in the tile menu. "
+text = "GUIDE_INTRO_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -149,7 +144,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Introduction/ScrollContainer/VBoxContainer" unique_id=727954813]
 layout_mode = 2
 size_flags_vertical = 3
-text = "HAVE FUN!"
+text = "GUIDE_INTRO_TEXT2"
 horizontal_alignment = 1
 autowrap_mode = 2
 uppercase = true
@@ -161,7 +156,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Controls" unique_id=1987339254]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Controls"
+text = "GUIDE_CONTROL_TITLE"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Controls/Title" unique_id=250393058]
@@ -192,7 +187,7 @@ size_flags_vertical = 3
 [node name="Heading" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Controls/ScrollContainer/VBoxContainer" unique_id=493315102]
 layout_mode = 2
 size_flags_vertical = 0
-text = "PLACING / REMOVING TILES"
+text = "GUIDE_CONTROL_SEC1"
 horizontal_alignment = 1
 autowrap_mode = 2
 uppercase = true
@@ -211,7 +206,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_1mv3v")
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Controls/ScrollContainer/VBoxContainer" unique_id=227857286]
 layout_mode = 2
 size_flags_vertical = 1
-text = "To place tiles, simply use left click, you can hold down left click, and drag the mouse around, to use it as a brush. to remove tiles, simply use right click."
+text = "GUIDE_CONTROL_SEC1_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -222,7 +217,7 @@ layout_mode = 2
 [node name="Heading2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Controls/ScrollContainer/VBoxContainer" unique_id=37648190]
 layout_mode = 2
 size_flags_vertical = 0
-text = "CAMERA"
+text = "GUIDE_CONTROL_SEC2"
 horizontal_alignment = 1
 autowrap_mode = 2
 uppercase = true
@@ -241,7 +236,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_1mv3v")
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Controls/ScrollContainer/VBoxContainer" unique_id=1743356377]
 layout_mode = 2
 size_flags_vertical = 1
-text = "You can move the camera around using WASD, and speed up the movement of it by holding down SHIFT."
+text = "GUIDE_CONTROL_SEC2_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -252,7 +247,7 @@ layout_mode = 2
 [node name="Heading3" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Controls/ScrollContainer/VBoxContainer" unique_id=1485532421]
 layout_mode = 2
 size_flags_vertical = 0
-text = "PLAYING LEVEL / MOVING PLAYER"
+text = "GUIDE_CONTROL_SEC3"
 horizontal_alignment = 1
 autowrap_mode = 2
 uppercase = true
@@ -271,9 +266,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_1mv3v")
 [node name="Label3" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Controls/ScrollContainer/VBoxContainer" unique_id=1816581500]
 layout_mode = 2
 size_flags_vertical = 1
-text = "To playtest your level, simply press ENTER, To return to the editor, press Enter Again.
-
-If you want to move the players starting position, simply press SHIFT + MIDDLE CLICK Or press M."
+text = "GUIDE_CONTROL_SEC3_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -284,7 +277,7 @@ layout_mode = 2
 [node name="Heading4" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Controls/ScrollContainer/VBoxContainer" unique_id=1481737604]
 layout_mode = 2
 size_flags_vertical = 0
-text = "ACTION MENU"
+text = "GUIDE_CONTROL_SEC4"
 horizontal_alignment = 1
 autowrap_mode = 2
 uppercase = true
@@ -303,7 +296,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_1mv3v")
 [node name="Label4" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Controls/ScrollContainer/VBoxContainer" unique_id=120941645]
 layout_mode = 2
 size_flags_vertical = 1
-text = "In the top left of the screen, you can see a small cogwheel icon, if you click it, it will reveal lots of options to you, which can help in making / testing levels. These include completely resetting a level, undo, redo, toggling the tile grid, toggling a player trail, and showing gizmos while playtesting a level, to better debug issues."
+text = "GUIDE_CONTROL_SEC4_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -318,7 +311,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/TileMenu" unique_id=322793091]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Tile Menu"
+text = "GUIDE_TILEMEN_TITLE"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/TileMenu/Title" unique_id=1377783004]
@@ -349,11 +342,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/TileMenu/ScrollContainer/VBoxContainer" unique_id=229518099]
 layout_mode = 2
 size_flags_vertical = 1
-text = "When pressing E, you can open up the tile menu! this is the main place where you will be choosing which objects to place in your level. It should all be fairly basic, but theres a few hidden features you may not know about.
-
-If an option in the menu has a small + in the corner, it means it contains multiple different tiles within. Use the scroll wheel or R/T keys when hovering over it, to choose other tiles inside.
-
-When hovering over an option, if the nametag contains \"...\" at the bottom, it has a readable description, which you can view by holding SHIFT. This can provide useful context on certain objects, and how to use them."
+text = "GUIDE_TILEMEN_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -364,7 +353,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/ModifyingTiles" unique_id=1848735960]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Modifying Tiles"
+text = "GUIDE_TILEMOD_TITLE"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/ModifyingTiles/Title" unique_id=824613877]
@@ -395,7 +384,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/ModifyingTiles/ScrollContainer/VBoxContainer" unique_id=264407336]
 layout_mode = 2
 size_flags_vertical = 1
-text = "YOU CAN EDIT THE PROPERTIES OF VARIOUS OBJECTS, BY SHIFT + LEFT CLICKING THEM. THIS WILL OPEN UP A MENU, WHICH ALLOWS YOU TO EDIT ALL THE VARIOUS PROPERTIES AVAILABLE, TO CLOSE THE MENU SIMPLY PRESS E."
+text = "GUIDE_TILEMOD_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -405,7 +394,7 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/MassPlacing" unique_id=353803534]
 layout_mode = 2
-text = "MASS PLACING / REMOVING"
+text = "GUIDE_MASSPL_TITLE"
 horizontal_alignment = 1
 autowrap_mode = 2
 uppercase = true
@@ -438,7 +427,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/MassPlacing/ScrollContainer/VBoxContainer" unique_id=549098254]
 layout_mode = 2
 size_flags_vertical = 1
-text = "IF YOU NEED TO PLACE OUT OR REMOVE A LARGE AREA OF A SINGLE OBJECT, YOU CAN DO SO, BY SIMPLY HOLDING DOWN CTRL, AND DRAGGING OUT AN AREA USING EITHER LEFT OR RIGHT CLICK, TO PLACE OR REMOVE AN AREA QUICKLY."
+text = "GUIDE_MASSPL_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -449,7 +438,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Layers" unique_id=2094957857]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "LAYERS"
+text = "GUIDE_LAYERS_TITLE"
 horizontal_alignment = 1
 uppercase = true
 
@@ -481,9 +470,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Layers/ScrollContainer/VBoxContainer" unique_id=1504448045]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Each Level has up to 5 layers, which you can use to place anything inside of. Layers are ordered from front-most to back-most (Layer 1 is Front, Layer 5 is Back). You can change layers by using the Page UP and Page DOWN keys, or by using CTRL+UP or CTRL+DOWN Arrows.
-
-Some objects take advantage of the layers, such as with the Track Rider object, which will attach any object that is placed either ontop of it, or behind it, on a different layer. Some Gizmos which detect certain objects may also only detect objects which are on the same layer as it, allowing you to easily filter certain objects."
+text = "GUIDE_LAYERS_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -494,7 +481,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Pipes" unique_id=1810516894]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "PIPES"
+text = "GUIDE_PIPES_TITLE"
 horizontal_alignment = 1
 uppercase = true
 
@@ -526,15 +513,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Pipes/ScrollContainer/VBoxContainer" unique_id=1700765133]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Pipes are a bit tricky to understand, however they can be fairly simple once you grasp the main ideas of how they work.
-
-To start, Pipes ARE NOT \"All-in-one\" objects like they are in Mario Maker. Pipes are instead defined by their tiles, and the objects placed near them.
-
-In the tile menu, you can see LOTS of different pipe tiles you can place down, however these themselves do not create a \"Pipe\" and are purely visual. To create a proper \"Pipe\" you can enter, you will need a \"Pipe Area\" object, which you can place somewhere to make that area behave like a pipe. This means that you can create a pipe anywhere, without actually needing to place down the tiles.
-
-You can link two pipes together using their \"ID's\", having a Pipe with an ID of 1 will ALWAYS go to another pipe, with the same ID.
-
-HOWEVER, it is important to note, that pipes that can be exited from, MUST be set to be \"Exit Only\". If you want to make a pipe exit AND enterable, simply place another PipeArea object, in a different layer."
+text = "GUIDE_PIPES_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -546,7 +525,7 @@ mouse_filter = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Warps" unique_id=1420602824]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "WARPS"
+text = "GUIDE_WARPS_TITLE"
 horizontal_alignment = 1
 uppercase = true
 
@@ -580,9 +559,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Warps/ScrollContainer/VBoxContainer" unique_id=1313978819]
 layout_mode = 2
 size_flags_vertical = 1
-text = "When dealing with warping between rooms, its important to make sure that the objects you want to use, are sync'd up via the same channel.
-
-Doors and Pipes use seperate channels, and can only be connected to objects of the same type (Pipes cannot be connected to doors, and vice versa)"
+text = "GUIDE_WARPS_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -594,7 +571,7 @@ mouse_filter = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/MultiSelect" unique_id=944613446]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "MULTI-SELECTING"
+text = "GUIDE_MULTSEL_TITLE"
 horizontal_alignment = 1
 uppercase = true
 
@@ -628,19 +605,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/MultiSelect/ScrollContainer/VBoxContainer" unique_id=536638273]
 layout_mode = 2
 size_flags_vertical = 1
-text = "You can select multiple objects on a single layer at once, to either cut, copy, or save as a blueprint.
-
-To do so, simply hold down Q and Left Click, and drag out the area you want to select.
-
-Once done so, the selected area will be highlighted in yellow, and you can then either copy, cut or save, depending on which keys you press.
-
-CTRL+C: Copy
-CTRL+X: Cut
-CTRL+S: Save as blueprint.
-
-When an area has been either cut or copied, it will be saved to the clipboard, allowing you to paste it in, using CTRL+V.
-
-If you choose to save it as a blueprint, a popup window will show, allowing you to name your file, which can then be found in the blueprints tab, of the tile menu."
+text = "GUIDE_MULTSEL_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -652,7 +617,7 @@ mouse_filter = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Blueprints" unique_id=755105338]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "BLUEPRINTS"
+text = "GUIDE_BLUPRNT_TITLE"
 horizontal_alignment = 1
 uppercase = true
 
@@ -686,11 +651,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Blueprints/ScrollContainer/VBoxContainer" unique_id=418703518]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Blueprints allow you to easily save schematics of what you have built, to allow you to easily re-use them or share designs with others. 
-
-When saving a blueprint, it gets saved as a .mbp file, which you can then share with others, to allow them to easily use your designs in their levels.
-
-Blueprints also save any connections to other objects in that blueprint, so feel free to use them as an easy way, to create powerful, modular systems for your levels!"
+text = "GUIDE_BLUPRNT_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -702,7 +663,7 @@ mouse_filter = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Gizmos" unique_id=350295352]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "GIZMOS"
+text = "GUIDE_GIZMO_TITLE"
 horizontal_alignment = 1
 uppercase = true
 
@@ -736,15 +697,7 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Gizmos/ScrollContainer/VBoxContainer" unique_id=131142232]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Gizmos are powerful objects which allow you make levels more dynamic, interactive and fun. They're essentially a collection of small objects, that you can connect to each other, using a basic \"Input Output\" system.
-
-You can start a connection through the modifier menu of the object, and then clicking the + button, next to its \"Connections\", from there, you can just click on whatever it is you want to connect it to.
-
-NOTE: its important to know that the direction you connect things is important. Connecting Object 1 to Object 2, does NOT mean that Object 2 is connected back to Object 1, that is a seperate connection you would have to make.
-
-Gizmos can either turn on or off, or emit a pulse, which is a small one-off signal. Depending on what recieves these signals, and what type it is, different things will happen!
-
-Other \"Non-Gizmo\" objects can be connected too, and can have extra functionality, when connected, so go explore and find out whats possible!"
+text = "GUIDE_GIZMO_TEXT"
 autowrap_mode = 2
 uppercase = true
 
@@ -756,7 +709,7 @@ mouse_filter = 2
 [node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts" unique_id=228459325]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Shortcuts"
+text = "GUIDE_BINDS_TITLE"
 horizontal_alignment = 1
 uppercase = true
 
@@ -794,14 +747,14 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Playtest" unique_id=6378477]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "PLAYTEST LEVEL"
+text = "GUIDE_BINDS_SEC1"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Playtest" unique_id=733718213]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-ENTER"
+text = "GUIDE_BINDS_SEC1_BIND"
 
 [node name="MovePlayer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=39355267]
 layout_mode = 2
@@ -810,20 +763,20 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/MovePlayer" unique_id=848797447]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "MOVE PLAYER"
+text = "GUIDE_BINDS_SEC2"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/MovePlayer" unique_id=1295215434]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-SHIFT+MMB"
+text = "GUIDE_BINDS_SEC2_BIND"
 
 [node name="Label3" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/MovePlayer" unique_id=414616460]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-M"
+text = "GUIDE_BINDS_SEC2_BIND2"
 
 [node name="Mass" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=124952941]
 layout_mode = 2
@@ -832,14 +785,14 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Mass" unique_id=1735365422]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "MASS PLACE / REMOVE TILES"
+text = "GUIDE_BINDS_SEC3"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Mass" unique_id=1556195567]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-CTRL+(LMB/RMB)"
+text = "GUIDE_BINDS_SEC3_BIND"
 
 [node name="QuickConnect" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=2056487763]
 layout_mode = 2
@@ -848,14 +801,14 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/QuickConnect" unique_id=423964165]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "QUICK CONNECT"
+text = "GUIDE_BINDS_SEC4"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/QuickConnect" unique_id=1404313629]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-SPACE"
+text = "GUIDE_BINDS_SEC4_BIND"
 
 [node name="Layers" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=1216118397]
 layout_mode = 2
@@ -864,14 +817,14 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Layers" unique_id=1244093481]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "CHANGE LAYERS"
+text = "GUIDE_BINDS_SEC5"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Layers" unique_id=2112056530]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-PG UP/PG DWN"
+text = "GUIDE_BINDS_SEC5_BIND"
 
 [node name="Undo" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=534906599]
 layout_mode = 2
@@ -880,14 +833,14 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Undo" unique_id=821882751]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "UNDO"
+text = "GUIDE_BINDS_SEC6"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Undo" unique_id=1563888934]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-CTRL+Z"
+text = "GUIDE_BINDS_SEC6_BIND"
 
 [node name="Redo" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=2030242674]
 layout_mode = 2
@@ -896,20 +849,20 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Redo" unique_id=151158579]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "REDO"
+text = "GUIDE_BINDS_SEC7"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Redo" unique_id=1073700124]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-CTRL+SHIFT+Z"
+text = "GUIDE_BINDS_SEC7_BIND"
 
 [node name="Label3" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Redo" unique_id=1037728360]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-CTRL+Y"
+text = "GUIDE_BINDS_SEC7_BIND2"
 
 [node name="Select Area" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=359561996]
 layout_mode = 2
@@ -918,14 +871,14 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Select Area" unique_id=2082139146]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "SELECT AREA"
+text = "GUIDE_BINDS_SEC8"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Select Area" unique_id=1164425302]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-Q+LMB"
+text = "GUIDE_BINDS_SEC8_BIND"
 
 [node name="Inspect" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=1256476094]
 layout_mode = 2
@@ -934,14 +887,14 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Inspect" unique_id=1863164497]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "INSPECT TILE"
+text = "GUIDE_BINDS_SEC9"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Inspect" unique_id=1985233691]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-SHIFT+LMB"
+text = "GUIDE_BINDS_SEC9_BIND"
 
 [node name="Copy Tile" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=1335549727]
 layout_mode = 2
@@ -950,14 +903,14 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Copy Tile" unique_id=1002631427]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "COPY"
+text = "GUIDE_BINDS_SEC10"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Copy Tile" unique_id=919193339]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-CTRL+C"
+text = "GUIDE_BINDS_SEC10_BIND"
 
 [node name="Paste Tile" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=1948784746]
 layout_mode = 2
@@ -966,14 +919,14 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Paste Tile" unique_id=1271023517]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "PASTE"
+text = "GUIDE_BINDS_SEC11"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Paste Tile" unique_id=39311597]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-CTRL+V"
+text = "GUIDE_BINDS_SEC11_BIND"
 
 [node name="Cut" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=980188570]
 layout_mode = 2
@@ -982,14 +935,14 @@ theme_override_constants/separation = -4
 [node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Cut" unique_id=1133027333]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "CUT"
+text = "GUIDE_BINDS_SEC12"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Cut" unique_id=1585068134]
 modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
-text = "-CTRL+X"
+text = "GUIDE_BINDS_SEC12_BIND"
 
 [node name="Control" type="Control" parent="MarginContainer" unique_id=1093481027]
 layout_mode = 2

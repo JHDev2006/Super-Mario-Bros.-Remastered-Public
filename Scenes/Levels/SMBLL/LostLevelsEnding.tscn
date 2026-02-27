@@ -1,5 +1,4 @@
 [gd_scene format=4 uid="uid://b0omfelsiothx"]
-
 [ext_resource type="Script" uid="uid://caugelxhwlvl0" path="res://Scripts/Parts/LostLevelsEnding.gd" id="1_qmhaw"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Ending.json" id="2_k7rel"]
 [ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="4_fxsfu"]
@@ -13,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://cnxudoanlx4ua" path="res://Assets/Sprites/Tilesets/LLEnding.png" id="11_xoqts"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="13_k7rel"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/ToadNPC.json" id="14_ecp1v"]
-
 [sub_resource type="Animation" id="Animation_xoqts"]
 resource_name = "Appear"
 length = 5.0
@@ -113,7 +111,6 @@ tracks/7/keys = {
 "update": 1,
 "values": [false, true]
 }
-
 [sub_resource type="Animation" id="Animation_wr0ye"]
 length = 0.001
 tracks/0/type = "value"
@@ -212,13 +209,11 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k7rel"]
 _data = {
 &"Appear": SubResource("Animation_xoqts"),
 &"RESET": SubResource("Animation_wr0ye")
 }
-
 [sub_resource type="Animation" id="Animation_ecp1v"]
 resource_name = "Main"
 length = 50.0
@@ -297,7 +292,6 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-
 [sub_resource type="Animation" id="Animation_1flm1"]
 length = 0.001
 tracks/0/type = "value"
@@ -348,21 +342,17 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3n3sl"]
 _data = {
 &"Main": SubResource("Animation_ecp1v"),
 &"RESET": SubResource("Animation_1flm1")
 }
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_xoqts"]
 atlas = ExtResource("11_iab5g")
 region = Rect2(32, 0, 16, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_wr0ye"]
 atlas = ExtResource("11_iab5g")
 region = Rect2(48, 0, 16, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_k7rel"]
 animations = [{
 "frames": [{
@@ -376,7 +366,6 @@ animations = [{
 "name": &"Talk",
 "speed": 5.0
 }]
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wr0ye"]
 texture = ExtResource("11_xoqts")
 4:5/0 = 0
@@ -385,10 +374,8 @@ texture = ExtResource("11_xoqts")
 5:7/0 = 0
 5:5/0 = 0
 4:7/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_k7rel"]
 sources/0 = SubResource("TileSetAtlasSource_wr0ye")
-
 [node name="LostLevelsEnding" type="Node" unique_id=1711187041]
 script = ExtResource("1_qmhaw")
 music = ExtResource("2_k7rel")
@@ -397,39 +384,31 @@ campaign = "SMBLL"
 world_id = 8
 level_id = 4
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=83495059]
 position = Vector2(0, -88)
 process_callback = 0
-
 [node name="DayBG" parent="." unique_id=449221343 instance=ExtResource("10_iab5g")]
 modulate = Color(1, 1, 1, 0)
 primary_layer = 1
-
 [node name="LevelBG" parent="." unique_id=1219104107 instance=ExtResource("10_iab5g")]
 time_of_day = 1
 primary_layer = 1
-
 [node name="ResourceSetter" parent="LevelBG/SkyLayer/Sky" parent_id_path=PackedInt32Array(1219104107, 1567232516) index="0" unique_id=1448806414]
 force_properties = {
 "Time": "Night"
 }
-
 [node name="ResourceSetter" parent="LevelBG/PrimaryLayer/Bush" parent_id_path=PackedInt32Array(1219104107, 1658473420) index="0" unique_id=653505830]
 process_mode = 3
 force_properties = {
 "Time": "Night"
 }
-
 [node name="Bush2" type="Sprite2D" parent="LevelBG/PrimaryLayer" parent_id_path=PackedInt32Array(1219104107, 2091922489) index="2" unique_id=1523297300]
 process_mode = 1
 position = Vector2(0, -512)
 texture = ExtResource("5_wr0ye")
 centered = false
-
 [node name="Node2D" type="Node2D" parent="." unique_id=623444826]
 position = Vector2(0, 1)
-
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Node2D" unique_id=895567798 node_paths=PackedStringArray("resource_setter")]
 sprite_frames = ExtResource("4_fxsfu")
 animation = &"Idle"
@@ -437,27 +416,20 @@ offset = Vector2(0, 1)
 script = ExtResource("4_tkq3a")
 resource_setter = NodePath("ResourceSetterNew")
 metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
-
 [node name="ResourceSetterNew" type="Node" parent="Node2D/PlayerSprite" unique_id=1449914842]
 script = ExtResource("13_k7rel")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="DropShadow" parent="." unique_id=1100264371 instance=ExtResource("6_g1x38")]
 z_as_relative = false
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1375737612]
-
 [node name="TextAnimation" type="AnimationPlayer" parent="." unique_id=937665763]
 libraries/ = SubResource("AnimationLibrary_k7rel")
 speed_scale = 0.5
-
 [node name="MainSequence" type="AnimationPlayer" parent="." unique_id=1651003073]
 libraries/ = SubResource("AnimationLibrary_3n3sl")
 autoplay = &"Main"
-
 [node name="Peach" parent="." unique_id=780318776 instance=ExtResource("9_k7rel")]
 position = Vector2(-8, -1)
-
 [node name="ThankYou" type="Label" parent="." unique_id=1388092997]
 visible = false
 visibility_layer = 2
@@ -469,9 +441,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "CUTSCENE_CASTLE_PEACH_1"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="Text2" type="Node2D" parent="." unique_id=1055138343]
-
 [node name="PeaceIsPaved" type="Label" parent="Text2" unique_id=1750923006]
 visible = false
 visibility_layer = 2
@@ -485,7 +455,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_1"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="KingdomSaved" type="Label" parent="Text2" unique_id=1582907932]
 visible = false
 visibility_layer = 2
@@ -500,7 +469,6 @@ text = "CUTSCENE_LL_PEACH_2"
 horizontal_alignment = 1
 uppercase = true
 visible_characters_behavior = 1
-
 [node name="Hurrah" type="Label" parent="Text2" unique_id=205532848]
 visible = false
 visibility_layer = 2
@@ -514,7 +482,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "hurrah to  mario"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="Hero" type="Label" parent="Text2" unique_id=1941219545]
 visible = false
 visibility_layer = 2
@@ -528,7 +495,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "our only hero"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="EndsTrip" type="Label" parent="Text2" unique_id=1844608071]
 visible = false
 visibility_layer = 2
@@ -542,7 +508,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_5"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="LongFriendship" type="Label" parent="Text2" unique_id=1962399239]
 visible = false
 visibility_layer = 2
@@ -556,7 +521,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_6"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="PointsAdded" type="Label" parent="Text2" unique_id=867146543]
 visible = false
 visibility_layer = 2
@@ -570,7 +534,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_7"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="ForEachLife" type="Label" parent="Text2" unique_id=1097964573]
 visible = false
 visibility_layer = 2
@@ -584,9 +547,7 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_8"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="Toads" type="Node" parent="." unique_id=2088456219]
-
 [node name="1" type="AnimatedSprite2D" parent="Toads" unique_id=53468523]
 visible = false
 position = Vector2(-88, -16)
@@ -594,14 +555,12 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/1" unique_id=1706761699 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="2" type="AnimatedSprite2D" parent="Toads" unique_id=1218612190]
 visible = false
 position = Vector2(-64, -16)
@@ -609,14 +568,12 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/2" unique_id=1980938916 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="3" type="AnimatedSprite2D" parent="Toads" unique_id=2095503278]
 visible = false
 position = Vector2(-40, -16)
@@ -624,14 +581,12 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/3" unique_id=1569870405 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="4" type="AnimatedSprite2D" parent="Toads" unique_id=310052237]
 visible = false
 position = Vector2(-16, -16)
@@ -639,14 +594,12 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/4" unique_id=1762184883 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="5" type="AnimatedSprite2D" parent="Toads" unique_id=1424507602]
 visible = false
 position = Vector2(40, -16)
@@ -654,14 +607,12 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/5" unique_id=1137761362 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="6" type="AnimatedSprite2D" parent="Toads" unique_id=1722656019]
 visible = false
 position = Vector2(64, -16)
@@ -669,14 +620,12 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/6" unique_id=622120433 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="7" type="AnimatedSprite2D" parent="Toads" unique_id=1356185919]
 visible = false
 position = Vector2(88, -16)
@@ -684,22 +633,18 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/7" unique_id=54691425 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=589209533]
 z_index = -50
 repeat_size = Vector2(256, 512)
 repeat_times = 8
-
 [node name="TileMapLayer" type="TileMapLayer" parent="Parallax2D" unique_id=111629799]
 tile_map_data = PackedByteArray("AAD4/wAAAAAFAAUAAAD5/wAAAAAEAAUAAAD6/wAAAAAFAAUAAAD7/wAAAAAEAAUAAAD8/wAAAAAFAAUAAAD9/wAAAAAEAAUAAAD+/wAAAAAFAAUAAAD//wAAAAAEAAUAAAAAAAAAAAAFAAUAAAABAAAAAAAEAAUAAAACAAAAAAAFAAUAAAADAAAAAAAEAAUAAAAEAAAAAAAFAAUAAAAFAAAAAAAEAAUAAAAGAAAAAAAFAAUAAAAHAAAAAAAEAAUAAAD4/wEAAAAFAAYAAAD5/wEAAAAEAAYAAAD6/wEAAAAFAAYAAAD7/wEAAAAEAAYAAAD8/wEAAAAFAAYAAAD9/wEAAAAEAAYAAAD+/wEAAAAFAAYAAAD//wEAAAAEAAYAAAAAAAEAAAAFAAYAAAABAAEAAAAEAAYAAAACAAEAAAAFAAYAAAADAAEAAAAEAAYAAAAEAAEAAAAFAAYAAAAFAAEAAAAEAAYAAAAGAAEAAAAFAAYAAAAHAAEAAAAEAAYAAAA=")
 tile_set = SubResource("TileSet_k7rel")
-
 [editable path="DayBG"]
 [editable path="LevelBG"]

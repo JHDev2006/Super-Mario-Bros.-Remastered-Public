@@ -100,6 +100,9 @@ func spawn_empty_block() -> void:
 		get_parent().erase_cell(get_parent().local_to_map(position))
 	queue_free()
 
+func emit_hit_signal() -> void:
+	block_hit.emit()
+
 func destroy() -> void:
 	block_destroyed.emit()
 	DiscoLevel.combo_meter += combo_meter_amount

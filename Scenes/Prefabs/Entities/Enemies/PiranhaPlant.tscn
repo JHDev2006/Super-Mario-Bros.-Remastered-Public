@@ -61,6 +61,9 @@ property_name = "sprite_frames"
 resource_json = ExtResource("6_tmwyr")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
+[node name="SecondQuestReplacer" parent="." index="5" unique_id=1574329925]
+properties = Array[String](["pipe_direction"])
+
 [node name="GibSpawner" parent="." index="6" unique_id=1065734456 node_paths=PackedStringArray("visuals")]
 visuals = NodePath("../RotationJoint/PositionJoint/SmokePoint")
 gib_type = 1

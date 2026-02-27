@@ -44,7 +44,7 @@ const SAVE_TEMPLATE := {
 	],
 	"HighScore": 0,
 	"ExtraWorldWin": false,
-	"CurrentQuest": 1
+	"SecondQuest": false
 }
 
 
@@ -110,6 +110,7 @@ func write_save(campaign: String = Global.current_campaign, force := false) -> v
 			pass
 	if Global.current_game_mode == Global.GameMode.DISCO:
 		save_json["Ranks"] = DiscoLevel.level_ranks
+		save_json["LevelsVisited"] = visited_levels
 	write_save_to_file(save_json, path)
 
 func write_save_to_file(json := {}, path := "") -> void:

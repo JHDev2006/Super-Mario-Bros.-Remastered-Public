@@ -364,7 +364,7 @@ offset_top = -8.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Created by JoeMama"
+text = "CREDITS_CREATOR"
 horizontal_alignment = 1
 uppercase = true
 metadata/time = 2
@@ -386,7 +386,7 @@ offset_left = 8.0
 offset_top = 16.0
 offset_right = 112.0
 offset_bottom = 32.0
-text = "Tile Artists"
+text = "CREDITS_TILES"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/TileArtists/Label" unique_id=413502125]
@@ -553,7 +553,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 104.0
 offset_bottom = 32.0
-text = "BG ARTISTS"
+text = "CREDITS_BGS"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/BGArtists/Label" unique_id=1916951870]
@@ -699,7 +699,7 @@ offset_left = 16.0
 offset_top = 8.0
 offset_right = 128.0
 offset_bottom = 24.0
-text = "ENEMY, PLAYER, NPC ARTISTS"
+text = "CREDITS_ENEMIES"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/EnemyArtists/Label" unique_id=371901040]
@@ -888,7 +888,7 @@ offset_left = 8.0
 offset_top = 112.0
 offset_right = 112.0
 offset_bottom = 128.0
-text = "Level Design"
+text = "CREDITS_LEVELS"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/LevelDesign/Label" unique_id=1385727988]
@@ -1047,7 +1047,7 @@ offset_left = 8.0
 offset_top = 56.0
 offset_right = 136.0
 offset_bottom = 72.0
-text = "UI DESIGN + ART"
+text = "CREDITS_UI"
 horizontal_alignment = 1
 uppercase = true
 
@@ -1110,7 +1110,7 @@ offset_left = 8.0
 offset_top = 16.0
 offset_right = 96.0
 offset_bottom = 32.0
-text = "LSS BANNER + ICON"
+text = "CREDITS_LSSART"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/LevelDesign/Label3" unique_id=568309226]
@@ -1172,7 +1172,7 @@ offset_left = 8.0
 offset_top = 16.0
 offset_right = 88.0
 offset_bottom = 32.0
-text = "Composers"
+text = "CREDITS_OST"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/Sound/Label" unique_id=1108875636]
@@ -1276,7 +1276,7 @@ offset_left = 8.0
 offset_top = 112.0
 offset_right = 48.0
 offset_bottom = 128.0
-text = "SFXs"
+text = "CREDITS_SFX"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/Sound/Label2" unique_id=221115915]
@@ -1401,7 +1401,7 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 104.0
 offset_bottom = 24.0
-text = "localizers"
+text = "CREDITS_LOCALE"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/Localizers/Label" unique_id=8788557]
@@ -1851,7 +1851,7 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 112.0
 offset_bottom = 24.0
-text = "Beta Testers"
+text = "CREDITS_TESTERS"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/BetaTesters/Label" unique_id=601599773]
@@ -2168,7 +2168,7 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 144.0
 offset_bottom = 32.0
-text = "Beta Testers..."
+text = "CREDITS_TESTERS2"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/BetaTesters2/Label" unique_id=1910113220]
@@ -2398,7 +2398,7 @@ offset_top = 8.0
 offset_right = 80.0
 offset_bottom = 24.0
 grow_horizontal = 2
-text = "GITHUB CONTRIBUTORS"
+text = "CREDITS_GITHUB"
 uppercase = true
 
 [node name="HSeparator" type="HSeparator" parent="Labels/Github/Label3" unique_id=436724697]
@@ -2965,7 +2965,7 @@ offset_right = 56.0
 offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Special Thanks"
+text = "CREDITS_SPECIAL"
 horizontal_alignment = 1
 uppercase = true
 
@@ -3045,8 +3045,7 @@ uppercase = true
 
 [node name="Label10" type="Label" parent="Labels/SpecialThanks/Label/HFlowContainer" unique_id=1587600019]
 layout_mode = 2
-text = "
-...and you!"
+text = "CREDITS_SPECIAL_PLAYER"
 uppercase = true
 
 [node name="MadeWith" type="Control" parent="Labels" unique_id=634566690]
@@ -3074,7 +3073,7 @@ offset_right = 40.0
 offset_bottom = -88.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Made With"
+text = "CREDITS_MADEWITH"
 horizontal_alignment = 1
 uppercase = true
 
@@ -3129,7 +3128,7 @@ offset_top = 17.0
 offset_right = 68.0
 offset_bottom = 33.0
 grow_horizontal = 2
-text = "original game by"
+text = "CREDITS_MADEWITH_NIN"
 horizontal_alignment = 1
 uppercase = true
 
@@ -3182,7 +3181,7 @@ offset_top = -8.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Thank you for Playing! :)"
+text = "CREDITS_THANKYOU"
 horizontal_alignment = 1
 uppercase = true
 
@@ -3194,7 +3193,7 @@ anchor_bottom = 1.0
 offset_top = -16.0
 offset_right = 168.0
 grow_vertical = 0
-text = "Press Any To Skip..."
+text = "CREDITS_SKIP"
 uppercase = true
 
 [node name="LabelFontChanger" type="Node" parent="." unique_id=1386281980 node_paths=PackedStringArray("labels")]

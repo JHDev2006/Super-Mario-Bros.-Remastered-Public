@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	if cam_move and $Camera.global_position.x < Player.camera_right_limit:
 		$Camera.global_position.x += 96 * delta
 	$Camera.global_position.x = clamp($Camera.global_position.x, -INF, Player.camera_right_limit)
-	if (is_instance_valid(%Invalid)):
+	if (get_node_or_null("Invalid") != null):
 		%Invalid.visible = not ConditionalClear.valid
 
 func deactivate_all_generators() -> void:

@@ -1,5 +1,4 @@
 extends Control
-@onready var cursor: TextureRect = %Cursor
 
 var selected_index := 0
 

@@ -80,8 +80,8 @@ const BLANK_FILE := {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
 static var level_file = {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
 
 var current_layer := 0
-@onready var tile_layer_nodes: Array[TileMapLayer] = [%TileLayer1, %TileLayer2, %TileLayer3, %TileLayer4, %TileLayer5]
-@onready var entity_layer_nodes := [%EntityLayer1, %EntityLayer2, %EntityLayer3, %EntityLayer4, %EntityLayer5]
+@onready var tile_layer_nodes: Array[TileMapLayer] = [null, null, null, null, null]
+@onready var entity_layer_nodes := [null, null, null, null, null]
 
 var copied_node: Node = null
 var copied_tile_offset := Vector2.ZERO
@@ -260,6 +260,7 @@ func open_save_dialog() -> void:
 func stop_testing() -> void:
 	if current_state == EditorState.IDLE:
 		return
+	current_state = EditorState.IDLE
 	cleanup()
 	return_to_editor.call_deferred()
 
@@ -300,8 +301,7 @@ func play_level() -> void:
 	level.apply_resolution_enforcement()
 	level.inf_time_check()
 	level_start.emit()
-	if gizmos_visible == false:
-		get_tree().call_group("Gizmos", "hide")
+	get_tree().call_group("Gizmos", "set_visible", gizmos_visible)
 	get_tree().call_group("Players", "editor_level_start")
 	save_current_level()
 	level.process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -446,9 +446,9 @@ func handle_tile_cursor() -> void:
 		if Input.is_action_just_pressed("scroll_down"):
 			selected_tile_index += 1
 
-		if Input.is_action_just_pressed("ui_copy") and pasting_area == false:
+		if Input.is_action_just_pressed("ui_copy") and pasting_area == false and not multi_selecting:
 			copy_tile(tile_position, current_layer)
-		elif Input.is_action_just_pressed("ui_cut") and pasting_area == false:
+		elif Input.is_action_just_pressed("ui_cut") and pasting_area == false and not multi_selecting:
 			copy_tile(tile_position, current_layer)
 			remove_tile(tile_position, current_layer)
 		elif Input.is_action_pressed("ui_paste"):
@@ -715,6 +715,7 @@ func copy_tile(tile_position := Vector2i.ZERO, layer_num := current_layer) -> vo
 			copied_tile_info = [tile_layer_nodes[layer_num].get_cell_source_id(tile_position)]
 	if copied_node != null:
 		copied_area = {}
+
 func replace_area(top_corner := Vector2i.ZERO, layer_num := current_layer, area := {}, delete_empty := true) -> void:
 	if delete_empty:
 		for i in area["Empty"].split("="):
@@ -1109,6 +1110,7 @@ func load_level(level_id := 0) -> void:
 	else:
 		save_current_level()
 		node.process_mode = ProcessMode.PROCESS_MODE_PAUSABLE
+		await get_tree().physics_frame
 		get_tree().call_group("Players", "editor_level_start")
 
 func convert_scenes_to_nodes() -> void:
