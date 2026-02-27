@@ -209,6 +209,7 @@ func setup_visuals() -> void:
 			continue
 		var level_theme = Global.LEVEL_THEMES[Global.current_campaign][Global.world_num - 1]
 		visited_levels = (SaveManager.visited_levels.substr((Global.world_num - 1) * 4, 4))
+		print(visited_levels)
 		var level_visited = SaveManager.visited_levels[SaveManager.get_level_idx(Global.world_num, idx + 1)] != "0" or Global.debug_mode
 		var cur_level = LEVEL_ICONS[Global.current_campaign][Global.world_num - 1][idx]
 		var cur_icon = ICON_LOCKED if not level_visited else ICON_NIGHT if cur_level[0] == "night" else ICON_DAY

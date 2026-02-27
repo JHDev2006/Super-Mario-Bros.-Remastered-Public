@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="3_7kkwh"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="4_855jj"]
 [ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="5_7kkwh"]
+[ext_resource type="PackedScene" uid="uid://cxrx8ogihsuad" path="res://Scenes/Prefabs/Editor/EditorProperties/TilePropertyFloatRangeSpin.tscn" id="6_et032"]
 
 [node name="BaseOutput" type="Node2D" unique_id=515746201 groups=["Gizmos"]]
 process_mode = 3
@@ -46,6 +47,9 @@ one_shot = true
 [node name="EditorPropertyExposer" type="Node" parent="." unique_id=1294009337]
 script = ExtResource("4_855jj")
 properties = Array[String](["duration", "loop"])
+properties_force_selector = Dictionary[String, PackedScene]({
+"duration": ExtResource("6_et032")
+})
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
 [node name="LevelEditorToggleDetection" type="Node" parent="." unique_id=544234059]

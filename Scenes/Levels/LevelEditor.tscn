@@ -3505,6 +3505,7 @@ type = 1
 icon_texture = ExtResource("40_62ull")
 icon_region_override = Rect2(8, 16, 16, 16)
 entity_id = "AP"
+metadata/can_be_stored = true
 
 [node name="BowserBro" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers" unique_id=1279044637 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 1
@@ -3516,6 +3517,7 @@ type = 1
 icon_texture = ExtResource("59_kxvns")
 icon_region_override = Rect2(8, 16, 16, 16)
 entity_id = "B9"
+metadata/can_be_stored = false
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers" unique_id=858983895]
 layout_mode = 1

@@ -36,7 +36,7 @@ var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
 var ROM_PATH = config_path.path_join("baserom.nes")
 var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
 const ROM_PACK_NAME := "BaseAssets"
-const ROM_ASSETS_VERSION := 3
+const ROM_ASSETS_VERSION := 4
 
 var server_version := -1
 var current_version := -1
@@ -726,3 +726,7 @@ func _input(event: InputEvent) -> void:
 			# because "input may come in part way through a physics tick"
 			# https://github.com/godotengine/godot/blob/2327a823578a30f09068f97272598521896d5633/core/input/input.cpp#L1025
 			physics_multibind_pressed_buttons[action] = Engine.get_physics_frames() + 1
+
+func warper_cooldown() -> void:
+	await get_tree().create_timer(1, false).timeout
+	Warper.can_warp = true

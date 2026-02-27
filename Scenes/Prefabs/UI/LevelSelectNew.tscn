@@ -921,6 +921,7 @@ process_material = SubResource("ParticleProcessMaterial_gxb4q")
 layout_mode = 2
 
 [node name="Cursor" type="Control" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4" unique_id=1764243599]
+visible = false
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
