@@ -741,15 +741,15 @@ func editor_level_start() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug_reload"):
+	if Global.multibind_action_just_pressed("debug_reload"):
 		set_power_state_frame()
 
 	# guzlad: noclip without dev only works while playtesting.
-	if (Input.is_action_just_pressed("debug_noclip") or Input.is_action_just_pressed("jump_0")) and ((Global.debug_mode) or (Global.level_editor_is_playtesting())):
+	if (Global.multibind_action_just_pressed("debug_noclip") or Global.multibind_action_just_pressed("jump_0")) and ((Global.debug_mode) or (Global.level_editor_is_playtesting())):
 		if state_machine.is_state("NoClip"):
 			state_machine.transition_to("Normal")
 			Global.log_comment("NOCLIP Disabled")
-		elif !Input.is_action_just_pressed("jump_0") and !state_machine.is_state("NoClip"):
+		elif !Global.multibind_action_just_pressed("jump_0") and !state_machine.is_state("NoClip"):
 			state_machine.transition_to("NoClip")
 			Global.log_comment("NOCLIP Enabled")
 

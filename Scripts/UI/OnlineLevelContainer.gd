@@ -28,7 +28,7 @@ func _ready() -> void:
 	setup_visuals()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept") and visible:
+	if Global.multibind_action_just_pressed("ui_accept") and visible:
 		level_selected.emit(self)
 
 func setup_visuals() -> void:

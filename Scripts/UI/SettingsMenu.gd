@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 	
 	for i in [%LeftArrow, %RightArrow]:
 		i.modulate.a = int(current_container.selected_index == -1)
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		$CanvasLayer.hide()
 	for i in containers.size():
 		containers[i].active = category_index == i and active
@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 		i.active = false
 	if category_select_active and active and can_move:
 		handle_inputs()
-	if Input.is_action_just_pressed("ui_back") and active and current_container.can_input and can_move:
+	if Global.multibind_action_just_pressed("ui_back") and active and current_container.can_input and can_move:
 		close()
 
 func show_physics_warning(value := 0) -> void:
@@ -53,12 +53,12 @@ func show_physics_warning(value := 0) -> void:
 
 func handle_inputs() -> void:
 	var direction := 0
-	if Input.is_action_just_pressed("ui_left"):
+	if Global.multibind_action_just_pressed("ui_left"):
 		category_index -= 1
 		direction = -1
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")
-	if Input.is_action_just_pressed("ui_right"):
+	if Global.multibind_action_just_pressed("ui_right"):
 		category_index += 1
 		direction += 1
 		if Settings.file.audio.extra_sfx == 1:

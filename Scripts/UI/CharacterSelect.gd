@@ -91,13 +91,13 @@ func open() -> void:
 	active = true
 
 func handle_input() -> void:
-	if Input.is_action_just_pressed("ui_left"):
+	if Global.multibind_action_just_pressed("ui_left"):
 		selected_index = wrap(selected_index - 1, 0, Player.CHARACTERS.size())
 		update_sprites()
-	elif Input.is_action_just_pressed("ui_right"):
+	elif Global.multibind_action_just_pressed("ui_right"):
 		selected_index = wrap(selected_index + 1, 0, Player.CHARACTERS.size())
 		update_sprites()
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		Global.player_characters[player_id] = (selected_index)
 		var characters := Global.player_characters
 		for i in characters:
@@ -107,7 +107,7 @@ func handle_input() -> void:
 		Settings.save_settings()
 		selected.emit()
 		close()
-	elif Input.is_action_just_pressed("ui_back"):
+	elif Global.multibind_action_just_pressed("ui_back"):
 		close()
 		cancelled.emit()
 

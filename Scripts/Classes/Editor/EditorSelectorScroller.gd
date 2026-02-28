@@ -36,10 +36,10 @@ func handle_inputs() -> void:
 			break
 	if not hovered:
 		return
-	if Input.is_action_just_pressed("scroll_up"):
+	if Global.multibind_action_just_pressed("scroll_up"):
 		selected_index += 1
 		warp_mouse(get_local_mouse_position())
-	if Input.is_action_just_pressed("scroll_down"):
+	if Global.multibind_action_just_pressed("scroll_down"):
 		selected_index -= 1
 		warp_mouse(get_local_mouse_position())
 	selected_index = clamp(selected_index, 0, selectors.size() - 1)

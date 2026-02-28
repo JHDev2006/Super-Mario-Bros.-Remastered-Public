@@ -64,7 +64,7 @@ func play_music() -> void:
 		can_menu = true
 
 func _process(_delta: float) -> void:
-	if can_menu and Input.is_action_just_pressed("jump_0"):
+	if can_menu and Global.multibind_action_just_pressed("jump_0"):
 		can_menu = false
 		peach_level_exit()
 

@@ -268,12 +268,12 @@ func update_pb() -> void:
 
 func handle_input() -> void:
 	selected_level = clamp(selected_level, 0, 3)
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		if visited_levels[selected_level] == "0" and selected_level != 0 and not Global.debug_mode:
 			AudioManager.play_sfx("bump")
 		else:
 			select_world()
-	elif Input.is_action_just_pressed("ui_back"):
+	elif Global.multibind_action_just_pressed("ui_back"):
 		close()
 		cleanup()
 		cancelled.emit()

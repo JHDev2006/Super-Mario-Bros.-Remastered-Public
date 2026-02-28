@@ -41,11 +41,11 @@ func set_selected(active := false) -> void:
 
 func handle_inputs() -> void:
 	var old := selected_index
-	if Input.is_action_just_pressed("ui_left"):
+	if Global.multibind_action_just_pressed("ui_left"):
 		selected_index -= 1
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")
-	if Input.is_action_just_pressed("ui_right"):
+	if Global.multibind_action_just_pressed("ui_right"):
 		selected_index += 1
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")

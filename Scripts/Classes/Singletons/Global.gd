@@ -193,6 +193,9 @@ var custom_campaign_jsons := {}
 
 var level_sequence_captured := false
 
+var process_multibind_pressed_buttons: Dictionary[StringName, int] = {}
+var physics_multibind_pressed_buttons: Dictionary[StringName, int] = {}
+
 func _ready() -> void:
 	if is_snapshot: 
 		get_build_time()
@@ -264,7 +267,7 @@ func check_for_rom() -> void:
 			OS.move_to_trash(ROM_ASSETS_PATH)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug_reload"):
+	if multibind_action_just_pressed("debug_reload"):
 		ResourceSetter.cache.clear()
 		ResourceSetterNew.clear_cache()
 		ResourceGetter.cache.clear()
@@ -277,7 +280,7 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ALT) and Input.is_key_pressed(KEY_4):
 		get_tree().quit()
 	
-	if Input.is_action_just_pressed("toggle_fps_count"):
+	if multibind_action_just_pressed("toggle_fps_count"):
 		%FPSCount.visible = !%FPSCount.visible
 	%FPSCount.text = str(int(Engine.get_frames_per_second())) + " FPS"
 
@@ -287,7 +290,7 @@ func _process(delta: float) -> void:
 		debug_mode = true
 		log_comment("Debug Mode enabled! some bugs may occur!")
 		
-	if Input.is_action_just_pressed("ui_screenshot"):
+	if multibind_action_just_pressed("ui_screenshot"):
 		take_screenshot()
 
 func take_screenshot() -> void:
@@ -351,7 +354,7 @@ func player_action_pressed(action := "", player_id = 0) -> bool:
 func player_action_just_pressed(action := "", player_id = 0) -> bool:
 	if SpeedrunHandler.simulating_inputs:
 		player_id = "s"
-	return Input.is_action_just_pressed(action + "_" + str(player_id))
+	return multibind_action_just_pressed(action + "_" + str(player_id))
 
 func player_action_just_released(action := "", player_id = 0) -> bool:
 	if SpeedrunHandler.simulating_inputs:
@@ -703,6 +706,26 @@ func nice_json_format(json_string := "") -> String:
 					json_string = json_string.insert(i + 2, "\t")
 					i += 1
 	return json_string
+
+# Like Input.is_action_just_pressed, but it allows pressing
+# a button while another bind for it is already pressed.
+func multibind_action_just_pressed(action: StringName) -> bool:
+	if Engine.is_in_physics_frame():
+		return physics_multibind_pressed_buttons.get(action, -1) \
+			== Engine.get_physics_frames()
+	return process_multibind_pressed_buttons.get(action, -1) \
+		== Engine.get_process_frames()
+
+func _input(event: InputEvent) -> void:
+	if not event.is_action_type() or not event.is_pressed():
+		return
+	for action in InputMap.get_actions():
+		if event.is_action_pressed(action):
+			process_multibind_pressed_buttons[action] = Engine.get_process_frames()
+			# Add 1 physics frame, like Godot also does,
+			# because "input may come in part way through a physics tick"
+			# https://github.com/godotengine/godot/blob/2327a823578a30f09068f97272598521896d5633/core/input/input.cpp#L1025
+			physics_multibind_pressed_buttons[action] = Engine.get_physics_frames() + 1
 
 func warper_cooldown() -> void:
 	await get_tree().create_timer(1, false).timeout

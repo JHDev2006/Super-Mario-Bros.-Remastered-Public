@@ -18,7 +18,7 @@ func _ready() -> void:
 		%Progress.modulate = Color("FFB259")
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_back"):
+	if Global.multibind_action_just_pressed("ui_back"):
 		Global.transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
 
 func spawn_achievement_containers() -> void:

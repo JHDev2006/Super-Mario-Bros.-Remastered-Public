@@ -12,16 +12,16 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if active:
-		if Input.is_action_just_pressed("ui_down"):
+		if Global.multibind_action_just_pressed("ui_down"):
 			selected_index += 1
-		elif Input.is_action_just_pressed("ui_up"):
+		elif Global.multibind_action_just_pressed("ui_up"):
 			selected_index -= 1
 		selected_index = clamp(selected_index, 0, 1)
-		if Input.is_action_just_pressed("ui_accept"):
+		if Global.multibind_action_just_pressed("ui_accept"):
 			SpeedrunHandler.is_warp_run = bool(selected_index)
 			selected.emit()
 			close()
-		elif Input.is_action_just_pressed("ui_back"):
+		elif Global.multibind_action_just_pressed("ui_back"):
 			cancelled.emit()
 			close()
 	var idx := 0
