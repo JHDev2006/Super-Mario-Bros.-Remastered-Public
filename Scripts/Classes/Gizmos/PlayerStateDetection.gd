@@ -32,9 +32,9 @@ func _physics_process(_delta: float) -> void:
 			9:
 				run_check(player.direction == 1)
 			10:
-				run_check(player.velocity.x < 0)
+				run_check(player.velocity_direction == -1)
 			11:
-				run_check(player.velocity.x > 0)
+				run_check(player.velocity_direction == 1)
 
 func run_check(check := false) -> void:
 	if check:
