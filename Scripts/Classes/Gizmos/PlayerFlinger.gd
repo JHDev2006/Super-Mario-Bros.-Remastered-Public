@@ -13,21 +13,27 @@ extends Node2D
 @export var update_player_direction := true
 
 var active := false
+var launched_this_frame := false
 
 func _physics_process(_delta: float) -> void:
 	if active:
 		launch()
+	launched_this_frame = false
 
 func turn_on() -> void:
 	active = true
+	launch() # necessary for zero frame pulses in certain scenarios
 
 func turn_off() -> void:
 	active = false
 
 func launch() -> void:
+	if launched_this_frame:
+		return
 	if get_tree():
 		for i: Player in get_tree().get_nodes_in_group("Players"):
 			i.has_flung = true
+			launched_this_frame = true
 			if additive:
 				i.velocity.y = i.velocity.y + upwards_speed*-100
 				if relative_to_direction:
