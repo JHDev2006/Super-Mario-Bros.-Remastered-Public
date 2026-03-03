@@ -17,13 +17,27 @@ texture = ExtResource("1_lawed")
 2:1/0 = 0
 3:1/0 = 0
 4:1/0 = 0
+5:0/0 = 0
+5:1/0 = 0
+5:2/0 = 0
+5:3/0 = 0
+4:3/0 = 0
+3:3/0 = 0
+2:3/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_b50pv"]
 sources/0 = SubResource("TileSetAtlasSource_3eywr")
 
 [node name="DecoTiles" type="TileMapLayer" unique_id=1801742647]
 visibility_layer = 2
-z_index = -10
+z_index = -11
 tile_set = SubResource("TileSet_b50pv")
 
 [node name="TilesetTextureSetter" type="Node" parent="." unique_id=612341217 node_paths=PackedStringArray("tile_map")]

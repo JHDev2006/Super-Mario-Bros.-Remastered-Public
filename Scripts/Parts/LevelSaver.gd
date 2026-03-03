@@ -28,6 +28,7 @@ func save_level(level_name := "Unnamed Level", level_author := "You", level_desc
 		idx += 1
 	level_file["Info"] = {"Name": level_name, "Author": level_author, "Description": level_desc, "Difficulty": difficulty}
 	level_file["Version"] = Global.version_number
+	level_file["Snapshot"] = Global.current_snapshot
 	return level_file
 
 func save_subarea(level: CustomLevel = null) -> Dictionary:

@@ -67,6 +67,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	var direction: int = 0
 	if event.is_action_pressed("editor_cam_left"): direction = -1
 	if event.is_action_pressed("editor_cam_right"): direction = 1
+	if event.is_action_pressed("editor_cam_up"): direction = -16
+	if event.is_action_pressed("editor_cam_down"): direction = 16
 	if event.is_action_pressed("pick_tile"):
 		if tiles.has(preview.position):
 			tile_index = tiles[preview.position].index

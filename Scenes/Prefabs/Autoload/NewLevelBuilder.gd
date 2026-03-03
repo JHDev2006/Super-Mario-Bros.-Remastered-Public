@@ -58,15 +58,16 @@ func build_level(level: Node = null) -> Node:
 	apply_bg_data(level, sub_level_file["BG"])
 	return level
 
+var tile_position := Vector2i.ZERO
+var tile_atlas_position := Vector2i.ZERO
+var source_id := 0
+
 func add_tiles(level: Node, chunk := "", chunk_id := 0, layer := 0) -> void:
 	for tile in chunk.split("=", false):
-		var tile_position := Vector2i.ZERO
-		var tile_atlas_position := Vector2i.ZERO
-		var source_id := 0
-		
 		tile_position = decode_tile_position_from_chars(tile[0], tile[1], chunk_id)
 		source_id = base64_charset.find(tile[4])
 		tile_atlas_position = Vector2i(base64_charset.find(tile[2]), base64_charset.find(tile[3]))
+		handle_legacy_support()
 		level.get_node("TileLayer" + str(layer + 1)).set_cell(tile_position, source_id, tile_atlas_position)
 
 func add_entities(level: Node, chunk := "", chunk_id := 0, layer := 0) -> void:
@@ -95,6 +96,36 @@ func add_entities(level: Node, chunk := "", chunk_id := 0, layer := 0) -> void:
 			entity_node.get_node("EditorPropertyExposer").apply_string(entity)
 		if entity_node.has_node("SignalExposer"):
 			entity_node.set_meta("save_string", entity)
+
+func handle_legacy_support():
+	# SkyanUltra: New function for handling conversion of old levels to new formats through
+	# re-mapping atlas positions before they get placed and what not. Necessary due to
+	# changes to the deco and their positions.
+	
+	# Update pre-1.1 26w10a decoration tiles to new format.
+	var version = Global.get_version_num_int("1.0")
+	var snapshot = Global.get_snapshot_num_int("26w00a")
+	if source_id == 3 and \
+	version <= Global.get_version_num_int("1.1") and \
+	snapshot < Global.get_version_num_int("26w10a"):
+		var last_atlas_position = tile_atlas_position
+		match tile_atlas_position:
+			# Re-map 3-tile horsetail stem
+			Vector2i(0, 1): tile_atlas_position = Vector2i(4, 3)
+			Vector2i(0, 3): tile_atlas_position = Vector2i(4, 7)
+			# Re-map fence
+			Vector2i(1, 1): tile_atlas_position = Vector2i(2, 2)
+			Vector2i(1, 3): tile_atlas_position = Vector2i(2, 6)
+			# Re-map 1-tile horsetail
+			Vector2i(2, 1): tile_atlas_position = Vector2i(4, 0)
+			Vector2i(2, 3): tile_atlas_position = Vector2i(4, 4)
+			# Re-map 3-tile horsetail
+			Vector2i(4, 0): tile_atlas_position = Vector2i(4, 1)
+			Vector2i(4, 1): tile_atlas_position = Vector2i(4, 2)
+			Vector2i(4, 2): tile_atlas_position = Vector2i(4, 5)
+			Vector2i(4, 3): tile_atlas_position = Vector2i(4, 6)
+		if tile_atlas_position != last_atlas_position:
+			print("UPDATED DECO TILE: ", last_atlas_position, " -> ", tile_atlas_position)
 
 func reset_player(player: Player) -> void: ## Function literally here to just reset the player back to default starting, if loading into a level file, that hasnt been written yet (pipes)
 	player.show()

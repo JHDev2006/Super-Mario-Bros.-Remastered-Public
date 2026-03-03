@@ -36,7 +36,7 @@ var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
 var ROM_PATH = config_path.path_join("baserom.nes")
 var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
 const ROM_PACK_NAME := "BaseAssets"
-const ROM_ASSETS_VERSION := 4
+const ROM_ASSETS_VERSION := 5
 
 var server_version := -1
 var current_version := -1
@@ -587,16 +587,19 @@ func get_base_asset_version() -> int:
 	return get_version_num_int(version)
 
 func get_version_num_int(ver_num := "0.0.0") -> int:
-	return int(ver_num.replace(".", ""))
+	var parts = ver_num.split(".")
+	var major = parts[0].to_int() * 10000
+	var minor = parts[1].to_int() * 100 if parts.size() > 1 else 0
+	var patch = parts[2].to_int() if parts.size() > 2 else 0
+	
+	return major + minor + patch
 
 func get_snapshot_num_int(ver_num := "26w00a") -> int:
-	var year = ver_num.substr(0, 2)
-	var week = ver_num.substr(3, 2)
+	var year = int(ver_num.substr(0, 2)) * 10000
+	var week = int(ver_num.substr(3, 2)) * 100
 	var num = ver_num[5]
 	
-	print([year, week, num])
-	
-	return (int(year) * int(week)) + int(num.unicode_at(0))
+	return year + week + int(num.unicode_at(0))
 
 func load_default_translations() -> void:
 	for i in lang_codes:
