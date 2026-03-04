@@ -75,9 +75,9 @@ var sub_level_id := 0
 
 static var sub_areas: Array = [null, null, null, null, null]
 
-const BLANK_FILE := {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
+const BLANK_FILE := {"Info": {}, "Levels": [{}, {}, {}, {}, {}], "Version": "1.0", "Snapshot": "26w00a"}
 
-static var level_file = {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
+static var level_file = {"Info": {}, "Levels": [{}, {}, {}, {}, {}], "Version": "1.0", "Snapshot": "26w00a"}
 
 var current_layer := 0
 @onready var tile_layer_nodes: Array[TileMapLayer] = [null, null, null, null, null]
