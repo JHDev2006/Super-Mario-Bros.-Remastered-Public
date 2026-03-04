@@ -35,7 +35,7 @@
 					"source": "OverworldDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -44,7 +44,7 @@
 					"source": "OverworldDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -53,7 +53,7 @@
 					"source": "OverworldDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -95,7 +95,7 @@
 					"source": "UndergroundDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -104,7 +104,7 @@
 					"source": "UndergroundDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -113,7 +113,7 @@
 					"source": "UndergroundDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -155,7 +155,7 @@
 					"source": "DesertDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -164,7 +164,7 @@
 					"source": "DesertDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -173,7 +173,7 @@
 					"source": "DesertDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -215,7 +215,7 @@
 					"source": "SnowDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -224,7 +224,7 @@
 					"source": "SnowDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -233,7 +233,7 @@
 					"source": "SnowDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -275,7 +275,7 @@
 					"source": "JungleDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -284,7 +284,7 @@
 					"source": "JungleDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -293,7 +293,7 @@
 					"source": "JungleDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -335,7 +335,7 @@
 					"source": "BeachDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -344,7 +344,7 @@
 					"source": "BeachDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -353,7 +353,7 @@
 					"source": "BeachDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -395,7 +395,7 @@
 					"source": "GardenDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -404,7 +404,7 @@
 					"source": "GardenDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -413,7 +413,7 @@
 					"source": "GardenDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -455,7 +455,7 @@
 					"source": "MountainDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -464,7 +464,7 @@
 					"source": "MountainDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -473,7 +473,7 @@
 					"source": "MountainDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -515,7 +515,7 @@
 					"source": "SkyDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -524,7 +524,7 @@
 					"source": "SkyDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -533,7 +533,7 @@
 					"source": "SkyDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -575,7 +575,7 @@
 					"source": "AutumnDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -584,7 +584,7 @@
 					"source": "AutumnDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -593,7 +593,7 @@
 					"source": "AutumnDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -674,7 +674,7 @@
 					"source": "VolcanoDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -683,7 +683,7 @@
 					"source": "VolcanoDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -692,7 +692,7 @@
 					"source": "VolcanoDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -734,7 +734,7 @@
 					"source": "GhostHouseDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -743,7 +743,7 @@
 					"source": "GhostHouseDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -752,7 +752,7 @@
 					"source": "GhostHouseDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -826,7 +826,7 @@
 					"source": "AirshipDeco.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -846,7 +846,7 @@
 					"source": "AirshipDecoLL.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
@@ -866,7 +866,7 @@
 					"source": "AirshipDecoANN.png",
 					"rect": [
 						0.0,
-						32.0,
+						64.0,
 						96.0,
 						64.0
 					]
