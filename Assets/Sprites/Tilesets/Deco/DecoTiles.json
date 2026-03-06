@@ -602,12 +602,44 @@
 		},
 		"Pipeland": {
 			"Day": {
-				"SMB1": {"source": "PipeLandDeco.png","rect": [0.0,0.0,80.0,32.0]},
-				"SMBLL": {"source": "PipeLandDecoLL.png","rect": [0.0,0.0,80.0,32.0]}
+				"SMB1": {
+					"source": "PipeLandDeco.png",
+					"rect": [
+						0.0,
+						0.0,
+						96.0,
+						64.0
+					]
+				},
+				"SMBLL": {
+					"source": "PipeLandDecoLL.png",
+					"rect": [
+						0.0,
+						0.0,
+						96.0,
+						64.0
+					]
+				}
 			},
 			"Night": {
-				"SMB1": {"source": "PipeLandDeco.png","rect": [0.0,32,80.0,32.0]},
-				"SMBLL": {"source": "PipeLandDecoLL.png","rect": [0.0,32,80.0,32.0]}
+				"SMB1": {
+					"source": "PipeLandDeco.png",
+					"rect": [
+						0.0,
+						64.0,
+						96.0,
+						64.0
+					]
+				},
+				"SMBLL": {
+					"source": "PipeLandDecoLL.png",
+					"rect": [
+						0.0,
+						64.0,
+						96.0,
+						64.0
+					]
+				}
 			}
 		},
 		"Space": {
@@ -615,8 +647,8 @@
 			"rect": [
 				0.0,
 				0.0,
-				80.0,
-				32.0
+				96.0,
+				64.0
 			]
 		},
 		"Underwater": {
@@ -625,17 +657,17 @@
 				"rect": [
 					0.0,
 					0.0,
-					80.0,
-					32.0
+					96.0,
+					64.0
 				]
 			},
 			"Night": {
 				"source": "UnderwaterDeco.png",
 				"rect": [
 					0.0,
-					32.0,
-					80.0,
-					32.0
+					64.0,
+					96.0,
+					64.0
 				]
 			}
 		},
@@ -765,8 +797,8 @@
 				"rect": [
 					0.0,
 					0.0,
-					80.0,
-					32.0
+					96.0,
+					64.0
 				]
 			},
 			"SMBLL": {
@@ -774,8 +806,8 @@
 				"rect": [
 					0.0,
 					0.0,
-					80.0,
-					32.0
+					96.0,
+					64.0
 				]
 			},
 			"SMBANN": {
@@ -783,8 +815,8 @@
 				"rect": [
 					0.0,
 					0.0,
-					80.0,
-					32.0
+					96.0,
+					64.0
 				]
 			}
 		},
@@ -794,8 +826,8 @@
 				"rect": [
 					0.0,
 					0.0,
-					80.0,
-					32.0
+					96.0,
+					64.0
 				]
 			},
 			"SMBLL": {
@@ -803,8 +835,8 @@
 				"rect": [
 					0.0,
 					0.0,
-					80.0,
-					32.0
+					96.0,
+					64.0
 				]
 			},
 			"SMBANN": {
