@@ -9,13 +9,13 @@ var downloaded_fnt_text := []
 
 signal pack_created
 
-const base_info_json := {
+var base_info_json := {
 	"name": "New Pack",
 	"description": "Template, give me a description!",
 	"author": "Me, until you change it",
 	"version": "1.0"
-	}
-	
+}
+
 const disallowed_files := ["bgm","ctex","json", "fnt", "svg", "txt"]
 const extention_blacklist := ["txt"]
 
@@ -83,6 +83,7 @@ func create_template() -> void:
 	var pack_info_path = Global.config_path.path_join("resource_packs/new_pack/pack_info.json")
 	DirAccess.make_dir_recursive_absolute(pack_info_path.get_base_dir())
 	var file = FileAccess.open(pack_info_path, FileAccess.WRITE)
+	base_info_json["last_updated"] = Global.version_number + "-" + Global.current_snapshot
 	file.store_string(JSON.stringify(base_info_json, "\t"))
 	file.close()
 	print("Done")

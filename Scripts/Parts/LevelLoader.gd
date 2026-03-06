@@ -10,7 +10,12 @@ const base64_charset := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
 
 var sub_level_file = null
 
+var level_version = null
+var level_snapshot_version = null
+
 func _ready() -> void:
+	level_version = float(editor.level_file["Version"]) or 0.0
+	level_snapshot_version = float(editor.level_file["Snapshot"]) or 0.0
 	load_entity_map()
 
 func load_level(level_idx := 0) -> void:
@@ -48,12 +53,12 @@ func build_level() -> void:
 	apply_level_data(sub_level_file["Data"])
 	apply_bg_data(sub_level_file["BG"])
 
+var tile_position := Vector2i.ZERO
+var tile_atlas_position := Vector2i.ZERO
+var source_id := 0
+
 func add_tiles(chunk := "", chunk_id := 0, layer := 0) -> void:
 	for tile in chunk.split("=", false):
-		var tile_position := Vector2i.ZERO
-		var tile_atlas_position := Vector2i.ZERO
-		var source_id := 0
-		
 		tile_position = decode_tile_position_from_chars(tile[0], tile[1], chunk_id)
 		source_id = base64_charset.find(tile[4])
 		tile_atlas_position = Vector2i(base64_charset.find(tile[2]), base64_charset.find(tile[3]))
@@ -82,7 +87,6 @@ func add_entities(chunk := "", chunk_id := 0, layer := 0) -> void:
 		entity_node.set_meta("tile_offset", Vector2(int(offset[0]), int(offset[1])))
 		if entity_node.has_node("EditorPropertyExposer"):
 			entity_node.get_node("EditorPropertyExposer").apply_string(entity)
-
 
 func reset_player(player: Player) -> void: ## Function literally here to just reset the player back to default starting, if loading into a level file, that hasnt been written yet (pipes)
 	player.show()

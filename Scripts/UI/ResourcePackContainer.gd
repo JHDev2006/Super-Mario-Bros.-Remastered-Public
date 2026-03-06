@@ -68,6 +68,7 @@ func select() -> void:
 	AudioManager.current_level_theme = ""
 	loaded = not loaded
 	if loaded and Settings.file.visuals.resource_packs.has(pack_name) == false:
+		Global.check_for_outdated_resource_pack(pack_name)
 		Settings.file.visuals.resource_packs.push_front(pack_name)
 		if config != {}:
 			ResourceSetterNew.pack_configs[pack_name] = config

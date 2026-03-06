@@ -208,7 +208,7 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Hachisuke.json" id="211_fe6cg"]
 [ext_resource type="PackedScene" uid="uid://k4bgruingvi0" path="res://Scenes/Prefabs/UI/EditorGuide.tscn" id="211_numt2"]
 [ext_resource type="Texture2D" uid="uid://b40xfep1drlm1" path="res://Assets/Sprites/Editor/Gizmos/PlayerFlinger.png" id="212_vcpfp"]
-[ext_resource type="PackedScene" uid="uid://07ukmj7s77wu" path="res://Scenes/Prefabs/Gizmos/Outputs/Flinger.tscn" id="213_uk8sr"]
+[ext_resource type="PackedScene" path="res://Scenes/Prefabs/Gizmos/Outputs/Flinger.tscn" id="213_uk8sr"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/WingItem.json" id="221_o0k3u"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/LuckyStar.json" id="224_vjdbd"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Key.json" id="229_u1728"]
@@ -1612,6 +1612,71 @@ grow_horizontal = 0
 mouse_filter = 2
 texture = ExtResource("22_3cjpb")
 
+[node name="BushAltDeco" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=1387665975]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+script = ExtResource("20_jc7xg")
+
+[node name="BushAltL" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/BushAltDeco" unique_id=937752968 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+tile_name = "DECO_WIDE_ALT_L"
+icon_texture = ExtResource("18_esk8u")
+icon_region_override = Rect2(0, 16, 16, 16)
+source_id = 3
+tile_coords = Vector2i(0, 1)
+
+[node name="BushAltM" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/BushAltDeco" unique_id=1507142381 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+tile_name = "DECO_WIDE_ALT_M"
+icon_texture = ExtResource("18_esk8u")
+icon_region_override = Rect2(16, 16, 16, 16)
+source_id = 3
+tile_coords = Vector2i(1, 1)
+
+[node name="BushAltR" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/BushAltDeco" unique_id=1405134054 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+tile_name = "DECO_WIDE_ALT_R"
+icon_texture = ExtResource("18_esk8u")
+icon_region_override = Rect2(32, 16, 16, 16)
+source_id = 3
+tile_coords = Vector2i(2, 1)
+
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/BushAltDeco" unique_id=1820043247]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("22_3cjpb")
+
+[node name="FenceDeco" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=1827674445 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 2
+tile_name = "DECO_SINGLE_A"
+type = 2
+icon_texture = ExtResource("18_esk8u")
+icon_region_override = Rect2(0, 32, 16, 16)
+secondary_icon_texture = ExtResource("14_o024b")
+source_id = 3
+terrain_id = 30
+
+[node name="SingleDeco" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=217326169 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 2
+tile_name = "DECO_SINGLE_B"
+icon_texture = ExtResource("18_esk8u")
+icon_region_override = Rect2(64, 0, 16, 16)
+source_id = 3
+tile_coords = Vector2i(4, 0)
+
 [node name="ShortDeco" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=995830414]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
@@ -1661,9 +1726,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_TALL_TOP"
 icon_texture = ExtResource("18_esk8u")
-icon_region_override = Rect2(64, 0, 16, 16)
+icon_region_override = Rect2(64, 16, 16, 16)
 source_id = 3
-tile_coords = Vector2i(4, 0)
+tile_coords = Vector2i(4, 1)
 
 [node name="TallMiddle" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/TallDeco" unique_id=1027529800 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
@@ -1671,9 +1736,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_TALL_MIDDLE"
 icon_texture = ExtResource("18_esk8u")
-icon_region_override = Rect2(64, 16, 16, 16)
+icon_region_override = Rect2(64, 32, 16, 16)
 source_id = 3
-tile_coords = Vector2i(4, 1)
+tile_coords = Vector2i(4, 2)
 
 [node name="TallBottom" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/TallDeco" unique_id=1116788041 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
@@ -1681,9 +1746,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_TALL_BOTTOM"
 icon_texture = ExtResource("18_esk8u")
-icon_region_override = Rect2(0, 16, 16, 16)
+icon_region_override = Rect2(64, 48, 16, 16)
 source_id = 3
-tile_coords = Vector2i(0, 1)
+tile_coords = Vector2i(4, 3)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/TallDeco" unique_id=981971869]
 layout_mode = 1
@@ -1696,33 +1761,53 @@ grow_horizontal = 0
 mouse_filter = 2
 texture = ExtResource("22_3cjpb")
 
-[node name="DecoSingle" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=501628672]
+[node name="VeryTallDeco" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=481820836]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
 script = ExtResource("20_jc7xg")
 
-[node name="SingleA" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/DecoSingle" unique_id=2115700861 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+[node name="VeryTallTop" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/VeryTallDeco" unique_id=1760378486 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-tile_name = "DECO_SINGLE_A"
+tile_name = "DECO_VERY_TALL_TOP"
 icon_texture = ExtResource("18_esk8u")
-icon_region_override = Rect2(16, 16, 16, 16)
+icon_region_override = Rect2(80, 0, 16, 16)
 source_id = 3
-tile_coords = Vector2i(1, 1)
+tile_coords = Vector2i(5, 0)
 
-[node name="SingleB" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/DecoSingle" unique_id=217326169 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+[node name="VeryTallMiddleTop" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/VeryTallDeco" unique_id=136545924 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-tile_name = "DECO_SINGLE_B"
+tile_name = "DECO_VERY_TALL_MIDDLE_TOP"
 icon_texture = ExtResource("18_esk8u")
-icon_region_override = Rect2(32, 16, 16, 16)
+icon_region_override = Rect2(80, 16, 16, 16)
 source_id = 3
-tile_coords = Vector2i(2, 1)
+tile_coords = Vector2i(5, 1)
 
-[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/DecoSingle" unique_id=1154261435]
+[node name="VeryTallMiddleBottom" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/VeryTallDeco" unique_id=996527827 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+tile_name = "DECO_VERY_TALL_MIDDLE_BOTTOM"
+icon_texture = ExtResource("18_esk8u")
+icon_region_override = Rect2(80, 32, 16, 16)
+source_id = 3
+tile_coords = Vector2i(5, 2)
+
+[node name="VeryTallBottom" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/VeryTallDeco" unique_id=2006746945 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+tile_name = "DECO_VERY_TALL_BOTTOM"
+icon_texture = ExtResource("18_esk8u")
+icon_region_override = Rect2(80, 48, 16, 16)
+source_id = 3
+tile_coords = Vector2i(5, 3)
+
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/VeryTallDeco" unique_id=2116932049]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1845,7 +1930,7 @@ icon_texture = ExtResource("10_vhlvp")
 icon_region_override = Rect2(112, 112, 16, 16)
 tile_coords = Vector2i(7, 7)
 
-[node name="LWindow" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/CastleTiles" unique_id=937752968 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+[node name="LWindow" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer/CastleTiles" unique_id=1977879824 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
