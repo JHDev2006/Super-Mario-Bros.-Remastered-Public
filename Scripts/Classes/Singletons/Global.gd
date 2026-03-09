@@ -36,7 +36,7 @@ var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
 var ROM_PATH = config_path.path_join("baserom.nes")
 var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
 const ROM_PACK_NAME := "BaseAssets"
-const ROM_ASSETS_VERSION := 4
+const ROM_ASSETS_VERSION := 5
 
 var server_version := -1
 var current_version := -1
@@ -587,16 +587,19 @@ func get_base_asset_version() -> int:
 	return get_version_num_int(version)
 
 func get_version_num_int(ver_num := "0.0.0") -> int:
-	return int(ver_num.replace(".", ""))
+	var parts = ver_num.split(".")
+	var major = parts[0].to_int() * 10000
+	var minor = parts[1].to_int() * 100 if parts.size() > 1 else 0
+	var patch = parts[2].to_int() if parts.size() > 2 else 0
+	
+	return major + minor + patch
 
 func get_snapshot_num_int(ver_num := "26w00a") -> int:
-	var year = ver_num.substr(0, 2)
-	var week = ver_num.substr(3, 2)
+	var year = int(ver_num.substr(0, 2)) * 10000
+	var week = int(ver_num.substr(3, 2)) * 100
 	var num = ver_num[5]
 	
-	print([year, week, num])
-	
-	return (int(year) * int(week)) + int(num.unicode_at(0))
+	return year + week + int(num.unicode_at(0))
 
 func load_default_translations() -> void:
 	for i in lang_codes:
@@ -706,3 +709,119 @@ func nice_json_format(json_string := "") -> String:
 func warper_cooldown() -> void:
 	await get_tree().create_timer(1, false).timeout
 	Warper.can_warp = true
+
+# SkyanUltra: Handler for updating outdated resource packs. It'd be kind of annoying
+# if resource packs ALL had to update their layouts for this sort of stuff, so this should
+# make things a bit easier on resource pack creators.
+
+func check_for_outdated_resource_pack(resource_pack := "") -> void:
+	var pack_json = JSON.parse_string(FileAccess.open(config_path.path_join("resource_packs/" + resource_pack + "/pack_info.json"), FileAccess.READ).get_as_text())
+	var ver_int = get_version_num_int(version_number)
+	var snap_int = get_snapshot_num_int(current_snapshot)
+	var pack_update_id = pack_json.get("last_updated", "1.0.0-26w00a").split("-")
+	var pack_ver_int = get_version_num_int(pack_update_id[0])
+	var pack_snap_int = get_snapshot_num_int(pack_update_id[1])
+	if ver_int == pack_ver_int and snap_int == pack_snap_int:
+		print(resource_pack, ": Up to date with the latest version, no changes needed.")
+		return
+		
+	print(resource_pack, ": PACK OUTDATED! Updating to latest... (Pack Version: ", pack_json.get("version", "1.0.0"), "-", pack_json.get("snapshot", "26w00a"), ")")
+	update_resource_pack(resource_pack, Global.config_path.path_join("resource_packs/" + resource_pack), pack_ver_int, pack_snap_int)
+	
+	pack_json["last_updated"] = version_number + "-" + current_snapshot
+	var file := FileAccess.open(config_path.path_join("resource_packs/" + resource_pack + "/pack_info.json"), FileAccess.WRITE)
+	file.store_string(JSON.stringify(pack_json, "\t"))
+	print(resource_pack, ": Pack successfully upgraded to latest version! (Pack Version: ", pack_json.get("version", "1.0.0"), "-", pack_json.get("snapshot", "26w00a"), ")")
+
+func update_resource_pack(resource_pack, pack_dir, pack_ver_int, pack_snap_int) -> void:
+	if pack_ver_int <= get_version_num_int("1.1.0") and \
+	pack_snap_int < get_snapshot_num_int("26w10a"):
+		var deco_path = pack_dir + "/Sprites/Tilesets/Deco"
+		if DirAccess.dir_exists_absolute(deco_path):
+			print(resource_pack, ": Attempting to update tileset decorations...")
+			var dir := DirAccess.open(deco_path)
+			if dir:
+				dir.list_dir_begin()
+				var file_name := dir.get_next()
+				while file_name != "":
+					if not dir.current_is_dir():
+						print(resource_pack, ": Attempting to modify ", file_name, "...")
+						if file_name.ends_with(".json"):
+							update_legacy_tileset_deco_json(resource_pack, deco_path + "/" + file_name)
+						else:
+							update_legacy_tileset_deco_img(resource_pack, deco_path + "/" + file_name)
+					file_name = dir.get_next()
+				dir.list_dir_end()
+	return
+
+func update_legacy_tileset_deco_img(resource_pack, file_path: String) -> void:
+	var img := Image.new()
+	var err := img.load(file_path)
+	if err != OK:
+		print(resource_pack, ": FAILED TO LOAD IMAGE!!! Please report this! (", file_path, ")")
+		return
+	var atlas_width = floor(img.get_width() / 80)
+	var atlas_height = floor(img.get_height() / 32)
+	# Update canvas size 
+	var new_img := Image.create(96 * atlas_width, 64 * atlas_height, false, img.get_format())
+	# Begin fixing legacy deco tiles...
+	new_img.fill(Color(0, 0, 0, 0))
+	for atlas_x in atlas_width:
+		var pos_x = atlas_x * 80
+		var new_pos_x = atlas_x * 96
+		for atlas_y in atlas_height:
+			var pos_y = atlas_y * 32
+			var new_pos_y = atlas_y * 64
+			# Bush + Small Horsetail
+			new_img.blit_rect(img, Rect2i(pos_x, pos_y, 64, 16), Vector2i(new_pos_x, new_pos_y))
+			new_img.blit_rect(img, Rect2i(pos_x + 48, pos_y + 16, 16, 16), Vector2i(new_pos_x + 48, new_pos_y + 16))
+			# Single Deco
+			new_img.blit_rect(img, Rect2i(pos_x + 32, pos_y + 16, 16, 16), Vector2i(new_pos_x + 64, new_pos_y))
+			# Tall Horsetail
+			new_img.blit_rect(img, Rect2i(pos_x + 64, pos_y, 16, 32), Vector2i(new_pos_x + 64, new_pos_y + 16))
+			new_img.blit_rect(img, Rect2i(pos_x, pos_y + 16, 16, 16), Vector2i(new_pos_x + 64, new_pos_y + 48))
+			# Fence
+			var src_rect = Rect2i(pos_x + 16, pos_y + 16, 16, 16)
+			for x in 4:
+				for y in 2:
+					var dest := Vector2i(new_pos_x + (x * 16), new_pos_y + 32 + (y * 16))
+					new_img.blit_rect(img, src_rect, dest)
+			# Alt-Bush
+			new_img.blit_rect(img, Rect2i(pos_x, pos_y, 16, 16), Vector2i(new_pos_x + 8, new_pos_y + 16))
+			new_img.blit_rect(img, Rect2i(pos_x + 32, pos_y, 16, 16), Vector2i(new_pos_x + 24, new_pos_y + 16))
+			# Very Tall Horsetail
+			new_img.blit_rect(img, Rect2i(pos_x + 64, pos_y, 16, 16), Vector2i(new_pos_x + 80, new_pos_y))
+			new_img.blit_rect(img, Rect2i(pos_x + 64, pos_y + 8, 16, 16), Vector2i(new_pos_x + 80, new_pos_y + 16))
+			new_img.blit_rect(img, Rect2i(pos_x + 64, pos_y + 16, 16, 16), Vector2i(new_pos_x + 80, new_pos_y + 32))
+			new_img.blit_rect(img, Rect2i(pos_x, pos_y + 16, 16, 16), Vector2i(new_pos_x + 80, new_pos_y + 48))
+	# Overwrite original file. (I know the extra file formats
+	# here are uncommon, but better safe than sorry, I guess?)
+	if file_path.ends_with(".webp"):
+		new_img.save_webp(file_path, false, 1.0)
+	elif file_path.ends_with(".jpg"):
+		new_img.save_jpg(file_path, 1.0)
+	else:
+		new_img.save_png(file_path)
+
+func update_legacy_tileset_deco_json(resource_pack, file_path: String):
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	var json = JSON.parse_string(file.get_as_text())
+	if json != null:
+		process_legacy_tileset_deco_json(json)
+		var save = FileAccess.open(file_path, FileAccess.WRITE)
+		save.store_string(JSON.stringify(json, "\t"))
+
+func process_legacy_tileset_deco_json(value):
+	if value is Dictionary:
+		for key in value.keys():
+			if key == "rect" and value[key] is Array:
+				for i in value[key].size():
+					if i % 2 == 0:
+						value[key][i] *= 1.2
+					else:
+						value[key][i] *= 2.0
+			else:
+				process_legacy_tileset_deco_json(value[key])
+	elif value is Array:
+		for v in value:
+			process_legacy_tileset_deco_json(v)

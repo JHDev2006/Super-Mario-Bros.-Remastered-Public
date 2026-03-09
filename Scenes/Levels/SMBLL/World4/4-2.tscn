@@ -1,4 +1,5 @@
 [gd_scene format=4 uid="uid://ug6gj0t8f1x6"]
+
 [ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_d4fy4"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Jungle.json" id="2_ygef6"]
 [ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="3_p7dui"]
@@ -31,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://ctx0nbkjf2osn" path="res://Scenes/Prefabs/Entities/Items/YoshiEgg.tscn" id="32_burjs"]
 [ext_resource type="PackedScene" uid="uid://c145qqkvy8pr5" path="res://Scenes/Parts/DecoTiles.tscn" id="33_8706i"]
 [ext_resource type="PackedScene" uid="uid://cassl51oehlb6" path="res://Scenes/Prefabs/LevelObjects/CheckpointFlag.tscn" id="54_jny6j"]
+
 [node name="4-2" type="Node" unique_id=322544214]
 script = ExtResource("1_d4fy4")
 music = ExtResource("2_ygef6")
@@ -39,124 +41,476 @@ campaign = "SMBLL"
 world_id = 4
 level_id = 2
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
+
 [node name="Player" parent="." unique_id=484497473 instance=ExtResource("3_p7dui")]
 position = Vector2(-216, 0)
-[node name="DecoTiles" parent="." unique_id=2059105090 instance=ExtResource("7_xwiwp")]
-tile_map_data = PackedByteArray("AAD7////AAAAAAAAAAD8////AAABAAAAAAD9////AAABAAAAAAD+////AAACAAAAAAAaAP//AAAAAAAAAAAbAP//AAABAAAAAAAcAP//AAACAAAAAAAsAP//AAAAAAAAAAAtAP//AAABAAAAAAAuAP//AAABAAAAAAAvAP//AAACAAAAAABJAP//AAAAAAAAAABKAP//AAABAAAAAABLAP//AAACAAAAAABdAP//AAABAAAAAABeAP//AAACAAAAAABbAP//AAAAAAAAAABcAP//AAABAAAAAABoAP//AAACAAAAAABnAP//AAAAAAAAAAB6AP//AAAAAAAAAAB7AP//AAABAAAAAAB8AP//AAACAAAAAACOAP//AAABAAAAAACPAP//AAACAAAAAACMAP//AAAAAAAAAACNAP//AAABAAAAAACYAP//AAAAAAAAAACZAP//AAACAAAAAACpAP//AAAAAAAAAACqAP//AAABAAAAAACrAP//AAACAAAAAAAHAP//AAAAAAAAAAAIAP//AAACAAAAAAA=")
+
 [node name="Tiles" parent="." unique_id=1683808954 instance=ExtResource("5_ax58q")]
 tile_map_data = PackedByteArray("AADw/wAAAAACAAAAAADw/wEAAAACAAEAAADx/wAAAAACAAAAAADx/wEAAAACAAEAAADy/wAAAAACAAAAAADy/wEAAAACAAEAAADz/wAAAAACAAAAAADz/wEAAAACAAEAAAD0/wAAAAACAAAAAAD0/wEAAAACAAEAAAD1/wAAAAACAAAAAAD1/wEAAAACAAEAAAD2/wAAAAACAAAAAAD2/wEAAAACAAEAAAD3/wAAAAACAAAAAAD3/wEAAAACAAEAAAD4/wAAAAACAAAAAAD4/wEAAAACAAEAAAD5/wAAAAACAAAAAAD5/wEAAAACAAEAAAD6/wAAAAACAAAAAAD6/wEAAAACAAEAAAD7/wAAAAACAAAAAAD7/wEAAAACAAEAAAD8/wAAAAACAAAAAAD8/wEAAAACAAEAAAD9/wAAAAACAAAAAAD9/wEAAAACAAEAAAD+/wAAAAACAAAAAAD+/wEAAAACAAEAAAD//wAAAAACAAAAAAD//wEAAAACAAEAAAAAAAAAAAACAAAAAAAAAAEAAAACAAEAAAABAAAAAAACAAAAAAABAAEAAAACAAEAAAACAAAAAAACAAAAAAACAAEAAAACAAEAAAADAAAAAAACAAAAAAADAAEAAAACAAEAAAAEAAAAAAACAAAAAAAEAAEAAAACAAEAAAAFAAAAAAACAAAAAAAFAAEAAAACAAEAAAAGAAAAAAACAAAAAAAGAAEAAAACAAEAAAAHAAAAAAACAAAAAAAHAAEAAAACAAEAAAAIAAAAAAACAAAAAAAIAAEAAAACAAEAAAAJAAAAAAACAAAAAAAJAAEAAAACAAEAAAAKAAAAAAACAAAAAAAKAAEAAAACAAEAAAALAAAAAAACAAAAAAALAAEAAAACAAEAAAAMAAAAAAACAAAAAAAMAAEAAAACAAEAAAANAAAAAAACAAAAAAANAAEAAAACAAEAAAAOAAAAAAACAAAAAAAOAAEAAAACAAEAAAAPAAAAAAACAAAAAAAPAAEAAAACAAEAAAAQAAAAAAACAAAAAAAQAAEAAAACAAEAAAARAAAAAAACAAAAAAARAAEAAAACAAEAAAASAAAAAAACAAAAAAASAAEAAAACAAEAAAATAAAAAAACAAAAAAATAAEAAAACAAEAAAAUAAAAAAACAAAAAAAUAAEAAAACAAEAAAAVAAAAAAACAAAAAAAVAAEAAAACAAEAAAAWAAAAAAACAAAAAAAWAAEAAAACAAEAAAAXAAAAAAACAAAAAAAXAAEAAAACAAEAAAAYAAAAAAACAAAAAAAYAAEAAAACAAEAAAAZAAAAAAACAAAAAAAZAAEAAAACAAEAAAAaAAAAAAACAAAAAAAaAAEAAAACAAEAAAAbAAAAAAACAAAAAAAbAAEAAAACAAEAAAAcAAAAAAADAAAAAAAcAAEAAAADAAEAAAAfAAAAAAABAAAAAAAfAAEAAAABAAEAAAAgAAAAAAACAAAAAAAgAAEAAAACAAEAAAAhAAAAAAACAAAAAAAhAAEAAAACAAEAAAAiAAAAAAACAAAAAAAiAAEAAAACAAEAAAAjAAAAAAACAAAAAAAjAAEAAAACAAEAAAAkAAAAAAACAAAAAAAkAAEAAAACAAEAAAAlAAAAAAADAAAAAAAlAAEAAAADAAEAAAAoAAAAAAAAAAAAAAAoAAEAAAAAAAEAAAAqAAAAAAABAAAAAAAqAAEAAAABAAEAAAArAAAAAAACAAAAAAArAAEAAAACAAEAAAAsAAAAAAACAAAAAAAsAAEAAAACAAEAAAAtAAAAAAACAAAAAAAtAAEAAAACAAEAAAAuAAAAAAACAAAAAAAuAAEAAAACAAEAAAAvAAAAAAACAAAAAAAvAAEAAAACAAEAAAAwAAAAAAACAAAAAAAwAAEAAAACAAEAAAAxAAAAAAACAAAAAAAxAAEAAAACAAEAAAAyAAAAAAACAAAAAAAyAAEAAAACAAEAAAAzAAAAAAACAAAAAAAzAAEAAAACAAEAAAA0AAAAAAACAAAAAAA0AAEAAAACAAEAAAA1AAAAAAACAAAAAAA1AAEAAAACAAEAAAA2AAAAAAACAAAAAAA2AAEAAAACAAEAAAA3AAAAAAACAAAAAAA3AAEAAAACAAEAAAA4AAAAAAACAAAAAAA4AAEAAAACAAEAAAA5AAAAAAACAAAAAAA5AAEAAAACAAEAAAA6AAAAAAACAAAAAAA6AAEAAAACAAEAAAA7AAAAAAACAAAAAAA7AAEAAAACAAEAAAA8AAAAAAACAAAAAAA8AAEAAAACAAEAAAA9AAAAAAACAAAAAAA9AAEAAAACAAEAAAA+AAAAAAACAAAAAAA+AAEAAAACAAEAAAA/AAAAAAACAAAAAAA/AAEAAAACAAEAAABAAAAAAAACAAAAAABAAAEAAAACAAEAAABBAAAAAAACAAAAAABBAAEAAAACAAEAAABCAAAAAAACAAAAAABCAAEAAAACAAEAAABDAAAAAAACAAAAAABDAAEAAAACAAEAAABEAAAAAAACAAAAAABEAAEAAAACAAEAAABFAAAAAAACAAAAAABFAAEAAAACAAEAAABGAAAAAAACAAAAAABGAAEAAAACAAEAAABHAAAAAAACAAAAAABHAAEAAAACAAEAAABIAAAAAAACAAAAAABIAAEAAAACAAEAAABJAAAAAAACAAAAAABJAAEAAAACAAEAAABKAAAAAAACAAAAAABKAAEAAAACAAEAAABLAAAAAAACAAAAAABLAAEAAAACAAEAAABMAAAAAAACAAAAAABMAAEAAAACAAEAAABNAAAAAAACAAAAAABNAAEAAAACAAEAAABOAAAAAAACAAAAAABOAAEAAAACAAEAAABPAAAAAAACAAAAAABPAAEAAAACAAEAAABQAAAAAAACAAAAAABQAAEAAAACAAEAAABRAAAAAAACAAAAAABRAAEAAAACAAEAAABSAAAAAAACAAAAAABSAAEAAAACAAEAAABTAAAAAAACAAAAAABTAAEAAAACAAEAAABUAAAAAAACAAAAAABUAAEAAAACAAEAAABVAAAAAAACAAAAAABVAAEAAAACAAEAAABWAAAAAAACAAAAAABWAAEAAAACAAEAAABXAAAAAAACAAAAAABXAAEAAAACAAEAAABYAAAAAAACAAAAAABYAAEAAAACAAEAAABZAAAAAAACAAAAAABZAAEAAAACAAEAAABaAAAAAAACAAAAAABaAAEAAAACAAEAAABbAAAAAAACAAAAAABbAAEAAAACAAEAAABcAAAAAAACAAAAAABcAAEAAAACAAEAAABdAAAAAAACAAAAAABdAAEAAAACAAEAAABeAAAAAAACAAAAAABeAAEAAAACAAEAAABfAAAAAAACAAAAAABfAAEAAAACAAEAAABgAAAAAAACAAAAAABgAAEAAAACAAEAAABhAAAAAAACAAAAAABhAAEAAAACAAEAAABiAAAAAAACAAAAAABiAAEAAAACAAEAAABjAAAAAAACAAAAAABjAAEAAAACAAEAAABkAAAAAAACAAAAAABkAAEAAAACAAEAAABlAAAAAAACAAAAAABlAAEAAAACAAEAAABmAAAAAAACAAAAAABmAAEAAAACAAEAAABnAAAAAAACAAAAAABnAAEAAAACAAEAAABoAAAAAAACAAAAAABoAAEAAAACAAEAAABpAAAAAAACAAAAAABpAAEAAAACAAEAAABqAAAAAAACAAAAAABqAAEAAAACAAEAAABrAAAAAAACAAAAAABrAAEAAAACAAEAAABsAAAAAAACAAAAAABsAAEAAAACAAEAAABtAAAAAAACAAAAAABtAAEAAAACAAEAAABuAAAAAAACAAAAAABuAAEAAAACAAEAAABvAAAAAAACAAAAAABvAAEAAAACAAEAAABwAAAAAAADAAAAAABwAAEAAAADAAEAAAByAAAAAAABAAAAAAByAAEAAAABAAEAAABzAAAAAAACAAAAAABzAAEAAAACAAEAAAB0AAAAAAACAAAAAAB0AAEAAAACAAEAAAB1AAAAAAACAAAAAAB1AAEAAAACAAEAAAB2AAAAAAACAAAAAAB2AAEAAAACAAEAAAB3AAAAAAACAAAAAAB3AAEAAAACAAEAAAB4AAAAAAACAAAAAAB4AAEAAAACAAEAAAB5AAAAAAACAAAAAAB5AAEAAAACAAEAAAB6AAAAAAACAAAAAAB6AAEAAAACAAEAAAB7AAAAAAACAAAAAAB7AAEAAAACAAEAAAB8AAAAAAACAAAAAAB8AAEAAAACAAEAAAB9AAAAAAADAAAAAAB9AAEAAAADAAEAAAB/AAAAAAABAAAAAAB/AAEAAAABAAEAAACAAAAAAAACAAAAAACAAAEAAAACAAEAAACBAAAAAAACAAAAAACBAAEAAAACAAEAAACCAAAAAAACAAAAAACCAAEAAAACAAEAAACDAAAAAAACAAAAAACDAAEAAAACAAEAAACEAAAAAAACAAAAAACEAAEAAAACAAEAAACFAAAAAAACAAAAAACFAAEAAAACAAEAAACGAAAAAAACAAAAAACGAAEAAAACAAEAAACHAAAAAAACAAAAAACHAAEAAAACAAEAAACIAAAAAAACAAAAAACIAAEAAAACAAEAAACJAAAAAAACAAAAAACJAAEAAAACAAEAAACKAAAAAAACAAAAAACKAAEAAAACAAEAAACLAAAAAAACAAAAAACLAAEAAAACAAEAAACMAAAAAAACAAAAAACMAAEAAAACAAEAAACNAAAAAAACAAAAAACOAAAAAAACAAAAAACPAAAAAAACAAAAAACQAAAAAAACAAAAAACRAAAAAAACAAAAAACSAAAAAAACAAAAAACTAAAAAAACAAAAAACUAAAAAAACAAAAAACVAAAAAAACAAAAAACWAAAAAAACAAAAAACXAAAAAAACAAAAAACYAAAAAAACAAAAAACZAAAAAAACAAAAAACaAAAAAAADAAAAAACNAAEAAAACAAEAAACOAAEAAAACAAEAAACPAAEAAAACAAEAAACQAAEAAAACAAEAAACRAAEAAAACAAEAAACSAAEAAAACAAEAAACTAAEAAAACAAEAAACUAAEAAAACAAEAAACVAAEAAAACAAEAAACWAAEAAAACAAEAAACXAAEAAAACAAEAAACYAAEAAAACAAEAAACZAAEAAAACAAEAAACaAAEAAAADAAEAAACjAAAAAAABAAAAAACjAAEAAAABAAEAAACkAAAAAAACAAAAAACkAAEAAAACAAEAAAClAAAAAAACAAAAAAClAAEAAAACAAEAAACmAAAAAAACAAAAAACmAAEAAAACAAEAAACnAAAAAAACAAAAAACnAAEAAAACAAEAAACoAAAAAAACAAAAAACoAAEAAAACAAEAAACpAAAAAAACAAAAAACpAAEAAAACAAEAAACqAAAAAAACAAAAAACqAAEAAAACAAEAAACrAAAAAAADAAAAAACrAAEAAAADAAEAAACwAAAAAAABAAAAAACwAAEAAAABAAEAAACxAAAAAAACAAAAAACxAAEAAAACAAEAAACyAAAAAAACAAAAAACyAAEAAAACAAEAAACzAAAAAAACAAAAAACzAAEAAAACAAEAAAC0AAAAAAADAAAAAAC0AAEAAAADAAEAAAC+AAAAAAABAAAAAAC+AAEAAAABAAEAAAC/AAAAAAACAAAAAAC/AAEAAAACAAEAAADAAAAAAAACAAAAAADAAAEAAAACAAEAAADBAAAAAAACAAAAAADBAAEAAAACAAEAAADCAAAAAAACAAAAAADCAAEAAAACAAEAAADDAAAAAAACAAAAAADDAAEAAAACAAEAAADEAAAAAAACAAAAAADEAAEAAAACAAEAAADFAAAAAAACAAAAAADFAAEAAAACAAEAAADGAAAAAAACAAAAAADGAAEAAAACAAEAAADHAAAAAAACAAAAAADHAAEAAAACAAEAAADIAAAAAAACAAAAAADIAAEAAAACAAEAAADJAAAAAAACAAAAAADJAAEAAAACAAEAAAC+AP//AAAEAAIAAAC0AP//AAAEAAIAAACyAPv/AAAEAAIAAACuAPv/AAAEAAIAAAC1APj/AAAEAAIAAAC2APj/AAAEAAIAAACrAPz/AAAEAAIAAACrAP3/AAAEAAIAAACrAP7/AAAEAAIAAACrAP//AAAEAAIAAACMAP3/AAAEAAIAAACNAP3/AAAEAAIAAACOAP3/AAAEAAIAAACPAP3/AAAEAAIAAACQAP3/AAAEAAIAAACRAP3/AAAEAAIAAACSAP3/AAAEAAIAAACTAP3/AAAEAAIAAACUAP3/AAAEAAIAAACVAP3/AAAEAAIAAACWAP3/AAAEAAIAAACXAP3/AAAEAAIAAACYAP3/AAAEAAIAAAA8APv/AAAEAAIAAAA8APz/AAAEAAIAAAAvAP3/AAAEAAIAAAAvAP7/AAAEAAIAAAAvAP//AAAEAAIAAAABAPz/AAABAAQAAAABAP3/AAACAAQAAAABAP7/AAABAAQAAAABAP//AAACAAQAAAAGAP3/AAABAAQAAAAGAP7/AAACAAQAAAAGAP//AAABAAQAAAAJAPv/AAABAAQAAAAJAPz/AAACAAQAAAAJAP3/AAADAAQAAAAJAP7/AAADAAQAAAAJAP//AAADAAQAAAAOAP3/AQAAAAAAAgAPAP3/AQAAAAAAAgANAP3/AQAAAAAACgAsAPj/AQAAAAAAAQAtAPj/AQAAAAAAAQAuAPj/AQAAAAAAAQAvAPj/AQAAAAAAAQAwAPj/AQAAAAAAAQAxAPj/AQAAAAAAAQAyAPj/AQAAAAAAAQAzAPj/AQAAAAAAAQA0APj/AQAAAAAAAQA1APj/AQAAAAAAAQA0APz/AQAAAAAAAQA1APz/AQAAAAAAAQA3APz/AQAAAAAAAQA4APz/AQAAAAAAAQA5APz/AQAAAAAAAQA6APz/AQAAAAAAAQA7APz/AQAAAAAAAQBlAPv/AAAIAAAAAABlAPz/AAAIAAEAAABmAPv/AAAJAAAAAABmAPz/AAAJAAEAAABlAP3/AAAIAAEAAABmAP3/AAAJAAEAAABlAP7/AAAIAAEAAABmAP7/AAAJAAEAAABlAP//AAAIAAEAAABmAP//AAAJAAEAAACcAAAAAAAIAAQAAACdAAAAAAAJAAQAAACcAAEAAAAIAAUAAACdAAEAAAAJAAUAAACeAAAAAAAIAAYAAACeAAEAAAAIAAcAAACfAAAAAAAJAAYAAACfAAEAAAAJAAcAAACjAP7/AAAIAAIAAACjAP//AAAIAAMAAACkAP7/AAAJAAIAAACkAP//AAAJAAMAAACZAPz/AQAAAAAAAgCbAPz/AQAAAAAAAgCcAPz/AQAAAAAAAgCdAPz/AQAAAAAAAgCeAPz/AQAAAAAAAgCfAPz/AQAAAAAAAgBsAPz/AQAAAAAAAgBtAPz/AQAAAAAAAgBuAPz/AQAAAAAAAgBvAPz/AQAAAAAAAgBwAPz/AQAAAAAAAgBxAPz/AQAAAAAAAgByAPz/AQAAAAAAAgBrAPz/AQAAAAAACABzAPz/AQAAAAAADAAEAP3/AQAAAAAACABrAP7/AAABAAQAAABrAP//AAACAAQAAABzAP//AAABAAQAAAC1AP//AgAAAAAAAQC1AAAAAgAAAAEAAQC2AP//AgAAAAAAAQC2AAAAAgAAAAEAAQC3AP//AgAAAAAAAQC3AAAAAgAAAAEAAQC4AP//AgAAAAAAAQC4AAAAAgAAAAEAAQC5AP//AgAAAAAAAQC5AAAAAgAAAAEAAQC6AP//AgAAAAAAAQC6AAAAAgAAAAEAAQC7AP//AgAAAAAAAQC7AAAAAgAAAAEAAQC8AP//AgAAAAAAAQC8AAAAAgAAAAEAAQC9AP//AgAAAAAAAQC9AAAAAgAAAAEAAQC1AAEAAgAAAAEAAQC2AAEAAgAAAAEAAQC3AAEAAgAAAAEAAQC4AAEAAgAAAAEAAQC5AAEAAgAAAAEAAQC6AAEAAgAAAAEAAQC7AAEAAgAAAAEAAQC8AAEAAgAAAAEAAQC9AAEAAgAAAAEAAQAdAAIAAQAAAAAABAAeAAIAAQAAAAAABAAmAAIAAQAAAAAABAAnAAIAAQAAAAAABAAoAAIAAAAAAAIAAAApAAIAAQAAAAAABABxAAIAAQAAAAAABAB+AAIAAQAAAAAABACbAAIAAQAAAAAABACcAAIAAQAAAAAABACdAAIAAQAAAAAABACeAAIAAQAAAAAABACfAAIAAQAAAAAABACgAAIAAQAAAAAABAChAAIAAQAAAAAABACiAAIAAQAAAAAABACsAAIAAQAAAAAABACtAAIAAQAAAAAABACuAAIAAQAAAAAABACvAAIAAQAAAAAABAC1AAIAAQAAAAAABAC2AAIAAQAAAAAABAC3AAIAAQAAAAAABAC4AAIAAQAAAAAABAC5AAIAAQAAAAAABAC6AAIAAQAAAAAABAC7AAIAAQAAAAAABAC8AAIAAQAAAAAABAC9AAIAAQAAAAAABADo/wAAAAABAAAAAADp/wAAAAACAAAAAADq/wAAAAACAAAAAADr/wAAAAACAAAAAADs/wAAAAACAAAAAADt/wAAAAACAAAAAADu/wAAAAACAAAAAADv/wAAAAACAAAAAADo/wEAAAABAAEAAADp/wEAAAACAAEAAADq/wEAAAACAAEAAADr/wEAAAACAAEAAADs/wEAAAACAAEAAADt/wEAAAACAAEAAADu/wEAAAACAAEAAADv/wEAAAACAAEAAADo/wIAAAABAAIAAADp/wIAAAACAAIAAADq/wIAAAACAAIAAADr/wIAAAACAAIAAADs/wIAAAACAAIAAADt/wIAAAACAAIAAADu/wIAAAACAAIAAADv/wIAAAACAAIAAADw/wIAAAACAAIAAADx/wIAAAACAAIAAADy/wIAAAACAAIAAADz/wIAAAACAAIAAAD0/wIAAAACAAIAAAD1/wIAAAACAAIAAAD2/wIAAAACAAIAAAD3/wIAAAACAAIAAAD4/wIAAAACAAIAAAD5/wIAAAACAAIAAAD6/wIAAAACAAIAAAD7/wIAAAACAAIAAAD8/wIAAAACAAIAAAD9/wIAAAACAAIAAAD+/wIAAAACAAIAAAD//wIAAAACAAIAAAAAAAIAAAACAAIAAAABAAIAAAACAAIAAAACAAIAAAACAAIAAAADAAIAAAACAAIAAAAEAAIAAAACAAIAAAAFAAIAAAACAAIAAAAGAAIAAAACAAIAAAAHAAIAAAACAAIAAAAIAAIAAAACAAIAAAAJAAIAAAACAAIAAAAKAAIAAAACAAIAAAALAAIAAAACAAIAAAAMAAIAAAACAAIAAAANAAIAAAACAAIAAAAOAAIAAAACAAIAAAAPAAIAAAACAAIAAAAQAAIAAAACAAIAAAARAAIAAAACAAIAAAASAAIAAAACAAIAAAATAAIAAAACAAIAAAAUAAIAAAACAAIAAAAVAAIAAAACAAIAAAAWAAIAAAACAAIAAAAXAAIAAAACAAIAAAAYAAIAAAACAAIAAAAZAAIAAAACAAIAAAAaAAIAAAACAAIAAAAbAAIAAAACAAIAAAAcAAIAAAADAAIAAAAfAAIAAAABAAIAAAAgAAIAAAACAAIAAAAhAAIAAAACAAIAAAAiAAIAAAACAAIAAAAjAAIAAAACAAIAAAAkAAIAAAACAAIAAAAlAAIAAAADAAIAAAAqAAIAAAABAAIAAAArAAIAAAACAAIAAAAsAAIAAAACAAIAAAAtAAIAAAACAAIAAAAuAAIAAAACAAIAAAAvAAIAAAACAAIAAAAwAAIAAAACAAIAAAAxAAIAAAACAAIAAAAyAAIAAAACAAIAAAAzAAIAAAACAAIAAAA0AAIAAAACAAIAAAA1AAIAAAACAAIAAAA2AAIAAAACAAIAAAA3AAIAAAACAAIAAAA4AAIAAAACAAIAAAA5AAIAAAACAAIAAAA6AAIAAAACAAIAAAA7AAIAAAACAAIAAAA8AAIAAAACAAIAAAA9AAIAAAACAAIAAAA+AAIAAAACAAIAAAA/AAIAAAACAAIAAABAAAIAAAACAAIAAABBAAIAAAACAAIAAABCAAIAAAACAAIAAABDAAIAAAACAAIAAABEAAIAAAACAAIAAABFAAIAAAACAAIAAABGAAIAAAACAAIAAABHAAIAAAACAAIAAABIAAIAAAACAAIAAABJAAIAAAACAAIAAABKAAIAAAACAAIAAABLAAIAAAACAAIAAABMAAIAAAACAAIAAABNAAIAAAACAAIAAABOAAIAAAACAAIAAABPAAIAAAACAAIAAABQAAIAAAACAAIAAABRAAIAAAACAAIAAABSAAIAAAACAAIAAABTAAIAAAACAAIAAABUAAIAAAACAAIAAABVAAIAAAACAAIAAABWAAIAAAACAAIAAABXAAIAAAACAAIAAABYAAIAAAACAAIAAABZAAIAAAACAAIAAABaAAIAAAACAAIAAABbAAIAAAACAAIAAABcAAIAAAACAAIAAABdAAIAAAACAAIAAABeAAIAAAACAAIAAABfAAIAAAACAAIAAABgAAIAAAACAAIAAABhAAIAAAACAAIAAABiAAIAAAACAAIAAABjAAIAAAACAAIAAABkAAIAAAACAAIAAABlAAIAAAACAAIAAABmAAIAAAACAAIAAABnAAIAAAACAAIAAABoAAIAAAACAAIAAABpAAIAAAACAAIAAABqAAIAAAACAAIAAABrAAIAAAACAAIAAABsAAIAAAACAAIAAABtAAIAAAACAAIAAABuAAIAAAACAAIAAABvAAIAAAACAAIAAABwAAIAAAADAAIAAAByAAIAAAABAAIAAABzAAIAAAACAAIAAAB0AAIAAAACAAIAAAB1AAIAAAACAAIAAAB2AAIAAAACAAIAAAB3AAIAAAACAAIAAAB4AAIAAAACAAIAAAB5AAIAAAACAAIAAAB6AAIAAAACAAIAAAB7AAIAAAACAAIAAAB8AAIAAAACAAIAAAB9AAIAAAADAAIAAAB/AAIAAAABAAIAAACAAAIAAAACAAIAAACBAAIAAAACAAIAAACCAAIAAAACAAIAAACDAAIAAAACAAIAAACEAAIAAAACAAIAAACFAAIAAAACAAIAAACGAAIAAAACAAIAAACHAAIAAAACAAIAAACIAAIAAAACAAIAAACJAAIAAAACAAIAAACKAAIAAAACAAIAAACLAAIAAAACAAIAAACMAAIAAAACAAIAAACNAAIAAAACAAIAAACOAAIAAAACAAIAAACPAAIAAAACAAIAAACQAAIAAAACAAIAAACRAAIAAAACAAIAAACSAAIAAAACAAIAAACTAAIAAAACAAIAAACUAAIAAAACAAIAAACVAAIAAAACAAIAAACWAAIAAAACAAIAAACXAAIAAAACAAIAAACYAAIAAAACAAIAAACZAAIAAAACAAIAAACaAAIAAAADAAIAAACjAAIAAAABAAIAAACkAAIAAAACAAIAAAClAAIAAAACAAIAAACmAAIAAAACAAIAAACnAAIAAAACAAIAAACoAAIAAAACAAIAAACpAAIAAAACAAIAAACqAAIAAAACAAIAAACrAAIAAAADAAIAAACwAAIAAAABAAIAAACxAAIAAAACAAIAAACyAAIAAAACAAIAAACzAAIAAAACAAIAAAC0AAIAAAADAAIAAADKAAAAAAACAAAAAADLAAAAAAACAAAAAADMAAAAAAACAAAAAADNAAAAAAACAAAAAADOAAAAAAACAAAAAADPAAAAAAACAAAAAADQAAAAAAACAAAAAADRAAAAAAACAAAAAADSAAAAAAACAAAAAADTAAAAAAACAAAAAADUAAAAAAACAAAAAADVAAAAAAACAAAAAADWAAAAAAACAAAAAADXAAAAAAADAAAAAADKAAEAAAACAAEAAADLAAEAAAACAAEAAADMAAEAAAACAAEAAADNAAEAAAACAAEAAADOAAEAAAACAAEAAADPAAEAAAACAAEAAADQAAEAAAACAAEAAADRAAEAAAACAAEAAADSAAEAAAACAAEAAADTAAEAAAACAAEAAADUAAEAAAACAAEAAADVAAEAAAACAAEAAADWAAEAAAACAAEAAADXAAEAAAADAAEAAAC+AAIAAAABAAIAAAC/AAIAAAACAAIAAADAAAIAAAACAAIAAADBAAIAAAACAAIAAADCAAIAAAACAAIAAADDAAIAAAACAAIAAADEAAIAAAACAAIAAADFAAIAAAACAAIAAADGAAIAAAACAAIAAADHAAIAAAACAAIAAADIAAIAAAACAAIAAADJAAIAAAACAAIAAADKAAIAAAACAAIAAADLAAIAAAACAAIAAADMAAIAAAACAAIAAADNAAIAAAACAAIAAADOAAIAAAACAAIAAADPAAIAAAACAAIAAADQAAIAAAACAAIAAADRAAIAAAACAAIAAADSAAIAAAACAAIAAADTAAIAAAACAAIAAADUAAIAAAACAAIAAADVAAIAAAACAAIAAADWAAIAAAACAAIAAADXAAIAAAADAAIAAAA=")
+
+[node name="DecoTiles2" parent="." unique_id=1801742647 instance=ExtResource("7_xwiwp")]
+tile_map_data = PackedByteArray("AAD/////AAACAAEAAAD+////AAABAAEAAAD9////AAABAAEAAAD8////AAABAAEAAAD7////AAAAAAEAAAAHAP//AAAAAAEAAAAIAP//AAABAAEAAAAJAP//AAACAAEAAAAZAP//AAAAAAEAAAAaAP//AAABAAEAAAAbAP//AAABAAEAAAAcAP//AAACAAEAAAArAP//AAAAAAEAAAAsAP//AAABAAEAAAAtAP//AAABAAEAAAAuAP//AAABAAEAAAAvAP//AAACAAEAAAA3AP//AAAAAAEAAAA4AP//AAABAAEAAAA5AP//AAACAAEAAABJAP//AAAAAAEAAABKAP//AAABAAEAAABLAP//AAABAAEAAABMAP//AAACAAEAAABbAP//AAAAAAEAAABcAP//AAABAAEAAABdAP//AAABAAEAAABeAP//AAABAAEAAABfAP//AAACAAEAAABnAP//AAAAAAEAAABoAP//AAABAAEAAABpAP//AAACAAEAAAB5AP//AAAAAAEAAAB6AP//AAABAAEAAAB7AP//AAABAAEAAAB8AP//AAACAAEAAACLAP//AAAAAAEAAACMAP//AAABAAEAAACNAP//AAABAAEAAACOAP//AAABAAEAAACPAP//AAACAAEAAACXAP//AAAAAAEAAACYAP//AAABAAEAAACZAP//AAACAAEAAACpAP//AAAAAAEAAACqAP//AAABAAEAAAC+AP//AAAAAAEAAAC/AP//AAACAAEAAADHAP//AAAAAAEAAADIAP//AAABAAEAAADJAP//AAACAAEAAADZAP//AAAAAAEAAADaAP//AAABAAEAAADbAP//AAABAAEAAADcAP//AAACAAEAAADrAP//AAAAAAEAAADsAP//AAABAAEAAADtAP//AAABAAEAAADuAP//AAABAAEAAADvAP//AAACAAEAAAD3AP//AAAAAAEAAAD4AP//AAABAAEAAAD5AP//AAACAAEAAAAJAf//AAAAAAEAAAAKAf//AAABAAEAAAALAf//AAABAAEAAAAMAf//AAACAAEAAAAbAf//AAAAAAEAAAAcAf//AAABAAEAAAAdAf//AAABAAEAAAAeAf//AAABAAEAAAAfAf//AAACAAEAAAAnAf//AAAAAAEAAAAoAf//AAABAAEAAAApAf//AAACAAEAAAA5Af//AAAAAAEAAAA6Af//AAABAAEAAAA7Af//AAABAAEAAAA8Af//AAACAAEAAABLAf//AAAAAAEAAABMAf//AAABAAEAAABNAf//AAABAAEAAABOAf//AAABAAEAAABPAf//AAACAAEAAABXAf//AAAAAAEAAABYAf//AAABAAEAAABZAf//AAACAAEAAABpAf//AAAAAAEAAABqAf//AAABAAEAAABrAf//AAABAAEAAABsAf//AAACAAEAAAB7Af//AAAAAAEAAAB8Af//AAABAAEAAAB9Af//AAABAAEAAAB+Af//AAABAAEAAAB/Af//AAACAAEAAACHAf//AAAAAAEAAACIAf//AAABAAEAAACJAf//AAACAAEAAACZAf//AAAAAAEAAACaAf//AAABAAEAAACbAf//AAABAAEAAACcAf//AAACAAEAAACrAf//AAAAAAEAAACsAf//AAABAAEAAACtAf//AAABAAEAAACuAf//AAABAAEAAACvAf//AAACAAEAAAC3Af//AAAAAAEAAAC4Af//AAABAAEAAAC5Af//AAACAAEAAADJAf//AAAAAAEAAADKAf//AAABAAEAAADLAf//AAABAAEAAADMAf//AAACAAEAAADbAf//AAAAAAEAAADcAf//AAABAAEAAADdAf//AAABAAEAAADeAf//AAABAAEAAADfAf//AAACAAEAAADnAf//AAAAAAEAAADoAf//AAABAAEAAADpAf//AAACAAEAAAD5Af//AAAAAAEAAAD6Af//AAABAAEAAAD7Af//AAABAAEAAAD8Af//AAACAAEAAAALAv//AAAAAAEAAAAMAv//AAABAAEAAAANAv//AAABAAEAAAAOAv//AAABAAEAAAAPAv//AAACAAEAAAAXAv//AAAAAAEAAAAYAv//AAABAAEAAAAZAv//AAACAAEAAAApAv//AAAAAAEAAAAqAv//AAABAAEAAAArAv//AAABAAEAAAAsAv//AAACAAEAAACrAP//AAACAAEAAAA=")
+
 [node name="Checkpoint" parent="." unique_id=444979841 instance=ExtResource("8_a5t3w")]
 position = Vector2(1584, 0)
+
 [node name="DropShadow" parent="." unique_id=724608022 instance=ExtResource("9_p428k")]
+
 [node name="Enemies" type="Node" parent="." unique_id=65796351]
+
 [node name="BuzzyBeetle" parent="Enemies" unique_id=40090589 instance=ExtResource("10_a5t3w")]
 position = Vector2(408, 0)
+
 [node name="BuzzyBeetle2" parent="Enemies" unique_id=228948616 instance=ExtResource("10_a5t3w")]
 position = Vector2(424, 0)
+
 [node name="RedKoopaTroopa" parent="Enemies" unique_id=1629545524 instance=ExtResource("11_hk2px")]
 position = Vector2(792, -128)
+
 [node name="RedKoopaTroopa2" parent="Enemies" unique_id=1915887866 instance=ExtResource("11_hk2px")]
 position = Vector2(1800, 0)
+
 [node name="RedKoopaTroopa3" parent="Enemies" unique_id=1593098578 instance=ExtResource("11_hk2px")]
 position = Vector2(1992, 0)
+
 [node name="Goomba" parent="Enemies" unique_id=2027350027 instance=ExtResource("12_xoivx")]
 position = Vector2(1080, 0)
+
 [node name="Goomba2" parent="Enemies" unique_id=760673757 instance=ExtResource("12_xoivx")]
 position = Vector2(1104, 0)
+
 [node name="GreenKoopaTroopa" parent="Enemies" unique_id=1896585132 instance=ExtResource("13_u2gvk")]
 position = Vector2(1240, 0)
+
 [node name="GreenKoopaTroopa2" parent="Enemies" unique_id=1278479923 instance=ExtResource("13_u2gvk")]
 position = Vector2(1264, 0)
+
 [node name="GreenKoopaTroopa3" parent="Enemies" unique_id=2018870542 instance=ExtResource("13_u2gvk")]
 position = Vector2(1288, 0)
+
 [node name="GreenKoopaTroopa4" parent="Enemies" unique_id=2072006345 instance=ExtResource("13_u2gvk")]
 position = Vector2(1496, 0)
+
 [node name="GreenKoopaTroopa5" parent="Enemies" unique_id=1019268331 instance=ExtResource("13_u2gvk")]
 position = Vector2(1520, 0)
+
 [node name="GreenKoopaTroopa6" parent="Enemies" unique_id=1702407848 instance=ExtResource("13_u2gvk")]
 position = Vector2(2920, -144)
 winged = true
 metadata/fly_2 = true
+
 [node name="HammerBro" parent="Enemies" unique_id=653948883 instance=ExtResource("14_pbhuq")]
 position = Vector2(2168, 0)
+
 [node name="HammerBro2" parent="Enemies" unique_id=1516201904 instance=ExtResource("14_pbhuq")]
 position = Vector2(2536, -80)
+
 [node name="RedPirannhaPlant" parent="Enemies" unique_id=1450127486 instance=ExtResource("15_bljj6")]
 position = Vector2(2512, 0)
+
 [node name="RedPirannhaPlant2" parent="Enemies" unique_id=530058879 instance=ExtResource("15_bljj6")]
 position = Vector2(2544, 0)
+
 [node name="RedPirannhaPlant3" parent="Enemies" unique_id=466187025 instance=ExtResource("15_bljj6")]
 position = Vector2(2624, -32)
+
 [node name="RedPirannhaPlant4" parent="Enemies" unique_id=613258154 instance=ExtResource("15_bljj6")]
 position = Vector2(1632, -80)
+
 [node name="Lakitu" parent="Enemies" unique_id=29142171 instance=ExtResource("16_pbhuq")]
 position = Vector2(920, -152)
 retreat_x = 1856
+
 [node name="BulletBillCannon" parent="Enemies" unique_id=684528108 instance=ExtResource("17_p6tym")]
 position = Vector2(24, -56)
+
 [node name="BulletBillCannon2" parent="Enemies" unique_id=1558767763 instance=ExtResource("17_p6tym")]
 position = Vector2(24, -24)
+
 [node name="BulletBillCannon3" parent="Enemies" unique_id=1250669134 instance=ExtResource("17_p6tym")]
 position = Vector2(104, -40)
+
 [node name="BulletBillCannon4" parent="Enemies" unique_id=91510466 instance=ExtResource("17_p6tym")]
 position = Vector2(104, -8)
+
 [node name="BulletBillCannon5" parent="Enemies" unique_id=1826741599 instance=ExtResource("17_p6tym")]
 position = Vector2(152, -72)
+
 [node name="BulletBillCannon6" parent="Enemies" unique_id=598369628 instance=ExtResource("17_p6tym")]
 position = Vector2(1720, -24)
+
 [node name="BulletBillCannon7" parent="Enemies" unique_id=846580933 instance=ExtResource("17_p6tym")]
 position = Vector2(1848, -8)
+
 [node name="Trampoline" parent="." unique_id=671109550 instance=ExtResource("17_bljj6")]
 position = Vector2(648, 0)
+
 [node name="EndFlagpole" parent="." unique_id=348442814 instance=ExtResource("18_p6tym")]
 position = Vector2(3048, 0)
+
 [node name="EndSmallCastle" parent="." unique_id=256177711 instance=ExtResource("19_jiucv")]
 position = Vector2(3144, 0)
+
 [node name="StartCastle" parent="." unique_id=2017555360 instance=ExtResource("20_bljj6")]
 position = Vector2(-216, -40)
+
 [node name="TileMapConverter" type="Node" parent="." unique_id=334981722 node_paths=PackedStringArray("tilemap")]
 script = ExtResource("22_jiucv")
 tilemap = NodePath("../Tiles")
 metadata/_custom_type_script = "uid://cybpwmw4ywoow"
+
 [node name="LevelBG" parent="." unique_id=250903119 instance=ExtResource("22_rd3xh")]
 particles = 2
+
 [node name="PipeArea" parent="." unique_id=1559017678 instance=ExtResource("22_3atrh")]
 position = Vector2(2512, 0)
 target_level = "uid://dw0nndcqxf18f"
+
 [node name="PipeArea2" parent="." unique_id=1269214201 instance=ExtResource("22_3atrh")]
 position = Vector2(2624, -32)
 pipe_id = 1
 target_level = "uid://dw0nndcqxf18f"
 exit_only = true
+
 [node name="ChallengeNodes" type="Node" parent="." unique_id=1669493220 node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("25_mwklw")
 nodes_to_delete = [NodePath("../Blocks")]
 metadata/_custom_type_script = "uid://cgm3opb5qudc1"
+
 [node name="RedCoin" parent="ChallengeNodes" unique_id=1724160112 instance=ExtResource("26_ygef6")]
 position = Vector2(56, -8)
+
 [node name="BrickBlock" parent="ChallengeNodes" unique_id=180339727 instance=ExtResource("27_burjs")]
 position = Vector2(872, -56)
 item = ExtResource("28_8706i")
 metadata/r_coin_id = 1
+
 [node name="BrickBlock2" parent="ChallengeNodes" unique_id=1063368980 instance=ExtResource("29_sc4jh")]
 position = Vector2(2024, -24)
 metadata/red_coin = false
 metadata/r_coin_id = 2
+
 [node name="QuestionBlock" parent="ChallengeNodes" unique_id=793806457 instance=ExtResource("30_3fjv0")]
 position = Vector2(2472, -56)
 item = ExtResource("28_8706i")
 metadata/r_coin_id = 3
+
 [node name="InvisibleQuestionBlock" parent="ChallengeNodes" unique_id=1741138518 instance=ExtResource("31_ygef6")]
-position = Vector2(2408, -88)
+position = Vector2(2408, -104)
 item = ExtResource("32_burjs")
+
 [node name="DecoTiles" parent="ChallengeNodes" unique_id=265685417 instance=ExtResource("33_8706i")]
-tile_map_data = PackedByteArray("AACWAP7/AAADAAAAAACWAP//AAADAAEAAAA=")
+tile_map_data = PackedByteArray("AACVAPz/AAAAAAEAAACWAPz/AAABAAEAAACXAPz/AAACAAEAAAA=")
+
 [node name="Blocks" type="Node" parent="." unique_id=1250932945]
+
 [node name="BrickBlock" parent="Blocks" unique_id=363357656 instance=ExtResource("27_burjs")]
 position = Vector2(872, -56)
+
 [node name="QuestionBlock" parent="Blocks" unique_id=1404172909 instance=ExtResource("30_3fjv0")]
 position = Vector2(2472, -56)
+
 [node name="BrickBlock2" parent="Blocks" unique_id=1253216408 instance=ExtResource("29_sc4jh")]
 position = Vector2(2024, -24)
+
 [node name="CheckpointFlag" parent="." unique_id=1739371053 instance=ExtResource("54_jny6j")]
 position = Vector2(1584, 0)
+
+[connection signal="block_destroyed" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171032" to="Tiles/@AnimatableBody2D@171032/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171032" to="Tiles/@AnimatableBody2D@171032/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171032" to="Tiles/@AnimatableBody2D@171032/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171032" to="Tiles/@AnimatableBody2D@171032" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171032" to="Tiles/@AnimatableBody2D@171032" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171032" to="Tiles/@AnimatableBody2D@171032/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171032" to="Tiles/@AnimatableBody2D@171032" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171032" to="Tiles/@AnimatableBody2D@171032/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/BrickBlock" to="Tiles/BrickBlock/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/BrickBlock" to="Tiles/BrickBlock/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171033" to="Tiles/@AnimatableBody2D@171033/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171033" to="Tiles/@AnimatableBody2D@171033/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171033" to="Tiles/@AnimatableBody2D@171033" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171033" to="Tiles/@AnimatableBody2D@171033" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171033" to="Tiles/@AnimatableBody2D@171033/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171033" to="Tiles/@AnimatableBody2D@171033" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171033" to="Tiles/@AnimatableBody2D@171033/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171034" to="Tiles/@AnimatableBody2D@171034/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171034" to="Tiles/@AnimatableBody2D@171034/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171034" to="Tiles/@AnimatableBody2D@171034" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171034" to="Tiles/@AnimatableBody2D@171034" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171034" to="Tiles/@AnimatableBody2D@171034/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171034" to="Tiles/@AnimatableBody2D@171034" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171034" to="Tiles/@AnimatableBody2D@171034/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171035" to="Tiles/@AnimatableBody2D@171035/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171035" to="Tiles/@AnimatableBody2D@171035/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171035" to="Tiles/@AnimatableBody2D@171035" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171035" to="Tiles/@AnimatableBody2D@171035" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171035" to="Tiles/@AnimatableBody2D@171035/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171035" to="Tiles/@AnimatableBody2D@171035" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171035" to="Tiles/@AnimatableBody2D@171035/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171036" to="Tiles/@AnimatableBody2D@171036/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171036" to="Tiles/@AnimatableBody2D@171036/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171036" to="Tiles/@AnimatableBody2D@171036" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171036" to="Tiles/@AnimatableBody2D@171036" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171036" to="Tiles/@AnimatableBody2D@171036/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171036" to="Tiles/@AnimatableBody2D@171036" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171036" to="Tiles/@AnimatableBody2D@171036/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171037" to="Tiles/@AnimatableBody2D@171037/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171037" to="Tiles/@AnimatableBody2D@171037/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171037" to="Tiles/@AnimatableBody2D@171037" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171037" to="Tiles/@AnimatableBody2D@171037" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171037" to="Tiles/@AnimatableBody2D@171037/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171037" to="Tiles/@AnimatableBody2D@171037" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171037" to="Tiles/@AnimatableBody2D@171037/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171038" to="Tiles/@AnimatableBody2D@171038/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171038" to="Tiles/@AnimatableBody2D@171038/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171038" to="Tiles/@AnimatableBody2D@171038" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171038" to="Tiles/@AnimatableBody2D@171038" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171038" to="Tiles/@AnimatableBody2D@171038/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171038" to="Tiles/@AnimatableBody2D@171038" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171038" to="Tiles/@AnimatableBody2D@171038/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171039" to="Tiles/@AnimatableBody2D@171039/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171039" to="Tiles/@AnimatableBody2D@171039/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171039" to="Tiles/@AnimatableBody2D@171039" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171039" to="Tiles/@AnimatableBody2D@171039" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171039" to="Tiles/@AnimatableBody2D@171039/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171039" to="Tiles/@AnimatableBody2D@171039" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171039" to="Tiles/@AnimatableBody2D@171039/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171040" to="Tiles/@AnimatableBody2D@171040/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171040" to="Tiles/@AnimatableBody2D@171040/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171040" to="Tiles/@AnimatableBody2D@171040" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171040" to="Tiles/@AnimatableBody2D@171040" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171040" to="Tiles/@AnimatableBody2D@171040/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171040" to="Tiles/@AnimatableBody2D@171040" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171040" to="Tiles/@AnimatableBody2D@171040/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171041" to="Tiles/@AnimatableBody2D@171041/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171041" to="Tiles/@AnimatableBody2D@171041/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171041" to="Tiles/@AnimatableBody2D@171041" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171041" to="Tiles/@AnimatableBody2D@171041" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171041" to="Tiles/@AnimatableBody2D@171041/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171041" to="Tiles/@AnimatableBody2D@171041" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171041" to="Tiles/@AnimatableBody2D@171041/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171042" to="Tiles/@AnimatableBody2D@171042/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171042" to="Tiles/@AnimatableBody2D@171042/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171042" to="Tiles/@AnimatableBody2D@171042" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171042" to="Tiles/@AnimatableBody2D@171042" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171042" to="Tiles/@AnimatableBody2D@171042/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171042" to="Tiles/@AnimatableBody2D@171042" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171042" to="Tiles/@AnimatableBody2D@171042/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171043" to="Tiles/@AnimatableBody2D@171043/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171043" to="Tiles/@AnimatableBody2D@171043/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171043" to="Tiles/@AnimatableBody2D@171043" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171043" to="Tiles/@AnimatableBody2D@171043" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171043" to="Tiles/@AnimatableBody2D@171043/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171043" to="Tiles/@AnimatableBody2D@171043" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171043" to="Tiles/@AnimatableBody2D@171043/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171044" to="Tiles/@AnimatableBody2D@171044/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171044" to="Tiles/@AnimatableBody2D@171044/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171044" to="Tiles/@AnimatableBody2D@171044" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171044" to="Tiles/@AnimatableBody2D@171044" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171044" to="Tiles/@AnimatableBody2D@171044/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171044" to="Tiles/@AnimatableBody2D@171044" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171044" to="Tiles/@AnimatableBody2D@171044/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171045" to="Tiles/@AnimatableBody2D@171045/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171045" to="Tiles/@AnimatableBody2D@171045/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171045" to="Tiles/@AnimatableBody2D@171045" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171045" to="Tiles/@AnimatableBody2D@171045" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171045" to="Tiles/@AnimatableBody2D@171045/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171045" to="Tiles/@AnimatableBody2D@171045" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171045" to="Tiles/@AnimatableBody2D@171045/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171046" to="Tiles/@AnimatableBody2D@171046/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171046" to="Tiles/@AnimatableBody2D@171046/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171046" to="Tiles/@AnimatableBody2D@171046" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171046" to="Tiles/@AnimatableBody2D@171046" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171046" to="Tiles/@AnimatableBody2D@171046/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171046" to="Tiles/@AnimatableBody2D@171046" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171046" to="Tiles/@AnimatableBody2D@171046/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171047" to="Tiles/@AnimatableBody2D@171047/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171047" to="Tiles/@AnimatableBody2D@171047/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171047" to="Tiles/@AnimatableBody2D@171047" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171047" to="Tiles/@AnimatableBody2D@171047" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171047" to="Tiles/@AnimatableBody2D@171047/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171047" to="Tiles/@AnimatableBody2D@171047" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171047" to="Tiles/@AnimatableBody2D@171047/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171048" to="Tiles/@AnimatableBody2D@171048/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171048" to="Tiles/@AnimatableBody2D@171048/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171048" to="Tiles/@AnimatableBody2D@171048" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171048" to="Tiles/@AnimatableBody2D@171048" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171048" to="Tiles/@AnimatableBody2D@171048/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171048" to="Tiles/@AnimatableBody2D@171048" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171048" to="Tiles/@AnimatableBody2D@171048/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171049" to="Tiles/@AnimatableBody2D@171049/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171049" to="Tiles/@AnimatableBody2D@171049/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/@AnimatableBody2D@171049" to="Tiles/@AnimatableBody2D@171049" method="check_brick_empty"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171049" to="Tiles/@AnimatableBody2D@171049" method="on_block_hit"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171049" to="Tiles/@AnimatableBody2D@171049/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171049" to="Tiles/@AnimatableBody2D@171049" method="on_shell_block_hit"]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171049" to="Tiles/@AnimatableBody2D@171049/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171050" to="Tiles/@AnimatableBody2D@171050/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171050" to="Tiles/@AnimatableBody2D@171050/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171050" to="Tiles/@AnimatableBody2D@171050/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171050" to="Tiles/@AnimatableBody2D@171050" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171050" to="Tiles/@AnimatableBody2D@171050" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171050" to="Tiles/@AnimatableBody2D@171050/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171050" to="Tiles/@AnimatableBody2D@171050" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171050" to="Tiles/@AnimatableBody2D@171050/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171051" to="Tiles/@AnimatableBody2D@171051/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171051" to="Tiles/@AnimatableBody2D@171051/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171051" to="Tiles/@AnimatableBody2D@171051/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171051" to="Tiles/@AnimatableBody2D@171051" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171051" to="Tiles/@AnimatableBody2D@171051" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171051" to="Tiles/@AnimatableBody2D@171051/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171051" to="Tiles/@AnimatableBody2D@171051" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171051" to="Tiles/@AnimatableBody2D@171051/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171052" to="Tiles/@AnimatableBody2D@171052/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171052" to="Tiles/@AnimatableBody2D@171052/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171052" to="Tiles/@AnimatableBody2D@171052/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171052" to="Tiles/@AnimatableBody2D@171052" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171052" to="Tiles/@AnimatableBody2D@171052" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171052" to="Tiles/@AnimatableBody2D@171052/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171052" to="Tiles/@AnimatableBody2D@171052" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171052" to="Tiles/@AnimatableBody2D@171052/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171053" to="Tiles/@AnimatableBody2D@171053/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171053" to="Tiles/@AnimatableBody2D@171053/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171053" to="Tiles/@AnimatableBody2D@171053/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171053" to="Tiles/@AnimatableBody2D@171053" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171053" to="Tiles/@AnimatableBody2D@171053" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171053" to="Tiles/@AnimatableBody2D@171053/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171053" to="Tiles/@AnimatableBody2D@171053" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171053" to="Tiles/@AnimatableBody2D@171053/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171054" to="Tiles/@AnimatableBody2D@171054/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171054" to="Tiles/@AnimatableBody2D@171054/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171054" to="Tiles/@AnimatableBody2D@171054/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171054" to="Tiles/@AnimatableBody2D@171054" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171054" to="Tiles/@AnimatableBody2D@171054" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171054" to="Tiles/@AnimatableBody2D@171054/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171054" to="Tiles/@AnimatableBody2D@171054" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171054" to="Tiles/@AnimatableBody2D@171054/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171055" to="Tiles/@AnimatableBody2D@171055/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171055" to="Tiles/@AnimatableBody2D@171055/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171055" to="Tiles/@AnimatableBody2D@171055/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171055" to="Tiles/@AnimatableBody2D@171055" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171055" to="Tiles/@AnimatableBody2D@171055" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171055" to="Tiles/@AnimatableBody2D@171055/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171055" to="Tiles/@AnimatableBody2D@171055" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171055" to="Tiles/@AnimatableBody2D@171055/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171056" to="Tiles/@AnimatableBody2D@171056/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171056" to="Tiles/@AnimatableBody2D@171056/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171056" to="Tiles/@AnimatableBody2D@171056/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171056" to="Tiles/@AnimatableBody2D@171056" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171056" to="Tiles/@AnimatableBody2D@171056" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171056" to="Tiles/@AnimatableBody2D@171056/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171056" to="Tiles/@AnimatableBody2D@171056" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171056" to="Tiles/@AnimatableBody2D@171056/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171057" to="Tiles/@AnimatableBody2D@171057/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171057" to="Tiles/@AnimatableBody2D@171057/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171057" to="Tiles/@AnimatableBody2D@171057/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171057" to="Tiles/@AnimatableBody2D@171057" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171057" to="Tiles/@AnimatableBody2D@171057" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171057" to="Tiles/@AnimatableBody2D@171057/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171057" to="Tiles/@AnimatableBody2D@171057" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171057" to="Tiles/@AnimatableBody2D@171057/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171058" to="Tiles/@AnimatableBody2D@171058/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171058" to="Tiles/@AnimatableBody2D@171058/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171058" to="Tiles/@AnimatableBody2D@171058/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171058" to="Tiles/@AnimatableBody2D@171058" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171058" to="Tiles/@AnimatableBody2D@171058" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171058" to="Tiles/@AnimatableBody2D@171058/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171058" to="Tiles/@AnimatableBody2D@171058" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171058" to="Tiles/@AnimatableBody2D@171058/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171059" to="Tiles/@AnimatableBody2D@171059/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171059" to="Tiles/@AnimatableBody2D@171059/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171059" to="Tiles/@AnimatableBody2D@171059/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171059" to="Tiles/@AnimatableBody2D@171059" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171059" to="Tiles/@AnimatableBody2D@171059" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171059" to="Tiles/@AnimatableBody2D@171059/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171059" to="Tiles/@AnimatableBody2D@171059" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171059" to="Tiles/@AnimatableBody2D@171059/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171060" to="Tiles/@AnimatableBody2D@171060/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171060" to="Tiles/@AnimatableBody2D@171060/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171060" to="Tiles/@AnimatableBody2D@171060/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171060" to="Tiles/@AnimatableBody2D@171060" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171060" to="Tiles/@AnimatableBody2D@171060" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171060" to="Tiles/@AnimatableBody2D@171060/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171060" to="Tiles/@AnimatableBody2D@171060" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171060" to="Tiles/@AnimatableBody2D@171060/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171061" to="Tiles/@AnimatableBody2D@171061/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171061" to="Tiles/@AnimatableBody2D@171061/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171061" to="Tiles/@AnimatableBody2D@171061/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171061" to="Tiles/@AnimatableBody2D@171061" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171061" to="Tiles/@AnimatableBody2D@171061" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171061" to="Tiles/@AnimatableBody2D@171061/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171061" to="Tiles/@AnimatableBody2D@171061" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171061" to="Tiles/@AnimatableBody2D@171061/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171062" to="Tiles/@AnimatableBody2D@171062/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171062" to="Tiles/@AnimatableBody2D@171062/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171062" to="Tiles/@AnimatableBody2D@171062/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171062" to="Tiles/@AnimatableBody2D@171062" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171062" to="Tiles/@AnimatableBody2D@171062" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171062" to="Tiles/@AnimatableBody2D@171062/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171062" to="Tiles/@AnimatableBody2D@171062" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171062" to="Tiles/@AnimatableBody2D@171062/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171063" to="Tiles/@AnimatableBody2D@171063/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171063" to="Tiles/@AnimatableBody2D@171063/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171063" to="Tiles/@AnimatableBody2D@171063/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171063" to="Tiles/@AnimatableBody2D@171063" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171063" to="Tiles/@AnimatableBody2D@171063" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171063" to="Tiles/@AnimatableBody2D@171063/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171063" to="Tiles/@AnimatableBody2D@171063" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171063" to="Tiles/@AnimatableBody2D@171063/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171064" to="Tiles/@AnimatableBody2D@171064/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171064" to="Tiles/@AnimatableBody2D@171064/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171064" to="Tiles/@AnimatableBody2D@171064/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171064" to="Tiles/@AnimatableBody2D@171064" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171064" to="Tiles/@AnimatableBody2D@171064" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171064" to="Tiles/@AnimatableBody2D@171064/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171064" to="Tiles/@AnimatableBody2D@171064" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171064" to="Tiles/@AnimatableBody2D@171064/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@171065" to="Tiles/@AnimatableBody2D@171065/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@171065" to="Tiles/@AnimatableBody2D@171065/LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="Tiles/@AnimatableBody2D@171065" to="Tiles/@AnimatableBody2D@171065/SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171065" to="Tiles/@AnimatableBody2D@171065" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171065" to="Tiles/@AnimatableBody2D@171065" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@171065" to="Tiles/@AnimatableBody2D@171065/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171065" to="Tiles/@AnimatableBody2D@171065" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@171065" to="Tiles/@AnimatableBody2D@171065/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="area_entered" from="Tiles/DeathPit" to="Tiles/DeathPit" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171066" to="Tiles/@Area2D@171066" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171067" to="Tiles/@Area2D@171067" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171068" to="Tiles/@Area2D@171068" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171069" to="Tiles/@Area2D@171069" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171070" to="Tiles/@Area2D@171070" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171071" to="Tiles/@Area2D@171071" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171072" to="Tiles/@Area2D@171072" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171073" to="Tiles/@Area2D@171073" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171074" to="Tiles/@Area2D@171074" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171075" to="Tiles/@Area2D@171075" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171076" to="Tiles/@Area2D@171076" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171077" to="Tiles/@Area2D@171077" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171078" to="Tiles/@Area2D@171078" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171079" to="Tiles/@Area2D@171079" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171080" to="Tiles/@Area2D@171080" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171081" to="Tiles/@Area2D@171081" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171082" to="Tiles/@Area2D@171082" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171083" to="Tiles/@Area2D@171083" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171084" to="Tiles/@Area2D@171084" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171085" to="Tiles/@Area2D@171085" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171086" to="Tiles/@Area2D@171086" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171087" to="Tiles/@Area2D@171087" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171088" to="Tiles/@Area2D@171088" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171089" to="Tiles/@Area2D@171089" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171090" to="Tiles/@Area2D@171090" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171091" to="Tiles/@Area2D@171091" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@171092" to="Tiles/@Area2D@171092" method="area_entered"]
