@@ -286,7 +286,6 @@ func cleanup() -> void:
 func update_music() -> void:
 	if music_track_list[bgm_id] != "":
 		level.music = load(music_track_list[bgm_id].replace(".remap", ""))
-		print(level.music)
 	else:
 		level.music = null
 
@@ -639,7 +638,6 @@ func handle_multi_selecting(tile_position := Vector2i.ZERO) -> void:
 				multi_select_area = save_area(top_corner, select_start, select_end, current_layer)
 				selected_area = true
 				multi_select_layer = current_layer
-				print(multi_select_layer)
 				select_bounds = get_area_bounds(top_corner, select_start, select_end, multi_select_layer)
 			else:
 				multi_select_start()
@@ -793,7 +791,6 @@ func save_area(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, selec
 				var local_position = abs(position - top_corner)
 				dict["Empty"] += str(local_position.x) + "," + str(local_position.y) + "="
 	dict["Size"] = str(bounds.size.x) + "," + str(bounds.size.y)
-	print(dict)
 	return dict
 
 func is_tile_in_area(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, select_end := Vector2i.ZERO, layer_num := current_layer) -> bool:
@@ -876,7 +873,6 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 		old_tile_info = [overlapping_tile.get_meta("tile_offset"), overlapping_tile.get_meta("ID", "")]
 	elif BetterTerrain.get_cell(tile_layer_nodes[layer_num], tile_position) >= 0:
 		old_tile = BetterTerrain.get_cell(tile_layer_nodes[layer_num], tile_position)
-		print(old_tile)
 	elif tile_layer_nodes[layer_num].get_used_cells().has(tile_position):
 		old_tile = tile_layer_nodes[layer_num].get_cell_atlas_coords(tile_position)
 		old_tile_info = [tile_layer_nodes[layer_num].get_cell_source_id(tile_position)]
@@ -897,7 +893,6 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 		tile_layer_nodes[layer_num].set_cell(tile_position, source, atlas, alt_tile)
 	elif tile_to_place is int:
 		var terrain_id = tile_to_place
-		print(old_tile)
 		if old_tile is int:
 			if old_tile == terrain_id:
 				return
@@ -1228,7 +1223,6 @@ func load_blueprint(blueprint_path := "") -> void:
 	var size = Vector2(int(size_str[0]), int(size_str[1]))
 	pasting_bounds = Rect2i(-ceil((size.x + 1) / 2), -ceil((size.y + 1) / 2), size.x, size.y)
 	pasting_bounds.position += Vector2(16, 16)
-	print(pasting_bounds)
 	$TileMenu.hide()
 	current_state = EditorState.IDLE
 

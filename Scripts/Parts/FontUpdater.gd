@@ -18,6 +18,5 @@ func _ready() -> void:
 
 func update_fonts() -> void:
 	if FONT_MAIN.base_font.get_meta("base_path", "") != main_font.get_meta("base_path", "null"):
-		print([FONT_MAIN.base_font.get_meta("base_path"), main_font.get_meta("base_path")])
 		FONT_MAIN.base_font = main_font
 	SCORE_FONT.base_font = score_font

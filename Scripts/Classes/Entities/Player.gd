@@ -239,18 +239,27 @@ extends CharacterBody2D
 		"PROJ_WALL_BOUNCE": false,         # Determines if the projectile can bounce off of wals.
 		"PROJ_CEIL_BOUNCE": false,         # Determines if the projectile can bounce off of ceilings.
 		
-		"PROJ_LIFETIME": -1,               # Determines how long the projectile will last for. -1 and below count as infinite.
+		"PROJ_LIFETIME": -1.0,               # Determines how long the projectile will last for. -1 and below count as infinite.
 		"PROJ_OFFSET": [-4.0, 16.0],       # Determines the offset for where the projectile will spawn.
 		"PROJ_ANGLE" : null,               # Determines the exact angle the projectile is sent at in degrees. Leaving this blank disables angled behavior entirely.
 		"PROJ_SPEED": [220.0, -100.0],     # Determines the initial velocity of the projectile.
+		"PROJ_SPEED_UP": null,             # Changes the speed of the projectile if you hold UP.
+		"PROJ_SPEED_DOWN": null,           # Changes the speed of the projectile if you hold DOWN.
+		"PROJ_SPEED_UP_FORWARD": null,             # Changes the speed of the projectile if you hold UP amd LEFT/RIGHT.
+		"PROJ_SPEED_DOWN_FORWARD": null,           # Changes the speed of the projectile if you hold DOWN and LEFT/RIGHT.
 		"PROJ_SPEED_CAP": [-220.0, 220.0], # Determines the minimum and maximum X velocity of the projectile.
 		"PROJ_SPEED_SCALING": false,       # Determines if the projectile will have its initial speed scale with the player's movement.
 		
 		"PROJ_GROUND_DECEL": 0.0,          # The projectile's deceleration on the ground, measured in px/frame
-		"PROJ_AIR_DECEL": 0.0,             # The projectile's deceleration in the air, measured in px/frame
+		"PROJ_AIR_DECEL": 0.0,             # The projectile's (horizontal) deceleration in the air, measured in px/frame
+		"PROJ_AIR_DECEL_VERTICAL": 0.0,    # The projectile's (vertical) deceleration in the air, measured in px/frame. Useful for projectiles that have no gravity.
 		"PROJ_GRAVITY": 15.0,              # The projectile's gravity, measured in px/frame
 		"PROJ_BOUNCE_HEIGHT": 125.0,       # The projectile's bounce velocity upon landing on the ground.
 		"PROJ_MAX_FALL_SPEED": 150.0,      # The projectile's maximum fall speed, measured in px/sec
+		"PROJ_COOLDOWN": 0.0,
+		"PROJ_HARMLESS": false,
+		"PROJ_ELASTIC_BOUNCE_LIMIT": -1,
+		"PROJ_ELASTIC_BOUNCE": [0, 0]
 	},
 	"Small": {
 		"PROJ_OFFSET": [-4.0, 8.0],
@@ -356,6 +365,7 @@ extends CharacterBody2D
 
 var has_jumped := false
 var has_spring_jumped := false
+var has_flung := false
 
 var direction := 1
 var input_direction := 0
@@ -418,6 +428,7 @@ var is_posing := false
 var can_big_grow_anim = false
 var can_bump_jump_anim = false
 var can_bump_crouch_anim = false
+var can_bump_fling_anim = false
 var can_bump_swim_anim = false
 var can_bump_fly_anim = false
 var can_kick_anim = false
@@ -463,6 +474,7 @@ signal moved
 signal dead
 signal jumped
 signal crouch_started
+signal landed
 signal damaged
 signal attacked
 signal powered_up
@@ -486,18 +498,18 @@ static var CHARACTER_PALETTES := [
 ]
 
 #region Animation Fallbacks, these determine what animations will use as a back-up if they aren't present.
-const ANIMATION_FALLBACKS := {
+static var ANIMATION_FALLBACKS: Dictionary = {
 	# --- Idle States ---
 	"LookUp": "Idle",
-	"WaterLookUp": "LookUp",
-	"WingLookUp": "WaterLookUp",
 	"Crouch": "Idle",
-	"WaterCrouch": "Crouch",
-	"WingCrouch": "WaterCrouch",
 	"Stunned": "Idle",
 	
 	# --- Cutscene States ---
 	"PosePeach": "PoseToad",
+	
+	"FlingJump": "Jump",
+	"FlingJumpFall": "JumpFall",
+	"FlingBump": "Bump",
 
 	# --- Jump & Fall States ---
 	"Fall": "Move",
@@ -506,35 +518,6 @@ const ANIMATION_FALLBACKS := {
 	"CrouchFall": "Crouch",
 	"CrouchJump": "Crouch",
 	"CrouchBump": "Bump",
-	"JogJump": "Jump",
-	"JogJumpFall": "JumpFall",
-	"JogJumpBump": "JumpBump",
-	"RunJump": "Jump",
-	"RunJumpFall": "JumpFall",
-	"RunJumpBump": "JumpBump",
-	"SpringJump": "Jump",
-	"SpringJumpBump": "JumpBump",
-	
-	# --- Star Jump & Fall States ---
-	"StarJump": "Jump",
-	"StarFall": "JumpFall",
-	"StarJumpFall": "StarFall", # SkyanUltra: Legacy fallback for >1.0.2.
-	"StarJumpBump": "JumpBump",
-	
-	"StarRunJump": "StarJump",
-	"StarRunJumpFall": "StarJumpFall",
-	"StarRunJumpBump": "StarJumpBump",
-	"StarRun": "Run",
-	"StarWalk": "Walk",
-	"StarMove": "Move",
-	"StarJog": "Jog",
-	"StarIdle": "Idle",
-	"StarSkid": "Skid",
-	"StarCrouch": "Crouch",
-	
-	"StarSpringJump": "StarJump",
-	"StarSpringFall": "StarJumpFall",
-	"StarSpringBump": "StarJumpBump",
 
 	# --- Movement/Interaction States ---
 	"Walk": "Move",
@@ -560,45 +543,58 @@ const ANIMATION_FALLBACKS := {
 	"RunAttack": "MoveAttack",
 	"SkidAttack": "MoveAttack",
 
-	# --- Water & Flying States ---
-	"WaterIdle": "Idle",
-	"WaterMove": "Move",
-	"WaterWalk": "WaterMove",
-	"WaterJog": "WaterMove",
-	"WaterRun": "WaterMove",
-	"WaterCrouchMove": "CrouchMove",
-	"WaterCrouchFall": "CrouchFall",
-	"WaterIdleAttack": "IdleAttack",
-	"WaterWalkAttack": "WalkAttack",
-	"WaterRunAttack": "RunAttack",
-	"SwimBump": "Bump",
-	"WingIdle": "WaterIdle",
-	"WingMove": "WaterMove",
-	"WingWalk": "WaterWalk",
-	"WingJog": "WaterJog",
-	"WingRun": "WaterRun",
-	"WingCrouchMove": "WaterCrouchMove",
-	"WingCrouchFall": "WaterCrouchFall",
-	"WingIdleAttack": "WaterIdleAttack",
-	"WingWalkAttack": "WaterWalkAttack",
-	"WingRunAttack": "WaterRunAttack",
-	"FlyIdle": "SwimIdle",
-	"FlyUp": "SwimUp",
-	"FlyAttack": "SwimAttack",
-	"FlyBump": "SwimBump",
-
 	# --- Death States ---
 	"DieFreeze": "DieFall",
 	"DieIdle": "DieFall",
 	"DieMove": "DieIdle",
 	"DieRise": "DieFall",
 	"DieFall": "Die", # SkyanUltra: Legacy fallback for death animations in 1.0.2.
-	"FireDieFreeze": "DieFreeze",
-	"FireDieIdle": "DieIdle",
-	"FireDieMove": "DieMove",
-	"FireDieRise": "DieRise",
-	"FireDieFall": "DieFall",
 }
+
+# SkyanUltra: Relatively automated fallback system. This automatically handles all
+# state-based animation fallbacks by defining contexts, what they fallback onto,
+# and which animations make use of them. Basic animations still need to be
+# manually handled on their own, but this should get rid of a LOT of the headache
+# that comes with these different states.
+func set_animation_fallbacks() -> void:
+	var state_contexts = {
+		"Star": "",
+		"Water": "",
+		"Wing": "Water",
+	}
+	var state_anims = [
+		"CrouchAttack", "RunAttack", "WalkAttack", "MoveAttack", "IdleAttack",
+		"SwimAttack", "FlyAttack", "AirAttack", "Kick", "CrouchFall",
+		"CrouchMove", "Crouch", "Skid", "Push", "Run",
+		"Jog", "Walk", "Move", "LookUp", "Idle",
+	]
+	var jump_contexts = {
+		"Spring": "",
+		"Run": "",
+		"Jog": "",
+		"Star": "",
+		"StarSpring": "Star",
+		"StarRun": "Star",
+		"StarJog": "Star",
+	}
+	var jump_anims = [
+		"Fall", "Jump", "JumpFall", "JumpBump",
+	]
+	var death_contexts = {
+		"Fire": ""
+	}
+	var death_anims = [
+		"DieFreeze", "DieIdle", "DieMove", "DieRise", "DieFall",
+	]
+	add_anim_fallbacks(state_contexts, state_anims)
+	add_anim_fallbacks(jump_contexts, jump_anims)
+	add_anim_fallbacks(death_contexts, death_anims)
+
+func add_anim_fallbacks(contexts_dict: Dictionary, anims: Array) -> void:
+	for context in contexts_dict:
+		var fallback_prefix = contexts_dict[context]
+		for anim in anims:
+			ANIMATION_FALLBACKS[context + anim] = fallback_prefix + anim
 #endregion
 
 var palette_transform := true
@@ -613,11 +609,12 @@ var can_run := true
 
 var air_frames := 0
 
-var swim_stroke := false
-
 var skid_frames := 0
 
+var teleporting := false
+
 var on_ice := false
+var cooldown := false
 
 var simulated_velocity := Vector2.ZERO
 
@@ -628,8 +625,10 @@ func _ready() -> void:
 	$Checkpoint/Label.modulate = [Color("5050FF"), Color("F73910"), Color("1A912E"), Color("FFB762")][player_id]
 	$Checkpoint/Label.visible = Global.connected_players > 1
 	character = CHARACTERS[int(Global.player_characters[player_id])]
+	set_animation_fallbacks()
 	apply_character_physics()
 	apply_character_sfx_map()
+	cooldown = false
 	Global.can_pause = true
 	Global.can_time_tick = true
 	Global.level_theme_changed.connect(apply_character_physics)
@@ -683,8 +682,27 @@ func physics_params(type: String, params_dict: Dictionary = {}, key: String = ""
 			if (value is int or value is float) and not (value is bool):
 				return value * mult_applied
 			return value
-	print("NULL PARAMETER! Looking up: type='%s', key='%s'\nparams_dict='%s'" % [type, key, params_dict["Default"]])
+	print("NULL PARAMETER! Looking up: type='%s', key='%s'" % [type, key])
 	return null
+
+func has_param(type: String, params_dict: Dictionary = {}, key: String = "") -> bool:
+	var is_movement = false
+	# SkyanUltra: This is a stupid workaround for a stupid issue with this stupid
+	# engine. I can't just set params_dict to physics_dict... So I have to do this
+	# work around. I hate it. If anyone can fix it, then please. Do it.
+	if params_dict == {}: params_dict = physics_dict
+	
+	if power_state != null:
+		if key == "": key = power_state.state_name
+		if key in params_dict:
+			var state_dict = params_dict[key]
+			if type in state_dict:
+				return true
+	if "Default" in params_dict:
+		var default_dict = params_dict["Default"]
+		if type in default_dict:
+			return true
+	return false
 
 func apply_character_physics() -> void:
 	var apply_gameplay_changes = true
@@ -759,6 +777,7 @@ func _physics_process(delta: float) -> void:
 			Global.log_comment("NOCLIP Enabled")
 
 	up_direction = -gravity_vector
+	handle_water_detection()
 	handle_collision_shapes()
 	handle_step_collision()
 	handle_directions()
@@ -771,14 +790,16 @@ func _physics_process(delta: float) -> void:
 	air_frames = (air_frames + 1 if is_on_floor() == false else 0)
 	if is_actually_on_ceiling() and can_bump_sfx:
 		bump_ceiling()
-	elif is_actually_on_floor() and not is_invincible:
-		land_on_ground()
-		stomp_combo = 0
+	elif is_actually_on_floor():
+		has_flung = false
+		projectiles_fired_since_left_ground = 0
+		if not is_invincible:
+			land_on_ground()
+			stomp_combo = 0
 	elif actual_velocity_y() > 15:
 		can_bump_sfx = true
 	if not is_actually_on_floor() and not just_landed:
 		can_land_sfx = true
-	handle_water_detection()
 
 const BUBBLE_PARTICLE = preload("uid://bwjae1h1airtr")
 
@@ -820,12 +841,17 @@ func apply_gravity(delta: float) -> void:
 func camera_make_current() -> void:
 	camera.enabled = true
 	camera.make_current()
+	
+func can_fire_projectile():
+	return (not cooldown) and ((projectile_amount < physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) or physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) < 0))
 
 func play_animation(animation_name := "", force := false) -> void:
 	if sprite.sprite_frames == null: return
 	animation_name = get_fallback_animation(animation_name)
-	if sprite.scale.x == -1 and sprite.sprite_frames.has_animation("Left" + animation_name):
+	if sprite.scale.x < 0 and sprite.sprite_frames.has_animation("Left" + animation_name):
 		animation_name = "Left" + animation_name
+	if not can_fire_projectile() and sprite.sprite_frames.has_animation(animation_name + "Cooldown"):
+		animation_name = animation_name + "Cooldown"
 	if sprite.animation != animation_name or force:
 		sprite.play(animation_name)
 
@@ -929,6 +955,7 @@ func add_stomp_combo(award_score := true) -> void:
 
 func land_on_ground() -> void:
 	if can_land_sfx:
+		landed.emit()
 		AudioManager.play_sfx("land", global_position)
 		just_landed = true
 		can_land_sfx = false
@@ -967,7 +994,7 @@ func handle_invincible_palette() -> void:
 	sprite.material.set_shader_parameter("enabled", (has_star or (palette_transform and transforming)))
 
 func handle_block_collision_detection() -> void:
-	if ["Pipe"].has(state_machine.state.name): return
+	if ["Pipe", "Dead"].has(state_machine.state.name): return
 	if is_on_ceiling():
 		for i in %BlockCollision.get_overlapping_bodies():
 			if i is Block:
@@ -984,6 +1011,7 @@ func handle_directions() -> void:
 # SkyanUltra: Moved projectile handling code into Player for compatibility
 # with other power-states, and easier manipulation through parameters.
 var projectile_amount = 0
+var projectiles_fired_since_left_ground = 0
 var projectile_type = load("res://Scenes/Prefabs/Entities/Items/Fireball.tscn")
 
 const POWER_PARAM_LIST = {
@@ -998,6 +1026,8 @@ const POWER_PARAM_LIST = {
 	"PIERCE_COUNT": "PROJ_PIERCE_COUNT",
 	"PIERCE_HITRATE": "PROJ_PIERCE_HITRATE",
 	"BOUNCE_COUNT": "PROJ_BOUNCE_COUNT",
+	"ELASTIC_BOUNCE": "PROJ_ELASTIC_BOUNCE",
+	"ELASTIC_BOUNCE_LIMIT": "PROJ_ELASTIC_BOUNCE_LIMIT",
 	"GROUND_BOUNCE": "PROJ_GROUND_BOUNCE",
 	"WALL_BOUNCE": "PROJ_WALL_BOUNCE",
 	"CEIL_BOUNCE": "PROJ_CEIL_BOUNCE",
@@ -1005,17 +1035,53 @@ const POWER_PARAM_LIST = {
 	"LIFETIME": "PROJ_LIFETIME",
 	"GROUND_DECEL": "PROJ_GROUND_DECEL",
 	"AIR_DECEL": "PROJ_AIR_DECEL",
+	"AIR_DECEL_VERTICAL": "PROJ_AIR_DECEL_VERTICAL",
 	"GRAVITY": "PROJ_GRAVITY",
 	"BOUNCE_HEIGHT": "PROJ_BOUNCE_HEIGHT",
 	"MAX_FALL_SPEED": "PROJ_MAX_FALL_SPEED",
 	"MOVE_SPEED_CAP": "PROJ_SPEED_CAP",
+	"HARMLESS": "PROJ_HARMLESS",
 }
 
 func handle_projectile_firing(delta: float) -> void:
-	if physics_params("PROJ_TYPE", POWER_PARAMETERS) == "" or state_machine.state.name != "Normal":
-		return
-	if Global.player_action_just_pressed("action", player_id) and (projectile_amount < physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) or physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) < 0) and delta > 0:
-		throw_projectile()
+	if (state_machine.state.name == "Normal") and not (physics_params("PROJ_TYPE", POWER_PARAMETERS) == ""):
+		if Global.player_action_just_pressed("action", player_id) and can_fire_projectile() and delta > 0:
+			var recoil = calculate_angle_param("PROJ_RECOIL")
+			if recoil:
+				var recoilx = recoil[0]
+				var recoily = recoil[1]
+				if physics_params("PROJ_RECOIL_ADDITIVE_X", POWER_PARAMETERS):
+					velocity.x += recoilx * direction
+				else:
+					velocity.x = recoilx * direction
+				if physics_params("PROJ_RECOIL_ADDITIVE_Y", POWER_PARAMETERS):
+					velocity.y += recoily
+				else:
+					velocity.y = recoily
+				
+			if physics_params("PROJ_TYPE", POWER_PARAMETERS) != "":
+				throw_projectile()
+			if physics_params("PROJ_COOLDOWN", POWER_PARAMETERS) and (physics_params("PROJ_COOLDOWN", POWER_PARAMETERS) > 0):
+				cooldown = true
+				await get_tree().create_timer(physics_params("PROJ_COOLDOWN", POWER_PARAMETERS)).timeout
+				cooldown = false
+				if physics_params("PROJ_SFX_COOLDOWN_END", POWER_PARAMETERS):
+					AudioManager.play_sfx(physics_params("PROJ_SFX_COOLDOWN_END", POWER_PARAMETERS), global_position)
+	
+func calculate_angle_param(prefix):
+	var vert_input = sign(Input.get_axis("move_up" + "_" + str(player_id),"move_down" + "_" + str(player_id)))
+	var horiz_input = sign(Input.get_axis("move_right" + "_" + str(player_id),"move_left" + "_" + str(player_id)))
+	var word_out = prefix
+	if physics_params(word_out + "_UP", POWER_PARAMETERS) && (vert_input < 0):
+		word_out = word_out + "_UP"
+	elif physics_params(word_out + "_DOWN", POWER_PARAMETERS) && (vert_input > 0):
+		word_out = word_out + "_DOWN"
+	if physics_params(word_out + "_FORWARD", POWER_PARAMETERS) && (horiz_input != 0):
+		word_out = word_out + "_FORWARD"
+	if physics_params(word_out + "_AIR", POWER_PARAMETERS) && !is_on_floor():
+		word_out = word_out + "_AIR"
+		
+	return physics_params(word_out, POWER_PARAMETERS)
 
 func throw_projectile() -> void:
 	attacked.emit()
@@ -1024,6 +1090,9 @@ func throw_projectile() -> void:
 	var offset = physics_params("PROJ_OFFSET", POWER_PARAMETERS)
 	var angle = Vector2.ZERO if physics_params("PROJ_ANGLE", POWER_PARAMETERS) == null else Vector2.from_angle(deg_to_rad(physics_params("PROJ_ANGLE", POWER_PARAMETERS)))
 	var speed = physics_params("PROJ_SPEED", POWER_PARAMETERS)
+	
+	speed = calculate_angle_param("PROJ_SPEED")
+	
 	var speed_scaling = 0
 	if physics_params("PROJ_SPEED_SCALING", POWER_PARAMETERS):
 		speed_scaling = velocity.x * direction
@@ -1041,6 +1110,8 @@ func throw_projectile() -> void:
 		node.MOVE_SPEED = speed[0] + speed_scaling
 		node.MOVE_ANGLE = angle
 	call_deferred("add_sibling", node)
+	if not (is_on_floor() or in_water):
+		projectiles_fired_since_left_ground += 1
 	projectile_amount += 1
 	node.tree_exited.connect(func(): projectile_amount -= 1)
 	AudioManager.play_sfx(physics_params("PROJ_SFX_THROW", POWER_PARAMETERS), global_position)
@@ -1276,6 +1347,7 @@ func set_power_state_frame() -> void:
 		can_pose_castle_anim = frames.has_animation("PoseToad") or frames.has_animation("PosePeach")
 		can_bump_jump_anim = frames.has_animation("JumpBump")
 		can_bump_crouch_anim = frames.has_animation("CrouchBump")
+		can_bump_fling_anim = frames.has_animation("FlingJumpBump")
 		can_bump_swim_anim = frames.has_animation("SwimBump")
 		can_bump_fly_anim = frames.has_animation("FlyBump")
 		can_kick_anim = frames.has_animation("Kick")
@@ -1508,6 +1580,9 @@ func calculate_jump_height(jump_height = physics_params("JUMP_SPEED_IDLE"), jump
 const SMOKE_PARTICLE = preload("res://Scenes/Prefabs/Particles/SmokeParticle.tscn")
 
 func teleport_player(new_position := Vector2.ZERO) -> void:
+	if teleporting:
+		return
+	teleporting = true
 	hide()
 	can_hurt = false
 	do_smoke_effect()
@@ -1522,6 +1597,7 @@ func teleport_player(new_position := Vector2.ZERO) -> void:
 	show()
 	velocity = Vector2.ZERO
 	do_smoke_effect()
+	teleporting = false
 
 func do_smoke_effect() -> void:
 	for i in 2:
@@ -1612,6 +1688,7 @@ func on_area_exited(area: Area2D) -> void:
 		water_exited()
 
 func water_entered() -> void:
+	projectiles_fired_since_left_ground = 0
 	velocity.y = max(-physics_params("SWIM_HEIGHT"), velocity.y)
 
 

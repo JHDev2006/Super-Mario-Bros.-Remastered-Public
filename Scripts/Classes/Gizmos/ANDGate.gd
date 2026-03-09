@@ -11,15 +11,16 @@ var condition_filled := false
 
 func _ready() -> void:
 	if Global.level_editor_is_editing() == false:
-		update()
+		update.call_deferred()
 
 func input_added() -> void:
 	total_inputs += 1
 	update()
 
 func update() -> void:
-	if is_inside_tree():
-		await get_tree().process_frame
+	#this line was causing a one frame delay in all scenarios, which is not very good
+	#if is_inside_tree():
+		#await get_tree().process_frame
 	total_inputs = clamp(total_inputs, 0, INF)
 	var test_condition = get_condition()
 	if test_condition != condition_filled:
@@ -44,8 +45,6 @@ func get_condition() -> bool:
 
 func pulse_recieved() -> void:
 	input_added()
-	$SignalExposer.queue_redraw()
-	await get_tree().process_frame
 	input_lost()
 
 

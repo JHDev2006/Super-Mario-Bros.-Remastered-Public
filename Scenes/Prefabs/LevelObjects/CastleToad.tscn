@@ -70,7 +70,7 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="StandardMSG" type="Node2D" parent="." unique_id=1180436761]
 unique_name_in_owner = true
 
-[node name="ThankYou" type="Label" parent="StandardMSG" unique_id=581752424]
+[node name="ThankYou" type="Label" parent="StandardMSG" unique_id=581752424 groups=["Messages"]]
 visible = false
 visibility_layer = 2
 offset_left = -96.0
@@ -83,7 +83,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="AnotherCastle" type="Label" parent="StandardMSG" unique_id=1939182112]
+[node name="AnotherCastle" type="Label" parent="StandardMSG" unique_id=1939182112 groups=["Messages"]]
 visible = false
 visibility_layer = 2
 offset_left = -96.0
@@ -99,7 +99,7 @@ uppercase = true
 [node name="SpeedrunMSG" type="Node2D" parent="." unique_id=1585784247]
 unique_name_in_owner = true
 
-[node name="ThankYou" type="Label" parent="SpeedrunMSG" unique_id=1564476775]
+[node name="ThankYou" type="Label" parent="SpeedrunMSG" unique_id=1564476775 groups=["Messages"]]
 visible = false
 visibility_layer = 2
 offset_left = -112.0
@@ -111,7 +111,7 @@ text = "CUTSCENE_MARATHON_PEACH_1"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Time" type="Label" parent="SpeedrunMSG" unique_id=1470519972]
+[node name="Time" type="Label" parent="SpeedrunMSG" unique_id=1470519972 groups=["Messages"]]
 unique_name_in_owner = true
 visible = false
 visibility_layer = 2
@@ -126,7 +126,7 @@ vertical_alignment = 3
 autowrap_mode = 2
 uppercase = true
 
-[node name="PBMessage" type="Label" parent="SpeedrunMSG" unique_id=1534218892]
+[node name="PBMessage" type="Label" parent="SpeedrunMSG" unique_id=1534218892 groups=["Messages"]]
 unique_name_in_owner = true
 visible = false
 visibility_layer = 2

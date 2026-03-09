@@ -36,7 +36,7 @@ var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
 var ROM_PATH = config_path.path_join("baserom.nes")
 var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
 const ROM_PACK_NAME := "BaseAssets"
-const ROM_ASSETS_VERSION := 3
+const ROM_ASSETS_VERSION := 4
 
 var server_version := -1
 var current_version := -1
@@ -508,10 +508,7 @@ func get_server_version() -> void:
 	http.request(url, [], HTTPClient.METHOD_GET)
 
 func version_got(_result, response_code, _headers, body) -> void:
-	if is_snapshot:
-		current_version = get_snapshot_num_int(current_snapshot)
-	else:
-		current_version = get_version_num_int(version_number)
+	current_version = get_version_num_int(version_number)
 	if response_code == 200:
 		if is_snapshot:
 			server_version = int(get_snapshot_num_int(body.get_string_from_utf8()))
@@ -600,9 +597,7 @@ func get_snapshot_num_int(ver_num := "26w00a") -> int:
 	var week = ver_num.substr(3, 2)
 	var num = ver_num[5]
 	
-	print([year, week, num])
-	
-	return (int(year) * int(week)) + int(num)
+	return (int(year) * int(week)) + int(num.unicode_at(0))
 
 func load_default_translations() -> void:
 	for i in lang_codes:
@@ -658,7 +653,8 @@ func convert_en_to_gal(en_string := "") -> String:
 	return gal_string
 
 func in_custom_campaign(campaign := current_custom_campaign) -> bool:
-	return campaign != ""
+	return campaign not in CAMPAIGNS and campaign != ""
+
 func merge_dict(target: Dictionary, source: Dictionary) -> void:
 	# SkyanUltra: Used to properly merge dictionaries JSONs rather than out right overwriting entries.
 	for key in source.keys():
@@ -726,3 +722,7 @@ func _input(event: InputEvent) -> void:
 			# because "input may come in part way through a physics tick"
 			# https://github.com/godotengine/godot/blob/2327a823578a30f09068f97272598521896d5633/core/input/input.cpp#L1025
 			physics_multibind_pressed_buttons[action] = Engine.get_physics_frames() + 1
+
+func warper_cooldown() -> void:
+	await get_tree().create_timer(1, false).timeout
+	Warper.can_warp = true

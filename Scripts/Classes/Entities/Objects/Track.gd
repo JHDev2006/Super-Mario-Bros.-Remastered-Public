@@ -57,7 +57,6 @@ func _physics_process(_delta: float) -> void:
 		for i in 8:
 			if is_mouse_in_area(i):
 				if Track.DIRECTIONS[i] == -last_direction:
-					print([i, Track.DIRECTIONS[i], last_direction])
 					remove_last_piece()
 				else:
 					add_piece(Track.DIRECTIONS[i])

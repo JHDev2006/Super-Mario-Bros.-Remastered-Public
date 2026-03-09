@@ -214,7 +214,6 @@ func get_variation_json(json := {}) -> Dictionary:
 	for i in json.keys().filter(func(key): return key.contains("config:")):
 		get_config_file(current_resource_pack)
 		if config_to_use != {}:
-			print(current_resource_pack)
 			var option_name = i.get_slice(":", 1)
 			if config_to_use.options.has(option_name):
 				var config_json = json[i][config_to_use.options[option_name]]

@@ -32,8 +32,8 @@ buses/default_bus_layout="uid://bc65qkbkya885"
 
 [autoload]
 
-ModLoaderStore="*uid://jv5kxtsw7sfj"
-ModLoader="*uid://bd8npc3ai2vv3"
+ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
+ModLoader="*res://addons/mod_loader/mod_loader.gd"
 NewLevelBuilder="*res://Scenes/Prefabs/Autoload/NewLevelBuilder.gd"
 Global="*res://Scenes/Prefabs/Global.tscn"
 Settings="*res://Scenes/Prefabs/Autoload/Settings.tscn"

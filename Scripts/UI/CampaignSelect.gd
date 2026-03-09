@@ -92,8 +92,12 @@ func get_starting_position() -> void:
 func handle_input() -> void:
 	if Global.multibind_action_just_pressed("ui_left"):
 		selected_index -= 1
-	if Global.multibind_action_just_pressed("ui_right"):
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
+	if Input.is_action_just_pressed("ui_right"):
 		selected_index += 1
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
 	selected_index = wrap(selected_index, 0, campaign.size())
 	Global.current_campaign = campaign[selected_index]
 	if Global.multibind_action_just_pressed("ui_accept"):

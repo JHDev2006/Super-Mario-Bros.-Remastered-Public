@@ -33,7 +33,6 @@ func get_custom_characters() -> void:
 	var idx := 0
 	for i in Player.CHARACTERS:
 		var path = ResourceSetter.get_pure_resource_path("res://Assets/Sprites/Players/" + i + "/CharacterInfo.json")
-		print(path)
 		if FileAccess.file_exists(path):
 			var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
 			Player.CHARACTER_NAMES[idx] = json.name
@@ -41,7 +40,6 @@ func get_custom_characters() -> void:
 		if FileAccess.file_exists(path):
 			Player.CHARACTER_COLOURS[idx] = load(path)
 		idx += 1
-	print(Player.CHARACTER_NAMES)
 	
 	var base_path = Global.config_path
 	var char_dir = base_path.path_join("custom_characters") 
@@ -94,10 +92,14 @@ func handle_input() -> void:
 	if Global.multibind_action_just_pressed("ui_left"):
 		selected_index = wrap(selected_index - 1, 0, Player.CHARACTERS.size())
 		update_sprites()
-	elif Global.multibind_action_just_pressed("ui_right"):
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
+	elif Input.is_action_just_pressed("ui_right"):
 		selected_index = wrap(selected_index + 1, 0, Player.CHARACTERS.size())
 		update_sprites()
-	if Global.multibind_action_just_pressed("ui_accept"):
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
+	if Input.is_action_just_pressed("ui_accept"):
 		Global.player_characters[player_id] = (selected_index)
 		var characters := Global.player_characters
 		for i in characters:

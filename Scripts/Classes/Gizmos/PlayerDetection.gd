@@ -62,7 +62,6 @@ func run_check() -> void:
 			if (i.has_node("BasicStaticMovement") or i is Crate) and detect_physics_objs:
 				object_in_area = true
 				break
-	print(object_in_area)
 	if object_in_area and not save:
 		object_entered.emit()
 	elif not object_in_area and save:

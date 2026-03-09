@@ -250,7 +250,6 @@ func save_recording() -> void:
 	levels.clear()
 
 func compress_recording(recording := "") -> String:
-	print(recording)
 	var bytes = recording.to_ascii_buffer()
 	var compressed_bytes = bytes.compress(FileAccess.CompressionMode.COMPRESSION_DEFLATE)
 	var b64 = Marshalls.raw_to_base64(compressed_bytes)
@@ -282,7 +281,6 @@ func load_best_marathon() -> void:
 func load_recording(world_num := 0, level_num := 0, is_warpless := true, campaign := "SMB1") -> Array:
 	var recording_dir = Global.config_path.path_join("marathon_recordings/" + campaign)
 	var path = recording_dir + "/" + str(world_num) + "-" + str(level_num) + ("" if is_warpless else "warp") + ".json"
-	print(path)
 	if FileAccess.file_exists(path) == false:
 		return []
 	var file = FileAccess.open(path, FileAccess.READ)

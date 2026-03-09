@@ -79,7 +79,6 @@ func player_win_race() -> void:
 	
 	if int(BooRaceHandler.cleared_boo_levels[level_id]) <= cleared_boo:
 		BooRaceHandler.cleared_boo_levels[level_id] = str(cleared_boo)
-	print(BooRaceHandler.cleared_boo_levels)
 	SaveManager.write_save(Global.current_campaign)
 	boo.flag_die()
 	if cleared_boo_levels.contains("0") == false:

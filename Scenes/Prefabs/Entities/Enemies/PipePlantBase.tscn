@@ -261,11 +261,6 @@ metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 libraries/ = SubResource("AnimationLibrary_hjrfx")
 autoplay = &"Hide"
 
-[node name="SecondQuestReplacer" type="Node" parent="." unique_id=1574329925]
-script = ExtResource("6_h4okp")
-new_scene = "uid://kj5pw3xhq8f7"
-metadata/_custom_type_script = "uid://d0mqkvopasu8k"
-
 [node name="GibSpawner" type="Node" parent="." unique_id=1065734456]
 script = ExtResource("4_fs2ml")
 metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
@@ -275,5 +270,10 @@ process_mode = 3
 script = ExtResource("5_w64l8")
 rotation_joint = NodePath("../RotationJoint")
 plant = NodePath("..")
+
+[node name="SecondQuestReplacer" type="Node" parent="." unique_id=1574329925]
+script = ExtResource("6_h4okp")
+new_scene = "uid://kj5pw3xhq8f7"
+metadata/_custom_type_script = "uid://d0mqkvopasu8k"
 
 [connection signal="timeout" from="Timer" to="." method="on_timeout"]

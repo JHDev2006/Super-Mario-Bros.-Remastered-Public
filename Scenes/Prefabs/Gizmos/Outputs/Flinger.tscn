@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://07ukmj7s77wu"]
+
+[ext_resource type="PackedScene" uid="uid://cllscucqyd033" path="res://Scenes/Prefabs/Gizmos/Outputs/BaseOutput.tscn" id="1_tdafo"]
+[ext_resource type="Script" uid="uid://dm0pwb6rqutii" path="res://Scripts/Classes/Gizmos/PlayerFlinger.gd" id="2_tdafo"]
+[ext_resource type="Texture2D" uid="uid://b40xfep1drlm1" path="res://Assets/Sprites/Editor/Gizmos/PlayerFlinger.png" id="3_tdafo"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="4_h25ba"]
+[ext_resource type="PackedScene" uid="uid://dse5pwhodrqcr" path="res://Scenes/Prefabs/Editor/EditorProperties/TilePropertyIntRangeSpin.tscn" id="5_66x6m"]
+
+[node name="BaseOutput" unique_id=515746201 instance=ExtResource("1_tdafo")]
+script = ExtResource("2_tdafo")
+horizontal_speed = 0.0
+upwards_speed = 0.0
+relative_to_direction = false
+additive = true
+update_player_direction = true
+
+[node name="Sprite2D" parent="." index="0" unique_id=1224179792]
+texture = ExtResource("3_tdafo")
+hframes = 1
+
+[node name="SignalExposer" parent="." index="1" unique_id=1403115602]
+can_output = false
+
+[node name="EditorPropertyExposer" type="Node" parent="." index="2" unique_id=1367816059]
+script = ExtResource("4_h25ba")
+properties = Array[String](["horizontal_speed", "upwards_speed", "relative_to_direction", "additive", "update_player_direction"])
+properties_force_selector = Dictionary[String, PackedScene]({
+"horizontal_speed": ExtResource("5_66x6m"),
+"upwards_speed": ExtResource("5_66x6m")
+})
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[connection signal="lost_power" from="SignalExposer" to="." method="turn_off"]
+[connection signal="recieved_power" from="SignalExposer" to="." method="turn_on"]
+[connection signal="recieved_power" from="SignalExposer" to="." method="play_sfx"]
+[connection signal="recieved_pulse" from="SignalExposer" to="." method="launch"]
+[connection signal="recieved_pulse" from="SignalExposer" to="." method="play_sfx"]

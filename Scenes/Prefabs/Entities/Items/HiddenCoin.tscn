@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="1_lsyt7"]
 [ext_resource type="PackedScene" uid="uid://chjxyhlwohmi6" path="res://Scenes/Prefabs/Entities/Items/Coin.tscn" id="2_6dt4v"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_c15kk"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_n8c86"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/HiddenCoin.json" id="5_w6imi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6dt4v"]
 animations = [{
@@ -32,6 +34,13 @@ script = ExtResource("1_lsyt7")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=41158563 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_n8c86")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("5_w6imi")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
 [node name="PlayerDetection" type="Area2D" parent="." unique_id=1757740240]
 script = ExtResource("3_c15kk")
 metadata/_custom_type_script = "uid://cnheej0sxmoxg"
@@ -47,6 +56,5 @@ position = Vector2(0, 9999999)
 enabled = false
 
 [connection signal="player_entered" from="PlayerDetection" to="." method="on_player_entered" flags=6]
-[connection signal="area_entered" from="Coin/Hitbox" to="Coin" method="area_entered"]
 
 [editable path="Coin"]

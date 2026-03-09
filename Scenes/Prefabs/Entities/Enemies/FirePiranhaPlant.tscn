@@ -26,6 +26,9 @@ monitoring = false
 fireball_scene = ExtResource("3_t5jdg")
 plant = NodePath("../../../..")
 
+[node name="Node2D" type="Node2D" parent="RotationJoint/PositionJoint/Visuals" index="3" unique_id=1323806359]
+position = Vector2(0, -8)
+
 [node name="EditorVisibleNode" type="Node2D" parent="RotationJoint" parent_id_path=PackedInt32Array(1388609852) index="1" unique_id=1557828344]
 script = ExtResource("3_ltyw1")
 is_gizmo = false
@@ -41,11 +44,18 @@ property_name = "sprite_frames"
 resource_json = ExtResource("6_autuf")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
+[node name="GibSpawner" parent="." index="6" unique_id=1065734456 node_paths=PackedStringArray("visuals")]
+unique_name_in_owner = true
+visuals = NodePath("../RotationJoint/PositionJoint/Visuals/Node2D")
+gib_type = 2
+
+[connection signal="killed" from="." to="." method="on_killed"]
 [connection signal="hammer_player_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="die_from_hammer"]
 [connection signal="invincible_player_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="player_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="fireball_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/FireballDetection" to="." method="die_from_object"]
+[connection signal="fireball_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/FireballDetection" to="RotationJoint/PositionJoint/Visuals/Sprite/ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="moving_shell_entered" from="RotationJoint/PositionJoint/Visuals/Sprite/ShellDetection" to="." method="die_from_object"]
 [connection signal="explosion_entered" from="RotationJoint/PositionJoint/Visuals/Sprite/ExplosionDetection" to="." method="die_from_object"]
 

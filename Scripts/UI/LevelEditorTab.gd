@@ -15,7 +15,6 @@ func _ready() -> void:
 	update()
 
 func update() -> void:
-	print(current_tab == self)
 	$HBoxContainer/Label.visible = current_tab == self
 	$Selected.visible = current_tab == self
 	linked_control.visible = current_tab == self

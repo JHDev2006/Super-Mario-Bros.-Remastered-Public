@@ -57,7 +57,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	target_player = get_tree().get_nodes_in_group("Players")[0]
-	print("Bowser position: ", global_position.x, "\nStart Position: ", starting_position, "\nTarget position: ", target_position)
 	if charging_player:
 		move_dir = 1
 	elif (move_dir >= 0 and global_position.x >= target_position) or (move_dir < 0 and global_position.x <= target_position):

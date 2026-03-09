@@ -55,9 +55,7 @@ func do_cutscene() -> void:
 		var climb_state = i.get_node("States/Climb")
 		climb_state.climb_direction = -1
 		var distance = abs(i.global_position.y - (top_point + 32))
-		print([i.global_position.y, top_point])
 		var climb_time = distance / (50)
-		print([distance, climb_time])
 		await get_tree().create_timer(climb_time, false).timeout
 		i.direction = -1
 		climb_state.climb_direction = 0
@@ -104,11 +102,12 @@ func handle_player_interaction(delta: float) -> void:
 func on_player_entered(_player: Player) -> void:
 	if can_tele == false:
 		return
+	can_tele = false
 	Level.vine_return_level = Global.current_level.scene_file_path
 	if Global.level_editor_is_playtesting():
 		CoinHeavenWarpPoint.subarea_return = Global.level_editor.sub_level_id
 		Global.level_editor.transition_to_sublevel(CoinHeavenWarpPoint.subarea_to_warp_to)
-	elif Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL or Global.in_custom_campaign(Global.current_campaign):
+	elif Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL or Global.in_custom_campaign():
 		Global.transition_to_scene(NewLevelBuilder.sub_levels[CoinHeavenWarpPoint.subarea_to_warp_to])
 	else:
 		Global.transition_to_scene(Level.vine_warp_level)

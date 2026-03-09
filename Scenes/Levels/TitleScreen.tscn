@@ -52,14 +52,18 @@ func _ready() -> void:
 script/source = "extends Label
 
 func _process(_delta: float) -> void:
-	print([Global.server_version, Global.current_version])
-	if Global.server_version == -1:
+	var current_version = Global.current_version
+	if Global.is_snapshot:
+		current_version = Global.get_snapshot_num_int(Global.current_snapshot)
+	if Global.server_version == -1 or current_version == -1:
 		return
-	if Global.server_version > Global.current_version:
+	print(\"Server Version: \" + str(Global.server_version))
+	print(\"Client Version: \" + str(current_version) + \" (\" + Global.current_snapshot + \")\")
+	if Global.server_version > current_version:
 		modulate = Color.RED
 		text = \"VERSION_OUTDATED\"
 		set_process(false)
-	elif Global.server_version <= Global.current_version:
+	elif Global.server_version <= current_version:
 		modulate = Color.GREEN
 		text = \"VERSION_LATEST\"
 		set_process(false)

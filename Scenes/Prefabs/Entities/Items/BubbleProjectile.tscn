@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bain8e6ypmgua"]
+
+[ext_resource type="Script" uid="uid://ckbssy74cbsba" path="res://Scripts/Classes/Entities/Items/BubbleProjectile.gd" id="1_06sja"]
+[ext_resource type="Texture2D" uid="uid://bndkbi70f3tvx" path="res://Assets/Sprites/Items/Bubble.png" id="2_06sja"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ujt3a"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/BubbleProjectile.json" id="4_06sja"]
+[ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="4_uch4a"]
+[ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="5_pdv7h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3m0ec"]
+atlas = ExtResource("2_06sja")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afq4s"]
+atlas = ExtResource("2_06sja")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdv7h"]
+atlas = ExtResource("2_06sja")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ippsn"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_3m0ec")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_afq4s")
+}],
+"loop": true,
+"name": &"Dissolve",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdv7h")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_afq4s")
+}],
+"loop": true,
+"name": &"Float",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmlpp"]
+size = Vector2(30, 29)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmlpp"]
+
+[node name="Bubble" type="CharacterBody2D" unique_id=1546191736 groups=["Enemies"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_06sja")
+MOVE_SPEED = 120
+GRAVITY = 10
+metadata/_custom_type_script = "uid://c5elnt7uap15b"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2036934457]
+sprite_frames = SubResource("SpriteFrames_ippsn")
+animation = &"Dissolve"
+autoplay = "Float"
+script = ExtResource("4_uch4a")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=304133027 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_ujt3a")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("4_06sja")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=597767872]
+shape = SubResource("RectangleShape2D_pmlpp")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=744724772]
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox" unique_id=1857667054]
+shape = SubResource("CircleShape2D_pmlpp")
+
+[node name="EnemyPlayerDetection" type="Node" parent="." unique_id=849735563 node_paths=PackedStringArray("hitbox")]
+script = ExtResource("5_pdv7h")
+hitbox = NodePath("../Hitbox")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=454165432]
+rect = Rect2(-20, -20, 40, 40)
+
+[connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_below" from="EnemyPlayerDetection" to="." method="on_player_stomped"]
+[connection signal="player_stomped_on" from="EnemyPlayerDetection" to="." method="on_player_stomped"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]

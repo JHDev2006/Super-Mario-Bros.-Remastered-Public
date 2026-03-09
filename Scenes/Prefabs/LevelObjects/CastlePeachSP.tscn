@@ -7,11 +7,11 @@
 [node name="ThankYou" parent="StandardMSG" parent_id_path=PackedInt32Array(1180436761) index="0" unique_id=581752424]
 text = "CUTSCENE_SP_PEACH_1"
 
-[node name="AnotherCastle4" parent="EndingSpeech" parent_id_path=PackedInt32Array(1443762879) index="0" unique_id=786280292]
+[node name="AnotherCastle4" parent="EndingSpeech" parent_id_path=PackedInt32Array(1443762879) index="0" unique_id=786280292 groups=["Messages"]]
 text = "CUTSCENE_SP_PEACH_2"
 
-[node name="AnotherCastle5" parent="EndingSpeech" parent_id_path=PackedInt32Array(1443762879) index="1" unique_id=408914055]
+[node name="AnotherCastle5" parent="EndingSpeech" parent_id_path=PackedInt32Array(1443762879) index="1" unique_id=408914055 groups=["Messages"]]
 text = "CUTSCENE_SP_PEACH_3"
 
-[node name="AnotherCastle6" parent="EndingSpeech" parent_id_path=PackedInt32Array(1443762879) index="2" unique_id=1776557786]
+[node name="AnotherCastle6" parent="EndingSpeech" parent_id_path=PackedInt32Array(1443762879) index="2" unique_id=1776557786 groups=["Messages"]]
 text = ""

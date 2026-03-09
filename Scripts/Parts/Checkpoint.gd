@@ -5,6 +5,8 @@ extends Node2D
 
 @export var optional := false
 
+@export_enum("Per-Setting", "Disabled", "Enabled") var give_mushroom := 0
+
 signal crossed(player: Player)
 signal respawned
 
@@ -40,6 +42,7 @@ func _ready() -> void:
 		return
 	if passed and PipeArea.exiting_pipe_id == -1 and Global.current_game_mode != Global.GameMode.LEVEL_EDITOR and Level.vine_return_level == "" and passed_checkpoints[passed_checkpoints.size() - 1] == id:
 		for i in nodes_to_delete:
+			if is_instance_valid(i) == false: continue
 			i.queue_free()
 		for i in get_tree().get_nodes_in_group("Players"):
 			i.global_position = self.global_position
@@ -68,7 +71,7 @@ func on_area_entered(area: Area2D) -> void:
 			sublevel_id = Global.level_editor.sub_level_id
 		elif Global.current_level is CustomLevel:
 			sublevel_id = Global.current_level.sublevel_id
-		if Settings.file.gameplay.checkpoint_style == 2 and has_meta("is_flag"):
+		if ((Settings.file.gameplay.checkpoint_style == 2 and give_mushroom == 0) or give_mushroom == 2) and has_meta("is_flag"):
 			if player.power_state.state_name == "Small":
 				player.get_power_up("Big", false)
 		respawn_position = global_position

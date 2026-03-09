@@ -26,8 +26,12 @@ func _process(_delta: float) -> void:
 func handle_inputs() -> void:
 	if Global.multibind_action_just_pressed("ui_down"):
 		selected_index += 1
-	if Global.multibind_action_just_pressed("ui_up"):
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
+	if Input.is_action_just_pressed("ui_up"):
 		selected_index -= 1
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
 	selected_index = clamp(selected_index, 0, options.size() - 1)
 	if Global.multibind_action_just_pressed("ui_accept"):
 		option_selected()

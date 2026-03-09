@@ -44,7 +44,6 @@ func do_jump() -> void:
 	if play_sfx:
 		AudioManager.play_sfx("podoboo", global_position)
 	velocity = calculate_jump_height()
-	print(velocity)
 	await get_tree().physics_frame
 	can_jump = true
 

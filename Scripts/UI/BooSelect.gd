@@ -44,7 +44,6 @@ func handle_input() -> void:
 	selected_boo = clamp(selected_boo, 0, 4)
 	BooRaceHandler.boo_colour = selected_boo
 	if old_colour != selected_boo:
-		print(selected_boo)
 		boo_changed.emit()
 	if Global.multibind_action_just_pressed("ui_back"):
 		cancelled.emit()

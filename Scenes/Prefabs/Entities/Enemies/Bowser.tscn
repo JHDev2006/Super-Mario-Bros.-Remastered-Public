@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://wtypg4d0l6j2" path="res://Scripts/Classes/Entities/Enemies/Bowser.gd" id="1_ma5fd"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="4_2qn7a"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="4_kfwlq"]
-[ext_resource type="Texture2D" uid="uid://3xmhfi556p3s" path="res://Assets/Sprites/Items/Hammer.png" id="4_vubm2"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_17x2r"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Bowser.json" id="6_nf6hu"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="6_pvhfi"]
@@ -308,21 +307,21 @@ position = Vector2(-1.040307e-05, -4)
 shape = SubResource("RectangleShape2D_yggkc")
 disabled = true
 
-[node name="Hammer" type="Sprite2D" parent="." unique_id=1682440283]
+[node name="Hammer" type="AnimatedSprite2D" parent="." unique_id=1437707171]
 visible = false
 show_behind_parent = true
 position = Vector2(-16, -32)
-texture = ExtResource("4_vubm2")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
+script = ExtResource("4_2qn7a")
+do_offset = false
+metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetter" type="Node" parent="Hammer" unique_id=650587338 node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("5_17x2r")
 node_to_affect = NodePath("..")
-property_node = NodePath("..")
-property_name = "texture"
-mode = 1
+property_node = NodePath("")
+property_name = "sprite_frames"
 resource_json = ExtResource("15_yggkc")
+use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1469437747]

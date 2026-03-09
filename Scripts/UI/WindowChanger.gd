@@ -46,7 +46,6 @@ func language_changed(new_value := 0) -> void:
 	%Flag.region_rect.position.x = new_value * 16
 
 func frame_limit_changed(new_value := 0) -> void: 
-	print_debug(str(new_value))
 	
 	var new_framerate := 0
 	match new_value: 

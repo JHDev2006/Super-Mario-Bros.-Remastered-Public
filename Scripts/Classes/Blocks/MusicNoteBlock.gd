@@ -44,7 +44,6 @@ func _process(_delta: float) -> void:
 
 func play_sfx_preview() -> void:
 	if get_node_or_null("Instrument") != null and can_play:
-		print($Instrument.pitch_scale)
 		$Instrument.stream = sfx_stream
 		$Instrument.pitch_scale = pitch
 		$Instrument.play()

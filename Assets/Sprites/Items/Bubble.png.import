@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drt7bdnqx3ejt"
-path="res://.godot/imported/PipelandLLNight.png-d32629ea4525f7852132724ac506acd5.ctex"
+uid="uid://bndkbi70f3tvx"
+path="res://.godot/imported/Bubble.png-c8aa7e3b8b51486e649d055e6f10ae77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Backgrounds/Hills/PipelandLLNight.png"
-dest_files=["res://.godot/imported/PipelandLLNight.png-d32629ea4525f7852132724ac506acd5.ctex"]
+source_file="res://Assets/Sprites/Items/Bubble.png"
+dest_files=["res://.godot/imported/Bubble.png-c8aa7e3b8b51486e649d055e6f10ae77.ctex"]
 
 [params]
 

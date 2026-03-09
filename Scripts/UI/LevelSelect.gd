@@ -174,7 +174,6 @@ func _process(_delta: float) -> void:
 func open() -> void:
 	if starting_value == -1:
 		starting_value = Global.level_num
-	print([Global.level_num, starting_value])
 	selected_level = Global.level_num - 1
 	setup_level_icon_data()
 	setup_visuals()

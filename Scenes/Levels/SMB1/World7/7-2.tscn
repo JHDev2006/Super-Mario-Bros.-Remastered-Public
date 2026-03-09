@@ -1,40 +1,85 @@
 [gd_scene format=3 uid="uid://0xnuvrl7o0gm"]
+
 [ext_resource type="PackedScene" uid="uid://dsbbno622yoxo" path="res://Scenes/Levels/SMB1/World2/2-2.tscn" id="1_x8mfc"]
 [ext_resource type="PackedScene" uid="uid://b6drci0vml1as" path="res://Scenes/Prefabs/Entities/Enemies/Blooper.tscn" id="3_4huqm"]
+
 [node name="7-2" unique_id=655925877 instance=ExtResource("1_x8mfc")]
 theme_time = "Night"
 world_id = 7
+
 [node name="LevelBG" parent="." index="0" unique_id=1664107682]
 time_of_day = 1
+
 [node name="Blooper7" parent="Enemies" parent_id_path=PackedInt32Array(1549122985) index="7" unique_id=1018672748 instance=ExtResource("3_4huqm")]
 position = Vector2(152, -80)
+
 [node name="Blooper8" parent="Enemies" parent_id_path=PackedInt32Array(1549122985) index="8" unique_id=1686817697 instance=ExtResource("3_4huqm")]
 position = Vector2(584, -80)
+
 [node name="Blooper9" parent="Enemies" parent_id_path=PackedInt32Array(1549122985) index="9" unique_id=1158453634 instance=ExtResource("3_4huqm")]
 position = Vector2(984, -96)
+
 [node name="Blooper10" parent="Enemies" parent_id_path=PackedInt32Array(1549122985) index="10" unique_id=1215168152 instance=ExtResource("3_4huqm")]
 position = Vector2(1192, -16)
+
 [node name="Blooper11" parent="Enemies" parent_id_path=PackedInt32Array(1549122985) index="11" unique_id=1087300650 instance=ExtResource("3_4huqm")]
 position = Vector2(2152, -64)
+
 [node name="Blooper12" parent="Enemies" parent_id_path=PackedInt32Array(1549122985) index="12" unique_id=104858095 instance=ExtResource("3_4huqm")]
 position = Vector2(2520, -16)
+
 [node name="Blooper13" parent="Enemies" parent_id_path=PackedInt32Array(1549122985) index="13" unique_id=107844813 instance=ExtResource("3_4huqm")]
 position = Vector2(2616, -16)
-[node name="Checkpoint" parent="." index="12" unique_id=320824981 node_paths=PackedStringArray("nodes_to_delete")]
-nodes_to_delete = [null, NodePath("../Enemies/Blooper4")]
+
 [node name="RedCoin" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1490058376) index="0" unique_id=1234937921]
 position = Vector2(56, -152)
+
 [node name="RedCoin2" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1490058376) index="1" unique_id=2074504533]
 position = Vector2(808, 24)
+
 [node name="RedCoin3" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1490058376) index="2" unique_id=519184567]
 position = Vector2(1384, -136)
+
 [node name="RedCoin4" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1490058376) index="3" unique_id=1417734351]
 position = Vector2(2120, -8)
+
 [node name="RedCoin5" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1490058376) index="4" unique_id=1172911060]
 position = Vector2(2744, -152)
+
 [node name="InvisibleQuestionBlock" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1490058376) index="5" unique_id=53555953]
 position = Vector2(2264, -56)
+
 [node name="CheckpointFlag" parent="." index="14" unique_id=1498541041 node_paths=PackedStringArray("nodes_to_delete")]
 nodes_to_delete = [null, NodePath("../Enemies/Blooper4")]
+
 [node name="SecondQuestNode" parent="." index="16" unique_id=1700197967]
 enabled = true
+
+[connection signal="collected" from="Tiles/Coin" to="Tiles/Coin/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30894" to="Tiles/@Node2D@30894/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30895" to="Tiles/@Node2D@30895/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30896" to="Tiles/@Node2D@30896/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30897" to="Tiles/@Node2D@30897/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30898" to="Tiles/@Node2D@30898/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30899" to="Tiles/@Node2D@30899/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30900" to="Tiles/@Node2D@30900/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30901" to="Tiles/@Node2D@30901/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30902" to="Tiles/@Node2D@30902/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30903" to="Tiles/@Node2D@30903/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30904" to="Tiles/@Node2D@30904/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30905" to="Tiles/@Node2D@30905/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30906" to="Tiles/@Node2D@30906/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30907" to="Tiles/@Node2D@30907/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30908" to="Tiles/@Node2D@30908/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30909" to="Tiles/@Node2D@30909/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30910" to="Tiles/@Node2D@30910/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30911" to="Tiles/@Node2D@30911/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30912" to="Tiles/@Node2D@30912/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30913" to="Tiles/@Node2D@30913/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30914" to="Tiles/@Node2D@30914/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30915" to="Tiles/@Node2D@30915/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30916" to="Tiles/@Node2D@30916/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30917" to="Tiles/@Node2D@30917/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30918" to="Tiles/@Node2D@30918/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30919" to="Tiles/@Node2D@30919/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@30920" to="Tiles/@Node2D@30920/LevelPersistance" method="set_as_active"]

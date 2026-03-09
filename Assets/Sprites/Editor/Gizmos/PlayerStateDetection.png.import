@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crb20ut70j414"
-path="res://.godot/imported/image.png-b91d655877fc4c635dce51d7188b493b.ctex"
+uid="uid://b78wawq5ds3gm"
+path="res://.godot/imported/PlayerStateDetection.png-7d05bad990b71f7e03d4dc4439591c04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Players/Luigi/image.png"
-dest_files=["res://.godot/imported/image.png-b91d655877fc4c635dce51d7188b493b.ctex"]
+source_file="res://Assets/Sprites/Editor/Gizmos/PlayerStateDetection.png"
+dest_files=["res://.godot/imported/PlayerStateDetection.png-7d05bad990b71f7e03d4dc4439591c04.ctex"]
 
 [params]
 

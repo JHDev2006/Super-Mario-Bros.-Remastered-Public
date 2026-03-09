@@ -32,8 +32,8 @@ func on_timeout() -> void:
 	$RotationJoint/PositionJoint/Visuals/Hitbox.set_deferred("monitoring", false)
 	$Timer.start()
 
-
 func on_killed(gib_direction: int) -> void:
+	var gib_spawner = get_node("GibSpawner")
 	if Settings.file.visuals.extra_particles == 1:
-		$GibSpawner.gib_type = 2
-	$GibSpawner.summon_gib(gib_direction)
+		gib_spawner.gib_type = 2
+	gib_spawner.summon_gib(gib_direction)

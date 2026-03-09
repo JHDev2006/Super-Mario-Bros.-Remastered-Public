@@ -85,6 +85,7 @@ const DEFAULT_SFX_LIBRARY := {
 	"plant_fireball": ("res://Assets/Audio/SFX/Fireball.wav"),
 	"bowser_jr_fireball": ("res://Assets/Audio/SFX/Fireball.wav"),
 	"shell_spin": ("res://Assets/Audio/SFX/ShellSpin.wav"),
+	"bubble_bounce": ("res://Assets/Audio/SFX/BubbleBounce.json")
 }
 
 @onready var sfx_library = DEFAULT_SFX_LIBRARY.duplicate()
@@ -169,10 +170,10 @@ func play_sfx(stream_name = "", position := Vector2.ZERO, pitch := 1.0, can_over
 		active_sfxs.erase(stream_name)
 		player.queue_free()
 
-func play_global_sfx(stream_name = "") -> void:
+func play_global_sfx(stream_name = "", pitch := 1.0) -> void:
 	if get_viewport().get_camera_2d() == null:
 		return
-	play_sfx(stream_name, get_viewport().get_camera_2d().get_screen_center_position())
+	play_sfx(stream_name, get_viewport().get_camera_2d().get_screen_center_position(), pitch)
 
 func _process(_delta: float) -> void:
 	handle_music()
@@ -239,7 +240,6 @@ func load_sfx_map(json := {}) -> void:
 	sfx_library = DEFAULT_SFX_LIBRARY.duplicate()
 	for i in json:
 		sfx_library[i] = json[i]
-	print(json)
 
 func handle_music() -> void:
 	if Global.in_title_screen:

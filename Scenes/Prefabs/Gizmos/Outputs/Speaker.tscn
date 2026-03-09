@@ -9,14 +9,19 @@
 [node name="BaseOutput" unique_id=515746201 instance=ExtResource("1_wbbe5")]
 script = ExtResource("2_q50v2")
 sfx = 0
+pitch = 1.0
+global = false
 
 [node name="Sprite2D" parent="." index="0" unique_id=1224179792]
 texture = ExtResource("2_k3ibs")
 hframes = 1
 
+[node name="SignalExposer" parent="." index="1" unique_id=1403115602]
+can_output = false
+
 [node name="EditorPropertyExposer" type="Node" parent="." index="2" unique_id=1367816059]
 script = ExtResource("4_11ukq")
-properties = Array[String](["sfx"])
+properties = Array[String](["sfx", "pitch", "global"])
 properties_force_selector = Dictionary[String, PackedScene]({
 "sfx": ExtResource("5_xyrgi")
 })

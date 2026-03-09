@@ -79,7 +79,6 @@ func on_modifier_applied() -> void:
 	direction = [-1, 1][movement_direction]
 	%RotationJoint.global_rotation_degrees = [0, 180, 90, -90][starting_direction]
 	surface_normal = Vector2.from_angle(%RotationJoint.global_rotation - deg_to_rad(90))
-	print(surface_normal)
 	can_move = true
 	%RotationJoint.scale.x = -direction
 	global_position = get_meta("tile_position") * 16 + Vector2i(8, 16)

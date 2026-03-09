@@ -7,6 +7,7 @@ func enter(msg := {}) -> void:
 		player.z_index = 20
 		for i in 16:
 			player.set_collision_mask_value(i + 1, false)
+		$"../../Hitbox/Shape".set_deferred("disabled", true)
 	can_fall = false
 	player.velocity = Vector2.ZERO
 	player.stop_all_timers()

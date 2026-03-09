@@ -19,8 +19,7 @@ func _ready() -> void:
 	can_continue = true
 
 func _process(_delta: float) -> void:
-	print(can_continue)
-	if Global.multibind_action_just_pressed("jump_0") and can_continue:
+	if Input.is_action_just_pressed("jump_0") and can_continue:
 		can_continue = false
 		if Global.transitioning_scene:
 			await Global.transition_finished
@@ -57,6 +56,12 @@ func reset_values() -> void:
 	Global.coins = 0
 	if Global.current_game_mode == Global.GameMode.CHALLENGE:
 		return
+	if Global.current_game_mode == Global.GameMode.MARATHON:
+		Global.level_num = 1
+		Global.world_num = 1
+		Global.custom_level_idx = 0
+		SpeedrunHandler.timer = 0
+		SpeedrunHandler.paused_time = 0
 	match Settings.file.difficulty.game_over_behaviour:
 		0:
 			Global.level_num = 1

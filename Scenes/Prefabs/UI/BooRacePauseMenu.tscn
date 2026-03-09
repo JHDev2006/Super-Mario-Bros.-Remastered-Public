@@ -10,6 +10,8 @@ func restart_race() -> void:
 	Global.reset_values()
 	Global.clear_saved_values()
 	Global.transition_to_scene(Global.current_level.scene_file_path)
+	await Global.current_level.tree_exited
+	get_parent().close()
 
 func quit_to_menu() -> void:
 	AudioManager.stop_all_music()

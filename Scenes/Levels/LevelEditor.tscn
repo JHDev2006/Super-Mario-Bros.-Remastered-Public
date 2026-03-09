@@ -161,6 +161,7 @@
 [ext_resource type="Texture2D" uid="uid://bv04xn76b41tw" path="res://Assets/Sprites/Editor/Gizmos/Trigger.png" id="167_swqrt"]
 [ext_resource type="PackedScene" uid="uid://b2hdafieb7w6x" path="res://Scenes/Prefabs/Gizmos/Outputs/NOTGate.tscn" id="168_chiiq"]
 [ext_resource type="Texture2D" uid="uid://7vndrgnnti11" path="res://Assets/Sprites/Editor/CheepCheepGenerator.png" id="169_2vwpv"]
+[ext_resource type="Texture2D" uid="uid://b78wawq5ds3gm" path="res://Assets/Sprites/Editor/Gizmos/PlayerStateDetection.png" id="169_401qx"]
 [ext_resource type="Texture2D" uid="uid://kvnxeoyttopv" path="res://Assets/Sprites/Editor/Gizmos/XOR.png" id="169_a6wyw"]
 [ext_resource type="PackedScene" uid="uid://sc5j2y2vpiyd" path="res://Scenes/Prefabs/Gizmos/Outputs/XORGate.tscn" id="170_wc8ue"]
 [ext_resource type="Texture2D" uid="uid://dtgpkjj1dy7pu" path="res://Assets/Sprites/Editor/BowserFlameGenerator.png" id="171_adqgr"]
@@ -206,6 +207,8 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SwitchBlocks.json" id="211_bcg6t"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Hachisuke.json" id="211_fe6cg"]
 [ext_resource type="PackedScene" uid="uid://k4bgruingvi0" path="res://Scenes/Prefabs/UI/EditorGuide.tscn" id="211_numt2"]
+[ext_resource type="Texture2D" uid="uid://b40xfep1drlm1" path="res://Assets/Sprites/Editor/Gizmos/PlayerFlinger.png" id="212_vcpfp"]
+[ext_resource type="PackedScene" uid="uid://07ukmj7s77wu" path="res://Scenes/Prefabs/Gizmos/Outputs/Flinger.tscn" id="213_uk8sr"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/WingItem.json" id="221_o0k3u"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/LuckyStar.json" id="224_vjdbd"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Key.json" id="229_u1728"]
@@ -1509,7 +1512,7 @@ terrain_id = 10
 
 [node name="Poison" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=1067052546 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
-tile_name = "TILE_POISION"
+tile_name = "TILE_POISON"
 type = 2
 icon_texture = ExtResource("17_awwgo")
 icon_region_override = Rect2(0, 96, 16, 16)
@@ -3349,7 +3352,7 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-tile_name = "ENEMY_PLANT_PIPE"
+tile_name = "ENEMY_FIREPLANT_PIPE"
 type = 1
 icon_texture = ExtResource("47_ts6bf")
 icon_region_override = Rect2(8, 8, 16, 16)
@@ -3360,7 +3363,7 @@ entity_id = "CA"
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-tile_name = "ENEMY_PLANT_PIPE"
+tile_name = "ENEMY_REDFIREPLANT_PIPE"
 type = 1
 icon_texture = ExtResource("49_5dmgy")
 icon_region_override = Rect2(8, 8, 16, 16)
@@ -3371,7 +3374,7 @@ entity_id = "CB"
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-tile_name = "ENEMY_PLANT_PIPE"
+tile_name = "ENEMY_FIREPLANT"
 type = 1
 icon_texture = ExtResource("47_ts6bf")
 icon_region_override = Rect2(8, 8, 16, 16)
@@ -3381,7 +3384,7 @@ entity_id = "CC"
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-tile_name = "ENEMY_PLANT_PIPE"
+tile_name = "ENEMY_REDFIREPLANT"
 type = 1
 icon_texture = ExtResource("49_5dmgy")
 icon_region_override = Rect2(8, 8, 16, 16)
@@ -3505,6 +3508,7 @@ type = 1
 icon_texture = ExtResource("40_62ull")
 icon_region_override = Rect2(8, 16, 16, 16)
 entity_id = "AP"
+metadata/can_be_stored = true
 
 [node name="BowserBro" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers" unique_id=1279044637 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 1
@@ -3516,6 +3520,7 @@ type = 1
 icon_texture = ExtResource("59_kxvns")
 icon_region_override = Rect2(8, 16, 16, 16)
 entity_id = "B9"
+metadata/can_be_stored = false
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Bowsers" unique_id=858983895]
 layout_mode = 1
@@ -5721,7 +5726,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GIZMO_PLAYER_DETECT"
-tile_desc = "Powers on, when the player is inside, Powers off when the player is outside."
+tile_desc = "Powers on when the player is inside, powers off when the player is outside."
 type = 1
 icon_texture = ExtResource("153_gf7vd")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -5743,7 +5748,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GIZMO_PLAYER_EVENT"
-tile_desc = "Will emit a pulse, when a specific event with the player happens."
+tile_desc = "Will emit a pulse when a specific event happens to the player."
 type = 1
 icon_texture = ExtResource("155_k5kal")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -5751,6 +5756,28 @@ entity_id = "Cz"
 entity_scene = ExtResource("156_6c7k7")
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Inputs/PlayerStuff/PlayerEventDetection2" unique_id=50838470]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("194_24ald")
+
+[node name="PlayerStateDetection" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Inputs/PlayerStuff" unique_id=659664314 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+tile_name = "GIZMO_PLAYER_STATE"
+tile_desc = "Will turn on or off, depending on if the player matches the current state."
+type = 1
+icon_texture = ExtResource("169_401qx")
+icon_region_override = Rect2(0, 0, 16, 16)
+entity_id = "De"
+entity_scene = ExtResource("156_6c7k7")
+
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Inputs/PlayerStuff/PlayerStateDetection" unique_id=1196736295]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -5775,7 +5802,7 @@ stretch_mode = 3
 [node name="InputDetection" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Inputs" unique_id=954674848 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_INPUT_DETECT"
-tile_desc = "Will turn on, if a specific input is either held down. OR will emit a pulse, if a specific input is pressed (configurable)"
+tile_desc = "Will turn on OR emit a pulse if a specific input is held/pressed."
 type = 1
 icon_texture = ExtResource("173_x027r")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -5804,7 +5831,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GIZMO_ENEMY_DETECT"
-tile_desc = "Will Turn on, when an enemy on the same layer, is inside it."
+tile_desc = "Will turn on when an enemy on the same layer is near it."
 type = 1
 icon_texture = ExtResource("157_sf60c")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -5827,7 +5854,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GIZMO_ENEMY_DEFEAT"
-tile_desc = "Will emit a pulse, when an enemy on the same layer, is defeated."
+tile_desc = "Will emit a pulse when an enemy on the same layer is defeated."
 type = 1
 icon_texture = ExtResource("177_2l75x")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -5860,7 +5887,7 @@ stretch_mode = 3
 [node name="Broadcaster" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Inputs" unique_id=1587515387 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_BROADCASTER"
-tile_desc = "Will send out a signal, to any broadcasters on the same channel, even if theyre in a different room."
+tile_desc = "Will send out a signal to any broadcasters on the same channel, even across rooms."
 type = 1
 icon_texture = ExtResource("163_0bfpc")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -5881,7 +5908,7 @@ texture = ExtResource("194_24ald")
 [node name="ItemCollectDetection" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Inputs" unique_id=2012844368 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_ITEM_DETECTION"
-tile_desc = "Will emit a pulse, when an item on its layer is collected."
+tile_desc = "Will emit a pulse when an item on its layer is collected."
 type = 1
 icon_texture = ExtResource("166_dp0ao")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -5902,7 +5929,7 @@ texture = ExtResource("194_24ald")
 [node name="ObjectDetection" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Inputs" unique_id=1428110027 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_OBJECT_DETECTION"
-tile_desc = "Will turn on or off, depending on if a specific object is inside its area."
+tile_desc = "Will turn on or off depending on if a specific object is inside its area."
 type = 1
 icon_texture = ExtResource("177_bcg6t")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -5923,7 +5950,7 @@ texture = ExtResource("194_24ald")
 [node name="QuestionSwitch" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Inputs" unique_id=1796843749 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_QUESTION_SWITCH"
-tile_desc = "A Generic Switch Object, Emits a pulse when activated, power or pulse it to restore it."
+tile_desc = "A Generic Switch Object. Emits a pulse when activated. Power or pulse it to restore it."
 type = 1
 icon_texture = ExtResource("177_ckl32")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -5947,7 +5974,7 @@ layout_mode = 2
 [node name="Switch" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Logic" unique_id=923873617 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_SWITCH"
-tile_desc = "Toggle switch, will switch on / off when powered"
+tile_desc = "Toggle switch. Will switch on / off when powered."
 type = 1
 icon_texture = ExtResource("157_26a4w")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -5967,7 +5994,7 @@ texture = ExtResource("194_24ald")
 [node name="Trigger" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Logic" unique_id=1211905887 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_TRIGGER"
-tile_desc = "Will emit a pulse, when triggered / powered."
+tile_desc = "Will emit a pulse when powered on the rising edge."
 type = 1
 icon_texture = ExtResource("167_swqrt")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6009,7 +6036,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GIZMO_COUNTER"
-tile_desc = "Will count up, every time it's pulsed or powered, will emit a pulse, when its threshold is reached."
+tile_desc = "Will count up every time it's pulsed or powered. Will emit a pulse when its threshold is reached."
 type = 1
 icon_texture = ExtResource("159_itqoj")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6033,7 +6060,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GIZMO_GLOBAL_COUNTER"
-tile_desc = "Same as the regular counter, however its amount is shared between all other global counters, with a matching channel."
+tile_desc = "Same as the regular counter, however its amount is shared between all other global counters with a matching channel."
 type = 1
 icon_texture = ExtResource("174_qebwb")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6067,7 +6094,7 @@ stretch_mode = 3
 [node name="Timer" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Logic" unique_id=2051023015 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_TIMER"
-tile_desc = "Emits a pulse, once finished counting down. Will start counting when a pulse is recieved, otherwise will begin counting on level start."
+tile_desc = "Emits a pulse once it's finished counting down. Will start counting when a pulse is recieved, otherwise will begin counting on level start."
 type = 1
 icon_texture = ExtResource("172_xde7w")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6089,7 +6116,7 @@ texture = ExtResource("194_24ald")
 [node name="Repeater" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Logic" unique_id=1671354315 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_REPEATER"
-tile_desc = "Will repeat a power off, power on, or pulse signal, a specific number of times."
+tile_desc = "Will repeat a power off, power on, or pulse signal a specific number of times."
 type = 1
 icon_texture = ExtResource("173_yjk03")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6111,7 +6138,7 @@ texture = ExtResource("194_24ald")
 [node name="Fuse" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Logic" unique_id=15943736 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_FUSE"
-tile_desc = "Will destroy itself and relay the signal, when powered, useful for one-time events."
+tile_desc = "Will destroy itself and relay the signal when powered. Useful for one-time events."
 type = 1
 icon_texture = ExtResource("175_sf60c")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6133,7 +6160,7 @@ texture = ExtResource("194_24ald")
 [node name="Dice" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Logic" unique_id=603260121 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_DICE"
-tile_desc = "Will emit a pulse when powered, if a random number matches its odds."
+tile_desc = "Will emit a pulse when powered, as long as a random number matches its odds."
 type = 1
 icon_texture = ExtResource("181_k6wox")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6184,7 +6211,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GIZMO_OR"
-tile_desc = "Powers on, if atleast one input is powered."
+tile_desc = "Powers on if at least one input is powered."
 type = 1
 icon_texture = ExtResource("165_gq8kq")
 entity_id = "Co"
@@ -6205,7 +6232,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GIZMO_NOT"
-tile_desc = "Powers on, only if not powered."
+tile_desc = "Powers on if not powered."
 type = 1
 icon_texture = ExtResource("167_snabn")
 entity_id = "Cp"
@@ -6226,7 +6253,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GIZMO_XOR"
-tile_desc = "Will power on, if one or more BUT NOT ALL inputs are powered."
+tile_desc = "Will power on unless all inputs are the same."
 type = 1
 icon_texture = ExtResource("169_a6wyw")
 entity_id = "Cq"
@@ -6260,7 +6287,7 @@ layout_mode = 2
 [node name="Lamp" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=543186162 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_LAMP"
-tile_desc = "Turns on, when powered, changes colour, depending on how many inputs are powered."
+tile_desc = "Turns on when powered. Changes colour depending on how many inputs are powered."
 type = 1
 icon_texture = ExtResource("155_wo43l")
 icon_region_override = Rect2(16, 0, 16, 16)
@@ -6280,7 +6307,7 @@ texture = ExtResource("194_24ald")
 [node name="Placer" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=528780198 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_PLACER"
-tile_desc = "Spawns in a specific entity / tile, at it's current location, when powered."
+tile_desc = "Spawns in a specific entity / tile at its current location when powered."
 type = 1
 icon_texture = ExtResource("173_a6wyw")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6298,10 +6325,30 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("194_24ald")
 
-[node name="Teleporter" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=1161625026 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+[node name="Teleportation" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=235610923]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
+mouse_force_pass_scroll_events = false
+script = ExtResource("20_jc7xg")
+
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation" unique_id=1943617514]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("22_3cjpb")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Teleporter" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation" unique_id=1161625026 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
 tile_name = "GIZMO_TELEPORTER"
-tile_desc = "Teleports the player to itself, when powered."
+tile_desc = "Teleports the player to itself when powered."
 type = 1
 icon_texture = ExtResource("175_al0re")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6309,7 +6356,7 @@ secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ct"
 entity_scene = ExtResource("176_uggri")
 
-[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleporter" unique_id=1202098081]
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation/Teleporter" unique_id=1202098081]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -6319,10 +6366,45 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("194_24ald")
 
+[node name="Warper" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation" unique_id=991496675 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+tile_name = "GIZMO_WARPER"
+tile_desc = "Will transition to a different room when powered. Use matching channels on other Room Warpers to define positions upon warping."
+type = 1
+icon_texture = ExtResource("208_606p5")
+icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
+entity_id = "DU"
+entity_scene = ExtResource("176_uggri")
+
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation/Warper" unique_id=725773224]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("194_24ald")
+
+[node name="TextureRect2" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Teleportation" unique_id=828735854]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("22_3cjpb")
+expand_mode = 1
+stretch_mode = 3
+
 [node name="Speaker" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=789673022 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_SPEAKER"
-tile_desc = "Plays a specific Sound Effect, when powered."
+tile_desc = "Plays a specific Sound Effect when powered."
 type = 1
 icon_texture = ExtResource("189_3c4c7")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6343,7 +6425,7 @@ texture = ExtResource("194_24ald")
 [node name="MusicPlayer" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=1292935067 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_MUSIC_PLAYER"
-tile_desc = "Changes the current level song, when powered."
+tile_desc = "Changes the current level song when powered."
 type = 1
 icon_texture = ExtResource("197_5mw2n")
 icon_region_override = Rect2(0, 0, 16, 16)
@@ -6382,18 +6464,18 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("194_24ald")
 
-[node name="Warper" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=991496675 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+[node name="Flinger" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=687653173 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
-tile_name = "GIZMO_WARPER"
-tile_desc = "Will transition to a different room, when powered. Use matching channels on other Room Warpers, to define positions upon warping."
+tile_name = "GIZMO_FLING"
+tile_desc = "Changes the player's velocity."
 type = 1
-icon_texture = ExtResource("208_606p5")
+icon_texture = ExtResource("212_vcpfp")
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
-entity_id = "DU"
-entity_scene = ExtResource("176_uggri")
+entity_id = "Dd"
+entity_scene = ExtResource("213_uk8sr")
 
-[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Warper" unique_id=725773224]
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output/Flinger" unique_id=1339492676]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -6406,7 +6488,7 @@ texture = ExtResource("194_24ald")
 [node name="SwitchBlocks" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Gizmos/MarginContainer/VBoxContainer/Output" unique_id=981661468 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "GIZMO_SWITCH_BLOCK"
-tile_desc = "A Generic Switch Block, can be turned on and off via gizmos, has a customizable colour."
+tile_desc = "A Generic Switch Block. Can be turned on and off via gizmos, and has a customizable colour."
 type = 1
 icon_texture = ExtResource("211_bcg6t")
 icon_region_override = Rect2(0, 0, 16, 16)
