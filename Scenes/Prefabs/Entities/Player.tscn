@@ -481,7 +481,7 @@ func _physics_process(_delta: float) -> void:
 		if current_state != state:
 			current_state = state
 			%ResourceSetterNew.resource_json = load(\"res://Assets/Sprites/Players/\" + owner.character + \"/\" + state + \".json\")
-		if Input.is_action_just_pressed(\"editor_move_player\"):
+		if Global.multibind_action_just_pressed(\"editor_move_player\"):
 			var new_position = Global.level_editor.cursor_tile_position * 16
 			owner.global_position = new_position + Vector2i(8, 16)
 			Global.level_editor.entity_tiles[0].erase(owner.get_meta(\"tile_position\"))

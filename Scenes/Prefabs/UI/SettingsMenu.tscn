@@ -58,7 +58,7 @@ func get_input_nodes() -> void:
 			input_nodes.append(i)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed(\"ui_reset_keybindings\"):
+	if Global.multibind_action_just_pressed(\"ui_reset_keybindings\"):
 		InputMap.load_from_project_settings()
 		save_inputs()
 		Settings.save_settings()

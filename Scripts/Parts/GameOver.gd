@@ -19,7 +19,7 @@ func _ready() -> void:
 	can_continue = true
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("jump_0") and can_continue:
+	if Global.multibind_action_just_pressed("jump_0") and can_continue:
 		can_continue = false
 		if Global.transitioning_scene:
 			await Global.transition_finished

@@ -94,12 +94,12 @@ func handle_input() -> void:
 		update_sprites()
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")
-	elif Input.is_action_just_pressed("ui_right"):
+	elif Global.multibind_action_just_pressed("ui_right"):
 		selected_index = wrap(selected_index + 1, 0, Player.CHARACTERS.size())
 		update_sprites()
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		Global.player_characters[player_id] = (selected_index)
 		var characters := Global.player_characters
 		for i in characters:

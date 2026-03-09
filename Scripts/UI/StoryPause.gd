@@ -28,7 +28,7 @@ func handle_inputs() -> void:
 		selected_index += 1
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")
-	if Input.is_action_just_pressed("ui_up"):
+	if Global.multibind_action_just_pressed("ui_up"):
 		selected_index -= 1
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")
