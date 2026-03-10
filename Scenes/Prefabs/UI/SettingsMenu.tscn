@@ -204,6 +204,7 @@ color = Color(1, 1, 1, 1)
 
 [node name="SettingsMenu" type="Control" unique_id=540914940 node_paths=PackedStringArray("containers")]
 process_mode = 4
+visible=false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 3
 anchor_left = 0.1
