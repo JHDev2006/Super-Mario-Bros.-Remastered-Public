@@ -35,16 +35,15 @@ func run_check() -> void:
 			if i.owner == null:
 				continue
 			var node_layer = get_meta("layer", -1)
-			print([node_layer, i.owner.get_meta("layer", -2)])
-			if node_layer != i.owner.get_meta("layer", -2):
-				continue
 			var node_owner = i.owner
+			if node_owner is Player and type == 0:
+				object_in_area = true
+				break
+			if node_layer != node_owner.get_meta("layer", -2):
+				continue
 			if node_owner is TrackRider:
 				node_owner = node_owner.attached_entity
 			if node_owner is Enemy and type == 1:
-				object_in_area = true
-				break
-			if node_owner is Player and type == 0:
 				object_in_area = true
 				break
 	else:
@@ -70,3 +69,9 @@ func run_check() -> void:
 		object_entered.emit()
 	elif not object_in_area and save:
 		object_exited.emit()
+
+func turn_on() -> void:
+	object_entered.emit()
+
+func turn_off() -> void:
+	object_exited.emit()
