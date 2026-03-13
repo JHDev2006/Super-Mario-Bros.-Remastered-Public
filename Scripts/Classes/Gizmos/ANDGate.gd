@@ -8,7 +8,11 @@ signal condition_met
 signal condition_lost
 signal positive_pulse
 
+signal finished_check
+
 var condition_filled := false
+
+var checking := false
 
 func _ready() -> void:
 	if Global.level_editor_is_editing() == false:
@@ -43,10 +47,18 @@ func get_condition() -> bool:
 
 func pulse_recieved() -> void:
 	total_inputs += 1
-	if get_condition():
-		positive_pulse.emit()
+	check_pulse.call_deferred()
+	await finished_check
 	total_inputs -= 1
 
+func check_pulse() -> void:
+	if checking:
+		return
+	checking = true
+	if get_condition():
+		positive_pulse.emit()
+	checking = false
+	finished_check.emit()
 
 func input_lost() -> void:
 	total_inputs -= 1
