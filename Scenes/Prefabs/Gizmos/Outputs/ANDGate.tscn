@@ -19,6 +19,7 @@ metadata/_custom_type_script = "uid://b8vmbtoaaq5nc"
 
 [connection signal="condition_lost" from="." to="SignalExposer" method="turn_off"]
 [connection signal="condition_met" from="." to="SignalExposer" method="turn_on"]
+[connection signal="positive_pulse" from="." to="SignalExposer" method="emit_pulse"]
 [connection signal="visibility_changed" from="." to="." method="on_visibility_changed"]
 [connection signal="lost_power" from="SignalExposer" to="." method="input_lost"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="input_added"]

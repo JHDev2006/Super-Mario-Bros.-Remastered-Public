@@ -6,6 +6,7 @@ var total_inputs := 0
 
 signal condition_met
 signal condition_lost
+signal positive_pulse
 
 var condition_filled := false
 
@@ -41,8 +42,10 @@ func get_condition() -> bool:
 			return false
 
 func pulse_recieved() -> void:
-	input_added()
-	input_lost()
+	total_inputs += 1
+	if get_condition():
+		positive_pulse.emit()
+	total_inputs -= 1
 
 
 func input_lost() -> void:
