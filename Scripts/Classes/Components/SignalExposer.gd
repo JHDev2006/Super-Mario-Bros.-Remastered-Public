@@ -70,6 +70,7 @@ func _enter_tree() -> void:
 	if save_string != "":
 		apply_string(save_string)
 		owner.remove_meta("save_string")
+		save_string = ""
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	z_index = 10
 	global_position = owner.global_position + position_offset
@@ -274,6 +275,11 @@ func input_removed() -> void:
 
 func get_string() -> String:
 	var entity_string := ""
+	if owner.get_meta("save_string", "") != "":
+		var string = owner.get_meta("save_string")
+		string = string.substr(string.find(",$"))
+		print([string, string.substr(string.find(",$"))])
+		return string
 	for i in connections:
 		entity_string += ",$"
 		entity_string += str(i[0]) + "," + str(i[1].x) + "," + str(i[1].y)
