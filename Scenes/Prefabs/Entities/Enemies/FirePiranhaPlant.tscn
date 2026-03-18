@@ -14,6 +14,7 @@ upside_down_hitbox = NodePath("RotationJoint/PositionJoint/Visuals/Hitbox/Upside
 score_note_adder = NodePath("RotationJoint/PositionJoint/Visuals/Sprite/ScoreNoteSpawner")
 
 [node name="Visuals" parent="RotationJoint/PositionJoint" parent_id_path=PackedInt32Array(531941041) index="0" unique_id=533885688 instance=ExtResource("2_t5jdg")]
+visible = false
 
 [node name="Sprite" parent="RotationJoint/PositionJoint/Visuals" index="0" unique_id=211744012]
 scale = Vector2(-1, 1)
@@ -23,6 +24,7 @@ flip_h = true
 monitoring = false
 
 [node name="FirePiranhaPlant" parent="RotationJoint/PositionJoint/Visuals" index="2" unique_id=122564629 node_paths=PackedStringArray("plant")]
+shoot_amount = null
 fireball_scene = ExtResource("3_t5jdg")
 plant = NodePath("../../../..")
 
@@ -44,7 +46,7 @@ property_name = "sprite_frames"
 resource_json = ExtResource("6_autuf")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="GibSpawner" parent="." index="6" unique_id=1065734456 node_paths=PackedStringArray("visuals")]
+[node name="GibSpawner" parent="." index="5" unique_id=1065734456 node_paths=PackedStringArray("visuals")]
 unique_name_in_owner = true
 visuals = NodePath("../RotationJoint/PositionJoint/Visuals/Node2D")
 gib_type = 2

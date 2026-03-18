@@ -237,8 +237,10 @@ on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
 metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
 [node name="RotationJoint" type="Node2D" parent="." unique_id=1388609852]
+unique_name_in_owner = true
 
 [node name="PositionJoint" type="Node2D" parent="RotationJoint" unique_id=531941041]
+unique_name_in_owner = true
 visible = false
 position = Vector2(0, 24)
 
