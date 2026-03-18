@@ -26,6 +26,13 @@ offset_left = -16.0
 offset_bottom = 16.0
 texture = ExtResource("4_xu70c")
 
+[node name="RotationJoint" type="Node2D" parent="Icon" unique_id=1311956937]
+
+[node name="ColorRect" type="Sprite2D" parent="Icon/RotationJoint" unique_id=1950665845]
+show_behind_parent = true
+position = Vector2(0, 8)
+texture = ExtResource("8_uajdv")
+
 [node name="Timer" type="Timer" parent="." unique_id=1446265598]
 wait_time = 3.0
 
@@ -53,16 +60,9 @@ metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 script = ExtResource("7_6pkd4")
 metadata/_custom_type_script = "uid://b8vmbtoaaq5nc"
 
-[node name="RotationJoint" type="Node2D" parent="." unique_id=1311956937]
-
-[node name="ColorRect" type="Sprite2D" parent="RotationJoint" unique_id=1950665845]
-show_behind_parent = true
-position = Vector2(0, 8)
-texture = ExtResource("8_uajdv")
-
 [node name="EntityRotator" type="Node" parent="." unique_id=1108309235 node_paths=PackedStringArray("rotation_joint")]
 script = ExtResource("9_uir4n")
-rotation_joint = NodePath("../RotationJoint")
+rotation_joint = NodePath("../Icon/RotationJoint")
 directions = {
 0: 0,
 1: 180,

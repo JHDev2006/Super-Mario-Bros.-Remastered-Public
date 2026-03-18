@@ -302,7 +302,7 @@ metadata/_custom_type_script = "uid://dwrso5q5r5bak"
 
 [node name="13" type="Node" parent="ProgressCalculators" unique_id=1917848742]
 script = SubResource("GDScript_85no8")
-target_number = 38
+target_number = 36
 metadata/_custom_type_script = "uid://dwrso5q5r5bak"
 
 [node name="14" type="Node" parent="ProgressCalculators" unique_id=2137671781]
@@ -320,7 +320,7 @@ metadata/_custom_type_script = "uid://dwrso5q5r5bak"
 [node name="16" type="Node" parent="ProgressCalculators" unique_id=1222681023]
 script = SubResource("GDScript_85no8")
 medal_index = 1
-target_number = 38
+target_number = 36
 metadata/_custom_type_script = "uid://dwrso5q5r5bak"
 
 [node name="17" type="Node" parent="ProgressCalculators" unique_id=1273770275]
@@ -340,7 +340,7 @@ metadata/_custom_type_script = "uid://dwrso5q5r5bak"
 [node name="19" type="Node" parent="ProgressCalculators" unique_id=1370104616]
 script = SubResource("GDScript_85no8")
 medal_index = 2
-target_number = 38
+target_number = 36
 metadata/_custom_type_script = "uid://dwrso5q5r5bak"
 
 [node name="20" type="Node" parent="ProgressCalculators" unique_id=292026543]

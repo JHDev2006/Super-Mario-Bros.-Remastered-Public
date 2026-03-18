@@ -12,7 +12,7 @@ func start() -> void:
 	if Global.level_editor != null:
 		if Global.level_editor.gizmos_visible:
 			return
-	hide()
+	$Icon.hide()
 
 func _physics_process(_delta: float) -> void:
 	$Check.target_position = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT][direction] * 16
