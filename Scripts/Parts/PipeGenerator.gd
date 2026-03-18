@@ -34,6 +34,7 @@ func on_timeout() -> void:
 	node.set_physics_process(false)
 	node.reset_physics_interpolation()
 	node.set_meta("no_persist", true)
+	node.set_meta("layer", get_meta("layer", -1))
 	var z_old = node.z_index
 	node.z_index = -10
 	node.tree_exiting.connect(item_deleted)

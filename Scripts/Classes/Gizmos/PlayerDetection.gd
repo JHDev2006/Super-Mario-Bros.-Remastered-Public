@@ -31,7 +31,6 @@ func run_check() -> void:
 	object_in_area = false
 	if type != 2:
 		for i in $Hitbox.get_overlapping_areas():
-			print(i.owner)
 			if i.owner == null:
 				continue
 			var node_layer = get_meta("layer", -1)

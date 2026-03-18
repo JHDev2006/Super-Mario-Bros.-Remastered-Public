@@ -297,12 +297,12 @@ func play_level() -> void:
 	update_music()
 	reset_values_for_play()
 	%Camera.enabled = false
+	save_current_level()
 	level.apply_resolution_enforcement()
 	level.inf_time_check()
 	level_start.emit()
 	get_tree().call_group("Gizmos", "set_visible", gizmos_visible)
 	get_tree().call_group("Players", "editor_level_start")
-	save_current_level()
 	level.process_mode = Node.PROCESS_MODE_PAUSABLE
 	handle_hud()
 	$TrailTimer.start()
