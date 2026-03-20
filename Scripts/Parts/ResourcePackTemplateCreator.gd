@@ -39,6 +39,10 @@ func create_template() -> void:
 			print(fnt_file)
 			data = fnt_file.get_buffer(fnt_file.get_length())
 			print(data)
+		elif i.ends_with("/ScoreFont.png"):
+			# For some reason, Godot's BMFont importer REALLY
+			# doesn't like ScoreFont when the PNG is saved at runtime
+			data = FileAccess.get_file_as_bytes(i + ".txt")
 		elif i.contains(".svg"):
 			## DON'T import SVGs
 			continue
