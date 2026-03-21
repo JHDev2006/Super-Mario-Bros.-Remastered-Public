@@ -13,7 +13,7 @@ signal lost_power
 
 static var signals_recieved := 0
 
-const RECURSIVE_LIMIT := 256
+const RECURSIVE_LIMIT := 500
 
 var turned_on := false
 
@@ -50,19 +50,11 @@ const WIRE_COLOURS := [
   "#800080"
 ]
 
-var recursive_check: Timer = null
-
 var no_moving = null
 
 var saved_offset := Vector2.ZERO
 
 func _enter_tree() -> void:
-	recursive_check = Timer.new()
-	add_child(recursive_check)
-	if get_process_delta_time() > 0:
-		recursive_check.wait_time = get_process_delta_time()
-	recursive_check.timeout.connect(on_recursive_timeout)
-	recursive_check.start()
 	set_visibility_layer_bit(0, false)
 	set_visibility_layer_bit(1, true)
 	add_to_group("SignalExposers")
@@ -183,21 +175,23 @@ func begin_connecting() -> void:
 
 func turn_on() -> void:
 	if accepting_inputs == false: return
-	signals_recieved += 1
 	if check_recursive() == false:
 		return
+	signals_recieved += 1
 	update_animation(1.0, 1.2)
 	powered_on.emit()
+	signals_recieved = 0
 	turned_on = true
 	queue_redraw()
 
 func turn_off() -> void:
 	if accepting_inputs == false: return
-	signals_recieved += 1
 	if check_recursive() == false:
 		return
+	signals_recieved += 1
 	update_animation(1.2, 1.0)
 	powered_off.emit()
+	signals_recieved = 0
 	turned_on = false
 	queue_redraw()
 
@@ -207,11 +201,13 @@ func _exit_tree() -> void:
 func emit_pulse() -> void:
 	if get_tree() == null: return
 	if accepting_inputs == false: return
-	signals_recieved += 1
+	print(signals_recieved)
+	update_animation(1.2, 1.0)
 	if check_recursive() == false:
 		return
-	update_animation(1.2, 1.0)
+	signals_recieved += 1
 	pulse_emitted.emit()
+	signals_recieved = 0
 	turned_on = true
 	queue_redraw()
 	await get_tree().create_timer(0.1, false).timeout
@@ -316,11 +312,13 @@ func check_recursive() -> bool:
 	if signals_recieved >= RECURSIVE_LIMIT:
 		accepting_inputs = false
 		explode()
-	return signals_recieved < RECURSIVE_LIMIT
+		return false
+	return true
 
 const EXPLOSION = preload("uid://clbvyne1cr8gp")
 
 func explode() -> void:
+	print(signals_recieved)
 	await get_tree().process_frame
 	var node = EXPLOSION.instantiate()
 	node.global_position = owner.global_position

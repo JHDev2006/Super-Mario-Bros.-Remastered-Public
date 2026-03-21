@@ -270,6 +270,7 @@ func check_for_rom() -> void:
 			OS.move_to_trash(ROM_ASSETS_PATH)
 
 func _process(delta: float) -> void:
+	
 	if multibind_action_just_pressed("debug_reload"):
 		ResourceSetter.cache.clear()
 		ResourceSetterNew.clear_cache()

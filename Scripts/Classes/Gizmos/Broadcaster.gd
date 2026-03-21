@@ -38,7 +38,7 @@ func emit_broadcast() -> void:
 	active_channels.append(channel)
 	for i in get_tree().get_nodes_in_group("Broadcasters"):
 		if i != self:
-			i.check_channels()
+			i.check_channels.call_deferred()
 	await get_tree().create_timer(0.5, false).timeout
 	$Status.hide()
 
