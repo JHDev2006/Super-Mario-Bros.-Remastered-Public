@@ -144,6 +144,7 @@ func _ready() -> void:
 	playing_level = false
 	menu_open = $TileMenu.visible
 	Global.get_node("GameHUD").hide()
+	OffScreenDespawner.editor_testing_safety = true
 	Global.can_time_tick = false
 	for i in get_tree().get_nodes_in_group("Selectors"):
 		tile_list.append(i)
@@ -291,6 +292,7 @@ func update_music() -> void:
 		level.music = null
 
 func play_level() -> void:
+	OffScreenDespawner.editor_testing_safety = true
 	clear_trail()
 	current_state = EditorState.PLAYTESTING
 	$TileMenu.hide()
@@ -307,6 +309,8 @@ func play_level() -> void:
 	level.process_mode = Node.PROCESS_MODE_PAUSABLE
 	handle_hud()
 	$TrailTimer.start()
+	await get_tree().physics_frame
+	OffScreenDespawner.editor_testing_safety = false
 
 func return_to_editor() -> void:
 	current_state = EditorState.IDLE
@@ -321,6 +325,7 @@ func return_to_editor() -> void:
 	editor_start.emit()
 	level.process_mode = Node.PROCESS_MODE_DISABLED
 	handle_hud()
+	OffScreenDespawner.editor_testing_safety = true
 
 var zoom := 1.0
 
