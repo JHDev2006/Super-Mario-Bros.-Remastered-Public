@@ -38,6 +38,8 @@ var accepting_inputs := true
 @export var do_animation := true
 @export_storage var position_offset := position
 
+@export_storage var all_connected := false
+
 var wire_node: Node2D = null
 var save_string := ""
 
@@ -141,6 +143,7 @@ func stop_connection() -> void:
 func connect_pre_existing_signals() -> void:
 	for i in connections:
 		connect_to_node(i, false)
+	all_connected = true
 
 func connect_to_node(node_to_recieve := [], animate := true) -> void:
 	has_output = true

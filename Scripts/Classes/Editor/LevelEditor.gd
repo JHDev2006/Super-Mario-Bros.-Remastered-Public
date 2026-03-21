@@ -1088,7 +1088,7 @@ func save_current_level() -> void:
 		saved_level.music = load(music_track_list[bgm_id].replace(".remap", ""))
 	else:
 		saved_level.music = null
-	sub_areas[sub_level_id] = saved_level.duplicate()
+	sub_areas[sub_level_id] = saved_level
 
 func load_level(level_id := 0) -> void:
 	var node = sub_areas[level_id]
@@ -1098,7 +1098,8 @@ func load_level(level_id := 0) -> void:
 	elif node is PackedScene:
 		node = node.instantiate()
 	if level != null:
-		level.queue_free()
+		level.free()
+		level = null
 	add_child(node)
 	level = node
 	sub_level_id = level_id
@@ -1117,6 +1118,7 @@ func convert_scenes_to_nodes() -> void:
 	pass
 
 func reload_entity_tiles() -> void:
+	entity_tiles.clear()
 	entity_tiles = [{}, {}, {}, {}, {}]
 	var layer_idx := 0
 	for layer in entity_layer_nodes:
