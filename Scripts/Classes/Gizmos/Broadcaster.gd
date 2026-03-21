@@ -13,7 +13,7 @@ func _ready() -> void:
 	check_channels()
 
 func check_channels() -> void:
-	if mode == 1:
+	if mode == 1 or Global.level_editor_is_editing():
 		return
 	$SignalExposer.signals_recieved += 1
 	if $SignalExposer.check_recursive() == false:

@@ -17,6 +17,8 @@ const RECURSIVE_LIMIT := 500
 
 var turned_on := false
 
+@onready var line_drawer := LineDrawer.new()
+
 @export var can_input := true
 @export var can_output := true
 @export var connect_type := ConnectType.SIGNAL
@@ -39,17 +41,6 @@ var accepting_inputs := true
 var wire_node: Node2D = null
 var save_string := ""
 
-const WIRE_COLOURS := [
-  "#FF0000",
-  "#00FF00",
-  "#0000FF",
-  "#FFFF00",
-  "#FF00FF",
-  "#00FFFF",
-  "#FFA500",
-  "#800080"
-]
-
 var no_moving = null
 
 var saved_offset := Vector2.ZERO
@@ -67,103 +58,31 @@ func _enter_tree() -> void:
 	z_index = 10
 	global_position = owner.global_position + position_offset
 	call_deferred("connect_pre_existing_signals")
-	queue_redraw()
 	if Global.level_editor != null:
-		Global.level_editor.level_start.connect(queue_redraw)
 		if Global.level_editor_is_editing() == false:
 			get_tree().call_group("Gizmos", "set_visible", Global.level_editor.gizmos_visible)
 	else:
 		get_tree().call_group("Gizmos", "hide")
 
+func _ready() -> void:
+	add_child(line_drawer)
+	line_drawer.top_level = true
+	line_drawer.global_position = global_position
+	line_drawer.queue_redraw()
+	if Global.level_editor != null:
+		Global.level_editor.level_start.connect(line_drawer.queue_redraw)
+
 func _process(_delta: float) -> void:
 	global_scale = Vector2.ONE
 	if editing:
-		queue_redraw()
+		line_drawer.queue_redraw()
 	elif Global.level_editor_is_editing() == false and no_moving != true:
 		no_moving = true
 		for x in connections:
 			var target_node = get_node_from_tile(x[0], x[1])
 			if target_node is TrackRider:
-				queue_redraw()
+				line_drawer.queue_redraw()
 				no_moving = false
-
-func _draw() -> void:
-	show()
-	var gizmo_visible = false
-	if Global.level_editor != null:
-		gizmo_visible = Global.level_editor.gizmos_visible
-	if Global.level_editor_is_editing() == false and gizmo_visible == false:
-		hide()
-		return
-	if editing:
-		draw_square_line(Vector2.ZERO, (get_local_mouse_position() + Vector2(0, 0)).snapped(Vector2(16, 16)) + Vector2(0, 0), WIRE_COLOURS[connections.size() % WIRE_COLOURS.size()])
-	var idx := 0
-	for x in connections:
-		var target_node = get_node_from_tile(x[0], x[1])
-		if target_node == null:
-			continue
-		draw_square_line(Vector2.ZERO, to_local(target_node.get_node("SignalExposer").global_position), WIRE_COLOURS[idx % (WIRE_COLOURS.size())], true)
-		idx += 1
-
-func draw_square_line(from := Vector2.ZERO, to := Vector2.ZERO, colour := Color.RED, offset := false) -> void:
-	var dist_x = abs(from.x - to.x)
-	var dist_y = abs(from.y - to.y)
-	if turned_on:
-		if (dist_y == 0 or dist_x == 0):
-			draw_line(from, to, colour, 1, false)
-			draw_arrow_head(from, to, colour, offset)
-		elif dist_x == dist_y and dist_x > 16:
-			draw_line(from, to, colour, 2, false)
-			draw_arrow_head(from, to, colour, offset)
-		elif dist_x > dist_y:
-			draw_line(from, Vector2(to.x, from.y), colour, 2) 
-			var direction = (to - Vector2(to.x, from.y)).normalized()
-			if offset:
-				to -= direction * 8
-			draw_line(Vector2(to.x, from.y), to, colour, 2)
-			draw_arrow_head(Vector2(to.x, from.y), to, colour, offset)
-		else:
-			draw_line(from, Vector2(from.x, to.y), colour, 2)
-			draw_line(Vector2(from.x, to.y), to, colour, 2)
-			var direction = (to - Vector2(from.x, to.y)).normalized()
-			if offset:
-				to -= direction * 8
-			draw_arrow_head(Vector2(from.x, to.y), to, colour, offset)
-	else:
-		if (dist_y == 0 or dist_x == 0):
-			draw_dashed_line(from, to, colour, 1)
-			draw_arrow_head(from, to, colour, offset)
-		elif (dist_x == dist_y and dist_x > 16):
-			draw_dashed_line(from, to, colour, 1.5, 2.0, false)
-			draw_arrow_head(from, to, colour, offset)
-		elif dist_x > dist_y:
-			draw_dashed_line(from, Vector2(to.x, from.y), colour, 1)
-			var direction = (to - Vector2(to.x, from.y)).normalized()
-			if offset:
-				to -= direction * 8
-			draw_dashed_line(Vector2(to.x, from.y), to, colour, 1)
-			draw_arrow_head(Vector2(to.x, from.y), to, colour, offset)
-		else:
-			draw_dashed_line(from, Vector2(from.x, to.y), colour, 1)
-			var direction = (to - Vector2(from.x, to.y)).normalized()
-			if offset:
-				to -= direction * 8
-			draw_dashed_line(Vector2(from.x, to.y), to, colour, 1)
-			draw_arrow_head(Vector2(from.x, to.y), to, colour, offset)
-
-func draw_arrow_head(from := Vector2.ZERO, point := Vector2.ZERO, color := Color.RED, offset := false) -> void:
-	var direction = (point - from).normalized()
-	if offset:
-		point -= direction * 1
-	else:
-		point -= direction * 3
-	var head = (direction * 2)
-	var left_point = (-direction * 4).rotated(deg_to_rad(-45)) + direction
-	var right_point = (-direction * 4).rotated(deg_to_rad(45)) + direction
-	head += point + direction
-	left_point += point + direction
-	right_point += point + direction
-	draw_polygon([head, left_point, right_point], [color, color, color])
 
 func begin_connecting() -> void:
 	update_animation(1.0, 1.2)
@@ -171,7 +90,7 @@ func begin_connecting() -> void:
 	await signal_connected
 	editing = false
 	update_animation(1.2, 1.0)
-	queue_redraw()
+	line_drawer.queue_redraw()
 
 func turn_on() -> void:
 	if accepting_inputs == false: return
@@ -182,7 +101,7 @@ func turn_on() -> void:
 	powered_on.emit()
 	signals_recieved = 0
 	turned_on = true
-	queue_redraw()
+	line_drawer.queue_redraw()
 
 func turn_off() -> void:
 	if accepting_inputs == false: return
@@ -193,7 +112,7 @@ func turn_off() -> void:
 	powered_off.emit()
 	signals_recieved = 0
 	turned_on = false
-	queue_redraw()
+	line_drawer.queue_redraw()
 
 func _exit_tree() -> void:
 	signals_recieved = 0
@@ -209,21 +128,21 @@ func emit_pulse() -> void:
 	pulse_emitted.emit()
 	signals_recieved = 0
 	turned_on = true
-	queue_redraw()
+	line_drawer.queue_redraw()
 	await get_tree().create_timer(0.1, false).timeout
 	turned_on = false
-	queue_redraw()
+	line_drawer.queue_redraw()
 
 func stop_connection() -> void:
 	editing = false
 	update_animation(1.2, 1.0)
-	queue_redraw()
+	line_drawer.queue_redraw()
 
 func connect_pre_existing_signals() -> void:
 	for i in connections:
-		connect_to_node(i)
+		connect_to_node(i, false)
 
-func connect_to_node(node_to_recieve := []) -> void:
+func connect_to_node(node_to_recieve := [], animate := true) -> void:
 	has_output = true
 	var node: Node = get_node_from_tile(node_to_recieve[0], node_to_recieve[1])
 	node.tree_exiting.connect(remove_node_connection.bind(node_to_recieve))
@@ -235,14 +154,15 @@ func connect_to_node(node_to_recieve := []) -> void:
 		powered_off.connect(node.get_node("SignalExposer").on_lost_power)
 		node.get_node("SignalExposer").has_input = true
 		node.get_node("SignalExposer").total_inputs += 1
-		node.get_node("SignalExposer").update_animation(1.2, 1.0, true)
+		if animate:
+			node.get_node("SignalExposer").update_animation(1.2, 1.0, true)
 		tree_exiting.connect(node.get_node("SignalExposer").input_removed)
 	signal_connected.emit()
 
 func remove_node_connection(node := []) -> void:
 	if is_inside_tree():
 		connections.erase(node)
-		queue_redraw()
+		line_drawer.queue_redraw()
 	if connections.is_empty():
 		has_output = false
 
