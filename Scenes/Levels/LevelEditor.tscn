@@ -3664,6 +3664,7 @@ entity_id = "AV"
 metadata/can_be_stored = true
 metadata/can_note_store = false
 metadata/can_crate_store = false
+metadata/can_pipe_gen = false
 
 [node name="Spike" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer" unique_id=1105940957 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2

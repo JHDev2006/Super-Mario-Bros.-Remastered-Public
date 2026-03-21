@@ -25,6 +25,7 @@ func on_timeout() -> void:
 	var node = item.instantiate()
 	node.set_meta("block_item", true)
 	node.global_position = global_position + (direction_vector * 16)
+	node.global_position += node.get_meta("pipe_spawn_offset", Vector2.ZERO)
 	if direction_vector.x != 0:
 		node.global_position.y += 12
 	node.hide()
@@ -75,5 +76,6 @@ func tween_animation(node: Node = null, anim_direction := Vector2.UP) -> void:
 		final_position.y += 12
 	if anim_direction.y > 0:
 		final_position.y += 16
+	final_position += node.get_meta("pipe_spawn_offset", Vector2.ZERO)
 	await create_tween().tween_property(node, "global_position", final_position, 0.5).finished
 	return

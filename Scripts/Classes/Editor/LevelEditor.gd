@@ -68,6 +68,7 @@ signal close_confirm(save: bool)
 signal connection_node_found(new_node: Node)
 
 var current_connection_type := SignalExposer.ConnectType.SIGNAL
+var current_connecting_node: Node = null
 
 var quick_connecting := false
 
@@ -470,10 +471,13 @@ func handle_tile_cursor() -> void:
 	if current_state == EditorState.CONNECTING:
 		if Global.multibind_action_just_pressed("mb_left"):
 			if entity_tiles[current_layer].has(tile_position):
+				if entity_tiles[current_layer][tile_position] == current_connecting_node:
+					return
 				if entity_tiles[current_layer][tile_position].get_node_or_null("SignalExposer") != null:
 					if entity_tiles[current_layer][tile_position].get_node("SignalExposer").can_input:
 						connection_node_found.emit(entity_tiles[current_layer][tile_position])
 						current_state = EditorState.MODIFYING_TILE
+						current_connecting_node = null
 		if Global.multibind_action_just_pressed("mb_right") or Global.multibind_action_just_pressed("editor_open_menu"):
 			%TileModifierMenu.cancel_connection()
 	
@@ -839,6 +843,7 @@ func open_tile_selection_menu_scene_ref(selector: TilePropertySceneRef) -> void:
 func start_signal_connection(node: Node, connection_type := SignalExposer.ConnectType.SIGNAL) -> void:
 	current_state = LevelEditor.EditorState.CONNECTING
 	current_connection_type = connection_type
+	current_connecting_node = node
 
 func on_tile_selected(selector: EditorTileSelector) -> void:
 	current_tile_type = selector.type
