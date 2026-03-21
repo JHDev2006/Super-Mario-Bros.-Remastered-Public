@@ -124,3 +124,4 @@ func encode_to_base64_2char(value: int) -> String:
 
 func on_mouse_exited() -> void:
 	set_mouse_hovered(false)
+	%NamePanel.hide()
