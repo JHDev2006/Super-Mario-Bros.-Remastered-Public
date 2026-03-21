@@ -92,6 +92,7 @@ func add_entities(level: Node, chunk := "", chunk_id := 0, layer := 0) -> void:
 		entity_node.set_meta("tile_position", entity_tile_position)
 		entity_node.set_meta("tile_offset", Vector2(int(offset[0]), int(offset[1])))
 		entity_node.set_meta("layer", layer)
+		entity_node.set_meta("ID", entity_id)
 		if entity_node.has_node("EditorPropertyExposer"):
 			entity_node.get_node("EditorPropertyExposer").apply_string(entity)
 		if entity_node.has_node("SignalExposer"):
