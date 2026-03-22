@@ -10,8 +10,6 @@
 
 [node name="BaseOutput" type="Node2D" unique_id=515746201 groups=["Gizmos"]]
 process_mode = 3
-z_index = 500
-z_as_relative = false
 script = ExtResource("1_1xm48")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1224179792]

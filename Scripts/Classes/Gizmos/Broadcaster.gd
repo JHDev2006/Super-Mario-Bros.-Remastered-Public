@@ -13,7 +13,7 @@ func _ready() -> void:
 	check_channels()
 
 func check_channels() -> void:
-	if mode == 1:
+	if mode == 1 or Global.level_editor_is_editing():
 		return
 	$SignalExposer.signals_recieved += 1
 	if $SignalExposer.check_recursive() == false:
@@ -38,7 +38,7 @@ func emit_broadcast() -> void:
 	active_channels.append(channel)
 	for i in get_tree().get_nodes_in_group("Broadcasters"):
 		if i != self:
-			i.check_channels()
+			i.check_channels.call_deferred()
 	await get_tree().create_timer(0.5, false).timeout
 	$Status.hide()
 

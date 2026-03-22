@@ -68,6 +68,7 @@ signal close_confirm(save: bool)
 signal connection_node_found(new_node: Node)
 
 var current_connection_type := SignalExposer.ConnectType.SIGNAL
+var current_connecting_node: Node = null
 
 var quick_connecting := false
 
@@ -143,6 +144,7 @@ func _ready() -> void:
 	playing_level = false
 	menu_open = $TileMenu.visible
 	Global.get_node("GameHUD").hide()
+	OffScreenDespawner.editor_testing_safety = true
 	Global.can_time_tick = false
 	for i in get_tree().get_nodes_in_group("Selectors"):
 		tile_list.append(i)
@@ -290,6 +292,7 @@ func update_music() -> void:
 		level.music = null
 
 func play_level() -> void:
+	OffScreenDespawner.editor_testing_safety = true
 	clear_trail()
 	current_state = EditorState.PLAYTESTING
 	$TileMenu.hide()
@@ -306,6 +309,8 @@ func play_level() -> void:
 	level.process_mode = Node.PROCESS_MODE_PAUSABLE
 	handle_hud()
 	$TrailTimer.start()
+	await get_tree().physics_frame
+	OffScreenDespawner.editor_testing_safety = false
 
 func return_to_editor() -> void:
 	current_state = EditorState.IDLE
@@ -320,6 +325,7 @@ func return_to_editor() -> void:
 	editor_start.emit()
 	level.process_mode = Node.PROCESS_MODE_DISABLED
 	handle_hud()
+	OffScreenDespawner.editor_testing_safety = true
 
 var zoom := 1.0
 
@@ -470,10 +476,13 @@ func handle_tile_cursor() -> void:
 	if current_state == EditorState.CONNECTING:
 		if Global.multibind_action_just_pressed("mb_left"):
 			if entity_tiles[current_layer].has(tile_position):
+				if entity_tiles[current_layer][tile_position] == current_connecting_node:
+					return
 				if entity_tiles[current_layer][tile_position].get_node_or_null("SignalExposer") != null:
 					if entity_tiles[current_layer][tile_position].get_node("SignalExposer").can_input:
 						connection_node_found.emit(entity_tiles[current_layer][tile_position])
 						current_state = EditorState.MODIFYING_TILE
+						current_connecting_node = null
 		if Global.multibind_action_just_pressed("mb_right") or Global.multibind_action_just_pressed("editor_open_menu"):
 			%TileModifierMenu.cancel_connection()
 	
@@ -839,6 +848,7 @@ func open_tile_selection_menu_scene_ref(selector: TilePropertySceneRef) -> void:
 func start_signal_connection(node: Node, connection_type := SignalExposer.ConnectType.SIGNAL) -> void:
 	current_state = LevelEditor.EditorState.CONNECTING
 	current_connection_type = connection_type
+	current_connecting_node = node
 
 func on_tile_selected(selector: EditorTileSelector) -> void:
 	current_tile_type = selector.type
@@ -1083,7 +1093,7 @@ func save_current_level() -> void:
 		saved_level.music = load(music_track_list[bgm_id].replace(".remap", ""))
 	else:
 		saved_level.music = null
-	sub_areas[sub_level_id] = saved_level.duplicate()
+	sub_areas[sub_level_id] = saved_level
 
 func load_level(level_id := 0) -> void:
 	var node = sub_areas[level_id]
@@ -1093,7 +1103,8 @@ func load_level(level_id := 0) -> void:
 	elif node is PackedScene:
 		node = node.instantiate()
 	if level != null:
-		level.queue_free()
+		level.free()
+		level = null
 	add_child(node)
 	level = node
 	sub_level_id = level_id
@@ -1112,6 +1123,7 @@ func convert_scenes_to_nodes() -> void:
 	pass
 
 func reload_entity_tiles() -> void:
+	entity_tiles.clear()
 	entity_tiles = [{}, {}, {}, {}, {}]
 	var layer_idx := 0
 	for layer in entity_layer_nodes:
