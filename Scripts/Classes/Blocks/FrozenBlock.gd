@@ -21,6 +21,7 @@ func melt() -> void:
 	melting = true
 	melted_node.global_position = global_position
 	melted_node.reparent(get_parent(), true)
+	melted_node.reset_physics_interpolation()
 	summon_smoke()
 	queue_free()
 
