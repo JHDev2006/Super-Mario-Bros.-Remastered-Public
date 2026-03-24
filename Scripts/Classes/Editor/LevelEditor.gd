@@ -1093,10 +1093,17 @@ func save_current_level() -> void:
 		saved_level.music = load(music_track_list[bgm_id].replace(".remap", ""))
 	else:
 		saved_level.music = null
-	sub_areas[sub_level_id] = saved_level
+	var level_to_delete: Level = null
+	if sub_areas[sub_level_id] != null:
+		level_to_delete = sub_areas.get(sub_level_id)
+	sub_areas.set(sub_level_id, saved_level)
+	if level_to_delete != null:
+		level_to_delete.free()
 
 func load_level(level_id := 0) -> void:
 	var node = sub_areas[level_id]
+	if node != null:
+		node = node.duplicate()
 	if node == null:
 		node = load(CUSTOM_LEVEL_BASE).instantiate()
 		node.sublevel_id = level_id

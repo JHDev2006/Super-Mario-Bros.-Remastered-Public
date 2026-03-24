@@ -69,7 +69,6 @@ func _enter_tree() -> void:
 		get_tree().call_group("Gizmos", "hide")
 
 func _ready() -> void:
-	print(line_drawer_added)
 	if line_drawer_added == false:
 		add_child(line_drawer)
 		line_drawer.top_level = true
