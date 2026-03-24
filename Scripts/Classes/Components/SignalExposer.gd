@@ -45,6 +45,8 @@ var save_string := ""
 
 var no_moving = null
 
+@export_storage var line_drawer_added := false
+
 var saved_offset := Vector2.ZERO
 
 func _enter_tree() -> void:
@@ -67,10 +69,14 @@ func _enter_tree() -> void:
 		get_tree().call_group("Gizmos", "hide")
 
 func _ready() -> void:
-	add_child(line_drawer)
-	line_drawer.top_level = true
-	line_drawer.global_position = global_position
-	line_drawer.queue_redraw()
+	print(line_drawer_added)
+	if line_drawer_added == false:
+		add_child(line_drawer)
+		line_drawer.top_level = true
+		line_drawer.global_position = global_position
+		line_drawer.queue_redraw()
+		line_drawer_added = true
+	line_drawer = get_child(0)
 	if Global.level_editor != null:
 		Global.level_editor.level_start.connect(line_drawer.queue_redraw)
 
