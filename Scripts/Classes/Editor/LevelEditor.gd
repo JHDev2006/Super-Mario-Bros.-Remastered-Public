@@ -52,8 +52,6 @@ enum TileType{TILE, ENTITY, TERRAIN}
 
 var bgm_id := 0
 
-var entity_id_map := {}
-
 const MUSIC_TRACK_DIR := "res://Assets/Audio/BGM/"
 
 var select_start := Vector2i.ZERO
@@ -74,7 +72,7 @@ var quick_connecting := false
 
 var sub_level_id := 0
 
-static var sub_areas: Array = [null, null, null, null, null]
+static var sub_areas: Array = [{}, {}, {}, {}, {}]
 
 const BLANK_FILE := {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
 
@@ -138,7 +136,7 @@ var undo_redo = UndoRedo.new()
 
 func _ready() -> void:
 	$TileMenu.hide()
-	entity_id_map = JSON.parse_string(FileAccess.open("res://EntityIDMap.json", FileAccess.READ).get_as_text())
+	EntityIDMapper.load_entity_map()
 	DiscordManager.set_discord_status("In The Level Editor...")
 	Global.level_editor = self
 	playing_level = false
@@ -304,22 +302,28 @@ func play_level() -> void:
 	level.apply_resolution_enforcement()
 	level.inf_time_check()
 	level_start.emit()
+	
 	get_tree().call_group("Gizmos", "set_visible", gizmos_visible)
 	get_tree().call_group("Players", "editor_level_start")
 	level.process_mode = Node.PROCESS_MODE_PAUSABLE
+	
 	handle_hud()
+	
 	$TrailTimer.start()
+	
 	await get_tree().physics_frame
 	OffScreenDespawner.editor_testing_safety = false
 
 func return_to_editor() -> void:
-	current_state = EditorState.IDLE
 	AudioManager.stop_all_music()
 	level.music = null
+	
 	%Camera.global_position = get_viewport().get_camera_2d().get_screen_center_position()
 	%Camera.reset_physics_interpolation()
+	
 	load_level(sub_level_id)
 	get_tree().call_group("Gizmos", "show")
+	
 	%Camera.enabled = true
 	%Camera.make_current()
 	editor_start.emit()
@@ -856,7 +860,7 @@ func on_tile_selected(selector: EditorTileSelector) -> void:
 	selected_tile_index = tile_list.find(selector)
 	if selector.type == 1:
 		current_entity_id = selector.entity_id
-		current_entity_scene = load(entity_id_map[current_entity_id][0])
+		current_entity_scene = load(EntityIDMapper.map[current_entity_id][0])
 	elif selector.type == 2:
 		current_terrain_id = selector.terrain_id
 	else:
@@ -915,7 +919,7 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 			if old_tile.get_meta("ID", "") == tile_to_place:
 				return 
 		remove_tile(tile_position, layer_num, false)
-		current_entity_scene = load(entity_id_map[tile_to_place][0])
+		current_entity_scene = load(EntityIDMapper.map[tile_to_place][0])
 		node = current_entity_scene.instantiate()
 		if node.has_node("AmountLimiter"):
 			if node.get_node("AmountLimiter").run_check(get_tree()):
@@ -923,7 +927,7 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 				Global.log_error("Only one of these is allowed in a room at a time!", false)
 				return
 		var spawn_offset := Vector2i.ZERO
-		var split = entity_id_map[tile_to_place][1].split(",")
+		var split = EntityIDMapper.map[tile_to_place][1].split(",")
 		spawn_offset = Vector2i(int(split[0]), int(split[1]))
 		node.global_position = (tile_position * 16) + (Vector2i(8, 8) + spawn_offset)
 		node.set_meta("tile_position", tile_position)
@@ -1088,33 +1092,32 @@ func tile_has_signal(tile: Node) -> bool:
 const CUSTOM_LEVEL_BASE = ("res://Scenes/Levels/CustomLevelBase.tscn")
 
 func save_current_level() -> void:
-	var saved_level = level.duplicate()
+	var saved_music = level.music
+	
 	if music_track_list[bgm_id] != "":
-		saved_level.music = load(music_track_list[bgm_id].replace(".remap", ""))
+		level.music = load(music_track_list[bgm_id].replace(".remap", ""))
 	else:
-		saved_level.music = null
-	var level_to_delete: Level = null
-	if sub_areas[sub_level_id] != null:
-		level_to_delete = sub_areas.get(sub_level_id)
-	sub_areas.set(sub_level_id, saved_level)
-	if level_to_delete != null:
-		level_to_delete.free()
+		level.music = null
+	
+	sub_areas[sub_level_id] = $LevelSaver.save_subarea(level)
+	level.music = saved_music
 
 func load_level(level_id := 0) -> void:
-	var node = sub_areas[level_id]
-	if node != null:
-		node = node.duplicate()
-	if node == null:
+	var node: Level
+	if sub_areas[level_id] == {}:
 		node = load(CUSTOM_LEVEL_BASE).instantiate()
 		node.sublevel_id = level_id
-	elif node is PackedScene:
-		node = node.instantiate()
+	elif sub_areas[level_id] is Dictionary:
+		node = NewLevelBuilder.build_sublevel(level_id, sub_areas[level_id]).instantiate()
+	
 	if level != null:
 		level.free()
 		level = null
+	
 	add_child(node)
 	level = node
 	sub_level_id = level_id
+	
 	update_references()
 	reload_entity_tiles()
 	if Global.level_editor_is_playtesting() == false:
@@ -1217,7 +1220,7 @@ func record_player_frame () -> void:
 	$PlayerTrail.add_child(sprite)
 
 func clear_level() -> void:
-	sub_areas = [null, null, null, null, null]
+	sub_areas = [{}, {}, {}, {}, {}]
 	level_file = BLANK_FILE.duplicate_deep()
 	load_level(0)
 	clear_trail()
