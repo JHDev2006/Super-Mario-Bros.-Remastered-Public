@@ -12,7 +12,7 @@ signal level_building_complete
 func load_level(temp_level_file := {}) -> void:
 	building = true
 	for i in 5:
-		LevelEditor.sub_areas[i] = temp_level_file["Levels"][i]
+		LevelEditor.sub_areas[i] = build_sublevel(i, temp_level_file)
 	level_building_complete.emit()
 	building = false
 
@@ -21,7 +21,9 @@ func build_sublevel(level_idx := 0, temp_level_file := {}) -> PackedScene:
 	level.sublevel_id = level_idx
 	level.level_id = Global.level_num
 	level.world_id = Global.world_num
-	sub_level_file = temp_level_file
+	sub_level_file = temp_level_file["Levels"][level_idx]
+	if (sub_level_file.is_empty()):
+		return null
 	return pack_level_into_scene(build_level(level))
 
 func pack_level_into_scene(level: Node) -> PackedScene:
@@ -30,8 +32,6 @@ func pack_level_into_scene(level: Node) -> PackedScene:
 	return scene
 	
 func build_level(level: Node = null) -> Node:
-	if sub_level_file.is_empty():
-		return null
 	var layer_id := 0
 	for layer in sub_level_file["Layers"]:
 		for chunk_id in layer:

@@ -19,19 +19,16 @@ func _ready() -> void:
 	ResourceSetter.cache.clear()
 	Global.level_theme_changed.emit()
 	Global.get_node("GameHUD").hide()
-	Checkpoint.passed_checkpoints.clear()
 	Global.world_num = 1
 	Global.level_num = 1
 	Global.reset_values()
-	LevelEditor.sub_areas = [{}, {}, {}, {}, {}]
+	LevelEditor.sub_areas = [null, null, null, null, null]
 	Global.clear_saved_values()
 	Checkpoint.sublevel_id = 0
 	Global.current_campaign = "SMB1"
 	AudioManager.stop_all_music()
 	Global.second_quest = false
 	%LevelList.open(true)
-	for i in 5:
-		LevelEditor.sub_areas[i] = null
 	await get_tree().process_frame
 	if last_played_container != null:
 		%LSSBrowser.setup_page_numbers()
@@ -77,8 +74,9 @@ func edit_level() -> void:
 	clear_saved_stuff()
 	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	LevelEditor.load_play = false
+	
+	Global.reload_editor()
 	NewLevelBuilder.load_level(LevelEditor.level_file)
-	Global.transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
 
 func play_level() -> void:
 	Global.current_game_mode = Global.GameMode.CUSTOM_LEVEL

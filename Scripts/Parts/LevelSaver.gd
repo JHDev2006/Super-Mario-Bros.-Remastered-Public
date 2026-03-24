@@ -24,7 +24,9 @@ func save_level(level_name := "Unnamed Level", level_author := "You", level_desc
 	var idx := 0
 	for i in LevelEditor.sub_areas:
 		if i != null:
-			level_file["Levels"][idx] = i
+			if (i is PackedScene):
+				i = i.instantiate()
+			level_file["Levels"][idx] = save_subarea(i)
 		idx += 1
 	level_file["Info"] = {"Name": level_name, "Author": level_author, "Description": level_desc, "Difficulty": difficulty}
 	level_file["Version"] = Global.version_number
