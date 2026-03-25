@@ -144,7 +144,7 @@ func start_game() -> void:
 	PipeCutscene.seen_cutscene = false
 	first_load = true
 	Global.reset_values()
-	NewLevelBuilder.sub_levels = [null, null, null, null, null]
+	LevelEditor.sub_areas = [null, null, null, null, null]
 	if Global.in_custom_campaign() == false:
 		LevelTransition.level_to_transition_to = Level.get_scene_string(Global.world_num, Global.level_num)
 	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")

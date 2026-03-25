@@ -23,6 +23,7 @@ func _ready() -> void:
 	Global.level_num = 1
 	Global.reset_values()
 	LevelEditor.sub_areas = [null, null, null, null, null]
+	LevelEditor.sub_level_id = 0
 	Global.clear_saved_values()
 	Checkpoint.sublevel_id = 0
 	Global.current_campaign = "SMB1"
@@ -64,7 +65,7 @@ func new_level() -> void:
 	LevelEditor.level_desc = ""
 	LevelEditor.difficulty = 0
 	LevelEditor.level_file = LevelEditor.BLANK_FILE.duplicate(true)
-	Global.transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
+	Global.reload_editor()
 
 func back_to_title_screen() -> void:
 	clear_saved_stuff()

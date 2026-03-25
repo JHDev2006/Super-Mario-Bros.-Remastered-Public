@@ -9,6 +9,9 @@ var level_file := {}
 var building = false
 signal level_building_complete
 
+func _ready() -> void:
+	EntityIDMapper.load_entity_map()
+
 func load_level(temp_level_file := {}) -> void:
 	building = true
 	for i in 5:
@@ -29,6 +32,8 @@ func build_sublevel(level_idx := 0, temp_level_file := {}) -> PackedScene:
 func pack_level_into_scene(level: Node) -> PackedScene:
 	var scene = PackedScene.new()
 	scene.pack(level)
+	
+	level.free()
 	return scene
 	
 func build_level(level: Node = null) -> Node:

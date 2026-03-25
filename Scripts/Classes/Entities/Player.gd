@@ -1502,7 +1502,7 @@ func enter_pipe(pipe: PipeArea, warp_to_level := true) -> void:
 			LevelEditor.play_pipe_transition = true
 			Global.level_editor.transition_to_sublevel(pipe.target_sub_level)
 		elif Global.current_level is CustomLevel:
-			Global.transition_to_scene(NewLevelBuilder.sub_levels[pipe.target_sub_level])
+			Global.transition_to_scene(LevelEditor.sub_areas[pipe.target_sub_level])
 		else:
 			Global.transition_to_scene(pipe.target_level)
 

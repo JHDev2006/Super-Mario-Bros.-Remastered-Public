@@ -172,7 +172,7 @@ func update_next_level_info() -> void:
 	Global.custom_level_idx += 1
 	var level_limit = 4
 	if Global.in_custom_campaign():
-		NewLevelBuilder.sub_levels = [null, null, null, null, null]
+		LevelEditor.sub_areas = [null, null, null, null, null]
 		level_limit = Global.custom_campaign_jsons[Global.current_custom_campaign].levels_per_world[Global.world_num - 1]
 	next_level = wrap(level_id + 1, 1, level_limit + 1)
 	next_world = world_id if level_id != level_limit else world_id + 1 

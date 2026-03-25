@@ -209,7 +209,6 @@ func _physics_process(delta: float) -> void:
 			Input.flush_buffered_events()
 			%TileModifierMenu.can_exit = true
 	if Global.multibind_action_just_pressed("editor_play") and (current_state == EditorState.IDLE or current_state == EditorState.PLAYTESTING) and Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
-		Checkpoint.passed_checkpoints.clear()
 		if current_state == EditorState.PLAYTESTING:
 			stop_testing()
 		else:
