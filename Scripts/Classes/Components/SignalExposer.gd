@@ -135,6 +135,9 @@ func emit_pulse() -> void:
 	pulse_emitted.emit()
 	signals_recieved = 0
 	turned_on = true
+	if (line_drawer == null):
+		line_drawer = LineDrawer.new()
+		add_child(line_drawer)
 	line_drawer.queue_redraw()
 	await get_tree().create_timer(0.1, false).timeout
 	turned_on = false

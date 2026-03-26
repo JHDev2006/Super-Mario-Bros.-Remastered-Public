@@ -75,6 +75,7 @@ func edit_level() -> void:
 	clear_saved_stuff()
 	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	LevelEditor.load_play = false
+	LevelEditor.current_layer = 0
 	
 	Global.reload_editor()
 	NewLevelBuilder.load_level(LevelEditor.level_file)

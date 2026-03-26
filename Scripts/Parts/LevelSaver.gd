@@ -11,12 +11,7 @@ const chunk_template := {"Tiles": "", "Entities": ""}
 
 const base64_charset := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
-var entity_map := {}
-
 const tile_blacklist := []
-
-func _ready() -> void:
-	load_entity_map()
 
 func save_level(level_name := "Unnamed Level", level_author := "You", level_desc := "No Desc", difficulty := 0) -> Dictionary:
 	level_file = LevelEditor.BLANK_FILE.duplicate_deep()
@@ -47,10 +42,7 @@ func write_file(json := {}, lvl_file_name := "") -> void:
 	var file = FileAccess.open(Global.config_path.path_join("custom_levels/" + lvl_file_name), FileAccess.WRITE)
 	file.store_string(JSON.stringify(json, "", false))
 	file.close()
-	print("Saved Level")
-
-func load_entity_map() -> void:
-	entity_map = JSON.parse_string(FileAccess.open(EntityIDMapper.MAP_PATH, FileAccess.READ).get_as_text())
+	print("Saved Level: " + Global.config_path.path_join("custom_levels/" + lvl_file_name))
 
 func get_tiles(level: CustomLevel = null) -> void:
 	for layer in 5:

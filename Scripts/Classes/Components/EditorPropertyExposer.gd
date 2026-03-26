@@ -12,8 +12,6 @@ extends Node
 
 const base64_charset := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
-static var entity_map := {}
-
 signal modifier_applied
 
 func _init() -> void:
@@ -22,12 +20,7 @@ func _init() -> void:
 func _ready() -> void:
 	assert(name == "EditorPropertyExposer", "MISSED ONE")
 	name = "EditorPropertyExposer"
-	get_entity_map()
-
-func get_entity_map() -> void:
-	if entity_map.is_empty():
-		entity_map = JSON.parse_string(FileAccess.open(EntityIDMapper.MAP_PATH, FileAccess.READ).get_as_text())
-
+	
 func get_string() -> String:
 	var string = ""
 	for i in properties:
@@ -68,7 +61,6 @@ func get_string() -> String:
 	return string
 
 func apply_string(entity_string := "") -> void:
-	get_entity_map()
 	var idx := 2
 	var slice = entity_string.split(",", false)
 	for i in properties:
@@ -98,9 +90,9 @@ func apply_string(entity_string := "") -> void:
 		elif owner.get(i) is Color:
 			owner.set(i, Color(value))
 		elif owner.get(i) is PackedScene or (owner.get(i) == null and i == "item"):
-			var scene = entity_map.get(value)
+			var scene = EntityIDMapper.map.get(value)
 			if scene != null:
-				owner.set(i, load(entity_map.get(value)[0]))
+				owner.set(i, load(EntityIDMapper.map.get(value)[0]))
 			elif value != "!!":
 				Global.log_error("error getting item! : " + i + str(value))
 		elif owner.get(i) is int:

@@ -76,7 +76,8 @@ func add_entities(level: Node, chunk := "", chunk_id := 0, layer := 0) -> void:
 			continue
 		var offset = EntityIDMapper.map[entity_id][1].split(",")
 		entity_node.global_position = entity_tile_position * 16 + (Vector2i(8, 8) + Vector2i(int(offset[0]), int(offset[1])))
-		level.get_node("EntityLayer" + str(layer + 1)).add_child(entity_node)
+		if entity_node != level.get_node("EntityLayer1/Player"):
+			level.get_node("EntityLayer" + str(layer + 1)).add_child(entity_node)
 		entity_node.reset_physics_interpolation()
 		entity_node.owner = level
 		entity_node.set_meta("tile_position", entity_tile_position)

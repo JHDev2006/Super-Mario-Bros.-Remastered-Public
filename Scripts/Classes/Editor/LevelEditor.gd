@@ -72,12 +72,12 @@ var quick_connecting := false
 
 static var sub_level_id := 0
 static var sub_areas: Array = [null, null, null, null, null]
+static var current_layer := 0
 
 const BLANK_FILE := {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
 
 static var level_file = {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
 
-var current_layer := 0
 @onready var tile_layer_nodes: Array[TileMapLayer] = [null, null, null, null, null]
 @onready var entity_layer_nodes := [null, null, null, null, null]
 
@@ -139,7 +139,7 @@ static var saved_trail := []
 var undo_redo = UndoRedo.new()
 static var undo_history := {}
 static var redo_history := {}
-static var last_commit := -1
+static var last_commit := -2
 
 func _ready() -> void:
 	Global.level_editor = self
@@ -334,8 +334,9 @@ func return_to_editor() -> void:
 	AudioManager.stop_all_music()
 	OffScreenDespawner.editor_testing_safety = true
 	recorded_trail = saved_trail.size() > 0
+	if (last_commit != -1):
+		last_commit = undo_redo.get_current_action()
 	
-	last_commit = undo_redo.get_current_action()
 	Global.reload_editor()
 
 var zoom := 1.0
@@ -1095,7 +1096,7 @@ func low_gravity_toggled(new_value := false) -> void:
 func transition_to_sublevel(sub_lvl_idx := 0) -> void:
 	clear_trail()
 	clear_undoredo()
-	undo_redo.clear_history()
+	
 	Global.can_pause = false
 	if Global.level_editor_is_playtesting():
 		Global.do_fake_transition()
@@ -1250,7 +1251,6 @@ func recreate_undoredo() -> void:
 	
 	# This is needed so the undoredo object can refresh its history.
 	# Although without restarting the editor it works normally, this is just a test.
-	print(str(LevelEditor.undo_history))
 	for i in LevelEditor.undo_history:
 		var actionName: String = LevelEditor.undo_history[i]["action"]
 		
@@ -1280,13 +1280,17 @@ func recreate_undoredo() -> void:
 			undo_redo.add_do_method(remove_tile.bindv(redoArgs))
 			undo_redo.add_undo_method(place_tile.bindv(undoArgs))
 		
-		if (i >= last_commit):
-			undo_redo.commit_action(false)
-		else:
-			breakpoint
+		undo_redo.commit_action(i > last_commit)
+	await get_tree().process_frame
+	undo_non_committed()
+	
+func undo_non_committed() -> void:
+	for i in undo_redo.get_current_action() - last_commit:
+		undo()
 
 func clear_undoredo() -> void:
-	last_commit = -1
+	last_commit = -2
+	
 	LevelEditor.undo_history.clear()
 	LevelEditor.redo_history.clear()
 
