@@ -14,7 +14,6 @@ hframes = 5
 
 [node name="SignalExposer" type="Node2D" parent="." unique_id=1403115602]
 script = ExtResource("3_8swfn")
-can_output = false
 do_animation = false
 metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 
