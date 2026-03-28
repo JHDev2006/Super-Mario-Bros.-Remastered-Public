@@ -177,6 +177,21 @@ _data = {
 &"RESET": SubResource("Animation_w1p0q")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgefa"]
+atlas = ExtResource("3_m8jkd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1nkq5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgefa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5um5"]
 size = Vector2(10, 8)
 
@@ -216,19 +231,18 @@ property_name = "sprite_frames"
 resource_json = ExtResource("6_dhnkc")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Ball" type="Sprite2D" parent="Sprite" unique_id=308441283]
+[node name="Ball" type="AnimatedSprite2D" parent="Sprite" unique_id=1815306687]
 unique_name_in_owner = true
 visible = false
 show_behind_parent = true
 rotation = 3.14159
 scale = Vector2(1, -1)
-texture = ExtResource("3_m8jkd")
+sprite_frames = SubResource("SpriteFrames_1nkq5")
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite/Ball" unique_id=955874857 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("5_ddx5o")
 node_to_affect = NodePath("..")
-property_name = "texture"
-mode = 1
+property_name = "sprite_frames"
 resource_json = ExtResource("7_l0d5l")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

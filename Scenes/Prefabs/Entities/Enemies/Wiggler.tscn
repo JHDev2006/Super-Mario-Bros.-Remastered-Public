@@ -9,6 +9,7 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/WigglerHead.json" id="8_h7jtn"]
 [ext_resource type="Script" uid="uid://blfnd65xcx78c" path="res://Scripts/Classes/Components/LedgeDetectionCast.gd" id="9_h7jtn"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="9_volwr"]
+[ext_resource type="Script" uid="uid://maqpreddu5kg" path="res://Scripts/Classes/Components/LevelPersistance.gd" id="10_volwr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n20q3"]
 atlas = ExtResource("3_r77rc")
@@ -158,6 +159,11 @@ rect = Rect2(-24, -32, 48, 48)
 script = ExtResource("9_volwr")
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
+[node name="LevelPersistance" type="Node" parent="." unique_id=1900883525]
+script = ExtResource("10_volwr")
+metadata/_custom_type_script = "uid://maqpreddu5kg"
+
+[connection signal="killed" from="." to="LevelPersistance" method="set_as_active"]
 [connection signal="moving_shell_entered" from="Parts/Body4/ShellDetection" to="." method="die_from_object"]
 [connection signal="hammer_player_hit" from="Parts/Body4/EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="Parts/Body4/EnemyPlayerDetection" to="." method="die_from_object"]
@@ -184,6 +190,7 @@ metadata/_custom_type_script = "uid://5octqlf4ohel"
 [connection signal="player_hit" from="Parts/Head/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="Parts/Head/EnemyPlayerDetection" to="." method="player_stomped_on"]
 [connection signal="timeout" from="Timer" to="BasicEnemyMovement" method="player_direction_check"]
+[connection signal="enabled" from="LevelPersistance" to="." method="queue_free"]
 
 [editable path="Parts/Body4"]
 [editable path="Parts/Body3"]

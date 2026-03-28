@@ -30,7 +30,7 @@ func open_folder() -> void:
 	OS.shell_show_in_file_manager(ProjectSettings.globalize_path(custom_level_path))
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_back") and CustomLineEdit.editing == false:
+	if Global.multibind_action_just_pressed("ui_back") and CustomLineEdit.editing == false:
 		closed.emit()
 
 func close() -> void:

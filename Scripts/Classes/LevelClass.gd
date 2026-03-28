@@ -157,8 +157,8 @@ func update_theme() -> void:
 			if Global.current_campaign == "SMBANN":
 				theme_time = "Night"
 		else:
-			theme = Global.custom_campaign_jsons[Global.current_custom_campaign].world_themes[Global.world_num][0]
-			theme_time = Global.custom_campaign_jsons[Global.current_custom_campaign].world_themes[Global.world_num][1]
+			theme = Global.custom_campaign_jsons[Global.current_custom_campaign].world_themes[Global.world_num - 1][0]
+			theme_time = Global.custom_campaign_jsons[Global.current_custom_campaign].world_themes[Global.world_num - 1][1]
 		campaign = Global.current_campaign
 		ResourceSetterNew.clear_cache()
 	Global.current_campaign = campaign

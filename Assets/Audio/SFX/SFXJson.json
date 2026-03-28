@@ -1,0 +1,8 @@
+{
+	
+	"comment": "Hi, this is basically just a generic sfx json, which you can use to quickly copy paste round, if needs be. feel free to delete this, it wont do anything",
+	
+	"variations": {
+		"default": {"source": "PutWhateverSFXFilehere.mp3"}
+	}
+}

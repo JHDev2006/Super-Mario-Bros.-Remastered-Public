@@ -71,11 +71,12 @@ func apply_string(entity_string := "") -> void:
 	get_entity_map()
 	var idx := 2
 	var slice = entity_string.split(",", false)
-	print(slice)
 	for i in properties:
 		if slice.size() <= idx:
 			return
 		var value = slice[idx]
+		if value.contains("$"):
+			return ## its a signal connection, we dont want the rest. we're done
 		idx += 1
 		if owner is Track:
 			if owner.get(i) is Array:
@@ -104,7 +105,6 @@ func apply_string(entity_string := "") -> void:
 				Global.log_error("error getting item! : " + i + str(value))
 		elif owner.get(i) is int:
 			var num = value
-			print(value)
 			if value.length() > 1:
 				num = decode_from_base64_2char(value)
 			else:

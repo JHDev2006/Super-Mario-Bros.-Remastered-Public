@@ -47,7 +47,7 @@ func _process(_delta: float) -> void:
 	visible = not (invisible and (Global.level_editor_is_playtesting() or Global.level_editor == null))
 	$PlacePreview.visible = editing
 	if editing and Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
-		if Input.is_action_just_pressed("editor_open_menu") or Input.is_action_just_pressed("ui_cancel"):
+		if Global.multibind_action_just_pressed("editor_open_menu") or Global.multibind_action_just_pressed("ui_cancel"):
 			editing = false
 			Global.level_editor.current_state = LevelEditor.EditorState.IDLE
 			update_pieces()
@@ -57,7 +57,6 @@ func _physics_process(_delta: float) -> void:
 		for i in 8:
 			if is_mouse_in_area(i):
 				if Track.DIRECTIONS[i] == -last_direction:
-					print([i, Track.DIRECTIONS[i], last_direction])
 					remove_last_piece()
 				else:
 					add_piece(Track.DIRECTIONS[i])

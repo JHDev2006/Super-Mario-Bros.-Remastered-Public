@@ -77,8 +77,6 @@ func setup_visuals() -> void:
 			level_theme = "Mystery"
 		var campaign_idx := 0
 		if ((idx >= 4 and idx <= 8) or Global.current_campaign == "SMBANN"): campaign_idx = 1
-		print([Global.current_campaign, campaign_idx])
-		print(CustomLevelContainer.ICON_TEXTURES[campaign_idx].resource_path)
 		i.get_node("Icon").region_rect = CustomLevelContainer.THEME_RECTS[level_theme]
 		i.get_node("Icon").texture = (CustomLevelContainer.ICON_TEXTURES[campaign_idx])
 		i.get_node("Icon/Number").position.y = 10 if has_challenge_stuff else 17
@@ -140,6 +138,9 @@ func setup_disco_bits(medal_outline: TextureRect, medal: NinePatchRect, s_rank_p
 	var lowest_rank = -1
 	for i in 4:
 		saved_rank_ids.append(DiscoLevel.level_ranks[SaveManager.get_level_idx(world_num + 1, i + 1)])
+		if saved_rank_ids[i] == "Z":
+			lowest_rank = -1
+			break
 		for rank in DiscoLevel.RANK_IDs.size():
 			if DiscoLevel.RANK_IDs[rank] == saved_rank_ids[i] and (lowest_rank > rank + 1 or lowest_rank < 0):
 				lowest_rank = rank + 1
@@ -151,12 +152,12 @@ func setup_disco_bits(medal_outline: TextureRect, medal: NinePatchRect, s_rank_p
 	p_rank_pfx.visible = lowest_rank == 7
 
 func handle_input() -> void:
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		if SaveManager.visited_levels.substr((selected_world + world_offset) * 4, 4) == "0000" and not Global.debug_mode and selected_world != 0:
 			AudioManager.play_sfx("bump")
 		else:
 			select_world()
-	elif Input.is_action_just_pressed("ui_back"):
+	elif Global.multibind_action_just_pressed("ui_back"):
 		close()
 		cleanup()
 		cancelled.emit()

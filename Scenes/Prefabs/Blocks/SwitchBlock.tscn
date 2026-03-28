@@ -40,8 +40,8 @@ script = ExtResource("6_jfwde")
 can_output = false
 metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 
-[connection signal="modifier_applied" from="EditorPropertyExposer" to="." method="update_collision"]
 [connection signal="modifier_applied" from="EditorPropertyExposer" to="." method="update_sprite"]
+[connection signal="modifier_applied" from="EditorPropertyExposer" to="." method="update_collision"]
 [connection signal="lost_power" from="SignalExposer" to="." method="turn_off"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="turn_on"]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="toggle"]

@@ -46,6 +46,7 @@ func dispense_item() -> void:
 	var node = item_to_dispense.instantiate()
 	node.set_meta("block_item", true)
 	node.set_meta("no_persist", true)
+	node.set_meta("layer", get_meta("layer", -1))
 	if node is PowerUpItem or node.has_meta("is_item"):
 		for i in get_tree().get_nodes_in_group("Players"):
 			add_sibling(node)
@@ -69,7 +70,6 @@ func dispense_item() -> void:
 		parent.add_child(node)
 		node.reset_physics_interpolation()
 		parent.move_child(node, get_index() - 1)
-		print("FUCK: " + str(item.resource_path))
 		if NO_SFX_ITEMS.has(item.resource_path) == false:
 			AudioManager.play_sfx("item_appear", global_position)
 			node.set("velocity", Vector2(0, node.get_meta("block_launch_velocity", -150)))

@@ -6,8 +6,6 @@
 
 [node name="Lamp" type="Node2D" unique_id=515746201]
 process_mode = 3
-z_index = 500
-z_as_relative = false
 script = ExtResource("1_0525o")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1224179792]
@@ -16,10 +14,12 @@ hframes = 5
 
 [node name="SignalExposer" type="Node2D" parent="." unique_id=1403115602]
 script = ExtResource("3_8swfn")
-can_output = false
 do_animation = false
 metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 
 [connection signal="lost_power" from="SignalExposer" to="." method="turn_off"]
+[connection signal="lost_power" from="SignalExposer" to="SignalExposer" method="turn_off"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="turn_on"]
+[connection signal="recieved_power" from="SignalExposer" to="SignalExposer" method="turn_on"]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="pulse"]
+[connection signal="recieved_pulse" from="SignalExposer" to="SignalExposer" method="emit_pulse"]

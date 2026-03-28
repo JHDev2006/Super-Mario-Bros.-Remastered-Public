@@ -2,10 +2,14 @@ class_name SpikeBall
 extends CharacterBody2D
 
 var can_gravity := false
+var can_rotate := true
 const SPIKE_BALL_DESTRUCTION_PARTICLES = preload("uid://bk0arhpyyila6")
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
-	$Sprite.rotation_degrees += velocity.x * delta * 8
+	if can_rotate:
+		$Sprite.rotation_degrees += velocity.x * delta * 8
+	else:
+		$Sprite.speed_scale = velocity.x / 100
 	handle_block_collision()
 
 func handle_movement(delta: float) -> void:

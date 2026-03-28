@@ -41,19 +41,19 @@ func set_selected(active := false) -> void:
 	selected = active
 
 func handle_inputs() -> void:
-	if Input.is_action_just_pressed("ui_left"):
+	if Global.multibind_action_just_pressed("ui_left"):
 		confirming = false
 		confirm_2 = false
 		selected_index -= 1
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")
-	if Input.is_action_just_pressed("ui_right"):
+	if Global.multibind_action_just_pressed("ui_right"):
 		confirming = false
 		confirm_2 = false
 		selected_index += 1
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		if confirming or confirm_2:
 			if extra_confirm and confirm_2 == false:
 				confirm_2 = true

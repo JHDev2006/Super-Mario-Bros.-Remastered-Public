@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_sdjg4"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/CheckpointFlag.json" id="4_2u6vm"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="4_dai6d"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="7_2u6vm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dai6d"]
 atlas = ExtResource("1_iutnx")
@@ -103,6 +104,11 @@ script = ExtResource("4_dai6d")
 note_offset = Vector2(0, -24)
 add_score = true
 metadata/_custom_type_script = "uid://5octqlf4ohel"
+
+[node name="EditorPropertyExposer" type="Node" parent="." unique_id=1288270678]
+script = ExtResource("7_2u6vm")
+properties = Array[String](["give_mushroom"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
 [connection signal="crossed" from="." to="Flag" method="activate"]
 [connection signal="crossed" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [2000]]

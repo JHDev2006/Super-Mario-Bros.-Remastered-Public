@@ -57,7 +57,7 @@ func setup_visuals(container: OnlineLevelContainer) -> void:
 	%OnlinePlay.visible = has_downloaded
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_back"):
+	if Global.multibind_action_just_pressed("ui_back"):
 		close()
 
 func close() -> void:
@@ -68,12 +68,10 @@ func close() -> void:
 func download_level() -> void:
 	DirAccess.make_dir_recursive_absolute(Global.config_path.path_join("custom_levels/downloaded"))
 	var url = "https://levelsharesquare.com/api/levels/" + level_id + "/code"
-	print(url)
 	$DownloadLevel.request(url, [], HTTPClient.METHOD_GET)
 	%Download.text = "DOWNLOADING..."
 
 func open_lss() -> void:
-	print(level_id)
 	OS.shell_open("https://levelsharesquare.com/levels/" + str(level_id))
 
 func on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:

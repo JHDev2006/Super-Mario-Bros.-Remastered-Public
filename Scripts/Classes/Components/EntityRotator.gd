@@ -14,4 +14,4 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _physics_process(_delta: float) -> void:
-	owner.global_rotation_degrees = directions[owner.get(direction_value_name)]
+	rotation_joint.global_rotation_degrees = directions[owner.get(direction_value_name)]

@@ -15,6 +15,7 @@ signal level_time_changed
 const BASE64_CHARSET := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 const VERSION_CHECK_URL := "https://cdn.jsdelivr.net/gh/JHDev2006/Super-Mario-Bros.-Remastered-Public@main/version.txt"
+const SNAPSHOT_CHECK_URL := "https://cdn.jsdelivr.net/gh/JHDev2006/Super-Mario-Bros.-Remastered-Public@refs/heads/1.1/snapshot_version.txt"
 @onready var screen_shaker: Node = $ScreenShaker
 
 var entity_gravity := 10.0
@@ -35,10 +36,11 @@ var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
 var ROM_PATH = config_path.path_join("baserom.nes")
 var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
 const ROM_PACK_NAME := "BaseAssets"
-const ROM_ASSETS_VERSION := 3
+const ROM_ASSETS_VERSION := 5
 
 var server_version := -1
 var current_version := -1
+var current_snapshot := ""
 var version_number := ""
 var is_snapshot := true
 
@@ -191,10 +193,18 @@ var custom_campaign_jsons := {}
 
 var level_sequence_captured := false
 
+var process_multibind_pressed_buttons: Dictionary[StringName, int] = {}
+var physics_multibind_pressed_buttons: Dictionary[StringName, int] = {}
+
+var unpressed_buttons: Dictionary[StringName, bool] = {}
+
+
 func _ready() -> void:
-	if is_snapshot: get_build_time()
-	if OS.is_debug_build(): debug_mode = false
+	if is_snapshot: 
+		get_build_time()
+		current_snapshot = get_snapshot_version()
 	current_version = get_version_number()
+	if OS.is_debug_build(): debug_mode = false
 	get_server_version()
 	setup_config_dirs()
 	check_for_rom()
@@ -260,7 +270,8 @@ func check_for_rom() -> void:
 			OS.move_to_trash(ROM_ASSETS_PATH)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug_reload"):
+	
+	if multibind_action_just_pressed("debug_reload"):
 		ResourceSetter.cache.clear()
 		ResourceSetterNew.clear_cache()
 		ResourceGetter.cache.clear()
@@ -273,17 +284,20 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_ALT) and Input.is_key_pressed(KEY_4):
 		get_tree().quit()
 	
-	if Input.is_action_just_pressed("toggle_fps_count"):
+	if multibind_action_just_pressed("toggle_fps_count"):
 		%FPSCount.visible = !%FPSCount.visible
 	%FPSCount.text = str(int(Engine.get_frames_per_second())) + " FPS"
 
 	handle_p_switch(delta)
+	
+	handle_input()
+	
 	if Input.is_key_label_pressed(KEY_F11) and debug_mode == false and OS.is_debug_build():
 		AudioManager.play_global_sfx("switch")
 		debug_mode = true
 		log_comment("Debug Mode enabled! some bugs may occur!")
 		
-	if Input.is_action_just_pressed("ui_screenshot"):
+	if multibind_action_just_pressed("ui_screenshot"):
 		take_screenshot()
 
 func take_screenshot() -> void:
@@ -331,6 +345,11 @@ func get_version_number() -> int:
 	version_number = str(number).replace("\n", "")
 	return int(number)
 
+func get_snapshot_version() -> String:
+	var number = (FileAccess.open("res://snapshot_version.txt", FileAccess.READ).get_as_text())
+	number = number.replace("\n", "")
+	return number
+
 func get_int_version_num(version_num := "") -> int:
 	return int(version_num.replace(".", "").pad_zeros(3))
 
@@ -342,7 +361,7 @@ func player_action_pressed(action := "", player_id = 0) -> bool:
 func player_action_just_pressed(action := "", player_id = 0) -> bool:
 	if SpeedrunHandler.simulating_inputs:
 		player_id = "s"
-	return Input.is_action_just_pressed(action + "_" + str(player_id))
+	return multibind_action_just_pressed(action + "_" + str(player_id))
 
 func player_action_just_released(action := "", player_id = 0) -> bool:
 	if SpeedrunHandler.simulating_inputs:
@@ -421,6 +440,7 @@ func transition_to_scene(scene_path = "") -> void:
 		return
 	transitioning_scene = true
 	if fade_transition:
+		freeze_screen()
 		$Transition/AnimationPlayer.play("FadeIn")
 		await $Transition/AnimationPlayer.animation_finished
 		await get_tree().create_timer(0.1, true).timeout
@@ -435,6 +455,7 @@ func transition_to_scene(scene_path = "") -> void:
 	await get_tree().scene_changed
 	await get_tree().create_timer(0.15, true).timeout
 	if fade_transition:
+		close_freeze()
 		$Transition/AnimationPlayer.play_backwards("FadeIn")
 	else:
 		$Transition/AnimationPlayer.play("RESET")
@@ -465,7 +486,6 @@ func freeze_screen() -> void:
 
 func close_freeze() -> void:
 	$Transition/Freeze.hide()
-	$Transition.hide()
 
 var recording_dir = config_path.path_join("marathon_recordings")
 
@@ -488,13 +508,19 @@ func on_score_sfx_finished() -> void:
 func get_server_version() -> void:
 	var http = HTTPRequest.new()
 	add_child(http)
+	var url = VERSION_CHECK_URL
+	if is_snapshot:
+		url = SNAPSHOT_CHECK_URL
 	http.request_completed.connect(version_got)
-	http.request(VERSION_CHECK_URL, [], HTTPClient.METHOD_GET)
+	http.request(url, [], HTTPClient.METHOD_GET)
 
 func version_got(_result, response_code, _headers, body) -> void:
 	current_version = get_version_num_int(version_number)
 	if response_code == 200:
-		server_version = int(get_version_num_int(body.get_string_from_utf8()))
+		if is_snapshot:
+			server_version = int(get_snapshot_num_int(body.get_string_from_utf8()))
+		else:
+			server_version = int(get_version_num_int(body.get_string_from_utf8()))
 	else:
 		server_version = -2
 
@@ -573,6 +599,13 @@ func get_base_asset_version() -> int:
 func get_version_num_int(ver_num := "0.0.0") -> int:
 	return int(ver_num.replace(".", ""))
 
+func get_snapshot_num_int(ver_num := "26w00a") -> int:
+	var year = ver_num.substr(0, 2)
+	var week = ver_num.substr(3, 2)
+	var num = ver_num[5]
+	
+	return (int(year) * int(week)) + int(num.unicode_at(0))
+
 func load_default_translations() -> void:
 	for i in lang_codes:
 		if i != "gal":
@@ -627,7 +660,8 @@ func convert_en_to_gal(en_string := "") -> String:
 	return gal_string
 
 func in_custom_campaign(campaign := current_custom_campaign) -> bool:
-	return campaign != ""
+	return campaign not in CAMPAIGNS and campaign != ""
+
 func merge_dict(target: Dictionary, source: Dictionary) -> void:
 	# SkyanUltra: Used to properly merge dictionaries JSONs rather than out right overwriting entries.
 	for key in source.keys():
@@ -675,3 +709,36 @@ func nice_json_format(json_string := "") -> String:
 					json_string = json_string.insert(i + 2, "\t")
 					i += 1
 	return json_string
+
+# Like Input.is_action_just_pressed, but it allows pressing
+# a button while another bind for it is already pressed.
+func multibind_action_just_pressed(action: StringName) -> bool:
+	if Engine.is_in_physics_frame():
+		return physics_multibind_pressed_buttons.get(action, -1) \
+			== Engine.get_physics_frames()
+	return process_multibind_pressed_buttons.get(action, -1) \
+		== Engine.get_process_frames()
+
+func _input(event: InputEvent) -> void:
+	if not event.is_action_type() or not event.is_pressed():
+		return
+	for action in InputMap.get_actions():
+		if event.is_action_pressed(action):
+			if event is InputEventJoypadMotion:
+				if unpressed_buttons[action] == false:
+					return
+			unpressed_buttons[action] = false
+			process_multibind_pressed_buttons[action] = Engine.get_process_frames()
+			# Add 1 physics frame, like Godot also does,
+			# because "input may come in part way through a physics tick"
+			# https://github.com/godotengine/godot/blob/2327a823578a30f09068f97272598521896d5633/core/input/input.cpp#L1025
+			physics_multibind_pressed_buttons[action] = Engine.get_physics_frames() + 1
+
+func handle_input() -> void:
+	for action in InputMap.get_actions():
+		if Input.is_action_pressed(action) == false:
+			unpressed_buttons[action] = true
+
+func warper_cooldown() -> void:
+	await get_tree().create_timer(1, false).timeout
+	Warper.can_warp = true

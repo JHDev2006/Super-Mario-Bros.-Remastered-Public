@@ -45,6 +45,7 @@
 [ext_resource type="Script" uid="uid://cwti0ks5sfov3" path="res://Scripts/Classes/Components/ScalableCollisionPolygon.gd" id="35_nbkfn"]
 [ext_resource type="AudioStream" uid="uid://oghj2q665pfj" path="res://Assets/Audio/SFX/TimerRunningLow.wav" id="40_o70e0"]
 [ext_resource type="Script" uid="uid://dl6pv24h16rgb" path="res://Scripts/Classes/Components/PlayerMoveEffects.gd" id="42_fqdtv"]
+[ext_resource type="Script" uid="uid://dde1tbnfum3yr" path="res://Scripts/Classes/Components/PackParticles.gd" id="45_2t4xr"]
 
 [sub_resource type="Shader" id="Shader_7nbqp"]
 code = "shader_type canvas_item;
@@ -480,7 +481,7 @@ func _physics_process(_delta: float) -> void:
 		if current_state != state:
 			current_state = state
 			%ResourceSetterNew.resource_json = load(\"res://Assets/Sprites/Players/\" + owner.character + \"/\" + state + \".json\")
-		if Input.is_action_just_pressed(\"editor_move_player\"):
+		if Global.multibind_action_just_pressed(\"editor_move_player\"):
 			var new_position = Global.level_editor.cursor_tile_position * 16
 			owner.global_position = new_position + Vector2i(8, 16)
 			Global.level_editor.entity_tiles[0].erase(owner.get_meta(\"tile_position\"))
@@ -711,7 +712,6 @@ debug_color = Color(1, 1, 0, 0.42000002)
 script = ExtResource("21_jl70t")
 
 [node name="WaterDetect" type="Area2D" parent="." unique_id=764842293]
-visible = false
 collision_layer = 0
 collision_mask = 64
 
@@ -722,7 +722,6 @@ debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 
 [node name="LavaDetect" type="Area2D" parent="." unique_id=272558444]
-position = Vector2(0, 1)
 collision_layer = 0
 collision_mask = 128
 
@@ -733,7 +732,6 @@ debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 
 [node name="PoisonDetect" type="Area2D" parent="." unique_id=949078937]
-position = Vector2(0, 1)
 collision_layer = 0
 collision_mask = 256
 
@@ -1107,6 +1105,7 @@ lifetime = 0.25
 gravity = Vector2(0, 0)
 anim_speed_min = 1.0
 anim_speed_max = 1.0
+script = ExtResource("45_2t4xr")
 
 [node name="MoveEffects" type="Node" parent="." unique_id=794346187]
 unique_name_in_owner = true

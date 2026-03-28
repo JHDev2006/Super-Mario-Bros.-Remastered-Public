@@ -91,6 +91,8 @@ func add_entities(level: Node, chunk := "", chunk_id := 0, layer := 0) -> void:
 		entity_node.owner = level
 		entity_node.set_meta("tile_position", entity_tile_position)
 		entity_node.set_meta("tile_offset", Vector2(int(offset[0]), int(offset[1])))
+		entity_node.set_meta("layer", layer)
+		entity_node.set_meta("ID", entity_id)
 		if entity_node.has_node("EditorPropertyExposer"):
 			entity_node.get_node("EditorPropertyExposer").apply_string(entity)
 		if entity_node.has_node("SignalExposer"):
@@ -132,7 +134,6 @@ func apply_level_data(level: Level, data := "") -> void:
 	level.vertical_height = -int(values[5])
 	level.time_limit = int(values[6])
 	if values.size() > 8:
-		print([split,[int(values[7]), int(values[8])]])
 		level.enforce_resolution = Vector2(int(values[7]), int(values[8]))
 	ResourceSetterNew.clear_cache()
 	Global.level_theme_changed.emit()

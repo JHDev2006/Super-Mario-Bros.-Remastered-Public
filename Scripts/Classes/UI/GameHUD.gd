@@ -48,8 +48,6 @@ func handle_main_hud() -> void:
 		world_num = ["A", "B", "C", "D"][int(world_num) % 10]
 	elif int(world_num) < 1:
 		world_num = " "
-#	else:
-#		print(Global.world_num)
 	%LevelNum.text = world_num + "-" + str(Global.level_num)
 	%Crown.visible = Global.second_quest
 	%Time.text = " " + str(Global.time).pad_zeros(3)
@@ -209,7 +207,7 @@ func handle_speedrun_timer() -> void:
 func handle_pausing() -> void:
 	if get_tree().get_first_node_in_group("Players") != null and Global.can_pause and (Global.current_game_mode != Global.GameMode.LEVEL_EDITOR):
 		if get_tree().paused == false and Global.game_paused == false:
-			if Input.is_action_just_pressed("pause"):
+			if Global.multibind_action_just_pressed("pause"):
 				activate_pause_menu()
 
 func activate_pause_menu() -> void:

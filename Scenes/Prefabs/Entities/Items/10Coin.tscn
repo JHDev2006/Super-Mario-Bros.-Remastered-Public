@@ -7,6 +7,7 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/10Coin.json" id="4_qjhmb"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="6_d14m4"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="7_d14m4"]
+[ext_resource type="Script" uid="uid://maqpreddu5kg" path="res://Scripts/Classes/Components/LevelPersistance.gd" id="8_b5crn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d14m4"]
 radius = 16.492422
@@ -95,6 +96,12 @@ property_name = "sprite_frames"
 resource_json = ExtResource("4_qjhmb")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
+[node name="LevelPersistance" type="Node" parent="." unique_id=1484862382]
+script = ExtResource("8_b5crn")
+metadata/_custom_type_script = "uid://maqpreddu5kg"
+
+[connection signal="collected" from="." to="LevelPersistance" method="set_as_active"]
 [connection signal="collected" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [100]]
 [connection signal="area_entered" from="PlayerDetection" to="." method="on_area_entered"]
 [connection signal="player_entered" from="PlayerDetection" to="." method="collect" flags=6 unbinds=1]
+[connection signal="enabled" from="LevelPersistance" to="." method="queue_free"]

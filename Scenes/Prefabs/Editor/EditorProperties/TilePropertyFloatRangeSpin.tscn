@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cxrx8ogihsuad"]
+
+[sub_resource type="GDScript" id="GDScript_ok74a"]
+script/source = "extends TilePropertyContainer
+
+func _ready() -> void:
+	%Label.text = (tile_property_name).replace(\"_\", \" \") + \":\"
+	$HSlider.min_value = min_value
+	$HSlider.step = property_step
+	$HSlider.max_value = max_value
+
+func _process(_delta: float) -> void:
+	%Value.text = str(float($HSlider.value))
+"
+
+[node name="TilePropertyFloatRange" type="HBoxContainer" unique_id=1776741067]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 16.0
+grow_horizontal = 2
+script = SubResource("GDScript_ok74a")
+
+[node name="Label" type="Label" parent="." unique_id=1164282369]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+text = "PROPERTY_NAME:"
+uppercase = true
+
+[node name="HSlider" type="SpinBox" parent="." unique_id=829089779]
+layout_mode = 2
+step = 0.0
+value = 1.0
+
+[node name="Value" type="Label" parent="." unique_id=2002176645]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="start_value_changed" from="." to="HSlider" method="set_value_no_signal"]
+[connection signal="value_changed" from="HSlider" to="." method="set_value"]

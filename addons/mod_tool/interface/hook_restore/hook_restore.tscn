@@ -1,0 +1,100 @@
+[gd_scene load_steps=2 format=3 uid="uid://camcc83bvu086"]
+
+[ext_resource type="Script" path="res://addons/mod_tool/interface/hook_restore/hook_restore.gd" id="1_wq3ld"]
+
+[node name="HookRestore" type="Window"]
+title = "Mod Dev Tool"
+initial_position = 1
+size = Vector2i(640, 375)
+wrap_controls = true
+script = ExtResource("1_wq3ld")
+
+[node name="Restart" type="Window" parent="."]
+unique_name_in_owner = true
+title = "Mod Dev Tool"
+initial_position = 1
+size = Vector2i(440, 117)
+visible = false
+wrap_controls = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Restart"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBC" type="VBoxContainer" parent="Restart/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="LabelInfoText" type="RichTextLabel" parent="Restart/MarginContainer/VBC"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "Successfully restored all scripts. 
+A restart of the editor is required."
+fit_content = true
+
+[node name="HBC" type="HBoxContainer" parent="Restart/MarginContainer/VBC"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="ButtonRestartNow" type="Button" parent="Restart/MarginContainer/VBC/HBC"]
+layout_mode = 2
+text = "Restart Now"
+
+[node name="ButtonRestartLater" type="Button" parent="Restart/MarginContainer/VBC/HBC"]
+layout_mode = 2
+text = "Restart Later"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
+
+[node name="VBC" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LabelInfoText" type="RichTextLabel" parent="MarginContainer/VBC"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+text = "This will restore all scripts to their state before mod hooks were added. Any changes made to these scripts will be lost!
+
+The process may take some time depending on the number of scripts."
+fit_content = true
+
+[node name="VBC" type="VBoxContainer" parent="MarginContainer/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonRestoreStart" type="Button" parent="MarginContainer/VBC/VBC"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start Restore"
+
+[node name="VBC2" type="VBoxContainer" parent="MarginContainer/VBC"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="InfoOutput" type="RichTextLabel" parent="MarginContainer/VBC/VBC2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 2
+size_flags_vertical = 3
+scroll_following = true
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="close_requested" from="Restart" to="." method="_on_restart_close_requested"]
+[connection signal="pressed" from="Restart/MarginContainer/VBC/HBC/ButtonRestartNow" to="." method="_on_button_restart_now_pressed"]
+[connection signal="pressed" from="Restart/MarginContainer/VBC/HBC/ButtonRestartLater" to="." method="_on_button_restart_later_pressed"]
+[connection signal="pressed" from="MarginContainer/VBC/VBC/ButtonRestoreStart" to="." method="_on_button_restore_start_pressed"]

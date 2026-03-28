@@ -8,8 +8,6 @@ func _ready() -> void:
 	resized.connect(check)
 
 func check() -> void:
-	print(size.x >= test_node.size.x)
-	print([size.x, test_node.size.x])
 	if size.x > test_node.size.x:
 		test_node.show()
 		dummy_node.hide()

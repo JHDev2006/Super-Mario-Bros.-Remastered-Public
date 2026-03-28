@@ -45,7 +45,7 @@ func write_file(json := {}, lvl_file_name := "") -> void:
 	var file = FileAccess.open(Global.config_path.path_join("custom_levels/" + lvl_file_name), FileAccess.WRITE)
 	file.store_string(JSON.stringify(json, "", false))
 	file.close()
-	print("saved")
+	print("Saved Level")
 
 func load_entity_map() -> void:
 	entity_map = JSON.parse_string(FileAccess.open(EntityIDMapper.MAP_PATH, FileAccess.READ).get_as_text())
@@ -77,7 +77,6 @@ func get_tiles(level: CustomLevel = null) -> void:
 
 
 static func compress_string(buffer := "") -> String:
-	print(buffer)
 	var bytes = buffer.to_ascii_buffer()
 	var compressed_bytes = bytes.compress(FileAccess.CompressionMode.COMPRESSION_DEFLATE)
 	var b64_buffer = Marshalls.raw_to_base64(compressed_bytes)

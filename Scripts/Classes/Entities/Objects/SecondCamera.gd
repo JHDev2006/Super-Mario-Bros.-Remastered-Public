@@ -11,6 +11,7 @@ var tween = null
 static var frame_one := false
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	$Camera2D.global_position = global_position
 	$NinePatchRect.size = get_viewport().get_visible_rect().size
 	$NinePatchRect.position = -($NinePatchRect.size / 2)
@@ -22,6 +23,7 @@ func level_start() -> void:
 	if auto_activate:
 		active = true
 		activate()
+	_ready()
 
 func activate() -> void:
 	for i in 2:

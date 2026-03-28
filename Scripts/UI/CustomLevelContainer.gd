@@ -81,5 +81,5 @@ func update_visuals() -> void:
 		idx += 1
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept") and visible:
+	if Global.multibind_action_just_pressed("ui_accept") and visible:
 		selected.emit(self)

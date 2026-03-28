@@ -11,7 +11,7 @@ func toggle() -> void:
 
 func start() -> void:
 	if powered:
-		update()
+		update.call_deferred()
 
 func update() -> void:
 	[turned_off, turned_on][int(powered)].emit()

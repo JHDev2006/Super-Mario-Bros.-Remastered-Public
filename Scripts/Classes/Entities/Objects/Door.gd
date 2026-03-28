@@ -48,7 +48,6 @@ func _physics_process(_delta: float) -> void:
 
 func check_if_unlocked(do_animation := true) -> void:
 	if locked:
-		print(unlocked_doors)
 		if unlocked_doors.has(door_id):
 			locked = false
 			$Sprite.play("Idle")

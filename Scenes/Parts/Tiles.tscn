@@ -164,6 +164,7 @@ texture = ExtResource("1_vdakf")
 &"type": 0
 }
 4:1/0 = 0
+4:1/0/z_index = -10
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0 = 0
 5:1/0/z_index = -10

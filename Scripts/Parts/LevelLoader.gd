@@ -80,6 +80,7 @@ func add_entities(chunk := "", chunk_id := 0, layer := 0) -> void:
 		editor.entity_tiles[layer][entity_tile_position] = entity_node
 		entity_node.set_meta("tile_position", entity_tile_position)
 		entity_node.set_meta("tile_offset", Vector2(int(offset[0]), int(offset[1])))
+		entity_node.set_meta("layer", layer)
 		if entity_node.has_node("EditorPropertyExposer"):
 			entity_node.get_node("EditorPropertyExposer").apply_string(entity)
 

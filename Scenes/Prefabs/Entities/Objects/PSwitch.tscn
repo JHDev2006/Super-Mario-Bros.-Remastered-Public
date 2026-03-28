@@ -195,9 +195,8 @@ script = ExtResource("10_eeyhw")
 properties = Array[String](["one_time"])
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
-[node name="BlockBouncingDetection" type="Node" parent="." unique_id=45239333 node_paths=PackedStringArray("hitbox")]
+[node name="BlockBouncingDetection" type="Node" parent="." unique_id=45239333]
 script = ExtResource("11_12hsl")
-hitbox = NodePath("")
 metadata/_custom_type_script = "uid://cmg61722ktg2m"
 
 [connection signal="switch_pressed" from="." to="SignalExposer" method="emit_pulse"]

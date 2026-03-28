@@ -7,6 +7,7 @@ func enter(msg := {}) -> void:
 		player.z_index = 20
 		for i in 16:
 			player.set_collision_mask_value(i + 1, false)
+		$"../../Hitbox/Shape".set_deferred("disabled", true)
 	can_fall = false
 	player.velocity = Vector2.ZERO
 	player.stop_all_timers()
@@ -25,7 +26,7 @@ func physics_update(delta: float) -> void:
 		player.velocity.y += (death_params("DEATH_FALL_GRAVITY") / delta) * delta * player.gravity_vector.y
 		player.velocity.y = clamp(player.velocity.y, -death_params("DEATH_MAX_FALL_SPEED"), death_params("DEATH_MAX_FALL_SPEED")) # wish this could be better than just substituting -INF but you can't win em all ~ nabbup
 		player.move_and_slide()
-		if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("jump_0"):
+		if Global.multibind_action_just_pressed("ui_accept") or Global.multibind_action_just_pressed("jump_0"):
 			player.death_load()
 		if player.is_actually_on_floor():
 			deceleration(delta)

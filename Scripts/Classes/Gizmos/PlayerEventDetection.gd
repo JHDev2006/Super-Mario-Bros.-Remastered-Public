@@ -1,6 +1,6 @@
 extends Node2D
 
-@export_enum("Jump", "Crouch", "Attack", "Damaged", "Powerup_Get") var event := 0
+@export_enum("Jump", "Crouch", "Attack", "Damaged", "Powerup_Get", "Land") var event := 0
 
 signal event_triggered
 
@@ -17,3 +17,5 @@ func connect_signals() -> void:
 				i.damaged.connect(event_triggered.emit)
 			4:
 				i.powered_up.connect(event_triggered.emit)
+			5:
+				i.landed.connect(event_triggered.emit)

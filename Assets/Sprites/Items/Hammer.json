@@ -1,67 +1,157 @@
 {
 	"properties": {
+		"can_rotate": true,
 		"play_sfx": false
+	},
+	"animations": {
+		"default": {
+			"frames": [
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				]
+			],
+			"speed": 5.0,
+			"loop": true
+		}
 	},
 	"variations": {
 		"default": {
 			"source": "Hammer.png",
-			"rect": [0, 0, 16, 16]
+			"rect": [
+				0.0,
+				0.0,
+				16.0,
+				16.0
+			]
 		},
 		"Underground": {
 			"source": "Hammer.png",
-			"rect": [16, 0, 16, 16]
+			"rect": [
+				16.0,
+				0.0,
+				16.0,
+				16.0
+			]
 		},
 		"GhostHouse": {
 			"source": "Hammer.png",
-			"rect": [16, 0, 16, 16]
+			"rect": [
+				16.0,
+				0.0,
+				16.0,
+				16.0
+			]
 		},
 		"Castle": {
 			"source": "Hammer.png",
-			"rect": [32, 0, 16, 16]
+			"rect": [
+				32.0,
+				0.0,
+				16.0,
+				16.0
+			]
 		},
 		"Underwater": {
 			"source": "Hammer.png",
-			"rect": [48, 0, 16, 16]
+			"rect": [
+				48.0,
+				0.0,
+				16.0,
+				16.0
+			]
 		},
 		"CastleWater": {
 			"source": "Hammer.png",
-			"rect": [48, 0, 16, 16]
+			"rect": [
+				48.0,
+				0.0,
+				16.0,
+				16.0
+			]
 		},
 		"Desert": {
 			"source": "Hammer.png",
-			"rect": [0, 16, 16, 16]
+			"rect": [
+				0.0,
+				16.0,
+				16.0,
+				16.0
+			]
 		},
 		"Jungle": {
 			"source": "Hammer.png",
-			"rect": [16, 16, 16, 16]
+			"rect": [
+				16.0,
+				16.0,
+				16.0,
+				16.0
+			]
 		},
 		"Snow": {
 			"source": "Hammer.png",
-			"rect": [32, 16, 16, 16]
+			"rect": [
+				32.0,
+				16.0,
+				16.0,
+				16.0
+			]
 		},
 		"Volcano": {
 			"source": "Hammer.png",
-			"rect": [48, 16, 16, 16]
+			"rect": [
+				48.0,
+				16.0,
+				16.0,
+				16.0
+			]
 		},
 		"Autumn": {
 			"source": "Hammer.png",
-			"rect": [0, 32, 16, 16]
+			"rect": [
+				0.0,
+				32.0,
+				16.0,
+				16.0
+			]
 		},
 		"Beach": {
 			"source": "Hammer.png",
-			"rect": [16, 32, 16, 16]
+			"rect": [
+				16.0,
+				32.0,
+				16.0,
+				16.0
+			]
 		},
 		"Mountain": {
 			"source": "Hammer.png",
-			"rect": [32, 32, 16, 16]
+			"rect": [
+				32.0,
+				32.0,
+				16.0,
+				16.0
+			]
 		},
 		"Space": {
 			"source": "Hammer.png",
-			"rect": [48, 32, 16, 16]
+			"rect": [
+				48.0,
+				32.0,
+				16.0,
+				16.0
+			]
 		},
 		"Bonus": {
 			"source": "Hammer.png",
-			"rect": [0, 48, 16, 16]
+			"rect": [
+				0.0,
+				48.0,
+				16.0,
+				16.0
+			]
 		}
 	}
 }

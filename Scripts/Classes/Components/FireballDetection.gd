@@ -12,7 +12,7 @@ func _ready() -> void:
 func area_entered(area: Area2D) -> void:
 	var proj = area.owner
 	if proj is Projectile:
-		if proj.is_friendly:
+		if proj.is_friendly and not proj.HARMLESS:
 			fireball_hit.emit(area.owner)
 			area.owner.on_enemy_collide()
 			area.owner.hit(play_sfx_on_hit)

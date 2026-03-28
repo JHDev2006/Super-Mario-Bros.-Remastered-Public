@@ -8,6 +8,8 @@ static var target_channel := -1
 static var warping := false
 signal warped
 
+static var can_warp := true
+
 static var saved_velocity := Vector2.ZERO
 
 func _ready() -> void:
@@ -32,8 +34,9 @@ func _exit_tree() -> void:
 	warping = false
 
 func warp() -> void:
-	if warping:
+	if warping or can_warp == false:
 		return
+	can_warp = false
 	warping = true
 	target_channel = channel
 	var player = get_tree().get_first_node_in_group("Players")
@@ -42,3 +45,4 @@ func warp() -> void:
 		Global.level_editor.transition_to_sublevel(destination)
 	else:
 		Global.transition_to_scene(NewLevelBuilder.sub_levels[destination])
+	Global.warper_cooldown()

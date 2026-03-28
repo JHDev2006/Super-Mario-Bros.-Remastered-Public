@@ -34,7 +34,6 @@ func _ready() -> void:
 		NewLevelBuilder.sub_levels[i] = null
 	await get_tree().process_frame
 	if last_played_container != null:
-		print(saved_search_values)
 		%LSSBrowser.setup_page_numbers()
 		%LSSBrowser.page_number = saved_search_values[0]
 		%Page.selected_index = saved_search_values[0] - 1
@@ -105,7 +104,6 @@ func online_play() -> void:
 func lss_level_played() -> void:
 	last_played_container = %LSSLevelInfo.container_to_play.duplicate()
 	level_id = %LSSLevelInfo.container_to_play.level_id
-	print(level_id)
 	page_number_save = %LSSBrowser.page_number
 	saved_search_values[0] = %LSSBrowser.page_number
 	saved_search_values[1] = %LSSBrowser.filter

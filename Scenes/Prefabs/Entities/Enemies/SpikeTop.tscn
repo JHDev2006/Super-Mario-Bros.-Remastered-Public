@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="11_5smfw"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="12_dwwms"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="13_bxsyc"]
+[ext_resource type="Script" uid="uid://maqpreddu5kg" path="res://Scripts/Classes/Components/LevelPersistance.gd" id="14_aexo1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_as5ol"]
 atlas = ExtResource("2_7s4ia")
@@ -172,7 +173,12 @@ metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 script = ExtResource("13_bxsyc")
 metadata/_custom_type_script = "uid://5octqlf4ohel"
 
+[node name="LevelPersistance" type="Node" parent="." unique_id=1299196883]
+script = ExtResource("14_aexo1")
+metadata/_custom_type_script = "uid://maqpreddu5kg"
+
 [connection signal="killed" from="." to="GibSpawner" method="summon_gib"]
+[connection signal="killed" from="." to="LevelPersistance" method="set_as_active"]
 [connection signal="level_start" from="LevelEditorToggleDetection" to="." method="_ready"]
 [connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
@@ -182,3 +188,4 @@ metadata/_custom_type_script = "uid://5octqlf4ohel"
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="die_from_object"]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
 [connection signal="modifier_applied" from="EditorPropertyExposer" to="." method="on_modifier_applied"]
+[connection signal="enabled" from="LevelPersistance" to="." method="queue_free"]

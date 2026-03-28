@@ -18,7 +18,7 @@ func _exit_tree() -> void:
 	Global.get_node("GameHUD").show()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		if $Skip.visible:
 			exit()
 		else:

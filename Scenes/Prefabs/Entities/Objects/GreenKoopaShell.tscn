@@ -105,10 +105,11 @@ offset = Vector2(0, 1)
 script = ExtResource("2_y03il")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetter" type="Node" parent="Sprite" unique_id=113289807 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="Sprite" unique_id=113289807 node_paths=PackedStringArray("node_to_affect", "property_node")]
 unique_name_in_owner = true
 script = ExtResource("3_hddfq")
 node_to_affect = NodePath("..")
+property_node = NodePath("../..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_y03il")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

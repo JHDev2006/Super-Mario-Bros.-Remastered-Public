@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cf0q4v3wr73ur"]
+
+[ext_resource type="PackedScene" uid="uid://b2r255cb4tt7t" path="res://Scenes/Prefabs/Gizmos/Inputs/BaseInput.tscn" id="1_biewe"]
+[ext_resource type="Script" uid="uid://dchcjwihc4ids" path="res://Scripts/Classes/Gizmos/PlayerStateDetection.gd" id="2_2e3b2"]
+[ext_resource type="Texture2D" uid="uid://b78wawq5ds3gm" path="res://Assets/Sprites/Editor/Gizmos/PlayerStateDetection.png" id="3_biewe"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="4_2e3b2"]
+
+[node name="BaseInput" unique_id=515746201 instance=ExtResource("1_biewe")]
+script = ExtResource("2_2e3b2")
+state_to_detect = 0
+
+[node name="Sprite2D" parent="." index="0" unique_id=1224179792]
+texture = ExtResource("3_biewe")
+
+[node name="SignalExposer" parent="." index="1" unique_id=634423865]
+can_input = false
+
+[node name="EditorPropertyExposer" type="Node" parent="." index="2" unique_id=1284698671]
+process_priority = -1
+process_physics_priority = -1
+script = ExtResource("4_2e3b2")
+properties = Array[String](["state_to_detect"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[connection signal="turned_off" from="." to="SignalExposer" method="turn_off" flags=3]
+[connection signal="turned_on" from="." to="SignalExposer" method="turn_on" flags=3]

@@ -57,7 +57,6 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	target_player = get_tree().get_nodes_in_group("Players")[0]
-	print("Bowser position: ", global_position.x, "\nStart Position: ", starting_position, "\nTarget position: ", target_position)
 	if charging_player:
 		move_dir = 1
 	elif (move_dir >= 0 and global_position.x >= target_position) or (move_dir < 0 and global_position.x <= target_position):
@@ -90,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	if can_fall:
 		apply_enemy_gravity(delta)
 	move_and_slide()
-	if Input.is_action_just_pressed("editor_move_player") and Global.debug_mode:
+	if Global.multibind_action_just_pressed("editor_move_player") and Global.debug_mode:
 		die()
 
 func get_new_target_position():

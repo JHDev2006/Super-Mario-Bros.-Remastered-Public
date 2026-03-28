@@ -35,12 +35,14 @@ func do_cutscene() -> void:
 	if owner is WarpVine:
 		top_point = global_position.y
 	global_position.y = 40
+	Global.can_time_tick = false
 	$SFX.play()
 	can_grow = true
 	can_tele = false
 	can_stop = true
 	for i: Player in get_tree().get_nodes_in_group("Players"):
 		i.global_position = Vector2(global_position.x, 64)
+		i.recenter_camera()
 		i.hide()
 		i.auto_death_pit = false
 		i.state_machine.transition_to("Freeze")
@@ -54,9 +56,7 @@ func do_cutscene() -> void:
 		var climb_state = i.get_node("States/Climb")
 		climb_state.climb_direction = -1
 		var distance = abs(i.global_position.y - (top_point + 32))
-		print([i.global_position.y, top_point])
 		var climb_time = distance / (50)
-		print([distance, climb_time])
 		await get_tree().create_timer(climb_time, false).timeout
 		i.direction = -1
 		climb_state.climb_direction = 0
@@ -65,6 +65,7 @@ func do_cutscene() -> void:
 		i.auto_death_pit = true
 		for x in [1, 2]:
 			i.set_collision_mask_value(x, true)
+	Global.can_time_tick = true
 
 func _physics_process(delta: float) -> void:
 	if global_position.y >= top_point and can_grow:
@@ -103,11 +104,12 @@ func handle_player_interaction(delta: float) -> void:
 func on_player_entered(_player: Player) -> void:
 	if can_tele == false:
 		return
+	can_tele = false
 	Level.vine_return_level = Global.current_level.scene_file_path
 	if Global.level_editor_is_playtesting():
 		CoinHeavenWarpPoint.subarea_return = Global.level_editor.sub_level_id
 		Global.level_editor.transition_to_sublevel(CoinHeavenWarpPoint.subarea_to_warp_to)
-	elif Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
+	elif Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL or Global.in_custom_campaign():
 		Global.transition_to_scene(NewLevelBuilder.sub_levels[CoinHeavenWarpPoint.subarea_to_warp_to])
 	else:
 		Global.transition_to_scene(Level.vine_warp_level)

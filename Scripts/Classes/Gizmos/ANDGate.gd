@@ -6,20 +6,23 @@ var total_inputs := 0
 
 signal condition_met
 signal condition_lost
+signal positive_pulse
+
+signal finished_check
 
 var condition_filled := false
 
+var checking := false
+
 func _ready() -> void:
 	if Global.level_editor_is_editing() == false:
-		update()
+		update.call_deferred()
 
 func input_added() -> void:
 	total_inputs += 1
-	update()
+	update.call_deferred()
 
 func update() -> void:
-	if is_inside_tree():
-		await get_tree().process_frame
 	total_inputs = clamp(total_inputs, 0, INF)
 	var test_condition = get_condition()
 	if test_condition != condition_filled:
@@ -43,15 +46,23 @@ func get_condition() -> bool:
 			return false
 
 func pulse_recieved() -> void:
-	input_added()
-	$SignalExposer.queue_redraw()
-	await get_tree().process_frame
-	input_lost()
+	total_inputs += 1
+	check_pulse.call_deferred()
+	await finished_check
+	total_inputs -= 1
 
+func check_pulse() -> void:
+	if checking:
+		return
+	checking = true
+	if get_condition():
+		positive_pulse.emit()
+	checking = false
+	finished_check.emit()
 
 func input_lost() -> void:
 	total_inputs -= 1
-	update()
+	update.call_deferred()
 
 
 func on_visibility_changed() -> void:

@@ -35,7 +35,7 @@ var can_exit := true:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("mb_left"): left_click_release.emit()
-	if active and (Input.is_action_just_pressed("ui_back") or Input.is_action_just_pressed("editor_open_menu")):
+	if active and (Global.multibind_action_just_pressed("ui_back") or Global.multibind_action_just_pressed("editor_open_menu")):
 		if can_exit:
 			close()
 		else:
@@ -108,7 +108,6 @@ func add_properties() -> void:
 	update_minimum_size()
 
 func set_can_exit(new_value := false) -> void:
-	print(new_value)
 	if new_value:
 		pass
 	can_exit = new_value
@@ -170,7 +169,6 @@ var old_scale = Vector2.ONE
 func connect_signal(new_node: Node) -> void:
 	editing_node.get_node("SignalExposer").connect_to_node([Global.level_editor.current_layer, new_node.get_meta("tile_position")])
 	can_exit = true
-	print("Connected!")
 	if Global.level_editor.quick_connecting:
 		close()
 	else:
@@ -188,6 +186,5 @@ func do_animation(node: Node) -> void:
 		create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "scale", old_scale, 0.1)
 		var sparkle = preload("uid://btuv0dcfc8u7x").instantiate()
 		sparkle.global_position = node.get_meta("tile_position") * 16
-		print([sparkle.global_position, node.global_position])
 		add_sibling(sparkle)
 		sparkle.animation_finished.connect(sparkle.queue_free)

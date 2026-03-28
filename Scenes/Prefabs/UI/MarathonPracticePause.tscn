@@ -20,6 +20,8 @@ func restart_run() -> void:
 		Global.world_num = 1
 		Global.level_to_transition_to = Level.get_scene_string(1, 1)
 		Global.transition_to_scene(\"res://Scenes/Levels/LevelTransition.tscn\")
+	await Global.current_level.tree_exited
+	get_parent().close()
 
 func quit_to_menu() -> void:
 	Global.speed_run_timer = 0

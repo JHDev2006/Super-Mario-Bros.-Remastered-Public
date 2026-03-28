@@ -68,6 +68,7 @@ signal close_confirm(save: bool)
 signal connection_node_found(new_node: Node)
 
 var current_connection_type := SignalExposer.ConnectType.SIGNAL
+var current_connecting_node: Node = null
 
 var quick_connecting := false
 
@@ -80,8 +81,8 @@ const BLANK_FILE := {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
 static var level_file = {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
 
 var current_layer := 0
-@onready var tile_layer_nodes: Array[TileMapLayer] = [%TileLayer1, %TileLayer2, %TileLayer3, %TileLayer4, %TileLayer5]
-@onready var entity_layer_nodes := [%EntityLayer1, %EntityLayer2, %EntityLayer3, %EntityLayer4, %EntityLayer5]
+@onready var tile_layer_nodes: Array[TileMapLayer] = [null, null, null, null, null]
+@onready var entity_layer_nodes := [null, null, null, null, null]
 
 var copied_node: Node = null
 var copied_tile_offset := Vector2.ZERO
@@ -143,6 +144,7 @@ func _ready() -> void:
 	playing_level = false
 	menu_open = $TileMenu.visible
 	Global.get_node("GameHUD").hide()
+	OffScreenDespawner.editor_testing_safety = true
 	Global.can_time_tick = false
 	for i in get_tree().get_nodes_in_group("Selectors"):
 		tile_list.append(i)
@@ -182,7 +184,7 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(%ThemeName):
 		%ThemeName.text = Global.level_theme
 	handle_hud()
-	if Input.is_action_just_pressed("editor_open_menu"):
+	if Global.multibind_action_just_pressed("editor_open_menu"):
 		if current_state == EditorState.IDLE:
 			open_tile_menu()
 		elif current_state == EditorState.TILE_MENU:
@@ -192,7 +194,7 @@ func _physics_process(delta: float) -> void:
 			current_state = EditorState.MODIFYING_TILE
 			Input.flush_buffered_events()
 			%TileModifierMenu.can_exit = true
-	if Input.is_action_just_pressed("editor_play") and (current_state == EditorState.IDLE or current_state == EditorState.PLAYTESTING) and Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
+	if Global.multibind_action_just_pressed("editor_play") and (current_state == EditorState.IDLE or current_state == EditorState.PLAYTESTING) and Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
 		Checkpoint.passed_checkpoints.clear()
 		if current_state == EditorState.PLAYTESTING:
 			stop_testing()
@@ -286,11 +288,11 @@ func cleanup() -> void:
 func update_music() -> void:
 	if music_track_list[bgm_id] != "":
 		level.music = load(music_track_list[bgm_id].replace(".remap", ""))
-		print(level.music)
 	else:
 		level.music = null
 
 func play_level() -> void:
+	OffScreenDespawner.editor_testing_safety = true
 	clear_trail()
 	current_state = EditorState.PLAYTESTING
 	$TileMenu.hide()
@@ -298,16 +300,17 @@ func play_level() -> void:
 	update_music()
 	reset_values_for_play()
 	%Camera.enabled = false
+	save_current_level()
 	level.apply_resolution_enforcement()
 	level.inf_time_check()
 	level_start.emit()
-	if gizmos_visible == false:
-		get_tree().call_group("Gizmos", "hide")
+	get_tree().call_group("Gizmos", "set_visible", gizmos_visible)
 	get_tree().call_group("Players", "editor_level_start")
-	save_current_level()
 	level.process_mode = Node.PROCESS_MODE_PAUSABLE
 	handle_hud()
 	$TrailTimer.start()
+	await get_tree().physics_frame
+	OffScreenDespawner.editor_testing_safety = false
 
 func return_to_editor() -> void:
 	current_state = EditorState.IDLE
@@ -322,6 +325,7 @@ func return_to_editor() -> void:
 	editor_start.emit()
 	level.process_mode = Node.PROCESS_MODE_DISABLED
 	handle_hud()
+	OffScreenDespawner.editor_testing_safety = true
 
 var zoom := 1.0
 
@@ -332,9 +336,9 @@ func handle_camera(delta: float) -> void:
 	%Camera.global_position.x = clamp(%Camera.global_position.x, -256 + (get_viewport().get_visible_rect().size.x / 2), INF)
 
 func handle_layers() -> void:
-	if Input.is_action_just_pressed("layer_up"):
+	if Global.multibind_action_just_pressed("layer_up"):
 		current_layer += 1
-	if Input.is_action_just_pressed("layer_down"):
+	if Global.multibind_action_just_pressed("layer_down"):
 		current_layer -= 1
 	current_layer = clamp(current_layer, 0, entity_layer_nodes.size() - 1)
 	var idx := 0
@@ -442,14 +446,14 @@ func handle_tile_cursor() -> void:
 				multi_select_start()
 				multi_selecting = false
 		
-		if Input.is_action_just_pressed("scroll_up"):
+		if Global.multibind_action_just_pressed("scroll_up"):
 			selected_tile_index -= 1
-		if Input.is_action_just_pressed("scroll_down"):
+		if Global.multibind_action_just_pressed("scroll_down"):
 			selected_tile_index += 1
 
-		if Input.is_action_just_pressed("ui_copy") and pasting_area == false:
+		if Global.multibind_action_just_pressed("ui_copy") and pasting_area == false and not multi_selecting:
 			copy_tile(tile_position, current_layer)
-		elif Input.is_action_just_pressed("ui_cut") and pasting_area == false:
+		elif Global.multibind_action_just_pressed("ui_cut") and pasting_area == false and not multi_selecting:
 			copy_tile(tile_position, current_layer)
 			remove_tile(tile_position, current_layer)
 		elif Input.is_action_pressed("ui_paste"):
@@ -460,23 +464,26 @@ func handle_tile_cursor() -> void:
 				copied_tile = null
 				pasting_area = true
 	
-		if Input.is_action_just_pressed("pick_tile"):
+		if Global.multibind_action_just_pressed("pick_tile"):
 			pick_tile(tile_position)
 	
-		if Input.is_action_just_pressed("ui_undo"):
+		if Global.multibind_action_just_pressed("ui_undo"):
 			undo()
 		
-		if Input.is_action_just_pressed("ui_redo"):
+		if Global.multibind_action_just_pressed("ui_redo"):
 			redo()
 	
 	if current_state == EditorState.CONNECTING:
-		if Input.is_action_just_pressed("mb_left"):
+		if Global.multibind_action_just_pressed("mb_left"):
 			if entity_tiles[current_layer].has(tile_position):
+				if entity_tiles[current_layer][tile_position] == current_connecting_node:
+					return
 				if entity_tiles[current_layer][tile_position].get_node_or_null("SignalExposer") != null:
 					if entity_tiles[current_layer][tile_position].get_node("SignalExposer").can_input:
 						connection_node_found.emit(entity_tiles[current_layer][tile_position])
 						current_state = EditorState.MODIFYING_TILE
-		if Input.is_action_just_pressed("mb_right") or Input.is_action_just_pressed("editor_open_menu"):
+						current_connecting_node = null
+		if Global.multibind_action_just_pressed("mb_right") or Global.multibind_action_just_pressed("editor_open_menu"):
 			%TileModifierMenu.cancel_connection()
 	
 	if not multi_selecting:
@@ -493,7 +500,7 @@ func handle_tile_cursor() -> void:
 		show_scroll_preview()
 	
 	if current_state == EditorState.IDLE:
-		if Input.is_action_just_pressed("quick_connect"):
+		if Global.multibind_action_just_pressed("quick_connect"):
 			if entity_tiles[current_layer].get(tile_position) != null:
 				if entity_tiles[current_layer][tile_position].has_node("SignalExposer"):
 					if entity_tiles[current_layer][tile_position].get_node("SignalExposer").can_output:
@@ -534,7 +541,7 @@ func pick_tile(tile_position := Vector2i.ZERO) -> void:
 			current_tile_source = tile_layer_nodes[current_layer].get_cell_source_id(tile_position)
 
 func handle_inspection(tile_position := Vector2i.ZERO) -> void:
-	if Input.is_action_just_pressed("mb_left"):
+	if Global.multibind_action_just_pressed("mb_left"):
 		if entity_tiles[current_layer].get(tile_position) != null:
 			open_tile_properties(entity_tiles[current_layer][tile_position])
 
@@ -611,7 +618,7 @@ func handle_multi_selecting(tile_position := Vector2i.ZERO) -> void:
 	else:
 		%SelectedAreaRect.global_position = select_bounds.position * 16
 		%SelectedAreaRect.size = select_bounds.size * 16 + Vector2i(16, 16)
-		if Input.is_action_just_pressed("editor_copy") or Input.is_action_just_pressed("editor_cut"):
+		if Global.multibind_action_just_pressed("editor_copy") or Global.multibind_action_just_pressed("editor_cut"):
 			copied_tile = null
 			top_corner = select_bounds.position
 			select_start = top_corner
@@ -620,12 +627,12 @@ func handle_multi_selecting(tile_position := Vector2i.ZERO) -> void:
 			copied_area = save_area(top_corner, select_start, select_end, multi_select_layer)
 			multi_selecting = false
 			selected_area = false
-			if Input.is_action_just_pressed("editor_cut"):
+			if Global.multibind_action_just_pressed("editor_cut"):
 				mass_remove(top_corner, select_start, select_end, multi_select_layer)
 				Global.log_comment("Area Cut!")
 			else:
 				Global.log_comment("Area Copied!")
-		if Input.is_action_just_pressed("editor_save"):
+		if Global.multibind_action_just_pressed("editor_save"):
 			top_corner = select_bounds.position
 			select_start = top_corner
 			select_end = select_start + select_bounds.size
@@ -640,7 +647,6 @@ func handle_multi_selecting(tile_position := Vector2i.ZERO) -> void:
 				multi_select_area = save_area(top_corner, select_start, select_end, current_layer)
 				selected_area = true
 				multi_select_layer = current_layer
-				print(multi_select_layer)
 				select_bounds = get_area_bounds(top_corner, select_start, select_end, multi_select_layer)
 			else:
 				multi_select_start()
@@ -716,6 +722,7 @@ func copy_tile(tile_position := Vector2i.ZERO, layer_num := current_layer) -> vo
 			copied_tile_info = [tile_layer_nodes[layer_num].get_cell_source_id(tile_position)]
 	if copied_node != null:
 		copied_area = {}
+
 func replace_area(top_corner := Vector2i.ZERO, layer_num := current_layer, area := {}, delete_empty := true) -> void:
 	if delete_empty:
 		for i in area["Empty"].split("="):
@@ -793,7 +800,6 @@ func save_area(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, selec
 				var local_position = abs(position - top_corner)
 				dict["Empty"] += str(local_position.x) + "," + str(local_position.y) + "="
 	dict["Size"] = str(bounds.size.x) + "," + str(bounds.size.y)
-	print(dict)
 	return dict
 
 func is_tile_in_area(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, select_end := Vector2i.ZERO, layer_num := current_layer) -> bool:
@@ -842,6 +848,7 @@ func open_tile_selection_menu_scene_ref(selector: TilePropertySceneRef) -> void:
 func start_signal_connection(node: Node, connection_type := SignalExposer.ConnectType.SIGNAL) -> void:
 	current_state = LevelEditor.EditorState.CONNECTING
 	current_connection_type = connection_type
+	current_connecting_node = node
 
 func on_tile_selected(selector: EditorTileSelector) -> void:
 	current_tile_type = selector.type
@@ -876,7 +883,6 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 		old_tile_info = [overlapping_tile.get_meta("tile_offset"), overlapping_tile.get_meta("ID", "")]
 	elif BetterTerrain.get_cell(tile_layer_nodes[layer_num], tile_position) >= 0:
 		old_tile = BetterTerrain.get_cell(tile_layer_nodes[layer_num], tile_position)
-		print(old_tile)
 	elif tile_layer_nodes[layer_num].get_used_cells().has(tile_position):
 		old_tile = tile_layer_nodes[layer_num].get_cell_atlas_coords(tile_position)
 		old_tile_info = [tile_layer_nodes[layer_num].get_cell_source_id(tile_position)]
@@ -897,7 +903,6 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 		tile_layer_nodes[layer_num].set_cell(tile_position, source, atlas, alt_tile)
 	elif tile_to_place is int:
 		var terrain_id = tile_to_place
-		print(old_tile)
 		if old_tile is int:
 			if old_tile == terrain_id:
 				return
@@ -1088,17 +1093,25 @@ func save_current_level() -> void:
 		saved_level.music = load(music_track_list[bgm_id].replace(".remap", ""))
 	else:
 		saved_level.music = null
-	sub_areas[sub_level_id] = saved_level.duplicate()
+	var level_to_delete: Level = null
+	if sub_areas[sub_level_id] != null:
+		level_to_delete = sub_areas.get(sub_level_id)
+	sub_areas.set(sub_level_id, saved_level)
+	if level_to_delete != null:
+		level_to_delete.free()
 
 func load_level(level_id := 0) -> void:
 	var node = sub_areas[level_id]
+	if node != null:
+		node = node.duplicate()
 	if node == null:
 		node = load(CUSTOM_LEVEL_BASE).instantiate()
 		node.sublevel_id = level_id
 	elif node is PackedScene:
 		node = node.instantiate()
 	if level != null:
-		level.queue_free()
+		level.free()
+		level = null
 	add_child(node)
 	level = node
 	sub_level_id = level_id
@@ -1110,12 +1123,14 @@ func load_level(level_id := 0) -> void:
 	else:
 		save_current_level()
 		node.process_mode = ProcessMode.PROCESS_MODE_PAUSABLE
+		await get_tree().physics_frame
 		get_tree().call_group("Players", "editor_level_start")
 
 func convert_scenes_to_nodes() -> void:
 	pass
 
 func reload_entity_tiles() -> void:
+	entity_tiles.clear()
 	entity_tiles = [{}, {}, {}, {}, {}]
 	var layer_idx := 0
 	for layer in entity_layer_nodes:
@@ -1227,7 +1242,6 @@ func load_blueprint(blueprint_path := "") -> void:
 	var size = Vector2(int(size_str[0]), int(size_str[1]))
 	pasting_bounds = Rect2i(-ceil((size.x + 1) / 2), -ceil((size.y + 1) / 2), size.x, size.y)
 	pasting_bounds.position += Vector2(16, 16)
-	print(pasting_bounds)
 	$TileMenu.hide()
 	current_state = EditorState.IDLE
 

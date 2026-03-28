@@ -25,6 +25,7 @@ func place_tile() -> void:
 	elif tile_to_place is PackedScene:
 		var node = tile_to_place.instantiate()
 		node.set_meta("no_persist", true)
+		node.set_meta("layer", get_meta("layer", -1))
 		node.global_position = (Vector2(tile_position) * 16) + Vector2(8, 8) + tile_to_place.get_meta("offset", Vector2.ZERO)
 		if $TrackJoint.is_attached:
 			get_parent().owner.add_sibling(node)

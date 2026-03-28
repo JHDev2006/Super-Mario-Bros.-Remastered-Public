@@ -32,11 +32,11 @@ func close() -> void:
 	hide()
 
 func handle_inputs() -> void:
-	if Input.is_action_just_pressed("ui_down"):
+	if Global.multibind_action_just_pressed("ui_down"):
 		selected_index += 1
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")
-	if Input.is_action_just_pressed("ui_up"):
+	if Global.multibind_action_just_pressed("ui_up"):
 		selected_index -= 1
 		if Settings.file.audio.extra_sfx == 1:
 			AudioManager.play_global_sfx("menu_move")
@@ -45,9 +45,9 @@ func handle_inputs() -> void:
 		if i.visible:
 			amount.append(i)
 	selected_index = clamp(selected_index, 0, amount.size() - 1)
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		option_selected()
-	elif can_exit and Input.is_action_just_pressed("ui_back"):
+	elif can_exit and Global.multibind_action_just_pressed("ui_back"):
 		close()
 		closed.emit()
 

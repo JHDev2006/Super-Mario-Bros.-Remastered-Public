@@ -25,6 +25,8 @@ func _draw() -> void:
 	draw_rect(Rect2(Vector2(-size_x / 2.0, -size_y / 2.0) * 16, Vector2(size_x, size_y) * 16), Color.WHITE, false, 1.0)
 
 func run_check() -> void:
+	if get_tree().paused or is_inside_tree() == false or Global.level_editor_is_editing():
+		return
 	var save = object_in_area
 	object_in_area = false
 	if type != 2:
@@ -32,15 +34,15 @@ func run_check() -> void:
 			if i.owner == null:
 				continue
 			var node_layer = get_meta("layer", -1)
-			if node_layer != i.owner.get_meta("layer", -2):
-				continue
 			var node_owner = i.owner
+			if node_owner is Player and type == 0:
+				object_in_area = true
+				break
+			if node_layer != node_owner.get_meta("layer", -2):
+				continue
 			if node_owner is TrackRider:
 				node_owner = node_owner.attached_entity
 			if node_owner is Enemy and type == 1:
-				object_in_area = true
-				break
-			if node_owner is Player and type == 0:
 				object_in_area = true
 				break
 	else:
@@ -62,8 +64,13 @@ func run_check() -> void:
 			if (i.has_node("BasicStaticMovement") or i is Crate) and detect_physics_objs:
 				object_in_area = true
 				break
-	print(object_in_area)
 	if object_in_area and not save:
 		object_entered.emit()
 	elif not object_in_area and save:
 		object_exited.emit()
+
+func turn_on() -> void:
+	object_entered.emit()
+
+func turn_off() -> void:
+	object_exited.emit()

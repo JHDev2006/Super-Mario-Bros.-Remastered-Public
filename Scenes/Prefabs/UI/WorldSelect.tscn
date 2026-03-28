@@ -302,6 +302,7 @@ texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=962917386]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4

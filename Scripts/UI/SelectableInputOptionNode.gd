@@ -66,12 +66,12 @@ func update_value() -> void:
 func handle_inputs() -> void:
 	if can_remap:
 		if selected:
-			if Input.is_action_just_pressed("ui_accept"):
+			if Global.multibind_action_just_pressed("ui_accept"):
 				begin_remap()
-		if Input.is_action_just_pressed("ui_right"):
+		if Global.multibind_action_just_pressed("ui_right"):
 			current_binding_idx = 1
 			update_value()
-		elif Input.is_action_just_pressed("ui_left"):
+		elif Global.multibind_action_just_pressed("ui_left"):
 			current_binding_idx = 0
 			update_value()
 
