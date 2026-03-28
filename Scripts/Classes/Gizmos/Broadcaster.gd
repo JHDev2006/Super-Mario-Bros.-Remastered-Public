@@ -9,8 +9,8 @@ static var active_channels := []
 signal recieved_signal
 
 func _ready() -> void:
-	await get_tree().create_timer(0.2, false).timeout
-	check_channels()
+	for i in active_channels:
+		check_channels(i)
 
 func check_channels(signal_id := 0) -> void:
 	if mode == 1 or Global.level_editor_is_editing():
