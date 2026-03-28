@@ -119,7 +119,7 @@ const SMBLL_LEVEL_GOLD_WARPLESS_TIMES := [
 
 const SMB1_LEVEL_GOLD_ANY_TIMES := {
 	"1-2": 25,
-	"4-2": 26
+	"4-2": 28
 }
 
 const SMBLL_LEVEL_GOLD_ANY_TIMES := {
