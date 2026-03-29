@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://clxssds8sj8pf" path="res://Scenes/Prefabs/Entities/Items/SpinningCoin.tscn" id="1_8si4e"]
 [ext_resource type="PackedScene" uid="uid://2j5gl64gxbgy" path="res://Scenes/Prefabs/Particles/BlueCoinSparkle.tscn" id="2_vxiva"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Items/SpinningBlueCoin.json" id="3_da77p"]
 
 [node name="SpinningCoin" unique_id=958559339 instance=ExtResource("1_8si4e")]
 particle = ExtResource("2_vxiva")
@@ -10,3 +11,6 @@ particle = ExtResource("2_vxiva")
 animation = &"Spin"
 autoplay = "Spin"
 frame_progress = 0.0
+
+[node name="ResourceSetter" parent="Sprite" index="0" unique_id=1393776669]
+resource_json = ExtResource("3_da77p")
