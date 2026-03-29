@@ -17,6 +17,7 @@ var spawned := false
 
 func _ready() -> void:
 	add_to_group("OnOffSwitches")
+	await owner.ready
 	on_switch()
 	spawned = true
 

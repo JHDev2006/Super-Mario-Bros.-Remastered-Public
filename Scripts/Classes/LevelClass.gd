@@ -103,7 +103,8 @@ func _enter_tree() -> void:
 		SpeedrunHandler.current_recording = ""
 		if SpeedrunHandler.timer <= 0:
 			SpeedrunHandler.start_time = Time.get_ticks_msec()
-		SpeedrunHandler.load_best_marathon()
+		if Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
+			SpeedrunHandler.load_best_marathon()
 	else:
 		level_id = Global.level_num
 		world_id = Global.world_num

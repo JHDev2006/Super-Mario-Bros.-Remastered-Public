@@ -526,7 +526,8 @@ static var ANIMATION_FALLBACKS: Dictionary = {
 	"Pipe": "Idle",
 	"PipeWalk": "Walk",
 	"FlagSlide": "Climb",
-
+	"FlyUp": "SwimUp",
+	
 	# --- Size Transformations ---
 	"Shrink": "Grow",
 	# SkyanUltra: Future power-ups will need to be added here.
@@ -559,8 +560,9 @@ static var ANIMATION_FALLBACKS: Dictionary = {
 func set_animation_fallbacks() -> void:
 	var state_contexts = {
 		"Star": "",
-		"Water": "",
+		"Water": "Swim",
 		"Wing": "Water",
+		"Fly": "Wing",
 	}
 	var state_anims = [
 		"CrouchAttack", "RunAttack", "WalkAttack", "MoveAttack", "IdleAttack",
