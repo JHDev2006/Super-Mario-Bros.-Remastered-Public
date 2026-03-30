@@ -24,4 +24,4 @@ metadata/_custom_type_script = "uid://b8vmbtoaaq5nc"
 [connection signal="lost_power" from="SignalExposer" to="." method="input_lost"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="input_added"]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="pulse_recieved"]
-[connection signal="level_start" from="LevelEditorToggleDetection" to="." method="update"]
+[connection signal="level_start" from="LevelEditorToggleDetection" to="." method="update" flags=3]

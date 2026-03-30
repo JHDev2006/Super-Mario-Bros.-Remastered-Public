@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="10_bylb3"]
 [ext_resource type="Texture2D" uid="uid://de6otencrflfo" path="res://Assets/Sprites/UI/RedCoins.png" id="10_d76il"]
 [ext_resource type="Texture2D" uid="uid://wx6yyqabrelf" path="res://Assets/Sprites/UI/ChallengeResultsPanel.png" id="11_02i7h"]
-[ext_resource type="AudioStream" uid="uid://n07ty0sc76em" path="res://Assets/Audio/SFX/ChallengeModeGive.mp3" id="11_nym8o"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/ChallengeResults.json" id="12_fb45j"]
 [ext_resource type="AudioStream" uid="uid://dhiy4bmyu3j0r" path="res://Assets/Audio/BGM/ChallengeEnd.mp3" id="12_x7w5s"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/ChallengeEnd.json" id="12_y63tt"]
@@ -28,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://byy3k1pdrp77" path="res://Assets/Sprites/Particles/Smoke.png" id="20_n4lt1"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="21_bob8r"]
 [ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="21_xk7j8"]
+[ext_resource type="AudioStream" uid="uid://b7acwb3r4teop" path="res://Assets/Audio/SFX/ChallengeModeGive.wav" id="21_y63tt"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/Yoshi.json" id="23_vohx7"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="24_cq5a1"]
 [ext_resource type="Texture2D" uid="uid://ccb8wtuolj7i3" path="res://Assets/Sprites/Backgrounds/ChallengeModeResults/Results3.png" id="27_w3bjn"]
@@ -967,7 +967,7 @@ metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2109458546]
 process_mode = 3
-stream = ExtResource("11_nym8o")
+stream = ExtResource("21_y63tt")
 bus = &"SFX"
 script = ExtResource("21_xk7j8")
 metadata/_custom_type_script = "uid://dmtw1jesw1vl7"

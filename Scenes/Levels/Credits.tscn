@@ -2379,6 +2379,7 @@ script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Github" type="Control" parent="Labels" unique_id=1714294472]
+visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
