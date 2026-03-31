@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_oqfsp"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="2_5k4q3"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Pipeland.json" id="2_oqfsp"]
-[ext_resource type="Script" uid="uid://c82eii0or28o3" path="res://Scripts/Classes/Components/ForceHardMode.gd" id="3_5k4q3"]
 [ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="3_uwr32"]
 [ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="4_sa0fo"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="5_dbfsg"]
@@ -37,7 +36,3 @@ pipe_destinations = [-1, 13, -1]
 [node name="PipeArea" parent="." unique_id=238008108 instance=ExtResource("7_wqp3r")]
 position = Vector2(-192, -32)
 exit_only = true
-
-[node name="HardModeForce" type="Node" parent="." unique_id=2045980601]
-script = ExtResource("3_5k4q3")
-metadata/_custom_type_script = "uid://c82eii0or28o3"
