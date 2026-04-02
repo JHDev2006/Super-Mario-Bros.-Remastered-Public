@@ -20,6 +20,8 @@ func _enter_tree() -> void:
 	check_for_unlocked_achievements()
 	Global.debugged_in = false
 	Global.current_campaign = Settings.file.game.campaign
+	if (Global.current_campaign in Global.CAMPAIGNS) == false:
+		Global.current_campaign = "SMB1"
 	Global.in_title_screen = true
 	Global.current_game_mode = Global.GameMode.NONE
 	last_campaign = Global.current_campaign

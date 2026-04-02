@@ -150,3 +150,5 @@ func apply_settings() -> void:
 		for i in Settings.file.game.characters:
 			Global.player_characters[idx] = int(i)
 			idx += 1
+	if Global.CAMPAIGNS.has(Global.current_campaign) == false:
+		Global.current_campaign = "SMB1"
