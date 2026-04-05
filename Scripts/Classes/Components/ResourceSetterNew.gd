@@ -52,7 +52,7 @@ func _enter_tree() -> void:
 
 func safety_check() -> void:
 	if Settings.file.visuals.resource_packs.has(Global.ROM_PACK_NAME) == false:
-		Settings.file.visuals.resource_packs.insert(Global.ROM_PACK_NAME, 0)
+		Settings.file.visuals.resource_packs.append(Global.ROM_PACK_NAME)
 
 func update_resource() -> void:
 	randomize()

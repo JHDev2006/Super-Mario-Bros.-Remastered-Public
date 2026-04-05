@@ -1771,7 +1771,7 @@ script/source = "extends Node
 @onready var tiles: TileMapLayer = get_parent()
 
 func _ready() -> void:
-	if Global.level_editor == null and Settings.file.visuals.colour_pipes == 0:
+	if Global.current_level != null and Global.current_level is not CustomLevel and Settings.file.visuals.colour_pipes == 0:
 		replace_pipes()
 
 func replace_pipes() -> void:
