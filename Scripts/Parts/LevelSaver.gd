@@ -44,6 +44,18 @@ func write_file(json := {}, lvl_file_name := "") -> void:
 	file.close()
 	print("Saved Level: " + Global.config_path.path_join("custom_levels/" + lvl_file_name))
 
+func write_temp_file(json := {}, lvl_file_name := "") -> void:
+	var path = Global.config_path.path_join("custom_levels/autosaves")
+	for i in "<>:?!/":
+		lvl_file_name = lvl_file_name.replace(i, "")
+	
+	if !DirAccess.dir_exists_absolute(path):
+		DirAccess.make_dir_absolute(path)
+	var file = FileAccess.open(path + "/" + lvl_file_name, FileAccess.WRITE)
+	file.store_string(JSON.stringify(json, "", false))
+	file.close()
+	print("Saved Level: " + path + "/" + lvl_file_name)
+
 func get_tiles(level: CustomLevel = null) -> void:
 	for layer in 5:
 		var layer_node = level.get_node("TileLayer" + str(layer + 1))

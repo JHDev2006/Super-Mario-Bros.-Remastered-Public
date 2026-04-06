@@ -134,12 +134,20 @@ const BOUNDARY_CONNECT_TILE := Vector2i.ZERO
 static var selecting_room := false
 static var recorded_trail := false
 
+static var last_camera_position := Vector2(-900, -900)
 static var saved_trail := []
 
 var undo_redo = UndoRedo.new()
 static var undo_history := {}
 static var redo_history := {}
-static var last_commit := -2
+static var last_commit := -1
+var commit_buffer := 0.0
+var holding_commit := false
+
+static var autosave_enabled := true
+static var autosave_min_timer := 5
+static var autosave_before_test := false
+static var autosave_on_editor_return := false
 
 func _ready() -> void:
 	Global.level_editor = self
@@ -183,15 +191,23 @@ func _ready() -> void:
 		$TileMenu/MarginContainer/VBoxContainer/TabButtons/Level.tab_clicked()
 		LevelEditor.selecting_room = false
 		open_tile_menu()
+		last_camera_position = Vector2(-900, -900)
 	if (LevelEditor.recorded_trail):
 		create_player_trail()
 		LevelEditor.recorded_trail = false
+	
+	%Camera.global_position = last_camera_position
 
 var last_recorded_frame := Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
 	%TileCursor.hide()
 	if [EditorState.IDLE, EditorState.CONNECTING].has(current_state) and not cursor_in_toolbar:
+		if (holding_commit):
+			commit_buffer += delta
+			print(str(commit_buffer))
+		else:
+			commit_buffer = 0.0
 		handle_tile_cursor()
 	if [EditorState.IDLE, EditorState.TRACK_EDITING, EditorState.CONNECTING].has(current_state):
 		handle_camera(delta)
@@ -278,8 +294,10 @@ func stop_testing() -> void:
 		return
 	current_state = EditorState.IDLE
 	cleanup()
+	
+	$AutoSaveHandler.handle_autosave(LevelEditor.autosave_on_editor_return)
+	
 	return_to_editor.call_deferred()
-
 
 func cleanup() -> void:
 	Global.reset_values()
@@ -334,8 +352,8 @@ func return_to_editor() -> void:
 	AudioManager.stop_all_music()
 	OffScreenDespawner.editor_testing_safety = true
 	recorded_trail = saved_trail.size() > 0
-	if (last_commit != -1):
-		last_commit = undo_redo.get_current_action()
+	last_commit = undo_redo.get_current_action()
+	last_camera_position = get_tree().get_first_node_in_group("Players").camera.global_position
 	
 	Global.reload_editor()
 
@@ -479,11 +497,12 @@ func handle_tile_cursor() -> void:
 		if Global.multibind_action_just_pressed("pick_tile"):
 			pick_tile(tile_position)
 	
-		if Global.multibind_action_just_pressed("ui_undo"):
+		if Input.is_action_pressed("ui_undo"):
 			undo()
-		
-		if Global.multibind_action_just_pressed("ui_redo"):
+		elif Input.is_action_pressed("ui_redo"):
 			redo()
+		else:
+			holding_commit = false
 	
 	if current_state == EditorState.CONNECTING:
 		if Global.multibind_action_just_pressed("mb_left"):
@@ -1219,6 +1238,11 @@ func update_menu_values() -> void:
 	%Particles.selected = level_bg.particles
 	%LiquidLayer.selected = level_bg.liquid_layer
 	%OverlayClouds.set_pressed_no_signal(level_bg.overlay_clouds)
+	
+	%AutoSaveTimer.value = autosave_min_timer
+	%AutoSaveEnable.set_pressed_no_signal(autosave_enabled)
+	%AutoSaveBeforeTest.set_pressed_no_signal(autosave_before_test)
+	%AutoSaveEditorReturn.set_pressed_no_signal(autosave_on_editor_return)
 
 func set_bg_value(value := 0, value_name := "") -> void:
 	level.get_node("LevelBG").set(value_name, value)
@@ -1234,10 +1258,14 @@ func on_mouse_entered() -> void:
 	cursor_in_toolbar = true
 
 func undo() -> void:
-	undo_redo.undo()
+	holding_commit = true
+	if (commit_buffer == 0.0 || commit_buffer >= 0.5):
+		undo_redo.undo()
 
 func redo() -> void:
-	undo_redo.redo()
+	holding_commit = true
+	if (commit_buffer == 0.0 || commit_buffer >= 0.5):
+		undo_redo.redo()
 
 func recreate_undoredo() -> void:
 	if (undo_redo == null):
@@ -1261,35 +1289,35 @@ func recreate_undoredo() -> void:
 		
 		undo_redo.create_action(actionFinalName)
 		
-		if (actionName == "Paste Area"):
-			undo_redo.add_do_method(paste_area.bindv(redoArgs))
-			undo_redo.add_undo_method(replace_area.bindv(undoArgs))
-		if (actionName == "Mass Place"):
-			undo_redo.add_do_method(mass_place.bindv(redoArgs))
-			undo_redo.add_undo_method(replace_area.bindv(undoArgs))
-		if (actionName == "Mass Remove"):
-			undo_redo.add_do_method(mass_remove.bindv(redoArgs))
-			undo_redo.add_undo_method(replace_area.bindv(undoArgs))
+		match actionName:
+			("Paste Area"):
+				undo_redo.add_do_method(paste_area.bindv(redoArgs))
+				undo_redo.add_undo_method(replace_area.bindv(undoArgs))
+			("Mass Place"):
+				undo_redo.add_do_method(mass_place.bindv(redoArgs))
+				undo_redo.add_undo_method(replace_area.bindv(undoArgs))
+			("Mass Remove"):
+				undo_redo.add_do_method(mass_remove.bindv(redoArgs))
+				undo_redo.add_undo_method(replace_area.bindv(undoArgs))
+			("Remove Tile"):
+				undo_redo.add_do_method(remove_tile.bindv(redoArgs))
+				undo_redo.add_undo_method(place_tile.bindv(undoArgs))
+		
 		if (actionName.contains("Place Tile")):
 			undo_redo.add_do_method(place_tile.bindv(redoArgs))
 			if (actionName.contains("(null)")):
 				undo_redo.add_undo_method(remove_tile.bindv(undoArgs))
 			else:
 				undo_redo.add_undo_method(place_tile.bindv(undoArgs))
-		if (actionName == "Remove Tile"):
-			undo_redo.add_do_method(remove_tile.bindv(redoArgs))
-			undo_redo.add_undo_method(place_tile.bindv(undoArgs))
 		
 		undo_redo.commit_action(i > last_commit)
 	await get_tree().process_frame
-	undo_non_committed()
 	
-func undo_non_committed() -> void:
 	for i in undo_redo.get_current_action() - last_commit:
 		undo()
 
 func clear_undoredo() -> void:
-	last_commit = -2
+	last_commit = -1
 	
 	LevelEditor.undo_history.clear()
 	LevelEditor.redo_history.clear()
@@ -1386,3 +1414,12 @@ func open_blueprint_folder() -> void:
 func save_reminder() -> void:
 	Global.log_comment("Remember to save!")
 	AudioManager.play_global_sfx("pause")
+
+func deletion_warning_toggle() -> void:
+	$CanvasLayer/DeletionWarning.visible = !$CanvasLayer/DeletionWarning.visible
+	current_state = EditorState.SAVE_MENU if ($CanvasLayer/DeletionWarning.visible) else EditorState.IDLE
+
+func autosave_menu_toggle() -> void:
+	if $CanvasLayer/AutosavesWarning.visible: return
+	$CanvasLayer/AutoSaveMenu.visible = !$CanvasLayer/AutoSaveMenu.visible
+	current_state = EditorState.SAVE_MENU if ($CanvasLayer/AutoSaveMenu.visible) else EditorState.IDLE

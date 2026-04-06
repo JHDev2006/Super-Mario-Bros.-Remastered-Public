@@ -576,12 +576,12 @@ func log_warning(text) -> void:
 	await get_tree().create_timer(10, false).timeout
 	error_message.queue_free()
 	
-func log_comment(text) -> void:
+func log_comment(text, timer := 2) -> void:
 	var error_message = $CanvasLayer/VBoxContainer/Comment.duplicate()
 	error_message.text = str(text)
 	error_message.visible = true
 	$CanvasLayer/VBoxContainer.add_child(error_message)
-	await get_tree().create_timer(2, false).timeout
+	await get_tree().create_timer(timer, false).timeout
 	error_message.queue_free()
 
 func level_editor_is_playtesting() -> bool:

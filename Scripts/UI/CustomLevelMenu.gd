@@ -24,6 +24,7 @@ func _ready() -> void:
 	Global.reset_values()
 	LevelEditor.sub_areas = [null, null, null, null, null]
 	LevelEditor.sub_level_id = 0
+	LevelEditor.last_camera_position = Vector2(-900, -900)
 	Global.clear_saved_values()
 	Checkpoint.sublevel_id = 0
 	Global.current_campaign = "SMB1"
