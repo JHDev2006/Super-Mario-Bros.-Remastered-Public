@@ -90,6 +90,7 @@ func _enter_tree() -> void:
 		update_theme()
 	SpeedrunHandler.timer_active = true
 	SpeedrunHandler.ghost_active = true
+	Global.stop_all_timers()
 	if can_set_time:
 		can_set_time = false
 		Global.time = time_limit

@@ -1058,6 +1058,7 @@ func transition_to_sublevel(sub_lvl_idx := 0) -> void:
 		save_current_level()
 		Global.reset_values()
 		PipeArea.exiting_pipe_id = -1
+	Global.stop_all_timers()
 	load_level(sub_lvl_idx)
 	Global.can_pause = true
 

@@ -428,6 +428,10 @@ func reset_values() -> void:
 	p_switch_active = false
 	p_switch_timer = -1.0
 
+func stop_all_timers() -> void:
+	p_switch_active = false
+	p_switch_timer = -1
+
 func clear_saved_values() -> void:
 	coins = 0
 	score = 0
