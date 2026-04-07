@@ -24,8 +24,8 @@ func _draw() -> void:
 	show()
 	var gizmo_visible = false
 	if Global.level_editor != null:
-		gizmo_visible = Global.level_editor.gizmos_visible
-	if Global.level_editor_is_editing() == false and gizmo_visible == false:
+		gizmo_visible = Global.level_editor.gizmos_visible or Global.debug_mode
+	if Global.level_editor_is_editing() == false and gizmo_visible == false and not Global.debug_mode:
 		hide()
 		return
 	if signal_exposer.editing:

@@ -16,9 +16,18 @@ signal object_exited
 
 var object_in_area := false
 
+var can_detect := false
+
+func _ready() -> void:
+	can_detect = false
+	for i in 9:
+		await get_tree().physics_frame ## I dont know why. i dont WANT to know why, but for some reason we gotta wait like 10 frames before actually detecting shit, otherwise stuff thats instantly placed in side (players specifically), cause it to fire too quickly, or something, fuck my stupid chud life.
+	can_detect = true
+
 func _physics_process(_delta: float) -> void:
 	$Hitbox.scale = Vector2(size_x, size_y)
-	run_check()
+	if can_detect:
+		run_check()
 	queue_redraw()
 
 func _draw() -> void:

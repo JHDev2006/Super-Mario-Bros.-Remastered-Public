@@ -61,14 +61,14 @@ func _enter_tree() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	z_index = 10
 	global_position = owner.global_position + position_offset
-	call_deferred("connect_pre_existing_signals")
 	if Global.level_editor != null:
 		if Global.level_editor_is_editing() == false:
 			get_tree().call_group("Gizmos", "set_visible", Global.level_editor.gizmos_visible)
 	else:
-		get_tree().call_group("Gizmos", "hide")
+		get_tree().call_group("Gizmos", "hide" if Global.debug_mode == false else "show")
 
 func _ready() -> void:
+	connect_pre_existing_signals()
 	if line_drawer_added == false:
 		add_child(line_drawer)
 		line_drawer.top_level = true

@@ -10,6 +10,6 @@ texture = ExtResource("2_36gan")
 hframes = 1
 
 [connection signal="recieved_power" from="SignalExposer" to="." method="queue_free"]
-[connection signal="recieved_power" from="SignalExposer" to="SignalExposer" method="turn_on"]
+[connection signal="recieved_power" from="SignalExposer" to="SignalExposer" method="turn_on" flags=6]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="queue_free"]
-[connection signal="recieved_pulse" from="SignalExposer" to="SignalExposer" method="emit_pulse"]
+[connection signal="recieved_pulse" from="SignalExposer" to="SignalExposer" method="emit_pulse" flags=6]
