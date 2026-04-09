@@ -650,13 +650,13 @@ func _ready() -> void:
 		recenter_camera()
 
 # SkyanUltra: Helper function for getting physics params.
-func physics_params(type: String, : Dictionary = {}, key: String = "") -> Variant:
+func physics_params(type: String, dict: Dictionary = {}, key: String = "") -> Variant:
 	var mult_applied = 1.0
 	var is_movement = false
 	# SkyanUltra: This is a stupid workaround for a stupid issue with this stupid
 	# engine. I can't just set  to physics_dict... So I have to do this
 	# work around. I hate it. If anyone can fix it, then please. Do it.
-	if params_dict == {}: params_dict = physics_dict
+	if dict == {}: dict = physics_dict
 	for tag in ["WALK", "RUN", "AIR", "SWIM"]:
 		if tag in type:
 			is_movement = true
@@ -668,15 +668,15 @@ func physics_params(type: String, : Dictionary = {}, key: String = "") -> Varian
 			mult_applied = speed_mult
 	if power_state != null:
 		if key == "": key = power_state.state_name
-		if key in params_dict:
-			var state_dict = params_dict[key]
+		if key in dict:
+			var state_dict = dict[key]
 			if type in state_dict:
 				var value = state_dict[type]
 				if (value is int or value is float) and not (value is bool):
 					return value * mult_applied
 				return value
-	if "Default" in params_dict:
-		var default_dict = params_dict["Default"]
+	if "Default" in dict:
+		var default_dict = dict["Default"]
 		if type in default_dict:
 			var value = default_dict[type]
 			if value is Dictionary:
