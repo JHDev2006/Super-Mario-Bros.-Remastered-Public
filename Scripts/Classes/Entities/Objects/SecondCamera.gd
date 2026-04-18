@@ -18,6 +18,10 @@ func _ready() -> void:
 	for i in 4:
 		await get_tree().physics_frame
 	frame_one = true
+	if Global.level_editor != null and Global.current_level.enforce_resolution == Vector2.ZERO:
+		Global.level_editor.res_enforce_changed(true)
+		Global.log_comment("Automatically enabled 'Enforced Screen Size'!")
+		Global.level_editor.update_menu_values()
 
 func level_start() -> void:
 	if auto_activate:

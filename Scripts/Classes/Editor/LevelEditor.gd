@@ -1165,6 +1165,7 @@ func update_menu_values() -> void:
 	%Particles.selected = level_bg.particles
 	%LiquidLayer.selected = level_bg.liquid_layer
 	%OverlayClouds.set_pressed_no_signal(level_bg.overlay_clouds)
+	%ScreenSize.set_pressed_no_signal(level.enforce_resolution != Vector2.ZERO)
 
 func set_bg_value(value := 0, value_name := "") -> void:
 	level.get_node("LevelBG").set(value_name, value)
