@@ -415,6 +415,7 @@ func reset_values() -> void:
 	Checkpoint.keys_collected = 0
 	Broadcaster.active_channels = []
 	Warper.target_channel = -1
+	Warper.can_warp = true
 	ConditionalClear.valid = true
 	ConditionalClear.checked = false
 	GlobalCounter.amounts = {}

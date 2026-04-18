@@ -275,6 +275,7 @@ func cleanup() -> void:
 	playing_level = !playing_level
 	play_pipe_transition = false
 	play_door_transition = false
+	Warper.can_warp = true
 	LevelPersistance.reset_states()
 	KeyItem.total_collected = 0
 	Global.get_node("GameHUD").visible = playing_level

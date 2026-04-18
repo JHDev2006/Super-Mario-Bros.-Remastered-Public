@@ -14,6 +14,7 @@ static var saved_velocity := Vector2.ZERO
 
 func _ready() -> void:
 	run_check.call_deferred()
+	warping = false
 
 func run_check() -> void:
 	if target_channel == channel:
