@@ -197,12 +197,16 @@ func update_visuals() -> void:
 	if primary_layer != 3:
 		var current_primary_layer: AnimatedSprite2D = [$PrimaryLayer/Hills, $PrimaryLayer/Bush, null][primary_layer]
 		if current_primary_layer != null:
-			$PrimaryLayer.repeat_size = current_primary_layer.sprite_frames.get_frame_texture(current_primary_layer.animation, current_primary_layer.frame).get_size()
+			var texture = current_primary_layer.sprite_frames.get_frame_texture(current_primary_layer.animation, current_primary_layer.frame)
+			if texture != null:
+				$PrimaryLayer.repeat_size = texture.get_size()
 			$PrimaryLayer.repeat_size.y = 0
 
 	var current_secondary_layer: AnimatedSprite2D = [null, $SecondaryLayer/Trees, $SecondaryLayer/Mushrooms][second_layer]
 	if current_secondary_layer != null:
-		$SecondaryLayer.repeat_size = current_secondary_layer.sprite_frames.get_frame_texture(current_secondary_layer.animation, current_secondary_layer.frame).get_size()
+		var texture = current_secondary_layer.sprite_frames.get_frame_texture(current_secondary_layer.animation, current_secondary_layer.frame)
+		if texture != null:
+			$SecondaryLayer.repeat_size = texture.get_size()
 		$SecondaryLayer.repeat_size.y = 0
 	
 	$SkyLayer.repeat_size = $SkyLayer/Sky.sprite_frames.get_frame_texture($SkyLayer/Sky.animation, $SkyLayer/Sky.frame).get_size()
