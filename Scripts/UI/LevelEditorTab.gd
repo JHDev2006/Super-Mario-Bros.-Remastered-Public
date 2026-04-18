@@ -7,10 +7,14 @@ static var current_tab = null
 @export var linked_control: Control = null
 @export var first_pick := false
 
+@onready var resource_getter := ResourceGetter.new()
+
 func _ready() -> void:
 	if first_pick:
 		tab_clicked()
 	$HBoxContainer/Label.text = title
+	add_child(resource_getter)
+	icon = resource_getter.get_resource(icon)
 	$HBoxContainer/TextureRect.texture = icon
 	update()
 
