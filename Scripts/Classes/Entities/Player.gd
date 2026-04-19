@@ -971,7 +971,8 @@ func bump_ceiling() -> void:
 	bumping = true
 	await get_tree().create_timer(0.1).timeout
 	AudioManager.kill_sfx(physics_params("JUMP_SFX", COSMETIC_PARAMETERS))
-	await get_tree().create_timer(0.1).timeout
+	if is_inside_tree():
+		await get_tree().create_timer(0.1).timeout
 	bumping = false
 
 func kick_anim() -> void:
