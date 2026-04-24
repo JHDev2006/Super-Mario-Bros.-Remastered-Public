@@ -153,6 +153,10 @@ func connect_pre_existing_signals() -> void:
 func connect_to_node(node_to_recieve := [], animate := true) -> void:
 	has_output = true
 	var node: Node = get_node_from_tile(node_to_recieve[0], node_to_recieve[1])
+	if node == null:
+		Global.log_error("Bad signal connection! Fixing...")
+		queue_free()
+		return
 	node.tree_exiting.connect(remove_node_connection.bind(node_to_recieve))
 	if connections.has(node_to_recieve) == false:
 		connections.append(node_to_recieve.duplicate())
@@ -202,7 +206,6 @@ func get_string() -> String:
 	if owner.get_meta("save_string", "") != "":
 		var string = owner.get_meta("save_string")
 		string = string.substr(string.find(",$"))
-		print([string, string.substr(string.find(",$"))])
 		return string
 	for i in connections:
 		entity_string += ",$"
