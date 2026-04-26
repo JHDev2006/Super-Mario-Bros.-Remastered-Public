@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bjs5mlc3xrxud" path="res://Scripts/Parts/DiscoLevel.gd" id="2_swkpk"]
 [ext_resource type="PackedScene" uid="uid://dbjqtjhb2t4cn" path="res://Scenes/Prefabs/Entities/Items/FireFlower.tscn" id="3_hlpec"]
 [node name="8-4" unique_id=821819504 instance=ExtResource("1_2usat")]
+theme_time = "Night"
 campaign = "SMBANN"
 [node name="RedPirannhaPlant" parent="Enemies" parent_id_path=PackedInt32Array(1066408415) index="2" unique_id=1500445874]
 position = Vector2(512, 336)
