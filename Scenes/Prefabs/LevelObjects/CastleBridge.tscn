@@ -226,9 +226,6 @@ metadata/_custom_type_script = "uid://cq6f682453q6o"
 position = Vector2(216, -56)
 enabled = false
 process_callback = 0
-limit_left = -256
-limit_top = -208
-limit_bottom = 32
 editor_draw_limits = true
 
 [node name="EditorPropertyExposer" type="Node" parent="." unique_id=1761088113]
