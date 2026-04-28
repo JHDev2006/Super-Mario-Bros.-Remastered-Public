@@ -61,14 +61,14 @@ func _enter_tree() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	z_index = 10
 	global_position = owner.global_position + position_offset
-	call_deferred("connect_pre_existing_signals")
 	if Global.level_editor != null:
 		if Global.level_editor_is_editing() == false:
 			get_tree().call_group("Gizmos", "set_visible", Global.level_editor.gizmos_visible)
 	else:
-		get_tree().call_group("Gizmos", "hide")
+		get_tree().call_group("Gizmos", "hide" if Global.debug_mode == false else "show")
 
 func _ready() -> void:
+	connect_pre_existing_signals()
 	if line_drawer_added == false:
 		add_child(line_drawer)
 		line_drawer.top_level = true
@@ -156,6 +156,10 @@ func connect_pre_existing_signals() -> void:
 func connect_to_node(node_to_recieve := [], animate := true) -> void:
 	has_output = true
 	var node: Node = get_node_from_tile(node_to_recieve[0], node_to_recieve[1])
+	if node == null:
+		Global.log_error("Bad signal connection! Fixing...")
+		queue_free()
+		return
 	node.tree_exiting.connect(remove_node_connection.bind(node_to_recieve))
 	if (Input.is_action_pressed("shift")):
 		connections.erase(node_to_recieve)
@@ -209,7 +213,6 @@ func get_string() -> String:
 	if owner.get_meta("save_string", "") != "":
 		var string = owner.get_meta("save_string")
 		string = string.substr(string.find(",$"))
-		print([string, string.substr(string.find(",$"))])
 		return string
 	for i in connections:
 		entity_string += ",$"

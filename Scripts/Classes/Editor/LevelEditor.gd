@@ -317,6 +317,7 @@ func cleanup() -> void:
 	playing_level = !playing_level
 	play_pipe_transition = false
 	play_door_transition = false
+	Warper.can_warp = true
 	
 	LevelPersistance.reset_states()
 	KeyItem.total_collected = 0
@@ -1164,6 +1165,8 @@ func transition_to_sublevel(sub_lvl_idx := 0) -> void:
 		sub_level_id = sub_lvl_idx
 		selecting_room = true
 		Global.reload_editor()
+	
+	Global.stop_all_timers()
 	Global.can_pause = true
 
 func _input(event: InputEvent) -> void:

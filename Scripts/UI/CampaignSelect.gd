@@ -38,6 +38,9 @@ func get_level_packs() -> void:
 	Global.custom_campaigns.clear()
 	for i in DirAccess.get_directories_at(Global.config_path.path_join("level_packs")):
 		var json = JSON.parse_string(FileAccess.open(Global.config_path.path_join("level_packs").path_join(i).path_join("pack_info.json"), FileAccess.READ).get_as_text())
+		if json == null:
+			Global.log_error("Error parsing pack info for: " + i)
+			continue
 		Global.custom_campaign_jsons[i] = json
 		Global.custom_campaigns.append(i)
 		Level.WORLD_COUNTS[i] = json.number_of_worlds

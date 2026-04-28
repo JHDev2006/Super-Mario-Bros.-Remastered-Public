@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="6_4015b"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="6_jg54v"]
 [ext_resource type="PackedScene" uid="uid://dse5pwhodrqcr" path="res://Scenes/Prefabs/Editor/EditorProperties/TilePropertyIntRangeSpin.tscn" id="6_pp28j"]
+[ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="8_pp28j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibsa0"]
 atlas = ExtResource("4_pp28j")
@@ -150,6 +151,13 @@ offset = Vector2(0, 0)
 disable_physics = false
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
+[node name="SignalExposer" type="Node2D" parent="." unique_id=310607942]
+script = ExtResource("8_pp28j")
+can_input = false
+do_animation = false
+metadata/_custom_type_script = "uid://b3bokos5jcpr7"
+
+[connection signal="bounced" from="." to="SignalExposer" method="emit_pulse"]
 [connection signal="player_block_hit" from="." to="." method="bounce_up" unbinds=1]
 [connection signal="shell_block_hit" from="." to="." method="bounce_up" unbinds=1]
 [connection signal="area_entered" from="Sprite/Area" to="." method="on_area_entered"]

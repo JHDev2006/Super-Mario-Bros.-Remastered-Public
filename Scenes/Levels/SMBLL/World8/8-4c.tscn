@@ -29,6 +29,7 @@
 script = ExtResource("1_0kk8t")
 music = ExtResource("2_d34x1")
 theme = "Castle"
+theme_time = "Night"
 campaign = "SMBLL"
 world_id = 8
 level_id = 4

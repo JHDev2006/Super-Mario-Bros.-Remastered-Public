@@ -650,13 +650,13 @@ func _ready() -> void:
 		recenter_camera()
 
 # SkyanUltra: Helper function for getting physics params.
-func physics_params(type: String, params_dict: Dictionary = {}, key: String = "") -> Variant:
+func physics_params(type: String, dict: Dictionary = {}, key: String = "") -> Variant:
 	var mult_applied = 1.0
 	var is_movement = false
 	# SkyanUltra: This is a stupid workaround for a stupid issue with this stupid
-	# engine. I can't just set params_dict to physics_dict... So I have to do this
+	# engine. I can't just set  to physics_dict... So I have to do this
 	# work around. I hate it. If anyone can fix it, then please. Do it.
-	if params_dict == {}: params_dict = physics_dict
+	if dict == {}: dict = physics_dict
 	for tag in ["WALK", "RUN", "AIR", "SWIM"]:
 		if tag in type:
 			is_movement = true
@@ -668,15 +668,15 @@ func physics_params(type: String, params_dict: Dictionary = {}, key: String = ""
 			mult_applied = speed_mult
 	if power_state != null:
 		if key == "": key = power_state.state_name
-		if key in params_dict:
-			var state_dict = params_dict[key]
+		if key in dict:
+			var state_dict = dict[key]
 			if type in state_dict:
 				var value = state_dict[type]
 				if (value is int or value is float) and not (value is bool):
 					return value * mult_applied
 				return value
-	if "Default" in params_dict:
-		var default_dict = params_dict["Default"]
+	if "Default" in dict:
+		var default_dict = dict["Default"]
 		if type in default_dict:
 			var value = default_dict[type]
 			if value is Dictionary:
@@ -717,8 +717,6 @@ func apply_character_physics() -> void:
 	# SkyanUltra: This section controls all CHARACTER PHYSICS values. This should be
 	# preventing physics changes to stop potential cheating in modes like You VS. Boo
 	# and Marathon mode.
-	if apply_gameplay_changes:
-		physics_dict = PHYSICS_PARAMETERS if Settings.file.gameplay.physics_style else CLASSIC_PARAMETERS
 	for key in json.physics:
 		if key in ["PHYSICS_PARAMETERS", "CLASSIC_PARAMETERS", "POWER_PARAMETERS", "ENDING_PARAMETERS"]:
 			if apply_gameplay_changes:
@@ -731,6 +729,8 @@ func apply_character_physics() -> void:
 				Global.merge_dict(get(key), json.physics[key])
 			else:
 				set(key, json.physics[key])
+	if apply_gameplay_changes:
+		physics_dict = PHYSICS_PARAMETERS if Settings.file.gameplay.physics_style else CLASSIC_PARAMETERS
 
 func apply_classic_physics() -> void:
 	var json = JSON.parse_string(FileAccess.open("res://Resources/ClassicPhysics.json", FileAccess.READ).get_as_text())
@@ -971,7 +971,8 @@ func bump_ceiling() -> void:
 	bumping = true
 	await get_tree().create_timer(0.1).timeout
 	AudioManager.kill_sfx(physics_params("JUMP_SFX", COSMETIC_PARAMETERS))
-	await get_tree().create_timer(0.1).timeout
+	if is_inside_tree():
+		await get_tree().create_timer(0.1).timeout
 	bumping = false
 
 func kick_anim() -> void:

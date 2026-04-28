@@ -24,6 +24,7 @@
 script = ExtResource("1_0cclm")
 music = ExtResource("2_7ps2v")
 theme = "Castle"
+theme_time = "Night"
 world_id = 7
 level_id = 4
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"

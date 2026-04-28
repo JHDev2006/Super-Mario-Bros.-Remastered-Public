@@ -32,7 +32,8 @@ func launch() -> void:
 		return
 	if get_tree():
 		for i: Player in get_tree().get_nodes_in_group("Players"):
-			i.has_flung = true
+			if i.in_water == false:
+				i.has_flung = true
 			launched_this_frame = true
 			if additive:
 				i.velocity.y = i.velocity.y + upwards_speed*-100

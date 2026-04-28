@@ -436,6 +436,7 @@ func reset_values() -> void:
 	Checkpoint.keys_collected = 0
 	Broadcaster.active_channels = []
 	Warper.target_channel = -1
+	Warper.can_warp = true
 	ConditionalClear.valid = true
 	ConditionalClear.checked = false
 	GlobalCounter.amounts = {}
@@ -448,6 +449,10 @@ func reset_values() -> void:
 	Level.vine_warp_level = ""
 	p_switch_active = false
 	p_switch_timer = -1.0
+
+func stop_all_timers() -> void:
+	p_switch_active = false
+	p_switch_timer = -1
 
 func clear_saved_values() -> void:
 	coins = 0
