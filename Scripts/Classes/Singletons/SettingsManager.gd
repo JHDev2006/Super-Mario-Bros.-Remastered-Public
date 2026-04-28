@@ -26,7 +26,14 @@ var file := {
 	"game": {
 		"campaign": "SMB1",
 		"lang": "en",
-		"editor_seen_guide": false,
+	},
+	"editor": {
+		"seen_guide": false,
+		
+		"autosave_enabled": true,
+		"autosave_min_timer": 5,
+		"autosave_before_test": false,
+		"autosave_on_return_to_editor": false,
 	},
 	"keyboard":
 	{

@@ -12,9 +12,10 @@ atlas = ExtResource("2_rfswy")
 region = Rect2(0, 0, 8, 8)
 
 [node name="SelectableLabel" type="Label" unique_id=1846027017]
-offset_right = 40.0
+offset_right = 48.0
 offset_bottom = 16.0
 focus_mode = 2
+mouse_filter = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bg4p8")
 text = "adada"
 uppercase = true
@@ -44,4 +45,6 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [connection signal="focus_entered" from="." to="." method="toggle_process" binds= [true]]
 [connection signal="focus_exited" from="." to="Cursor" method="hide"]
 [connection signal="focus_exited" from="." to="." method="toggle_process" binds= [false]]
+[connection signal="mouse_entered" from="." to="." method="grab_focus"]
+[connection signal="mouse_exited" from="." to="." method="release_focus"]
 [connection signal="ready" from="." to="." method="toggle_process" binds= [false]]

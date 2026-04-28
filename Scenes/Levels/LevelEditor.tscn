@@ -211,7 +211,7 @@
 [ext_resource type="PackedScene" uid="uid://07ukmj7s77wu" path="res://Scenes/Prefabs/Gizmos/Outputs/Flinger.tscn" id="213_uk8sr"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/WingItem.json" id="221_o0k3u"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/LuckyStar.json" id="224_vjdbd"]
-[ext_resource type="Script" uid="uid://0h04dap8ddvf" path="res://Scripts/Parts/AutoSaveHandler.gd" id="225_s60en"]
+[ext_resource type="Script" uid="uid://0h04dap8ddvf" path="res://Scripts/Parts/AutosaveHandler.gd" id="225_s60en"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Key.json" id="229_u1728"]
 [ext_resource type="Texture2D" uid="uid://d3km1t0r7dcg3" path="res://Assets/Sprites/Editor/VineWarp.png" id="235_d5512"]
 [ext_resource type="Texture2D" uid="uid://duxkbhsbnmrvs" path="res://Assets/Sprites/Editor/Darkness.png" id="236_i73lv"]
@@ -566,6 +566,17 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_e20nl"]
 color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s60en"]
+content_margin_left = 0.0
+bg_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s60en"]
+
 [sub_resource type="Animation" id="Animation_a6ws6"]
 length = 0.001
 tracks/0/type = "value"
@@ -629,7 +640,7 @@ script = ExtResource("1_0qbyu")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1361571552]
 unique_name_in_owner = true
-position = Vector2(-695, -142)
+position = Vector2(-695, 281)
 process_callback = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=862928203]
@@ -774,6 +785,50 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="DeletionWarning" type="PanelContainer" parent="CanvasLayer" unique_id=142209284]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -62.0
+offset_right = 79.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("139_ydoon")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeletionWarning" unique_id=1663373953]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/DeletionWarning/VBoxContainer" unique_id=1415277210]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+text = "EDITOR_DELETION_WARNING"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DeletionWarning/VBoxContainer" unique_id=1594128819]
+layout_mode = 2
+text = "EDITOR_DELETION_DESCRIPTION"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DeletionWarning/VBoxContainer" unique_id=444943834]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer" unique_id=53645459]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MENU_YES"
+
+[node name="Button2" type="Button" parent="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer" unique_id=1768782632]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MENU_NO"
+
 [node name="AutoSaveMenu" type="PanelContainer" parent="CanvasLayer" unique_id=427005272]
 visible = false
 anchors_preset = 8
@@ -781,9 +836,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -86.0
+offset_left = -139.0
 offset_top = -62.0
-offset_right = 86.0
+offset_right = 139.0
 offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -873,102 +928,10 @@ layout_mode = 2
 size_flags_horizontal = 10
 
 [node name="Button" type="Button" parent="CanvasLayer/AutoSaveMenu/VBoxContainer" unique_id=2060805361]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "EDITOR_AUTOSAVE_CLEAN_CACHE"
-
-[node name="DeletionWarning" type="PanelContainer" parent="CanvasLayer" unique_id=142209284]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -79.0
-offset_top = -62.0
-offset_right = 79.0
-offset_bottom = 62.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("139_ydoon")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DeletionWarning" unique_id=1663373953]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="CanvasLayer/DeletionWarning/VBoxContainer" unique_id=1415277210]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 2
-text = "EDITOR_DELETION_WARNING"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/DeletionWarning/VBoxContainer" unique_id=1594128819]
-layout_mode = 2
-text = "EDITOR_DELETION_DESCRIPTION"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DeletionWarning/VBoxContainer" unique_id=444943834]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer" unique_id=53645459]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "MENU_YES"
-
-[node name="Button2" type="Button" parent="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer" unique_id=1768782632]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "MENU_NO"
-
-[node name="AutosavesWarning" type="PanelContainer" parent="CanvasLayer" unique_id=1311098032]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -79.0
-offset_top = -62.0
-offset_right = 79.0
-offset_bottom = 62.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("139_ydoon")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AutosavesWarning" unique_id=1851587635]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="CanvasLayer/AutosavesWarning/VBoxContainer" unique_id=981633467]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 2
-text = "EDITOR_DELETION_WARNING"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/AutosavesWarning/VBoxContainer" unique_id=1377675112]
-layout_mode = 2
-text = "EDITOR_AUTOSAVE_DELETE_DESCRIPTION"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AutosavesWarning/VBoxContainer" unique_id=2125787277]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="CanvasLayer/AutosavesWarning/VBoxContainer/HBoxContainer" unique_id=1767336933]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "MENU_AUTOSAVE_DELETE_ALL"
-
-[node name="Button3" type="Button" parent="CanvasLayer/AutosavesWarning/VBoxContainer/HBoxContainer" unique_id=1121595119]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "MENU_AUTOSAVE_DELETE_LEVEL"
-
-[node name="Button2" type="Button" parent="CanvasLayer/AutosavesWarning/VBoxContainer" unique_id=135660151]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "MENU_AUTOSAVE_NONE"
 
 [node name="Grid" type="Parallax2D" parent="." unique_id=466111830]
 unique_name_in_owner = true
@@ -976,12 +939,12 @@ visibility_layer = 2
 z_index = 4096
 z_as_relative = false
 repeat_size = Vector2(512, 512)
-repeat_times = 8
 
 [node name="TextureRect" type="TextureRect" parent="Grid" unique_id=819597101]
 modulate = Color(0.356863, 0.356863, 0.356863, 0.407843)
+offset_top = -272.0
 offset_right = 512.0
-offset_bottom = 512.0
+offset_bottom = 240.0
 mouse_filter = 2
 texture = ExtResource("2_8q7yr")
 stretch_mode = 1
@@ -6891,7 +6854,8 @@ size_flags_horizontal = 3
 text = "LEVEL_SETTINGS_ENFORCE_SCREEN_SIZE"
 uppercase = true
 
-[node name="BackScroll" type="CheckBox" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/LEVEL/ScrollContainer/VBoxContainer/HBoxContainer9" unique_id=232739858]
+[node name="ScreenSize" type="CheckBox" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/LEVEL/ScrollContainer/VBoxContainer/HBoxContainer9" unique_id=232739858]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 
@@ -7171,6 +7135,7 @@ offset_bottom = -1.0
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "layer 1"
+horizontal_alignment = 2
 uppercase = true
 
 [node name="ControllerInputWarning" type="Label" parent="Info" unique_id=746729626]
@@ -7324,6 +7289,8 @@ node_to_validate = NodePath("../Description")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_s60en")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s60en")
 context_menu_enabled = false
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Info/SaveLevelDialog/VBoxContainer" unique_id=885091830]
@@ -7359,6 +7326,69 @@ text = "MENU_CANCEL"
 layout_mode = 2
 size_flags_horizontal = 8
 text = "EDITOR_SAVE"
+
+[node name="NameLevelDialog" type="PanelContainer" parent="Info" unique_id=1325593257]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -40.0
+offset_right = 102.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("139_ydoon")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info/NameLevelDialog" unique_id=622589618]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Info/NameLevelDialog/VBoxContainer" unique_id=1683104159]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "EDITOR_SAVE_NAME_TITLE"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Info/NameLevelDialog/VBoxContainer/Label" unique_id=1246153204]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_e20nl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Info/NameLevelDialog/VBoxContainer" unique_id=973515605]
+layout_mode = 2
+
+[node name="StartLevelName" type="LineEdit" parent="Info/NameLevelDialog/VBoxContainer/HBoxContainer" unique_id=896189676]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+context_menu_enabled = false
+
+[node name="TextValidator" type="Node" parent="Info/NameLevelDialog/VBoxContainer/HBoxContainer" unique_id=1603697121 node_paths=PackedStringArray("node_to_validate")]
+script = ExtResource("114_cjvlm")
+node_to_validate = NodePath("../StartLevelName")
+
+[node name="HSplitContainer" type="HBoxContainer" parent="Info/NameLevelDialog/VBoxContainer" unique_id=1119881557]
+layout_mode = 2
+alignment = 1
+
+[node name="Button2" type="Button" parent="Info/NameLevelDialog/VBoxContainer/HSplitContainer" unique_id=847570037]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MENU_NO"
+
+[node name="Button" type="Button" parent="Info/NameLevelDialog/VBoxContainer/HSplitContainer" unique_id=569744933]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MENU_DONE"
 
 [node name="SaveDialog" type="Label" parent="Info" unique_id=188622919]
 unique_name_in_owner = true
@@ -7489,25 +7519,17 @@ one_shot = true
 [connection signal="mouse_entered" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/AutoSave" to="." method="set_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_AUTOSAVE"]]
 [connection signal="mouse_exited" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/AutoSave" to="." method="clear_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_AUTOSAVE"]]
 [connection signal="pressed" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/AutoSave" to="." method="autosave_menu_toggle"]
+[connection signal="mouse_entered" from="CanvasLayer/DeletionWarning" to="." method="on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/DeletionWarning" to="." method="on_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer/Button" to="." method="clear_level"]
+[connection signal="pressed" from="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/DeletionWarning" method="hide"]
+[connection signal="pressed" from="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer/Button2" to="CanvasLayer/DeletionWarning" method="hide"]
 [connection signal="mouse_entered" from="CanvasLayer/AutoSaveMenu" to="." method="on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/AutoSaveMenu" to="." method="on_mouse_exited"]
 [connection signal="toggled" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer9/AutoSaveEnable" to="AutoSaveHandler" method="enable_toggled"]
 [connection signal="value_changed" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer4/AutoSaveTimer" to="AutoSaveHandler" method="timer_changed"]
 [connection signal="toggled" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer10/AutoSaveBeforeTest" to="AutoSaveHandler" method="before_test_toggled"]
 [connection signal="toggled" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer11/AutoSaveEditorReturn" to="AutoSaveHandler" method="editor_return_toggled"]
-[connection signal="pressed" from="CanvasLayer/AutoSaveMenu/VBoxContainer/Button" to="CanvasLayer/AutosavesWarning" method="show"]
-[connection signal="mouse_entered" from="CanvasLayer/DeletionWarning" to="." method="on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/DeletionWarning" to="." method="on_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer/Button" to="." method="clear_level"]
-[connection signal="pressed" from="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/DeletionWarning" method="hide"]
-[connection signal="pressed" from="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer/Button2" to="CanvasLayer/DeletionWarning" method="hide"]
-[connection signal="mouse_entered" from="CanvasLayer/AutosavesWarning" to="." method="on_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/AutosavesWarning" to="." method="on_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/AutosavesWarning/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/AutosavesWarning" method="hide"]
-[connection signal="pressed" from="CanvasLayer/AutosavesWarning/VBoxContainer/HBoxContainer/Button" to="AutoSaveHandler" method="delete_all_cache"]
-[connection signal="pressed" from="CanvasLayer/AutosavesWarning/VBoxContainer/HBoxContainer/Button3" to="CanvasLayer/AutosavesWarning" method="hide"]
-[connection signal="pressed" from="CanvasLayer/AutosavesWarning/VBoxContainer/HBoxContainer/Button3" to="AutoSaveHandler" method="delete_level_cache"]
-[connection signal="pressed" from="CanvasLayer/AutosavesWarning/VBoxContainer/Button2" to="CanvasLayer/AutosavesWarning" method="hide"]
 [connection signal="pressed" from="TileMenu/MarginContainer/VBoxContainer/TabButtons/Bindings" to="." method="open_bindings_menu"]
 [connection signal="pressed" from="TileMenu/MarginContainer/VBoxContainer/TabButtons/Save" to="." method="open_save_dialog"]
 [connection signal="pressed" from="TileMenu/MarginContainer/VBoxContainer/TabButtons/Exit" to="." method="quit_editor"]
@@ -7574,7 +7596,7 @@ one_shot = true
 [connection signal="toggled" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/LEVEL/ScrollContainer/VBoxContainer/HBoxContainer3/BackScroll" to="." method="backscroll_toggled"]
 [connection signal="value_changed" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/LEVEL/ScrollContainer/VBoxContainer/HBoxContainer4/HeightLimit" to="." method="height_limit_changed"]
 [connection signal="value_changed" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/LEVEL/ScrollContainer/VBoxContainer/HBoxContainer6/TimeLimit" to="." method="time_limit_changed"]
-[connection signal="toggled" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/LEVEL/ScrollContainer/VBoxContainer/HBoxContainer9/BackScroll" to="." method="res_enforce_changed"]
+[connection signal="toggled" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/LEVEL/ScrollContainer/VBoxContainer/HBoxContainer9/ScreenSize" to="." method="res_enforce_changed"]
 [connection signal="item_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/BG/ScrollContainer/VBoxContainer/HBoxContainer/PrimaryLayer" to="." method="set_bg_value" binds= ["primary_layer"]]
 [connection signal="item_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/BG/ScrollContainer/VBoxContainer/HBoxContainer2/SecondLayer" to="." method="set_bg_value" binds= ["second_layer"]]
 [connection signal="item_selected" from="TileMenu/MarginContainer/VBoxContainer/PanelContainer/BG/ScrollContainer/VBoxContainer/HBoxContainer7/SecondLayerOrder" to="." method="set_bg_value" binds= ["second_layer_order"]]
@@ -7591,6 +7613,9 @@ one_shot = true
 [connection signal="text_changed" from="Info/SaveLevelDialog/VBoxContainer/HBoxContainer3/Description" to="Info/SaveLevelDialog/VBoxContainer/HBoxContainer3/TextValidator" method="validate_text"]
 [connection signal="pressed" from="Info/SaveLevelDialog/VBoxContainer/HSplitContainer/Button2" to="." method="close_save_menu"]
 [connection signal="pressed" from="Info/SaveLevelDialog/VBoxContainer/HSplitContainer/Button" to="." method="save_level"]
+[connection signal="text_changed" from="Info/NameLevelDialog/VBoxContainer/HBoxContainer/StartLevelName" to="Info/NameLevelDialog/VBoxContainer/HBoxContainer/TextValidator" method="validate_text" unbinds=1]
+[connection signal="pressed" from="Info/NameLevelDialog/VBoxContainer/HSplitContainer/Button2" to="." method="close_name_dialog"]
+[connection signal="pressed" from="Info/NameLevelDialog/VBoxContainer/HSplitContainer/Button" to="." method="close_name_dialog" binds= [true]]
 [connection signal="hidden" from="Info/SaveBlueprint" to="." method="set_state"]
 [connection signal="pressed" from="Info/SaveBlueprint/VBoxContainer/HBoxContainer/Button" to="." method="save_blueprint"]
 [connection signal="pressed" from="Info/SaveBlueprint/VBoxContainer/HBoxContainer/Button" to="Info/SaveBlueprint" method="hide"]

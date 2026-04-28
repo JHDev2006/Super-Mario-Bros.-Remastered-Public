@@ -5,6 +5,8 @@ var editing_node: Node = null
 var properties := []
 var has_connection := false
 
+var mouse_inside := true
+
 var override_scenes := {}
 
 const VALUES := {
@@ -35,11 +37,18 @@ var can_exit := true:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("mb_left"): left_click_release.emit()
-	if active and (Global.multibind_action_just_pressed("ui_back") or Global.multibind_action_just_pressed("editor_open_menu")):
-		if can_exit:
-			close()
-		else:
-			pass
+	if active:
+		if Global.multibind_action_just_pressed("ui_back") or Global.multibind_action_just_pressed("editor_open_menu"):
+			if can_exit:
+				close()
+			else:
+				pass
+		await get_tree().process_frame
+		if Input.is_action_just_pressed("mb_left") && !mouse_inside:
+			if can_exit:
+				close()
+			else:
+				pass
 
 func open() -> void:
 	active = true
@@ -188,3 +197,11 @@ func do_animation(node: Node) -> void:
 		sparkle.global_position = node.get_meta("tile_position") * 16
 		add_sibling(sparkle)
 		sparkle.animation_finished.connect(sparkle.queue_free)
+
+func is_mouse_inside(it_is := true) -> void:
+	var inside_check = get_global_rect().has_point(get_global_mouse_position())
+	if inside_check and not it_is:
+		it_is = true
+
+	print(str(it_is))
+	mouse_inside = it_is

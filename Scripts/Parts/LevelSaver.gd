@@ -44,10 +44,12 @@ func write_file(json := {}, lvl_file_name := "") -> void:
 	file.close()
 	print("Saved Level: " + Global.config_path.path_join("custom_levels/" + lvl_file_name))
 
-func write_temp_file(json := {}, lvl_file_name := "") -> void:
+func write_temp_file(json := {}, lvl_file_name := "", save_time := "") -> void:
 	var path = Global.config_path.path_join("custom_levels/autosaves")
 	for i in "<>:?!/":
 		lvl_file_name = lvl_file_name.replace(i, "")
+	
+	json.Info.get_or_add("SaveTime", save_time)
 	
 	if !DirAccess.dir_exists_absolute(path):
 		DirAccess.make_dir_absolute(path)

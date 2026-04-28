@@ -38,7 +38,7 @@ signal level_start
 
 var level: Level = null
 
-var selected_tile_index := 0
+static var selected_tile_index := 0
 
 var copied_tile = null
 var copied_tile_info = []
@@ -62,7 +62,6 @@ var copied_area := {}
 var area_to_save := {}
 
 signal close_confirm(save: bool)
-
 signal connection_node_found(new_node: Node)
 
 var current_connection_type := SignalExposer.ConnectType.SIGNAL
@@ -75,7 +74,6 @@ static var sub_areas: Array = [null, null, null, null, null]
 static var current_layer := 0
 
 const BLANK_FILE := {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
-
 static var level_file = {"Info": {}, "Levels": [{}, {}, {}, {}, {}]}
 
 @onready var tile_layer_nodes: Array[TileMapLayer] = [null, null, null, null, null]
@@ -86,7 +84,6 @@ var copied_tile_offset := Vector2.ZERO
 var copied_tile_source_id := -1
 var copied_tile_atlas_coors := Vector2i.ZERO
 var copied_tile_terrain_id := -1
-
 
 const CURSOR_ERASOR := preload("uid://d0j1my4kuapgb")
 const CURSOR_PEN = preload("uid://bt0brcjv0efmw")
@@ -113,10 +110,9 @@ var current_terrain_id := 0
 
 static var load_play := false
 
-signal tile_selected(tile_selector: EditorTileSelector)
-
 var tile_menu_open := false
 
+signal tile_selected(tile_selector: EditorTileSelector)
 signal editor_start
 
 var pasting_area := false
@@ -126,28 +122,26 @@ enum EditorState{IDLE, TILE_MENU, MODIFYING_TILE, SAVE_MENU, SELECTING_TILE_SCEN
 
 var current_state := EditorState.IDLE
 
+const BOUNDARY_CONNECT_TILE := Vector2i.ZERO
+
 static var play_pipe_transition := false
 static var play_door_transition := false
-
-const BOUNDARY_CONNECT_TILE := Vector2i.ZERO
 
 static var selecting_room := false
 static var recorded_trail := false
 
-static var last_camera_position := Vector2(-900, -900)
+static var last_camera_position := Vector2(-128, -88)
 static var saved_trail := []
 
 var undo_redo = UndoRedo.new()
 static var undo_history := {}
 static var redo_history := {}
 static var last_commit := -1
+static var first_open := true
+
 var commit_buffer := 0.0
 var holding_commit := false
-
-static var autosave_enabled := true
-static var autosave_min_timer := 5
-static var autosave_before_test := false
-static var autosave_on_editor_return := false
+var something_changed := false
 
 func _ready() -> void:
 	Global.level_editor = self
@@ -167,8 +161,11 @@ func _ready() -> void:
 		$%LevelMusic.add_item(tr(music_track_names[idx]).to_upper())
 		idx += 1
 	get_blueprints()
+	
 	load_level(sub_level_id)
 	await get_tree().process_frame
+	if (!LevelEditor.selecting_room):
+		recreate_undoredo()
 	Level.start_level_path = scene_file_path
 	var layer_idx := 0
 	for i in entity_layer_nodes:
@@ -181,22 +178,28 @@ func _ready() -> void:
 	%LevelName.text = level_name
 	%LevelAuthor.text = level_author
 	%Description.text = level_desc
-	if Settings.file.game.editor_seen_guide == false:
+	if Settings.file.editor.seen_guide == false:
 		open_bindings_menu()
-		Settings.file.game.editor_seen_guide = true
+		Settings.file.editor.seen_guide = true
 		Settings.save_settings()
-	if (!LevelEditor.selecting_room):
-		recreate_undoredo()
 	if (LevelEditor.selecting_room):
 		$TileMenu/MarginContainer/VBoxContainer/TabButtons/Level.tab_clicked()
 		LevelEditor.selecting_room = false
 		open_tile_menu()
-		last_camera_position = Vector2(-900, -900)
+		last_camera_position = Vector2(-128, -88)
 	if (LevelEditor.recorded_trail):
 		create_player_trail()
 		LevelEditor.recorded_trail = false
 	
+	selected_tile_index = wrap(selected_tile_index, 0, tile_list.size())
+	on_tile_selected(tile_list[selected_tile_index])
+	
 	%Camera.global_position = last_camera_position
+	handle_camera(0)
+	
+	if (first_open && level_name == ""):
+		open_name_dialog()
+		first_open = false
 
 var last_recorded_frame := Vector2.ZERO
 
@@ -231,6 +234,9 @@ func _physics_process(delta: float) -> void:
 			play_level()
 	handle_player_trail()
 	handle_layers()
+	
+	if current_state == EditorState.TILE_MENU && $TileMenu.visible:
+		handle_shortcuts()
 
 func handle_player_trail() -> void:
 	$PlayerTrail.modulate.a = int(current_state != EditorState.PLAYTESTING)
@@ -247,6 +253,12 @@ func handle_hud() -> void:
 	%Grid.modulate.a = int(not playing_level)
 	%Tools.visible = not playing_level
 
+func handle_shortcuts() -> void:
+	for i in 7:
+		if (Global.multibind_action_just_pressed("editor_open_section_" + str(i+1))):
+			$TileMenu/MarginContainer/VBoxContainer/TabButtons.get_child(i).focus_entered.emit()
+			$TileMenu/MarginContainer/VBoxContainer/TabButtons.get_child(i).emit_signal("pressed")
+
 func quit_editor() -> void:
 	%QuitDialog.show()
 
@@ -255,6 +267,7 @@ signal level_saved
 func open_tile_menu() -> void:
 	$TileMenu/MarginContainer/VBoxContainer/TabButtons.show()
 	$TileMenu.visible = true
+	pasting_area = false
 	current_state = EditorState.TILE_MENU
 	for i in get_tree().get_nodes_in_group("Selectors"):
 		i.disabled = false
@@ -277,9 +290,9 @@ func go_back_to_menu() -> void:
 	Global.transition_to_scene("res://Scenes/Levels/CustomLevelMenu.tscn")
 
 func open_bindings_menu() -> void:
+	current_state = EditorState.SAVE_MENU
 	%EditorGuide.show()
 	$TileMenu.hide()
-	current_state = EditorState.SAVE_MENU
 	await %EditorGuide.visibility_changed
 	current_state = EditorState.IDLE
 
@@ -295,20 +308,22 @@ func stop_testing() -> void:
 	current_state = EditorState.IDLE
 	cleanup()
 	
-	$AutoSaveHandler.handle_autosave(LevelEditor.autosave_on_editor_return)
-	
+	$AutoSaveHandler.handle_autosave(Settings.file.editor.autosave_on_return_to_editor)
 	return_to_editor.call_deferred()
 
 func cleanup() -> void:
-	Global.reset_values()
 	get_tree().paused = false
-	Global.p_switch_timer = 0
-	Global.cancel_score_tally()
+	
 	playing_level = !playing_level
 	play_pipe_transition = false
 	play_door_transition = false
+	
 	LevelPersistance.reset_states()
 	KeyItem.total_collected = 0
+	
+	Global.reset_values()
+	Global.p_switch_timer = 0
+	Global.cancel_score_tally()
 	Global.get_node("GameHUD").visible = playing_level
 	Global.p_switch_active = false
 	if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
@@ -324,15 +339,18 @@ func update_music() -> void:
 		level.music = null
 
 func play_level() -> void:
-	OffScreenDespawner.editor_testing_safety = true
-	clear_trail()
-	current_state = EditorState.PLAYTESTING
-	$TileMenu.hide()
+	save_current_level()
+	
+	%Camera.enabled = false
 	menu_open = false
+	current_state = EditorState.PLAYTESTING
+	AutosaveHandler.last_section_time = $AutoSaveHandler/AutoSaveTimer.time_left
+	
+	clear_trail()
 	update_music()
 	reset_values_for_play()
-	%Camera.enabled = false
-	save_current_level()
+	OffScreenDespawner.editor_testing_safety = true
+	$TileMenu.hide()
 	level.apply_resolution_enforcement()
 	level.inf_time_check()
 	level_start.emit()
@@ -541,20 +559,22 @@ func handle_tile_cursor() -> void:
 	Input.set_custom_mouse_cursor(target_mouse_icon)
 
 
-func paste_area(tile_position := Vector2i.ZERO, area := copied_area, layer_num := current_layer, bounds := pasting_bounds, save_action := true) -> void:
+func paste_area(tile_position := Vector2i.ZERO, area := copied_area, layer_num := current_layer, bounds := pasting_bounds, save_action := true, delete_old := true) -> void:
+	if (delete_old):
+		delete_old = !Input.is_action_pressed("quick_connect")
 	var corner = tile_position - Vector2i(bounds.size / 2)
 	var old_area = save_area(corner, corner, corner + Vector2i(bounds.size), layer_num)
-	replace_area(corner, current_layer, area, false)
+	replace_area(corner, current_layer, area, false, delete_old)
 	pasting_area = false
 	can_place = false
 	if save_action:
 		undo_redo.create_action("Paste Area")
-		undo_redo.add_do_method(paste_area.bind(tile_position, area.duplicate_deep(), layer_num, bounds, false))
+		undo_redo.add_do_method(paste_area.bind(tile_position, area.duplicate_deep(), layer_num, bounds, false, delete_old))
 		undo_redo.add_undo_method(replace_area.bind(corner, layer_num, old_area.duplicate_deep()))
 		undo_redo.commit_action(false)
 
 		var curIdx := undo_redo.get_current_action()
-		var redoDict := {"action": "Paste Area", "args": [tile_position, area.duplicate_deep(), layer_num, bounds, false]}
+		var redoDict := {"action": "Paste Area", "args": [tile_position, area.duplicate_deep(), layer_num, bounds, false, delete_old]}
 		redo_history.set(curIdx, redoDict)
 		var undoDict := {"action": "Paste Area", "args": [corner, layer_num, old_area.duplicate_deep()]}
 		undo_history.set(curIdx, undoDict)
@@ -689,21 +709,23 @@ func handle_multi_selecting(tile_position := Vector2i.ZERO) -> void:
 				multi_select_start()
 				multi_selecting = false
 
-func mass_place(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, select_end := Vector2i.ZERO, layer_num := current_layer, thing_to_place = null, info := [], save_action := true) -> void:
+func mass_place(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, select_end := Vector2i.ZERO, layer_num := current_layer, thing_to_place = null, info := [], save_action := true, delete_old := true) -> void:
+	if (delete_old):
+		delete_old = !Input.is_action_pressed("quick_connect")
 	var area = save_area(top_corner, select_start, select_end, layer_num)
 	var position := Vector2i.ZERO
 	for x in abs(select_end.x - select_start.x) + 1:
 		for y in abs(select_end.y - select_start.y) + 1:
 			position = top_corner + Vector2i(x, y)
-			place_tile(position, layer_num, thing_to_place, info, false)
+			place_tile(position, layer_num, thing_to_place, info, false, delete_old)
 	if save_action:
 		undo_redo.create_action("Mass Place")
-		undo_redo.add_do_method(mass_place.bind(top_corner, select_start, select_end, layer_num, thing_to_place, info, false))
+		undo_redo.add_do_method(mass_place.bind(top_corner, select_start, select_end, layer_num, thing_to_place, info, false, delete_old))
 		undo_redo.add_undo_method(replace_area.bind(top_corner, layer_num, area))
 		undo_redo.commit_action(false)
 		
 		var curIdx := undo_redo.get_current_action()
-		var redoDict := {"action": "Mass Place", "args": [top_corner, select_start, select_end, layer_num, thing_to_place, info, false]}
+		var redoDict := {"action": "Mass Place", "args": [top_corner, select_start, select_end, layer_num, thing_to_place, info, false, delete_old]}
 		redo_history.set(curIdx, redoDict)
 		var undoDict := {"action": "Mass Place", "args": [top_corner, layer_num, area]}
 		undo_history.set(curIdx, undoDict)
@@ -772,7 +794,9 @@ func copy_tile(tile_position := Vector2i.ZERO, layer_num := current_layer) -> vo
 	if copied_node != null:
 		copied_area = {}
 
-func replace_area(top_corner := Vector2i.ZERO, layer_num := current_layer, area := {}, delete_empty := true) -> void:
+func replace_area(top_corner := Vector2i.ZERO, layer_num := current_layer, area := {}, delete_empty := true, delete_old := true) -> void:
+	if (delete_old):
+		delete_old = !Input.is_action_pressed("quick_connect")
 	if delete_empty:
 		for i in area["Empty"].split("="):
 			var decode = i.split(",", false)
@@ -785,7 +809,7 @@ func replace_area(top_corner := Vector2i.ZERO, layer_num := current_layer, area 
 			var position = top_corner + Vector2i(int(decode[0]), int(decode[1]))
 			var source_id = int(decode[2])
 			var atlas_coords = Vector2i(int(decode[3]), int(decode[4]))
-			place_tile(position, layer_num, atlas_coords, [source_id], false)
+			place_tile(position, layer_num, atlas_coords, [source_id], false, delete_old)
 			BetterTerrain.update_terrain_cell(tile_layer_nodes[layer_num], position, true)
 	for i in area["Entities"].split("="):
 		var decode = i.split(",", false)
@@ -798,9 +822,9 @@ func replace_area(top_corner := Vector2i.ZERO, layer_num := current_layer, area 
 				for x in decode.size() - 3:
 					entity_string += decode[idx] + ","
 					idx += 1
-				place_tile(position, layer_num, entity_id, [entity_string], false)
+				place_tile(position, layer_num, entity_id, [entity_string], false, delete_old)
 			else:
-				place_tile(position, layer_num, entity_id, [], false)
+				place_tile(position, layer_num, entity_id, [], false, delete_old)
 	for i in area["Connections"].split("="):
 		var decode = i.split(",", false)
 		if decode.is_empty():
@@ -920,7 +944,7 @@ func reset_values_for_play() -> void:
 	Global.coins = 0
 	cleanup()
 
-func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile_to_place = null, info := [], save_action := true) -> void:
+func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile_to_place = null, info := [], save_action := true, delete_old := true) -> void:
 	$TileCursor/Previews.hide()
 	var old_tile = null
 	var old_tile_info = []
@@ -936,73 +960,81 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 		old_tile = tile_layer_nodes[layer_num].get_cell_atlas_coords(tile_position)
 		old_tile_info = [tile_layer_nodes[layer_num].get_cell_source_id(tile_position)]
 	
-	if tile_to_place is Vector2i:
-		var alt_tile := 0
-		if current_tile_flip.x != 0:
-			alt_tile += TileSetAtlasSource.TRANSFORM_FLIP_H
-		if current_tile_flip.y != 0:
-			alt_tile += TileSetAtlasSource.TRANSFORM_FLIP_V
-		var source = info[0]
-		var atlas = tile_to_place
-		if old_tile is Vector2i:
-			if old_tile == atlas and old_tile_info == info:
-				return
-		remove_tile(tile_position, layer_num, false)
-		check_connect_boundary_tiles(tile_position, layer_num)
-		tile_layer_nodes[layer_num].set_cell(tile_position, source, atlas, alt_tile)
-	elif tile_to_place is int:
-		var terrain_id = tile_to_place
-		if old_tile is int:
-			if old_tile == terrain_id:
-				return
-		remove_tile(tile_position, layer_num, false)
-		check_connect_boundary_tiles(tile_position, layer_num)
-		BetterTerrain.set_cell(tile_layer_nodes[layer_num], tile_position, terrain_id)
-	elif tile_to_place is String:
-		var node: Node = null
-		if old_tile != null and old_tile is Node:
-			if old_tile.get_meta("ID", "") == tile_to_place:
-				return 
-		remove_tile(tile_position, layer_num, false)
-		current_entity_scene = load(EntityIDMapper.map[tile_to_place][0])
-		node = current_entity_scene.instantiate()
-		if node.has_node("AmountLimiter"):
-			if node.get_node("AmountLimiter").run_check(get_tree()):
-				node.queue_free()
-				Global.log_error("Only one of these is allowed in a room at a time!", false)
-				return
-		var spawn_offset := Vector2i.ZERO
-		var split = EntityIDMapper.map[tile_to_place][1].split(",")
-		spawn_offset = Vector2i(int(split[0]), int(split[1]))
-		node.global_position = (tile_position * 16) + (Vector2i(8, 8) + spawn_offset)
-		node.set_meta("tile_position", tile_position)
-		node.set_meta("ID", tile_to_place)
-		node.set_meta("layer", layer_num)
-		node.set_meta("tile_offset", spawn_offset)
-		entity_layer_nodes[layer_num].add_child(node)
-		node.reset_physics_interpolation()
-		entity_tiles[layer_num].set(tile_position, node)
-		if info.is_empty() == false and node.has_node("EditorPropertyExposer"):
-			node.get_node("EditorPropertyExposer").apply_string(info[0])
-	elif tile_to_place is Node:
-		tile_to_place = tile_to_place.duplicate()
-		var spawn_offset := Vector2i.ZERO
-		tile_to_place.set_meta("tile_position", tile_position)
-		tile_to_place.set_meta("layer", layer_num)
-		if info.size() > 0:
-			spawn_offset = info[0]
-		tile_to_place.global_position = (tile_position * 16) + (Vector2i(8, 8) + spawn_offset)
-		if entity_tiles[layer_num].get(tile_position) != null:
-			var overlapping_tile = entity_tiles[layer_num][tile_position]
-			if overlapping_tile.get_meta("ID", "") == tile_to_place.get_meta("ID", ""):
-				return
-		remove_tile(tile_position, layer_num, save_action)
-		entity_layer_nodes[layer_num].add_child(tile_to_place)
-		entity_tiles[layer_num].set(tile_position, tile_to_place)
+	var replace := true
+	if (Input.is_action_pressed("quick_connect") || !delete_old) && old_tile != null:
+		print("Found %s but can't replace because of space." % str(old_tile))
+		replace = false
+	
+	if replace:
+		if tile_to_place is Vector2i:
+			var alt_tile := 0
+			if current_tile_flip.x != 0:
+				alt_tile += TileSetAtlasSource.TRANSFORM_FLIP_H
+			if current_tile_flip.y != 0:
+				alt_tile += TileSetAtlasSource.TRANSFORM_FLIP_V
+			var source = info[0]
+			var atlas = tile_to_place
+			if old_tile is Vector2i:
+				if old_tile == atlas and old_tile_info == info:
+					return
+			remove_tile(tile_position, layer_num, false)
+			check_connect_boundary_tiles(tile_position, layer_num)
+			tile_layer_nodes[layer_num].set_cell(tile_position, source, atlas, alt_tile)
+		elif tile_to_place is int:
+			var terrain_id = tile_to_place
+			if old_tile is int:
+				if old_tile == terrain_id:
+					return
+			remove_tile(tile_position, layer_num, false)
+			check_connect_boundary_tiles(tile_position, layer_num)
+			BetterTerrain.set_cell(tile_layer_nodes[layer_num], tile_position, terrain_id)
+		elif tile_to_place is String:
+			var node: Node = null
+			if old_tile != null and old_tile is Node:
+				if old_tile.get_meta("ID", "") == tile_to_place:
+					return 
+			remove_tile(tile_position, layer_num, false)
+			current_entity_scene = load(EntityIDMapper.map[tile_to_place][0])
+			node = current_entity_scene.instantiate()
+			if node.has_node("AmountLimiter"):
+				if node.get_node("AmountLimiter").run_check(get_tree()):
+					node.queue_free()
+					Global.log_error("Only one of these is allowed in a room at a time!", false)
+					return
+			var spawn_offset := Vector2i.ZERO
+			var split = EntityIDMapper.map[tile_to_place][1].split(",")
+			spawn_offset = Vector2i(int(split[0]), int(split[1]))
+			node.global_position = (tile_position * 16) + (Vector2i(8, 8) + spawn_offset)
+			node.set_meta("tile_position", tile_position)
+			node.set_meta("ID", tile_to_place)
+			node.set_meta("layer", layer_num)
+			node.set_meta("tile_offset", spawn_offset)
+			entity_layer_nodes[layer_num].add_child(node)
+			node.reset_physics_interpolation()
+			entity_tiles[layer_num].set(tile_position, node)
+			if info.is_empty() == false and node.has_node("EditorPropertyExposer"):
+				node.get_node("EditorPropertyExposer").apply_string(info[0])
+		elif tile_to_place is Node:
+			tile_to_place = tile_to_place.duplicate()
+			var spawn_offset := Vector2i.ZERO
+			tile_to_place.set_meta("tile_position", tile_position)
+			tile_to_place.set_meta("layer", layer_num)
+			if info.size() > 0:
+				spawn_offset = info[0]
+			tile_to_place.global_position = (tile_position * 16) + (Vector2i(8, 8) + spawn_offset)
+			if entity_tiles[layer_num].get(tile_position) != null:
+				var overlapping_tile = entity_tiles[layer_num][tile_position]
+				if overlapping_tile.get_meta("ID", "") == tile_to_place.get_meta("ID", ""):
+					return
+			remove_tile(tile_position, layer_num, save_action)
+			entity_layer_nodes[layer_num].add_child(tile_to_place)
+			entity_tiles[layer_num].set(tile_position, tile_to_place)
 	
 	if save_action:
+		var redo_tile = tile_to_place if replace else old_tile
+		var redo_info = info if replace else old_tile_info
 		undo_redo.create_action("Place Tile")
-		undo_redo.add_do_method(place_tile.bind(tile_position, layer_num, tile_to_place, info, false))
+		undo_redo.add_do_method(place_tile.bind(tile_position, layer_num, redo_tile, redo_info, false))
 		if old_tile == null:
 			undo_redo.add_undo_method(remove_tile.bind(tile_position, layer_num, false))
 		else:
@@ -1010,7 +1042,7 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 		undo_redo.commit_action(false)
 		
 		var curIdx := undo_redo.get_current_action()
-		var redoDict := {"action": "Place Tile", "args": [tile_position, layer_num, tile_to_place, info, false]}
+		var redoDict := {"action": "Place Tile", "args": [tile_position, layer_num, redo_tile, redo_info, false]}
 		redo_history.set(curIdx, redoDict)
 		if old_tile == null:
 			var undoDict := {"action": "Place Tile(null)", "args": [tile_position, layer_num, false]}
@@ -1020,6 +1052,7 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 			undo_history.set(curIdx, undoDict)
 
 	BetterTerrain.update_terrain_cell(tile_layer_nodes[layer_num], tile_position, true)
+	something_changed = true
 
 func check_connect_boundary_tiles(tile_position := Vector2i.ZERO, layer := 0) -> void:
 	if tile_position.y > 0:
@@ -1062,7 +1095,8 @@ func remove_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, sav
 		redo_history.set(curIdx, redoDict)
 		var undoDict := {"action": "Remove Tile", "args": [tile_position, layer_num, old_tile, info, false]}
 		undo_history.set(curIdx, undoDict)
-		
+	
+	something_changed = true
 	return old_tile != null
 
 func global_position_to_tile_position(position := Vector2.ZERO) -> Vector2i:
@@ -1230,6 +1264,7 @@ func update_menu_values() -> void:
 	%HeightLimit.value = abs(level.vertical_height)
 	%TimeLimit.value = level.time_limit
 	%SubLevelID.selected = sub_level_id
+	%ScreenSize.set_pressed_no_signal(level.enforce_resolution != Vector2.ZERO)
 	
 	var level_bg: LevelBG = level.get_node("LevelBG")
 	%SecondLayerOrder.selected = level_bg.second_layer_order
@@ -1239,10 +1274,10 @@ func update_menu_values() -> void:
 	%LiquidLayer.selected = level_bg.liquid_layer
 	%OverlayClouds.set_pressed_no_signal(level_bg.overlay_clouds)
 	
-	%AutoSaveTimer.value = autosave_min_timer
-	%AutoSaveEnable.set_pressed_no_signal(autosave_enabled)
-	%AutoSaveBeforeTest.set_pressed_no_signal(autosave_before_test)
-	%AutoSaveEditorReturn.set_pressed_no_signal(autosave_on_editor_return)
+	%AutoSaveTimer.value = Settings.file.editor.autosave_min_timer
+	%AutoSaveEnable.set_pressed_no_signal(Settings.file.editor.autosave_enabled)
+	%AutoSaveBeforeTest.set_pressed_no_signal(Settings.file.editor.autosave_before_test)
+	%AutoSaveEditorReturn.set_pressed_no_signal(Settings.file.editor.autosave_on_return_to_editor)
 
 func set_bg_value(value := 0, value_name := "") -> void:
 	level.get_node("LevelBG").set(value_name, value)
@@ -1311,10 +1346,10 @@ func recreate_undoredo() -> void:
 				undo_redo.add_undo_method(place_tile.bindv(undoArgs))
 		
 		undo_redo.commit_action(i > last_commit)
-	await get_tree().process_frame
-	
 	for i in undo_redo.get_current_action() - last_commit:
 		undo()
+	
+	something_changed = false
 
 func clear_undoredo() -> void:
 	last_commit = -1
@@ -1420,6 +1455,21 @@ func deletion_warning_toggle() -> void:
 	current_state = EditorState.SAVE_MENU if ($CanvasLayer/DeletionWarning.visible) else EditorState.IDLE
 
 func autosave_menu_toggle() -> void:
-	if $CanvasLayer/AutosavesWarning.visible: return
 	$CanvasLayer/AutoSaveMenu.visible = !$CanvasLayer/AutoSaveMenu.visible
 	current_state = EditorState.SAVE_MENU if ($CanvasLayer/AutoSaveMenu.visible) else EditorState.IDLE
+
+func open_name_dialog() -> void:
+	current_state = EditorState.SAVE_MENU
+	can_move_cam = false
+	%NameLevelDialog.show()
+	menu_open = true
+	
+func close_name_dialog(give_name: bool = false) -> void:
+	if (give_name):
+		level_name = %StartLevelName.text
+		%LevelName.text = level_name
+	
+	current_state = EditorState.IDLE
+	can_move_cam = true
+	%NameLevelDialog.hide()
+	menu_open = false

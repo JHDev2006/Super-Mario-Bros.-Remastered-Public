@@ -157,6 +157,10 @@ func connect_to_node(node_to_recieve := [], animate := true) -> void:
 	has_output = true
 	var node: Node = get_node_from_tile(node_to_recieve[0], node_to_recieve[1])
 	node.tree_exiting.connect(remove_node_connection.bind(node_to_recieve))
+	if (Input.is_action_pressed("shift")):
+		connections.erase(node_to_recieve)
+		signal_connected.emit()
+		return
 	if connections.has(node_to_recieve) == false:
 		connections.append(node_to_recieve.duplicate())
 	if connect_type == ConnectType.SIGNAL:

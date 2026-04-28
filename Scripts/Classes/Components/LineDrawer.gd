@@ -29,7 +29,7 @@ func _draw() -> void:
 		hide()
 		return
 	if signal_exposer.editing:
-		draw_square_line(Vector2.ZERO, (get_local_mouse_position() + Vector2(0, 0)).snapped(Vector2(16, 16)) + Vector2(0, 0), WIRE_COLOURS[signal_exposer.connections.size() % WIRE_COLOURS.size()])
+		draw_square_line(Vector2.ZERO, (get_local_mouse_position() + Vector2(0, 0)).snapped(Vector2(16, 16)) + Vector2(0, 0), WIRE_COLOURS[signal_exposer.connections.size() % WIRE_COLOURS.size()], false, false, true)
 	var idx := 0
 	for x in signal_exposer.connections:
 		var target_position = to_local(x[1] * 16)
@@ -38,7 +38,7 @@ func _draw() -> void:
 			draw_square_line(Vector2.ZERO, target_position + Vector2(8, 8), WIRE_COLOURS[idx % (WIRE_COLOURS.size())], not signal_exposer.turned_on, true)
 		idx += 1
 
-func draw_square_line(from := Vector2.ZERO, to := Vector2.ZERO, colour := Color.RED, dashed := false, offset := false) -> void:
+func draw_square_line(from := Vector2.ZERO, to := Vector2.ZERO, colour := Color.RED, dashed := false, offset := false, connecting := false) -> void:
 	var dist_x = abs(from.x - to.x)
 	var dist_y = abs(from.y - to.y)
 	var line_function = draw_line
@@ -54,7 +54,7 @@ func draw_square_line(from := Vector2.ZERO, to := Vector2.ZERO, colour := Color.
 		if dashed and dist_x == dist_y:
 			width = 2
 		line_function.call(from, to, colour, width)
-		draw_arrow_head(from, to, colour)
+		draw_arrow_head(from, to, colour, false, connecting)
 	elif dist_x < dist_y:
 		var first_point = Vector2(from.x, to.y)
 		from += (first_point - from).normalized() * 8
@@ -62,7 +62,7 @@ func draw_square_line(from := Vector2.ZERO, to := Vector2.ZERO, colour := Color.
 		if offset:
 			to += (first_point - to).normalized() * 9
 		line_function.call(first_point, to, colour, 1)
-		draw_arrow_head(first_point, to, colour)
+		draw_arrow_head(first_point, to, colour, false, connecting)
 	elif dist_x > dist_y:
 		var first_point = Vector2(to.x, from.y)
 		from += (first_point - from).normalized() * 8
@@ -70,18 +70,40 @@ func draw_square_line(from := Vector2.ZERO, to := Vector2.ZERO, colour := Color.
 		if offset:
 			to += (first_point - to).normalized() * 8
 		line_function.call(first_point, to, colour, 1)
-		draw_arrow_head(first_point, to, colour)
+		draw_arrow_head(first_point, to, colour, false, connecting)
 
-func draw_arrow_head(from := Vector2.ZERO, point := Vector2.ZERO, color := Color.RED, offset := false) -> void:
-	var direction = (point - from).normalized()
-	if offset:
-		point -= direction * 1
+func draw_arrow_head(from := Vector2.ZERO, point := Vector2.ZERO, color := Color.RED, offset := false, connecting := false) -> void:
+	if (connecting && Input.is_action_pressed("shift") && signal_exposer.editing):
+		var direction = (point - from).normalized()
+		
+		# Puts at the point of the line
+		if offset:
+			point -= direction * 1
+		else:
+			point -= direction * 3
+			
+		var head_left = (direction * 4).rotated(deg_to_rad(-45)) + direction
+		var head = (direction * 2)
+		var head_right = (direction * 4).rotated(deg_to_rad(45)) + direction
+		var body = (-direction * 3) + direction
+		
+		# Puts in place
+		head_left += point + direction
+		head += point + direction
+		head_right += point + direction
+		body += point + direction
+		
+		draw_polygon([head_left, head, head_right, body], [color, color, color, color])
 	else:
-		point -= direction * 3
-	var head = (direction * 2)
-	var left_point = (-direction * 4).rotated(deg_to_rad(-45)) + direction
-	var right_point = (-direction * 4).rotated(deg_to_rad(45)) + direction
-	head += point + direction
-	left_point += point + direction
-	right_point += point + direction
-	draw_polygon([head, left_point, right_point], [color, color, color])
+		var direction = (point - from).normalized()
+		if offset:
+			point -= direction * 1
+		else:
+			point -= direction * 3
+		var head = (direction * 2)
+		var left_point = (-direction * 4).rotated(deg_to_rad(-45)) + direction
+		var right_point = (-direction * 4).rotated(deg_to_rad(45)) + direction
+		head += point + direction
+		left_point += point + direction
+		right_point += point + direction
+		draw_polygon([head, left_point, right_point], [color, color, color])
