@@ -17,6 +17,8 @@ signal stopped
 
 var can_grow := false
 
+var finished := false
+
 @export_range(2, 16) var length := 3.0
 
 func _ready() -> void:
@@ -80,9 +82,11 @@ func _physics_process(delta: float) -> void:
 			stopped.emit()
 			can_grow = false
 			can_tele = false
+			finished = true
 			return
 	elif can_stop:
 		can_stop = false
+		finished = true
 		stopped.emit()
 		if (Level.vine_warp_level != "" or CoinHeavenWarpPoint.subarea_to_warp_to != -1) and not cutscene:
 			can_tele = true
