@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="6_xyquv"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="7_rmaq1"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="8_m5wu6"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="9_a5hn1"]
 
 [sub_resource type="GDScript" id="GDScript_rmaq1"]
 script/source = "extends Node2D
@@ -103,3 +104,7 @@ metadata/_custom_type_script = "uid://bbww34oiexbx2"
 script = ExtResource("8_m5wu6")
 hitbox = NodePath("../PlayerDetection")
 metadata/_custom_type_script = "uid://chj8hu207lrh"
+
+[node name="BlockBouncingDetection" type="Node" parent="." unique_id=1261854335]
+script = ExtResource("9_a5hn1")
+metadata/_custom_type_script = "uid://cmg61722ktg2m"
