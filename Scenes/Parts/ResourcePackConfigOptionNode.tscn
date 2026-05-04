@@ -13,6 +13,7 @@ region = Rect2(0, 0, 8, 8)
 [node name="PackOptionNode" type="HBoxContainer" unique_id=1097351080]
 offset_right = 253.0
 offset_bottom = 8.0
+focus_mode = 2
 theme_override_constants/separation = 0
 script = ExtResource("1_dgc7v")
 
