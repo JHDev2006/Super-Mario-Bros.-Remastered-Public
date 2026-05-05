@@ -86,7 +86,8 @@ func _physics_process(delta: float) -> void:
 			return
 	elif can_stop:
 		can_stop = false
-		finished = true
+		if can_grow:
+			finished = true
 		stopped.emit()
 		if (Level.vine_warp_level != "" or CoinHeavenWarpPoint.subarea_to_warp_to != -1) and not cutscene:
 			can_tele = true
