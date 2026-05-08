@@ -336,7 +336,7 @@ values = ["VIDEO_MODE_WINDOWED", "VIDEO_MODE_BORDERLESS", "VIDEO_MODE_FULLSCREEN
 layout_mode = 2
 option_key = "size"
 title = "VIDEO_SIZE"
-values = ["NES", "Special", "16:9", "Unlocked"]
+values = ["VIDEO_ASPECT_NES", "VIDEO_ASPECT_SP", "VIDEO_ASPECT_WIDESCREEN", "VIDEO_ASPECT_UNLOCKED"]
 selected = true
 
 [node name="Visuals" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=295796466 groups=["Options"] instance=ExtResource("3_dl6kk")]
