@@ -225,7 +225,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LevelIcon" type="NinePatchRect" parent="BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf" unique_id=361124988]
+[node name="LevelIcon" type="NinePatchRect" parent="BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf" unique_id=1282025139]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -233,6 +233,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("10_psbt7")
 region_rect = Rect2(64, 96, 32, 32)
+script = ExtResource("4_rx7vd")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="LevelInfo" type="VBoxContainer" parent="BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf" unique_id=1168959976]
 layout_mode = 2
@@ -463,7 +465,7 @@ layout_mode = 2
 focus_mode = 0
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="0" unique_id=1149291090]
-scroll_horizontal = 202
+scroll_horizontal = 223
 is_active = true
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="1" unique_id=1538947480]
@@ -709,7 +711,7 @@ layout_mode = 2
 focus_mode = 0
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(561241708, 788084636) index="0" unique_id=339759982]
-scroll_horizontal = 29
+scroll_horizontal = 14
 is_active = true
 auto_connect_focus = false
 
