@@ -1,7 +1,6 @@
 extends Enemy
 
 const MOVE_SPEED := 30
-const BARREL_DESTRUCTION_PARTICLE = preload("res://Scenes/Prefabs/Particles/BarrelDestructionParticle.tscn")
 func _physics_process(delta: float) -> void:
 	handle_movement(delta)
 
@@ -20,7 +19,7 @@ func die_from_hammer(_node: Node2D) -> void:
 	destroy()
 
 func summon_particle() -> void:
-	var node = BARREL_DESTRUCTION_PARTICLE.instantiate()
+	var node = load("res://Scenes/Prefabs/Particles/BarrelDestructionParticle.tscn").instantiate()
 	node.global_position = global_position - Vector2(0, 8)
 	add_sibling(node)
 
