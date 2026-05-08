@@ -135,8 +135,10 @@ func apply_resolution_enforcement() -> void:
 		reset_resolution()
 
 func reset_resolution() -> void:
-	get_tree().root.content_scale_size = Vector2(256, 240)
-	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND if Settings.file.video.size == 1 else Window.CONTENT_SCALE_ASPECT_KEEP
+	var idx = Settings.file.video.size
+	var res = Global.RESOLUTIONS[idx]
+	get_tree().root.content_scale_size = res
+	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND if idx == Global.RESOLUTIONS.size() - 1 else Window.CONTENT_SCALE_ASPECT_KEEP
 
 func spawn_in_extra_players() -> void:
 	# Fuck you lmao, no multiplayer

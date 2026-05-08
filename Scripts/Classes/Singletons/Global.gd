@@ -76,6 +76,7 @@ var total_deaths := 0
 var portable_mode := false
 var checked_portable := false
 
+const RESOLUTIONS := [Vector2(256, 240), Vector2(380, 240), Vector2(426, 240), Vector2(256, 240)]
 
 var score := 0:
 	set(value):
