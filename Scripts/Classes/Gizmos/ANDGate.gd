@@ -14,9 +14,16 @@ var condition_filled := false
 
 var checking := false
 
+var freeze_grab := 1024
+
 func _ready() -> void:
 	if Global.level_editor_is_editing() == false:
 		update.call_deferred()
+
+func _process(delta: float) -> void:
+	if (freeze_grab < 1024):
+		await get_tree().process_frame
+		freeze_grab = 1024
 
 func input_added() -> void:
 	total_inputs += 1
@@ -25,9 +32,13 @@ func input_added() -> void:
 func update() -> void:
 	total_inputs = clamp(total_inputs, 0, $SignalExposer.total_inputs)
 	var test_condition = get_condition()
-	print([total_inputs, $SignalExposer.total_inputs, ["AND", "OR", "NOT", "XOR"][type]])
 	if test_condition != condition_filled:
 		if test_condition == true:
+			freeze_grab -= 1
+			if (freeze_grab <= 0):
+				await get_tree().process_frame
+				$SignalExposer.explode()
+				return
 			condition_met.emit()
 		else:
 			condition_lost.emit()
