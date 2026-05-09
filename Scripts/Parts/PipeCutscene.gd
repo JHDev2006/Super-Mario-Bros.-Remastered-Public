@@ -10,7 +10,6 @@ func _enter_tree() -> void:
 		theme_time = "Night"
 	else:
 		theme_time = "Day"
-	Global.current_room = get_room_type()
 	Global.level_theme = theme
 	Global.theme_time = theme_time
 
@@ -29,6 +28,3 @@ func go_to_level() -> void:
 
 func play_pipe_sfx() -> void:
 	AudioManager.play_sfx("pipe", $Player1.global_position)
-
-func get_room_type() -> Global.Room:
-	return Global.Room.PIPE_CUTSCENE

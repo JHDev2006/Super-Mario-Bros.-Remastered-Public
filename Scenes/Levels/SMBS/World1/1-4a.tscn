@@ -13,6 +13,7 @@
 [node name="Level" type="Node" unique_id=681353584]
 script = ExtResource("1_pk8df")
 music = ExtResource("2_7eway")
+room_type = 1
 theme = "Underground"
 campaign = "SMBS"
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"

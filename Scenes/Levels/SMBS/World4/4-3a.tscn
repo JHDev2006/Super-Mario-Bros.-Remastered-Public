@@ -13,6 +13,7 @@
 [node name="Level" type="Node" unique_id=693550174]
 script = ExtResource("1_1y2g0")
 music = ExtResource("2_5ym04")
+room_type = 2
 campaign = "SMBS"
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
 [node name="LevelBG" parent="." unique_id=737387911 instance=ExtResource("3_cp5jp")]
