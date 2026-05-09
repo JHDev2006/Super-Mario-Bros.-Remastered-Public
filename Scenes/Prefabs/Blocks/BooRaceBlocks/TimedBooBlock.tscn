@@ -146,6 +146,7 @@ destructable = false
 metadata/_custom_type_script = "uid://b5ejlbl0vp1gm"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1611616935]
+process_mode = 3
 sprite_frames = SubResource("SpriteFrames_7ajl0")
 animation = &"Off3"
 autoplay = "Off3"
@@ -165,12 +166,12 @@ visible = false
 shape = SubResource("RectangleShape2D_ce8wa")
 
 [node name="Timer" type="Timer" parent="." unique_id=901214225]
+process_mode = 1
 
 [node name="BlockAnimations" parent="." unique_id=1569117138 instance=ExtResource("4_tgrgf")]
 
-[node name="OnOffSwitcher" type="Node" parent="." unique_id=1166051288 node_paths=PackedStringArray("sprite")]
+[node name="OnOffSwitcher" type="Node" parent="." unique_id=1166051288]
 script = ExtResource("7_megl7")
-sprite = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://q45b31h6356r"
 
 [connection signal="player_block_hit" from="." to="." method="on_block_hit" unbinds=1]
