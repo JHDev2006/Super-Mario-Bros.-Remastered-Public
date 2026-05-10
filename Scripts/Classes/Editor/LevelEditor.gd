@@ -527,6 +527,7 @@ func handle_tile_cursor() -> void:
 	if current_state == EditorState.CONNECTING:
 		if Global.multibind_action_just_pressed("mb_left"):
 			if entity_tiles[current_layer].has(tile_position):
+				if (entity_tiles[current_layer][tile_position] == null): return
 				if entity_tiles[current_layer][tile_position] == current_connecting_node:
 					return
 				if entity_tiles[current_layer][tile_position].get_node_or_null("SignalExposer") != null:
