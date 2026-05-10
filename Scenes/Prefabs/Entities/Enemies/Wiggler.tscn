@@ -91,6 +91,16 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_volwr"]
+script/source = "extends Node
+
+@export var parts: Array[Node2D] = []
+
+func _process(delta: float) -> void:
+	for i in parts:
+		i.modulate = owner.get_parent().modulate
+"
+
 [node name="Wiggler" type="CharacterBody2D" unique_id=601622491 node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
 collision_layer = 16
 collision_mask = 18
@@ -163,32 +173,58 @@ metadata/_custom_type_script = "uid://5octqlf4ohel"
 script = ExtResource("10_volwr")
 metadata/_custom_type_script = "uid://maqpreddu5kg"
 
+[node name="Node" type="Node" parent="." unique_id=1056981878 node_paths=PackedStringArray("parts")]
+process_mode = 3
+script = SubResource("GDScript_volwr")
+parts = [NodePath("../Parts/Body4"), NodePath("../Parts/Body3"), NodePath("../Parts/Body2"), NodePath("../Parts/Body1"), NodePath("../Parts/Head")]
+
 [connection signal="killed" from="." to="LevelPersistance" method="set_as_active"]
+[connection signal="killed" from="." to="." method="do_death_animation" unbinds=1]
 [connection signal="moving_shell_entered" from="Parts/Body4/ShellDetection" to="." method="die_from_object"]
 [connection signal="hammer_player_hit" from="Parts/Body4/EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="hammer_player_hit" from="Parts/Body4/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="invincible_player_hit" from="Parts/Body4/EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="Parts/Body4/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="player_hit" from="Parts/Body4/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="Parts/Body4/EnemyPlayerDetection" to="." method="player_stomped_on"]
+[connection signal="block_bounced" from="Parts/Body4/BlockBouncingDetection" to="." method="die_from_object"]
+[connection signal="block_bounced" from="Parts/Body4/BlockBouncingDetection" to="ScoreNoteSpawner" method="on_block_bounced" binds= [1000]]
 [connection signal="moving_shell_entered" from="Parts/Body3/ShellDetection" to="." method="die_from_object"]
 [connection signal="hammer_player_hit" from="Parts/Body3/EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="hammer_player_hit" from="Parts/Body3/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="invincible_player_hit" from="Parts/Body3/EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="Parts/Body3/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="player_hit" from="Parts/Body3/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="Parts/Body3/EnemyPlayerDetection" to="." method="player_stomped_on"]
+[connection signal="block_bounced" from="Parts/Body3/BlockBouncingDetection" to="." method="die_from_object"]
+[connection signal="block_bounced" from="Parts/Body3/BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="moving_shell_entered" from="Parts/Body2/ShellDetection" to="." method="die_from_object"]
 [connection signal="hammer_player_hit" from="Parts/Body2/EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="hammer_player_hit" from="Parts/Body2/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="invincible_player_hit" from="Parts/Body2/EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="Parts/Body2/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="player_hit" from="Parts/Body2/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="Parts/Body2/EnemyPlayerDetection" to="." method="player_stomped_on"]
+[connection signal="block_bounced" from="Parts/Body2/BlockBouncingDetection" to="." method="die_from_object"]
+[connection signal="block_bounced" from="Parts/Body2/BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="moving_shell_entered" from="Parts/Body1/ShellDetection" to="." method="die_from_object"]
 [connection signal="hammer_player_hit" from="Parts/Body1/EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="hammer_player_hit" from="Parts/Body1/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="invincible_player_hit" from="Parts/Body1/EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="Parts/Body1/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="player_hit" from="Parts/Body1/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="Parts/Body1/EnemyPlayerDetection" to="." method="player_stomped_on"]
+[connection signal="block_bounced" from="Parts/Body1/BlockBouncingDetection" to="." method="die_from_object"]
+[connection signal="block_bounced" from="Parts/Body1/BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="moving_shell_entered" from="Parts/Head/ShellDetection" to="." method="die_from_object"]
 [connection signal="hammer_player_hit" from="Parts/Head/EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="hammer_player_hit" from="Parts/Head/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="invincible_player_hit" from="Parts/Head/EnemyPlayerDetection" to="." method="die_from_object"]
+[connection signal="invincible_player_hit" from="Parts/Head/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="player_hit" from="Parts/Head/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="Parts/Head/EnemyPlayerDetection" to="." method="player_stomped_on"]
+[connection signal="block_bounced" from="Parts/Head/BlockBouncingDetection" to="." method="die_from_object"]
+[connection signal="block_bounced" from="Parts/Head/BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="timeout" from="Timer" to="BasicEnemyMovement" method="player_direction_check"]
 [connection signal="enabled" from="LevelPersistance" to="." method="queue_free"]
 

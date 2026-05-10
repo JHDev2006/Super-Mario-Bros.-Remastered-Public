@@ -15,6 +15,8 @@ var angry := false
 
 var can_move := true
 
+var dead := false
+
 func _ready() -> void:
 	for i in parts:
 		i.global_position = global_position
@@ -24,6 +26,9 @@ func _physics_process(delta: float) -> void:
 	if can_move:
 		handle_part_movement(delta)
 		$BasicEnemyMovement.handle_movement(delta)
+	elif dead:
+		handle_part_movement(delta)
+		handle_dying_state(delta)
 
 func handle_part_wave(delta: float) -> void:
 	wave += WAVE_SPEED * delta
@@ -44,6 +49,14 @@ func handle_part_movement(_delta: float) -> void:
 		idx += 1
 	if positions.size() > parts.size() * PART_SEPERATION:
 		positions.pop_back()
+
+
+func die_from_object(obj: Node2D) -> void:
+	var dir = sign(global_position.x - obj.global_position.x)
+	if dir == 0:
+		dir = [-1, 1].pick_random()
+	DiscoLevel.combo_amount += 1
+	killed.emit(dir)
 
 func player_stomped_on(player: Player) -> void:
 	player.enemy_bounce_off(not angry, not angry)
@@ -66,6 +79,24 @@ func make_angry() -> void:
 	$BasicEnemyMovement.move_speed *= 2
 	PART_SEPERATION /= 2
 
+func do_death_animation() -> void:
+	AudioManager.play_sfx("kick", global_position)
+	dead = true
+	can_move = false
+	$Collision.queue_free()
+	$VisibleOnScreenEnabler2D.queue_free()
+	for i in parts:
+		i.get_node("PlayerDetection").queue_free()
+	velocity.x = 0
+	velocity.y = -250
+	await get_tree().create_timer(5, false).timeout
+	queue_free()
+
 func part_scale_tween(part: Node2D) -> void:
 	part.get_node("Sprite").scale = Vector2(1.5, 1.5)
 	create_tween().tween_property(part.get_node("Sprite"), "scale", Vector2.ONE, 0.1)
+
+func handle_dying_state(delta) -> void:
+	apply_enemy_gravity(delta)
+	move_and_slide()
+	

@@ -28,8 +28,8 @@ const CAMPAIGN_RECTS := {
 }
 
 const ICON_TEXTURES := [
-	preload("uid://chtjq1vr0rpso"),
-	preload("uid://cn8bcncfmdikq")
+	("res://Assets/Sprites/UI/CustomLevelIconDay.png"),
+	("res://Assets/Sprites/UI/CustomLevelIconNight.png")
 ]
 
 const THEME_RECTS := {
@@ -71,7 +71,7 @@ func update_visuals() -> void:
 	else:
 		%Thumbnail.hide()
 		%LevelIcon.show()
-		%LevelIcon.texture = ResourceSetter.get_resource(ICON_TEXTURES[level_time])
+		%LevelIcon.texture = ResourceSetter.get_resource(load(ICON_TEXTURES[level_time]))
 		%LevelIcon.region_rect = THEME_RECTS[level_theme]
 	
 	if (is_autosave):

@@ -26,8 +26,8 @@ radius = 4.0
 script/source = "extends Node
 @onready var collision: CollisionShape2D = $\"../Hitbox/Collision\"
 
-func _physics_process(delta: float) -> void:
-	if Global.level_editor_is_playtesting() == false and owner.can_grow == false:
+func _physics_process(_delta: float) -> void:
+	if Global.level_editor_is_playtesting() == false and owner.can_grow == false and not owner.finished:
 		handle_sizing()
 
 func handle_sizing() -> void:
@@ -129,7 +129,7 @@ metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
 [node name="CeilingCheck" type="RayCast2D" parent="." unique_id=699406085]
 unique_name_in_owner = true
-position = Vector2(0, -8)
+position = Vector2(0, 8)
 target_position = Vector2(0, -8)
 collision_mask = 2
 

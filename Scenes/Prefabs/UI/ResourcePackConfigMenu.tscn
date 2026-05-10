@@ -28,8 +28,8 @@ theme_override_styles/panel = ExtResource("1_3eop1")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=1291855108]
 layout_mode = 2
+follow_focus = true
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 3
 
 [node name="Options" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=345167906 node_paths=PackedStringArray("scroll_container")]
 unique_name_in_owner = true

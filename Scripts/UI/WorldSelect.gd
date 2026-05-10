@@ -27,7 +27,10 @@ const NUMBER_Y := [
 	"Volcano"
 ]
 
+@onready var resource_getter := ResourceGetter.new()
+
 func _ready() -> void:
+	add_child(resource_getter)
 	for i in %SlotContainer.get_children():
 		i.focus_entered.connect(slot_focused.bind(i.get_index()))
 	for i in get_tree().get_nodes_in_group("Particles"):
@@ -63,8 +66,6 @@ func setup_visuals() -> void:
 	if Global.current_campaign == "SMBLL" && (Global.game_beaten or Global.debug_mode) && Global.current_game_mode == Global.GameMode.CAMPAIGN:
 		%Slot1.focus_neighbor_left = %Slot13.get_path()
 		%Slot8.focus_neighbor_right = %Slot9.get_path()
-	var resource_getter = ResourceGetter.new()
-	resource_getter.cache.clear()
 	for i in %SlotContainer.get_children():
 		if idx >= 8:
 			i.visible = Global.current_campaign == "SMBLL" && (Global.game_beaten or Global.debug_mode) && Global.current_game_mode == Global.GameMode.CAMPAIGN
@@ -78,7 +79,7 @@ func setup_visuals() -> void:
 		var campaign_idx := 0
 		if ((idx >= 4 and idx <= 8) or Global.current_campaign == "SMBANN"): campaign_idx = 1
 		i.get_node("Icon").region_rect = CustomLevelContainer.THEME_RECTS[level_theme]
-		i.get_node("Icon").texture = (CustomLevelContainer.ICON_TEXTURES[campaign_idx])
+		i.get_node("Icon").texture = resource_getter.get_resource(load(CustomLevelContainer.ICON_TEXTURES[campaign_idx]), false)
 		i.get_node("Icon/Number").position.y = 10 if has_challenge_stuff else 17
 		i.get_node("Icon/Number").region_rect.position.y = clamp(NUMBER_Y.find(level_theme) * 12, 0, 9999)
 		i.get_node("Icon/Number").region_rect.position.x = (idx + world_offset) * 12
@@ -86,7 +87,6 @@ func setup_visuals() -> void:
 		setup_marathon_bits(i.get_node("Icon/Medal"), i.get_node("Icon/Medal/Full"), idx + world_offset)
 		setup_disco_bits(i.get_node("Icon/Medal"), i.get_node("Icon/Medal/Full"), i.get_node("Icon/Medal/Full/SRankParticles"), i.get_node("Icon/Medal/Full/PRankParticles"), idx + world_offset)
 		idx += 1
-	resource_getter.queue_free()
 
 func setup_challenge_mode_bits(red_coins_outline: TextureRect, egg_outline: TextureRect, score_outline: TextureRect, red_coins: NinePatchRect, egg: NinePatchRect, score: NinePatchRect, world_num := 1) -> void:
 	if has_challenge_stuff == false: return

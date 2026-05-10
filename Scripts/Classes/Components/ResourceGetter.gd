@@ -5,14 +5,17 @@ var original_resource: Resource = null
 
 static var cache := {}
 
-func get_resource(resource: Resource) -> Resource:
+func get_resource(resource: Resource, use_cache := true) -> Resource:
 	if resource == null:
 		return null
+
+	if not use_cache:
+		original_resource = null
 
 	if original_resource == null:
 		original_resource = resource
 	
-	if cache.has(original_resource.resource_path) and resource is not AtlasTexture:
+	if cache.has(original_resource.resource_path) and resource is not AtlasTexture and use_cache:
 		return cache.get(original_resource.resource_path)
 		
 	var path := ""
@@ -25,6 +28,7 @@ func get_resource(resource: Resource) -> Resource:
 		return original_resource
 	
 	if original_resource is Texture:
+		print([original_resource.resource_path, path])
 		var new_resource = null
 		if path.contains(Global.config_path):
 			new_resource = ImageTexture.create_from_image(Image.load_from_file(path))

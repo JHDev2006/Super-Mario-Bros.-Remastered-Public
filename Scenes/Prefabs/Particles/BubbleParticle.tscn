@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://denfttv4kn7f6" path="res://Scripts/Parts/BubbleParticle.gd" id="1_kkawp"]
 [ext_resource type="Texture2D" uid="uid://b7h6b0yqyi2kh" path="res://Assets/Sprites/Particles/Bubble.png" id="2_ky4x1"]
+[ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="3_ky4x1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2b1vy"]
 radius = 2.0
@@ -10,8 +11,10 @@ radius = 2.0
 visibility_layer = 2
 script = ExtResource("1_kkawp")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=2104041886]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1722838147]
 texture = ExtResource("2_ky4x1")
+script = ExtResource("3_ky4x1")
+metadata/_custom_type_script = "uid://364rywt44hy6"
 
 [node name="WaterDetection" type="Area2D" parent="." unique_id=316463798]
 position = Vector2(0, -8)

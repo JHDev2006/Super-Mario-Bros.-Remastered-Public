@@ -36,7 +36,7 @@ var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
 var ROM_PATH = config_path.path_join("baserom.nes")
 var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
 const ROM_PACK_NAME := "BaseAssets"
-const ROM_ASSETS_VERSION := 6
+const ROM_ASSETS_VERSION := 7
 
 var server_version := -1
 var current_version := -1
@@ -76,6 +76,7 @@ var total_deaths := 0
 var portable_mode := false
 var checked_portable := false
 
+const RESOLUTIONS := [Vector2(256, 240), Vector2(380, 240), Vector2(426, 240), Vector2(256, 240)]
 
 var score := 0:
 	set(value):

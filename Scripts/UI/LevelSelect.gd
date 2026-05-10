@@ -153,9 +153,10 @@ const NUMBER_Y := [
 	"Volcano"
 ]
 
-
+@onready var resource_getter := ResourceGetter.new()
 
 func _ready() -> void:
+	add_child(resource_getter)
 	for i in %SlotContainer.get_children():
 		i.focus_entered.connect(slot_selected.bind(i.get_index()))
 	for i in get_tree().get_nodes_in_group("Particles"):
@@ -185,9 +186,9 @@ func open() -> void:
 
 var visited_levels := "0000"
 
-const ICON_DAY := preload("res://Assets/Sprites/UI/LevelIcons/DayLevelIcons.png")
-const ICON_NIGHT := preload("res://Assets/Sprites/UI/LevelIcons/NightLevelIcons.png")
-const ICON_LOCKED := preload("res://Assets/Sprites/UI/LevelIcons/LockedLevelIcon.png")
+const ICON_DAY := ("res://Assets/Sprites/UI/LevelIcons/DayLevelIcons.png")
+const ICON_NIGHT := ("res://Assets/Sprites/UI/LevelIcons/NightLevelIcons.png")
+const ICON_LOCKED := ("res://Assets/Sprites/UI/LevelIcons/LockedLevelIcon.png")
 var icon_size := [56, 32]
 
 func setup_level_icon_data() -> void:
@@ -211,6 +212,7 @@ func setup_visuals() -> void:
 		var level_visited = SaveManager.visited_levels[SaveManager.get_level_idx(Global.world_num, idx + 1)] != "0" or Global.debug_mode
 		var cur_level = LEVEL_ICONS[Global.current_campaign][Global.world_num - 1][idx]
 		var cur_icon = ICON_LOCKED if not level_visited else ICON_NIGHT if cur_level[0] == "night" else ICON_DAY
+		cur_icon = resource_getter.get_resource(load(cur_icon))
 		var grid_size = [cur_icon.get_width() - icon_size[0], cur_icon.get_height() - icon_size[1]]
 		var clamp_icon = clamp([cur_level[1][0] * icon_size[0], cur_level[1][1] * icon_size[1]], [0, 0], grid_size)
 		i.get_node("Icon").texture = cur_icon

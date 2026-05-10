@@ -1009,6 +1009,8 @@ func handle_directions() -> void:
 		input_direction = 1
 	elif Global.player_action_pressed("move_left", player_id):
 		input_direction = -1
+	if Global.player_action_pressed("move_left", player_id) && Global.player_action_pressed("move_right", player_id):
+		input_direction = 0 # Muh accuracies
 	velocity_direction = sign(velocity.x)
 
 # SkyanUltra: Moved projectile handling code into Player for compatibility
