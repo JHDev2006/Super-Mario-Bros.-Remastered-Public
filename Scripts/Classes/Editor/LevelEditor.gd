@@ -432,6 +432,7 @@ func close_save_menu() -> void:
 
 func handle_tile_cursor() -> void:
 	%TileCursor.show()
+	$TileCursor/SpaceWarning.visible = Input.is_action_pressed("quick_connect")
 	var target_mouse_icon = null
 	var snapped_position = ((%TileCursor.get_global_mouse_position() - CURSOR_OFFSET).snapped(Vector2(16, 16))) + CURSOR_OFFSET
 	%TileCursor.global_position = (snapped_position)
@@ -568,6 +569,7 @@ func paste_area(tile_position := Vector2i.ZERO, area := copied_area, layer_num :
 	replace_area(corner, current_layer, area, false, delete_old)
 	pasting_area = false
 	can_place = false
+	save_to_undoredo("pastearea")
 	if save_action:
 		undo_redo.create_action("Paste Area")
 		undo_redo.add_do_method(paste_area.bind(tile_position, area.duplicate_deep(), layer_num, bounds, false, delete_old))
@@ -1304,6 +1306,9 @@ func redo() -> void:
 	holding_commit = true
 	if (commit_buffer == 0.0 || commit_buffer >= 0.5):
 		undo_redo.redo()
+
+func save_to_undoredo(what := "") -> void:
+	pass
 
 func recreate_undoredo() -> void:
 	if (undo_redo == null):

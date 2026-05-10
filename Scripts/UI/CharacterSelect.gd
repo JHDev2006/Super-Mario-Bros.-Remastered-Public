@@ -82,10 +82,10 @@ func get_custom_characters() -> void:
 func open() -> void:
 	get_custom_characters()
 	show()
-	grab_focus()
 	selected_index = int(Global.player_characters[player_id])
 	update_sprites()
 	await get_tree().physics_frame
+	grab_focus()
 	active = true
 
 func handle_input() -> void:

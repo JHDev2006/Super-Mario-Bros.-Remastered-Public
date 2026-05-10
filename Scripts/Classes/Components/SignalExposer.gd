@@ -160,11 +160,11 @@ func connect_to_node(node_to_recieve := [], animate := true) -> void:
 		Global.log_error("Bad signal connection! Fixing...")
 		queue_free()
 		return
-	node.tree_exiting.connect(remove_node_connection.bind(node_to_recieve))
-	if (Input.is_action_pressed("shift")):
-		connections.erase(node_to_recieve)
+	if (Input.is_action_pressed("shift") && connections.has(node_to_recieve)):
+		disconnect_node(node_to_recieve)
 		signal_connected.emit()
 		return
+	node.tree_exiting.connect(remove_node_connection.bind(node_to_recieve))
 	if connections.has(node_to_recieve) == false:
 		connections.append(node_to_recieve.duplicate())
 	if connect_type == ConnectType.SIGNAL:
@@ -184,6 +184,17 @@ func remove_node_connection(node := []) -> void:
 		line_drawer.queue_redraw()
 	if connections.is_empty():
 		has_output = false
+
+func disconnect_node(node_to_recieve := []) -> void:
+	remove_node_connection(node_to_recieve)
+	
+	var node_signal: Node = get_node_from_tile(node_to_recieve[0], node_to_recieve[1]).get_node("SignalExposer")
+	pulse_emitted.disconnect(node_signal.on_recieve_pulse)
+	powered_on.disconnect(node_signal.on_recieve_power)
+	powered_off.disconnect(node_signal.on_lost_power)
+	node_signal.total_inputs -= 1
+	node_signal.has_input = node_signal.total_inputs == 0
+	node_signal.update_animation(0.8, 1.0, true)
 
 func on_recieve_pulse() -> void:
 	if accepting_inputs == false: return

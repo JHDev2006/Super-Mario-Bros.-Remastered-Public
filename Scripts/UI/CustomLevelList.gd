@@ -104,5 +104,7 @@ func search_submitted(search_query := "") -> void:
 	update_show()
 
 func container_selected(container: CustomLevelContainer) -> void:
+	if container.is_autosave: return
+	
 	level_selected.emit(container)
 	selected_lvl_idx = container.get_index()

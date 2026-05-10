@@ -14,6 +14,7 @@ var active := false
 
 func _ready() -> void:
 	$Time.maximum = AutosaveHandler.max_time
+	set_process(false)
 
 func _process(_delta: float) -> void:
 	if ($AutosavesDelete.confirming and active):
@@ -37,6 +38,7 @@ func open() -> void:
 func close(change_title: bool = true) -> void:
 	if (change_title):
 		$"../Title".text = tr("CUSTOM_LEVELS")
+	active = false
 	hide()
 	set_process(false)
 
@@ -105,6 +107,7 @@ func search_submitted(search_query := "") -> void:
 	update_show()
 
 func container_selected(container: CustomLevelContainer) -> void:
+	if !container.is_autosave: return
 	level_selected.emit(container)
 	selected_lvl_idx = container.get_index()
 

@@ -44,14 +44,17 @@ func reopen() -> void:
 	%Play.grab_focus()
 
 func _process(_delta: float) -> void:
-	if (Global.multibind_action_just_pressed("ui_back") || Input.is_action_just_pressed("mb_right")) and active:
+	if (!active):
+		return
+	if (Global.multibind_action_just_pressed("ui_back") || Input.is_action_just_pressed("mb_right")):
 		closed.emit()
 		close()
 
 func level_selected() -> void:
+	active = false
+	
 	LevelEditor.level_file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
 	level_play.emit()
-	active = false
 
 func level_edited() -> void:
 	LevelEditor.level_file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
@@ -60,6 +63,7 @@ func level_edited() -> void:
 func close() -> void:
 	hide()
 	set_process(false)
+	active = false
 	
 	if (%AutosaveTime.visible):
 		%AutosavesList.open()

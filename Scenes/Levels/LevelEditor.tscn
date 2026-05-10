@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cbha2l6hg1kfo" path="res://Assets/Sprites/UI/EditorGrid.png" id="2_8q7yr"]
 [ext_resource type="Texture2D" uid="uid://bwldw4ekgbwa7" path="res://Assets/Sprites/UI/EditorShortcutIcons.png" id="4_thawd"]
 [ext_resource type="Texture2D" uid="uid://bxciugu0dg7e8" path="res://Assets/Sprites/Editor/ChunkDisplay.png" id="5_o024b"]
+[ext_resource type="Texture2D" uid="uid://51yon820ej2r" path="res://Assets/Sprites/UI/CursorSpaceWarning.png" id="8_2blp1"]
 [ext_resource type="PackedScene" uid="uid://kag5i607liua" path="res://Scenes/Prefabs/UI/TileModifierMenu.tscn" id="8_bovjk"]
 [ext_resource type="PackedScene" uid="uid://knfs0rx7n1ry" path="res://Scenes/Prefabs/Editor/EditorTileSelector.tscn" id="8_wkmjk"]
+[ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="9_p4o5x"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="10_vhlvp"]
 [ext_resource type="Texture2D" uid="uid://cbgeyn530cdj6" path="res://Assets/Sprites/UI/EditorIcons.png" id="11_24ald"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Goomba.json" id="11_bkyu5"]
@@ -1159,6 +1161,14 @@ z_index = 4096
 z_as_relative = false
 offset_right = 64.0
 offset_bottom = 48.0
+
+[node name="SpaceWarning" type="TextureRect" parent="TileCursor" unique_id=545983330]
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("8_2blp1")
+stretch_mode = 2
+script = ExtResource("9_p4o5x")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TileMenu" type="CanvasLayer" parent="." unique_id=683279179]
 visible = false
