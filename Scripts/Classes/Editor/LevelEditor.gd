@@ -134,8 +134,7 @@ static var last_camera_position := Vector2(-128, -88)
 static var saved_trail := []
 
 var undo_redo = UndoRedo.new()
-static var undo_history := {}
-static var redo_history := {}
+static var undoredo_history := []
 static var last_commit := -1
 static var first_open := true
 
@@ -570,18 +569,16 @@ func paste_area(tile_position := Vector2i.ZERO, area := copied_area, layer_num :
 	replace_area(corner, current_layer, area, false, delete_old)
 	pasting_area = false
 	can_place = false
-	save_to_undoredo("pastearea")
 	if save_action:
 		undo_redo.create_action("Paste Area")
 		undo_redo.add_do_method(paste_area.bind(tile_position, area.duplicate_deep(), layer_num, bounds, false, delete_old))
 		undo_redo.add_undo_method(replace_area.bind(corner, layer_num, old_area.duplicate_deep()))
 		undo_redo.commit_action(false)
-
-		var curIdx := undo_redo.get_current_action()
-		var redoDict := {"action": "Paste Area", "args": [tile_position, area.duplicate_deep(), layer_num, bounds, false, delete_old]}
-		redo_history.set(curIdx, redoDict)
-		var undoDict := {"action": "Paste Area", "args": [corner, layer_num, old_area.duplicate_deep()]}
-		undo_history.set(curIdx, undoDict)
+		
+		save_to_undoredo("Paste Area", 
+			[tile_position, area.duplicate_deep(), layer_num, bounds, false, delete_old],
+			[corner, layer_num, old_area.duplicate_deep()]
+		)
 
 func pick_tile(tile_position := Vector2i.ZERO) -> void:
 	var tile = null
@@ -728,11 +725,10 @@ func mass_place(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, sele
 		undo_redo.add_undo_method(replace_area.bind(top_corner, layer_num, area))
 		undo_redo.commit_action(false)
 		
-		var curIdx := undo_redo.get_current_action()
-		var redoDict := {"action": "Mass Place", "args": [top_corner, select_start, select_end, layer_num, thing_to_place, info, false, delete_old]}
-		redo_history.set(curIdx, redoDict)
-		var undoDict := {"action": "Mass Place", "args": [top_corner, layer_num, area]}
-		undo_history.set(curIdx, undoDict)
+		save_to_undoredo("Mass Place", 
+			[top_corner, select_start, select_end, layer_num, thing_to_place, info, false, delete_old],
+			[top_corner, layer_num, area]
+		)
 
 func mass_remove(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, select_end := Vector2i.ZERO, layer_num := current_layer, save_action := true) -> void:
 	var area := {}
@@ -747,12 +743,11 @@ func mass_remove(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, sel
 		undo_redo.add_do_method(mass_remove.bind(top_corner, select_start, select_end, layer_num, false))
 		undo_redo.add_undo_method(replace_area.bind(top_corner, layer_num, area))
 		undo_redo.commit_action(false)
-
-		var curIdx := undo_redo.get_current_action()
-		var redoDict := {"action": "Mass Remove", "args": [top_corner, select_start, select_end, layer_num, false]}
-		redo_history.set(curIdx, redoDict)
-		var undoDict := {"action": "Mass Remove", "args": [top_corner, layer_num, area]}
-		undo_history.set(curIdx, undoDict)
+		
+		save_to_undoredo("Mass Remove", 
+			[top_corner, select_start, select_end, layer_num, false],
+			[top_corner, layer_num, area]
+		)
 
 func get_area_bounds(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, select_end := Vector2i.ZERO, layer_num := current_layer) -> Rect2i:
 	
@@ -1045,15 +1040,16 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 			undo_redo.add_undo_method(place_tile.bind(tile_position, layer_num, old_tile, old_tile_info, false))
 		undo_redo.commit_action(false)
 		
-		var curIdx := undo_redo.get_current_action()
-		var redoDict := {"action": "Place Tile", "args": [tile_position, layer_num, redo_tile, redo_info, false]}
-		redo_history.set(curIdx, redoDict)
-		if old_tile == null:
-			var undoDict := {"action": "Place Tile(null)", "args": [tile_position, layer_num, false]}
-			undo_history.set(curIdx, undoDict)
-		else:
-			var undoDict := {"action": "Place Tile", "args": [tile_position, layer_num, old_tile, old_tile_info, false]}
-			undo_history.set(curIdx, undoDict)
+		var action_name := "Place Tile!null"
+		var undo_array := [tile_position, layer_num, false]
+		if (old_tile != null):
+			action_name = "Place Tile"
+			undo_array = [tile_position, layer_num, old_tile, old_tile_info, false]
+		
+		save_to_undoredo(action_name,
+			[tile_position, layer_num, redo_tile, redo_info, false],
+			undo_array
+		)
 
 	BetterTerrain.update_terrain_cell(tile_layer_nodes[layer_num], tile_position, true)
 	something_changed = true
@@ -1094,11 +1090,10 @@ func remove_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, sav
 		undo_redo.add_undo_method(place_tile.bind(tile_position, layer_num, old_tile, info, false))
 		undo_redo.commit_action(false)
 		
-		var curIdx := undo_redo.get_current_action()
-		var redoDict := {"action": "Remove Tile", "args": [tile_position, layer_num, false]}
-		redo_history.set(curIdx, redoDict)
-		var undoDict := {"action": "Remove Tile", "args": [tile_position, layer_num, old_tile, info, false]}
-		undo_history.set(curIdx, undoDict)
+		save_to_undoredo("Remove Tile",
+			[tile_position, layer_num, false],
+			[tile_position, layer_num, old_tile, info, false]
+		)
 	
 	something_changed = true
 	return old_tile != null
@@ -1308,8 +1303,13 @@ func redo() -> void:
 	if (commit_buffer == 0.0 || commit_buffer >= 0.5):
 		undo_redo.redo()
 
-func save_to_undoredo(what := "") -> void:
-	pass
+func save_to_undoredo(action_name := "", redo_array := [], undo_array := []) -> void:
+	var curIdx := undo_redo.get_current_action()
+	var arr := [action_name, redo_array, undo_array]
+	if curIdx > undoredo_history.size() - 1:
+		undoredo_history.push_back(arr)
+	else:
+		undoredo_history[curIdx] = arr
 
 func recreate_undoredo() -> void:
 	if (undo_redo == null):
@@ -1323,15 +1323,15 @@ func recreate_undoredo() -> void:
 	
 	# This is needed so the undoredo object can refresh its history.
 	# Although without restarting the editor it works normally, this is just a test.
-	for i in LevelEditor.undo_history:
-		var actionName: String = LevelEditor.undo_history[i]["action"]
+	for i in LevelEditor.undoredo_history.size():
+		var split: PackedStringArray = LevelEditor.undoredo_history[i][0].split("!")
 		
-		var redoArgs: Array = LevelEditor.redo_history[i]["args"]
-		var undoArgs: Array = LevelEditor.undo_history[i]["args"]
+		var redoArgs: Array = LevelEditor.undoredo_history[i][1]
+		var undoArgs: Array = LevelEditor.undoredo_history[i][2]
 		
-		var actionFinalName := actionName.replace("(null)", "")
+		var actionName := split[0]
 		
-		undo_redo.create_action(actionFinalName)
+		undo_redo.create_action(actionName)
 		
 		match actionName:
 			("Paste Area"):
@@ -1346,13 +1346,17 @@ func recreate_undoredo() -> void:
 			("Remove Tile"):
 				undo_redo.add_do_method(remove_tile.bindv(redoArgs))
 				undo_redo.add_undo_method(place_tile.bindv(undoArgs))
-		
-		if (actionName.contains("Place Tile")):
-			undo_redo.add_do_method(place_tile.bindv(redoArgs))
-			if (actionName.contains("(null)")):
-				undo_redo.add_undo_method(remove_tile.bindv(undoArgs))
-			else:
-				undo_redo.add_undo_method(place_tile.bindv(undoArgs))
+			("Place Tile"):
+				undo_redo.add_do_method(place_tile.bindv(redoArgs))
+				if (split.has("null")):
+					undo_redo.add_undo_method(remove_tile.bindv(undoArgs))
+				else:
+					undo_redo.add_undo_method(place_tile.bindv(undoArgs))
+			("Edited Node"):
+				var node := get_node_or_null(split[1])
+				if (node != null):
+					undo_redo.add_do_method(node.set_value.bindv(redoArgs))
+					undo_redo.add_undo_method(node.set_value.bindv(undoArgs))
 		
 		undo_redo.commit_action(i > last_commit)
 	for i in undo_redo.get_current_action() - last_commit:
@@ -1363,8 +1367,7 @@ func recreate_undoredo() -> void:
 func clear_undoredo() -> void:
 	last_commit = -1
 	
-	LevelEditor.undo_history.clear()
-	LevelEditor.redo_history.clear()
+	LevelEditor.undoredo_history.clear()
 
 func on_mouse_exited() -> void:
 	cursor_in_toolbar = false

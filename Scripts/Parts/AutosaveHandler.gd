@@ -79,7 +79,10 @@ func is_level_empty(file := {}) -> bool:
 		for j in 5:
 			var layer: Dictionary = file["Levels"][i]["Layers"][j]
 			var firstLayer = layer.keys().back()
-			if ((layer == {} || !layer.has(firstLayer) || (layer.has(firstLayer) && layer[firstLayer]["Tiles"] == "" && layer[firstLayer]["Entities"].length() == 24))):
+			if (
+				(layer == {} || !layer.has(firstLayer) || 
+				(layer.has(firstLayer) && layer[firstLayer]["Tiles"] == "" && layer[firstLayer]["Entities"].length() == 24))
+			):
 				nothingFound += 1
 				continue
 		if (nothingFound == 5):
