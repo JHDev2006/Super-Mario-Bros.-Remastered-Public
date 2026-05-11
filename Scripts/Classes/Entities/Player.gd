@@ -339,6 +339,7 @@ extends CharacterBody2D
 		"TRAMPOLINE_USED_SFX": "big_used_trampoline", # Determines which sound effect to play when actively using a trampoline.
 		"GROUNDED_WALK_SFX": true,         # Forces walk sounds to only play when on the ground.
 		"GROUNDED_RUN_SFX": true,          # Forces run sounds to only play when on the ground.
+		"PIPE_CUTSCENE_MOVE_SPEED": 48.0
 	},
 	"Small": {
 		"WING_OFFSET": [0.0, 10.0],
@@ -381,6 +382,8 @@ var speed_mult := 1.0
 var accel_mult := 1.0
 
 var total_keys := 0
+
+static var pipe_cutscene := false
 
 @export var power_state: PowerUpState = null:
 	set(value):
@@ -648,6 +651,8 @@ func _ready() -> void:
 	handle_invincible_palette()
 	if Global.level_editor == null:
 		recenter_camera()
+	if pipe_cutscene:
+		state_machine.transition_to("PipeCutscene")
 
 # SkyanUltra: Helper function for getting physics params.
 func physics_params(type: String, dict: Dictionary = {}, key: String = "") -> Variant:
@@ -758,6 +763,8 @@ func editor_level_start() -> void:
 	camera_make_current()
 	recenter_camera()
 	state_machine.transition_to("Normal")
+	if pipe_cutscene:
+		state_machine.transition_to("PipeCutscene")
 	if camera_right_limit <= global_position.x:
 		camera_right_limit = 99999999
 	await get_tree().create_timer(0.1, false).timeout

@@ -129,6 +129,8 @@ func ground_acceleration(delta: float) -> void:
 	if ((Global.player_action_pressed("run", player.player_id) or run_buffer > 0) and walk_speed_requirement) and (not player.in_water and player.flight_meter <= 0) and player.can_run:
 		target_move_speed = player.physics_params("RUN_SPEED")
 		target_accel = player.physics_params("GROUND_RUN_ACCEL")
+	if Player.pipe_cutscene:
+		target_move_speed = player.physics_params("PIPE_CUTSCENE_MOVE_SPEED", player.COSMETIC_PARAMETERS)
 	if player.input_direction != player.velocity_direction:
 		if (Global.player_action_pressed("run", player.player_id) or run_buffer > 0) and player.can_run:
 			target_accel = player.physics_params("RUN_SKID")

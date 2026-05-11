@@ -842,5 +842,9 @@
 	"De": [
 		"res://Scenes/Prefabs/Gizmos/Inputs/PlayerStateDetection.tscn",
 		"0,0"
+	],
+	"Df": [
+		"res://Scenes/Prefabs/LevelObjects/PipeCutsceneOBJ.tscn",
+		"0,0"
 	]
 }
