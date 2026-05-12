@@ -56,5 +56,6 @@ position = Vector2(0, 9999999)
 enabled = false
 
 [connection signal="player_entered" from="PlayerDetection" to="." method="on_player_entered" flags=6]
+[connection signal="enabled" from="Coin/LevelPersistance" to="." method="queue_free"]
 
 [editable path="Coin"]
