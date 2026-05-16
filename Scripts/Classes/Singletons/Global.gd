@@ -491,10 +491,13 @@ func transition_to_scene(scene_path = "") -> void:
 	transition_finished.emit()
 
 func reload_editor() -> void:
-	$Transition/TransitionBlock/Label.show()
+	$Transition/TransitionBlock/EditorLoading/PlayerSprite.update()
+	$Transition/TransitionBlock/EditorLoading/PlayerSprite.animation = "Jump"
+	$Transition/TransitionBlock/EditorLoading.show()
+	
 	transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
 	await get_tree().create_timer(0.5).timeout
-	$Transition/TransitionBlock/Label.hide()
+	$Transition/TransitionBlock/EditorLoading.hide()
 
 func do_fake_transition(duration := 0.2) -> void:
 	if fade_transition:

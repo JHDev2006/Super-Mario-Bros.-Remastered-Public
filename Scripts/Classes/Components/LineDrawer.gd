@@ -73,37 +73,15 @@ func draw_square_line(from := Vector2.ZERO, to := Vector2.ZERO, colour := Color.
 		draw_arrow_head(first_point, to, colour, false, connecting)
 
 func draw_arrow_head(from := Vector2.ZERO, point := Vector2.ZERO, color := Color.RED, offset := false, connecting := false) -> void:
-	if (connecting && Input.is_action_pressed("shift") && signal_exposer.editing):
-		var direction = (point - from).normalized()
-		
-		# Puts at the point of the line
-		if offset:
-			point -= direction * 1
-		else:
-			point -= direction * 3
-			
-		var head_left = (direction * 4).rotated(deg_to_rad(-45)) + direction
-		var head = (direction * 2)
-		var head_right = (direction * 4).rotated(deg_to_rad(45)) + direction
-		var body = (-direction * 3) + direction
-		
-		# Puts in place
-		head_left += point + direction
-		head += point + direction
-		head_right += point + direction
-		body += point + direction
-		
-		draw_polygon([head_left, head, head_right, body], [color, color, color, color])
+	var direction = (point - from).normalized()
+	if offset:
+		point -= direction * 1
 	else:
-		var direction = (point - from).normalized()
-		if offset:
-			point -= direction * 1
-		else:
-			point -= direction * 3
-		var head = (direction * 2)
-		var left_point = (-direction * 4).rotated(deg_to_rad(-45)) + direction
-		var right_point = (-direction * 4).rotated(deg_to_rad(45)) + direction
-		head += point + direction
-		left_point += point + direction
-		right_point += point + direction
-		draw_polygon([head, left_point, right_point], [color, color, color])
+		point -= direction * 3
+	var head = (direction * 2)
+	var left_point = (-direction * 4).rotated(deg_to_rad(-45)) + direction
+	var right_point = (-direction * 4).rotated(deg_to_rad(45)) + direction
+	head += point + direction
+	left_point += point + direction
+	right_point += point + direction
+	draw_polygon([head, left_point, right_point], [color, color, color])

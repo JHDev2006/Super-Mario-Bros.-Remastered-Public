@@ -160,7 +160,7 @@ func connect_to_node(node_to_recieve := [], animate := true) -> void:
 		Global.log_error("Bad signal connection! Fixing...")
 		queue_free()
 		return
-	if (Input.is_action_pressed("shift") && connections.has(node_to_recieve)):
+	if (connections.has(node_to_recieve)):
 		disconnect_node(node_to_recieve)
 		signal_connected.emit()
 		return

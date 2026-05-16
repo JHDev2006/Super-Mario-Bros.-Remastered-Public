@@ -27,7 +27,7 @@ func _input(event: InputEvent) -> void:
 				var idx := character.unicode_at(0)
 				if FONT_MAIN.base_font.has_char(idx):
 					input_text += character
-			if (!needs_enter):
+			if (!needs_enter && input_text != ""):
 				text_submitted.emit(input_text)
 			else:
 				if (event.keycode == KEY_ENTER):

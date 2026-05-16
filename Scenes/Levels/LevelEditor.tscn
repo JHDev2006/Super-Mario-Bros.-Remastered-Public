@@ -710,6 +710,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_g6h01")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jdin3")
 
 [node name="ShowTrail" type="Button" parent="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest" unique_id=571477578]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
@@ -721,6 +722,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_jdin3")
 toggle_mode = true
 
 [node name="ShowGrid" type="Button" parent="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest" unique_id=1217643034]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
@@ -733,6 +735,7 @@ toggle_mode = true
 button_pressed = true
 
 [node name="ShowGizmos" type="Button" parent="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest" unique_id=1209586418]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
@@ -839,15 +842,19 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -139.0
-offset_top = -62.0
+offset_top = -47.0
 offset_right = 139.0
-offset_bottom = 62.0
+offset_bottom = 47.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = ExtResource("139_ydoon")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AutoSaveMenu" unique_id=1584651212]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/AutoSaveMenu/VBoxContainer" unique_id=483465040]
@@ -911,20 +918,6 @@ text = "EDITOR_AUTOSAVE_BEFORE_TEST"
 uppercase = true
 
 [node name="AutoSaveBeforeTest" type="CheckBox" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer10" unique_id=1264051036]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-
-[node name="HBoxContainer11" type="HBoxContainer" parent="CanvasLayer/AutoSaveMenu/VBoxContainer" unique_id=312494577]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer11" unique_id=1875013617]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "EDITOR_AUTOSAVE_EDITOR_RETURN"
-uppercase = true
-
-[node name="AutoSaveEditorReturn" type="CheckBox" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer11" unique_id=459256671]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -7337,69 +7330,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "EDITOR_SAVE"
 
-[node name="NameLevelDialog" type="PanelContainer" parent="Info" unique_id=1325593257]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -102.0
-offset_top = -40.0
-offset_right = 102.0
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("139_ydoon")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Info/NameLevelDialog" unique_id=622589618]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Info/NameLevelDialog/VBoxContainer" unique_id=1683104159]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "EDITOR_SAVE_NAME_TITLE"
-uppercase = true
-
-[node name="HSeparator" type="HSeparator" parent="Info/NameLevelDialog/VBoxContainer/Label" unique_id=1246153204]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -4.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/separator = SubResource("StyleBoxLine_e20nl")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Info/NameLevelDialog/VBoxContainer" unique_id=973515605]
-layout_mode = 2
-
-[node name="StartLevelName" type="LineEdit" parent="Info/NameLevelDialog/VBoxContainer/HBoxContainer" unique_id=896189676]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-context_menu_enabled = false
-
-[node name="TextValidator" type="Node" parent="Info/NameLevelDialog/VBoxContainer/HBoxContainer" unique_id=1603697121 node_paths=PackedStringArray("node_to_validate")]
-script = ExtResource("114_cjvlm")
-node_to_validate = NodePath("../StartLevelName")
-
-[node name="HSplitContainer" type="HBoxContainer" parent="Info/NameLevelDialog/VBoxContainer" unique_id=1119881557]
-layout_mode = 2
-alignment = 1
-
-[node name="Button2" type="Button" parent="Info/NameLevelDialog/VBoxContainer/HSplitContainer" unique_id=847570037]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "MENU_NO"
-
-[node name="Button" type="Button" parent="Info/NameLevelDialog/VBoxContainer/HSplitContainer" unique_id=569744933]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "MENU_DONE"
-
 [node name="SaveDialog" type="Label" parent="Info" unique_id=188622919]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
@@ -7516,10 +7446,10 @@ one_shot = true
 [connection signal="pressed" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/Redo" to="." method="redo"]
 [connection signal="mouse_entered" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowTrail" to="." method="set_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_TRAIL"]]
 [connection signal="mouse_exited" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowTrail" to="." method="clear_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_TRAIL"]]
-[connection signal="toggled" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowTrail" to="PlayerTrail" method="set_visible"]
+[connection signal="toggled" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowTrail" to="." method="set_trail_visible"]
 [connection signal="mouse_entered" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowGrid" to="." method="set_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_GRID"]]
 [connection signal="mouse_exited" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowGrid" to="." method="clear_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_GRID"]]
-[connection signal="toggled" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowGrid" to="Grid" method="set_visible"]
+[connection signal="toggled" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowGrid" to="." method="set_grid_visible"]
 [connection signal="mouse_entered" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowGizmos" to="." method="set_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_GIZMOS"]]
 [connection signal="mouse_exited" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowGizmos" to="." method="clear_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_GIZMOS"]]
 [connection signal="toggled" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowGizmos" to="." method="toggle_gizmos"]
@@ -7539,7 +7469,6 @@ one_shot = true
 [connection signal="toggled" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer9/AutoSaveEnable" to="AutoSaveHandler" method="enable_toggled"]
 [connection signal="value_changed" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer4/AutoSaveTimer" to="AutoSaveHandler" method="timer_changed"]
 [connection signal="toggled" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer10/AutoSaveBeforeTest" to="AutoSaveHandler" method="before_test_toggled"]
-[connection signal="toggled" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer11/AutoSaveEditorReturn" to="AutoSaveHandler" method="editor_return_toggled"]
 [connection signal="pressed" from="TileMenu/MarginContainer/VBoxContainer/TabButtons/Bindings" to="." method="open_bindings_menu"]
 [connection signal="pressed" from="TileMenu/MarginContainer/VBoxContainer/TabButtons/Save" to="." method="open_save_dialog"]
 [connection signal="pressed" from="TileMenu/MarginContainer/VBoxContainer/TabButtons/Exit" to="." method="quit_editor"]
@@ -7623,9 +7552,6 @@ one_shot = true
 [connection signal="text_changed" from="Info/SaveLevelDialog/VBoxContainer/HBoxContainer3/Description" to="Info/SaveLevelDialog/VBoxContainer/HBoxContainer3/TextValidator" method="validate_text"]
 [connection signal="pressed" from="Info/SaveLevelDialog/VBoxContainer/HSplitContainer/Button2" to="." method="close_save_menu"]
 [connection signal="pressed" from="Info/SaveLevelDialog/VBoxContainer/HSplitContainer/Button" to="." method="save_level"]
-[connection signal="text_changed" from="Info/NameLevelDialog/VBoxContainer/HBoxContainer/StartLevelName" to="Info/NameLevelDialog/VBoxContainer/HBoxContainer/TextValidator" method="validate_text" unbinds=1]
-[connection signal="pressed" from="Info/NameLevelDialog/VBoxContainer/HSplitContainer/Button2" to="." method="close_name_dialog"]
-[connection signal="pressed" from="Info/NameLevelDialog/VBoxContainer/HSplitContainer/Button" to="." method="close_name_dialog" binds= [true]]
 [connection signal="hidden" from="Info/SaveBlueprint" to="." method="set_state"]
 [connection signal="pressed" from="Info/SaveBlueprint/VBoxContainer/HBoxContainer/Button" to="." method="save_blueprint"]
 [connection signal="pressed" from="Info/SaveBlueprint/VBoxContainer/HBoxContainer/Button" to="Info/SaveBlueprint" method="hide"]

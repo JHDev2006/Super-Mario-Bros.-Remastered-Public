@@ -101,9 +101,9 @@ var current_inspect_tile: Node = null
 var selection_filter := ""
 var current_tile_type := TileType.TERRAIN
 
-static var level_author := ""
+static var level_name := "UNNAMED LEVEL"
+static var level_author := "PLAYER"
 static var level_desc := ""
-static var level_name := ""
 static var difficulty := 0
 
 var current_terrain_id := 0
@@ -130,17 +130,28 @@ static var play_door_transition := false
 static var selecting_room := false
 static var recorded_trail := false
 
-static var last_camera_position := Vector2(-128, -88)
+static var last_camera_position := Vector2(-128, 88)
 static var saved_trail := []
 
 var undo_redo = UndoRedo.new()
 static var undoredo_history := []
 static var last_commit := -1
-static var first_open := true
 
 var commit_buffer := 0.0
 var holding_commit := false
 var something_changed := false
+
+static func set_stack_level_name(new_level_name := "") -> String:
+	var path = Global.config_path.path_join("custom_levels/autosaves/" + new_level_name)
+	
+	var idx := 0
+	while DirAccess.dir_exists_absolute(path):
+		new_level_name = "%s(%s)" % [new_level_name, str(idx)]
+		idx += 1
+		
+		path = Global.config_path.path_join("custom_levels/autosaves/" + new_level_name)
+		
+	return new_level_name
 
 func _ready() -> void:
 	Global.level_editor = self
@@ -194,11 +205,7 @@ func _ready() -> void:
 	on_tile_selected(tile_list[selected_tile_index])
 	
 	%Camera.global_position = last_camera_position
-	handle_camera(0)
 	
-	if (first_open && level_name == ""):
-		open_name_dialog()
-		first_open = false
 
 var last_recorded_frame := Vector2.ZERO
 
@@ -207,7 +214,6 @@ func _physics_process(delta: float) -> void:
 	if [EditorState.IDLE, EditorState.CONNECTING].has(current_state) and not cursor_in_toolbar:
 		if (holding_commit):
 			commit_buffer += delta
-			print(str(commit_buffer))
 		else:
 			commit_buffer = 0.0
 		handle_tile_cursor()
@@ -307,7 +313,6 @@ func stop_testing() -> void:
 	current_state = EditorState.IDLE
 	cleanup()
 	
-	$AutoSaveHandler.handle_autosave(Settings.file.editor.autosave_on_return_to_editor)
 	return_to_editor.call_deferred()
 
 func cleanup() -> void:
@@ -367,13 +372,13 @@ func play_level() -> void:
 	OffScreenDespawner.editor_testing_safety = false
 
 func return_to_editor() -> void:
+	Global.reload_editor()
+	
 	AudioManager.stop_all_music()
 	OffScreenDespawner.editor_testing_safety = true
 	recorded_trail = saved_trail.size() > 0
 	last_commit = undo_redo.get_current_action()
 	last_camera_position = get_tree().get_first_node_in_group("Players").camera.global_position
-	
-	Global.reload_editor()
 
 var zoom := 1.0
 
@@ -1156,13 +1161,14 @@ func transition_to_sublevel(sub_lvl_idx := 0) -> void:
 			await get_tree().physics_frame
 		load_level(sub_lvl_idx)
 	else:
+		Global.reload_editor()
+		
 		save_current_level()
 		Global.reset_values()
 		PipeArea.exiting_pipe_id = -1
 
 		sub_level_id = sub_lvl_idx
 		selecting_room = true
-		Global.reload_editor()
 	
 	Global.stop_all_timers()
 	Global.can_pause = true
@@ -1267,6 +1273,10 @@ func update_menu_values() -> void:
 	%SubLevelID.selected = sub_level_id
 	%ScreenSize.set_pressed_no_signal(level.enforce_resolution != Vector2.ZERO)
 	
+	%ShowTrail.button_pressed = Settings.file.editor.show_trail
+	%ShowGrid.button_pressed = Settings.file.editor.show_grid
+	%ShowGizmos.button_pressed = Settings.file.editor.show_gizmos
+	
 	var level_bg: LevelBG = level.get_node("LevelBG")
 	%SecondLayerOrder.selected = level_bg.second_layer_order
 	%PrimaryLayer.selected = level_bg.primary_layer
@@ -1278,7 +1288,6 @@ func update_menu_values() -> void:
 	%AutoSaveTimer.value = Settings.file.editor.autosave_min_timer
 	%AutoSaveEnable.set_pressed_no_signal(Settings.file.editor.autosave_enabled)
 	%AutoSaveBeforeTest.set_pressed_no_signal(Settings.file.editor.autosave_before_test)
-	%AutoSaveEditorReturn.set_pressed_no_signal(Settings.file.editor.autosave_on_return_to_editor)
 
 func set_bg_value(value := 0, value_name := "") -> void:
 	level.get_node("LevelBG").set(value_name, value)
@@ -1359,6 +1368,9 @@ func recreate_undoredo() -> void:
 					undo_redo.add_undo_method(node.set_value.bindv(undoArgs))
 		
 		undo_redo.commit_action(i > last_commit)
+	
+	# Commiting or not commiting the action makes something that messes up
+	# UndoRedo actions so any undid actions is manually undone again.
 	for i in undo_redo.get_current_action() - last_commit:
 		undo()
 	
@@ -1379,11 +1391,6 @@ func set_toolbar_tooltip(text := "") -> void:
 func clear_toolbar_tooltip(text := "") -> void:
 	if %ToolsName.text == text:
 		%ToolsName.hide()
-
-var gizmos_visible := true
-
-func toggle_gizmos(toggled := false) -> void:
-	gizmos_visible = toggled
 
 func clear_trail() -> void:
 	saved_trail.clear()
@@ -1412,13 +1419,13 @@ func create_player_trail() -> void:
 	saved_trail.clear()
 
 func clear_level() -> void:
-	clear_trail()
+	Global.reload_editor()
 
+	clear_trail()
 	sub_areas = [null, null, null, null, null]
 	level_file = BLANK_FILE.duplicate_deep()
 
 	sub_level_id = 0
-	Global.reload_editor()
 
 func set_state(state := EditorState.IDLE) -> void:
 	current_state = state
@@ -1470,18 +1477,21 @@ func autosave_menu_toggle() -> void:
 	$CanvasLayer/AutoSaveMenu.visible = !$CanvasLayer/AutoSaveMenu.visible
 	current_state = EditorState.SAVE_MENU if ($CanvasLayer/AutoSaveMenu.visible) else EditorState.IDLE
 
-func open_name_dialog() -> void:
-	current_state = EditorState.SAVE_MENU
-	can_move_cam = false
-	%NameLevelDialog.show()
-	menu_open = true
+func set_trail_visible(toggled_on: bool) -> void:
+	$PlayerTrail.visible = toggled_on
 	
-func close_name_dialog(give_name: bool = false) -> void:
-	if (give_name):
-		level_name = %StartLevelName.text
-		%LevelName.text = level_name
+	Settings.file.editor.show_trail = toggled_on
+	Settings.save_settings()
+
+func set_grid_visible(toggled_on: bool) -> void:
+	%Grid.visible = toggled_on
 	
-	current_state = EditorState.IDLE
-	can_move_cam = true
-	%NameLevelDialog.hide()
-	menu_open = false
+	Settings.file.editor.show_grid = toggled_on
+	Settings.save_settings()
+
+var gizmos_visible := true
+func toggle_gizmos(toggled := false) -> void:
+	gizmos_visible = toggled
+	
+	Settings.file.editor.show_gizmos = toggled
+	Settings.save_settings()

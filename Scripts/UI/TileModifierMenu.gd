@@ -155,6 +155,8 @@ func value_changed(property, new_value) -> void:
 		[editing_node.get_path(), property.tile_property_name, new_value],
 		[editing_node.get_path(), property.tile_property_name, old_value],
 	)
+	
+	Global.level_editor.something_changed = true
 
 func set_value(node: Variant, value_name := "", value = null) -> void:
 	if (node is NodePath):

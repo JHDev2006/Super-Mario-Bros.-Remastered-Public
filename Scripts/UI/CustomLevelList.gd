@@ -101,7 +101,7 @@ func get_visible_containers(type := 0) -> int:
 
 func search_submitted(search_query := "") -> void:
 	search_check = search_query
-	update_show()
+	update_show($Filter.selected_index)
 
 func container_selected(container: CustomLevelContainer) -> void:
 	if container.is_autosave: return
