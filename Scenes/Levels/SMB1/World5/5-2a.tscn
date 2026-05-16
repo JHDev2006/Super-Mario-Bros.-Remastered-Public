@@ -18,6 +18,7 @@
 [node name="5-2a" type="Node" unique_id=2058346929]
 script = ExtResource("1_vlrn3")
 music = ExtResource("2_3g3gq")
+room_type = 1
 theme = "Underwater"
 theme_time = "Night"
 world_id = 5

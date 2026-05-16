@@ -33,7 +33,7 @@ func physics_update(delta: float) -> void:
 func handle_death_pits() -> void:
 	if Warper.warping:
 		return
-	if player.global_position.y > 64 and not Level.in_vine_level and player.auto_death_pit and player.gravity_vector == Vector2.DOWN:
+	if player.global_position.y > 64 and Global.current_level.room_type != Level.RoomType.COIN_HEAVEN and player.gravity_vector == Vector2.DOWN:
 		player.die(true)
 	elif player.global_position.y < Global.current_level.vertical_height - 32 and player.gravity_vector == Vector2.UP:
 		player.die(true)
@@ -129,6 +129,8 @@ func ground_acceleration(delta: float) -> void:
 	if ((Global.player_action_pressed("run", player.player_id) or run_buffer > 0) and walk_speed_requirement) and (not player.in_water and player.flight_meter <= 0) and player.can_run:
 		target_move_speed = player.physics_params("RUN_SPEED")
 		target_accel = player.physics_params("GROUND_RUN_ACCEL")
+	if Player.pipe_cutscene:
+		target_move_speed = player.physics_params("PIPE_CUTSCENE_MOVE_SPEED", player.COSMETIC_PARAMETERS)
 	if player.input_direction != player.velocity_direction:
 		if (Global.player_action_pressed("run", player.player_id) or run_buffer > 0) and player.can_run:
 			target_accel = player.physics_params("RUN_SKID")

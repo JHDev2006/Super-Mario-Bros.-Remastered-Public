@@ -76,7 +76,7 @@ var total_deaths := 0
 var portable_mode := false
 var checked_portable := false
 
-const RESOLUTIONS := [Vector2(256, 240), Vector2(380, 240), Vector2(426, 240), Vector2(256, 240)]
+const RESOLUTIONS := [Vector2(256, 240), Vector2(320, 240), Vector2(426, 240), Vector2(256, 240)]
 
 var score := 0:
 	set(value):
@@ -105,15 +105,11 @@ var world_num := 1
 var level_num := 1
 var disco_mode := false
 
-enum Room{MAIN_ROOM, BONUS_ROOM, COIN_HEAVEN, PIPE_CUTSCENE, TITLE_SCREEN}
-
-const room_strings := ["MainRoom", "BonusRoom", "CoinHeaven", "PipeCutscene", "TitleScreen"]
-
-var current_room: Room = Room.MAIN_ROOM
-
 signal transition_finished
 var transitioning_scene := false
 var awaiting_transition := false
+
+var current_room_type := Level.RoomType.NORMAL
 
 signal level_complete_begin
 signal score_tally_finished

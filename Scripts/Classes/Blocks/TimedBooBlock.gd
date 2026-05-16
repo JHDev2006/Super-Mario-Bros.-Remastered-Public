@@ -28,6 +28,9 @@ func on_timeout() -> void:
 			return
 		elif time < 3:
 			AudioManager.play_global_sfx("timer_beep")
+	update_sprite()
+
+func update_sprite() -> void:
 	if active:
 		$Sprite.play("On" + str(time))
 	else:
@@ -54,6 +57,8 @@ func set_active(is_active := false) -> void:
 		else:
 			$Sprite.play("RedToBlue")
 		await $Sprite.animation_finished
+	time = 3
+	update_sprite()
 	$Timer.start()
 	time = 4
 	on_timeout()

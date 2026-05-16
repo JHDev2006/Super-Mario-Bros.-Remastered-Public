@@ -32,7 +32,6 @@ func input_added() -> void:
 func update() -> void:
 	total_inputs = clamp(total_inputs, 0, $SignalExposer.total_inputs)
 	var test_condition = get_condition()
-	print([total_inputs, $SignalExposer.total_inputs, ["AND", "OR", "NOT", "XOR"][type]])
 	if test_condition != condition_filled:
 		if test_condition == true:
 			freeze_grab -= 1

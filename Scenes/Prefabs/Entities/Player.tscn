@@ -34,6 +34,7 @@
 [ext_resource type="Script" uid="uid://cp1bh6fi6tpa5" path="res://Scripts/Classes/Components/ScalableCollisionShape.gd" id="21_jl70t"]
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="22_445e4"]
 [ext_resource type="SpriteFrames" uid="uid://dw8r8t7iqvrmq" path="res://Resources/SpriteFrames/Player/Luigi/Fire.tres" id="23_445e4"]
+[ext_resource type="Script" uid="uid://dlpwuohgub5nk" path="res://Scripts/Classes/States/Player/PipeCutscene.gd" id="23_o5ef6"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="24_hu5lw"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="25_cekpg"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/Mario/Small.json" id="26_o4wvw"]
@@ -658,6 +659,10 @@ metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
 [node name="NoClip" type="Node" parent="States" unique_id=315742411]
 script = ExtResource("16_cekpg")
+metadata/_custom_type_script = "uid://cnjpqn05bfm57"
+
+[node name="PipeCutscene" type="Node" parent="States" unique_id=1598939428]
+script = ExtResource("23_o5ef6")
 metadata/_custom_type_script = "uid://cnjpqn05bfm57"
 
 [node name="PowerStates" type="Node" parent="." unique_id=1225037691]

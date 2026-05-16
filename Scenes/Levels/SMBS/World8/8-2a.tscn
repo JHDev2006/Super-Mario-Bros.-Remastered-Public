@@ -17,6 +17,7 @@
 [node name="8-2a" type="Node" unique_id=298940529]
 script = ExtResource("1_k1xyr")
 music = ExtResource("2_mtsal")
+room_type = 1
 theme = "Underwater"
 theme_time = "Night"
 campaign = "SMBS"

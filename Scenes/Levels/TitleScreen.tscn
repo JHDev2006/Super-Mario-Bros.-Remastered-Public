@@ -296,6 +296,7 @@ metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 [node name="TitleScreen" type="Node" unique_id=561921480 node_paths=PackedStringArray("active_options")]
 script = ExtResource("1_1wpe0")
 active_options = NodePath("CanvasLayer/Options1")
+room_type = 4
 auto_set_theme = true
 time_limit = 0
 vertical_height = -186

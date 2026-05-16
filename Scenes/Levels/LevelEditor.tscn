@@ -119,6 +119,7 @@
 [ext_resource type="Texture2D" uid="uid://bdb7ua7lnmwn" path="res://Assets/Sprites/Editor/WaterLevel.png" id="131_606p5"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Blocks/Fan.json" id="132_o0k3u"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/BluePlatform.json" id="133_numt2"]
+[ext_resource type="Texture2D" uid="uid://onklykrkegkn" path="res://Assets/Sprites/Editor/PipeCutsceneNode.png" id="133_s60en"]
 [ext_resource type="Texture2D" uid="uid://c8ir37jmcm4f4" path="res://Assets/Sprites/Editor/CameraLock.png" id="134_q440o"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnFan.json" id="134_vlioy"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Grinder.json" id="135_51g7s"]
@@ -5281,6 +5282,16 @@ type = 1
 icon_texture = ExtResource("131_606p5")
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DY"
+
+[node name="PipeCutscene" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer" unique_id=329292607 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 2
+tile_name = "OBJ_PIPECUTSCENE"
+tile_desc = "USE THIS TO CREATE YOUR OWN PIPE CUTSCENES! DONT FORGET TO MAKE YOUR PIPE FIRST!"
+type = 1
+icon_texture = ExtResource("133_s60en")
+icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(24, 0, 16, 16)
+entity_id = "Df"
 
 [node name="VineWarp" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer" unique_id=1577454237 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2

@@ -11,6 +11,7 @@
 [node name="1-1A" type="Node" unique_id=63494208]
 script = ExtResource("1_xx20s")
 music = ExtResource("2_stwnv")
+room_type = 1
 theme = "Underground"
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
 [node name="LevelBG" parent="." unique_id=1305900248 instance=ExtResource("8_q30no")]

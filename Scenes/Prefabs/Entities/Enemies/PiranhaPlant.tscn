@@ -73,6 +73,7 @@ properties = Array[String](["pipe_direction"])
 [connection signal="invincible_player_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="RotationJoint/PositionJoint/Visuals/Sprite/ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_below" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="fireball_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/FireballDetection" to="." method="die_from_object"]
 [connection signal="fireball_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/FireballDetection" to="RotationJoint/PositionJoint/Visuals/Sprite/ScoreNoteSpawner" method="spawn_note" binds= [200]]
