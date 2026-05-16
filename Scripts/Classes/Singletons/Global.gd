@@ -218,13 +218,16 @@ func setup_config_dirs() -> void:
 		"saves",
 		"screenshots",
 		"level_packs",
-		"blueprints"
+		"blueprints",
+		"mods"
 	]
 
 	for d in dirs:
 		var full_path = config_path.path_join(d)
 		if not DirAccess.dir_exists_absolute(full_path):
 			DirAccess.make_dir_recursive_absolute(full_path)
+			
+	ModsTransfer.move_mods_to_new_path(ModsTransfer.find_mods_in_old_path())
 
 func get_config_path() -> String:
 	var exe_path := OS.get_executable_path()

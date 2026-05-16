@@ -292,6 +292,7 @@
 	"EDITOR_TOOLBAR_RESET": "Réinitialiser Niveau",
 	"EDITOR_DELETION_WARNING": "ANTENTION !!!",
 	"EDITOR_DELETION_DESCRIPTION": "Cela supprimera définitivement votre niveau!\n\nÊtes-vous sûr ?",
+	"EDITOR_LOADING": "",
 	"SEARCH": "",
 	"AUTOSAVES": "",
 	"EDITOR_TOOLBAR_AUTOSAVE": "",

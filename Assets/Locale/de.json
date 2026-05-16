@@ -292,6 +292,7 @@
 	"EDITOR_TOOLBAR_RESET": "Level zurücksetzen",
 	"EDITOR_DELETION_WARNING": "ACHTUNG!",
 	"EDITOR_DELETION_DESCRIPTION": "Das Level wird permanent gelöscht!\n\nTrotzdem fortfahren?",
+	"EDITOR_LOADING": "",
 	"SEARCH": "",
 	"AUTOSAVES": "",
 	"EDITOR_TOOLBAR_AUTOSAVE": "",

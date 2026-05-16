@@ -292,6 +292,7 @@
 	"EDITOR_TOOLBAR_RESET": "Reset Level",
 	"EDITOR_DELETION_WARNING": "WARNING!",
 	"EDITOR_DELETION_DESCRIPTION": "This will permanently wipe your level!\n\nAre you sure you want to proceed?",
+	"EDITOR_LOADING": "Loading Level Editor...",
 	"SEARCH": "SEARCH",
 	"AUTOSAVES": "AUTOSAVES",
 	"EDITOR_TOOLBAR_AUTOSAVE": "Open Autosave Menu",

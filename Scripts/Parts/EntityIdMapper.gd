@@ -21,10 +21,10 @@ static func load_entity_map() -> void:
 	map = JSON.parse_string(FileAccess.open(MAP_PATH, FileAccess.READ).get_as_text())
 
 func update_map() -> void:
-	map = JSON.parse_string(FileAccess.open(MAP_PATH, FileAccess.READ).get_as_text())
+	load_entity_map()
 	get_ids()
 	save_to_json()
-	print("done")
+	print("Update ID Map.")
 
 func clear_map() -> void:
 	map = {}

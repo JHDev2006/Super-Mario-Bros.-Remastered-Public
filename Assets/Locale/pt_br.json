@@ -292,6 +292,7 @@
 	"EDITOR_TOOLBAR_RESET": "Resetar Nível",
 	"EDITOR_DELETION_WARNING": "AVISO!",
 	"EDITOR_DELETION_DESCRIPTION": "Isso irá permanente limpar seu nível!\n\nTem certeza que quer prosseguir?",
+	"EDITOR_LOADING": "Carregando Editor de Fases...",
 	"SEARCH": "Pesquisar",
 	"AUTOSAVES": "Salvamentos automáticos",
 	"EDITOR_TOOLBAR_AUTOSAVE": "Abrir menu de Salvamento automático",
