@@ -7398,7 +7398,6 @@ text = "CANCEL"
 
 [node name="EditorGuide" parent="Info" unique_id=578106112 instance=ExtResource("211_numt2")]
 unique_name_in_owner = true
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Info/EditorGuide" unique_id=232458549]
 show_behind_parent = true
