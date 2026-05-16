@@ -193,7 +193,7 @@ func disconnect_node(node_to_recieve := []) -> void:
 	powered_on.disconnect(node_signal.on_recieve_power)
 	powered_off.disconnect(node_signal.on_lost_power)
 	node_signal.total_inputs -= 1
-	node_signal.has_input = node_signal.total_inputs == 0
+	node_signal.has_input = node_signal.total_inputs != 0
 	node_signal.update_animation(0.8, 1.0, true)
 
 func on_recieve_pulse() -> void:
