@@ -153,14 +153,14 @@ func connect_pre_existing_signals() -> void:
 		connect_to_node(i, false)
 	all_connected = true
 
-func connect_to_node(node_to_recieve := [], animate := true) -> void:
+func connect_to_node(node_to_recieve := [], animate := true, can_disconnect := false) -> void:
 	has_output = true
 	var node: Node = get_node_from_tile(node_to_recieve[0], node_to_recieve[1])
 	if node == null:
 		Global.log_error("Bad signal connection! Fixing...")
 		queue_free()
 		return
-	if (connections.has(node_to_recieve)):
+	if (can_disconnect && connections.has(node_to_recieve)):
 		disconnect_node(node_to_recieve)
 		signal_connected.emit()
 		return

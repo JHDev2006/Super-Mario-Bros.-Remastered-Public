@@ -185,7 +185,9 @@ func close() -> void:
 var old_scale = Vector2.ONE
 
 func connect_signal(new_node: Node) -> void:
-	editing_node.get_node("SignalExposer").connect_to_node([Global.level_editor.current_layer, new_node.get_meta("tile_position")])
+	var node_to_recieve := [Global.level_editor.current_layer, new_node.get_meta("tile_position")]
+	var exposer := editing_node.get_node("SignalExposer")
+	exposer.connect_to_node(node_to_recieve, true, true)
 	can_exit = true
 	if Global.level_editor.quick_connecting:
 		close()
