@@ -846,5 +846,9 @@
 	"Df": [
 		"res://Scenes/Prefabs/LevelObjects/PipeCutsceneOBJ.tscn",
 		"0,0"
+	],
+	"Dg": [
+		"res://Scenes/Parts/WarpPipeArea.tscn",
+		"8,-8"
 	]
 }
