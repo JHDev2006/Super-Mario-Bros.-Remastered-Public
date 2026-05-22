@@ -28,7 +28,6 @@ func get_resource(resource: Resource, use_cache := true) -> Resource:
 		return original_resource
 	
 	if original_resource is Texture:
-		print([original_resource.resource_path, path])
 		var new_resource = null
 		if path.contains(Global.config_path):
 			new_resource = ImageTexture.create_from_image(Image.load_from_file(path))
