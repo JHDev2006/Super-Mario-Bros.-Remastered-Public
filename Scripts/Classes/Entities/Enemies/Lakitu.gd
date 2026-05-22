@@ -29,6 +29,9 @@ func _ready() -> void:
 	$ThrowTimer.start()
 	lakitu_point = to_local(global_position)
 	get_parent().move_child(self, 0)
+	
+	var item_path = item.resource_path
+	set_meta("Item", item_path.right(-item_path.rfind("/") - 1).left(-5))
 
 func _process(_delta: float) -> void:
 	screen_center = get_viewport().get_camera_2d().get_screen_center_position()
