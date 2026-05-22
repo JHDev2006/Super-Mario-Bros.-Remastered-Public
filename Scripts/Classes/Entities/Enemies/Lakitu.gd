@@ -21,7 +21,11 @@ var can_enter := false
 @export var max_spiny_amount := 3
 
 static var spiny_amount := 0
-@export var item: PackedScene = null
+@export var item: PackedScene = null:
+	set(value):
+		item = value
+		set_meta_data()
+		
 @export var retreat_x := 3072
 
 func _ready() -> void:
@@ -29,9 +33,6 @@ func _ready() -> void:
 	$ThrowTimer.start()
 	lakitu_point = to_local(global_position)
 	get_parent().move_child(self, 0)
-	
-	var item_path = item.resource_path
-	set_meta("Item", item_path.right(-item_path.rfind("/") - 1).left(-5))
 
 func _process(_delta: float) -> void:
 	screen_center = get_viewport().get_camera_2d().get_screen_center_position()
@@ -103,3 +104,7 @@ func on_screen_entered() -> void:
 	add_to_group("Lakitus")
 	if get_tree().get_node_count_in_group("Lakitus") >= 2:
 		queue_free()
+
+func set_meta_data():
+	var item_path = item.resource_path
+	set_meta("Item", item_path.right(-item_path.rfind("/") - 1).left(-5))

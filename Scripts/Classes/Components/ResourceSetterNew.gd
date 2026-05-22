@@ -337,14 +337,20 @@ func get_variation_json(json := {}) -> Dictionary:
 			var node_to_use = metadata_node
 			if node_to_use == null:
 				node_to_use = owner
-			var meta_value = str(node_to_use.get_meta(meta_name, "Default"))
-			if json[i].has(meta_value):
-				if json[i].get(meta_value).has("link"):
-					json = get_variation_json(json[i][json.get(meta_value).get("link")])
-				else:
-					json = get_variation_json(json[i][meta_value])
-				break
+			var meta_value = str(node_to_use.get_meta(meta_name, "Default")) if node_to_use != null else "Default"
+			var meta_json = null
 			
+			if json[i].has(meta_value):
+				meta_json = json[i].get(meta_value)
+			elif json[i].has("Default"):
+				meta_json = json[i].get("Default")
+			if meta_json != null:
+				if meta_json.has("link"):
+					json = get_variation_json(json[i][meta_json.get("link")])
+				else:
+					json = get_variation_json(meta_json)
+				break
+		
 	return json
 
 func get_config_file(resource_pack := "") -> void:
