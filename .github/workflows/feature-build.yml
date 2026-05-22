@@ -40,7 +40,7 @@ jobs:
       image: ghcr.io/meldanor/godot-ci:4.4-stable-minimal
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           lfs: true
       - name: Setup Godot Templates
@@ -54,7 +54,7 @@ jobs:
           cd build/${{matrix.environment.output_dir}}
           zip ${{env.EXPORT_NAME}}.zip *
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.environment.output_dir }}
           path: build/${{ matrix.environment.output_dir }}/${{ env.EXPORT_NAME }}.zip
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           lfs: true
       - name: Set Release Tag
@@ -73,7 +73,7 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -83,25 +83,25 @@ jobs:
           prerelease: true
 
       - name: Download Windows Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: windows_x86
           path: build/windows_x86/
 
       - name: Download Linux x86 Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: linux_x86
           path: build/linux_x86/
 
       - name: Download Linux arm64 Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: linux_arm64
           path: build/linux_arm64/
 
       - name: Upload Windows Release Asset
-        uses: actions/upload-release-asset@v1
+        uses: softprops/action-gh-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -111,7 +111,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload Linux x86 Release Asset
-        uses: actions/upload-release-asset@v1
+        uses: softprops/action-gh-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -121,7 +121,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload Linux arm64 Release Asset
-        uses: actions/upload-release-asset@v1
+        uses: softprops/action-gh-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
