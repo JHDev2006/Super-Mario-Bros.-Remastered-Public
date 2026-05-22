@@ -18,8 +18,8 @@ func set_scene(selector: EditorTileSelector) -> void:
 		scene = [selector.source_id, selector.tile_coords]
 		%SceneName.text = selector.tile_name
 	elif selector.type == 1:
-		scene = load(Global.level_editor.entity_id_map[selector.entity_id][0])
-		var split = Global.level_editor.entity_id_map[selector.entity_id][1].split(",")
+		scene = load(EntityIDMapper.map[selector.entity_id][0])
+		var split = EntityIDMapper.map[selector.entity_id][1].split(",")
 		var offset = Vector2(int(split[0]), int(split[1]))
 		if replace_scenes.has(scene.resource_path):
 			scene = load(replace_scenes[scene.resource_path])

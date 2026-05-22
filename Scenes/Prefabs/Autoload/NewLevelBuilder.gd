@@ -1,52 +1,42 @@
 extends Node
 
-var entity_map := {}
-
-
 const base64_charset := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
+const BASE_LEVEL_SCENE: PackedScene = preload("res://Scenes/Levels/CustomLevelBase.tscn")
 var sub_level_file = null
-
 var level_file := {}
 
-const BASE_LEVEL_SCENE: PackedScene = preload("res://Scenes/Levels/CustomLevelBase.tscn")
-
-static var sub_levels: Array[PackedScene] = [null, null, null, null, null]
-
+var building = false
 signal level_building_complete
 
-var building = false
-
 func _ready() -> void:
-	load_entity_map()
+	EntityIDMapper.load_entity_map()
 
-func load_level(level_file := {}) -> void:
-	sub_levels = [null, null, null, null, null]
+func load_level(temp_level_file := {}) -> void:
 	building = true
 	for i in 5:
-		sub_levels[i] = build_sublevel(i, level_file)
+		LevelEditor.sub_areas[i] = build_sublevel(i, temp_level_file)
 	level_building_complete.emit()
 	building = false
 
-func build_sublevel(level_idx := 0, level_file := {}) -> PackedScene:
+func build_sublevel(level_idx := 0, temp_level_file := {}) -> PackedScene:
 	var level = BASE_LEVEL_SCENE.instantiate()
 	level.sublevel_id = level_idx
 	level.level_id = Global.level_num
 	level.world_id = Global.world_num
-	sub_level_file = level_file["Levels"][level_idx]
+	sub_level_file = temp_level_file["Levels"][level_idx]
+	if (sub_level_file.is_empty()):
+		return null
 	return pack_level_into_scene(build_level(level))
 
 func pack_level_into_scene(level: Node) -> PackedScene:
 	var scene = PackedScene.new()
 	scene.pack(level)
+	
+	level.free()
 	return scene
-
-func load_entity_map() -> void:
-	entity_map = JSON.parse_string(FileAccess.open(EntityIDMapper.MAP_PATH, FileAccess.READ).get_as_text())
-
+	
 func build_level(level: Node = null) -> Node:
-	if sub_level_file.is_empty():
-		return null
 	var layer_id := 0
 	for layer in sub_level_file["Layers"]:
 		for chunk_id in layer:
@@ -75,18 +65,19 @@ func add_entities(level: Node, chunk := "", chunk_id := 0, layer := 0) -> void:
 		var entity_chunk_position = entity.get_slice(",", 0)
 		var entity_tile_position = decode_tile_position_from_chars(entity_chunk_position[0], entity_chunk_position[1], chunk_id)
 		var entity_node: Node = null
-		if entity_map.has(entity_id) == false:
+		if EntityIDMapper.map.has(entity_id) == false:
 			Global.log_error("MISSING ENTITY ID: " + entity_id)
 			continue
-		if entity_map[entity_id][0] != "res://Scenes/Prefabs/Entities/Player.tscn":
-			entity_node = load(entity_map[entity_id][0]).instantiate()
+		if EntityIDMapper.map[entity_id][0] != "res://Scenes/Prefabs/Entities/Player.tscn":
+			entity_node = load(EntityIDMapper.map[entity_id][0]).instantiate()
 		else:
 			entity_node = level.get_node("EntityLayer1/Player")
 		if entity_node == null:
 			continue
-		var offset = entity_map[entity_id][1].split(",")
+		var offset = EntityIDMapper.map[entity_id][1].split(",")
 		entity_node.global_position = entity_tile_position * 16 + (Vector2i(8, 8) + Vector2i(int(offset[0]), int(offset[1])))
-		level.get_node("EntityLayer" + str(layer + 1)).add_child(entity_node)
+		if entity_node != level.get_node("EntityLayer1/Player"):
+			level.get_node("EntityLayer" + str(layer + 1)).add_child(entity_node)
 		entity_node.reset_physics_interpolation()
 		entity_node.owner = level
 		entity_node.set_meta("tile_position", entity_tile_position)

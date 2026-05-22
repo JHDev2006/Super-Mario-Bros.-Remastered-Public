@@ -283,8 +283,9 @@ func _process(delta: float) -> void:
 	
 	if multibind_action_just_pressed("toggle_fps_count"):
 		%FPSCount.visible = !%FPSCount.visible
-	%FPSCount.text = str(int(Engine.get_frames_per_second())) + " FPS"
-
+	if (%FPSCount.visible):
+		%FPSCount.text = str(int(Engine.get_frames_per_second())) + " FPS" + get_memory_usage()
+	
 	handle_p_switch(delta)
 	
 	handle_input()
@@ -296,6 +297,26 @@ func _process(delta: float) -> void:
 		
 	if multibind_action_just_pressed("ui_screenshot"):
 		take_screenshot()
+
+func get_memory_usage() -> String:
+	var string := ""
+	
+	if (!OS.is_debug_build()):
+		return string
+		
+	var bytes := OS.get_static_memory_peak_usage()
+	var kb := bytes / 1024.0
+	var mb := kb / 1024.0
+	
+	string += "\n"
+	if (mb >= 1.0):
+		string += "%s MB" % str(snappedf(mb, 0.01))
+	elif (kb >= 1.0):
+		string += "%s KB" % str(snappedf(kb, 0.01))
+	else: # If that could ever happen
+		string += "%s BYTES" % str(snappedf(bytes, 0.01))
+		
+	return string + " - MEM USED"
 
 func take_screenshot() -> void:
 	var img: Image = get_viewport().get_texture().get_image()
@@ -465,7 +486,11 @@ func transition_to_scene(scene_path = "") -> void:
 	transitioning_scene = false
 	transition_finished.emit()
 
-
+func reload_editor() -> void:
+	$Transition/TransitionBlock/Label.show()
+	transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
+	await get_tree().create_timer(0.5).timeout
+	$Transition/TransitionBlock/Label.hide()
 
 func do_fake_transition(duration := 0.2) -> void:
 	if fade_transition:
@@ -553,12 +578,12 @@ func log_warning(text) -> void:
 	await get_tree().create_timer(10, false).timeout
 	error_message.queue_free()
 	
-func log_comment(text) -> void:
+func log_comment(text, timer := 2) -> void:
 	var error_message = $CanvasLayer/VBoxContainer/Comment.duplicate()
 	error_message.text = str(text)
 	error_message.visible = true
 	$CanvasLayer/VBoxContainer.add_child(error_message)
-	await get_tree().create_timer(2, false).timeout
+	await get_tree().create_timer(timer, false).timeout
 	error_message.queue_free()
 
 func level_editor_is_playtesting() -> bool:

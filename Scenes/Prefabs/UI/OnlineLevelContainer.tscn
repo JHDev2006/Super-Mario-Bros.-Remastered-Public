@@ -56,7 +56,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 40.0
 grow_horizontal = 2
-mouse_filter = 2
 theme_override_styles/normal = ExtResource("1_1k7iw")
 theme_override_styles/pressed = ExtResource("1_1k7iw")
 theme_override_styles/hover = ExtResource("2_h6n8u")
@@ -135,6 +134,7 @@ theme_override_constants/separation = -4
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" unique_id=339759982]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+mouse_filter = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("5_ajmg3")
@@ -149,6 +149,7 @@ uppercase = true
 [node name="ScrollContainer2" type="ScrollContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" unique_id=1470364982]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+mouse_filter = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("5_ajmg3")
@@ -304,5 +305,7 @@ metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 [connection signal="focus_entered" from="." to="." method="set_process" binds= [true]]
 [connection signal="focus_exited" from="." to="TextureRect" method="hide"]
 [connection signal="focus_exited" from="." to="." method="set_process" binds= [false]]
+[connection signal="mouse_entered" from="." to="." method="grab_focus"]
+[connection signal="mouse_exited" from="." to="." method="release_focus"]
 [connection signal="request_completed" from="ThumbnailDownloader" to="." method="on_request_completed"]
 [connection signal="tree_exiting" from="ThumbnailDownloader" to="ThumbnailDownloader" method="cancel_request"]

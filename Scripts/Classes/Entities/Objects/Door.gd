@@ -126,7 +126,7 @@ func player_enter(player: Player) -> void:
 		if Global.level_editor != null:
 			Global.level_editor.transition_to_sublevel(sublevel_id)
 		else:
-			Global.transition_to_scene(NewLevelBuilder.sub_levels[sublevel_id])
+			Global.transition_to_scene(LevelEditor.sub_areas[sublevel_id])
 	can_enter = true
 
 func freeze_player(player: Player) -> void:

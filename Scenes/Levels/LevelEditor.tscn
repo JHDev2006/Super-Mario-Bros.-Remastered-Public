@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cbha2l6hg1kfo" path="res://Assets/Sprites/UI/EditorGrid.png" id="2_8q7yr"]
 [ext_resource type="Texture2D" uid="uid://bwldw4ekgbwa7" path="res://Assets/Sprites/UI/EditorShortcutIcons.png" id="4_thawd"]
 [ext_resource type="Texture2D" uid="uid://bxciugu0dg7e8" path="res://Assets/Sprites/Editor/ChunkDisplay.png" id="5_o024b"]
+[ext_resource type="Texture2D" uid="uid://51yon820ej2r" path="res://Assets/Sprites/UI/CursorSpaceWarning.png" id="8_2blp1"]
 [ext_resource type="PackedScene" uid="uid://kag5i607liua" path="res://Scenes/Prefabs/UI/TileModifierMenu.tscn" id="8_bovjk"]
 [ext_resource type="PackedScene" uid="uid://knfs0rx7n1ry" path="res://Scenes/Prefabs/Editor/EditorTileSelector.tscn" id="8_wkmjk"]
+[ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="9_p4o5x"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="10_vhlvp"]
 [ext_resource type="Texture2D" uid="uid://cbgeyn530cdj6" path="res://Assets/Sprites/UI/EditorIcons.png" id="11_24ald"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Goomba.json" id="11_bkyu5"]
@@ -212,6 +214,7 @@
 [ext_resource type="PackedScene" uid="uid://07ukmj7s77wu" path="res://Scenes/Prefabs/Gizmos/Outputs/Flinger.tscn" id="213_uk8sr"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/WingItem.json" id="221_o0k3u"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/LuckyStar.json" id="224_vjdbd"]
+[ext_resource type="Script" uid="uid://0h04dap8ddvf" path="res://Scripts/Parts/AutosaveHandler.gd" id="225_s60en"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Items/Key.json" id="229_u1728"]
 [ext_resource type="Texture2D" uid="uid://d3km1t0r7dcg3" path="res://Assets/Sprites/Editor/VineWarp.png" id="235_d5512"]
 [ext_resource type="Texture2D" uid="uid://duxkbhsbnmrvs" path="res://Assets/Sprites/Editor/Darkness.png" id="236_i73lv"]
@@ -279,6 +282,24 @@ region_rect = Rect2(72, 12, 12, 12)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h8f07"]
 texture = ExtResource("4_thawd")
 region_rect = Rect2(72, 0, 12, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_401qx"]
+texture = ExtResource("4_thawd")
+region_rect = Rect2(96, 12, 12, 12)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s60en"]
+texture = ExtResource("4_thawd")
+region_rect = Rect2(96, 0, 12, 12)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_401qx"]
+load_path = "res://.godot/imported/EditorShortcutIcons.png-220513cd52f1a5f416c9dd6cf3eb00b9.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofliq"]
+texture = SubResource("CompressedTexture2D_401qx")
+region_rect = Rect2(96, 0, 12, 12)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_401qx"]
+color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dl3il"]
 draw_center = false
@@ -548,6 +569,17 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_e20nl"]
 color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s60en"]
+content_margin_left = 0.0
+bg_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s60en"]
+
 [sub_resource type="Animation" id="Animation_a6ws6"]
 length = 0.001
 tracks/0/type = "value"
@@ -611,7 +643,7 @@ script = ExtResource("1_0qbyu")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1361571552]
 unique_name_in_owner = true
-position = Vector2(-232, -16)
+position = Vector2(-695, 281)
 process_callback = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=862928203]
@@ -723,6 +755,16 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_h8f07")
 theme_override_styles/hover = SubResource("StyleBoxTexture_h8f07")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jdin3")
 
+[node name="AutoSave" type="Button" parent="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest" unique_id=220732958]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxTexture_401qx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_s60en")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ofliq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jdin3")
+
 [node name="Control" type="Control" parent="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest" unique_id=2113839306]
 layout_mode = 2
 mouse_filter = 2
@@ -790,18 +832,122 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "MENU_NO"
 
+[node name="AutoSaveMenu" type="PanelContainer" parent="CanvasLayer" unique_id=427005272]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = -62.0
+offset_right = 139.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("139_ydoon")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AutoSaveMenu" unique_id=1584651212]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/AutoSaveMenu/VBoxContainer" unique_id=483465040]
+layout_mode = 2
+text = "EDITOR_AUTOSAVE_TITLE"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/Label" unique_id=684053881]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_401qx")
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="CanvasLayer/AutoSaveMenu/VBoxContainer" unique_id=1049315457]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer9" unique_id=1884658908]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDITOR_AUTOSAVE_ENABLE"
+uppercase = true
+
+[node name="AutoSaveEnable" type="CheckBox" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer9" unique_id=1243076949]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+button_pressed = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/AutoSaveMenu/VBoxContainer" unique_id=1820067725]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer4" unique_id=1312067975]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDITOR_AUTOSAVE_TIME"
+uppercase = true
+
+[node name="AutoSaveTimer" type="SpinBox" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer4" unique_id=593552619]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+min_value = 1.0
+max_value = 30.0
+value = 5.0
+suffix = "MIN"
+script = ExtResource("204_idval")
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="CanvasLayer/AutoSaveMenu/VBoxContainer" unique_id=1667857654]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer10" unique_id=780272594]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDITOR_AUTOSAVE_BEFORE_TEST"
+uppercase = true
+
+[node name="AutoSaveBeforeTest" type="CheckBox" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer10" unique_id=1264051036]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="CanvasLayer/AutoSaveMenu/VBoxContainer" unique_id=312494577]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer11" unique_id=1875013617]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDITOR_AUTOSAVE_EDITOR_RETURN"
+uppercase = true
+
+[node name="AutoSaveEditorReturn" type="CheckBox" parent="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer11" unique_id=459256671]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Button" type="Button" parent="CanvasLayer/AutoSaveMenu/VBoxContainer" unique_id=2060805361]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "EDITOR_AUTOSAVE_CLEAN_CACHE"
+
 [node name="Grid" type="Parallax2D" parent="." unique_id=466111830]
 unique_name_in_owner = true
 visibility_layer = 2
 z_index = 4096
 z_as_relative = false
 repeat_size = Vector2(512, 512)
-repeat_times = 8
 
 [node name="TextureRect" type="TextureRect" parent="Grid" unique_id=819597101]
 modulate = Color(0.356863, 0.356863, 0.356863, 0.407843)
+offset_top = -272.0
 offset_right = 512.0
-offset_bottom = 512.0
+offset_bottom = 240.0
 mouse_filter = 2
 texture = ExtResource("2_8q7yr")
 stretch_mode = 1
@@ -1017,7 +1163,16 @@ z_as_relative = false
 offset_right = 64.0
 offset_bottom = 48.0
 
+[node name="SpaceWarning" type="TextureRect" parent="TileCursor" unique_id=545983330]
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("8_2blp1")
+stretch_mode = 2
+script = ExtResource("9_p4o5x")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
 [node name="TileMenu" type="CanvasLayer" parent="." unique_id=683279179]
+visible = false
 
 [node name="Panel" type="ColorRect" parent="TileMenu" unique_id=625984302]
 texture_filter = 1
@@ -7001,6 +7156,7 @@ offset_bottom = -1.0
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "layer 1"
+horizontal_alignment = 2
 uppercase = true
 
 [node name="ControllerInputWarning" type="Label" parent="Info" unique_id=746729626]
@@ -7154,6 +7310,8 @@ node_to_validate = NodePath("../Description")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_s60en")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s60en")
 context_menu_enabled = false
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Info/SaveLevelDialog/VBoxContainer" unique_id=885091830]
@@ -7189,6 +7347,69 @@ text = "MENU_CANCEL"
 layout_mode = 2
 size_flags_horizontal = 8
 text = "EDITOR_SAVE"
+
+[node name="NameLevelDialog" type="PanelContainer" parent="Info" unique_id=1325593257]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -40.0
+offset_right = 102.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("139_ydoon")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Info/NameLevelDialog" unique_id=622589618]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Info/NameLevelDialog/VBoxContainer" unique_id=1683104159]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "EDITOR_SAVE_NAME_TITLE"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Info/NameLevelDialog/VBoxContainer/Label" unique_id=1246153204]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_e20nl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Info/NameLevelDialog/VBoxContainer" unique_id=973515605]
+layout_mode = 2
+
+[node name="StartLevelName" type="LineEdit" parent="Info/NameLevelDialog/VBoxContainer/HBoxContainer" unique_id=896189676]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+context_menu_enabled = false
+
+[node name="TextValidator" type="Node" parent="Info/NameLevelDialog/VBoxContainer/HBoxContainer" unique_id=1603697121 node_paths=PackedStringArray("node_to_validate")]
+script = ExtResource("114_cjvlm")
+node_to_validate = NodePath("../StartLevelName")
+
+[node name="HSplitContainer" type="HBoxContainer" parent="Info/NameLevelDialog/VBoxContainer" unique_id=1119881557]
+layout_mode = 2
+alignment = 1
+
+[node name="Button2" type="Button" parent="Info/NameLevelDialog/VBoxContainer/HSplitContainer" unique_id=847570037]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MENU_NO"
+
+[node name="Button" type="Button" parent="Info/NameLevelDialog/VBoxContainer/HSplitContainer" unique_id=569744933]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MENU_DONE"
 
 [node name="SaveDialog" type="Label" parent="Info" unique_id=188622919]
 unique_name_in_owner = true
@@ -7285,6 +7506,14 @@ wait_time = 0.25
 [node name="PlayerTrail" type="Node2D" parent="." unique_id=2144528200]
 visible = false
 
+[node name="AutoSaveHandler" type="Node" parent="." unique_id=15071189]
+script = ExtResource("225_s60en")
+
+[node name="AutoSaveTimer" type="Timer" parent="AutoSaveHandler" unique_id=1529505760]
+process_callback = 0
+wait_time = 300.0
+one_shot = true
+
 [connection signal="connection_node_found" from="." to="CanvasLayer/TileModifierMenu" method="connect_signal"]
 [connection signal="open_scene_ref_tile_menu" from="CanvasLayer/TileModifierMenu" to="." method="open_tile_selection_menu_scene_ref"]
 [connection signal="mouse_entered" from="CanvasLayer/Tools" to="." method="on_mouse_entered"]
@@ -7307,12 +7536,21 @@ visible = false
 [connection signal="toggled" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ShowGizmos" to="." method="toggle_gizmos"]
 [connection signal="mouse_entered" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ResetLevel" to="." method="set_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_RESET"]]
 [connection signal="mouse_exited" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ResetLevel" to="." method="clear_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_RESET"]]
-[connection signal="pressed" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ResetLevel" to="CanvasLayer/DeletionWarning" method="show"]
+[connection signal="pressed" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/ResetLevel" to="." method="deletion_warning_toggle"]
+[connection signal="mouse_entered" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/AutoSave" to="." method="set_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_AUTOSAVE"]]
+[connection signal="mouse_exited" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/AutoSave" to="." method="clear_toolbar_tooltip" binds= ["EDITOR_TOOLBAR_AUTOSAVE"]]
+[connection signal="pressed" from="CanvasLayer/Tools/MarginContainer/HBoxContainer/TheRest/AutoSave" to="." method="autosave_menu_toggle"]
 [connection signal="mouse_entered" from="CanvasLayer/DeletionWarning" to="." method="on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/DeletionWarning" to="." method="on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer/Button" to="." method="clear_level"]
 [connection signal="pressed" from="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer/Button" to="CanvasLayer/DeletionWarning" method="hide"]
 [connection signal="pressed" from="CanvasLayer/DeletionWarning/VBoxContainer/HBoxContainer/Button2" to="CanvasLayer/DeletionWarning" method="hide"]
+[connection signal="mouse_entered" from="CanvasLayer/AutoSaveMenu" to="." method="on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/AutoSaveMenu" to="." method="on_mouse_exited"]
+[connection signal="toggled" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer9/AutoSaveEnable" to="AutoSaveHandler" method="enable_toggled"]
+[connection signal="value_changed" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer4/AutoSaveTimer" to="AutoSaveHandler" method="timer_changed"]
+[connection signal="toggled" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer10/AutoSaveBeforeTest" to="AutoSaveHandler" method="before_test_toggled"]
+[connection signal="toggled" from="CanvasLayer/AutoSaveMenu/VBoxContainer/HBoxContainer11/AutoSaveEditorReturn" to="AutoSaveHandler" method="editor_return_toggled"]
 [connection signal="pressed" from="TileMenu/MarginContainer/VBoxContainer/TabButtons/Bindings" to="." method="open_bindings_menu"]
 [connection signal="pressed" from="TileMenu/MarginContainer/VBoxContainer/TabButtons/Save" to="." method="open_save_dialog"]
 [connection signal="pressed" from="TileMenu/MarginContainer/VBoxContainer/TabButtons/Exit" to="." method="quit_editor"]
@@ -7396,7 +7634,11 @@ visible = false
 [connection signal="text_changed" from="Info/SaveLevelDialog/VBoxContainer/HBoxContainer3/Description" to="Info/SaveLevelDialog/VBoxContainer/HBoxContainer3/TextValidator" method="validate_text"]
 [connection signal="pressed" from="Info/SaveLevelDialog/VBoxContainer/HSplitContainer/Button2" to="." method="close_save_menu"]
 [connection signal="pressed" from="Info/SaveLevelDialog/VBoxContainer/HSplitContainer/Button" to="." method="save_level"]
+[connection signal="text_changed" from="Info/NameLevelDialog/VBoxContainer/HBoxContainer/StartLevelName" to="Info/NameLevelDialog/VBoxContainer/HBoxContainer/TextValidator" method="validate_text" unbinds=1]
+[connection signal="pressed" from="Info/NameLevelDialog/VBoxContainer/HSplitContainer/Button2" to="." method="close_name_dialog"]
+[connection signal="pressed" from="Info/NameLevelDialog/VBoxContainer/HSplitContainer/Button" to="." method="close_name_dialog" binds= [true]]
 [connection signal="hidden" from="Info/SaveBlueprint" to="." method="set_state"]
 [connection signal="pressed" from="Info/SaveBlueprint/VBoxContainer/HBoxContainer/Button" to="." method="save_blueprint"]
 [connection signal="pressed" from="Info/SaveBlueprint/VBoxContainer/HBoxContainer/Button" to="Info/SaveBlueprint" method="hide"]
 [connection signal="pressed" from="Info/SaveBlueprint/VBoxContainer/HBoxContainer/Cancel" to="Info/SaveBlueprint" method="hide"]
+[connection signal="timeout" from="AutoSaveHandler/AutoSaveTimer" to="AutoSaveHandler" method="autosave_tick"]

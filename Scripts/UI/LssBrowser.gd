@@ -32,7 +32,7 @@ func open(refresh_list := true) -> void:
 	set_process(true)
 
 func _process(_delta: float) -> void:
-	if Global.multibind_action_just_pressed("ui_back") and CustomLineEdit.editing == false:
+	if (Global.multibind_action_just_pressed("ui_back") || Input.is_action_just_pressed("mb_right")) and CustomLineEdit.editing == false:
 		closed.emit()
 		close()
 

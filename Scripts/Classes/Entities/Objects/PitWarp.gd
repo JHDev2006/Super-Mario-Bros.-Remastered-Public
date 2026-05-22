@@ -16,7 +16,7 @@ func warp_back(player: Player) -> void:
 	if Global.level_editor != null:
 		Global.level_editor.transition_to_sublevel(target_sub_level)
 	else:
-		Global.transition_to_scene(NewLevelBuilder.sub_levels[target_sub_level])
+		Global.transition_to_scene(LevelEditor.sub_areas[target_sub_level])
 
 func _exit_tree() -> void:
 	get_tree().get_first_node_in_group("Players").auto_death_pit = true

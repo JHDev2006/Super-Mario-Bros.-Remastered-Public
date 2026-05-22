@@ -13,25 +13,47 @@ static var last_played_container = null
 static var saved_search_values := [-1, -1, -1]
 static var level_id := ""
 
+func _input(event: InputEvent) -> void:
+	if (event is InputEventKey):
+		if get_viewport().gui_get_focus_owner() == null or ($CharacterSelect.visible or $LSSCharacterSelect.visible):
+			if (%LevelList.visible):
+				$BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button.grab_focus()
+			if (%LevelInfo.visible):
+				%Play.grab_focus()
+				if not %Play.visible:
+					%Edit.grab_focus()
+			if (%LSSBrowser.visible):
+				%RefreshList.grab_focus()
+			if (%LSSLevelInfo.visible):
+				%Download.grab_focus()
+				if not %Download.visible:
+					%OnlinePlay.grab_focus()
+			if (%AutosavesList.visible):
+				$BG/Border/Levels/VBoxContainer/AutosavesList/AutosavesDelete.grab_focus()
+
 func _ready() -> void:
 	has_entered = true
-	ResourceSetterNew.clear_cache()
 	ResourceSetter.cache.clear()
-	Global.level_theme_changed.emit()
+	ResourceSetterNew.clear_cache()
+	
+	AudioManager.stop_all_music()
 	Global.get_node("GameHUD").hide()
-	Checkpoint.passed_checkpoints.clear()
+	Global.clear_saved_values()
+	Global.reset_values()
+	Global.current_campaign = "SMB1"
+	Global.level_theme_changed.emit()
 	Global.world_num = 1
 	Global.level_num = 1
-	Global.reset_values()
-	LevelEditor.sub_areas = [null, null, null, null, null]
-	Global.clear_saved_values()
-	Checkpoint.sublevel_id = 0
-	Global.current_campaign = "SMB1"
-	AudioManager.stop_all_music()
 	Global.second_quest = false
+	
+	LevelEditor.sub_areas = [null, null, null, null, null]
+	LevelEditor.sub_level_id = 0
+	LevelEditor.selected_tile_index = 0
+	LevelEditor.last_camera_position = Vector2(-900, -900)
+	LevelEditor.first_open = false
+	
+	Checkpoint.sublevel_id = 0
 	%LevelList.open(true)
-	for i in 5:
-		NewLevelBuilder.sub_levels[i] = null
 	await get_tree().process_frame
 	if last_played_container != null:
 		%LSSBrowser.setup_page_numbers()
@@ -50,6 +72,12 @@ func _ready() -> void:
 		%LevelList.close()
 	$BGM.play()
 
+func _process(delta: float) -> void:
+	if ($CharacterSelect.visible):
+		$CharacterSelect.grab_focus()
+	if ($LSSCharacterSelect.visible):
+		$LSSCharacterSelect.grab_focus()
+
 func clear_saved_stuff() -> void:
 	last_played_container = null
 	%LSSLevelInfo.saved_stuff.clear()
@@ -60,14 +88,16 @@ func _exit_tree() -> void:
 	Global.get_node("GameHUD").show()
 
 func new_level() -> void:
-	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	LevelEditor.load_play = false
 	LevelEditor.level_name = ""
 	LevelEditor.level_author = ""
 	LevelEditor.level_desc = ""
 	LevelEditor.difficulty = 0
 	LevelEditor.level_file = LevelEditor.BLANK_FILE.duplicate(true)
-	Global.transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
+	LevelEditor.first_open = true
+	
+	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
+	Global.reload_editor()
 
 func back_to_title_screen() -> void:
 	clear_saved_stuff()
@@ -75,14 +105,13 @@ func back_to_title_screen() -> void:
 
 func edit_level() -> void:
 	clear_saved_stuff()
-	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	LevelEditor.load_play = false
+	LevelEditor.current_layer = 0
+	
 	NewLevelBuilder.load_level(LevelEditor.level_file)
-	var idx := 0
-	for i in NewLevelBuilder.sub_levels:
-		LevelEditor.sub_areas[idx] = NewLevelBuilder.sub_levels[idx].instantiate()
-		idx += 1
-	Global.transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
+	
+	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
+	Global.reload_editor()
 
 func play_level() -> void:
 	Global.current_game_mode = Global.GameMode.CUSTOM_LEVEL

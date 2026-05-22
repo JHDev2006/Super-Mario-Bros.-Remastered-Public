@@ -20,6 +20,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 focus_mode = 2
 focus_behavior_recursive = 2
+mouse_filter = 0
 theme_override_constants/margin_left = 8
 
 [node name="Button" type="Button" parent="." unique_id=47319333]
@@ -46,12 +47,14 @@ uppercase = true
 [node name="Cursor" type="Control" parent="." unique_id=1084264804]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Control" type="Control" parent="Cursor" unique_id=585994547]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="TextureRect" type="TextureRect" parent="Cursor/Control" unique_id=332120313]
 layout_mode = 1
@@ -75,6 +78,7 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="focus_entered" from="." to="." method="show"]
 [connection signal="focus_entered" from="." to="Button" method="grab_focus"]
+[connection signal="mouse_entered" from="." to="." method="grab_focus"]
 [connection signal="focus_entered" from="Button" to="Icon" method="hide"]
 [connection signal="focus_entered" from="Button" to="Label" method="show"]
 [connection signal="focus_entered" from="Button" to="Cursor" method="show"]

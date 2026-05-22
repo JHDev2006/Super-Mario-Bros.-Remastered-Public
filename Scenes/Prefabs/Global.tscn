@@ -44,6 +44,17 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mpjtu"]
 shader = SubResource("Shader_m6bur")
 
+[sub_resource type="GDScript" id="GDScript_mpjtu"]
+script/source = "extends Label
+
+func _process(delta: float) -> void:
+	if (visible):
+		await get_tree().create_timer(0.5, true).timeout
+		text += \".\"
+	else:
+		text = \"Loading...\"
+"
+
 [sub_resource type="Animation" id="Animation_mpjtu"]
 resource_name = "FadeIn"
 length = 0.5
@@ -69,7 +80,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_81m3w"]
@@ -335,6 +346,20 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Label" type="Label" parent="Transition/TransitionBlock" unique_id=700837014]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 72.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Loading."
+uppercase = true
+script = SubResource("GDScript_mpjtu")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=804731792]
 libraries/ = SubResource("AnimationLibrary_77asf")
 speed_scale = 2.0
@@ -356,6 +381,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "120FPS"
 horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="ScoreTally" type="AudioStreamPlayer" parent="." unique_id=1944532967]
 stream = ExtResource("3_vjpdy")

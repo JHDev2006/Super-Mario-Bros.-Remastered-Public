@@ -5,6 +5,8 @@ var editing_node: Node = null
 var properties := []
 var has_connection := false
 
+var mouse_inside := true
+
 var override_scenes := {}
 
 const VALUES := {
@@ -35,11 +37,18 @@ var can_exit := true:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("mb_left"): left_click_release.emit()
-	if active and (Global.multibind_action_just_pressed("ui_back") or Global.multibind_action_just_pressed("editor_open_menu")):
-		if can_exit:
-			close()
-		else:
-			pass
+	if active:
+		if Global.multibind_action_just_pressed("ui_back") or Global.multibind_action_just_pressed("editor_open_menu"):
+			if can_exit:
+				close()
+			else:
+				pass
+		await get_tree().process_frame
+		if Input.is_action_just_pressed("mb_left") && !mouse_inside:
+			if can_exit:
+				close()
+			else:
+				pass
 
 func open() -> void:
 	active = true
@@ -141,8 +150,15 @@ func value_changed(property, new_value) -> void:
 	undo_redo.add_do_method(set_value.bind(editing_node, property.tile_property_name, new_value))
 	undo_redo.add_undo_method(set_value.bind(editing_node, property.tile_property_name, old_value))
 	undo_redo.commit_action(true)
+	
+	Global.level_editor.save_to_undoredo("Edited Node!%s" % get_path(),
+		[editing_node.get_path(), property.tile_property_name, new_value],
+		[editing_node.get_path(), property.tile_property_name, old_value],
+	)
 
-func set_value(node: Node, value_name := "", value = null) -> void:
+func set_value(node: Variant, value_name := "", value = null) -> void:
+	if (node is NodePath):
+		node = get_node_or_null(node)
 	if is_instance_valid(node) == false:
 		return
 	node.set(value_name, value)
@@ -188,3 +204,11 @@ func do_animation(node: Node) -> void:
 		sparkle.global_position = node.get_meta("tile_position") * 16
 		add_sibling(sparkle)
 		sparkle.animation_finished.connect(sparkle.queue_free)
+
+func is_mouse_inside(it_is := true) -> void:
+	var inside_check = get_global_rect().has_point(get_global_mouse_position())
+	if inside_check and not it_is:
+		it_is = true
+
+	print(str(it_is))
+	mouse_inside = it_is
