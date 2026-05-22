@@ -155,6 +155,8 @@ func value_changed(property, new_value) -> void:
 		[editing_node.get_path(), property.tile_property_name, new_value],
 		[editing_node.get_path(), property.tile_property_name, old_value],
 	)
+	
+	Global.level_editor.something_changed = true
 
 func set_value(node: Variant, value_name := "", value = null) -> void:
 	if (node is NodePath):
@@ -183,7 +185,9 @@ func close() -> void:
 var old_scale = Vector2.ONE
 
 func connect_signal(new_node: Node) -> void:
-	editing_node.get_node("SignalExposer").connect_to_node([Global.level_editor.current_layer, new_node.get_meta("tile_position")])
+	var node_to_recieve := [Global.level_editor.current_layer, new_node.get_meta("tile_position")]
+	var exposer := editing_node.get_node("SignalExposer")
+	exposer.connect_to_node(node_to_recieve, true, true)
 	can_exit = true
 	if Global.level_editor.quick_connecting:
 		close()

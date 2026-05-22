@@ -20,9 +20,13 @@ func set_selected(active := false) -> void:
 
 func handle_inputs() -> void:
 	var old := selected_index
-	if Global.multibind_action_just_pressed("ui_left"):
+	var scroll_up := mouse_filter == Control.MOUSE_FILTER_STOP and Input.is_action_just_pressed("scroll_up")
+	var scroll_down := mouse_filter == Control.MOUSE_FILTER_STOP and Input.is_action_just_pressed("scroll_down")
+	
+	
+	if Global.multibind_action_just_pressed("ui_left") or scroll_up:
 		selected_index -= 1
-	if Global.multibind_action_just_pressed("ui_right"):
+	if Global.multibind_action_just_pressed("ui_right") or scroll_down:
 		selected_index += 1
 	selected_index = clamp(selected_index, 0, values.size() - 1)
 	if old != selected_index:

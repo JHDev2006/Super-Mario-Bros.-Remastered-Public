@@ -218,13 +218,16 @@ func setup_config_dirs() -> void:
 		"saves",
 		"screenshots",
 		"level_packs",
-		"blueprints"
+		"blueprints",
+		"mods"
 	]
 
 	for d in dirs:
 		var full_path = config_path.path_join(d)
 		if not DirAccess.dir_exists_absolute(full_path):
 			DirAccess.make_dir_recursive_absolute(full_path)
+			
+	ModsTransfer.move_mods_to_new_path(ModsTransfer.find_mods_in_old_path())
 
 func get_config_path() -> String:
 	var exe_path := OS.get_executable_path()
@@ -487,10 +490,13 @@ func transition_to_scene(scene_path = "") -> void:
 	transition_finished.emit()
 
 func reload_editor() -> void:
-	$Transition/TransitionBlock/Label.show()
+	$Transition/TransitionBlock/EditorLoading/PlayerSprite.update()
+	$Transition/TransitionBlock/EditorLoading/PlayerSprite.animation = "Jump"
+	$Transition/TransitionBlock/EditorLoading.show()
+	
 	transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
 	await get_tree().create_timer(0.5).timeout
-	$Transition/TransitionBlock/Label.hide()
+	$Transition/TransitionBlock/EditorLoading.hide()
 
 func do_fake_transition(duration := 0.2) -> void:
 	if fade_transition:

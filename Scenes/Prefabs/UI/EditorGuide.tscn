@@ -65,7 +65,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("1_ua084")
-item_count = 13
+item_count = 14
 item_0/text = "INTRODUCTION"
 item_1/text = "CONTROLS"
 item_2/text = "TILE MENU"
@@ -77,8 +77,9 @@ item_7/text = "WARPS"
 item_8/text = "MULTI-SELECTING"
 item_9/text = "BLUEPRINTS"
 item_10/text = "GIZMOS"
-item_11/text = "SHORTCUTS"
-item_12/text = "TIPS & TRICKS"
+item_11/text = "AUTOSAVE"
+item_12/text = "SHORTCUTS"
+item_13/text = "TIPS & TRICKS"
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer" unique_id=119690840]
 layout_mode = 2
@@ -701,6 +702,48 @@ text = "GUIDE_GIZMO_TEXT"
 autowrap_mode = 2
 uppercase = true
 
+[node name="Autosaving" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides" unique_id=1546565422]
+visible = false
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Autosaving" unique_id=1322043564]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "GUIDE_AUTOSAVE_TITLE"
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Autosaving/Title" unique_id=350631371]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ua084")
+
+[node name="Control" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Autosaving" unique_id=2095989824]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Autosaving" unique_id=56634622]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Autosaving/ScrollContainer" unique_id=1094407480]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Autosaving/ScrollContainer/VBoxContainer" unique_id=750092515]
+layout_mode = 2
+size_flags_vertical = 1
+text = "GUIDE_AUTOSAVE_TEXT"
+autowrap_mode = 2
+uppercase = true
+
 [node name="Shortcuts" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides" unique_id=1356882529]
 visible = false
 layout_mode = 2
@@ -943,6 +986,22 @@ modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
 layout_mode = 2
 size_flags_vertical = 0
 text = "GUIDE_BINDS_SEC12_BIND"
+
+[node name="Tile Empty Space" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer" unique_id=798195382]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Tile Empty Space" unique_id=1881000660]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "GUIDE_BINDS_SEC13"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HSplitContainer/PanelContainer/Guides/Shortcuts/ScrollContainer/VBoxContainer/Tile Empty Space" unique_id=917230757]
+modulate = Color(0.3882353, 0.3882353, 0.3882353, 1)
+layout_mode = 2
+size_flags_vertical = 0
+text = "GUIDE_BINDS_SEC13_BIND"
 
 [node name="Control" type="Control" parent="MarginContainer" unique_id=1093481027]
 layout_mode = 2

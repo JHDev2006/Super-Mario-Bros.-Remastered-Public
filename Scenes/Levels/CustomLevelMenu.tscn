@@ -37,6 +37,8 @@
 [ext_resource type="PackedScene" uid="uid://bqy0nm0h7f5sl" path="res://Scenes/Parts/DataDeletionNode.tscn" id="32_cwgd5"]
 [ext_resource type="Script" uid="uid://on2505mquav0" path="res://Scripts/UI/AutosavesList.gd" id="32_euqtg"]
 [ext_resource type="PackedScene" uid="uid://ccabvf866y58q" path="res://Scenes/Parts/SelectableNumberNode.tscn" id="32_pafke"]
+[ext_resource type="Script" uid="uid://c8xv30jxw6uum" path="res://Scripts/UI/SelectableLabel.gd" id="32_vig88"]
+[ext_resource type="Script" uid="uid://dor6jfp0milxt" path="res://Scripts/UI/AutosaveSettings.gd" id="37_pafke"]
 
 [sub_resource type="Shader" id="Shader_u8fen"]
 code = "shader_type canvas_item;
@@ -98,7 +100,16 @@ modulate_color = Color(1, 0, 0, 1)
 atlas = ExtResource("11_bwyvi")
 region = Rect2(12, 0, 12, 12)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwgd5"]
+atlas = ExtResource("11_bwyvi")
+region = Rect2(36, 0, 12, 12)
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_obbrw"]
+color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bg4p8"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_vig88"]
 color = Color(1, 1, 1, 1)
 
 [node name="CustomLevelMenu" type="Node" unique_id=1151792999]
@@ -318,19 +329,6 @@ text = "EDITOR_MAIN_LSS"
 [node name="HSeparator" type="HSeparator" parent="BG/Border/Levels/VBoxContainer/LevelList" unique_id=1815239064]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_wgcm7")
-
-[node name="OpenAutosave" type="HBoxContainer" parent="BG/Border/Levels/VBoxContainer/LevelList" unique_id=1056536609]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Control" type="Control" parent="BG/Border/Levels/VBoxContainer/LevelList/OpenAutosave" unique_id=339787705]
-custom_minimum_size = Vector2(8, 0)
-layout_mode = 2
-
-[node name="SelectableLabel" parent="BG/Border/Levels/VBoxContainer/LevelList/OpenAutosave" unique_id=1846027017 instance=ExtResource("12_psbt7")]
-layout_mode = 2
-size_flags_vertical = 1
-text = "EDITOR_MAIN_AUTOSAVES"
 
 [node name="Filter" parent="BG/Border/Levels/VBoxContainer/LevelList" unique_id=1217031182 instance=ExtResource("17_ruj08")]
 layout_mode = 2
@@ -592,6 +590,17 @@ texture = SubResource("AtlasTexture_otk5o")
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/DeleteConfirm" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_LEVEL_CONFIRM"
 
+[node name="OpenAutosaves" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer" unique_id=1979739147 instance=ExtResource("19_hvf3u")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath("../Edit")
+
+[node name="Icon" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves" index="1" unique_id=1961946869]
+texture = SubResource("AtlasTexture_cwgd5")
+
+[node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves" index="2" unique_id=1354378166]
+text = "EDITOR_MAIN_AUTOSAVES"
+
 [node name="LSSBrowser" type="VBoxContainer" parent="BG/Border/Levels/VBoxContainer" unique_id=1228715031]
 unique_name_in_owner = true
 visible = false
@@ -761,6 +770,7 @@ script = ExtResource("23_u8fen")
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
+mouse_filter = 2
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(561241708, 788084636) index="0" unique_id=339759982]
 scroll_horizontal = 70
@@ -844,59 +854,15 @@ layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("32_euqtg")
 
-[node name="Enable" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=215292564 instance=ExtResource("17_ruj08")]
+[node name="OpenSettings" type="HBoxContainer" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=1329856691]
 layout_mode = 2
-mouse_filter = 0
-option_key = "autosave_enabled"
-title = "EDITOR_AUTOSAVE_ENABLE"
-values = ["SETTING_OFF", "SETTING_ON"]
-settings_category = "editor"
+theme_override_constants/separation = 0
 
-[node name="Time" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=1056089136 instance=ExtResource("32_pafke")]
-layout_mode = 2
-mouse_filter = 0
-selectMode = 1
-settings_category = "editor"
-option_key = "autosave_min_timer"
-title = "EDITOR_AUTOSAVE_TIME"
-extraInfo = "MIN"
-minimum = 1.0
-maximum = 30.0
-step = 1.0
-
-[node name="Test" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=1145756242 instance=ExtResource("17_ruj08")]
-layout_mode = 2
-mouse_filter = 0
-option_key = "autosave_before_test"
-title = "EDITOR_AUTOSAVE_BEFORE_TEST"
-values = ["SETTING_OFF", "SETTING_ON"]
-settings_category = "editor"
-
-[node name="ReturnEditor" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=1242325300 instance=ExtResource("17_ruj08")]
-layout_mode = 2
-mouse_filter = 0
-option_key = "autosave_on_editor_return"
-title = "EDITOR_AUTOSAVE_EDITOR_RETURN"
-values = ["SETTING_OFF", "SETTING_ON"]
-settings_category = "editor"
-
-[node name="HSeparator" type="HSeparator" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=96179767]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_wgcm7")
-
-[node name="AutosavesDelete" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=1412415357 instance=ExtResource("32_cwgd5")]
-layout_mode = 2
-title = "EDITOR_AUTOSAVE_DELETE"
-campaigns = Array[String](["EDITOR_AUTOSAVE_ALL", "EDITOR_AUTOSAVE_SEARCH"])
-
-[node name="Search" type="HBoxContainer" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=176582578]
-layout_mode = 2
-
-[node name="Control" type="Control" parent="BG/Border/Levels/VBoxContainer/AutosavesList/Search" unique_id=8180574]
+[node name="Control" type="Control" parent="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings" unique_id=942661218]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="Cursor" type="TextureRect" parent="BG/Border/Levels/VBoxContainer/AutosavesList/Search/Control" unique_id=98575186]
+[node name="Cursor" type="TextureRect" parent="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/Control" unique_id=1899204276]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -907,7 +873,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_f5g2b")
 stretch_mode = 3
 
-[node name="ResourceSetter" type="Node" parent="BG/Border/Levels/VBoxContainer/AutosavesList/Search/Control/Cursor" unique_id=478939554 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/Control/Cursor" unique_id=310944073 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -915,15 +881,19 @@ mode = 1
 resource_json = ExtResource("15_7mmoe")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="TextureRect" type="TextureRect" parent="BG/Border/Levels/VBoxContainer/AutosavesList/Search" unique_id=1228310108]
+[node name="SelectableLabel" type="Label" parent="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings" unique_id=1846027017]
 layout_mode = 2
-texture = ExtResource("17_gmv51")
-stretch_mode = 3
+focus_mode = 2
+mouse_filter = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bg4p8")
+text = "EDITOR_TOOLBAR_AUTOSAVE"
+uppercase = true
+script = ExtResource("32_vig88")
 
-[node name="CustomLineEdit" parent="BG/Border/Levels/VBoxContainer/AutosavesList/Search" unique_id=858978222 instance=ExtResource("18_qigcv")]
+[node name="AutosavesDelete" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=1412415357 instance=ExtResource("32_cwgd5")]
 layout_mode = 2
-size_flags_horizontal = 3
-text_overrun_behavior = 3
+title = "EDITOR_AUTOSAVE_DELETE"
+campaigns = Array[String](["EDITOR_AUTOSAVE_ALL"])
 
 [node name="HSeparator2" type="HSeparator" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=820048996]
 layout_mode = 2
@@ -977,7 +947,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_wgcm7")
 
 [node name="LabelFontChanger" type="Node" parent="." unique_id=762005581 node_paths=PackedStringArray("labels")]
 script = ExtResource("21_hpawg")
-labels = [NodePath("../BG/Border/Levels/VBoxContainer/Title"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo/ScrollContainer/LevelName"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo/Container/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel2"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel3"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/Search/CustomLineEdit"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/CustomLevels/MarginContainer/ScrollContainer/MarginContainer/LevelContainers/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/CustomLevels/MarginContainer/ScrollContainer/MarginContainer/LevelContainers/SavedLevels"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/CustomLevels/MarginContainer/ScrollContainer/MarginContainer/LevelContainers/DownloadedLevels"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/OpenAutosave/SelectableLabel"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/Panel/AutoScrollContainer/VBoxContainer/Description"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/Panel/AutoScrollContainer/VBoxContainer/AutosaveTime"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Play/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Edit/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Delete/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/DeleteConfirm/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel3"), NodePath("../BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer/RefreshList"), NodePath("../BG/Border/Levels/VBoxContainer/LSSBrowser/LoadingMSG"), NodePath("../BG/Border/Levels/VBoxContainer/LSSBrowser/OverloadMSG"), NodePath("../BG/Border/Levels/VBoxContainer/LSSBrowser/ErrorMSG"), NodePath("../BG/Border/Levels/VBoxContainer/LSSBrowser/SearchFail"), NodePath("../BG/Border/Levels/VBoxContainer/AutosavesList/Search/CustomLineEdit"), NodePath("../BG/Border/Levels/VBoxContainer/AutosavesList/AutosavedLevels/MarginContainer/AutosaveScrollContainer/MarginContainer/AutosaveContainers/Label")]
+labels = [NodePath("../BG/Border/Levels/VBoxContainer/Title"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo/ScrollContainer/LevelName"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo/Container/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel2"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel3"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/Search/CustomLineEdit"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/CustomLevels/MarginContainer/ScrollContainer/MarginContainer/LevelContainers/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/CustomLevels/MarginContainer/ScrollContainer/MarginContainer/LevelContainers/SavedLevels"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/CustomLevels/MarginContainer/ScrollContainer/MarginContainer/LevelContainers/DownloadedLevels"), null, NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/Panel/AutoScrollContainer/VBoxContainer/Description"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/Panel/AutoScrollContainer/VBoxContainer/AutosaveTime"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Play/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Edit/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Delete/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/DeleteConfirm/Label"), NodePath("../BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel3"), NodePath("../BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer/RefreshList"), NodePath("../BG/Border/Levels/VBoxContainer/LSSBrowser/LoadingMSG"), NodePath("../BG/Border/Levels/VBoxContainer/LSSBrowser/OverloadMSG"), NodePath("../BG/Border/Levels/VBoxContainer/LSSBrowser/ErrorMSG"), NodePath("../BG/Border/Levels/VBoxContainer/LSSBrowser/SearchFail"), null, NodePath("../BG/Border/Levels/VBoxContainer/AutosavesList/AutosavedLevels/MarginContainer/AutosaveScrollContainer/MarginContainer/AutosaveContainers/Label")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1413540263]
@@ -1000,8 +970,96 @@ focus_mode = 2
 visible = false
 focus_mode = 2
 
+[node name="AutosaveSettings" type="Control" parent="." unique_id=2050469018]
+visible = false
+custom_minimum_size = Vector2(212, 96)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -48.0
+offset_right = 106.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("37_pafke")
+
+[node name="Panel" type="PanelContainer" parent="AutosaveSettings" unique_id=1827291926]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("8_psbt7")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AutosaveSettings/Panel" unique_id=1068732760]
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Options" type="VBoxContainer" parent="AutosaveSettings/Panel/ScrollContainer" unique_id=755397941]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="AutosaveSettings/Panel/ScrollContainer/Options" unique_id=310649841]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "EDITOR_AUTOSAVE_TITLE"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="AutosaveSettings/Panel/ScrollContainer/Options/Title" unique_id=1691122279]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_vig88")
+
+[node name="Control" type="Control" parent="AutosaveSettings/Panel/ScrollContainer/Options" unique_id=124574818]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Enable" parent="AutosaveSettings/Panel/ScrollContainer/Options" unique_id=215292564 instance=ExtResource("17_ruj08")]
+layout_mode = 2
+mouse_filter = 0
+option_key = "autosave_enabled"
+title = "EDITOR_AUTOSAVE_ENABLE"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "editor"
+
+[node name="Time" parent="AutosaveSettings/Panel/ScrollContainer/Options" unique_id=1056089136 instance=ExtResource("32_pafke")]
+layout_mode = 2
+mouse_filter = 0
+selectMode = 1
+settings_category = "editor"
+option_key = "autosave_min_timer"
+title = "EDITOR_AUTOSAVE_TIME"
+extraInfo = "MIN"
+minimum = 1.0
+maximum = 30.0
+step = 1.0
+
+[node name="Test" parent="AutosaveSettings/Panel/ScrollContainer/Options" unique_id=752649232 instance=ExtResource("17_ruj08")]
+layout_mode = 2
+mouse_filter = 0
+option_key = "autosave_before_test"
+title = "EDITOR_AUTOSAVE_BEFORE_TEST"
+values = ["SETTING_OFF", "SETTING_ON"]
+settings_category = "editor"
+
 [connection signal="closed" from="BG/Border/Levels/VBoxContainer/LevelList" to="." method="back_to_title_screen"]
 [connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/LevelList" to="BG/Border/Levels/VBoxContainer/LevelInfo" method="open"]
+[connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/LevelList" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="set_current_container"]
 [connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/LevelList" to="BG/Border/Levels/VBoxContainer/LevelList" method="close" unbinds=1]
 [connection signal="focus_entered" from="BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button" to="BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button/TextureRect" method="show"]
 [connection signal="focus_exited" from="BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button" to="BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button/TextureRect" method="hide"]
@@ -1013,8 +1071,6 @@ focus_mode = 2
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel2" to="BG/Border/Levels/VBoxContainer/LevelList" method="refresh"]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel3" to="BG/Border/Levels/VBoxContainer/LevelList" method="close"]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer/SelectableLabel3" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="open" binds= [true]]
-[connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LevelList/OpenAutosave/SelectableLabel" to="BG/Border/Levels/VBoxContainer/LevelList" method="close"]
-[connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LevelList/OpenAutosave/SelectableLabel" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="open"]
 [connection signal="focus_entered" from="BG/Border/Levels/VBoxContainer/LevelList/Filter" to="BG/Border/Levels/VBoxContainer/LevelList/CustomLevels/MarginContainer/ScrollContainer" method="set_v_scroll" binds= [0]]
 [connection signal="mouse_entered" from="BG/Border/Levels/VBoxContainer/LevelList/Filter" to="BG/Border/Levels/VBoxContainer/LevelList/Filter" method="grab_focus"]
 [connection signal="mouse_exited" from="BG/Border/Levels/VBoxContainer/LevelList/Filter" to="BG/Border/Levels/VBoxContainer/LevelList/Filter" method="release_focus"]
@@ -1031,6 +1087,8 @@ focus_mode = 2
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Delete/Button" to="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Delete" method="hide"]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Delete/Button" to="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/DeleteConfirm" method="grab_focus"]
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/DeleteConfirm/Button" to="." method="delete_level"]
+[connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves/Button" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="open"]
+[connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves/Button" to="BG/Border/Levels/VBoxContainer/LevelInfo" method="close" binds= [false]]
 [connection signal="closed" from="BG/Border/Levels/VBoxContainer/LSSBrowser" to="BG/Border/Levels/VBoxContainer/LevelList" method="open" binds= [false]]
 [connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/LSSBrowser" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="open"]
 [connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/LSSBrowser" to="BG/Border/Levels/VBoxContainer/LSSBrowser" method="close" unbinds=1]
@@ -1064,35 +1122,37 @@ focus_mode = 2
 [connection signal="pressed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/HBoxContainer/ViewOnLSS" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="open_lss"]
 [connection signal="request_completed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/Description" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="on_request_completed"]
 [connection signal="request_completed" from="BG/Border/Levels/VBoxContainer/LSSLevelInfo/DownloadLevel" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="level_downloaded"]
-[connection signal="closed" from="BG/Border/Levels/VBoxContainer/AutosavesList" to="BG/Border/Levels/VBoxContainer/LevelList" method="open" binds= [false]]
 [connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/AutosavesList" to="BG/Border/Levels/VBoxContainer/LevelInfo" method="open"]
-[connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/AutosavesList" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="close" unbinds=1 binds= [false]]
+[connection signal="level_selected" from="BG/Border/Levels/VBoxContainer/AutosavesList" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="close" unbinds=1]
 [connection signal="ready" from="BG/Border/Levels/VBoxContainer/AutosavesList" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="refresh"]
-[connection signal="mouse_entered" from="BG/Border/Levels/VBoxContainer/AutosavesList/Enable" to="BG/Border/Levels/VBoxContainer/AutosavesList/Enable" method="grab_focus"]
-[connection signal="mouse_exited" from="BG/Border/Levels/VBoxContainer/AutosavesList/Enable" to="BG/Border/Levels/VBoxContainer/AutosavesList/Enable" method="release_focus"]
-[connection signal="value_changed" from="BG/Border/Levels/VBoxContainer/AutosavesList/Enable" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="enable_toggled"]
-[connection signal="mouse_entered" from="BG/Border/Levels/VBoxContainer/AutosavesList/Time" to="BG/Border/Levels/VBoxContainer/AutosavesList/Time" method="grab_focus"]
-[connection signal="mouse_exited" from="BG/Border/Levels/VBoxContainer/AutosavesList/Time" to="BG/Border/Levels/VBoxContainer/AutosavesList/Time" method="release_focus"]
-[connection signal="value_changed" from="BG/Border/Levels/VBoxContainer/AutosavesList/Time" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="timer_changed"]
-[connection signal="mouse_entered" from="BG/Border/Levels/VBoxContainer/AutosavesList/Test" to="BG/Border/Levels/VBoxContainer/AutosavesList/Test" method="grab_focus"]
-[connection signal="mouse_exited" from="BG/Border/Levels/VBoxContainer/AutosavesList/Test" to="BG/Border/Levels/VBoxContainer/AutosavesList/Test" method="release_focus"]
-[connection signal="value_changed" from="BG/Border/Levels/VBoxContainer/AutosavesList/Test" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="before_test_toggled"]
-[connection signal="mouse_entered" from="BG/Border/Levels/VBoxContainer/AutosavesList/ReturnEditor" to="BG/Border/Levels/VBoxContainer/AutosavesList/ReturnEditor" method="grab_focus"]
-[connection signal="mouse_exited" from="BG/Border/Levels/VBoxContainer/AutosavesList/ReturnEditor" to="BG/Border/Levels/VBoxContainer/AutosavesList/ReturnEditor" method="release_focus"]
-[connection signal="value_changed" from="BG/Border/Levels/VBoxContainer/AutosavesList/ReturnEditor" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="editor_return_toggled"]
+[connection signal="focus_entered" from="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" to="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/Control/Cursor" method="show"]
+[connection signal="focus_entered" from="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" to="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" method="toggle_process" binds= [true]]
+[connection signal="focus_exited" from="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" to="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/Control/Cursor" method="hide"]
+[connection signal="focus_exited" from="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" to="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" method="toggle_process" binds= [false]]
+[connection signal="mouse_entered" from="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" to="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" method="grab_focus"]
+[connection signal="mouse_exited" from="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" to="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" method="release_focus"]
+[connection signal="pressed" from="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" to="AutosaveSettings" method="open"]
+[connection signal="ready" from="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" to="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel" method="toggle_process" binds= [false]]
 [connection signal="deleted" from="BG/Border/Levels/VBoxContainer/AutosavesList/AutosavesDelete" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="delete_levels"]
 [connection signal="mouse_entered" from="BG/Border/Levels/VBoxContainer/AutosavesList/AutosavesDelete" to="BG/Border/Levels/VBoxContainer/AutosavesList/AutosavesDelete" method="grab_focus"]
 [connection signal="mouse_exited" from="BG/Border/Levels/VBoxContainer/AutosavesList/AutosavesDelete" to="BG/Border/Levels/VBoxContainer/AutosavesList/AutosavesDelete" method="release_focus"]
-[connection signal="focus_entered" from="BG/Border/Levels/VBoxContainer/AutosavesList/Search/CustomLineEdit" to="BG/Border/Levels/VBoxContainer/AutosavesList/Search/Control/Cursor" method="show"]
-[connection signal="focus_exited" from="BG/Border/Levels/VBoxContainer/AutosavesList/Search/CustomLineEdit" to="BG/Border/Levels/VBoxContainer/AutosavesList/Search/Control/Cursor" method="hide"]
-[connection signal="text_submitted" from="BG/Border/Levels/VBoxContainer/AutosavesList/Search/CustomLineEdit" to="BG/Border/Levels/VBoxContainer/AutosavesList" method="search_submitted"]
 [connection signal="cancelled" from="CharacterSelect" to="BG/Border/Levels/VBoxContainer/LevelInfo" method="reopen"]
 [connection signal="cancelled" from="LSSCharacterSelect" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo" method="reset_process"]
 [connection signal="cancelled" from="LSSCharacterSelect" to="BG/Border/Levels/VBoxContainer/LSSLevelInfo/HBoxContainer/OnlinePlay" method="grab_focus"]
+[connection signal="mouse_entered" from="AutosaveSettings/Panel/ScrollContainer/Options/Enable" to="AutosaveSettings/Panel/ScrollContainer/Options/Enable" method="grab_focus"]
+[connection signal="mouse_exited" from="AutosaveSettings/Panel/ScrollContainer/Options/Enable" to="AutosaveSettings/Panel/ScrollContainer/Options/Enable" method="release_focus"]
+[connection signal="value_changed" from="AutosaveSettings/Panel/ScrollContainer/Options/Enable" to="AutosaveSettings" method="enable_toggled"]
+[connection signal="mouse_entered" from="AutosaveSettings/Panel/ScrollContainer/Options/Time" to="AutosaveSettings/Panel/ScrollContainer/Options/Time" method="grab_focus"]
+[connection signal="mouse_exited" from="AutosaveSettings/Panel/ScrollContainer/Options/Time" to="AutosaveSettings/Panel/ScrollContainer/Options/Time" method="release_focus"]
+[connection signal="value_changed" from="AutosaveSettings/Panel/ScrollContainer/Options/Time" to="AutosaveSettings" method="timer_changed"]
+[connection signal="mouse_entered" from="AutosaveSettings/Panel/ScrollContainer/Options/Test" to="AutosaveSettings/Panel/ScrollContainer/Options/Test" method="grab_focus"]
+[connection signal="mouse_exited" from="AutosaveSettings/Panel/ScrollContainer/Options/Test" to="AutosaveSettings/Panel/ScrollContainer/Options/Test" method="release_focus"]
+[connection signal="value_changed" from="AutosaveSettings/Panel/ScrollContainer/Options/Test" to="AutosaveSettings" method="before_test_toggled"]
 
 [editable path="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel"]
 [editable path="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Play"]
 [editable path="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Edit"]
 [editable path="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Delete"]
 [editable path="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/DeleteConfirm"]
+[editable path="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves"]
 [editable path="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel"]

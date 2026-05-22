@@ -12,8 +12,27 @@ const MOD_CONFIG_DIR_PATH_OLD := "user://configs"
 
 # Get the path to a local folder. Primarily used to get the  (packed) mods
 # folder, ie "res://mods" or the OS's equivalent, as well as the configs path
-static func get_local_folder_dir(subfolder: String = "") -> String:
-	return get_game_install_dir().path_join(subfolder)
+static func get_local_folder_dir(path_join := "") -> String:
+	var exe_path := OS.get_executable_path()
+	var exe_dir  := exe_path.get_base_dir()
+	var portable_flag := exe_dir.path_join("portable.txt")
+
+	# Test that exe dir is writeable, if not fallback to user://
+	if FileAccess.file_exists(portable_flag):
+		var test_file = exe_dir.path_join("test.txt")
+		var f = FileAccess.open(test_file, FileAccess.WRITE)
+		if f:
+			f.close()
+			var dir = DirAccess.open(exe_dir)
+			if dir:
+				dir.remove(test_file.get_file())
+			var local_dir = exe_dir.path_join("config")
+			if not DirAccess.dir_exists_absolute(local_dir):
+				DirAccess.make_dir_recursive_absolute(local_dir)
+			return local_dir.path_join(path_join)
+		else:
+			push_warning("Mods can't be loaded on portable mode, falling back to \"user://\".")
+	return "user://".path_join(path_join)
 
 
 static func get_game_install_dir() -> String:

@@ -153,14 +153,14 @@ func connect_pre_existing_signals() -> void:
 		connect_to_node(i, false)
 	all_connected = true
 
-func connect_to_node(node_to_recieve := [], animate := true) -> void:
+func connect_to_node(node_to_recieve := [], animate := true, can_disconnect := false) -> void:
 	has_output = true
 	var node: Node = get_node_from_tile(node_to_recieve[0], node_to_recieve[1])
 	if node == null:
 		Global.log_error("Bad signal connection! Fixing...")
 		queue_free()
 		return
-	if (Input.is_action_pressed("shift") && connections.has(node_to_recieve)):
+	if (can_disconnect && connections.has(node_to_recieve)):
 		disconnect_node(node_to_recieve)
 		signal_connected.emit()
 		return
@@ -193,7 +193,7 @@ func disconnect_node(node_to_recieve := []) -> void:
 	powered_on.disconnect(node_signal.on_recieve_power)
 	powered_off.disconnect(node_signal.on_lost_power)
 	node_signal.total_inputs -= 1
-	node_signal.has_input = node_signal.total_inputs == 0
+	node_signal.has_input = node_signal.total_inputs != 0
 	node_signal.update_animation(0.8, 1.0, true)
 
 func on_recieve_pulse() -> void:

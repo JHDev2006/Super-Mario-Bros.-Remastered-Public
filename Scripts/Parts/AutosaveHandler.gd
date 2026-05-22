@@ -20,7 +20,6 @@ func _ready() -> void:
 	if (Settings.file.editor.autosave_enabled):
 		timer.start(last_section_time)
 	
-	
 	await get_tree().create_timer(0.5).timeout
 	if timer.time_left <= 5:
 		level_editor.something_changed = true
@@ -52,24 +51,29 @@ func autosave_tick() -> void:
 		timer.start(last_section_time)
 
 func start_autosave() -> void:
-	var level_name := level_editor.level_name if (level_editor.level_name != "") else "UNNAMED LEVEL"
+	var level_name := level_editor.level_name
 	var save_time := Time.get_datetime_string_from_system()
 	var file_name = level_name.to_pascal_case() + "_" + save_time + ".lvl"
 	
 	var temp_level_file: Dictionary = $"../LevelSaver".save_level(level_name, level_editor.level_author, level_editor.level_desc, level_editor.difficulty)
+	var message := ""
 	
-	if (!level_editor.something_changed || is_level_empty(temp_level_file)):
-		var message := "Autosave failed. Nothing was found inside the level."
-		if (!level_editor.something_changed):
-			message = "Autosave failed. Nothing has changed."
+	var path = Global.config_path.path_join("custom_levels/").path_join(level_name.to_pascal_case() + ".lvl")
+	if (!FileAccess.file_exists(path)):
+		message = tr("EDITOR_AUTOSAVE_SAVE_LEVEL_FIRST")
+	elif (is_level_empty(temp_level_file)):
+		message = tr("EDITOR_AUTOSAVE_FAIL_EMPTY")
+	elif (!level_editor.something_changed):
+		message = tr("EDITOR_AUTOSAVE_FAIL_CHANGES")
+	if (message != ""):
 		Global.log_warning(message)
 		return
-	$"../LevelSaver".write_temp_file(temp_level_file, file_name, save_time)
+	$"../LevelSaver".write_temp_file(level_name, temp_level_file, file_name, save_time)
 	
 	last_section_time = 60.0 * Settings.file.editor.autosave_min_timer
-	Global.log_comment("Level auto saved as '%s'." % file_name)
+	Global.log_comment(tr("EDITOR_AUTOSAVE_COMPLETE").replace("{DATE}", save_time))
 
-func is_level_empty(file := {}) -> bool:
+static func is_level_empty(file := {}) -> bool:
 	var isEmpty := 0
 	for i in 5:
 		if (file["Levels"][i] == {}):
@@ -115,8 +119,4 @@ func timer_changed(value: int) -> void:
 
 func before_test_toggled(toggled_on: bool) -> void:
 	Settings.file.editor.autosave_before_test = toggled_on
-	Settings.save_settings()
-	
-func editor_return_toggled(toggled_on: bool) -> void:
-	Settings.file.editor.autosave_on_return_to_editor = toggled_on
 	Settings.save_settings()

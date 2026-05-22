@@ -30,10 +30,13 @@ var file := {
 	"editor": {
 		"seen_guide": false,
 		
+		"show_trail": false,
+		"show_grid": true,
+		"show_gizmos": true,
+		
 		"autosave_enabled": true,
 		"autosave_min_timer": 5,
-		"autosave_before_test": false,
-		"autosave_on_return_to_editor": false,
+		"autosave_before_test": false
 	},
 	"keyboard":
 	{

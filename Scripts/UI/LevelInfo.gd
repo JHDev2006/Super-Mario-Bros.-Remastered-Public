@@ -24,6 +24,7 @@ func open(container: CustomLevelContainer = null) -> void:
 	LevelEditor.level_desc = container.level_desc
 	%Description.text = container.level_desc
 	%AutosaveTime.visible = container.autosave_time != ""
+	%OpenAutosaves.visible = container.autosave_time == ""
 	%AutosaveTime.text = "Autosave: " + container.autosave_time.replace("T", " ")
 	show()
 	await get_tree().physics_frame
@@ -60,12 +61,13 @@ func level_edited() -> void:
 	LevelEditor.level_file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
 	level_edit.emit()
 
-func close() -> void:
+func close(back := true) -> void:
 	hide()
 	set_process(false)
 	active = false
 	
-	if (%AutosaveTime.visible):
-		%AutosavesList.open()
-	else:
-		%LevelList.open(false)
+	if back:
+		if (%AutosaveTime.visible):
+			%AutosavesList.open()
+		else:
+			%LevelList.open(false)

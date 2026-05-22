@@ -28,9 +28,11 @@ func _input(event: InputEvent) -> void:
 				%Download.grab_focus()
 				if not %Download.visible:
 					%OnlinePlay.grab_focus()
-			if (%AutosavesList.visible):
-				$BG/Border/Levels/VBoxContainer/AutosavesList/AutosavesDelete.grab_focus()
-
+			if (%AutosavesList.visible and not $AutosaveSettings.visible):
+				$BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel.grab_focus()
+			if $AutosaveSettings.visible:
+				$AutosaveSettings/Panel/ScrollContainer/Options/Enable.grab_focus()
+			
 func _ready() -> void:
 	has_entered = true
 	ResourceSetter.cache.clear()
@@ -49,8 +51,7 @@ func _ready() -> void:
 	LevelEditor.sub_areas = [null, null, null, null, null]
 	LevelEditor.sub_level_id = 0
 	LevelEditor.selected_tile_index = 0
-	LevelEditor.last_camera_position = Vector2(-900, -900)
-	LevelEditor.first_open = false
+	LevelEditor.last_camera_position = Vector2(-128, -88)
 	
 	Checkpoint.sublevel_id = 0
 	%LevelList.open(true)
@@ -89,12 +90,11 @@ func _exit_tree() -> void:
 
 func new_level() -> void:
 	LevelEditor.load_play = false
-	LevelEditor.level_name = ""
-	LevelEditor.level_author = ""
+	LevelEditor.level_name = LevelEditor.set_stack_level_name("UNNAMED LEVEL")
+	LevelEditor.level_author = "PLAYER"
 	LevelEditor.level_desc = ""
 	LevelEditor.difficulty = 0
 	LevelEditor.level_file = LevelEditor.BLANK_FILE.duplicate(true)
-	LevelEditor.first_open = true
 	
 	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	Global.reload_editor()
@@ -108,10 +108,10 @@ func edit_level() -> void:
 	LevelEditor.load_play = false
 	LevelEditor.current_layer = 0
 	
-	NewLevelBuilder.load_level(LevelEditor.level_file)
-	
 	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	Global.reload_editor()
+	
+	NewLevelBuilder.load_level(LevelEditor.level_file)
 
 func play_level() -> void:
 	Global.current_game_mode = Global.GameMode.CUSTOM_LEVEL
@@ -140,16 +140,24 @@ func lss_level_played() -> void:
 
 func delete_level() -> void:
 	DirAccess.remove_absolute(current_level_file)
-	go_back_to_list()
-	%LevelList.refresh()
-	if %LevelList.containers.is_empty() == false:
-		%LevelList.containers[0].grab_focus()
+	if %AutosaveTime.visible:
+		go_back_to_autosaves()
+		%AutosavesList.refresh()
 	else:
-		$BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button.grab_focus()
+		go_back_to_list()
+		%LevelList.refresh()
+		if %LevelList.containers.is_empty() == false:
+			%LevelList.containers[0].grab_focus()
+		else:
+			$BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button.grab_focus()
 
 func go_back_to_list() -> void:
 	$BG/Border/Levels/VBoxContainer/LevelList.show()
 	%LevelInfo.hide()
+
+func go_back_to_autosaves() -> void:
+	%LevelInfo.close()
+	%AutosavesList.open()
 
 func open_lss_browser() -> void:
 	$BG/Border/Levels/VBoxContainer/LevelList.hide()
