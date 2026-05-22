@@ -316,6 +316,7 @@ shape = SubResource("RectangleShape2D_yggkc")
 disabled = true
 
 [node name="Hammer" type="AnimatedSprite2D" parent="." unique_id=1437707171]
+visible = false
 show_behind_parent = true
 position = Vector2(-16, -32)
 sprite_frames = SubResource("SpriteFrames_exf4b")

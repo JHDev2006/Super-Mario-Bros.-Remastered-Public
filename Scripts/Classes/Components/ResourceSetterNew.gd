@@ -334,8 +334,10 @@ func get_variation_json(json := {}) -> Dictionary:
 		is_random = true
 		for i in meta_data_keys:
 			var meta_name = i.get_slice(":", 1)
-			var meta_value = str(metadata_node.get_meta(meta_name, "Default"))
-			print([meta_name, meta_value])
+			var node_to_use = metadata_node
+			if node_to_use == null:
+				node_to_use = owner
+			var meta_value = str(node_to_use.get_meta(meta_name, "Default"))
 			if json[i].has(meta_value):
 				if json[i].get(meta_value).has("link"):
 					json = get_variation_json(json[i][json.get(meta_value).get("link")])
