@@ -56,6 +56,7 @@ collision_mask = 0
 script = ExtResource("1_keywi")
 visuals = NodePath("Sprite")
 destruction_particle_scene = ExtResource("2_rlxbk")
+block_type = "Turn"
 metadata/_custom_type_script = "uid://b5ejlbl0vp1gm"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1316079653]

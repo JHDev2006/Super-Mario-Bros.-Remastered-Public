@@ -15,7 +15,8 @@
 			],
 			"speed": 5.0,
 			"loop": true
-		}
+		},
+		"Hold": {"link": "default"}
 	},
 	"variations": {
 		"default": {

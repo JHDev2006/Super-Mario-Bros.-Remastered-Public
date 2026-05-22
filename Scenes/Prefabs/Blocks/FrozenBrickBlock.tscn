@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="2_p4aqe"]
 [ext_resource type="Script" uid="uid://bul1nbd2in1gn" path="res://Scripts/Classes/Components/PSwitcher.gd" id="5_44co0"]
 [ext_resource type="Script" uid="uid://da45dj0tx6jfd" path="res://Scripts/Classes/Components/FireDetection.gd" id="6_5eljv"]
+[ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="7_b3hph"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkugf"]
 size = Vector2(16, 16)
@@ -49,6 +50,10 @@ script = ExtResource("6_5eljv")
 hitbox = NodePath("../Hitbox")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1180462873]
+
+[node name="ExplosionDetection" type="Node" parent="." unique_id=797522643]
+script = ExtResource("7_b3hph")
+metadata/_custom_type_script = "uid://ba18grqjixded"
 
 [connection signal="area_entered" from="Hitbox" to="." method="area_entered"]
 [connection signal="fiery_object_hit" from="FireDetection" to="." method="melt" flags=7 unbinds=1]

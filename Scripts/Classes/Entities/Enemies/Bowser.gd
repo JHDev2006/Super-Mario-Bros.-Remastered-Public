@@ -136,6 +136,8 @@ func breathe_fire() -> void:
 	charging_fire = false
 	fire_shot += 1
 	var flame = BOWSER_FLAME.instantiate()
+	if has_meta("IsBro"):
+		flame.set_meta("IsBowserBro", "true")
 	flame.global_position = global_position + Vector2(18 * direction, -20)
 	flame.mode = 1
 	flame.direction = direction
@@ -185,6 +187,7 @@ func classic_hammers() -> void:
 	hammers_spawned += 1
 	sprite.play("Hammer")
 	$Hammer.show()
+	$Hammer.play("Hold")
 	$HammerHitbox/Shape.disabled = false
 	await get_tree().create_timer(0.233, false).timeout
 	if ignore_flag_die:
@@ -204,6 +207,9 @@ func despawn_hammer() -> void:
 
 func spawn_hammer() -> void:
 	var node = HAMMER.instantiate()
+	node.set_meta("HammerType", "Bowser")
+	if has_meta("IsBro"):
+		node.set_meta("IsBowserBro", "true")
 	var notifier = node.get_node("VisibleOnScreenNotifier2D")
 	notifier.screen_exited.connect(self.despawn_hammer)
 	if not modern:
@@ -221,10 +227,12 @@ func spawn_hammer() -> void:
 
 func modern_hammers() -> void:
 	sprite.play("Hammer")
+	$Hammer.play("Hold")
 	$Hammer.show()
 	await get_tree().create_timer(0.5, false).timeout
 	for i in randi_range(3, 6):
 		sprite.play("Hammer")
+		$Hammer.play("Hold")
 		$Hammer.show()
 		if ignore_flag_die:
 			sprite.play("Idle")

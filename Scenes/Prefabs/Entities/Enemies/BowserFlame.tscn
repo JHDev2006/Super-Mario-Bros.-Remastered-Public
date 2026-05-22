@@ -41,6 +41,7 @@ collision_mask = 2
 script = ExtResource("1_dq7qg")
 MOVE_SPEED = 100
 metadata/_custom_type_script = "uid://c5elnt7uap15b"
+metadata/IsBowserBro = "false"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1417950223]
 rotation = 3.1415925
@@ -53,11 +54,12 @@ script = ExtResource("3_ktnk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=192146791 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=192146791 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
 script = ExtResource("4_ktnk0")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("5_0e5kh")
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1950986154]

@@ -177,6 +177,14 @@ size = Vector2(16, 18)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yggkc"]
 size = Vector2(6, 6)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_exf4b"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Hold",
+"speed": 5.0
+}]
+
 [sub_resource type="Resource" id="Resource_exf4b"]
 script = ExtResource("6_pvhfi")
 Overworld = SubResource("SpriteFrames_mcog5")
@@ -308,19 +316,21 @@ shape = SubResource("RectangleShape2D_yggkc")
 disabled = true
 
 [node name="Hammer" type="AnimatedSprite2D" parent="." unique_id=1437707171]
-visible = false
 show_behind_parent = true
 position = Vector2(-16, -32)
+sprite_frames = SubResource("SpriteFrames_exf4b")
+animation = &"Hold"
 script = ExtResource("4_2qn7a")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+metadata/HammerType = "Bowser"
 
-[node name="ResourceSetter" type="Node" parent="Hammer" unique_id=650587338 node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetter" type="Node" parent="Hammer" unique_id=650587338 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
 script = ExtResource("5_17x2r")
 node_to_affect = NodePath("..")
-property_node = NodePath("")
 property_name = "sprite_frames"
 resource_json = ExtResource("15_yggkc")
+metadata_node = NodePath("..")
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

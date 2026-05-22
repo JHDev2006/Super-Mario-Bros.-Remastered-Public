@@ -18,6 +18,7 @@ script = ExtResource("1_c5ati")
 destruction_particle_scene = ExtResource("2_g8nyw")
 metadata/_custom_type_script = "uid://b5ejlbl0vp1gm"
 metadata/is_empty = true
+metadata/BlockType = "Default"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=852276475]
 script = ExtResource("3_g8nyw")

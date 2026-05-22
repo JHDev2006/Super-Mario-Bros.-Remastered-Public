@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bod0jkf7jc5pm" path="res://Scenes/Prefabs/GameHud.tscn" id="1_ctvpw"]
 [ext_resource type="Script" uid="uid://bbxqn16ekbpcl" path="res://Scripts/Classes/Singletons/Global.gd" id="1_t23sr"]
+[ext_resource type="Shader" uid="uid://x7lh23cq2u38" path="res://Scenes/Parts/ShadowShader.gdshader" id="2_77asf"]
 [ext_resource type="SpriteFrames" uid="uid://d2f5cir67f1l0" path="res://Resources/SpriteFrames/Player/Toad/Small.tres" id="2_pxe6i"]
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="3_77asf"]
 [ext_resource type="AudioStream" uid="uid://dhc2t3wbtsoss" path="res://Assets/Audio/SFX/ScoreLoop.wav" id="3_vjpdy"]
@@ -46,29 +47,10 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mpjtu"]
 shader = SubResource("Shader_m6bur")
 
-[sub_resource type="Shader" id="Shader_cv2bn"]
-code = "shader_type canvas_item;
-
-// Hit flash effect by sakurap3, thnak you.
-
-uniform bool active = false;
-uniform vec4 tint : source_color = vec4(1., 1., 0., 1);
-
-void fragment() {
-	vec4 tint_copy = tint;
-	vec4 previous_color = texture(TEXTURE, UV);
-	
-	if (active == true)
-	{
-		tint_copy.a = previous_color.a;
-		COLOR = tint_copy;
-	}
-}"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfpkh"]
-shader = SubResource("Shader_cv2bn")
-shader_parameter/active = true
-shader_parameter/tint = Color(1, 1, 1, 1)
+shader = ExtResource("2_77asf")
+shader_parameter/shadow_colour = Vector4(1, 1, 1, 1)
+shader_parameter/allow_transparency = true
 
 [sub_resource type="GDScript" id="GDScript_mpjtu"]
 script/source = "extends Label
@@ -295,7 +277,7 @@ Underwater = SubResource("Resource_dvjn7")
 Mountain = SubResource("AtlasTexture_0vgiw")
 Volcano = SubResource("AtlasTexture_0jga0")
 Castle = SubResource("Resource_0vgiw")
-metadata/_custom_type_script = ExtResource("5_eyjoc")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="GDScript" id="GDScript_30rl1"]
 script/source = "extends Node

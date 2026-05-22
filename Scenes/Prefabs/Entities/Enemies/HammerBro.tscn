@@ -70,7 +70,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_pmlpp")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Hold",
 "speed": 5.0
 }]
 
@@ -220,13 +220,16 @@ visible = false
 show_behind_parent = true
 position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_g65ak")
+animation = &"Hold"
 flip_h = true
+metadata/HammerType = "HammerBro"
 
-[node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite/Hammer" unique_id=1182534042 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite/Hammer" unique_id=1182534042 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
 script = ExtResource("7_pvn5i")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_0w8yj")
+metadata_node = NodePath("..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite" unique_id=630643973 node_paths=PackedStringArray("node_to_affect")]

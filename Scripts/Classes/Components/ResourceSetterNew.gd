@@ -10,6 +10,8 @@ extends Node
 		resource_json = value
 		update_resource()
 
+@export var metadata_node: Node = owner
+
 enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW, FONT}
 @export var use_cache := true
 
@@ -326,6 +328,21 @@ func get_variation_json(json := {}) -> Dictionary:
 			json = get_variation_json(json[json.get(boo).get("link")])
 		else:
 			json = get_variation_json(json[boo])
+	
+	var meta_data_keys := json.keys().filter(func(key): return key.contains("Metadata"))
+	if meta_data_keys.is_empty() == false:
+		is_random = true
+		for i in meta_data_keys:
+			var meta_name = i.get_slice(":", 1)
+			var meta_value = str(metadata_node.get_meta(meta_name, "Default"))
+			print([meta_name, meta_value])
+			if json[i].has(meta_value):
+				if json[i].get(meta_value).has("link"):
+					json = get_variation_json(json[i][json.get(meta_value).get("link")])
+				else:
+					json = get_variation_json(json[i][meta_value])
+				break
+			
 	return json
 
 func get_config_file(resource_pack := "") -> void:

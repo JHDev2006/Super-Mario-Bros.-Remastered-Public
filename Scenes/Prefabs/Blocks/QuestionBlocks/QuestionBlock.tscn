@@ -61,6 +61,7 @@ visuals = NodePath("Sprite")
 item = ExtResource("2_ntyfr")
 destruction_particle_scene = ExtResource("3_mvk7u")
 combo_meter_amount = 30
+block_type = "Question"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1322431434]
 sprite_frames = SubResource("SpriteFrames_qf42s")

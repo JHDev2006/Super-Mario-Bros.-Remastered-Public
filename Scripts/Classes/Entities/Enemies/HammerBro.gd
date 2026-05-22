@@ -86,6 +86,7 @@ func do_hammer_throw() -> void:
 
 func throw_hammer() -> void:
 	$MovementJoint/Sprite/Hammer.show()
+	$MovementJoint/Sprite/Hammer.play("Hold")
 	if not modern: $HammerHitbox/Shape.disabled = false
 	$MovementJoint/Sprite.play("Hammer")
 	await get_tree().create_timer(hammer_held_timer, false).timeout
@@ -96,6 +97,7 @@ func throw_hammer() -> void:
 
 func spawn_hammer() -> void:
 	var node = HAMMER.instantiate()
+	node.set_meta("HammerType", "HammerBro")
 	if not modern:
 		node.MOVE_SPEED = 64
 		node.GRAVITY = 4

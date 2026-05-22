@@ -15,6 +15,7 @@ const EMPTY_BLOCK = ("res://Scenes/Prefabs/Blocks/EmptyBlock.tscn")
 @export_range(1, 99) var item_amount := 1
 @export var combo_meter_amount := 25
 @export var mushroom_if_small := false
+@export var block_type := ""
 const SUPER_MUSHROOM = ("res://Scenes/Prefabs/Entities/Items/SuperMushroom.tscn")
 var can_hit := true
 var bouncing := false
@@ -92,6 +93,7 @@ func player_mushroom_check(player: Player = null) -> PackedScene:
 func spawn_empty_block() -> void:
 	var block = load(EMPTY_BLOCK).instantiate()
 	block.position = position
+	block.set_meta("BlockType", block_type)
 	add_sibling(block)
 	if get_parent().get_parent() is TrackRider:
 		get_parent().get_parent().attached_entity = block

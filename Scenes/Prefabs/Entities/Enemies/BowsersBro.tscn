@@ -5,6 +5,7 @@
 
 [node name="BowsersBro" unique_id=1453527754 instance=ExtResource("1_qcxx5")]
 music_enabled = false
+metadata/IsBro = ""
 
 [node name="ResourceSetterNew" parent="SpriteScaleJoint/Sprite" parent_id_path=PackedInt32Array(756073436) index="2" unique_id=555266942]
 resource_json = ExtResource("2_qcxx5")
@@ -14,3 +15,10 @@ resource_json = ExtResource("2_qcxx5")
 
 [node name="GibSpawner" parent="." index="6" unique_id=383912089 node_paths=PackedStringArray("visuals")]
 visuals = NodePath("../SpriteScaleJoint/DeathSprite")
+
+[node name="Hammer" parent="." index="10" unique_id=1437707171]
+visible = false
+sprite_frames = null
+animation = &"default"
+
+[connection signal="fireball_hit" from="FireballDetection" to="." method="fireball_hit" unbinds=1]
