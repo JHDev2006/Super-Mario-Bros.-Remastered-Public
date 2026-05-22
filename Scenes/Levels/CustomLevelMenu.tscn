@@ -100,6 +100,14 @@ modulate_color = Color(1, 0, 0, 1)
 atlas = ExtResource("11_bwyvi")
 region = Rect2(12, 0, 12, 12)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vig88"]
+texture = ExtResource("20_otk5o")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+modulate_color = Color(0, 0.5281222, 1, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwgd5"]
 atlas = ExtResource("11_bwyvi")
 region = Rect2(36, 0, 12, 12)
@@ -195,6 +203,7 @@ theme_override_styles/separator = SubResource("StyleBoxLine_wdbts")
 
 [node name="LevelList" type="VBoxContainer" parent="BG/Border/Levels/VBoxContainer" unique_id=773970306]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("9_r5ajm")
@@ -481,15 +490,15 @@ focus_mode = 0
 mouse_filter = 2
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="0" unique_id=1149291090]
-scroll_horizontal = 77
+scroll_horizontal = 85
 is_active = true
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="1" unique_id=1538947480]
-scroll_horizontal = 54
+scroll_horizontal = 15
 is_active = true
 
 [node name="ScrollContainer3" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="2" unique_id=1855133180]
-scroll_horizontal = 53
+scroll_horizontal = 3
 is_active = true
 
 [node name="Panel" type="PanelContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo" unique_id=2125756912]
@@ -500,7 +509,6 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/Panel" unique_id=975980634]
 layout_mode = 2
 mouse_filter = 0
-scroll_vertical = 45
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("24_wf6nb")
@@ -594,6 +602,11 @@ text = "EDITOR_MAIN_LEVEL_CONFIRM"
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../Edit")
+
+[node name="Button" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves" index="0" unique_id=47319333]
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vig88")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vig88")
+theme_override_styles/focus = SubResource("StyleBoxTexture_vig88")
 
 [node name="Icon" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves" index="1" unique_id=1961946869]
 texture = SubResource("AtlasTexture_cwgd5")
@@ -773,12 +786,12 @@ focus_mode = 0
 mouse_filter = 2
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(561241708, 788084636) index="0" unique_id=339759982]
-scroll_horizontal = 70
+scroll_horizontal = 72
 is_active = true
 auto_connect_focus = false
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(561241708, 788084636) index="1" unique_id=1470364982]
-scroll_horizontal = 54
+scroll_horizontal = 10
 is_active = true
 auto_connect_focus = false
 
@@ -791,7 +804,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/Panel" unique_id=1801631913]
 layout_mode = 2
 mouse_filter = 0
-scroll_vertical = 100
+scroll_vertical = 98
 horizontal_scroll_mode = 3
 script = ExtResource("24_wf6nb")
 direction = 1

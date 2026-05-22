@@ -283,6 +283,7 @@ func close_tile_menu() -> void:
 	current_state = EditorState.IDLE
 	for i in get_tree().get_nodes_in_group("Selectors"):
 		i.disabled = false
+		i.set_mouse_hovered(false)
 
 func save_level_before_exit() -> void:
 	tile_menu_open = true
