@@ -69,7 +69,7 @@ func _ready() -> void:
 	begin_transition_wait()
 
 func begin_transition_wait() -> void:
-	if Global.current_game_mode != Global.GameMode.CUSTOM_LEVEL and not Global.in_custom_campaign():
+	if (Global.current_game_mode != Global.GameMode.CUSTOM_LEVEL) and not Global.in_custom_campaign():
 		can_transition = true
 		$Timer.start()
 	else:
