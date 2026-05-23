@@ -10,8 +10,8 @@ extends Node
 
 const THEME_IDXS := ["Overworld", "Underground", "Desert", "Snow", "Jungle", "Beach", "Garden", "Mountain", "Skyland", "Autumn", "Pipeland", "Space", "Underwater", "Volcano", "GhostHouse", "Castle", "CastleWater", "Airship", "Bonus"]
 
-enum RoomType{NORMAL, BONUS_ROOM, COIN_HEAVEN, PIPE_CUTSCENE, TITLE_SCREEN}
-const ROOM_STRINGS := ["MainRoom", "BonusRoom", "CoinHeaven", "PipeCutscene", "TitleScreen"]
+enum RoomType{NORMAL, BONUS_ROOM, COIN_HEAVEN, PIPE_CUTSCENE, TITLE_SCREEN, SublevelExit}
+const ROOM_STRINGS := ["MainRoom", "BonusRoom", "CoinHeaven", "PipeCutscene", "TitleScreen", "SublevelExit"]
 
 static var WORLD_COUNTS := {
 	"SMB1": 8,
@@ -143,6 +143,7 @@ func spawn_in_extra_players() -> void:
 	return
 
 func update_theme() -> void:
+	Global.update_theme()
 	if auto_set_theme:
 		if Global.CAMPAIGNS.has(Global.current_campaign) == false and first_load:
 			Global.current_campaign = "SMB1"
@@ -159,6 +160,10 @@ func update_theme() -> void:
 			theme_time = Global.custom_campaign_jsons[Global.current_custom_campaign].world_themes[Global.world_num - 1][1]
 		campaign = Global.current_campaign
 		ResourceSetterNew.clear_cache()
+	if Global.theme_override != "": 
+		theme = Global.theme_override
+	if Global.time_override != "": 
+		theme_time = Global.time_override
 	Global.current_campaign = campaign
 	Global.level_theme = theme
 	Global.theme_time = theme_time

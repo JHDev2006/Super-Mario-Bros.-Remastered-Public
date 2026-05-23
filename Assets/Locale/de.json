@@ -489,6 +489,7 @@
 	"OBJ_CANNON": "Kanone",
 	"OBJ_BLASTER": "Kugelwilli-Kanone",
 	"OBJ_PIPEAREA": "Röhrenzone",
+	"OBJ_GOALPIPE": "",
 	"OBJ_PIPE_GENERATOR": "Generatorröhrenzone",
 	"OBJ_FLAGPOLE": "Zielpfahl",
 	"OBJ_ENDCASTLE_SMALL": "Kleine End-Burg",

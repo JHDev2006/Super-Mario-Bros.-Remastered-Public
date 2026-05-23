@@ -489,6 +489,7 @@
 	"OBJ_CANNON": "Działo",
 	"OBJ_BLASTER": "Armata Pocisków",
 	"OBJ_PIPEAREA": "Obszar Rury",
+	"OBJ_GOALPIPE": "",
 	"OBJ_PIPE_GENERATOR": "Generator Rury",
 	"OBJ_FLAGPOLE": "Słup Flagi",
 	"OBJ_ENDCASTLE_SMALL": "Mały Zamek Końcowy",

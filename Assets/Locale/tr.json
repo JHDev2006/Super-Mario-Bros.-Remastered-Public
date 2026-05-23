@@ -489,6 +489,7 @@
 	"OBJ_CANNON": "Sİlah",
 	"OBJ_BLASTER": "Bİll Sİlahı",
 	"OBJ_PIPEAREA": "Boru Bölgesİ",
+	"OBJ_GOALPIPE": "",
 	"OBJ_PIPE_GENERATOR": "Boru Jeneratörü",
 	"OBJ_FLAGPOLE": "Bayrak",
 	"OBJ_ENDCASTLE_SMALL": "Küçük Kale",

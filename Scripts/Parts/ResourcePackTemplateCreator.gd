@@ -21,6 +21,7 @@ const extention_blacklist := ["txt"]
 
 func create_template() -> void:
 	await get_tree().process_frame
+	
 	get_directories("res://Assets", files, directories)
 	for i in directories:
 		DirAccess.make_dir_recursive_absolute(i.replace("res://Assets", Global.config_path.path_join("resource_packs/new_pack")))
@@ -94,6 +95,7 @@ func create_template() -> void:
 
 @warning_ignore("shadowed_variable")
 func get_directories(base_dir := "", files := [], directories := []) -> void:
+	files.append("res://Assets/themes.json")
 	for i in DirAccess.get_directories_at(base_dir):
 		if base_dir.contains("LevelGuides") == false and base_dir.contains(".godot") == false:
 			directories.append(base_dir + "/" + i)

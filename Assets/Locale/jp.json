@@ -489,6 +489,7 @@
 	"OBJ_CANNON": "ほうだい",
 	"OBJ_BLASTER": "キラーほうだい",
 	"OBJ_PIPEAREA": "ワープ",
+	"OBJ_GOALPIPE": "",
 	"OBJ_PIPE_GENERATOR": "アイテム・ジェネレーター",
 	"OBJ_FLAGPOLE": "ゴールポール",
 	"OBJ_ENDCASTLE_SMALL": "しろ（しょうサイズ）",

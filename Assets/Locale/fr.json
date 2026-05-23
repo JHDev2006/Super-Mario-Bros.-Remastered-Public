@@ -489,6 +489,7 @@
 	"OBJ_CANNON": "Canon",
 	"OBJ_BLASTER": "Bill Boum",
 	"OBJ_PIPEAREA": "Zone de tuyau de téléportation",
+	"OBJ_GOALPIPE": "",
 	"OBJ_PIPE_GENERATOR": "Zone de tuyau générateur",
 	"OBJ_FLAGPOLE": "Drapeau de fin",
 	"OBJ_ENDCASTLE_SMALL": "Petit Château de fin",

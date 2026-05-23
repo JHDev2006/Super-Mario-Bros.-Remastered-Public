@@ -489,6 +489,7 @@
 	"OBJ_CANNON": "Canhão",
 	"OBJ_BLASTER": "Canhão Bill",
 	"OBJ_PIPEAREA": "Área de Cano",
+	"OBJ_GOALPIPE": "",
 	"OBJ_PIPE_GENERATOR": "Cano Gerador",
 	"OBJ_FLAGPOLE": "Mastro da Bandeira",
 	"OBJ_ENDCASTLE_SMALL": "Castelo Final Pequeno",

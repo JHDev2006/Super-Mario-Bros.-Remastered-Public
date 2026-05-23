@@ -299,9 +299,9 @@ func get_variation_json(json := {}) -> Dictionary:
 		else:
 			json = get_variation_json(json[level_string])
 	
-	var room = Level.ROOM_STRINGS[Global.current_room_type]
+	var room = "RoomType:" + Level.ROOM_STRINGS[Global.current_room_type]
 	if json.has(room) == false:
-		room = Level.ROOM_STRINGS[0]
+		room = "RoomType:Default"
 	if json.has(room):
 		if json.get(room).has("link"):
 			json = get_variation_json(json[json.get(room).get("link")])

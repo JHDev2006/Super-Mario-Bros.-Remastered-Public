@@ -12,7 +12,7 @@ extends Node2D
 		primary_layer = value
 		update_visuals()
 	get:
-		if Global.primary_bg_override > -1:
+		if Engine.is_editor_hint() == false && Global.primary_bg_override > -1:
 			return Global.primary_bg_override
 		return primary_layer
 
@@ -21,7 +21,7 @@ extends Node2D
 		second_layer = value
 		update_visuals()
 	get:
-		if Global.secondary_bg_override > -1:
+		if Engine.is_editor_hint() == false && Global.secondary_bg_override > -1:
 			return Global.secondary_bg_override
 		return second_layer
 
@@ -40,7 +40,7 @@ extends Node2D
 		particles = value
 		update_visuals()
 	get:
-		if Global.particle_override > -1:
+		if Engine.is_editor_hint() == false && Global.particle_override > -1:
 			return Global.particle_override
 		return particles
 

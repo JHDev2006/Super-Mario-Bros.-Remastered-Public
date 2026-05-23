@@ -17,6 +17,7 @@ var star_offset_x := 0
 var star_offset_y := 0
 
 func _enter_tree() -> void:
+	Global.current_room_type = room_type
 	check_for_unlocked_achievements()
 	Global.debugged_in = false
 	Global.current_campaign = Settings.file.game.campaign

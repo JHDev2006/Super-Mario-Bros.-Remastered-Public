@@ -489,6 +489,7 @@
 	"OBJ_CANNON": "Meriam",
 	"OBJ_BLASTER": "Meriam Bill",
 	"OBJ_PIPEAREA": "Area Pipa",
+	"OBJ_GOALPIPE": "",
 	"OBJ_PIPE_GENERATOR": "Generator Pipa",
 	"OBJ_FLAGPOLE": "Tiang Bendera",
 	"OBJ_ENDCASTLE_SMALL": "Kastil Tamat Kecil",

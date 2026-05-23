@@ -489,6 +489,7 @@
 	"OBJ_CANNON": "Kanyon",
 	"OBJ_BLASTER": "Kanyong Bill",
 	"OBJ_PIPEAREA": "Pasukan ng Tubo",
+	"OBJ_GOALPIPE": "",
 	"OBJ_PIPE_GENERATOR": "Niluluwa ng Tubo",
 	"OBJ_FLAGPOLE": "Pole ng Flag",
 	"OBJ_ENDCASTLE_SMALL": "Mallit na Kastilyo",
