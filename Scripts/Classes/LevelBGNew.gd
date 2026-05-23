@@ -11,11 +11,19 @@ extends Node2D
 	set(value):
 		primary_layer = value
 		update_visuals()
+	get:
+		if Global.primary_bg_override > -1:
+			return Global.primary_bg_override
+		return primary_layer
 
 @export_enum("None", "Mushrooms", "Trees") var second_layer = 0:
 	set(value):
 		second_layer = value
 		update_visuals()
+	get:
+		if Global.secondary_bg_override > -1:
+			return Global.secondary_bg_override
+		return second_layer
 
 @export_enum("Behind", "In Front") var second_layer_order = 0:
 	set(value):
@@ -31,6 +39,10 @@ extends Node2D
 	set(value):
 		particles = value
 		update_visuals()
+	get:
+		if Global.particle_override > -1:
+			return Global.particle_override
+		return particles
 
 @export_enum("None", "Water", "Lava", "Poison") var liquid_layer := 0:
 	set(value):
@@ -88,7 +100,6 @@ func _ready() -> void:
 				primary_layer = 0
 		get_parent().move_child(self, 0)
 		Global.level_theme_changed.connect(update_visuals)
-		Global.level_time_changed.connect(update_visuals)
 		update_visuals()
 	handle_disco_visuals(1)
 

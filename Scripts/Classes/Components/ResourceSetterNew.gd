@@ -12,7 +12,7 @@ extends Node
 
 @export var metadata_node: Node = owner
 
-enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW, FONT}
+enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW, FONT, THEME}
 @export var use_cache := true
 
 @export var sync: Array[ResourceSetterNew] = []
@@ -44,8 +44,8 @@ func _init() -> void:
 	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 
 func _ready() -> void:
-	Global.level_time_changed.connect(update_resource)
-	Global.level_theme_changed.connect(update_resource)
+	if mode != ResourceMode.THEME:
+		Global.level_theme_changed.connect(update_resource)
 
 func _enter_tree() -> void:
 	safety_check()
@@ -66,9 +66,10 @@ func update_resource() -> void:
 		property_cache.clear()
 	if node_to_affect != null:
 		var resource = get_resource(resource_json)
-		node_to_affect.set(property_name, resource)
-		if node_to_affect is AnimatedSprite2D:
-			node_to_affect.play()
+		if mode != ResourceMode.THEME:
+			node_to_affect.set(property_name, resource)
+			if node_to_affect is AnimatedSprite2D:
+				node_to_affect.play()
 	state = [Global.level_theme, Global.theme_time, Global.current_room_type]
 	updated.emit()
 
@@ -102,7 +103,7 @@ func get_resource(json_file: JSON) -> Resource:
 			if json.has("source"):
 				if json.get("source") is String:
 					source_resource_path = json_file.resource_path.replace(json_file.resource_path.get_file(), json.source)
-			else:
+			elif mode != ResourceMode.THEME:
 				Global.log_error("Error getting variations! " + resource_path)
 				return
 			if json.has("flags"):
@@ -186,6 +187,13 @@ func get_resource(json_file: JSON) -> Resource:
 			else:
 				resource = load(source_resource_path)
 			resource.set_meta("base_path", source_resource_path)
+		ResourceMode.THEME:
+			Global.theme_override = json.get("theme", "")
+			Global.time_override = json.get("time", "")
+			Global.music_override = json.get("music", "")
+			Global.primary_bg_override = json.get("primary_bg", -1)
+			Global.secondary_bg_override = json.get("secondary_bg", -1)
+			Global.particle_override = json.get("particles", -1)
 	if cache.has(json_file.resource_path) == false and use_cache and not is_random:
 		cache[json_file.resource_path] = resource
 	return resource
