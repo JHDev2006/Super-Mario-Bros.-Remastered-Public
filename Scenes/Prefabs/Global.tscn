@@ -2,6 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bod0jkf7jc5pm" path="res://Scenes/Prefabs/GameHud.tscn" id="1_ctvpw"]
 [ext_resource type="Script" uid="uid://bbxqn16ekbpcl" path="res://Scripts/Classes/Singletons/Global.gd" id="1_t23sr"]
+[ext_resource type="Shader" uid="uid://x7lh23cq2u38" path="res://Scenes/Parts/ShadowShader.gdshader" id="2_77asf"]
+[ext_resource type="SpriteFrames" uid="uid://d2f5cir67f1l0" path="res://Resources/SpriteFrames/Player/Toad/Small.tres" id="2_pxe6i"]
+[ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="3_77asf"]
 [ext_resource type="AudioStream" uid="uid://dhc2t3wbtsoss" path="res://Assets/Audio/SFX/ScoreLoop.wav" id="3_vjpdy"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="4_7puui"]
 [ext_resource type="Script" uid="uid://26yissv8bnqw" path="res://Scripts/UI/WindowChanger.gd" id="4_nxm2a"]
@@ -45,6 +48,22 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mpjtu"]
 shader = SubResource("Shader_m6bur")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfpkh"]
+shader = ExtResource("2_77asf")
+shader_parameter/shadow_colour = Vector4(1, 1, 1, 1)
+shader_parameter/allow_transparency = true
+
+[sub_resource type="GDScript" id="GDScript_mpjtu"]
+script/source = "extends Label
+
+func _process(delta: float) -> void:
+	if (get_parent().visible):
+		await get_tree().create_timer(0.5, true).timeout
+		text += \".\"
+	else:
+		text = tr(\"EDITOR_LOADING\")
+"
+
 [sub_resource type="Animation" id="Animation_mpjtu"]
 resource_name = "FadeIn"
 length = 0.5
@@ -70,7 +89,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_81m3w"]
@@ -259,7 +278,7 @@ Underwater = SubResource("Resource_dvjn7")
 Mountain = SubResource("AtlasTexture_0vgiw")
 Volcano = SubResource("AtlasTexture_0jga0")
 Castle = SubResource("Resource_0vgiw")
-metadata/_custom_type_script = ExtResource("5_eyjoc")
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="GDScript" id="GDScript_30rl1"]
 script/source = "extends Node
@@ -318,6 +337,14 @@ grow_vertical = 2
 layer = 128
 visible = false
 
+[node name="Freeze" type="TextureRect" parent="Transition" unique_id=1718465921]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="TransitionBlock" type="ColorRect" parent="Transition" unique_id=692611163]
 unique_name_in_owner = true
 anchors_preset = 15
@@ -328,13 +355,45 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Freeze" type="TextureRect" parent="Transition" unique_id=1718465921]
-anchors_preset = 15
-anchor_right = 1.0
+[node name="EditorLoading" type="Control" parent="Transition/TransitionBlock" unique_id=40717061]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+offset_top = -24.0
+offset_right = 96.0
+grow_vertical = 0
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="Transition/TransitionBlock/EditorLoading" unique_id=1851856169 node_paths=PackedStringArray("resource_setter")]
+material = SubResource("ShaderMaterial_vfpkh")
+position = Vector2(16, 20)
+sprite_frames = ExtResource("2_pxe6i")
+animation = &"Jump"
+offset = Vector2(0, -16)
+script = ExtResource("3_77asf")
+force_power_state = "0"
+resource_setter = NodePath("ResourceSetterNew")
+metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
+
+[node name="ResourceSetterNew" type="Node" parent="Transition/TransitionBlock/EditorLoading/PlayerSprite" unique_id=2127008457 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("19_okfpr")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Label" type="Label" parent="Transition/TransitionBlock/EditorLoading" unique_id=700837014]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 8.0
+offset_right = 97.0
+offset_bottom = 24.0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Loading."
+uppercase = true
+script = SubResource("GDScript_mpjtu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=804731792]
 libraries/ = SubResource("AnimationLibrary_77asf")
@@ -357,6 +416,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "120FPS"
 horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="ScoreTally" type="AudioStreamPlayer" parent="." unique_id=1944532967]
 stream = ExtResource("3_vjpdy")

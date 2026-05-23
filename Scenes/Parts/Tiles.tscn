@@ -164,6 +164,7 @@ texture = ExtResource("1_vdakf")
 &"type": 0
 }
 4:1/0 = 0
+4:1/0/z_index = -10
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0 = 0
 5:1/0/z_index = -10
@@ -1770,7 +1771,7 @@ script/source = "extends Node
 @onready var tiles: TileMapLayer = get_parent()
 
 func _ready() -> void:
-	if Global.level_editor == null and Settings.file.visuals.colour_pipes == 0:
+	if Global.current_level != null and Global.current_level is not CustomLevel and Settings.file.visuals.colour_pipes == 0:
 		replace_pipes()
 
 func replace_pipes() -> void:

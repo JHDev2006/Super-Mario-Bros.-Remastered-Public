@@ -2,6 +2,7 @@
 [ext_resource type="PackedScene" uid="uid://luvjp1hbt8ej" path="res://Scenes/Levels/SMB1/World1/1-4.tscn" id="1_ryiwt"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Blooper.json" id="2_1tffw"]
 [node name="6-4" unique_id=1421602951 instance=ExtResource("1_ryiwt")]
+theme_time = "Night"
 world_id = 6
 [node name="ChallengeNodes" parent="." index="5" unique_id=373733728 node_paths=PackedStringArray("nodes_to_delete")]
 nodes_to_delete = [NodePath("../CastleToad")]

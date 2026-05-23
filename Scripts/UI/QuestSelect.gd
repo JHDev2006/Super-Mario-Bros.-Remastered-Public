@@ -20,10 +20,10 @@ func open() -> void:
 	active = true
 
 func handle_input() -> void:
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		select()
 		close()
-	elif Input.is_action_just_pressed("ui_back"):
+	elif Global.multibind_action_just_pressed("ui_back"):
 		Global.second_quest = old_quest
 		close()
 		cancelled.emit()

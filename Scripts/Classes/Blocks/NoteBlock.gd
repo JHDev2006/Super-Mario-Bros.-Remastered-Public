@@ -7,6 +7,8 @@ signal bounced
 var animating := false
 @export var play_sfx := true
 
+var can_bounce := true
+
 func bounce_up() -> void:
 	if bouncing or animating:
 		return
@@ -20,13 +22,15 @@ func bounce_up() -> void:
 	animating = false
 
 func _physics_process(_delta: float) -> void:
-	for i in %Area.get_overlapping_areas():
-		if i.owner is CharacterBody2D:
-			bounce_down(i.owner)
+	if can_bounce:
+		for i in %Area.get_overlapping_areas():
+			if i.owner is CharacterBody2D:
+				bounce_down(i.owner)
 
 func bounce_down(body: PhysicsBody2D) -> void:
 	if bouncing or animating:
 		return
+	can_bounce = false
 	animating = true
 	bounced.emit()
 	if play_sfx:
@@ -35,11 +39,14 @@ func bounce_down(body: PhysicsBody2D) -> void:
 	if body is Player:
 		body.normal_state.jump_queued = false
 		body.spring_bouncing = true
+		body.has_jumped = false
 	%Animations.play("BounceDown")
 	dispense_item(1)
 	await %Animations.animation_finished
 	animating = false
 	bouncing = false
+	await get_tree().create_timer(0.1, false).timeout
+	can_bounce = true
 
 func bounce_bodies() -> void:
 	for i in bodies:

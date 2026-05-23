@@ -19,7 +19,7 @@ animations = [{
 radius = 8.0
 
 [node name="PlantFireball" unique_id=25673244 instance=ExtResource("1_s06aa")]
-can_pass_walls = true
+HAS_COLLISION = false
 
 [node name="Sprite" parent="." index="1" unique_id=1619062268]
 sprite_frames = SubResource("SpriteFrames_vvsen")

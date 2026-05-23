@@ -16,6 +16,7 @@
 [node name="4-1a" type="Node" unique_id=1068923754]
 script = ExtResource("1_kdwin")
 music = ExtResource("2_1uo8y")
+room_type = 1
 theme = "Underwater"
 campaign = "SMBLL"
 world_id = 4

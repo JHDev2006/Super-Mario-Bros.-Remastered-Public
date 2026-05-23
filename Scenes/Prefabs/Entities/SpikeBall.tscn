@@ -11,6 +11,21 @@
 [ext_resource type="Script" uid="uid://dkjpfs3sm3go3" path="res://Scripts/Classes/Components/BlockHitter.gd" id="9_d8yxl"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="10_vgefa"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgefa"]
+atlas = ExtResource("2_2juko")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1nkq5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgefa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpvvo"]
 radius = 7.0
 
@@ -46,14 +61,15 @@ floor_max_angle = 1.37881
 floor_snap_length = 8.0
 script = ExtResource("1_orfe8")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=2128371188]
-texture = ExtResource("2_2juko")
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1112138449]
+sprite_frames = SubResource("SpriteFrames_1nkq5")
+autoplay = "default"
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1025429226 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1025429226 node_paths=PackedStringArray("node_to_affect", "property_node")]
 script = ExtResource("3_d8yxl")
 node_to_affect = NodePath("..")
-property_name = "texture"
-mode = 1
+property_node = NodePath("../..")
+property_name = "sprite_frames"
 resource_json = ExtResource("4_vgefa")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -89,7 +105,7 @@ metadata/_custom_type_script = "uid://dkjpfs3sm3go3"
 
 [node name="GibSpawner" type="Node" parent="." unique_id=222292644 node_paths=PackedStringArray("visuals")]
 script = ExtResource("10_vgefa")
-visuals = NodePath("../Sprite")
+visuals = NodePath("")
 metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]

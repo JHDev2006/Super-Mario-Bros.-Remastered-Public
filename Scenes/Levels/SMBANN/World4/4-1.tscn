@@ -17,7 +17,6 @@ target_level = "uid://cjkb2lb3iik3y"
 [node name="DiscoLevel" type="Node" parent="." index="18" unique_id=774911540]
 script = ExtResource("2_7ilqi")
 combo_meter_rate = 0.5
-max_combo = 3
 metadata/_custom_type_script = "uid://bjs5mlc3xrxud"
 [node name="GreenKoopaTroopa" parent="." index="19" unique_id=897315083 instance=ExtResource("3_d6p1d")]
 position = Vector2(2840, -48)

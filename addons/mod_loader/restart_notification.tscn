@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb85yktpgxq7n"]
+
+[ext_resource type="Script" uid="uid://k10oyyxy00y1" path="res://addons/mod_loader/restart_notification.gd" id="1_mxg68"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2apd5"]
+bg_color = Color(0.253906, 0.253906, 0.253906, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_mmnnw"]
+font_size = 20
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=845271395]
+layer = 99
+
+[node name="ModLoaderNewHooks" type="MarginContainer" parent="." unique_id=1816963057]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mxg68")
+
+[node name="CenterContainer" type="CenterContainer" parent="ModLoaderNewHooks" unique_id=114988512]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ModLoaderNewHooks/CenterContainer" unique_id=1149901125]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2apd5")
+
+[node name="MarginContainer" type="MarginContainer" parent="ModLoaderNewHooks/CenterContainer/PanelContainer" unique_id=601038293]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="BoxContainer" parent="ModLoaderNewHooks/CenterContainer/PanelContainer/MarginContainer" unique_id=2130466236]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+vertical = true
+
+[node name="Label" type="Label" parent="ModLoaderNewHooks/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1426986841]
+layout_mode = 2
+text = "New mods will be applied after a restart."
+label_settings = SubResource("LabelSettings_mmnnw")
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="BoxContainer2" type="BoxContainer" parent="ModLoaderNewHooks/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=80273724]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ModLoaderNewHooks/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BoxContainer2" unique_id=1895808728]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Restarting in: "
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TimerLabel" type="Label" parent="ModLoaderNewHooks/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BoxContainer2" unique_id=379893833]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "20"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ModLoaderNewHooks/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BoxContainer2" unique_id=1904620940]
+layout_mode = 2
+text = "sec"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="BoxContainer" type="BoxContainer" parent="ModLoaderNewHooks/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1420960810]
+layout_mode = 2
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="ModLoaderNewHooks/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=906132228]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CANCEL RESTART"
+
+[node name="Spacer" type="Control" parent="ModLoaderNewHooks/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=864003885]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="ModLoaderNewHooks/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/BoxContainer" unique_id=1944579360]
+unique_name_in_owner = true
+layout_mode = 2
+text = "RESTART NOW"
+
+[node name="Timer" type="Timer" parent="ModLoaderNewHooks" unique_id=1593295110]
+unique_name_in_owner = true

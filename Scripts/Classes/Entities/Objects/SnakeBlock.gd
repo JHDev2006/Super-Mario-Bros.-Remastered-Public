@@ -30,8 +30,7 @@ var last_direction := Vector2i.RIGHT
 
 func _ready() -> void:
 	for i in pieces:
-		i.get_node("PlayerDetection").player_entered.connect(start_travelling.unbind(1))
-	print(path)
+		i.get_node("PlayerDetection").player_entered.connect(player_touched_segment.bind(i))
 	update_pieces()
 	update_sprites()
 
@@ -49,6 +48,13 @@ func update_pieces() -> void:
 		i.modulate = Color.RED if -last_direction == DIRECTIONS[i.get_index()] else Color.YELLOW
 	queue_redraw()
 
+func player_touched_segment(player: Player, segment: Node2D) -> void:
+	if player.gravity_vector == Vector2.DOWN:
+		if player.global_position.y < segment.global_position.y:
+			start_travelling()
+	elif player.global_position.y > segment.global_position.y:
+		start_travelling()
+
 func _physics_process(delta: float) -> void:
 	if Global.level_editor != null:
 		if Global.level_editor.current_state != LevelEditor.EditorState.PLAYTESTING:
@@ -62,7 +68,6 @@ func _physics_process(delta: float) -> void:
 
 func handle_editor_stuff() -> void:
 	$PlacePreview.visible = editing
-	print(editing, mouse_in_areas)
 	if Input.is_action_pressed("mb_left") and editing and mouse_in_areas > 0:
 		for i in 8:
 			if is_mouse_in_area(i):
@@ -72,7 +77,7 @@ func handle_editor_stuff() -> void:
 					add_piece(SnakeBlock.DIRECTIONS[i])
 				break
 	if editing and Global.current_game_mode == Global.GameMode.LEVEL_EDITOR:
-		if Input.is_action_just_pressed("editor_open_menu") or Input.is_action_just_pressed("ui_cancel"):
+		if Global.multibind_action_just_pressed("editor_open_menu") or Global.multibind_action_just_pressed("ui_cancel"):
 			editing = false
 			Global.level_editor.current_state = LevelEditor.EditorState.IDLE
 			update_pieces()

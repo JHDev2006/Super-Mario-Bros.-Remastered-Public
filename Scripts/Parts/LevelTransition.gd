@@ -73,7 +73,7 @@ func begin_transition_wait() -> void:
 		can_transition = true
 		$Timer.start()
 	else:
-		if NewLevelBuilder.sub_levels == [null, null, null, null, null]:
+		if LevelEditor.sub_areas == [null, null, null, null, null]:
 			if Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
 				Global.clear_saved_values()
 			Global.reset_values()
@@ -154,7 +154,7 @@ func value_cleanup() -> void:
 func transition() -> void:
 	Global.can_time_tick = true
 	if Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL or Global.in_custom_campaign():
-		Global.transition_to_scene(NewLevelBuilder.sub_levels[Checkpoint.sublevel_id])
+		Global.transition_to_scene(LevelEditor.sub_areas[Checkpoint.sublevel_id])
 	else:
 		if PIPE_CUTSCENE_LEVELS[Global.current_campaign].has([Global.world_num, Global.level_num]) and not PipeCutscene.seen_cutscene and [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) == false:
 			if PIPE_CUTSCENE_OVERRIDE[Global.current_campaign].has([Global.world_num, Global.level_num]):
@@ -174,7 +174,7 @@ func show_best_time() -> void:
 
 func _process(_delta: float) -> void:
 	if can_transition:
-		if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("jump_0"):
+		if Global.multibind_action_just_pressed("ui_accept") or Global.multibind_action_just_pressed("jump_0"):
 			transition()
 
 func _exit_tree() -> void:

@@ -67,9 +67,8 @@ metadata/_custom_type_script = "uid://c5elnt7uap15b"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1238193579]
 sprite_frames = SubResource("SpriteFrames_4d740")
-animation = &"Spin"
+animation = &"Idle"
 autoplay = "Spin"
-frame_progress = 0.89535326
 script = ExtResource("2_wtsxo")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"

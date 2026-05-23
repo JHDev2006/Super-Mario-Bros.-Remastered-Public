@@ -11,5 +11,8 @@ script = ExtResource("2_cvajl")
 texture = ExtResource("3_8v4k5")
 hframes = 1
 
+[node name="SignalExposer" parent="." index="1" unique_id=1403115602]
+can_output = false
+
 [connection signal="recieved_power" from="SignalExposer" to="." method="teleport_player"]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="teleport_player"]

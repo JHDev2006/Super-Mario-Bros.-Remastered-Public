@@ -11,6 +11,7 @@ color = Color(1, 1, 1, 1)
 offset_right = 8.0
 offset_bottom = 16.0
 focus_mode = 2
+mouse_filter = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bhslb")
 uppercase = true
 script = ExtResource("1_bhslb")
@@ -28,3 +29,4 @@ theme_override_styles/separator = SubResource("StyleBoxLine_ci15d")
 
 [connection signal="focus_entered" from="." to="." method="on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="on_focus_exited"]
+[connection signal="mouse_entered" from="." to="." method="grab_focus"]

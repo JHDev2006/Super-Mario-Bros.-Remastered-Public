@@ -38,7 +38,6 @@ func handle_movement(delta: float) -> void:
 func handle_visuals() -> void:
 	var angle = snapped(rad_to_deg(direction_vector.angle()), 45)
 	var diagonal = angle % 90 != 0
-	print(diagonal)
 	$Sprite.global_rotation_degrees = angle + (180 if direction == -1 else 0)
 	if diagonal:
 		$Sprite.global_rotation_degrees += (45 if direction == 1 else 135)

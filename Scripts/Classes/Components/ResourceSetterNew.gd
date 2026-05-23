@@ -10,6 +10,8 @@ extends Node
 		resource_json = value
 		update_resource()
 
+@export var metadata_node: Node = owner
+
 enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW, FONT, THEME}
 @export var use_cache := true
 
@@ -52,13 +54,13 @@ func _enter_tree() -> void:
 
 func safety_check() -> void:
 	if Settings.file.visuals.resource_packs.has(Global.ROM_PACK_NAME) == false:
-		Settings.file.visuals.resource_packs.insert(Global.ROM_PACK_NAME, 0)
+		Settings.file.visuals.resource_packs.append(Global.ROM_PACK_NAME)
 
 func update_resource() -> void:
 	randomize()
 	if is_inside_tree() == false or is_queued_for_deletion() or resource_json == null or node_to_affect == null:
 		return
-	if state != [Global.level_theme, Global.theme_time, Global.current_room]:
+	if state != [Global.level_theme, Global.theme_time, Global.current_room_type]:
 		cache.clear()
 		active_flags.clear()
 		property_cache.clear()
@@ -68,7 +70,7 @@ func update_resource() -> void:
 			node_to_affect.set(property_name, resource)
 			if node_to_affect is AnimatedSprite2D:
 				node_to_affect.play()
-	state = [Global.level_theme, Global.theme_time, Global.current_room]
+	state = [Global.level_theme, Global.theme_time, Global.current_room_type]
 	updated.emit()
 
 func get_resource(json_file: JSON) -> Resource:
@@ -222,7 +224,6 @@ func get_variation_json(json := {}) -> Dictionary:
 	for i in json.keys().filter(func(key): return key.contains("config:")):
 		get_config_file(current_resource_pack)
 		if config_to_use != {}:
-			print(current_resource_pack)
 			var option_name = i.get_slice(":", 1)
 			if config_to_use.options.has(option_name):
 				var config_json = json[i][config_to_use.options[option_name]]
@@ -298,9 +299,9 @@ func get_variation_json(json := {}) -> Dictionary:
 		else:
 			json = get_variation_json(json[level_string])
 	
-	var room = Global.room_strings[Global.current_room]
+	var room = Level.ROOM_STRINGS[Global.current_room_type]
 	if json.has(room) == false:
-		room = Global.room_strings[0]
+		room = Level.ROOM_STRINGS[0]
 	if json.has(room):
 		if json.get(room).has("link"):
 			json = get_variation_json(json[json.get(room).get("link")])
@@ -335,6 +336,23 @@ func get_variation_json(json := {}) -> Dictionary:
 			json = get_variation_json(json[json.get(boo).get("link")])
 		else:
 			json = get_variation_json(json[boo])
+	
+	var meta_data_keys := json.keys().filter(func(key): return key.contains("Metadata"))
+	if meta_data_keys.is_empty() == false:
+		is_random = true
+		for i in meta_data_keys:
+			var meta_name = i.get_slice(":", 1)
+			var node_to_use = metadata_node
+			if node_to_use == null:
+				node_to_use = owner
+			var meta_value = str(node_to_use.get_meta(meta_name, "Default"))
+			if json[i].has(meta_value):
+				if json[i].get(meta_value).has("link"):
+					json = get_variation_json(json[i][json.get(meta_value).get("link")])
+				else:
+					json = get_variation_json(json[i][meta_value])
+				break
+			
 	return json
 
 func get_config_file(resource_pack := "") -> void:

@@ -27,7 +27,7 @@ region_rect = Rect2(0, 0, 24, 8)
 [node name="ResourceSetter" parent="Projection" index="0" unique_id=888381645]
 resource_json = ExtResource("2_c3e6f")
 
-[node name="OnOffToggle" parent="." index="6" unique_id=175323262]
+[node name="OnOffToggle" parent="." index="6" unique_id=431716092]
 visible = true
 frame = 0
 

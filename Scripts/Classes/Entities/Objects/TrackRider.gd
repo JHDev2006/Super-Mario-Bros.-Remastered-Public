@@ -26,7 +26,11 @@ var point_idx := 0.0
 
 @onready var path := Curve2D.new()
 
+func _ready() -> void:
+	start()
+
 func start() -> void:
+	await get_tree().physics_frame
 	if $SignalExposer.total_inputs > 0:
 		can_move = false
 	current_track = null
@@ -56,7 +60,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += 10
 		global_position += velocity * delta
 		check_for_rail()
-	elif path != null and is_instance_valid(current_track):
+	elif path != null and is_instance_valid(current_track) and can_move:
 		handle_moving(delta)
 
 func attach_to_joint(node: Node2D) -> void:

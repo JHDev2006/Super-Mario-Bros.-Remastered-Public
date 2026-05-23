@@ -12,7 +12,8 @@
 		},
 		"Jungle": {
 			"SMB1": { "source": "JungleBush.png" },
-			"SMBLL": { "source": "JungleBushLL.png" }
+			"SMBLL": { "source": "JungleBushLL.png" },
+			"SMBANN": {"source": "JungleBushANN.png"}
 		},
 		"Snow": {
 			"SMB1": {

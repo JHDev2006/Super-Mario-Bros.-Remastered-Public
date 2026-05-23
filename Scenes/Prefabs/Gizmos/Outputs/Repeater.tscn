@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="3_rf2yg"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="4_8lanu"]
 [ext_resource type="PackedScene" uid="uid://dse5pwhodrqcr" path="res://Scenes/Prefabs/Editor/EditorProperties/TilePropertyIntRangeSpin.tscn" id="5_rf2yg"]
+[ext_resource type="PackedScene" uid="uid://cxrx8ogihsuad" path="res://Scenes/Prefabs/Editor/EditorProperties/TilePropertyFloatRangeSpin.tscn" id="6_rgj7j"]
 
 [node name="BaseOutput" type="Node2D" unique_id=515746201 groups=["Gizmos"]]
 process_mode = 3
@@ -23,7 +24,8 @@ metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 script = ExtResource("4_8lanu")
 properties = Array[String](["amount", "delay"])
 properties_force_selector = Dictionary[String, PackedScene]({
-"amount": ExtResource("5_rf2yg")
+"amount": ExtResource("5_rf2yg"),
+"delay": ExtResource("6_rgj7j")
 })
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 

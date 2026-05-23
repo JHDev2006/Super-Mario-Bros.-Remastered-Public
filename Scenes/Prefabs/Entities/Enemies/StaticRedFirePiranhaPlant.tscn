@@ -5,8 +5,8 @@
 
 [node name="StaticFirePiranhaPlant" unique_id=1387368430 instance=ExtResource("1_pvs6g")]
 
-[node name="ResourceSetterNew" parent="RotationJoint/Sprite" parent_id_path=PackedInt32Array(1289509509) index="1" unique_id=1346772812]
+[node name="ResourceSetterNew" parent="RotationJoint/Sprite" parent_id_path=PackedInt32Array(1289509509) index="0" unique_id=1346772812]
 resource_json = ExtResource("2_tbukh")
 
-[node name="FirePiranhaStuff" parent="." index="2" unique_id=1539652917]
+[node name="FirePiranhaStuff" parent="." index="3" unique_id=1539652917]
 metadata/shoot_amount = 3

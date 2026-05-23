@@ -17,7 +17,7 @@ const MAP := [
 	"move_down"
 ]
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_pressed == false and Global.player_action_pressed(MAP[action], 0):
 		held.emit()
 	elif is_pressed and Global.player_action_pressed(MAP[action], 0) == false:

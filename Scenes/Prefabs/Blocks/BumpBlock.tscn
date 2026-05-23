@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://bjbj4wa4cum4c"]
+
+[ext_resource type="Script" uid="uid://b5ejlbl0vp1gm" path="res://Scripts/Classes/Blocks/BlockClass.gd" id="1_atuim"]
+[ext_resource type="PackedScene" uid="uid://clxssds8sj8pf" path="res://Scenes/Prefabs/Entities/Items/SpinningCoin.tscn" id="2_sn8ms"]
+[ext_resource type="PackedScene" uid="uid://dt58tjrnarms0" path="res://Scenes/Prefabs/Particles/QuestionBlockDestructionParticles.tscn" id="3_tjrc0"]
+[ext_resource type="Texture2D" uid="uid://uh7uhdkv3e6s" path="res://Assets/Sprites/Blocks/QuestionBlock.png" id="4_yves2"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_eyypg"]
+[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BumpBlock.json" id="6_lwwu7"]
+[ext_resource type="PackedScene" uid="uid://cijkvfkthetn5" path="res://Scenes/Parts/BlockAnimations.tscn" id="7_jb544"]
+[ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="10_iu8mh"]
+[ext_resource type="Script" uid="uid://maqpreddu5kg" path="res://Scripts/Classes/Components/LevelPersistance.gd" id="11_3u45v"]
+[ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="12_shqxt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6pbl"]
+atlas = ExtResource("4_yves2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxree"]
+atlas = ExtResource("4_yves2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntyfr"]
+atlas = ExtResource("4_yves2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aukm0"]
+atlas = ExtResource("4_yves2")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qf42s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6pbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxree")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntyfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aukm0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkj8t"]
+size = Vector2(16, 16)
+
+[node name="BumpBlock" type="AnimatableBody2D" unique_id=1913240466 node_paths=PackedStringArray("visuals") groups=["Blocks"]]
+collision_layer = 6
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("1_atuim")
+visuals = NodePath("Sprite")
+item = ExtResource("2_sn8ms")
+destruction_particle_scene = ExtResource("3_tjrc0")
+combo_meter_amount = 30
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1322431434]
+sprite_frames = SubResource("SpriteFrames_qf42s")
+autoplay = "default"
+frame_progress = 0.2849915
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1093026474 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("5_eyypg")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+resource_json = ExtResource("6_lwwu7")
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1652996612]
+visible = false
+shape = SubResource("RectangleShape2D_mkj8t")
+
+[node name="BlockAnimations" parent="." unique_id=325575679 instance=ExtResource("7_jb544")]
+
+[node name="TrackJoint" type="Node" parent="." unique_id=760300484]
+script = ExtResource("10_iu8mh")
+offset = Vector2(0, 0)
+metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[node name="LevelPersistance" type="Node" parent="." unique_id=2098111272]
+script = ExtResource("11_3u45v")
+metadata/_custom_type_script = "uid://maqpreddu5kg"
+
+[node name="SignalExposer" type="Node2D" parent="." unique_id=1775923059]
+script = ExtResource("12_shqxt")
+do_animation = false
+metadata/_custom_type_script = "uid://b3bokos5jcpr7"
+
+[connection signal="block_destroyed" from="." to="LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="." to="LevelPersistance" method="set_as_active"]
+[connection signal="block_hit" from="." to="SignalExposer" method="emit_pulse"]
+[connection signal="player_block_hit" from="." to="." method="emit_hit_signal" unbinds=1]
+[connection signal="player_block_hit" from="." to="BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="." to="." method="emit_hit_signal" unbinds=1]
+[connection signal="shell_block_hit" from="." to="BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="enabled" from="LevelPersistance" to="." method="spawn_empty_block"]
+[connection signal="enabled_2" from="LevelPersistance" to="." method="queue_free"]
+[connection signal="recieved_power" from="SignalExposer" to="." method="hit_block"]
+[connection signal="recieved_pulse" from="SignalExposer" to="." method="hit_block"]

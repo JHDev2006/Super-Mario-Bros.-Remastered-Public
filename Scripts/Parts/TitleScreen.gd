@@ -20,6 +20,8 @@ func _enter_tree() -> void:
 	check_for_unlocked_achievements()
 	Global.debugged_in = false
 	Global.current_campaign = Settings.file.game.campaign
+	if (Global.current_campaign in Global.CAMPAIGNS) == false:
+		Global.current_campaign = "SMB1"
 	Global.in_title_screen = true
 	Global.current_game_mode = Global.GameMode.NONE
 	last_campaign = Global.current_campaign
@@ -144,7 +146,7 @@ func start_game() -> void:
 	PipeCutscene.seen_cutscene = false
 	first_load = true
 	Global.reset_values()
-	NewLevelBuilder.sub_levels = [null, null, null, null, null]
+	LevelEditor.sub_areas = [null, null, null, null, null]
 	if Global.in_custom_campaign() == false:
 		LevelTransition.level_to_transition_to = Level.get_scene_string(Global.world_num, Global.level_num)
 	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
@@ -283,6 +285,3 @@ func check_for_unlocked_achievements() -> void:
 		has_achievements_to_unlock = true
 		%AchievementUnlock.show_popup(new_achievements)
 	AchievementMenu.unlocked_achievements = Global.achievements
-
-func get_room_type() -> Global.Room:
-	return Global.Room.TITLE_SCREEN

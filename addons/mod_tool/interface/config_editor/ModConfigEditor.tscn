@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/mod_tool/interface/config_editor/json_editor.gd" type="Script" id=1]
+
+[node name="Mod Config Editor" type="PanelContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 24.0
+
+[node name="VBox" type="VBoxContainer" parent="."]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 1907.0
+offset_bottom = 891.0
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+offset_right = 1900.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBox/HBox"]
+offset_top = 13.0
+offset_right = 1533.0
+offset_bottom = 27.0
+size_flags_horizontal = 3
+text = "Default json for user mod configuration"
+
+[node name="ErrorLabel" type="Label" parent="VBox/HBox"]
+unique_name_in_owner = true
+offset_left = 1537.0
+offset_top = 13.0
+offset_right = 1617.0
+offset_bottom = 27.0
+text = "JSON is valid"
+
+[node name="ShouldValidate" type="CheckButton" parent="VBox/HBox"]
+unique_name_in_owner = true
+offset_left = 1621.0
+offset_right = 1697.0
+offset_bottom = 40.0
+pressed = true
+flat = true
+
+[node name="VSeparator" type="VSeparator" parent="VBox/HBox"]
+offset_left = 1701.0
+offset_right = 1705.0
+offset_bottom = 40.0
+
+[node name="SaveConfig" type="Button" parent="VBox/HBox"]
+offset_left = 1709.0
+offset_right = 1900.0
+offset_bottom = 40.0
+text = "Save config to manifest.json"
+
+[node name="ConfigEditor" type="TextEdit" parent="VBox"]
+unique_name_in_owner = true
+offset_top = 44.0
+offset_right = 1900.0
+offset_bottom = 884.0
+size_flags_vertical = 3
+text = "{
+
+}"
+highlight_current_line = true
+syntax_highlighter = true
+show_line_numbers = true
+fold_gutter = true
+highlight_all_occurrences = true
+smooth_scrolling = true
+hiding_enabled = true
+script = ExtResource( 1 )
+
+[node name="ValidationDelay" type="Timer" parent="VBox/ConfigEditor"]
+one_shot = true
+
+[connection signal="cursor_changed" from="VBox/ConfigEditor" to="VBox/ConfigEditor" method="_on_cursor_changed"]
+[connection signal="text_changed" from="VBox/ConfigEditor" to="VBox/ConfigEditor" method="_on_text_changed"]
+[connection signal="timeout" from="VBox/ConfigEditor/ValidationDelay" to="VBox/ConfigEditor" method="_on_ValidationDelay_timeout"]

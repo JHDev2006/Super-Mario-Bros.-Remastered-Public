@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://1bc2xa5hw0ks"]
+
+[ext_resource type="Texture2D" uid="uid://bu652bwoi0tvp" path="res://Assets/Sprites/Particles/BubbleNoteBlockBubble.png" id="1_atoug"]
+[ext_resource type="Script" uid="uid://5by0n7gtgshg" path="res://Scripts/Parts/LargeBubbleParticle.gd" id="2_vwsik"]
+
+[node name="Particles" type="CPUParticles2D" unique_id=1961622128]
+visibility_layer = 2
+emitting = false
+amount = 3
+texture = ExtResource("1_atoug")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 30
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 8.0
+spread = 180.0
+gravity = Vector2(0, 15)
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+damping_min = 25.0
+damping_max = 50.0
+script = ExtResource("2_vwsik")
+
+[connection signal="finished" from="." to="." method="queue_free"]

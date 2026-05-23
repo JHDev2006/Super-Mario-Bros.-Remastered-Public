@@ -33,8 +33,6 @@ var mouse_hovered := false
 
 var disabled := false
 
-static var entity_id_map := {}
-
 const BASE64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 func _ready() -> void:
@@ -100,16 +98,14 @@ func on_mouse_entered() -> void:
 	set_mouse_hovered(true)
 
 func get_id() -> void:
-	if entity_id_map == {}:
-		entity_id_map = JSON.parse_string(FileAccess.open("res://EntityIDMap.json", FileAccess.READ).get_as_text())
-	for i in entity_id_map.keys():
-		if entity_id_map[i][0] == entity_scene.resource_path:
+	for i in EntityIDMapper.map.keys():
+		if EntityIDMapper.map[i][0] == entity_scene.resource_path:
 			entity_id = i
 			return
 	
-	var new_id = encode_to_base64_2char(entity_id_map.size())
-	entity_id_map[new_id] = [entity_scene.resource_path, str(tile_offset.x) + "," + str(tile_offset.y)]
-	FileAccess.open("res://EntityIDMap.json", FileAccess.WRITE).store_string(JSON.stringify(entity_id_map, "\t"))
+	var new_id = encode_to_base64_2char(EntityIDMapper.map.size())
+	EntityIDMapper.map[new_id] = [entity_scene.resource_path, str(tile_offset.x) + "," + str(tile_offset.y)]
+	FileAccess.open("res://EntityIDMap.json", FileAccess.WRITE).store_string(JSON.stringify(EntityIDMapper.map, "\t"))
 	entity_id = new_id
 
 func encode_to_base64_2char(value: int) -> String:
@@ -124,3 +120,4 @@ func encode_to_base64_2char(value: int) -> String:
 
 func on_mouse_exited() -> void:
 	set_mouse_hovered(false)
+	%NamePanel.hide()

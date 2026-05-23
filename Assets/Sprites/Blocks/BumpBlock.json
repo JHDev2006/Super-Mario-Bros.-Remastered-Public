@@ -1,0 +1,12 @@
+{
+	"variations": {
+		"default": {"source": "BumpBlock.png", "rect": [0, 0, 16, 16]},
+		"Underground": {"source": "BumpBlock.png", "rect": [0, 16, 16, 16]},
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {"source": "BumpBlock.png", "rect": [0, 32, 16, 16]},
+		"Snow": {"source": "BumpBlock.png", "rect": [0, 48, 16, 16]},
+		"Space": {"source": "BumpBlock.png", "rect": [0, 64, 16, 16]},
+		"Volcano": {"source": "BumpBlock.png", "rect": [0, 80, 16, 16]},
+		"Bonus": {"source": "BumpBlock.png", "rect": [0, 96, 16, 16]}
+	}
+}

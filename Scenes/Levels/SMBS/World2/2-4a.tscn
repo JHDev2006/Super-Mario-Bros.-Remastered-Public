@@ -13,6 +13,7 @@
 [node name="Level" type="Node" unique_id=341672911]
 script = ExtResource("1_8xfli")
 music = ExtResource("2_a6ro4")
+room_type = 1
 theme = "Garden"
 campaign = "SMBS"
 world_id = 2

@@ -48,7 +48,6 @@ func _physics_process(_delta: float) -> void:
 
 func check_if_unlocked(do_animation := true) -> void:
 	if locked:
-		print(unlocked_doors)
 		if unlocked_doors.has(door_id):
 			locked = false
 			$Sprite.play("Idle")
@@ -127,7 +126,7 @@ func player_enter(player: Player) -> void:
 		if Global.level_editor != null:
 			Global.level_editor.transition_to_sublevel(sublevel_id)
 		else:
-			Global.transition_to_scene(NewLevelBuilder.sub_levels[sublevel_id])
+			Global.transition_to_scene(LevelEditor.sub_areas[sublevel_id])
 	can_enter = true
 
 func freeze_player(player: Player) -> void:

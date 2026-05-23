@@ -61,15 +61,19 @@ property_name = "sprite_frames"
 resource_json = ExtResource("6_tmwyr")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="GibSpawner" parent="." index="6" unique_id=1065734456 node_paths=PackedStringArray("visuals")]
+[node name="GibSpawner" parent="." index="5" unique_id=1065734456 node_paths=PackedStringArray("visuals")]
 visuals = NodePath("../RotationJoint/PositionJoint/SmokePoint")
 gib_type = 1
+
+[node name="SecondQuestReplacer" parent="." index="7" unique_id=1574329925]
+properties = Array[String](["pipe_direction"])
 
 [connection signal="killed" from="." to="." method="on_killed"]
 [connection signal="hammer_player_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="die_from_hammer"]
 [connection signal="invincible_player_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="RotationJoint/PositionJoint/Visuals/Sprite/ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="player_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_below" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="RotationJoint/PositionJoint/Visuals/Sprite/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="fireball_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/FireballDetection" to="." method="die_from_object"]
 [connection signal="fireball_hit" from="RotationJoint/PositionJoint/Visuals/Sprite/FireballDetection" to="RotationJoint/PositionJoint/Visuals/Sprite/ScoreNoteSpawner" method="spawn_note" binds= [200]]

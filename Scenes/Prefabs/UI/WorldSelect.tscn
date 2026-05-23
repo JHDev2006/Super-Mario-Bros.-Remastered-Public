@@ -147,14 +147,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=1958932130]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=659677032]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=1918539055]
 layout_mode = 1
@@ -302,6 +300,7 @@ texture = SubResource("AtlasTexture_n7c7e")
 script = ExtResource("5_6gt41")
 
 [node name="Cursor" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=962917386]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = -5
 theme_override_constants/margin_bottom = -4
@@ -317,14 +316,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2" unique_id=1192750125]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2" unique_id=1829488455]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(96, 96, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Icon" unique_id=186166717]
 layout_mode = 1
@@ -487,14 +484,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3" unique_id=1253139407]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3" unique_id=1789238315]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Icon" unique_id=1673823276]
 layout_mode = 1
@@ -657,14 +652,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4" unique_id=74277425]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4" unique_id=1755302206]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Icon" unique_id=320388694]
 layout_mode = 1
@@ -827,14 +820,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5" unique_id=427105743]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5" unique_id=1370964193]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot5/Icon" unique_id=2046085610]
 layout_mode = 1
@@ -997,14 +988,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6" unique_id=896202606]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6" unique_id=107114972]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot6/Icon" unique_id=1483262202]
 layout_mode = 1
@@ -1167,14 +1156,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7" unique_id=982228727]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7" unique_id=136947285]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot7/Icon" unique_id=1510379970]
 layout_mode = 1
@@ -1338,14 +1325,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8" unique_id=1960095985]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8" unique_id=1142515623]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot8/Icon" unique_id=1001484543]
 layout_mode = 1
@@ -1514,14 +1499,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9" unique_id=302204713]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9" unique_id=1008022586]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot9/Icon" unique_id=1366937693]
 layout_mode = 1
@@ -1689,14 +1672,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10" unique_id=1476103037]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10" unique_id=1456354444]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot10/Icon" unique_id=1296578389]
 layout_mode = 1
@@ -1864,14 +1845,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11" unique_id=311843485]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11" unique_id=1838724476]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot11/Icon" unique_id=1913343380]
 layout_mode = 1
@@ -2039,14 +2018,12 @@ layout_mode = 2
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12" unique_id=1057329811]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12" unique_id=445716909]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot12/Icon" unique_id=1891321671]
 layout_mode = 1
@@ -2216,14 +2193,12 @@ focus_neighbor_right = NodePath("../Slot1")
 focus_mode = 2
 mouse_filter = 2
 
-[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13" unique_id=1661211998]
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13" unique_id=458977732]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_vertical = 10
 texture = ExtResource("3_ldq6u")
 region_rect = Rect2(0, 0, 32, 32)
-script = ExtResource("5_6gt41")
-metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
 [node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot13/Icon" unique_id=1798543807]
 layout_mode = 1

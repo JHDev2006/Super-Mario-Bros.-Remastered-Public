@@ -10,8 +10,8 @@ func physics_update(delta: float) -> void:
 	%Movement.handle_movement(delta)
 
 func choose_attack() -> bool:
-	var chosen_state = ["Fire", "Hop", "Fire", "Hop", "GroundPound"].pick_random()
-	if chosen_state in ["GroundPound", "Hop"] and owner.is_on_floor() == false:
+	var chosen_state = ["Hop", "Hop", "Fire", "Fire", "GroundPound"].pick_random()
+	if chosen_state in ["Hop", "GroundPound"] and owner.is_on_floor() == false:
 		return false
 	state_machine.transition_to(chosen_state)
 	return true

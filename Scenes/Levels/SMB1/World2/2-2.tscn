@@ -76,7 +76,7 @@ position = Vector2(1432, -16)
 position = Vector2(-9.165787, -124.742134)
 [node name="Checkpoint" parent="." unique_id=320824981 node_paths=PackedStringArray("nodes_to_delete") instance=ExtResource("6_xbhoe")]
 position = Vector2(1072, 0)
-nodes_to_delete = [null, NodePath("../Enemies/Blooper4")]
+nodes_to_delete = [NodePath("../Enemies/Blooper4")]
 [node name="ChallengeNodes" type="Node" parent="." unique_id=1490058376]
 script = ExtResource("16_w0paw")
 metadata/_custom_type_script = "uid://cgm3opb5qudc1"
@@ -99,7 +99,7 @@ position = Vector2(1992, -136)
 item = ExtResource("19_ug63w")
 [node name="CheckpointFlag" parent="." unique_id=1498541041 node_paths=PackedStringArray("nodes_to_delete") instance=ExtResource("20_li48w")]
 position = Vector2(1072, 0)
-nodes_to_delete = [null, NodePath("../Enemies/Blooper4")]
+nodes_to_delete = [NodePath("../Enemies/Blooper4")]
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=240861463]
 position = Vector2(1008, -192)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=509500411]

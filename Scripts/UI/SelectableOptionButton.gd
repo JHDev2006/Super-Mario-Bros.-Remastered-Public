@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 	$Title.text = tr(title)
 
 func handle_inputs() -> void:
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		button_pressed.emit()
 		if press_sfx != "":
 			play_sfx()

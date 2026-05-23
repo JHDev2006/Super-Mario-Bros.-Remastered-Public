@@ -21,16 +21,16 @@ func close() -> void:
 
 func _process(_delta: float) -> void:
 	if active:
-		if Input.is_action_just_pressed("ui_accept"):
+		if Global.multibind_action_just_pressed("ui_accept"):
 			[full_run_selected, level_run_selected][selected].emit()
 			Global.current_game_mode = [Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE][selected]
 			close()
-		elif Input.is_action_just_pressed("ui_back"):
+		elif Global.multibind_action_just_pressed("ui_back"):
 			close()
 			cancelled.emit()
-		if Input.is_action_just_pressed("ui_left"):
+		if Global.multibind_action_just_pressed("ui_left"):
 			selected -= 1
-		if Input.is_action_just_pressed("ui_right"):
+		if Global.multibind_action_just_pressed("ui_right"):
 			selected += 1
 		selected = clamp(selected, 0, 1)
 		%MarathonName.text = ["MARATHON_FULL", "MARATHON_LEVEL"][selected]

@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="6_xyquv"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="7_rmaq1"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="8_m5wu6"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="9_a5hn1"]
 
 [sub_resource type="GDScript" id="GDScript_rmaq1"]
 script/source = "extends Node2D
@@ -55,7 +56,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyquv"]
-size = Vector2(10, 10)
+size = Vector2(10, 14)
 
 [node name="WigglerPiece" type="Node2D" unique_id=1309299940]
 scale = Vector2(-1, 1)
@@ -85,7 +86,7 @@ script = ExtResource("5_cdnpe")
 metadata/_custom_type_script = "uid://cnheej0sxmoxg"
 
 [node name="Shape" type="CollisionShape2D" parent="PlayerDetection" unique_id=1077850841]
-position = Vector2(0, -8)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_xyquv")
 
 [node name="FireballDetection" type="Node" parent="." unique_id=1320963863 node_paths=PackedStringArray("hitbox")]
@@ -103,3 +104,9 @@ metadata/_custom_type_script = "uid://bbww34oiexbx2"
 script = ExtResource("8_m5wu6")
 hitbox = NodePath("../PlayerDetection")
 metadata/_custom_type_script = "uid://chj8hu207lrh"
+
+[node name="BlockBouncingDetection" type="Node" parent="." unique_id=1261854335 node_paths=PackedStringArray("hitbox")]
+script = ExtResource("9_a5hn1")
+detection_type = 1
+hitbox = NodePath("../PlayerDetection")
+metadata/_custom_type_script = "uid://cmg61722ktg2m"

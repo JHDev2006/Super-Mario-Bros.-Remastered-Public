@@ -38,6 +38,9 @@ func get_level_packs() -> void:
 	Global.custom_campaigns.clear()
 	for i in DirAccess.get_directories_at(Global.config_path.path_join("level_packs")):
 		var json = JSON.parse_string(FileAccess.open(Global.config_path.path_join("level_packs").path_join(i).path_join("pack_info.json"), FileAccess.READ).get_as_text())
+		if json == null:
+			Global.log_error("Error parsing pack info for: " + i)
+			continue
 		Global.custom_campaign_jsons[i] = json
 		Global.custom_campaigns.append(i)
 		Level.WORLD_COUNTS[i] = json.number_of_worlds
@@ -90,15 +93,19 @@ func get_starting_position() -> void:
 		selected_index = campaign.find(Global.current_campaign)
 
 func handle_input() -> void:
-	if Input.is_action_just_pressed("ui_left"):
+	if Global.multibind_action_just_pressed("ui_left"):
 		selected_index -= 1
-	if Input.is_action_just_pressed("ui_right"):
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
+	if Global.multibind_action_just_pressed("ui_right"):
 		selected_index += 1
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
 	selected_index = wrap(selected_index, 0, campaign.size())
 	Global.current_campaign = campaign[selected_index]
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		select()
-	elif Input.is_action_just_pressed("ui_back"):
+	elif Global.multibind_action_just_pressed("ui_back"):
 		close()
 		Global.current_campaign = old_campaign
 		cancelled.emit()
@@ -126,7 +133,10 @@ func select() -> void:
 	Settings.save_settings()
 	if Global.in_custom_campaign():
 		if Global.custom_campaign_jsons[Global.current_custom_campaign].has("resource_pack"):
-			Global.custom_pack = Global.custom_campaign_jsons[Global.current_custom_campaign].resource_pack
+			var pack = Global.custom_campaign_jsons[Global.current_custom_campaign].get("resource_pack", "")
+			if pack == null:
+				pack = ""
+			Global.custom_pack = pack
 		else:
 			Global.custom_pack = ""
 		Global.current_game_mode = Global.GameMode.CAMPAIGN
@@ -146,6 +156,7 @@ func select() -> void:
 		ResourceSetterNew.clear_cache()
 		ResourceGetter.cache.clear()
 		Global.update_theme()
+		Global.get_node("Transition").hide()
 		for i in 2:
 			await get_tree().process_frame
 		Global.close_freeze()

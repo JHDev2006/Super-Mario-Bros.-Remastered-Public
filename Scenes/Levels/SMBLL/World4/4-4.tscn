@@ -119,7 +119,7 @@ position = Vector2(-3823, 0)
 [node name="CastleBridgeSegment20" parent="CastleBridge/Bridge" parent_id_path=PackedInt32Array(1064853647, 1389252244) index="19" unique_id=1471292361]
 position = Vector2(-3823, 0)
 [node name="Bowser" parent="." unique_id=1343211845 instance=ExtResource("17_nlv7q")]
-position = Vector2(2912, -48)
+position = Vector2(2896, -48)
 [node name="DeathSprite" parent="Bowser/SpriteScaleJoint" parent_id_path=PackedInt32Array(1343211845, 239188381) index="2" unique_id=1311530935]
 sprite_frames = SubResource("SpriteFrames_icd8h")
 animation = &"Walk"

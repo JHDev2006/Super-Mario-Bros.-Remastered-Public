@@ -47,7 +47,7 @@ func fireball_hit() -> void:
 
 func shoot_fire() -> void:
 	var fireball = BOWSER_JR_FIREBALL.instantiate()
-	AudioManager.play_sfx("fireball", global_position)
+	AudioManager.play_sfx("bowser_jr_fireball", global_position)
 	fireball.global_position = global_position + Vector2(8 * direction, -12)
-	fireball.direction = global_position.direction_to(target_player.global_position)
+	fireball.MOVE_ANGLE = global_position.direction_to(target_player.global_position)
 	add_sibling(fireball)

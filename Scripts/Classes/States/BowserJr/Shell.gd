@@ -19,6 +19,8 @@ func physics_update(delta: float) -> void:
 			owner.velocity.x = 100 * sign(owner.velocity.x)
 		owner.velocity.x = -(owner.velocity.x)
 	if can_move:
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_sfx("shell_spin", owner.global_position, 1.0, false)
 		if get_tree().get_first_node_in_group("Players") != null:
 			direction = sign(get_tree().get_first_node_in_group("Players").global_position.x - owner.global_position.x)
 	owner.velocity.x = lerpf(owner.velocity.x, 150 * direction, delta * 2)

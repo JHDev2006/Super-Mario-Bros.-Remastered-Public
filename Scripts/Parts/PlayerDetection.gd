@@ -3,10 +3,22 @@ extends Area2D
 
 signal player_entered(player: Player)
 signal player_exited(player: Player)
+signal player_body_entered(player: Player) 
+signal player_body_exited(player: Player)
 
 func _ready() -> void:
 	area_entered.connect(on_area_entered)
 	area_exited.connect(on_area_exited)
+	body_entered.connect(on_body_entered)
+	body_exited.connect(on_body_exited)
+
+func on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		player_body_entered.emit()
+
+func on_body_exited(body: Node2D) -> void:
+	if body is Player:
+		player_body_exited.emit()
 
 func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player and area.name != "HammerHitbox":

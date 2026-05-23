@@ -28,7 +28,7 @@ func _ready() -> void:
 	setup_visuals()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept") and visible:
+	if (Global.multibind_action_just_pressed("ui_accept") || Input.is_action_just_pressed("mb_left")) and visible:
 		level_selected.emit(self)
 
 func setup_visuals() -> void:
@@ -57,6 +57,7 @@ func setup_rating_stars() -> void:
 		idx += 1
 
 func get_thumbnail() -> void:
+	%LevelIcon.texture = null
 	if cached_thumbnails.has(level_id):
 		%LevelIcon.texture = cached_thumbnails[level_id]
 		$MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelIcon/Error.hide()

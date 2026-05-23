@@ -17,8 +17,11 @@ func null_function(_fuck_you := 0) -> void:
 	pass
 
 func window_size_changed(new_value := 0) -> void:
-	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND if new_value == 1 else Window.CONTENT_SCALE_ASPECT_KEEP
 	Settings.file.video.size = new_value
+	var idx = new_value
+	var res = Global.RESOLUTIONS[new_value]
+	get_tree().root.content_scale_size = res
+	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND if idx == Global.RESOLUTIONS.size() - 1 else Window.CONTENT_SCALE_ASPECT_KEEP
 
 func vsync_changed(new_value := 0) -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if new_value == 1 else DisplayServer.VSYNC_DISABLED)
@@ -46,7 +49,6 @@ func language_changed(new_value := 0) -> void:
 	%Flag.region_rect.position.x = new_value * 16
 
 func frame_limit_changed(new_value := 0) -> void: 
-	print_debug(str(new_value))
 	
 	var new_framerate := 0
 	match new_value: 

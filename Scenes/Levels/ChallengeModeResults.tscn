@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="10_bylb3"]
 [ext_resource type="Texture2D" uid="uid://de6otencrflfo" path="res://Assets/Sprites/UI/RedCoins.png" id="10_d76il"]
 [ext_resource type="Texture2D" uid="uid://wx6yyqabrelf" path="res://Assets/Sprites/UI/ChallengeResultsPanel.png" id="11_02i7h"]
-[ext_resource type="AudioStream" uid="uid://n07ty0sc76em" path="res://Assets/Audio/SFX/ChallengeModeGive.mp3" id="11_nym8o"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/ChallengeResults.json" id="12_fb45j"]
 [ext_resource type="AudioStream" uid="uid://dhiy4bmyu3j0r" path="res://Assets/Audio/BGM/ChallengeEnd.mp3" id="12_x7w5s"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/ChallengeEnd.json" id="12_y63tt"]
@@ -28,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://byy3k1pdrp77" path="res://Assets/Sprites/Particles/Smoke.png" id="20_n4lt1"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="21_bob8r"]
 [ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="21_xk7j8"]
+[ext_resource type="AudioStream" uid="uid://b7acwb3r4teop" path="res://Assets/Audio/SFX/ChallengeModeGive.wav" id="21_y63tt"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/Yoshi.json" id="23_vohx7"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="24_cq5a1"]
 [ext_resource type="Texture2D" uid="uid://ccb8wtuolj7i3" path="res://Assets/Sprites/Backgrounds/ChallengeModeResults/Results3.png" id="27_w3bjn"]
@@ -51,7 +51,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-96, 16), Vector2(-40, 16)]
+"values": [Vector2(-96, 17), Vector2(-40, 17)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -794,7 +794,7 @@ autoplay = &"Main"
 speed_scale = 0.8
 
 [node name="Toad" type="AnimatedSprite2D" parent="." unique_id=130158692]
-position = Vector2(56, 0)
+position = Vector2(56, 1)
 sprite_frames = SubResource("SpriteFrames_woqpu")
 animation = &"1Idle"
 autoplay = "Idle"
@@ -967,7 +967,7 @@ metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2109458546]
 process_mode = 3
-stream = ExtResource("11_nym8o")
+stream = ExtResource("21_y63tt")
 bus = &"SFX"
 script = ExtResource("21_xk7j8")
 metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
@@ -982,7 +982,7 @@ metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 [node name="Yoshi" type="AnimatedSprite2D" parent="." unique_id=227881632]
 process_mode = 3
 visible = false
-position = Vector2(16, 0)
+position = Vector2(16, 1)
 sprite_frames = SubResource("SpriteFrames_21ujm")
 animation = &"1"
 autoplay = "1"
@@ -1020,7 +1020,7 @@ offset_left = -112.0
 offset_top = -112.0
 offset_right = -64.0
 offset_bottom = -89.0
-text = "world"
+text = "HUD_WORLD"
 uppercase = true
 
 [node name="WorldLevel" type="Label" parent="." unique_id=1548529906]

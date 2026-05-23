@@ -5,5 +5,5 @@
 [node name="TrueBowser" unique_id=2024715158 instance=ExtResource("1_xtf8a")]
 can_hammer = true
 
-[node name="GibSpawner" parent="." index="8" unique_id=383912089 node_paths=PackedStringArray("visuals")]
+[node name="GibSpawner" parent="." index="6" unique_id=383912089 node_paths=PackedStringArray("visuals")]
 visuals = NodePath("../SpriteScaleJoint/Sprite")

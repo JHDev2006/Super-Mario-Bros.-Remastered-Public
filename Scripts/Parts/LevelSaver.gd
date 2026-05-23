@@ -11,12 +11,7 @@ const chunk_template := {"Tiles": "", "Entities": ""}
 
 const base64_charset := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
-var entity_map := {}
-
 const tile_blacklist := []
-
-func _ready() -> void:
-	load_entity_map()
 
 func save_level(level_name := "Unnamed Level", level_author := "You", level_desc := "No Desc", difficulty := 0) -> Dictionary:
 	level_file = LevelEditor.BLANK_FILE.duplicate_deep()
@@ -24,6 +19,8 @@ func save_level(level_name := "Unnamed Level", level_author := "You", level_desc
 	var idx := 0
 	for i in LevelEditor.sub_areas:
 		if i != null:
+			if (i is PackedScene):
+				i = i.instantiate()
 			level_file["Levels"][idx] = save_subarea(i)
 		idx += 1
 	level_file["Info"] = {"Name": level_name, "Author": level_author, "Description": level_desc, "Difficulty": difficulty}
@@ -45,10 +42,21 @@ func write_file(json := {}, lvl_file_name := "") -> void:
 	var file = FileAccess.open(Global.config_path.path_join("custom_levels/" + lvl_file_name), FileAccess.WRITE)
 	file.store_string(JSON.stringify(json, "", false))
 	file.close()
-	print("saved")
+	print("Saved Level: " + Global.config_path.path_join("custom_levels/" + lvl_file_name))
 
-func load_entity_map() -> void:
-	entity_map = JSON.parse_string(FileAccess.open(EntityIDMapper.MAP_PATH, FileAccess.READ).get_as_text())
+func write_temp_file(level_name := "", json := {}, lvl_file_name := "", save_time := "") -> void:
+	var path = Global.config_path.path_join("custom_levels/autosaves/" + level_name)
+	for i in "<>:?!/":
+		lvl_file_name = lvl_file_name.replace(i, "")
+	
+	json["Info"]["SaveTime"] = save_time
+	
+	if !DirAccess.dir_exists_absolute(path):
+		DirAccess.make_dir_absolute(path)
+	var file = FileAccess.open(path + "/" + lvl_file_name, FileAccess.WRITE)
+	file.store_string(JSON.stringify(json, "", false))
+	file.close()
+	print("Saved Level: " + path + "/" + lvl_file_name)
 
 func get_tiles(level: CustomLevel = null) -> void:
 	for layer in 5:
@@ -77,7 +85,6 @@ func get_tiles(level: CustomLevel = null) -> void:
 
 
 static func compress_string(buffer := "") -> String:
-	print(buffer)
 	var bytes = buffer.to_ascii_buffer()
 	var compressed_bytes = bytes.compress(FileAccess.CompressionMode.COMPRESSION_DEFLATE)
 	var b64_buffer = Marshalls.raw_to_base64(compressed_bytes)

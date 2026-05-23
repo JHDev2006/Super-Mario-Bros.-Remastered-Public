@@ -30,7 +30,7 @@ func open_folder() -> void:
 	OS.shell_show_in_file_manager(ProjectSettings.globalize_path(custom_level_path))
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_back") and CustomLineEdit.editing == false:
+	if (Global.multibind_action_just_pressed("ui_back") || Input.is_action_just_pressed("mb_right")) and CustomLineEdit.editing == false:
 		closed.emit()
 
 func close() -> void:
@@ -91,7 +91,6 @@ func update_show(new_type := 0) -> void:
 			i.visible = i.level_name.contains(search_check)
 	%SavedLevels.visible = (new_type == CustomLevelContainer.Type.SAVED or new_type == 0) and get_visible_containers(CustomLevelContainer.Type.SAVED) > 0
 	%DownloadedLevels.visible = (new_type == CustomLevelContainer.Type.DOWNLOADED or new_type == 0) and get_visible_containers(CustomLevelContainer.Type.DOWNLOADED) > 0
-	
 
 func get_visible_containers(type := 0) -> int:
 	var vis_child := 0
@@ -102,8 +101,10 @@ func get_visible_containers(type := 0) -> int:
 
 func search_submitted(search_query := "") -> void:
 	search_check = search_query
-	update_show()
+	update_show($Filter.selected_index)
 
 func container_selected(container: CustomLevelContainer) -> void:
+	if container.is_autosave: return
+	
 	level_selected.emit(container)
 	selected_lvl_idx = container.get_index()

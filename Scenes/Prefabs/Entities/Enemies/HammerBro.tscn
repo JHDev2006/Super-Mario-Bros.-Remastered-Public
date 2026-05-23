@@ -59,13 +59,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hx42c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmlpp"]
 atlas = ExtResource("3_dywvb")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_g65ak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmlpp")
+}],
+"loop": true,
+"name": &"Hold",
+"speed": 5.0
+}]
+
 [sub_resource type="Animation" id="Animation_1mp8k"]
 resource_name = "Movement"
-loop_mode = 2
+length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -73,10 +85,10 @@ tracks/0/path = NodePath("MovementJoint:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(8, 0), Vector2(-8, 0)]
+"values": [Vector2(0, 0), Vector2(-8, 0), Vector2(0, 0), Vector2(8, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_scjjh"]
@@ -105,6 +117,9 @@ size = Vector2(8, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2vqj5"]
 size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2r2js"]
+size = Vector2(6, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eel5y"]
 atlas = ExtResource("2_8mo24")
@@ -200,19 +215,21 @@ flip_h = true
 script = ExtResource("3_hx42c")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="Hammer" type="Sprite2D" parent="MovementJoint/Sprite" unique_id=1842956900]
+[node name="Hammer" type="AnimatedSprite2D" parent="MovementJoint/Sprite" unique_id=1527044886]
 visible = false
 show_behind_parent = true
 position = Vector2(0, -17)
-texture = SubResource("AtlasTexture_hx42c")
+sprite_frames = SubResource("SpriteFrames_g65ak")
+animation = &"Hold"
 flip_h = true
+metadata/HammerType = "HammerBro"
 
-[node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite/Hammer" unique_id=1182534042 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite/Hammer" unique_id=1182534042 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
 script = ExtResource("7_pvn5i")
 node_to_affect = NodePath("..")
-property_name = "texture"
-mode = 1
+property_name = "sprite_frames"
 resource_json = ExtResource("6_0w8yj")
+metadata_node = NodePath("..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite" unique_id=630643973 node_paths=PackedStringArray("node_to_affect")]
@@ -255,12 +272,25 @@ script = ExtResource("5_i0wjw")
 hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://chj8hu207lrh"
 
+[node name="HammerPlayerDetection" type="Node" parent="." unique_id=1379120863 node_paths=PackedStringArray("hitbox")]
+script = ExtResource("5_i0wjw")
+hitbox = NodePath("../HammerHitbox")
+metadata/_custom_type_script = "uid://chj8hu207lrh"
+
 [node name="Hitbox" type="Area2D" parent="." unique_id=765629138]
 
 [node name="Shape" type="CollisionShape2D" parent="Hitbox" unique_id=1799339759]
 visible = false
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_2vqj5")
+
+[node name="HammerHitbox" type="Area2D" parent="." unique_id=1787897845]
+
+[node name="Shape" type="CollisionShape2D" parent="HammerHitbox" unique_id=1767479099]
+visible = false
+position = Vector2(0, -33)
+shape = SubResource("RectangleShape2D_2r2js")
+disabled = true
 
 [node name="BlockBouncingDetection" type="Node" parent="." unique_id=1399953864 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("6_1mp8k")
@@ -318,10 +348,13 @@ metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="invincible_player_hit" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="player_hit" from="EnemyPlayerDetection" to="." method="damage_player"]
-[connection signal="player_stomped_below" from="EnemyPlayerDetection" to="GibSpawner" method="stomp_die"]
+[connection signal="player_stomped_below" from="EnemyPlayerDetection" to="GibSpawner" method="stomp_die" binds= [false]]
 [connection signal="player_stomped_below" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="GibSpawner" method="stomp_die" binds= [false]]
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
+[connection signal="player_hit" from="HammerPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_below" from="HammerPlayerDetection" to="." method="damage_player"]
+[connection signal="player_stomped_on" from="HammerPlayerDetection" to="." method="damage_player"]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="die_from_object"]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="fireball_hit" from="FireballDetection" to="." method="die_from_object"]

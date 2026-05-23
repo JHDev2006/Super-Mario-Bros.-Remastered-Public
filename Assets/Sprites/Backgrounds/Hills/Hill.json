@@ -160,7 +160,8 @@
 			},
 			"SMBLL": {
 				"source": "JungleLL.png"
-			}
+			},
+			"SMBANN": {"source": "JungleANN.png"}
 		},
 		"Autumn": {
 			"Day": {

@@ -13,15 +13,18 @@ const base64_charset := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
 var selectors_to_add := []
 
 func _ready() -> void:
-	map = JSON.parse_string(FileAccess.open(MAP_PATH, FileAccess.READ).get_as_text())
+	load_entity_map()
 	if Engine.is_editor_hint() == false and OS.is_debug_build() and auto_update:
 		update_map()
 
-func update_map() -> void:
+static func load_entity_map() -> void:
 	map = JSON.parse_string(FileAccess.open(MAP_PATH, FileAccess.READ).get_as_text())
+
+func update_map() -> void:
+	load_entity_map()
 	get_ids()
 	save_to_json()
-	print("done")
+	print("Update ID Map.")
 
 func clear_map() -> void:
 	map = {}
@@ -58,7 +61,6 @@ static func get_map_id(entity_scene := "") -> String:
 			return map.keys()[idx]
 		idx += 1
 	return ""
-
 
 func encode_to_base64_2char(value: int) -> String:
 	if value < 0 or value >= 4096:
