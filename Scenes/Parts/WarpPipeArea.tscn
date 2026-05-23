@@ -8,22 +8,24 @@
 script = ExtResource("2_6mf6l")
 world_num = 1
 level_num = 1
+level_id = null
 pipe_id = -1
 target_level = "uid://ckpuxdilk5u0"
 
 [node name="Visual" parent="." index="0" unique_id=335893336]
 debug_color = Color(1, 0.6, 0, 0.419608)
 
-[node name="Node2D" parent="." index="3" unique_id=1862855632]
+[node name="Node2D" parent="." index="4" unique_id=1862855632]
 position = Vector2(0, 8)
 
 [node name="Label" parent="Node2D/CenterContainer" parent_id_path=PackedInt32Array(188264350) index="0" unique_id=121679609]
 text = "1-1"
 horizontal_alignment = 1
 
-[node name="EditorPropertyExposer" parent="." index="4" unique_id=875653293]
-properties = Array[String](["enter_direction", "world_num", "level_num"])
+[node name="EditorPropertyExposer" parent="." index="5" unique_id=875653293]
+properties = Array[String](["enter_direction", "level_id"])
 properties_force_selector = Dictionary[String, PackedScene]({
-"level_num": ExtResource("3_6mf6l"),
-"world_num": ExtResource("3_6mf6l")
+"level_id": ExtResource("3_6mf6l")
 })
+
+[connection signal="modifier_applied" from="EditorPropertyExposer" to="." method="update_visuals"]

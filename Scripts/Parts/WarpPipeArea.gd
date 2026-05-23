@@ -11,6 +11,8 @@ extends PipeArea
 		level_num = value
 		update_visuals()
 
+@export_range(0, 99) var level_id := 0
+
 static var has_warped := false
 
 func _ready() -> void:
@@ -18,19 +20,11 @@ func _ready() -> void:
 	has_warped = false
 
 func update_visuals() -> void:
-	if (Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL):
-		$Node2D/CenterContainer/Label.text = "EXIT"
-		$ArrowJoint.hide()
-		$Node2D/ColorRect.hide()
-	elif Global.in_custom_campaign():
-		$ArrowJoint.hide()
-		$Node2D/ColorRect.hide()
-		$Node2D/CenterContainer/Label.text = str(world_num) + "-" + str(level_num)
-	elif Engine.is_editor_hint() or (Global.current_game_mode == Global.GameMode.LEVEL_EDITOR):
+	if Engine.is_editor_hint() or (Global.current_game_mode == Global.GameMode.LEVEL_EDITOR):
 		$ArrowJoint.show()
 		$ArrowJoint.rotation = get_vector(enter_direction).angle() - deg_to_rad(90)
 		$ArrowJoint/Arrow.flip_v = exit_only
-		$Node2D/CenterContainer/Label.text = str(world_num) + "-" + str(level_num)
+		$Node2D/CenterContainer/Label.text = "LVL " + str(level_id)
 	else:
 		hide()
 
@@ -64,25 +58,15 @@ func run_player_check(player: Player) -> void:
 			return
 		elif Global.in_custom_campaign():
 			Global.can_time_tick = false
-			AudioManager.set_music_override(AudioManager.MUSIC_OVERRIDES.SILENCE, 99, false)
 			await get_tree().create_timer(1, false).timeout
-			if !Global.inf_time:
-				Global.tally_time()
-				if Global.tallying_score:
-					await Global.score_tally_finished
-			await get_tree().create_timer(1, false).timeout
-			
 			Checkpoint.passed_checkpoints.clear()
 			Global.reset_values()
-			
-			NewLevelBuilder.sub_levels = [null, null, null, null, null]
-			Global.level_num = level_num
-			Global.world_num = world_num
-			var level_file_name = Global.custom_campaign_jsons[Global.current_custom_campaign].levels[SaveManager.get_level_idx(Global.world_num, Global.level_num)]
-			var path = Global.config_path.path_join("level_packs").path_join(Global.current_custom_campaign).path_join(level_file_name)
-			Global.custom_level_idx = SaveManager.get_level_idx(world_num,level_num)
+			LevelEditor.sub_areas = [null, null, null, null, null]
+			Global.custom_level_idx = level_id
+			var lvls_per_world: int = Global.custom_campaign_jsons[Global.current_custom_campaign].levels_per_world[0]
+			Global.world_num = floor((Global.custom_level_idx + lvls_per_world) / float(lvls_per_world))
+			Global.level_num = (Global.custom_level_idx + 1) % lvls_per_world
 			Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
-			# Global.transition_to_scene(Level.get_scene_string(Global.world_num, Global.level_num))
 			return
 		elif Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
 			SpeedrunHandler.run_finished()

@@ -1,6 +1,9 @@
 {
 	"properties": {
-		"flipped_offset": [0, 2],
+		"flipped_offset": [
+			0.0,
+			2.0
+		],
 		"can_turn": true
 	},
 	"animations": {

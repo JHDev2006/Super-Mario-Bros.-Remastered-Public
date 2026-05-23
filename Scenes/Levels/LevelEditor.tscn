@@ -4762,7 +4762,7 @@ tile_name = "OBJ_GOALPIPE"
 tile_desc = "Instantly clears the level. In a custom campaign, warps you to another level."
 type = 1
 icon_texture = ExtResource("106_vcpfp")
-entity_id = "De"
+entity_id = "Dg"
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Pipes/GoalPipe" unique_id=313252572]
 layout_mode = 1
