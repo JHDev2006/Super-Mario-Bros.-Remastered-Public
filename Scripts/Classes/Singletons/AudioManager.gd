@@ -261,8 +261,15 @@ func handle_music() -> void:
 			handle_music_override()
 			return
 		var music := Global.current_level.music
-		if Global.music_override:
-			var path := "res://Assets/Audio/BGM/" + Global.music_override + ".json"
+		if Level.extra_music != null && Settings.file.audio.extra_bgm == 1:
+			music = Level.extra_music
+		var override := ""
+		if Global.music_override != null:
+			override = Global.music_override
+		if Global.extra_music_override && Settings.file.audio.extra_bgm == 1:
+			override = Global.extra_music_override
+		if override:
+			var path := "res://Assets/Audio/BGM/" + override + ".json"
 			if ResourceLoader.exists(path):
 				music = load(path)
 		music_player.stream_paused = false

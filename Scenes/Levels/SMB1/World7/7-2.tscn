@@ -2,7 +2,6 @@
 [ext_resource type="PackedScene" uid="uid://dsbbno622yoxo" path="res://Scenes/Levels/SMB1/World2/2-2.tscn" id="1_x8mfc"]
 [ext_resource type="PackedScene" uid="uid://b6drci0vml1as" path="res://Scenes/Prefabs/Entities/Enemies/Blooper.tscn" id="3_4huqm"]
 [node name="7-2" unique_id=655925877 instance=ExtResource("1_x8mfc")]
-theme_time = "Night"
 world_id = 7
 [node name="LevelBG" parent="." index="0" unique_id=1664107682]
 time_of_day = 1

@@ -194,6 +194,7 @@ func get_resource(json_file: JSON) -> Resource:
 			Global.primary_bg_override = json.get("primary_bg", -1)
 			Global.secondary_bg_override = json.get("secondary_bg", -1)
 			Global.particle_override = json.get("particles", -1)
+			Global.extra_music_override = json.get("extra_bgm", "")
 	if cache.has(json_file.resource_path) == false and use_cache and not is_random:
 		cache[json_file.resource_path] = resource
 	return resource
@@ -241,6 +242,8 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	if force_properties.has("Theme"):
 		level_theme = force_properties.Theme
+	if Global.theme_override != "":
+		level_theme = Global.theme_override
 	if json.has(level_theme) == false:
 		level_theme = "default"
 	if json.has(level_theme):
@@ -252,6 +255,8 @@ func get_variation_json(json := {}) -> Dictionary:
 	var level_time = Global.theme_time
 	if force_properties.has("Time"):
 		level_time = force_properties.Time
+	if Global.time_override != "":
+		level_time = Global.time_override
 	if json.has(level_time):
 		json = get_variation_json(json[level_time])
 	

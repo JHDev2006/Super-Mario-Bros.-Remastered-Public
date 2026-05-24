@@ -3,6 +3,7 @@ class_name Level
 extends Node
 
 @export var music: JSON = null
+static var extra_music: JSON = null
 @export var room_type := RoomType.NORMAL
 @export_enum("Overworld", "Underground", "Desert", "Snow", "Jungle", "Beach", "Garden", "Mountain", "Skyland", "Autumn", "Pipeland", "Space", "Underwater", "Volcano", "Castle", "CastleWater", "Airship", "Bonus") var theme := "Overworld"
 
@@ -160,10 +161,6 @@ func update_theme() -> void:
 			theme_time = Global.custom_campaign_jsons[Global.current_custom_campaign].world_themes[Global.world_num - 1][1]
 		campaign = Global.current_campaign
 		ResourceSetterNew.clear_cache()
-	if Global.theme_override != "": 
-		theme = Global.theme_override
-	if Global.time_override != "": 
-		theme_time = Global.time_override
 	Global.current_campaign = campaign
 	Global.level_theme = theme
 	Global.theme_time = theme_time

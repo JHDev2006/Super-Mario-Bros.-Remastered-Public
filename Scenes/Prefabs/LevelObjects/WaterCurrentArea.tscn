@@ -17,7 +17,6 @@ texture = ExtResource("1_sh54q")
 lifetime = 5.0
 preprocess = 5.0
 randomness = 1.0
-fixed_fps = 30
 draw_order = 1
 emission_shape = 3
 emission_rect_extents = Vector2(32, 8)

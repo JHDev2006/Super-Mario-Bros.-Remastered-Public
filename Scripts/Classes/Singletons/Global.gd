@@ -23,6 +23,7 @@ var music_override := ""
 var primary_bg_override := -1
 var secondary_bg_override := -1
 var particle_override := -1
+var extra_music_override := ""
 
 signal level_theme_changed
 
