@@ -22,6 +22,7 @@ var time_override := ""
 var music_override := ""
 var primary_bg_override := -1
 var secondary_bg_override := -1
+var liquid_override := -1
 var particle_override := -1
 var extra_music_override := ""
 
@@ -227,6 +228,7 @@ func update_theme() -> void:
 	theme_override = ""
 	time_override = ""
 	$ThemeGetter.update_resource()
+	ResourceSetterNew.clear_cache()
 	level_theme_changed.emit()
 
 func setup_config_dirs() -> void:

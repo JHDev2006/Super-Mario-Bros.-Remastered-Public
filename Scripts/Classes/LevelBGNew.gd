@@ -48,6 +48,10 @@ extends Node2D
 	set(value):
 		liquid_layer = value
 		update_visuals()
+	get:
+		if Engine.is_editor_hint() == false && Global.liquid_override > -1:
+			return Global.liquid_override
+		return liquid_layer
 
 @export var liquid_offset := 8:
 	set(value):

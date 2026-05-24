@@ -3,6 +3,11 @@ extends Level
 
 static var seen_cutscene := false
 
+func _enter_tree() -> void:
+	Global.current_room_type = room_type
+	if is_inside_tree():
+		update_theme()
+
 func _ready() -> void:
 	Global.current_level = null
 	seen_cutscene = true

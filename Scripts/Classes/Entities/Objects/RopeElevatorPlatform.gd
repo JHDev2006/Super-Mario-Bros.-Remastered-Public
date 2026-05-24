@@ -26,7 +26,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if not dropped and is_instance_valid($Rope):
-		$Rope.size.y = $Platform.global_position.y - rope_top
+		$Rope.size.y = $Platform.global_position.y - rope_top + 1
 		$Rope.global_position.y = rope_top
 
 func _physics_process(delta: float) -> void:

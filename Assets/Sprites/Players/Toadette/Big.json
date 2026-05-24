@@ -76,7 +76,7 @@
 					32.0
 				]
 			],
-			"speed": 5.0,
+			"speed": 0.0,
 			"loop": true
 		},
 		"Grow": {
