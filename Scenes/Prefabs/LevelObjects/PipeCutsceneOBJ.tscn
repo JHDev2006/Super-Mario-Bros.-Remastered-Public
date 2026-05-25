@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://o3rkd6bf2toj"]
 
 [ext_resource type="Texture2D" uid="uid://onklykrkegkn" path="res://Assets/Sprites/Editor/PipeCutsceneNode.png" id="1_3quwm"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="2_6qxe3"]
 [ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="2_oa6vc"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ga0ye"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/PipeCutscene.json" id="4_y3vbw"]
@@ -39,6 +40,7 @@ script = SubResource("GDScript_oa6vc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1807207578]
 texture = ExtResource("1_3quwm")
+script = ExtResource("2_6qxe3")
 
 [node name="LevelEditorToggleDetection" type="Node" parent="." unique_id=92686134]
 script = ExtResource("2_oa6vc")
