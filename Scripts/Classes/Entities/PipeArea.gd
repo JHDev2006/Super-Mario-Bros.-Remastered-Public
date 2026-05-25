@@ -128,7 +128,6 @@ func run_player_check(player: Player) -> void:
 	var max_distance = max(4, player.physics_params("COLLISION_SIZE")[0] - 2)
 	if enter_direction <= 2:
 		max_distance = 999
-	print([distance, max_distance])
 	if distance <= max_distance and Global.player_action_pressed(get_input_direction(enter_direction), player.player_id) and (player.is_actually_on_floor() or enter_direction == 1):
 		can_enter = false
 		pipe_entered.emit()

@@ -213,6 +213,4 @@ func is_mouse_inside(it_is := true) -> void:
 	var inside_check = get_global_rect().has_point(get_global_mouse_position())
 	if inside_check and not it_is:
 		it_is = true
-
-	print(str(it_is))
 	mouse_inside = it_is

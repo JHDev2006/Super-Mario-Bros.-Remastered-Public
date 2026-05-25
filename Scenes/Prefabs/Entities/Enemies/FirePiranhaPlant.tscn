@@ -14,7 +14,6 @@ upside_down_hitbox = NodePath("RotationJoint/PositionJoint/Visuals/Hitbox/Upside
 score_note_adder = NodePath("RotationJoint/PositionJoint/Visuals/Sprite/ScoreNoteSpawner")
 
 [node name="Visuals" parent="RotationJoint/PositionJoint" parent_id_path=PackedInt32Array(531941041) index="0" unique_id=533885688 instance=ExtResource("2_t5jdg")]
-visible = false
 
 [node name="Sprite" parent="RotationJoint/PositionJoint/Visuals" index="0" unique_id=211744012]
 scale = Vector2(-1, 1)

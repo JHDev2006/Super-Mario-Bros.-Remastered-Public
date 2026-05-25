@@ -127,7 +127,6 @@ func _exit_tree() -> void:
 func emit_pulse() -> void:
 	if get_tree() == null: return
 	if accepting_inputs == false: return
-	print(signals_recieved)
 	update_animation(1.2, 1.0)
 	if check_recursive() == false:
 		return
@@ -267,7 +266,6 @@ func check_recursive() -> bool:
 const EXPLOSION = preload("uid://clbvyne1cr8gp")
 
 func explode() -> void:
-	print(signals_recieved)
 	await get_tree().process_frame
 	var node = EXPLOSION.instantiate()
 	node.global_position = owner.global_position
