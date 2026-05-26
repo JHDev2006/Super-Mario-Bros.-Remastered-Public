@@ -376,6 +376,8 @@ func play_level() -> void:
 func return_to_editor() -> void:
 	load_level(sub_level_id)
 	%Camera.make_current()
+	current_state = EditorState.IDLE
+	%Camera.enabled = true
 	AudioManager.stop_all_music()
 	OffScreenDespawner.editor_testing_safety = true
 	recorded_trail = saved_trail.size() > 0
