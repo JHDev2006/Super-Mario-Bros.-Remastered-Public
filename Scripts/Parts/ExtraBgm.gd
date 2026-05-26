@@ -5,6 +5,3 @@ extends Node
 
 func _enter_tree() -> void:
 	Level.extra_music = extra_track
-
-func _exit_tree() -> void:
-	Level.extra_music = null
