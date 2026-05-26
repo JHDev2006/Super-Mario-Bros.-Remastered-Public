@@ -259,10 +259,11 @@ func handle_hud() -> void:
 	%Tools.visible = not playing_level
 
 func handle_shortcuts() -> void:
-	for i in 7:
-		if (Global.multibind_action_just_pressed("editor_open_section_" + str(i+1))):
-			$TileMenu/MarginContainer/VBoxContainer/TabButtons.get_child(i).focus_entered.emit()
-			$TileMenu/MarginContainer/VBoxContainer/TabButtons.get_child(i).emit_signal("pressed")
+	if get_viewport().gui_get_focus_owner() == null:
+		for i in 7:
+			if (Global.multibind_action_just_pressed("editor_open_section_" + str(i+1))):
+				$TileMenu/MarginContainer/VBoxContainer/TabButtons.get_child(i).focus_entered.emit()
+				$TileMenu/MarginContainer/VBoxContainer/TabButtons.get_child(i).emit_signal("pressed")
 
 func quit_editor() -> void:
 	%QuitDialog.show()
