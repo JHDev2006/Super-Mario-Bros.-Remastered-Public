@@ -85,6 +85,7 @@ position = Vector2(-8, 3)
 autoplay = "Flap"
 frame_progress = 0.0
 flip_h = true
+metadata/WingType = "GreenKoopa"
 
 [node name="DeathSprite" type="AnimatedSprite2D" parent="." unique_id=81522450]
 visible = false
@@ -197,8 +198,8 @@ metadata/_custom_type_script = "uid://maqpreddu5kg"
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="LevelPersistance" method="set_as_active" unbinds=1]
 [connection signal="fireball_hit" from="FireballDetection" to="." method="die_from_object"]
 [connection signal="fireball_hit" from="FireballDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
-[connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounced" unbinds=1]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
 [connection signal="icicle_detected" from="IcicleDetection" to="." method="die_from_object"]
 [connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]

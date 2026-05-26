@@ -578,6 +578,7 @@ shape = SubResource("RectangleShape2D_xy8gq")
 [node name="Wings" type="Node2D" parent="SpriteScaleJoint/Sprite" unique_id=1765238875]
 unique_name_in_owner = true
 visible = false
+metadata/WingType = "Player"
 
 [node name="Wing" type="AnimatedSprite2D" parent="SpriteScaleJoint/Sprite/Wings" unique_id=220386174]
 unique_name_in_owner = true
@@ -587,11 +588,12 @@ sprite_frames = SubResource("SpriteFrames_uwhl4")
 animation = &"Idle"
 flip_h = true
 
-[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Wings/Wing" unique_id=1491180846 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Wings/Wing" unique_id=1491180846 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("9_o70e0")
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite/Wings" unique_id=305580541]

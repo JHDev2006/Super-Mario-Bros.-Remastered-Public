@@ -4792,7 +4792,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("194_24ald")
+texture = ExtResource("22_3cjpb")
 
 [node name="FlagPole" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer" unique_id=194219872 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2

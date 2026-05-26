@@ -35,10 +35,12 @@ frame_progress = 0.594451
 script = ExtResource("2_io3xw")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
+metadata/WingType = ""
 
-[node name="ResourceSetterNew" type="Node" parent="." unique_id=1011792679 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="." unique_id=1011792679 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
 script = ExtResource("3_r7kgt")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_r7kgt")
+metadata_node = NodePath("..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

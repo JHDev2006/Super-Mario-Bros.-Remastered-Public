@@ -22,7 +22,7 @@
 			"frames": [[0, 0, 16, 16]],
 			"speed": 10.0,
 			"loop": true
-		},
+		}
 	},
 	"variations": {
 		"default": {"source": "Wings.png", "rect": [0, 0, 32, 16]},
