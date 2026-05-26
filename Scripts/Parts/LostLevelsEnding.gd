@@ -33,7 +33,6 @@ func _process(_delta: float) -> void:
 		else:
 			CreditsLevel.go_to_title_screen = false
 			Global.transition_to_scene("res://Scenes/Levels/Credits.tscn")
-	$LevelBG.combo_progress = 1
 	DiscoLevel.can_meter_tick = false
 
 func tally_score() -> void:

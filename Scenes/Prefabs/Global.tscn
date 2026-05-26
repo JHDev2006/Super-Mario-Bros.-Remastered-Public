@@ -48,22 +48,6 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mpjtu"]
 shader = SubResource("Shader_m6bur")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfpkh"]
-shader = ExtResource("2_77asf")
-shader_parameter/shadow_colour = Vector4(1, 1, 1, 1)
-shader_parameter/allow_transparency = true
-
-[sub_resource type="GDScript" id="GDScript_mpjtu"]
-script/source = "extends Label
-
-func _process(delta: float) -> void:
-	if (get_parent().visible):
-		await get_tree().create_timer(0.5, true).timeout
-		text += \".\"
-	else:
-		text = tr(\"EDITOR_LOADING\")
-"
-
 [sub_resource type="Animation" id="Animation_mpjtu"]
 resource_name = "FadeIn"
 length = 0.5
@@ -317,6 +301,11 @@ func update_texture() -> void:
 atlas = ExtResource("19_3l3ph")
 region = Rect2(0, 0, 8, 8)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfpkh"]
+shader = ExtResource("2_77asf")
+shader_parameter/shadow_colour = Vector4(1, 1, 1, 1)
+shader_parameter/allow_transparency = true
+
 [node name="Global" type="Node" unique_id=1897878467]
 process_mode = 3
 script = ExtResource("1_t23sr")
@@ -354,46 +343,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-
-[node name="EditorLoading" type="Control" parent="Transition/TransitionBlock" unique_id=40717061]
-visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -24.0
-offset_right = 96.0
-grow_vertical = 0
-
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="Transition/TransitionBlock/EditorLoading" unique_id=1851856169 node_paths=PackedStringArray("resource_setter")]
-material = SubResource("ShaderMaterial_vfpkh")
-position = Vector2(16, 20)
-sprite_frames = ExtResource("2_pxe6i")
-animation = &"Jump"
-offset = Vector2(0, -16)
-script = ExtResource("3_77asf")
-force_power_state = "0"
-resource_setter = NodePath("ResourceSetterNew")
-metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
-
-[node name="ResourceSetterNew" type="Node" parent="Transition/TransitionBlock/EditorLoading/PlayerSprite" unique_id=2127008457 node_paths=PackedStringArray("node_to_affect")]
-script = ExtResource("19_okfpr")
-node_to_affect = NodePath("..")
-property_name = "sprite_frames"
-use_cache = false
-metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
-[node name="Label" type="Label" parent="Transition/TransitionBlock/EditorLoading" unique_id=700837014]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 8.0
-offset_right = 97.0
-offset_bottom = 24.0
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Loading."
-uppercase = true
-script = SubResource("GDScript_mpjtu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=804731792]
 libraries/ = SubResource("AnimationLibrary_77asf")
@@ -571,6 +520,56 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="ResourceSetterNew" type="Node" parent="." unique_id=1980776324]
 script = ExtResource("19_okfpr")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=2033601337]
+
+[node name="EditorLoading" type="ColorRect" parent="CanvasLayer2" unique_id=1056956960]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.34901962)
+
+[node name="Text" type="Control" parent="CanvasLayer2/EditorLoading" unique_id=40717061]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 96.0
+grow_vertical = 0
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="CanvasLayer2/EditorLoading/Text" unique_id=1851856169 node_paths=PackedStringArray("resource_setter")]
+material = SubResource("ShaderMaterial_vfpkh")
+position = Vector2(16, 20)
+sprite_frames = ExtResource("2_pxe6i")
+animation = &"Jump"
+offset = Vector2(0, -16)
+script = ExtResource("3_77asf")
+force_power_state = "0"
+resource_setter = NodePath("ResourceSetterNew")
+metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
+
+[node name="ResourceSetterNew" type="Node" parent="CanvasLayer2/EditorLoading/Text/PlayerSprite" unique_id=2127008457 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("19_okfpr")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Label" type="Label" parent="CanvasLayer2/EditorLoading/Text" unique_id=700837014]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 8.0
+offset_right = 97.0
+offset_bottom = 24.0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "EDITOR_LOADING"
+uppercase = true
 
 [connection signal="finished" from="ScoreTally" to="." method="on_score_sfx_finished"]
 [connection signal="finished" from="ScoreTallyEnd" to="." method="on_score_sfx_finished"]

@@ -374,7 +374,10 @@ func play_level() -> void:
 	OffScreenDespawner.editor_testing_safety = false
 
 func return_to_editor() -> void:
+	Global.get_node("%EditorLoading").show()
+	await get_tree().physics_frame
 	load_level(sub_level_id)
+	Global.get_node("%EditorLoading").hide()
 	%Camera.make_current()
 	current_state = EditorState.IDLE
 	%Camera.enabled = true

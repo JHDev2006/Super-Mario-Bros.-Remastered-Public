@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		if is_on_wall() and is_on_floor():
 			jump(true)
 		velocity.x = charge_speed * direction
-		if old_direction != direction and not modern:
+		if old_direction != direction:
 			charging = false
 			$MovementAnimations.play("Movement")
 			$Timer.start(charge_timer)

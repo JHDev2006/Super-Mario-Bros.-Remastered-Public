@@ -97,7 +97,7 @@ func new_level() -> void:
 	LevelEditor.level_file = LevelEditor.BLANK_FILE.duplicate(true)
 	
 	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
-	Global.reload_editor()
+	Global.transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
 
 func back_to_title_screen() -> void:
 	clear_saved_stuff()
@@ -109,7 +109,7 @@ func edit_level() -> void:
 	LevelEditor.current_layer = 0
 	
 	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
-	Global.reload_editor()
+	Global.transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
 	
 	NewLevelBuilder.load_level(LevelEditor.level_file)
 
