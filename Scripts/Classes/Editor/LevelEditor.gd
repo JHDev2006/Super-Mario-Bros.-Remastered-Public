@@ -141,6 +141,9 @@ var commit_buffer := 0.0
 var holding_commit := false
 var something_changed := false
 
+static var tile_menu_scene: PackedScene = null
+static var tile_menu: CanvasLayer = null
+
 static func set_stack_level_name(new_level_name := "") -> String:
 	var path = Global.config_path.path_join("custom_levels/autosaves/" + new_level_name)
 	
@@ -155,7 +158,7 @@ static func set_stack_level_name(new_level_name := "") -> String:
 
 func _ready() -> void:
 	Global.level_editor = self
-	$TileMenu.hide()
+	add_tile_menu()
 	EntityIDMapper.load_entity_map()
 	DiscordManager.set_discord_status("In The Level Editor...")
 	playing_level = false
@@ -168,7 +171,7 @@ func _ready() -> void:
 	var idx := 0
 	for i in music_track_list:
 		if i == "": continue
-		$%LevelMusic.add_item(tr(music_track_names[idx]).to_upper())
+		tile_menu.get_node("%LevelMusic").add_item(tr(music_track_names[idx]).to_upper())
 		idx += 1
 	get_blueprints()
 	
@@ -219,8 +222,6 @@ func _physics_process(delta: float) -> void:
 		handle_tile_cursor()
 	if [EditorState.IDLE, EditorState.TRACK_EDITING, EditorState.CONNECTING].has(current_state):
 		handle_camera(delta)
-	if is_instance_valid(%ThemeName):
-		%ThemeName.text = Global.level_theme
 	handle_hud()
 	if Global.multibind_action_just_pressed("editor_open_menu"):
 		if current_state == EditorState.IDLE:
@@ -317,6 +318,15 @@ func stop_testing() -> void:
 	
 	return_to_editor.call_deferred()
 
+func add_tile_menu() -> void:
+	if tile_menu_scene == null:
+		tile_menu_scene = load("res://Scenes/Prefabs/Editor/TileMenu.tscn")
+		tile_menu = tile_menu_scene.instantiate()
+	tile_menu.owner = self
+	tile_menu.editor = self
+	add_child(tile_menu)
+	tile_menu.hide()
+
 func cleanup() -> void:
 	get_tree().paused = false
 	
@@ -374,6 +384,7 @@ func play_level() -> void:
 	OffScreenDespawner.editor_testing_safety = false
 
 func return_to_editor() -> void:
+	remove_child(tile_menu)
 	Global.reload_editor()
 	
 	AudioManager.stop_all_music()
@@ -1263,29 +1274,11 @@ func update_references() -> void:
 	update_menu_values()
 
 func update_menu_values() -> void:
-	%ThemeTime.selected = ["Day", "Night"].find(level.theme_time)
-	if level.music != null:
-		%LevelMusic.selected = bgm_id
-	else:
-		%LevelMusic.selected = 0
-	%Campaign.selected = Global.CAMPAIGNS.find(level.campaign)
-	%BackScroll.set_pressed_no_signal(level.can_backscroll)
-	%HeightLimit.value = abs(level.vertical_height)
-	%TimeLimit.value = level.time_limit
-	%SubLevelID.selected = sub_level_id
-	%ScreenSize.set_pressed_no_signal(level.enforce_resolution != Vector2.ZERO)
+	tile_menu.update_menu_values(level)
 	
 	%ShowTrail.button_pressed = Settings.file.editor.show_trail
 	%ShowGrid.button_pressed = Settings.file.editor.show_grid
 	%ShowGizmos.button_pressed = Settings.file.editor.show_gizmos
-	
-	var level_bg: LevelBG = level.get_node("LevelBG")
-	%SecondLayerOrder.selected = level_bg.second_layer_order
-	%PrimaryLayer.selected = level_bg.primary_layer
-	%SecondLayer.selected = level_bg.second_layer
-	%Particles.selected = level_bg.particles
-	%LiquidLayer.selected = level_bg.liquid_layer
-	%OverlayClouds.set_pressed_no_signal(level_bg.overlay_clouds)
 	
 	%AutoSaveTimer.value = Settings.file.editor.autosave_min_timer
 	%AutoSaveEnable.set_pressed_no_signal(Settings.file.editor.autosave_enabled)
@@ -1455,13 +1448,13 @@ func load_blueprint(blueprint_path := "") -> void:
 const BLUEPRINT_CONTAINER = preload("uid://cgij8pg22drfx")
 
 func get_blueprints() -> void:
-	for i in %Blueprints.get_children():
+	for i in tile_menu.get_node("%Blueprints").get_children():
 		i.queue_free()
 	var blueprint_path = Global.config_path.path_join("blueprints")
 	for i in DirAccess.get_files_at(blueprint_path):
 		var container = BLUEPRINT_CONTAINER.instantiate()
 		container.path = blueprint_path.path_join(i)
-		%Blueprints.add_child(container)
+		tile_menu.get_node("%Blueprints").add_child(container)
 		container.blueprint_selected.connect(load_blueprint)
 
 func open_blueprint_folder() -> void:

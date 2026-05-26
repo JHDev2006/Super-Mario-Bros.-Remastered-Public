@@ -40,8 +40,8 @@ func _ready() -> void:
 	set_second_icon_texture()
 	update_visuals()
 	set_process(false)
-	if tile_selected.is_connected(owner.on_tile_selected) == false:
-		tile_selected.connect(owner.on_tile_selected)
+	if tile_selected.is_connected(Global.level_editor.on_tile_selected) == false:
+		tile_selected.connect(Global.level_editor.on_tile_selected)
 	%NameLabel.text = tile_name
 
 func _process(_delta: float) -> void:
