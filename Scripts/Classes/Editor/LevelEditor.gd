@@ -374,8 +374,8 @@ func play_level() -> void:
 	OffScreenDespawner.editor_testing_safety = false
 
 func return_to_editor() -> void:
-	Global.reload_editor()
-	
+	load_level(sub_level_id)
+	%Camera.make_current()
 	AudioManager.stop_all_music()
 	OffScreenDespawner.editor_testing_safety = true
 	recorded_trail = saved_trail.size() > 0
