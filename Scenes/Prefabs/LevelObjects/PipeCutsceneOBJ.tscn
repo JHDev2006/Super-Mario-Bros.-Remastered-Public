@@ -6,10 +6,13 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ga0ye"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/PipeCutscene.json" id="4_y3vbw"]
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="5_y3vbw"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="7_tm3gg"]
 
 [sub_resource type="GDScript" id="GDScript_oa6vc"]
 script/source = "extends Node2D
 const PIPE_CUTSCENE = preload(\"res://Assets/Audio/BGM/PipeCutscene.json\")
+
+@export var play_music := true
 
 func _enter_tree() -> void:
 	pass
@@ -27,10 +30,11 @@ func activate() -> void:
 	Global.inf_time = true
 	Global.can_time_tick = false
 	Player.pipe_cutscene = true
-	Global.current_level.music = null
 	for i in get_tree().get_nodes_in_group(\"Players\"):
 		i.state_machine.transition_to(\"PipeCutscene\")
-	$Music.play()
+	if play_music:
+		Global.current_level.music = null
+		$Music.play()
 	await tree_exiting
 	Global.inf_time = old
 "
@@ -61,6 +65,11 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 script = ExtResource("5_y3vbw")
 can_output = false
 metadata/_custom_type_script = "uid://b3bokos5jcpr7"
+
+[node name="EditorPropertyExposer" type="Node" parent="." unique_id=1199608766]
+script = ExtResource("7_tm3gg")
+properties = Array[String](["play_music"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
 [connection signal="level_start" from="LevelEditorToggleDetection" to="." method="on_level_start"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="activate"]

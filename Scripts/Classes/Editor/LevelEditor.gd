@@ -1163,17 +1163,14 @@ func transition_to_sublevel(sub_lvl_idx := 0) -> void:
 	
 	Global.can_pause = false
 	if Global.level_editor_is_playtesting():
-		Global.do_fake_transition()
-		for i in 2:
-			await get_tree().physics_frame
+		Global.do_fake_transition(0.25)
+		await get_tree().create_timer(0.5).timeout
 		load_level(sub_lvl_idx)
 	else:
-		Global.reload_editor()
-		
 		save_current_level()
+		load_level(sub_lvl_idx)
 		Global.reset_values()
 		PipeArea.exiting_pipe_id = -1
-
 		sub_level_id = sub_lvl_idx
 		selecting_room = true
 	
@@ -1247,6 +1244,7 @@ func load_level(level_id := 0) -> void:
 		node.process_mode = ProcessMode.PROCESS_MODE_PAUSABLE
 		await get_tree().physics_frame
 		get_tree().call_group("Players", "editor_level_start")
+	update_menu_values()
 
 func convert_scenes_to_nodes() -> void:
 	pass
