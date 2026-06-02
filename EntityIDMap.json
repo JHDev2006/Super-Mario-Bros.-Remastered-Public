@@ -850,5 +850,9 @@
 	"Dg": [
 		"res://Scenes/Parts/WarpPipeArea.tscn",
 		"8,-8"
+	],
+	"Dh": [
+		"res://Scenes/Prefabs/Gizmos/Outputs/ToggleSpike.tscn",
+		"0,0"
 	]
 }
