@@ -153,14 +153,14 @@ script = ExtResource("13_magh7")
 script = ExtResource("14_3aros")
 hitbox = NodePath("../Hitbox")
 
+[node name="TrackJoint" type="Node" parent="." unique_id=1482960960 node_paths=PackedStringArray("movement_node")]
+script = ExtResource("17_6o7qg")
+movement_node = NodePath("../BasicEnemyMovement")
+
 [node name="SecondQuestReplacer" type="Node" parent="." unique_id=1511298851]
 script = ExtResource("15_dpode")
 new_scene = "uid://doo8617qiyp77"
 metadata/_custom_type_script = "uid://d0mqkvopasu8k"
-
-[node name="TrackJoint" type="Node" parent="." unique_id=1482960960 node_paths=PackedStringArray("movement_node")]
-script = ExtResource("17_6o7qg")
-movement_node = NodePath("../BasicEnemyMovement")
 
 [node name="LevelPersistance" type="Node" parent="." unique_id=1494396413]
 script = ExtResource("18_hkf3f")
