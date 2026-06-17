@@ -1,13 +1,23 @@
 {
 	"variations": {
 		"default": {"source": "PipeCutscene.mp3"},
+		"Underground": {"source": "UndergroundPipeCutscene.mp3"},
 		"Desert": {"source": "DesertPipeCutscene.mp3"},
 		"Snow": {"source": "SnowPipeCutscene.mp3"},
 		"Jungle": {"source": "JunglePipeCutscene.mp3"},
 		"Beach": {"source": "BeachPipeCutscene.mp3"},
 		"Garden": {"source": "GardenPipeCutscene.mp3"},
 		"Mountain": {"source": "MountainPipeCutscene.mp3"},
+		"Skyland": {"source": "AthleticPipeCutscene.mp3"},
 		"Autumn": {"source": "AutumnPipeCutscene.mp3"},
-		"Pipeland": {"source": "PipeLandPipeCutscene.mp3"}
+		"Pipeland": {"source": "PipeLandPipeCutscene.mp3"},
+		"Space": {"source": "SpacePipeCutscene.mp3"},
+		"Underwater": {"source": "UnderwaterPipeCutscene.mp3"},
+		"Volcano": {"source": "VolcanoPipeCutscene.mp3"},
+		"GhostHouse": {"source": "GhostHousePipeCutscene.mp3"},
+		"Castle": {"source": "CastlePipeCutscene.mp3"},
+		"CastleWater": {"link": "Underwater"},
+		"Airship": {"source": "AirshipPipeCutscene.mp3"},
+		"Bonus": {"source": "BonusPipeCutscene.mp3"}
 	}
 }

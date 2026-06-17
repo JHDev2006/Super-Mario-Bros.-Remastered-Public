@@ -1,5 +1,1 @@
-{
-	"variations": {
-		"SMB1": {"source": "CustomLevel.bgm"}
-	}
-}
+{"variations": {"source": "CustomLevel.bgm"}}

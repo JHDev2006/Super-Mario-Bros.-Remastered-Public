@@ -1,7 +1,21 @@
 {
 	"animations": {
-		"Normal": {"frames": [[0, 0, 16, 16], [16, 0, 16, 16]], "speed": 8.0, "loop": true},
-		"Angry": {"frames": [[0, 16, 16, 16], [16, 16, 16, 16]], "speed": 10.0, "loop": true}
+		"Normal": {
+			"frames": [
+				[0, 0, 16, 16],
+				[16, 0, 16, 16]
+			],
+			"speed": 8,
+			"loop": true
+		},
+		"Angry": {
+			"frames": [
+				[0, 16, 16, 16],
+				[16, 16, 16, 16]
+			],
+			"speed": 10,
+			"loop": true
+		}
 	},
-	"variations": {"default": {"source": "WigglerBody.png"}}
+	"variations": {"source": "WigglerBody.png"}
 }

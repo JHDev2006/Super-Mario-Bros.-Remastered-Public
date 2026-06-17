@@ -2,6 +2,6 @@
 	"variations": {
 		"World1": {"source": "Bowser.bgm"},
 		"World8": {"source": "FinalBowser.bgm"},
-		"World13": {"source": "FinalBowser.bgm"}
+		"World13": {"link": "World8"}
 	}
 }

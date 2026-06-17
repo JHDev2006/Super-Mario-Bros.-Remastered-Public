@@ -1,25 +1,51 @@
 {
+	"properties": {"can_spawn_particles": true},
 	"animations": {
 		"Idle": {
 			"frames": [[0, 0, 16, 16]],
-			"speed": 1.0,
+			"speed": 5,
 			"loop": true
 		},
 		"Spin": {
-			"frames": [[0, 0, 16, 16], [16, 0, 16, 16], [32, 0, 16, 16], [48, 0, 16, 16]],
-			"speed": 15.0,
+			"frames": [
+				[0, 0, 16, 16],
+				[16, 0, 16, 16],
+				[32, 0, 16, 16],
+				[48, 0, 16, 16]
+			],
+			"speed": 15,
 			"loop": true
 		}
 	},
-	"properties": {"can_spawn_particles": true},
 	"variations": {
-		"default": {"source": "BlueCoin.png", "rect": [0, 0, 64, 16]},
-		"Underground": {"source": "BlueCoin.png", "rect": [0, 16, 64, 16]},
+		"default": {
+			"source": "BlueCoin.png",
+			"rect": [0, 0, 64, 16]
+		},
+		"Underground": {
+			"source": "BlueCoin.png",
+			"rect": [0, 16, 64, 16]
+		},
 		"GhostHouse": {"link": "Underground"},
-		"Castle": {"source": "BlueCoin.png", "rect": [0, 32, 64, 16]},
-		"Snow": {"source": "BlueCoin.png", "rect": [0, 48, 64, 16]},
-		"Space": {"source": "BlueCoin.png", "rect": [0, 64, 64, 16]},
-		"Volcano": {"source": "BlueCoin.png", "rect": [0, 80, 64, 16]},
-		"Bonus": {"source": "BlueCoin.png", "rect": [0, 96, 64, 16]}
+		"Castle": {
+			"source": "BlueCoin.png",
+			"rect": [0, 32, 64, 16]
+		},
+		"Snow": {
+			"source": "BlueCoin.png",
+			"rect": [0, 48, 64, 16]
+		},
+		"Space": {
+			"source": "BlueCoin.png",
+			"rect": [0, 64, 64, 16]
+		},
+		"Volcano": {
+			"source": "BlueCoin.png",
+			"rect": [0, 80, 64, 16]
+		},
+		"Bonus": {
+			"source": "BlueCoin.png",
+			"rect": [0, 96, 64, 16]
+		}
 	}
 }

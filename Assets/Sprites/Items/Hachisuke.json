@@ -1,5 +1,6 @@
 {
 	"variations": {
-		"default": {"source": "SPItems.png", "rect": [0, 64, 16, 16]}
+		"source": "SPItems.png",
+		"rect": [0, 64, 16, 16]
 	}
 }

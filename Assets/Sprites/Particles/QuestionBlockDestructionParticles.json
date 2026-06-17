@@ -1,12 +1,33 @@
 {
 	"variations": {
-		"default": {"source": "QuestionBlockDestructionParticles.png", "rect": [0, 0, 16, 16]},
-		"Underground": {"source": "QuestionBlockDestructionParticles.png", "rect": [16, 0, 16, 16]},
+		"default": {
+			"source": "QuestionBlockDestructionParticles.png",
+			"rect": [0, 0, 16, 16]
+		},
+		"Underground": {
+			"source": "QuestionBlockDestructionParticles.png",
+			"rect": [16, 0, 16, 16]
+		},
 		"GhostHouse": {"link": "Underground"},
-		"Castle": {"source": "QuestionBlockDestructionParticles.png", "rect": [0, 16, 16, 16]},
-		"Snow": {"source": "QuestionBlockDestructionParticles.png", "rect": [16, 16, 16, 16]},
-		"Space": {"source": "QuestionBlockDestructionParticles.png", "rect": [0, 32, 16, 16]},
-		"Volcano": {"source": "QuestionBlockDestructionParticles.png", "rect": [16, 32, 16, 16]},
-		"Bonus": {"source": "QuestionBlockDestructionParticles.png", "rect": [0, 48, 16, 16]}
+		"Castle": {
+			"source": "QuestionBlockDestructionParticles.png",
+			"rect": [0, 16, 16, 16]
+		},
+		"Snow": {
+			"source": "QuestionBlockDestructionParticles.png",
+			"rect": [16, 16, 16, 16]
+		},
+		"Space": {
+			"source": "QuestionBlockDestructionParticles.png",
+			"rect": [0, 32, 16, 16]
+		},
+		"Volcano": {
+			"source": "QuestionBlockDestructionParticles.png",
+			"rect": [16, 32, 16, 16]
+		},
+		"Bonus": {
+			"source": "QuestionBlockDestructionParticles.png",
+			"rect": [0, 48, 16, 16]
+		}
 	}
 }
