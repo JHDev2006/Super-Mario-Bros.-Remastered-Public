@@ -42,7 +42,7 @@ var current_level: Level = null
 
 var second_quest := false
 var extra_worlds_win := false
-const lang_codes := ["en", "fr", "es", "de", "it", "pt_br", "pl", "tr", "ru", "jp", "fil", "id", "gal"]
+const lang_codes := ["en", "fr", "es", "de", "it", "pt_br", "pl", "tr", "ru", "jp", "fil", "id", "gal", "zh_cn"]
 
 var config_path : String = get_config_path()
 
