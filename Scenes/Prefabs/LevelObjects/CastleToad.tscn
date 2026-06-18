@@ -92,6 +92,7 @@ offset_right = 96.0
 offset_bottom = -68.0
 theme_override_colors/font_shadow_color = Color(0.298039, 0.298039, 0.298039, 1)
 text = "CUTSCENE_CASTLE_TOAD_2"
+horizontal_alignment = 1
 vertical_alignment = 3
 autowrap_mode = 2
 uppercase = true

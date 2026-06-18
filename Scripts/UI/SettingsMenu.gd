@@ -91,7 +91,7 @@ func open() -> void:
 
 func update_all_starting() -> void:
 	get_tree().call_group("Options", "update_starting_values")
-	%Flag.region_rect.position.x = Global.lang_codes.find(TranslationServer.get_locale()) * 16
+	%Flag.region_rect.position.x = max(0, Global.lang_codes.find(Settings.file.game.lang)) * 16
 	$PanelContainer/MarginContainer/VBoxContainer/Video/Language.selected_index = Global.lang_codes.find(Settings.file.game.lang)
 
 func close() -> void:
