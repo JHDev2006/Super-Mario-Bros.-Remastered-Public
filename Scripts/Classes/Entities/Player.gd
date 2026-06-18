@@ -621,6 +621,8 @@ var teleporting := false
 var on_ice := false
 var cooldown := false
 
+var swim_stroke := false
+
 var simulated_velocity := Vector2.ZERO
 
 func _ready() -> void:

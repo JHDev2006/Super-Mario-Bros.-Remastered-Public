@@ -93,13 +93,14 @@ func player_exit(player: Player) -> void:
 	same_scene_exiting_door = null
 	player.global_position = global_position
 	player.recenter_camera()
-	$Sprite.play("Close")
 	await get_tree().create_timer(0.2, false).timeout
 	$Sprite.play("Close")
 	player.state_machine.transition_to("Normal")
 	AudioManager.play_sfx("door_close", global_position)
 	can_enter = true
 	Global.p_switch_timer_paused = false
+	await $Sprite.animation_finished
+	$Sprite.play("Idle")
 
 func player_enter(player: Player) -> void:
 	Global.p_switch_timer_paused = true
