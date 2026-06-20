@@ -223,6 +223,7 @@ sprite_frames = SubResource("SpriteFrames_g65ak")
 animation = &"Hold"
 flip_h = true
 metadata/HammerType = "HammerBro"
+metadata/IsBowserBro = "false"
 
 [node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite/Hammer" unique_id=1182534042 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
 script = ExtResource("7_pvn5i")

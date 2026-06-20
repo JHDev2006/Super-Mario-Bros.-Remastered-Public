@@ -465,6 +465,7 @@ func reset_values() -> void:
 	GlobalCounter.amounts = {}
 	Level.start_level_path = Level.get_scene_string(world_num, level_num)
 	LevelPersistance.reset_states()
+	OffScreenDespawner.editor_testing_safety = false
 	Level.first_load = true
 	Level.can_set_time = true
 	Level.in_vine_level = false

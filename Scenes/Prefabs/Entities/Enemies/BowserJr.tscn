@@ -240,6 +240,7 @@ visuals = NodePath("../ScaleJoint/Sprite")
 metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=48545517]
+unique_name_in_owner = true
 position = Vector2(0, -10)
 rect = Rect2(-16, -16, 32, 32)
 

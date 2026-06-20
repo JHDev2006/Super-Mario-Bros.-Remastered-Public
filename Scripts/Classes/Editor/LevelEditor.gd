@@ -243,6 +243,10 @@ func _physics_process(delta: float) -> void:
 	if current_state == EditorState.TILE_MENU && $TileMenu.visible:
 		handle_shortcuts()
 
+func _exit_tree() -> void:
+	Global.level_editor = null
+	OffScreenDespawner.editor_testing_safety = false
+
 func handle_player_trail() -> void:
 	$PlayerTrail.modulate.a = int(current_state != EditorState.PLAYTESTING)
 	if current_state == EditorState.PLAYTESTING:

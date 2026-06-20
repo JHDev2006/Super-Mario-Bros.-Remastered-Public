@@ -17,8 +17,8 @@ resource_json = ExtResource("2_qcxx5")
 visuals = NodePath("../SpriteScaleJoint/DeathSprite")
 
 [node name="Hammer" parent="." index="10" unique_id=1437707171]
-visible = false
 sprite_frames = null
-animation = &"default"
+animation = &""
+metadata/IsBowserBro = "true"
 
 [connection signal="fireball_hit" from="FireballDetection" to="." method="fireball_hit" unbinds=1]

@@ -10,6 +10,8 @@ const BOWSER_JR_FIREBALL = preload("uid://b3c6eemy8dmsf")
 var target_player: Player = null
 
 func start() -> void:
+	if %VisibleOnScreenEnabler2D.is_on_screen() == false:
+		await %VisibleOnScreenEnabler2D.screen_entered
 	$States.transition_to("Idle")
 
 func _physics_process(_delta: float) -> void:
