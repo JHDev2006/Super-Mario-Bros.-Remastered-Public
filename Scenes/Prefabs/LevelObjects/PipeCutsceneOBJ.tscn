@@ -9,7 +9,6 @@
 
 [sub_resource type="GDScript" id="GDScript_oa6vc"]
 script/source = "extends Node2D
-const PIPE_CUTSCENE = preload(\"res://Assets/Audio/BGM/PipeCutscene.json\")
 
 @export var play_music := true
 
