@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cqvr7a6e84oti" path="res://Scenes/Prefabs/Blocks/BrickBlocks/CoinBrickBlock.tscn" id="4_brmmd"]
 [ext_resource type="PackedScene" uid="uid://chjxyhlwohmi6" path="res://Scenes/Prefabs/Entities/Items/Coin.tscn" id="5_7oi0v"]
 [node name="7-2a" unique_id=1672205632 instance=ExtResource("1_prcii")]
+theme_time = "Night"
 campaign = "SMBLL"
 world_id = 7
 level_id = 2

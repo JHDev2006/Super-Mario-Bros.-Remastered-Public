@@ -2,6 +2,7 @@
 [ext_resource type="PackedScene" uid="uid://b5xcegtq8giyf" path="res://Scenes/Levels/SMB1/World3/3-1a.tscn" id="1_w3wwn"]
 [ext_resource type="Script" uid="uid://bjs5mlc3xrxud" path="res://Scripts/Parts/DiscoLevel.gd" id="2_mj68s"]
 [node name="3-1A" unique_id=283704980 instance=ExtResource("1_w3wwn")]
+theme_time = "Night"
 [node name="PipeArea" parent="." index="3" unique_id=725454664]
 target_level = "uid://by2lk0a20jr7w"
 [node name="DiscoLevel" type="Node" parent="." index="10" unique_id=183263587]

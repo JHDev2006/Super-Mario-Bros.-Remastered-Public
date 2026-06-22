@@ -32,6 +32,8 @@ level_id = 3
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
 [node name="LevelBG" parent="." unique_id=2086670208 instance=ExtResource("3_5m1ic")]
 time_of_day = 1
+second_layer = 1
+overlay_clouds = true
 [node name="BooRaceHandler" parent="." unique_id=2082694652 node_paths=PackedStringArray("boo") instance=ExtResource("17_8s545")]
 boo = NodePath("../RaceBoo")
 level_id = 2

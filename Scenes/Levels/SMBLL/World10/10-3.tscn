@@ -65,8 +65,8 @@ position = Vector2(-216, -40)
 primary_layer = 1
 second_layer = 2
 second_layer_offset = Vector2(0, -32)
-particles = 2
 liquid_layer = 1
+overlay_clouds = true
 [node name="TileMapConverter" type="Node" parent="." unique_id=1442674795 node_paths=PackedStringArray("tilemap")]
 script = ExtResource("16_sdp5m")
 tilemap = NodePath("../Tiles")

@@ -2,6 +2,7 @@
 [ext_resource type="PackedScene" uid="uid://7ijschult60q" path="res://Scenes/Levels/SMBLL/World7/7-4.tscn" id="1_yq5dk"]
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="2_4m1ya"]
 [node name="C-4" unique_id=583667770 instance=ExtResource("1_yq5dk")]
+theme_time = "Day"
 time_limit = 300
 world_id = 12
 [node name="Tiles" parent="." index="0" unique_id=1442026388]

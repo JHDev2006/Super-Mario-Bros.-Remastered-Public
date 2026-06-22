@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b7pkvqjusukx"]
 [ext_resource type="PackedScene" uid="uid://d30a2mydtwrsn" path="res://Scenes/Levels/SMBLL/World8/8-2a.tscn" id="1_pqkoa"]
 [node name="7-1a" unique_id=1239666095 instance=ExtResource("1_pqkoa")]
+theme_time = "Night"
 world_id = 7
 level_id = 1
 [node name="PipeArea" parent="." index="6" unique_id=680511461]
