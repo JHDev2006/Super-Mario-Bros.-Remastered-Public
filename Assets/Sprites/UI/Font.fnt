@@ -5,7 +5,7 @@ page id=1 file="FontGA.png"
 page id=2 file="FontJP.png"
 page id=3 file="FontZH.png"
 
-chars count=1010
+chars count=1133
 char id=48   x=0    y=0     width=16    height=16 xoffset=0     yoffset=0     xadvance=16    page=0  chnl=0
 char id=49   x=16    y=0     width=16    height=16 xoffset=0     yoffset=0     xadvance=16    page=0  chnl=0
 char id=50   x=32    y=0     width=16    height=16 xoffset=0     yoffset=0     xadvance=16    page=0  chnl=0
