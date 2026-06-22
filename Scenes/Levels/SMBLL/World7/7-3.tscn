@@ -97,6 +97,7 @@ position = Vector2(4872, 0)
 time_of_day = 1
 primary_layer = 2
 second_layer = 2
+overlay_clouds = true
 [node name="TileMapConverter" type="Node" parent="." unique_id=674666776 node_paths=PackedStringArray("tilemap")]
 script = ExtResource("19_a8hsl")
 tilemap = NodePath("../Tiles")

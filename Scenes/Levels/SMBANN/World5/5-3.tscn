@@ -1,8 +1,10 @@
 [gd_scene format=4 uid="uid://cwh1dh2mloagv"]
 [ext_resource type="PackedScene" uid="uid://sj0elf5p8nv2" path="res://Scenes/Levels/SMBLL/World4/4-3.tscn" id="1_s4fv6"]
+[ext_resource type="JSON" path="res://Assets/Audio/BGM/Desert.json" id="2_3bhhy"]
 [ext_resource type="Script" uid="uid://bjs5mlc3xrxud" path="res://Scripts/Parts/DiscoLevel.gd" id="2_a3kg0"]
 [ext_resource type="Script" uid="uid://c82eii0or28o3" path="res://Scripts/Classes/Components/ForceHardMode.gd" id="3_a3kg0"]
 [node name="4-3" unique_id=1880943617 instance=ExtResource("1_s4fv6")]
+music = ExtResource("2_3bhhy")
 theme = "Desert"
 theme_time = "Night"
 campaign = "SMBANN"

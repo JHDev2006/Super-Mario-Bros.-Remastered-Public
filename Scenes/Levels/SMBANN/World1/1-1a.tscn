@@ -2,6 +2,7 @@
 [ext_resource type="PackedScene" uid="uid://d3lsxfuwgmtdt" path="res://Scenes/Levels/SMB1/World1/1-1a.tscn" id="1_oht7c"]
 [ext_resource type="Script" uid="uid://bjs5mlc3xrxud" path="res://Scripts/Parts/DiscoLevel.gd" id="2_33ffk"]
 [node name="1-1A" unique_id=1415019909 instance=ExtResource("1_oht7c")]
+theme_time = "Night"
 campaign = "SMBANN"
 [node name="PipeArea" parent="." index="4" unique_id=1355773512]
 target_level = "uid://iynyovmdny3i"
