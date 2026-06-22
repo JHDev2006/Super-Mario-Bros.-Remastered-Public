@@ -94,7 +94,7 @@ script = ExtResource("14_a25p8")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-json_path = "res://Assets/Sprites/Players/Mario/CharacterInfo.json"
+json_path = "res://Assets/Sprites/Players/Mario/CharacterColour.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Left" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/Spotlight" unique_id=1293715445 node_paths=PackedStringArray("resource_setter")]
