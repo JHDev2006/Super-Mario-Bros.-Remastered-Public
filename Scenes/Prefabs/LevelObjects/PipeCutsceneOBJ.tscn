@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="2_6qxe3"]
 [ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="2_oa6vc"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ga0ye"]
-[ext_resource type="JSON" path="res://Assets/Audio/BGM/PipeCutscene.json" id="4_y3vbw"]
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="5_y3vbw"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="7_tm3gg"]
 
@@ -59,7 +58,6 @@ script = ExtResource("3_ga0ye")
 node_to_affect = NodePath("..")
 property_name = "stream"
 mode = 2
-resource_json = ExtResource("4_y3vbw")
 json_path = "res://Assets/Audio/BGM/PipeCutscene.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

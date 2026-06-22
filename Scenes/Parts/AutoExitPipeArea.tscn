@@ -7,7 +7,4 @@
 [node name="Visual" parent="." index="0" unique_id=335893336]
 debug_color = Color(0.65145713, 0.34785283, 0.72637105, 0.41960785)
 
-[node name="Node2D" parent="." index="4" unique_id=1862855632]
-position = Vector2(0, 8)
-
 [connection signal="ready" from="." to="." method="exit_pipe"]

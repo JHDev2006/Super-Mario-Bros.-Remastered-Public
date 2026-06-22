@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="9_8se4d"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="9_rtu7i"]
 [ext_resource type="PackedScene" uid="uid://githt8ci1xal" path="res://Scenes/Parts/StartCastle.tscn" id="10_kbp47"]
-[ext_resource type="JSON" path="res://Assets/Audio/BGM/PipeCutscene.json" id="11_ladiy"]
 
 [sub_resource type="Animation" id="Animation_kbp47"]
 length = 0.001
@@ -162,7 +161,6 @@ script = ExtResource("6_00pvh")
 node_to_affect = NodePath("..")
 property_name = "stream"
 mode = 2
-resource_json = ExtResource("11_ladiy")
 json_path = "res://Assets/Audio/BGM/PipeCutscene.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

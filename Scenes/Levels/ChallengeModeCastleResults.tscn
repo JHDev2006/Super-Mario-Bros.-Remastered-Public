@@ -7,25 +7,6 @@
 
 [node name="ChallengeModeResults" unique_id=1393486200 instance=ExtResource("1_vr3sy")]
 
-[node name="ResourceSetterNew" parent="PlayerSprite" parent_id_path=PackedInt32Array(1537245075) index="0" unique_id=951425779]
-process_mode = 3
-
-[node name="ResourceSetterNew" parent="ChallengeResults" parent_id_path=PackedInt32Array(1689039047) index="0" unique_id=127176486]
-process_mode = 3
-json_path = "res://Assets/Audio/BGM/ChallengeResults.json"
-
-[node name="ResourceSetterNew" parent="ChallengeEnd" parent_id_path=PackedInt32Array(377169015) index="0" unique_id=593640018]
-process_mode = 3
-json_path = "res://Assets/Audio/BGM/ChallengeEnd.json"
-
-[node name="ResourceSetterNew" parent="Toad" parent_id_path=PackedInt32Array(130158692) index="0" unique_id=826345731]
-process_mode = 3
-json_path = "res://Assets/Sprites/Players/ToadNPC.json"
-
-[node name="ResourceSetterNew" parent="Yoshi" parent_id_path=PackedInt32Array(227881632) index="1" unique_id=1898262442]
-process_mode = 3
-json_path = "res://Assets/Sprites/Players/Yoshi.json"
-
 [node name="LabelFontChanger" parent="." index="20" unique_id=1370610741 node_paths=PackedStringArray("labels")]
 labels = [NodePath("../Sprite2D/Sprite2D3/Score"), NodePath("../Sprite2D/Sprite2D3/Coins2"), NodePath("../Sprite2D/Sprite2D3/ScoreText"), NodePath("../Sprite2D/Sprite2D3/ScoreText/Target"), null, NodePath("../SpeechBubble/Your"), NodePath("../SpeechBubble/Your/Results"), NodePath("../SpeechBubble/Coins"), NodePath("../SpeechBubble/Score"), NodePath("../SpeechBubble/Score/ScoreLabel"), NodePath("../Label"), NodePath("../WorldLevel"), NodePath("../Label2")]
 

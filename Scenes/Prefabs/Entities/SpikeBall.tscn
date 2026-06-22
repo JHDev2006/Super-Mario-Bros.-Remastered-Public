@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="3_a2kgo"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_d8yxl"]
 [ext_resource type="Texture2D" uid="uid://fvuqvh62n6ks" path="res://Assets/Sprites/Particles/SpikeBallDestructionParticles.png" id="4_d8yxl"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/SpikeBall.json" id="4_vgefa"]
 [ext_resource type="Script" uid="uid://15cikmjhl2f8" path="res://Scripts/Classes/Resources/RandomizedResource.gd" id="5_vgefa"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="6_1nkq5"]
 [ext_resource type="Script" uid="uid://dkjpfs3sm3go3" path="res://Scripts/Classes/Components/BlockHitter.gd" id="9_d8yxl"]
@@ -71,7 +70,6 @@ script = ExtResource("3_d8yxl")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_vgefa")
 json_path = "res://Assets/Sprites/Items/SpikeBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

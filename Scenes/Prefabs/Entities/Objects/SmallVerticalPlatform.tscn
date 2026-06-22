@@ -11,10 +11,6 @@ size = Vector2(32, 8)
 offset_left = -16.0
 offset_right = 16.0
 
-[node name="ResourceSetter" parent="AnimatableBody2D/Sprite" index="0" unique_id=1827702455]
-process_mode = 3
-json_path = "res://Assets/Sprites/Tilesets/Platform.json"
-
 [node name="Collision" parent="AnimatableBody2D" parent_id_path=PackedInt32Array(1298238089) index="1" unique_id=661225405]
 shape = SubResource("RectangleShape2D_kwmma")
 

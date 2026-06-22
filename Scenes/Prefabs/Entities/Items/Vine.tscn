@@ -4,7 +4,6 @@
 [ext_resource type="AudioStream" uid="uid://bdm8wm7vy4r12" path="res://Assets/Audio/SFX/VineAppear.wav" id="2_ap2o3"]
 [ext_resource type="Script" uid="uid://cxtvy2qolon2f" path="res://Scripts/Classes/Entities/Items/Vine.gd" id="2_tlgk1"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_e75m7"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Vine.json" id="4_cmcye"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="4_m01lk"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_ohmvf"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="7_e75m7"]
@@ -58,7 +57,6 @@ script = ExtResource("3_e75m7")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_cmcye")
 json_path = "res://Assets/Sprites/Items/Vine.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -78,7 +76,6 @@ script = ExtResource("3_e75m7")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_cmcye")
 json_path = "res://Assets/Sprites/Items/Vine.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -94,7 +91,6 @@ script = ExtResource("3_e75m7")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_cmcye")
 json_path = "res://Assets/Sprites/Items/Vine.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

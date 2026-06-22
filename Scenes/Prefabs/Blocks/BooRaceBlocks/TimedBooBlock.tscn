@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_5y3wt"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_7bqom"]
 [ext_resource type="Texture2D" uid="uid://bi13n4mw0to20" path="res://Assets/Sprites/Blocks/TimedBooBlock.png" id="3_46g6h"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/TimedBooBlock.json" id="4_7bqom"]
 [ext_resource type="PackedScene" uid="uid://cijkvfkthetn5" path="res://Scenes/Parts/BlockAnimations.tscn" id="4_tgrgf"]
 [ext_resource type="Script" uid="uid://q45b31h6356r" path="res://Scripts/Classes/Components/OnOffSwitcher.gd" id="7_megl7"]
 
@@ -159,7 +158,6 @@ process_mode = 3
 script = ExtResource("3_5y3wt")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_7bqom")
 json_path = "res://Assets/Sprites/Blocks/TimedBooBlock.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

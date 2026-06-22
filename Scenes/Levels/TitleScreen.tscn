@@ -10,7 +10,6 @@
 [ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="6_oofmi"]
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="8_jmbsi"]
 [ext_resource type="Script" uid="uid://c3c1o65wvi6tq" path="res://Scripts/UI/TitleScreenOptions.gd" id="9_dsf7o"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="9_kugbg"]
 [ext_resource type="PackedScene" uid="uid://dntk2js0tu3y2" path="res://Scenes/Prefabs/UI/WorldSelect.tscn" id="10_emltp"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="11_28b2v"]
 [ext_resource type="PackedScene" uid="uid://dnksdgorle8su" path="res://Scenes/Prefabs/UI/SettingsMenu.tscn" id="12_5iq4f"]
@@ -27,14 +26,10 @@
 [ext_resource type="PackedScene" uid="uid://b75f3fd7xjeya" path="res://Scenes/Prefabs/UI/QuitDialog.tscn" id="22_wjo1g"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="23_8swpx"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="23_s06mt"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/TitleScreenStars.json" id="30_p54in"]
 [ext_resource type="Shader" uid="uid://x7lh23cq2u38" path="res://Scenes/Parts/ShadowShader.gdshader" id="31_wjo1g"]
-[ext_resource type="JSON" path="res://Assets/Audio/BGM/TitleBGM.json" id="37_twc32"]
 [ext_resource type="PackedScene" uid="uid://b8e82usnfbw1t" path="res://Scenes/Prefabs/UI/ExtraWorldSelect.tscn" id="41_obcl5"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="48_b3nob"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Title1.json" id="51_la5b0"]
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="52_ur12k"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Title2.json" id="53_b3nob"]
 [ext_resource type="Texture2D" uid="uid://0kyh2v6vfhqp" path="res://Assets/Sprites/UI/Title2.png" id="54_gp1md"]
 [ext_resource type="PackedScene" uid="uid://bsfkt344e6j38" path="res://Scenes/Prefabs/UI/LevelSelectNew.tscn" id="58_qgapq"]
 [ext_resource type="PackedScene" uid="uid://60t5mugrgvlt" path="res://Scenes/Prefabs/UI/MarathonSelect.tscn" id="58_sul0v"]
@@ -900,7 +895,6 @@ script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_kugbg")
 json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1030,22 +1024,6 @@ unique_name_in_owner = true
 offset_left = 0.0
 offset_right = 0.0
 
-[node name="ResourceSetter" parent="CanvasLayer/SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Video/Language/Cursor/Cursor" parent_id_path=PackedInt32Array(1402202267, 1089169309, 274915123) index="0" unique_id=193791404]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
-
-[node name="ResourceSetter" parent="CanvasLayer/SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode/Cursor" parent_id_path=PackedInt32Array(1402202267, 1391735750, 1307599823) index="0" unique_id=499557151]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
-
-[node name="ResourceSetter" parent="CanvasLayer/SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2/Cursor" parent_id_path=PackedInt32Array(1402202267, 2003326082, 1307599823) index="0" unique_id=499557151]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
-
-[node name="ResourceSetter" parent="CanvasLayer/SettingsMenu/PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3/Cursor" parent_id_path=PackedInt32Array(1402202267, 1425922571, 1307599823) index="0" unique_id=499557151]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
-
 [node name="LabelFontChanger" parent="CanvasLayer/SettingsMenu" index="1" unique_id=1797639177 node_paths=PackedStringArray("labels")]
 labels = [NodePath("../PanelContainer/MarginContainer/VBoxContainer/Title"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/CategorySelect/HBoxContainer/Category"), null, null, null, null, null, null, null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode2/Value"), null, NodePath("../PanelContainer/MarginContainer/VBoxContainer/Audio/SelectableOptionNode3/Value"), NodePath("../PanelContainer/MarginContainer/VBoxContainer/Difficulty/Description/AutoScrollContainer/MarginContainer/Desc")]
 
@@ -1145,7 +1123,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1164,7 +1141,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1183,7 +1159,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1202,7 +1177,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1221,7 +1195,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1240,7 +1213,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1259,7 +1231,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1278,7 +1249,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1297,7 +1267,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1316,7 +1285,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1335,7 +1303,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1354,7 +1321,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1373,7 +1339,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1392,7 +1357,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1411,7 +1375,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1430,7 +1393,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1449,7 +1411,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1468,7 +1429,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1487,7 +1447,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1506,7 +1465,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1525,7 +1483,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1544,7 +1501,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1563,7 +1519,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1582,7 +1537,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1601,7 +1555,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1620,7 +1573,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1639,7 +1591,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1678,7 +1629,6 @@ centered = false
 [node name="ResourceSetter" type="Node" parent="Logo/Control/HFlowContainer/Star28/Main" unique_id=48009522]
 process_mode = 3
 script = ExtResource("6_100cl")
-resource_json = ExtResource("30_p54in")
 json_path = "res://Assets/Sprites/UI/TitleScreenStars.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1688,7 +1638,6 @@ script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("51_la5b0")
 json_path = "res://Assets/Sprites/UI/Title1.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1706,7 +1655,6 @@ process_mode = 3
 script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("53_b3nob")
 json_path = "res://Assets/Sprites/UI/Title2.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1729,7 +1677,6 @@ script = ExtResource("6_100cl")
 node_to_affect = NodePath("..")
 property_name = "stream"
 mode = 2
-resource_json = ExtResource("37_twc32")
 json_path = "res://Assets/Audio/BGM/TitleBGM.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

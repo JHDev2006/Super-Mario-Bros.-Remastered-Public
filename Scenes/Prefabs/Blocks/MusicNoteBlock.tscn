@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://bxvcax2wc48xh" path="res://Scenes/Prefabs/Blocks/NoteBlock.tscn" id="1_2p7lf"]
 [ext_resource type="Script" uid="uid://2gxl5hj6mf6a" path="res://Scripts/Classes/Blocks/MusicNoteBlock.gd" id="2_1gaxc"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/MusicNoteBlock.json" id="3_d6amy"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="3_lw6l2"]
 [ext_resource type="Texture2D" uid="uid://b8su0m8876337" path="res://Assets/Sprites/Editor/NoteBlockNotes.png" id="4_d6amy"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="6_gpide"]
@@ -26,8 +25,6 @@ volume = 1.0
 play_sfx = false
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(147779313) index="0" unique_id=1722141441]
-process_mode = 3
-resource_json = ExtResource("3_d6amy")
 json_path = "res://Assets/Sprites/Blocks/MusicNoteBlock.json"
 
 [node name="EditorPropertyExposer" parent="." index="3" unique_id=1570804738]

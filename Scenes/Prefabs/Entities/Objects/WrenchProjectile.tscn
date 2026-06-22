@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cop8x5m20cqal" path="res://Assets/Sprites/Items/WrenchProjectile.png" id="1_bh1cs"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_wtsxo"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_7wlxe"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/WrenchProjectile.json" id="4_5s4r1"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_7wlxe"]
 
 [sub_resource type="GDScript" id="GDScript_5s4r1"]
@@ -78,7 +77,6 @@ process_mode = 3
 script = ExtResource("3_7wlxe")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_5s4r1")
 json_path = "res://Assets/Sprites/Items/WrenchProjectile.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

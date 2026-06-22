@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_kpo86"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="3_p4n6u"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="4_vag0n"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/FireBarFireBall.json" id="4_ym371"]
 [ext_resource type="Texture2D" uid="uid://dsncqqhfsnq6s" path="res://Assets/Sprites/Editor/RotationIcon.png" id="5_ytedt"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="6_m0plg"]
 [ext_resource type="Resource" uid="uid://c8ojbqg4q4qh6" path="res://Resources/ThemedResources/EditorRotationIcon.tres" id="7_3irkc"]
@@ -256,7 +255,6 @@ script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_node = NodePath("../../../FireballHandler")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -275,7 +273,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -294,7 +291,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -313,7 +309,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -332,7 +327,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -351,7 +345,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -371,7 +364,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -391,7 +383,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -411,7 +402,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -431,7 +421,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -451,7 +440,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -471,7 +459,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -491,7 +478,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -511,7 +497,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -531,7 +516,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -551,7 +535,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -571,7 +554,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -591,7 +573,6 @@ process_mode = 3
 script = ExtResource("3_kpo86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ym371")
 json_path = "res://Assets/Sprites/Enemies/FireBarFireBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

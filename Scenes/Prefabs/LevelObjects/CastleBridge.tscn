@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://d3enhh06i7xe2" path="res://Assets/Sprites/Items/InvalidAxe.png" id="8_m5y50"]
 [ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="9_kvynl"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="9_m5y50"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/BridgeAxe.json" id="10_kvynl"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="10_wgdlx"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="11_puc3y"]
 [ext_resource type="Texture2D" uid="uid://dlldh5aks0wff" path="res://Assets/Sprites/Editor/GhostTile.png" id="12_do8w3"]
@@ -166,7 +165,6 @@ process_mode = 3
 script = ExtResource("9_m5y50")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("10_kvynl")
 json_path = "res://Assets/Sprites/Items/BridgeAxe.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -201,7 +199,6 @@ process_mode = 3
 script = ExtResource("9_m5y50")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("10_kvynl")
 json_path = "res://Assets/Sprites/Items/BridgeAxe.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

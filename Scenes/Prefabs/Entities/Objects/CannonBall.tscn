@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bfdtqldkrv4dn" path="res://Scripts/Classes/Entities/Enemies/CannonBall.gd" id="1_yim3j"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_yim3j"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/CannonBall.json" id="3_874xq"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="3_pydrn"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="4_yim3j"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_il73j"]
@@ -26,7 +25,6 @@ script = ExtResource("2_yim3j")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("3_874xq")
 json_path = "res://Assets/Sprites/Enemies/CannonBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

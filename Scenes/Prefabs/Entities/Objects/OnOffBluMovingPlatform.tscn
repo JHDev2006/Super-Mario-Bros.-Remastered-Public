@@ -12,17 +12,11 @@ moving = true
 [node name="Sprite" parent="." index="0" unique_id=1840586283]
 region_rect = Rect2(0, 8, 24, 8)
 
-[node name="ResourceSetter" parent="Sprite" index="0" unique_id=1692721610]
-json_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
-
 [node name="CollisionShape2D" parent="." index="1" unique_id=1046612248]
 shape = SubResource("RectangleShape2D_bxfwm")
 
 [node name="Projection" parent="." index="4" unique_id=1165185292]
 region_rect = Rect2(0, 8, 24, 8)
-
-[node name="ResourceSetter" parent="Projection" index="0" unique_id=888381645]
-json_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
 
 [node name="OnOffToggle" parent="." index="6" unique_id=431716092]
 frame = 1

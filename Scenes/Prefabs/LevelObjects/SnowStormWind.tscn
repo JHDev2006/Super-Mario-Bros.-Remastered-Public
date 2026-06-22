@@ -3,7 +3,3 @@
 [ext_resource type="PackedScene" uid="uid://ccxhom4wrgfv4" path="res://Scenes/Prefabs/LevelObjects/WindArea.tscn" id="1_trgsh"]
 
 [node name="WindArea" unique_id=1054138550 instance=ExtResource("1_trgsh")]
-
-[node name="ResourceSetterNew" parent="CanvasLayer/Control/Particles" parent_id_path=PackedInt32Array(1999504380) index="0" unique_id=150870502]
-process_mode = 3
-json_path = "res://Assets/Sprites/Particles/WindParticles.json"

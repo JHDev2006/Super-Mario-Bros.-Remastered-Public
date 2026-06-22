@@ -9,7 +9,6 @@
 [ext_resource type="FontVariation" uid="uid://bl7sbw4nx3l1t" path="res://Resources/ThemedResources/FontMain.tres" id="11_yglne"]
 [ext_resource type="Texture2D" uid="uid://fdn41mmtnhdt" path="res://Assets/Sprites/Players/ToadNPCLL.png" id="12_gvpv4"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="13_2i527"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/ToadNPC.json" id="14_swpxw"]
 [sub_resource type="Animation" id="Animation_xoqts"]
 resource_name = "Appear"
 length = 5.0
@@ -488,7 +487,6 @@ process_mode = 3
 script = ExtResource("13_2i527")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("14_swpxw")
 json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="2" type="AnimatedSprite2D" parent="Toads" unique_id=2018908343]
@@ -503,7 +501,6 @@ process_mode = 3
 script = ExtResource("13_2i527")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("14_swpxw")
 json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="3" type="AnimatedSprite2D" parent="Toads" unique_id=1596745432]
@@ -518,7 +515,6 @@ process_mode = 3
 script = ExtResource("13_2i527")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("14_swpxw")
 json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="4" type="AnimatedSprite2D" parent="Toads" unique_id=1077941395]
@@ -533,7 +529,6 @@ process_mode = 3
 script = ExtResource("13_2i527")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("14_swpxw")
 json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="5" type="AnimatedSprite2D" parent="Toads" unique_id=1157515086]
@@ -548,7 +543,6 @@ process_mode = 3
 script = ExtResource("13_2i527")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("14_swpxw")
 json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="6" type="AnimatedSprite2D" parent="Toads" unique_id=702500657]
@@ -563,7 +557,6 @@ process_mode = 3
 script = ExtResource("13_2i527")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("14_swpxw")
 json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="7" type="AnimatedSprite2D" parent="Toads" unique_id=1985293924]
@@ -578,6 +571,5 @@ process_mode = 3
 script = ExtResource("13_2i527")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("14_swpxw")
 json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

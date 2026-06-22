@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="3_6owec"]
 [ext_resource type="Texture2D" uid="uid://dbq6cn2hp6ijx" path="res://Assets/Sprites/Enemies/PiranhaPlant.png" id="4_rqj2q"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_teh5w"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/PiranhaPlant.json" id="6_tmwyr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xojev"]
 
@@ -59,7 +58,6 @@ process_mode = 3
 script = ExtResource("5_teh5w")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("6_tmwyr")
 json_path = "res://Assets/Sprites/Enemies/PiranhaPlant.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

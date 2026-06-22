@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://f50767fxajwh" path="res://Scripts/Parts/BlockDestructionParticles.gd" id="1_grxvh"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_3y2s4"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/IcicleDestructionParticles.json" id="3_rw0un"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8gw0u"]
 region = Rect2(0, 0, 8, 8)
@@ -23,7 +22,6 @@ script = ExtResource("2_3y2s4")
 node_to_affect = NodePath("../Sprite")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("3_rw0un")
 json_path = "res://Assets/Sprites/Particles/IcicleDestructionParticles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -39,7 +37,6 @@ script = ExtResource("2_3y2s4")
 node_to_affect = NodePath("../Sprite")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("3_rw0un")
 json_path = "res://Assets/Sprites/Particles/IcicleDestructionParticles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -55,7 +52,6 @@ script = ExtResource("2_3y2s4")
 node_to_affect = NodePath("../Sprite")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("3_rw0un")
 json_path = "res://Assets/Sprites/Particles/IcicleDestructionParticles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -71,7 +67,6 @@ script = ExtResource("2_3y2s4")
 node_to_affect = NodePath("../Sprite")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("3_rw0un")
 json_path = "res://Assets/Sprites/Particles/IcicleDestructionParticles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://bmn81e10obpjv" path="res://Scenes/Parts/SelectableLabel.tscn" id="12_psbt7"]
 [ext_resource type="Script" uid="uid://bb8ldpxo5h71i" path="res://Scripts/UI/SwapContainer.gd" id="12_qptw5"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="14_tjro6"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="15_7mmoe"]
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="17_6ckni"]
 [ext_resource type="Texture2D" uid="uid://c7u373kd6ltie" path="res://Assets/Sprites/UI/MagGlass.png" id="17_gmv51"]
 [ext_resource type="PackedScene" uid="uid://dbvy0rhwpv4w4" path="res://Scenes/Parts/SelectableOptionNode.tscn" id="17_ruj08"]
@@ -33,7 +32,6 @@
 [ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="24_wf6nb"]
 [ext_resource type="PackedScene" uid="uid://cr2pku7fjkgpo" path="res://Scenes/Prefabs/UI/OnlineLevelContainer.tscn" id="26_r5ajm"]
 [ext_resource type="PackedScene" uid="uid://ci678koo0peoa" path="res://Scenes/Prefabs/UI/CharacterSelect.tscn" id="28_u8fen"]
-[ext_resource type="JSON" path="res://Assets/Audio/BGM/CustomLevel.json" id="29_r5ajm"]
 [ext_resource type="PackedScene" uid="uid://bqy0nm0h7f5sl" path="res://Scenes/Parts/DataDeletionNode.tscn" id="32_cwgd5"]
 [ext_resource type="Script" uid="uid://on2505mquav0" path="res://Scripts/UI/AutosavesList.gd" id="32_euqtg"]
 [ext_resource type="PackedScene" uid="uid://ccabvf866y58q" path="res://Scenes/Parts/SelectableNumberNode.tscn" id="32_pafke"]
@@ -310,7 +308,6 @@ script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("15_7mmoe")
 json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -376,7 +373,6 @@ script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("15_7mmoe")
 json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -505,10 +501,6 @@ is_active = true
 scroll_horizontal = 2
 is_active = true
 
-[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/TextureRect" parent_id_path=PackedInt32Array(1573298747, 2090391159) index="0" unique_id=753910969]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
-
 [node name="Panel" type="PanelContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo" unique_id=2125756912]
 layout_mode = 2
 size_flags_vertical = 3
@@ -561,10 +553,6 @@ focus_neighbor_right = NodePath("../Edit")
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Play" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_LEVEL_PLAY"
 
-[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Play/Cursor/Control/TextureRect" parent_id_path=PackedInt32Array(1811287982, 332120313) index="0" unique_id=376339991]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
-
 [node name="Edit" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer" unique_id=722726036 instance=ExtResource("19_hvf3u")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -580,10 +568,6 @@ texture = SubResource("AtlasTexture_hvf3u")
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Edit" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_LEVEL_EDIT"
 
-[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Edit/Cursor/Control/TextureRect" parent_id_path=PackedInt32Array(722726036, 332120313) index="0" unique_id=376339991]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
-
 [node name="Delete" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer" unique_id=1897618213 instance=ExtResource("19_hvf3u")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -598,10 +582,6 @@ texture = SubResource("AtlasTexture_otk5o")
 
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Delete" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_LEVEL_DELETE"
-
-[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Delete/Cursor/Control/TextureRect" parent_id_path=PackedInt32Array(1897618213, 332120313) index="0" unique_id=376339991]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
 
 [node name="DeleteConfirm" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer" unique_id=1029580246 instance=ExtResource("19_hvf3u")]
 visible = false
@@ -619,10 +599,6 @@ texture = SubResource("AtlasTexture_otk5o")
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/DeleteConfirm" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_LEVEL_CONFIRM"
 
-[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/DeleteConfirm/Cursor/Control/TextureRect" parent_id_path=PackedInt32Array(1029580246, 332120313) index="0" unique_id=376339991]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
-
 [node name="OpenAutosaves" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer" unique_id=1979739147 instance=ExtResource("19_hvf3u")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -638,10 +614,6 @@ texture = SubResource("AtlasTexture_cwgd5")
 
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_AUTOSAVES"
-
-[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves/Cursor/Control/TextureRect" parent_id_path=PackedInt32Array(1979739147, 332120313) index="0" unique_id=376339991]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
 
 [node name="LSSBrowser" type="VBoxContainer" parent="BG/Border/Levels/VBoxContainer" unique_id=1228715031]
 unique_name_in_owner = true
@@ -707,7 +679,6 @@ script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("15_7mmoe")
 json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -826,10 +797,6 @@ scroll_horizontal = 2
 is_active = true
 auto_connect_focus = false
 
-[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/TextureRect" parent_id_path=PackedInt32Array(561241708, 1809654753) index="0" unique_id=1523521567]
-process_mode = 3
-json_path = "res://Assets/Sprites/UI/Cursor.json"
-
 [node name="Panel" type="PanelContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo" unique_id=911678100]
 layout_mode = 2
 size_flags_vertical = 3
@@ -927,7 +894,6 @@ script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("15_7mmoe")
 json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1010,7 +976,6 @@ script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "stream"
 mode = 2
-resource_json = ExtResource("29_r5ajm")
 json_path = "res://Assets/Audio/BGM/CustomLevel.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

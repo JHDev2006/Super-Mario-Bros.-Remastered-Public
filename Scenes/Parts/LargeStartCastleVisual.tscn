@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://13td5gfryp7k"]
 
 [ext_resource type="PackedScene" uid="uid://bikdod5ra10ra" path="res://Scenes/Parts/LargeCastleVisual.tscn" id="1_aerfi"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/LargeStartCastle.json" id="2_1xuvh"]
 
 [node name="SmallCastleVisual" unique_id=671792054 instance=ExtResource("1_aerfi")]
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(1275665957) index="0" unique_id=421162122]
-resource_json = ExtResource("2_1xuvh")
 json_path = "res://Assets/Sprites/Tilesets/LargeStartCastle.json"

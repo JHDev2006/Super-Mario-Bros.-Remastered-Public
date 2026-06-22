@@ -28,17 +28,12 @@
 [ext_resource type="PackedScene" uid="uid://rjs2k335jmb5" path="res://Scenes/Prefabs/Entities/Items/BlueCoinInactive.tscn" id="18_hqc4a"]
 [ext_resource type="PackedScene" uid="uid://0q874wkbxcrr" path="res://Scenes/Prefabs/Blocks/SwitchSpikeBlockAlt.tscn" id="19_hqc4a"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="22_ls3wh"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="23_vt0hv"]
 [ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="24_5xtcs"]
 [ext_resource type="Texture2D" uid="uid://cfk7rvu4in71u" path="res://Assets/Sprites/Blocks/ConveyorBelt.png" id="24_vt0hv"]
 [ext_resource type="Texture2D" uid="uid://cnexuteg5rvye" path="res://Assets/Sprites/Tilesets/Deco/DecoTemplate.png" id="25_vdakf"]
 [ext_resource type="Texture2D" uid="uid://dwkcm4q32drtf" path="res://Assets/Sprites/Blocks/OnOffConveyorBelt.png" id="25_vt0hv"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Deco/DecoTiles.json" id="27_b6qiv"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Liquid.json" id="28_ls3wh"]
 [ext_resource type="Texture2D" uid="uid://cays8e2m7oj1l" path="res://Assets/Sprites/Tilesets/EdgeConnectionTile.png" id="28_t3ju0"]
 [ext_resource type="Texture2D" uid="uid://dquurvxoax6p8" path="res://Assets/Sprites/Tilesets/Terrain/Desert.png" id="30_vdakf"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/ConveyorBelt.json" id="33_ra18v"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnOffConveyor.json" id="34_7cpm5"]
 [ext_resource type="Script" uid="uid://q45b31h6356r" path="res://Scripts/Classes/Components/OnOffSwitcher.gd" id="40_gg00r"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_b6qiv"]
@@ -1810,7 +1805,6 @@ script = ExtResource("22_ls3wh")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("23_vt0hv")
 json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1825,7 +1819,6 @@ script = ExtResource("22_ls3wh")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("28_ls3wh")
 json_path = "res://Assets/Sprites/Tilesets/Liquid.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1840,7 +1833,6 @@ script = ExtResource("22_ls3wh")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("27_b6qiv")
 json_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1856,7 +1848,6 @@ script = ExtResource("22_ls3wh")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("33_ra18v")
 json_path = "res://Assets/Sprites/Blocks/ConveyorBelt.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1872,7 +1863,6 @@ script = ExtResource("22_ls3wh")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("34_7cpm5")
 json_path = "res://Assets/Sprites/Blocks/OnOffConveyor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
