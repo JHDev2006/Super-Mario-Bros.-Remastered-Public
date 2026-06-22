@@ -670,7 +670,6 @@ repeat_times = 4
 
 [node name="Clouds" type="AnimatedSprite2D" parent="OverlayLayer/CloudLayer" unique_id=1266660399]
 process_mode = 1
-self_modulate = Color(1, 1, 1, 0.52549)
 sprite_frames = SubResource("SpriteFrames_ww6w2")
 centered = false
 script = ExtResource("7_y7xk0")

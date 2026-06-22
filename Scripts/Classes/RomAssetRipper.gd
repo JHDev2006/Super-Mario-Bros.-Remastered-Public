@@ -69,6 +69,8 @@ func draw_tile(
 			for pixel: int in combine_bytes(row[0], row[1]):
 				if x + pos.x < img_size.x:
 					if not chroma_key or image.get_pixelv(Vector2i(x, y) + pos) == Color.GREEN:
+						if palette[pixel].a != 1 and palette[pixel].a != 0:
+							print(image.resource_path, palette[pixel])
 						image.set_pixelv(Vector2i(x, y) + pos, palette[pixel])
 				x += 1
 		y += 1
