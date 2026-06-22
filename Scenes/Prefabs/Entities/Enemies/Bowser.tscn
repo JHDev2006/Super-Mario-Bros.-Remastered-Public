@@ -325,6 +325,7 @@ script = ExtResource("4_2qn7a")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 metadata/HammerType = "Bowser"
+metadata/IsBowserBro = "false"
 
 [node name="ResourceSetter" type="Node" parent="Hammer" unique_id=650587338 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
 process_mode = 3

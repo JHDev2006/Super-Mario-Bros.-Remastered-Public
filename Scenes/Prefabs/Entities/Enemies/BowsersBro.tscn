@@ -18,3 +18,6 @@ visuals = NodePath("../SpriteScaleJoint/DeathSprite")
 [node name="Hammer" parent="." index="10" unique_id=1437707171]
 sprite_frames = null
 animation = &""
+metadata/IsBowserBro = "true"
+
+[connection signal="fireball_hit" from="FireballDetection" to="." method="fireball_hit" unbinds=1]
