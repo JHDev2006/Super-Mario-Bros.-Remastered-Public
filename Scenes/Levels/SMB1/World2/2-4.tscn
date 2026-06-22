@@ -92,8 +92,16 @@ position = Vector2(2176, 0)
 position = Vector2(1800, -40)
 [node name="Bowser" parent="." unique_id=2072209909 instance=ExtResource("11_q4etu")]
 position = Vector2(1944, -48)
+[node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/Sprite" parent_id_path=PackedInt32Array(2072209909, 756073436) index="2" unique_id=555266942]
+process_mode = 3
+json_path = "res://Assets/Sprites/Enemies/Bowser.json"
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(2072209909, 1311530935) index="0" unique_id=381174695]
+process_mode = 3
 resource_json = ExtResource("16_5sds7")
+json_path = "res://Assets/Sprites/Enemies/GreenKoopaShell.json"
+[node name="ResourceSetter" parent="Bowser/Hammer" parent_id_path=PackedInt32Array(2072209909, 1437707171) index="0" unique_id=650587338]
+process_mode = 3
+json_path = "res://Assets/Sprites/Items/Hammer.json"
 [node name="SmallSidewaysPlatform" parent="." unique_id=704535588 instance=ExtResource("12_3nhmb")]
 position = Vector2(1928, -112)
 [node name="Podoboo" parent="." unique_id=806419833 instance=ExtResource("14_ik07c")]

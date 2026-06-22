@@ -65,11 +65,13 @@ shape = SubResource("RectangleShape2D_48u40")
 texture = ExtResource("2_agulk")
 
 [node name="ResourceSetterNew" type="Node" parent="Post/Sprite" unique_id=254198888 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_tts7t")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_7wo1h")
+json_path = "res://Assets/Sprites/Enemies/ChainChompPost.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Rope" type="Node2D" parent="." unique_id=1377057116 node_paths=PackedStringArray("left", "right")]
@@ -80,11 +82,13 @@ length = 24
 texture = ExtResource("6_eahip")
 
 [node name="ResourceSetterNew" type="Node" parent="Rope" unique_id=1292207710 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_tts7t")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("6_xko1t")
+json_path = "res://Assets/Sprites/Enemies/ChainChompChain.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Enemy" type="CharacterBody2D" parent="." unique_id=492617984 node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
@@ -107,10 +111,12 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Enemy/Sprite" unique_id=1255975175 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_tts7t")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("9_xko1t")
+json_path = "res://Assets/Sprites/Enemies/ChainChomp.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="Enemy" unique_id=1397438194]

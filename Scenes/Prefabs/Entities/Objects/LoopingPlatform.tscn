@@ -32,11 +32,13 @@ patch_margin_right = 8
 axis_stretch_horizontal = 1
 
 [node name="ResourceSetter" type="Node" parent="Sprite" unique_id=1692721610 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_33j4l")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_dv1co")
+json_path = "res://Assets/Sprites/Tilesets/Platform.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046612248]
@@ -73,11 +75,13 @@ patch_margin_right = 8
 axis_stretch_horizontal = 1
 
 [node name="ResourceSetter" type="Node" parent="Projection" unique_id=888381645 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_33j4l")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_dv1co")
+json_path = "res://Assets/Sprites/Tilesets/Platform.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LevelEditorToggleDetection" type="Node" parent="." unique_id=1245014865]
@@ -98,11 +102,13 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="ResourceSetterNew" type="Node" parent="Rope" unique_id=1086601277 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_33j4l")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("11_6s043")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="level_start" from="LevelEditorToggleDetection" to="." method="_ready"]

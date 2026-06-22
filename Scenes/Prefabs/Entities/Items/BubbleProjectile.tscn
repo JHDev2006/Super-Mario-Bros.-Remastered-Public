@@ -66,10 +66,12 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=304133027 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_ujt3a")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_06sja")
+json_path = "res://Assets/Sprites/Items/BubbleProjectile.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=597767872]

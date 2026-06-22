@@ -76,8 +76,16 @@ position = Vector2(1400, -88)
 position = Vector2(1496, -88)
 [node name="Bowser" parent="." unique_id=1766356822 instance=ExtResource("12_brkk5")]
 position = Vector2(1920, -48)
+[node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/Sprite" parent_id_path=PackedInt32Array(1766356822, 756073436) index="2" unique_id=555266942]
+process_mode = 3
+json_path = "res://Assets/Sprites/Enemies/Bowser.json"
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(1766356822, 1311530935) index="0" unique_id=381174695]
+process_mode = 3
 resource_json = ExtResource("11_06txv")
+json_path = "res://Assets/Sprites/Enemies/BuzzyBeetleShell.json"
+[node name="ResourceSetter" parent="Bowser/Hammer" parent_id_path=PackedInt32Array(1766356822, 1437707171) index="0" unique_id=650587338]
+process_mode = 3
+json_path = "res://Assets/Sprites/Items/Hammer.json"
 [node name="ChallengeNodes" type="Node" parent="." unique_id=760163046 node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("17_06txv")
 nodes_to_delete = [NodePath("../CastleToad")]

@@ -45,10 +45,12 @@ autoplay = "default"
 offset = Vector2(0, 1)
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1028226469 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("2_w2s1w")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("3_xojev")
+json_path = "res://Assets/Sprites/Enemies/PiranhaPlant.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="EnemyPlayerDetection" type="Node" parent="Sprite" unique_id=1830629709 node_paths=PackedStringArray("hitbox")]

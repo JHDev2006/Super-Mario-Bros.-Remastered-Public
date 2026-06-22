@@ -78,11 +78,13 @@ texture = ExtResource("3_kjo5s")
 stretch_mode = 2
 
 [node name="ResourceSetter" type="Node" parent="Control/Cursor" unique_id=264589973 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_r6n62")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("5_f5hk3")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LabelFontChanger" type="Node" parent="." unique_id=948220077 node_paths=PackedStringArray("labels")]

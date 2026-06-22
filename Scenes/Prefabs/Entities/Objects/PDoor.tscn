@@ -13,6 +13,7 @@ frame_progress = 0.0
 
 [node name="ResourceSetterNew" parent="Sprite" index="0" unique_id=1666477828]
 resource_json = ExtResource("2_fprkw")
+json_path = "res://Assets/Sprites/Tilesets/PDoors.json"
 
 [node name="PSwitcher" type="Node" parent="." index="6" unique_id=48010562]
 script = ExtResource("3_fprkw")

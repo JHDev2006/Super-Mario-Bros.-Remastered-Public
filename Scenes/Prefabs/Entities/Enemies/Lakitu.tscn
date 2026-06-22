@@ -101,10 +101,12 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Cloud/Sprite" unique_id=376923799 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_as0ro")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("5_p3xbt")
+json_path = "res://Assets/Sprites/Enemies/Lakitu.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="Cloud" unique_id=1582964298]
@@ -115,10 +117,12 @@ position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_3a3ug")
 
 [node name="ResourceSetterNew" type="Node" parent="Cloud" unique_id=1285830412 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_as0ro")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("7_p3xbt")
+json_path = "res://Assets/Sprites/Enemies/LakituCloud.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=70288328]

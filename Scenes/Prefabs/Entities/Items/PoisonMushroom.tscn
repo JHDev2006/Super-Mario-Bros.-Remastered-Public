@@ -7,4 +7,6 @@
 metadata/is_poison = false
 
 [node name="ResourceSetterNew" parent="Mushroom" parent_id_path=PackedInt32Array(1305897431) index="0" unique_id=1994287161]
+process_mode = 3
 resource_json = ExtResource("2_pfjfl")
+json_path = "res://Assets/Sprites/Items/PoisonMushroom.json"

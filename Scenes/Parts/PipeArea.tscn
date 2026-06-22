@@ -58,7 +58,7 @@ texture = ExtResource("3_10g1e")
 [node name="Node2D" type="Node2D" parent="." unique_id=1862855632]
 z_index = 50
 z_as_relative = false
-position = Vector2(-3.496911e-07, 8)
+position = Vector2(0, 8)
 
 [node name="CenterContainer" type="CenterContainer" parent="Node2D" unique_id=188264350]
 use_top_left = true

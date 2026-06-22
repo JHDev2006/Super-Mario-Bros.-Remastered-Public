@@ -38,10 +38,12 @@ animation = &"Locked"
 autoplay = "Locked"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=422447256 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("2_hj3mh")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("3_7tad6")
+json_path = "res://Assets/Sprites/Tilesets/PDoors.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="EditorPropertyExposer" type="Node" parent="." unique_id=1247674978]

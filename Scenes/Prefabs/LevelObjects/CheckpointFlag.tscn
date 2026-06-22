@@ -73,10 +73,12 @@ animation = &"Hit"
 autoplay = "Idle"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=588317761 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_sdjg4")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_2u6vm")
+json_path = "res://Assets/Sprites/Items/CheckpointFlag.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Activated" type="AnimatedSprite2D" parent="." unique_id=1760330322]
@@ -85,6 +87,7 @@ position = Vector2(8, -16)
 sprite_frames = SubResource("SpriteFrames_sdjg4")
 
 [node name="ResourceSetterNew" type="Node" parent="Activated" unique_id=1952035775 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_sdjg4")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"

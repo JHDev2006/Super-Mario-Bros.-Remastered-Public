@@ -12,7 +12,9 @@
 script = ExtResource("2_sa2nn")
 
 [node name="ResourceSetterNew" parent="Sprite" index="0" unique_id=1028226469]
+process_mode = 3
 resource_json = ExtResource("2_x21dp")
+json_path = "res://Assets/Sprites/Enemies/FirePiranhaPlant.json"
 
 [node name="FirePiranhaPlant" type="Node" parent="." index="2" unique_id=122564629]
 script = ExtResource("3_sa2nn")

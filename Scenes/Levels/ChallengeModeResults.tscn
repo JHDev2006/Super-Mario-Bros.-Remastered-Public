@@ -760,6 +760,7 @@ resource_setter = NodePath("ResourceSetterNew")
 metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
 
 [node name="ResourceSetterNew" type="Node" parent="PlayerSprite" unique_id=951425779]
+process_mode = 3
 script = ExtResource("7_bob8r")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -769,11 +770,13 @@ stream = ExtResource("7_6dwpv")
 bus = &"Music"
 
 [node name="ResourceSetterNew" type="Node" parent="ChallengeResults" unique_id=127176486 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "stream"
 mode = 2
 resource_json = ExtResource("12_fb45j")
+json_path = "res://Assets/Audio/BGM/ChallengeResults.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ChallengeEnd" type="AudioStreamPlayer" parent="." unique_id=377169015]
@@ -781,11 +784,13 @@ stream = ExtResource("12_x7w5s")
 bus = &"Music"
 
 [node name="ResourceSetterNew" type="Node" parent="ChallengeEnd" unique_id=593640018 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "stream"
 mode = 2
 resource_json = ExtResource("12_y63tt")
+json_path = "res://Assets/Audio/BGM/ChallengeEnd.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="MainSequence" type="AnimationPlayer" parent="." unique_id=877815898]
@@ -801,10 +806,12 @@ autoplay = "Idle"
 speed_scale = 2.0
 
 [node name="ResourceSetterNew" type="Node" parent="Toad" unique_id=826345731 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_sv6qk")
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1002,10 +1009,12 @@ themed_resource = SubResource("Resource_vohx7")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
 [node name="ResourceSetterNew" type="Node" parent="Yoshi" unique_id=1898262442 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("23_vohx7")
+json_path = "res://Assets/Sprites/Players/Yoshi.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="SmokeParticle" type="AnimatedSprite2D" parent="." unique_id=865577033]

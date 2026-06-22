@@ -8,3 +8,4 @@ amount = 30
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(1158279776) index="0" unique_id=465438140]
 resource_json = ExtResource("2_vbgog")
+json_path = "res://Assets/Sprites/Items/30Coin.json"

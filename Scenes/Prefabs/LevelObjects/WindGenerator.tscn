@@ -74,11 +74,13 @@ lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_am6ww")
 
 [node name="ResourceSetterNew" type="Node" parent="CanvasLayer/Left/Particles" index="0" unique_id=1307961754 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_3cn4y")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("6_u3e45")
+json_path = "res://Assets/Sprites/Particles/WindParticles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Right" type="Control" parent="CanvasLayer" index="1" unique_id=80119580]
@@ -103,11 +105,13 @@ lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_am6ww")
 
 [node name="ResourceSetterNew" type="Node" parent="CanvasLayer/Right/Particles" index="0" unique_id=103996615 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_3cn4y")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("6_u3e45")
+json_path = "res://Assets/Sprites/Particles/WindParticles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="SFX" type="AudioStreamPlayer" parent="." index="3" unique_id=83511489]

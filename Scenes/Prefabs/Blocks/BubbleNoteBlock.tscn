@@ -7,7 +7,9 @@
 [node name="BubbleNoteBlock" unique_id=1217401891 instance=ExtResource("1_xv5gc")]
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(147779313) index="0" unique_id=1722141441]
+process_mode = 3
 resource_json = ExtResource("2_0vh5c")
+json_path = "res://Assets/Sprites/Blocks/BubbleNoteBlock.json"
 
 [node name="EditorPropertyExposer" parent="." index="3" unique_id=1570804738]
 properties = Array[String](["item"])

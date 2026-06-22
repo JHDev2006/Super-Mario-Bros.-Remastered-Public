@@ -26,7 +26,9 @@ volume = 1.0
 play_sfx = false
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(147779313) index="0" unique_id=1722141441]
+process_mode = 3
 resource_json = ExtResource("3_d6amy")
+json_path = "res://Assets/Sprites/Blocks/MusicNoteBlock.json"
 
 [node name="EditorPropertyExposer" parent="." index="3" unique_id=1570804738]
 properties = Array[String](["instrument", "note", "octave", "play_on_load", "volume"])
@@ -66,7 +68,7 @@ script = ExtResource("6_gpide")
 offset = Vector2(0, 0)
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
-[node name="SignalExposer" type="Node2D" parent="." index="10" unique_id=2144044909]
+[node name="SignalExposer2" type="Node2D" parent="." index="10" unique_id=2144044909]
 script = ExtResource("7_430f0")
 metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 

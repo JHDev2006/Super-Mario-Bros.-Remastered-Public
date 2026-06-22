@@ -20,6 +20,7 @@ anim_speed_max = 2.0
 
 [node name="CoinSparkle" type="GPUParticles2D" unique_id=426407593]
 material = SubResource("CanvasItemMaterial_0guw6")
+emitting = false
 amount = 3
 texture = ExtResource("1_0guw6")
 lifetime = 0.5
@@ -30,12 +31,14 @@ fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_wdqt2")
 
 [node name="ResourceSetterNew" type="Node" parent="." unique_id=1502487152 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("2_wdqt2")
 node_to_affect = NodePath("..")
 property_node = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("3_wdqt2")
+json_path = "res://Assets/Sprites/Particles/CoinSparkle.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="ready" from="." to="." method="set_emitting" binds= [true]]

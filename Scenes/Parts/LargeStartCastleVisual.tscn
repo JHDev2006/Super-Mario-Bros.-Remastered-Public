@@ -7,3 +7,4 @@
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(1275665957) index="0" unique_id=421162122]
 resource_json = ExtResource("2_1xuvh")
+json_path = "res://Assets/Sprites/Tilesets/LargeStartCastle.json"

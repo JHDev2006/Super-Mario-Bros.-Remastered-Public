@@ -143,6 +143,7 @@ frame_progress = 0.0
 
 [node name="ResourceSetterNew" parent="Parts/Head/Sprite" index="0" unique_id=1164057203]
 resource_json = ExtResource("8_h7jtn")
+json_path = "res://Assets/Sprites/Enemies/WigglerHead.json"
 
 [node name="LedgeDetectionCast" type="RayCast2D" parent="." unique_id=1863642363]
 position = Vector2(-4, -5)
@@ -188,7 +189,6 @@ parts = [NodePath("../Parts/Body4"), NodePath("../Parts/Body3"), NodePath("../Pa
 [connection signal="player_hit" from="Parts/Body4/EnemyPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="Parts/Body4/EnemyPlayerDetection" to="." method="player_stomped_on"]
 [connection signal="block_bounced" from="Parts/Body4/BlockBouncingDetection" to="." method="die_from_object"]
-[connection signal="block_bounced" from="Parts/Body4/BlockBouncingDetection" to="ScoreNoteSpawner" method="on_block_bounced" binds= [1000]]
 [connection signal="moving_shell_entered" from="Parts/Body3/ShellDetection" to="." method="die_from_object"]
 [connection signal="hammer_player_hit" from="Parts/Body3/EnemyPlayerDetection" to="." method="die_from_object"]
 [connection signal="hammer_player_hit" from="Parts/Body3/EnemyPlayerDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]

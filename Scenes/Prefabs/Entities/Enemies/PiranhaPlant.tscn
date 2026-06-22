@@ -55,10 +55,12 @@ autoplay = "default"
 offset = Vector2(0, 1)
 
 [node name="ResourceSetterNew" type="Node" parent="RotationJoint/LevelEditorVisibleNode/Sprite" index="0" unique_id=2135118533 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_teh5w")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_tmwyr")
+json_path = "res://Assets/Sprites/Enemies/PiranhaPlant.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" parent="." index="5" unique_id=1065734456 node_paths=PackedStringArray("visuals")]

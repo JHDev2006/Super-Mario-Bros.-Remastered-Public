@@ -86,11 +86,13 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1106373086 node_paths=PackedStringArray("node_to_affect", "property_node", "metadata_node")]
+process_mode = 3
 script = ExtResource("3_i5dos")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_2dg23")
+json_path = "res://Assets/Sprites/Items/Hammer.json"
 metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

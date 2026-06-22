@@ -85,8 +85,16 @@ position = Vector2(2688, 0)
 position = Vector2(2312, -40)
 [node name="Bowser" parent="." unique_id=572717139 instance=ExtResource("16_vy657")]
 position = Vector2(2424, -48)
+[node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/Sprite" parent_id_path=PackedInt32Array(572717139, 756073436) index="2" unique_id=555266942]
+process_mode = 3
+json_path = "res://Assets/Sprites/Enemies/Bowser.json"
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(572717139, 1311530935) index="0" unique_id=381174695]
+process_mode = 3
 resource_json = ExtResource("15_38nsg")
+json_path = "res://Assets/Sprites/Enemies/BuzzyBeetleShell.json"
+[node name="ResourceSetter" parent="Bowser/Hammer" parent_id_path=PackedInt32Array(572717139, 1437707171) index="0" unique_id=650587338]
+process_mode = 3
+json_path = "res://Assets/Sprites/Items/Hammer.json"
 [node name="TileMapConverter" type="Node" parent="." unique_id=2065473119 node_paths=PackedStringArray("tilemap")]
 script = ExtResource("17_p56pp")
 tilemap = NodePath("../Tiles")

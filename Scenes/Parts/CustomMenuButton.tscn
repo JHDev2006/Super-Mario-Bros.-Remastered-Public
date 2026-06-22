@@ -69,11 +69,13 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_744m4")
 
 [node name="ResourceSetterNew" type="Node" parent="Cursor/Control/TextureRect" unique_id=376339991 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_d66fe")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("6_g3205")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="focus_entered" from="." to="." method="show"]

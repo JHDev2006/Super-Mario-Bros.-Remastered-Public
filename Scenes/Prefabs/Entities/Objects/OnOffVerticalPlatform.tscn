@@ -16,7 +16,9 @@ texture = ExtResource("2_iy32g")
 region_rect = Rect2(0, 0, 24, 8)
 
 [node name="ResourceSetter" parent="AnimatableBody2D/Sprite" index="0" unique_id=1827702455]
+process_mode = 3
 resource_json = ExtResource("3_50hv7")
+json_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D/Sprite" index="1" unique_id=1627706176]
 position = Vector2(16, 0)

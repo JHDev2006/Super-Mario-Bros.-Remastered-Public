@@ -33,11 +33,13 @@ texture = SubResource("AtlasTexture_qti1l")
 stretch_mode = 2
 
 [node name="ResourceSetter" type="Node" parent="Cursor/Cursor" unique_id=605420492 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_3pjh6")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_rq0v2")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="AutoScrollContainer" type="ScrollContainer" parent="." unique_id=783604123]

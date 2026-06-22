@@ -1,78 +1,55 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene format=3 uid="uid://dc82gh8lmkuwa"]
 
-[ext_resource path="res://addons/mod_tool/interface/config_editor/json_editor.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://uu3ra0v727ro" path="res://addons/mod_tool/interface/config_editor/json_editor.gd" id="1"]
 
-[node name="Mod Config Editor" type="PanelContainer"]
+[node name="Mod Config Editor" type="PanelContainer" unique_id=1041302376]
 visible = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 24.0
 
-[node name="VBox" type="VBoxContainer" parent="."]
-offset_left = 7.0
-offset_top = 7.0
-offset_right = 1907.0
-offset_bottom = 891.0
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1921032491]
+layout_mode = 2
 
-[node name="HBox" type="HBoxContainer" parent="VBox"]
-offset_right = 1900.0
-offset_bottom = 40.0
+[node name="HBox" type="HBoxContainer" parent="VBox" unique_id=942509955]
+layout_mode = 2
 
-[node name="Label" type="Label" parent="VBox/HBox"]
-offset_top = 13.0
-offset_right = 1533.0
-offset_bottom = 27.0
+[node name="Label" type="Label" parent="VBox/HBox" unique_id=1662553632]
+layout_mode = 2
 size_flags_horizontal = 3
 text = "Default json for user mod configuration"
 
-[node name="ErrorLabel" type="Label" parent="VBox/HBox"]
+[node name="ErrorLabel" type="Label" parent="VBox/HBox" unique_id=85985912]
 unique_name_in_owner = true
-offset_left = 1537.0
-offset_top = 13.0
-offset_right = 1617.0
-offset_bottom = 27.0
+layout_mode = 2
 text = "JSON is valid"
 
-[node name="ShouldValidate" type="CheckButton" parent="VBox/HBox"]
+[node name="ShouldValidate" type="CheckButton" parent="VBox/HBox" unique_id=2112747011]
 unique_name_in_owner = true
-offset_left = 1621.0
-offset_right = 1697.0
-offset_bottom = 40.0
-pressed = true
+layout_mode = 2
 flat = true
 
-[node name="VSeparator" type="VSeparator" parent="VBox/HBox"]
-offset_left = 1701.0
-offset_right = 1705.0
-offset_bottom = 40.0
+[node name="VSeparator" type="VSeparator" parent="VBox/HBox" unique_id=920618752]
+layout_mode = 2
 
-[node name="SaveConfig" type="Button" parent="VBox/HBox"]
-offset_left = 1709.0
-offset_right = 1900.0
-offset_bottom = 40.0
+[node name="SaveConfig" type="Button" parent="VBox/HBox" unique_id=49532281]
+layout_mode = 2
 text = "Save config to manifest.json"
 
-[node name="ConfigEditor" type="TextEdit" parent="VBox"]
+[node name="ConfigEditor" type="TextEdit" parent="VBox" unique_id=1041884951]
 unique_name_in_owner = true
-offset_top = 44.0
-offset_right = 1900.0
-offset_bottom = 884.0
+layout_mode = 2
 size_flags_vertical = 3
 text = "{
 
 }"
-highlight_current_line = true
-syntax_highlighter = true
-show_line_numbers = true
-fold_gutter = true
 highlight_all_occurrences = true
-smooth_scrolling = true
-hiding_enabled = true
-script = ExtResource( 1 )
+highlight_current_line = true
+script = ExtResource("1")
 
-[node name="ValidationDelay" type="Timer" parent="VBox/ConfigEditor"]
+[node name="ValidationDelay" type="Timer" parent="VBox/ConfigEditor" unique_id=167389788]
 one_shot = true
 
-[connection signal="cursor_changed" from="VBox/ConfigEditor" to="VBox/ConfigEditor" method="_on_cursor_changed"]
 [connection signal="text_changed" from="VBox/ConfigEditor" to="VBox/ConfigEditor" method="_on_text_changed"]
 [connection signal="timeout" from="VBox/ConfigEditor/ValidationDelay" to="VBox/ConfigEditor" method="_on_ValidationDelay_timeout"]

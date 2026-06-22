@@ -212,11 +212,19 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="ResourceSetterNew" parent="SpeedrunTypeSelectLevelSelect/Panel/VBoxContainer/Warpless/Cursor" parent_id_path=PackedInt32Array(1223353015, 763700183) index="0" unique_id=152471920]
+process_mode = 3
+json_path = "res://Assets/Sprites/UI/Cursor.json"
+
 [node name="TextureRect" parent="SpeedrunTypeSelectLevelSelect/Panel/VBoxContainer/Warpless" parent_id_path=PackedInt32Array(1223353015, 1599187849) index="2" unique_id=698667744]
 texture = SubResource("AtlasTexture_nvyky")
 
 [node name="Any" parent="SpeedrunTypeSelectLevelSelect/Panel/VBoxContainer/Warpless" parent_id_path=PackedInt32Array(1223353015, 1599187849) index="3" unique_id=603641441]
 text = "TO FLAGPOLE"
+
+[node name="ResourceSetterNew" parent="SpeedrunTypeSelectLevelSelect/Panel/VBoxContainer/Any/Cursor" parent_id_path=PackedInt32Array(1223353015, 1613186215) index="0" unique_id=43850544]
+process_mode = 3
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 
 [node name="Any" parent="SpeedrunTypeSelectLevelSelect/Panel/VBoxContainer/Any" parent_id_path=PackedInt32Array(1223353015, 641274277) index="3" unique_id=1526349318]
 text = "TO WARP ZONE"

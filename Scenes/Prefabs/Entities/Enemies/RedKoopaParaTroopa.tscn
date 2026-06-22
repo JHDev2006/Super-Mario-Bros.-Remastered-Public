@@ -7,9 +7,15 @@
 [node name="RedKoopaTroopa" unique_id=1621551953 instance=ExtResource("1_7ppsp")]
 winged = true
 
+[node name="SpriteSetter" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="0" unique_id=1746108447]
+json_path = "res://Assets/Sprites/Enemies/RedKoopaTroopa.json"
+
 [node name="Wing" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="1" unique_id=1386975840]
 visible = true
 frame_progress = 0.539258
+
+[node name="ShellSetter" parent="DeathSprite" parent_id_path=PackedInt32Array(81522450) index="0" unique_id=393858697]
+json_path = "res://Assets/Sprites/Enemies/RedKoopaShell.json"
 
 [node name="Node2D" type="Node2D" parent="." index="15" unique_id=118285782]
 script = ExtResource("2_7ppsp")

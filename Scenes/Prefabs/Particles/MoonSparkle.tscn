@@ -7,5 +7,6 @@
 
 [node name="ResourceSetterNew" parent="." index="0" unique_id=1336243642]
 resource_json = ExtResource("2_lihs7")
+json_path = "res://Assets/Sprites/Particles/MoonSparkle.json"
 
 [connection signal="finished" from="." to="." method="queue_free"]

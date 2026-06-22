@@ -343,10 +343,12 @@ animation = &"Yellow"
 speed_scale = 0.0
 
 [node name="ResourceSetterNew" type="Node" parent="Egg" unique_id=2114528406 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_peoeq")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_r541a")
+json_path = "res://Assets/Sprites/Items/YoshiEgg.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Yoshi" type="AnimatedSprite2D" parent="." unique_id=359007584]
@@ -357,10 +359,12 @@ animation = &"Green"
 autoplay = "Green"
 
 [node name="ResourceSetterNew" type="Node" parent="Yoshi" unique_id=1343341629 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_peoeq")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_3ntsy")
+json_path = "res://Assets/Sprites/Players/Yoshi.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1118207987]

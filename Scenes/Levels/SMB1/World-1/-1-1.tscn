@@ -73,10 +73,12 @@ sprite_frames = SubResource("SpriteFrames_62ed8")
 script = ExtResource("17_xhct6")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 [node name="ResourceSetterNew" type="Node" parent="PeachNPC1" unique_id=1247647247 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("19_xhct6")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("20_62ed8")
+json_path = "res://Assets/Sprites/Players/PeachNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="PeachNPC2" type="AnimatedSprite2D" parent="." unique_id=1085619751]
 position = Vector2(1280, -8)
@@ -84,10 +86,12 @@ sprite_frames = SubResource("SpriteFrames_6dnyh")
 script = ExtResource("17_xhct6")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 [node name="ResourceSetterNew" type="Node" parent="PeachNPC2" unique_id=1068518416 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("19_xhct6")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("20_62ed8")
+json_path = "res://Assets/Sprites/Players/PeachNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [node name="BowsersBro" parent="." unique_id=1339701750 instance=ExtResource("18_4i10n")]
 position = Vector2(584, 0)

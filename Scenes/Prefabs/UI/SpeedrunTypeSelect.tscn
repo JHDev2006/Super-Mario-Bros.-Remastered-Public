@@ -77,11 +77,13 @@ texture = SubResource("AtlasTexture_5qqv6")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="Panel/VBoxContainer/Warpless/Cursor" unique_id=152471920 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_dydhe")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("5_sktgk")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Buffer" type="Control" parent="Panel/VBoxContainer/Warpless" unique_id=396729131]
@@ -110,11 +112,13 @@ texture = SubResource("AtlasTexture_5qqv6")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="Panel/VBoxContainer/Any/Cursor" unique_id=43850544 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_dydhe")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("5_sktgk")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Buffer" type="Control" parent="Panel/VBoxContainer/Any" unique_id=1729380572]

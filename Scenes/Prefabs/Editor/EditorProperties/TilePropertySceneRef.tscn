@@ -43,6 +43,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_p4kuk")
 text = "+"
 
 [node name="ResourceSetterNew" type="Node" parent="." unique_id=1351860746]
+process_mode = 3
 script = ExtResource("3_v8h6y")
 property_name = "texture"
 mode = 1

@@ -40,7 +40,9 @@ animation = &"On"
 autoplay = "On"
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=873755014]
+process_mode = 3
 resource_json = ExtResource("3_pg6um")
+json_path = "res://Assets/Sprites/Blocks/BlueOnOffBlock.json"
 
 [node name="Collision" parent="." index="1" unique_id=687421064]
 disabled = false

@@ -90,11 +90,13 @@ offset_bottom = 4.0
 grow_vertical = 2
 
 [node name="ResourceSetterNew" type="Node" parent="TextureRect" unique_id=1167295965 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("9_bw0b5")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("10_sy0fx")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LabelFontChanger" type="Node" parent="." unique_id=749389303 node_paths=PackedStringArray("labels")]

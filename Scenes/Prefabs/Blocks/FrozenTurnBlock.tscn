@@ -9,6 +9,7 @@ melted_scene = ExtResource("2_7a46k")
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(511132576) index="0" unique_id=410622682]
 resource_json = ExtResource("3_h28mb")
+json_path = "res://Assets/Sprites/Blocks/FrozenTurnBlock.json"
 
 [node name="PSwitcher" parent="." index="3" unique_id=115134147]
 new_scene = ""

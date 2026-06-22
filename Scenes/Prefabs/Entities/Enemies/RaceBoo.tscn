@@ -308,10 +308,12 @@ autoplay = &"Bob"
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Sprite" unique_id=21416663]
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1932970901 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_6dgmd")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("5_6dgmd")
+json_path = "res://Assets/Sprites/Enemies/RaceBoo.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Sprite" unique_id=683791973]

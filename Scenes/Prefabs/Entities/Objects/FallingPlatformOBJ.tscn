@@ -10,6 +10,10 @@ size = Vector2(32, 8)
 [node name="MovingPlatform" unique_id=285771311 instance=ExtResource("1_lmc3g")]
 type = 2
 
+[node name="ResourceSetter" parent="Sprite" parent_id_path=PackedInt32Array(1840586283) index="0" unique_id=1692721610]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/Platform.json"
+
 [node name="CollisionShape2D" parent="." index="1" unique_id=1046612248]
 shape = SubResource("RectangleShape2D_wuhh6")
 
@@ -21,6 +25,10 @@ visible = false
 
 [node name="Projection" parent="." index="4" unique_id=1165185292]
 visible = false
+
+[node name="ResourceSetter" parent="Projection" index="0" unique_id=888381645]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/Platform.json"
 
 [node name="PlayerDetection" type="Area2D" parent="." index="7" unique_id=1773908213]
 unique_name_in_owner = true

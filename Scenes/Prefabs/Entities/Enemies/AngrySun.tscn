@@ -75,10 +75,12 @@ animation = &"Dive"
 autoplay = "Idle"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=365299931 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_yfrhs")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_vwhva")
+json_path = "res://Assets/Sprites/Enemies/AngrySun.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="IdleMeter" type="Timer" parent="." unique_id=19465843]

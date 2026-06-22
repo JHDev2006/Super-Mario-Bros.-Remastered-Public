@@ -1,15 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://camcc83bvu086"]
+[gd_scene format=3 uid="uid://camcc83bvu086"]
 
-[ext_resource type="Script" path="res://addons/mod_tool/interface/hook_restore/hook_restore.gd" id="1_wq3ld"]
+[ext_resource type="Script" uid="uid://dy72tnwnjxxpb" path="res://addons/mod_tool/interface/hook_restore/hook_restore.gd" id="1_wq3ld"]
 
-[node name="HookRestore" type="Window"]
+[node name="HookRestore" type="Window" unique_id=1116052530]
+oversampling_override = 1.0
 title = "Mod Dev Tool"
 initial_position = 1
 size = Vector2i(640, 375)
 wrap_controls = true
 script = ExtResource("1_wq3ld")
 
-[node name="Restart" type="Window" parent="."]
+[node name="Restart" type="Window" parent="." unique_id=1927055287]
 unique_name_in_owner = true
 title = "Mod Dev Tool"
 initial_position = 1
@@ -17,7 +18,7 @@ size = Vector2i(440, 117)
 visible = false
 wrap_controls = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Restart"]
+[node name="MarginContainer" type="MarginContainer" parent="Restart" unique_id=585497822]
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 20
@@ -25,32 +26,32 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
-[node name="VBC" type="VBoxContainer" parent="Restart/MarginContainer"]
+[node name="VBC" type="VBoxContainer" parent="Restart/MarginContainer" unique_id=770717369]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="LabelInfoText" type="RichTextLabel" parent="Restart/MarginContainer/VBC"]
+[node name="LabelInfoText" type="RichTextLabel" parent="Restart/MarginContainer/VBC" unique_id=859800633]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "Successfully restored all scripts. 
 A restart of the editor is required."
 fit_content = true
 
-[node name="HBC" type="HBoxContainer" parent="Restart/MarginContainer/VBC"]
+[node name="HBC" type="HBoxContainer" parent="Restart/MarginContainer/VBC" unique_id=2106559504]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 30
 
-[node name="ButtonRestartNow" type="Button" parent="Restart/MarginContainer/VBC/HBC"]
+[node name="ButtonRestartNow" type="Button" parent="Restart/MarginContainer/VBC/HBC" unique_id=565454684]
 layout_mode = 2
 text = "Restart Now"
 
-[node name="ButtonRestartLater" type="Button" parent="Restart/MarginContainer/VBC/HBC"]
+[node name="ButtonRestartLater" type="Button" parent="Restart/MarginContainer/VBC/HBC" unique_id=1344312032]
 layout_mode = 2
 text = "Restart Later"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=615639755]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -61,11 +62,11 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 15
 
-[node name="VBC" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBC" type="VBoxContainer" parent="MarginContainer" unique_id=414993543]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="LabelInfoText" type="RichTextLabel" parent="MarginContainer/VBC"]
+[node name="LabelInfoText" type="RichTextLabel" parent="MarginContainer/VBC" unique_id=131717779]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 text = "This will restore all scripts to their state before mod hooks were added. Any changes made to these scripts will be lost!
@@ -73,20 +74,20 @@ text = "This will restore all scripts to their state before mod hooks were added
 The process may take some time depending on the number of scripts."
 fit_content = true
 
-[node name="VBC" type="VBoxContainer" parent="MarginContainer/VBC"]
+[node name="VBC" type="VBoxContainer" parent="MarginContainer/VBC" unique_id=1700689523]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ButtonRestoreStart" type="Button" parent="MarginContainer/VBC/VBC"]
+[node name="ButtonRestoreStart" type="Button" parent="MarginContainer/VBC/VBC" unique_id=1612745779]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Start Restore"
 
-[node name="VBC2" type="VBoxContainer" parent="MarginContainer/VBC"]
+[node name="VBC2" type="VBoxContainer" parent="MarginContainer/VBC" unique_id=750606663]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="InfoOutput" type="RichTextLabel" parent="MarginContainer/VBC/VBC2"]
+[node name="InfoOutput" type="RichTextLabel" parent="MarginContainer/VBC/VBC2" unique_id=1418543880]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2

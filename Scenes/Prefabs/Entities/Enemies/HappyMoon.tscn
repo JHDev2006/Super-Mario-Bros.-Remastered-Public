@@ -10,6 +10,7 @@
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(2107662186) index="0" unique_id=365299931]
 resource_json = ExtResource("2_qmw72")
+json_path = "res://Assets/Sprites/Enemies/HappyMoon.json"
 
 [node name="Hitbox" parent="." index="3" unique_id=1629195984]
 monitoring = false

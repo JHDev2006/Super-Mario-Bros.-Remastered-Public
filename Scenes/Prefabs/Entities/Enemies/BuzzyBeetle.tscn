@@ -9,10 +9,14 @@
 shell_scene = "uid://csdbt4vd14fsg"
 
 [node name="SpriteSetter" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="0" unique_id=1746108447]
+process_mode = 3
 resource_json = ExtResource("4_316n2")
+json_path = "res://Assets/Sprites/Enemies/BuzzyBeetle.json"
 
 [node name="ShellSetter" parent="DeathSprite" parent_id_path=PackedInt32Array(81522450) index="0" unique_id=393858697]
+process_mode = 3
 resource_json = ExtResource("5_obcjq")
+json_path = "res://Assets/Sprites/Enemies/BuzzyBeetleShell.json"
 
 [node name="FireballDetection" parent="." index="8" unique_id=1490339431]
 play_sfx_on_hit = true

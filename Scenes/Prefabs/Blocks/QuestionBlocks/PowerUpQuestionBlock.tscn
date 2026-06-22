@@ -8,6 +8,10 @@
 item = ExtResource("2_h6l2a")
 mushroom_if_small = true
 
+[node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(1322431434) index="0" unique_id=1093026474]
+process_mode = 3
+json_path = "res://Assets/Sprites/Blocks/QuestionBlock.json"
+
 [node name="ItemPreview" type="Node2D" parent="." index="3" unique_id=592965828]
 visible = false
 

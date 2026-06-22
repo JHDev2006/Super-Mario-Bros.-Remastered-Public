@@ -55,7 +55,9 @@ animation = &"Off"
 autoplay = "Off"
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=398479575]
+process_mode = 3
 resource_json = ExtResource("3_xglou")
+json_path = "res://Assets/Sprites/Blocks/OnOffSwitch.json"
 
 [node name="SignalExposer" type="Node2D" parent="." index="4" unique_id=985513204]
 script = ExtResource("4_cs2ia")

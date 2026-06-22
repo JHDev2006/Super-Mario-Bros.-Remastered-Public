@@ -225,18 +225,22 @@ flip_h = true
 metadata/HammerType = "HammerBro"
 
 [node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite/Hammer" unique_id=1182534042 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
+process_mode = 3
 script = ExtResource("7_pvn5i")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_0w8yj")
+json_path = "res://Assets/Sprites/Items/Hammer.json"
 metadata_node = NodePath("..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetterNew" type="Node" parent="MovementJoint/Sprite" unique_id=630643973 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_pvn5i")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("8_0w8yj")
+json_path = "res://Assets/Sprites/Enemies/HammerBro.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="MovementAnimations" type="AnimationPlayer" parent="." unique_id=1323223581]

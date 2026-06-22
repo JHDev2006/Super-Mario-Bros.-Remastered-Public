@@ -157,6 +157,21 @@ collision_to_disable = NodePath("StaticBody2D/CollisionShape2D")
 tile_map_data = PackedByteArray("AACYAPb/AAAIAAEAAACZAPb/AAAJAAEAAACaAPb/AAAAAAQAAACbAPb/AAAAAAQAAACcAPb/AAAAAAQAAACdAPb/AAAAAAQAAACeAPb/AAAAAAQAAACfAPb/AAAAAAQAAACgAPb/AAAAAAQAAAChAPb/AAAAAAQAAAA=")
 collision_enabled = false
 physics_quadrant_size = 64
+[node name="ResourceSetterNew" parent="MinusWorldClip/Tiles2/MainTilesetTextureSetter" parent_id_path=PackedInt32Array(969009866, 1474113207) index="0" unique_id=155864555]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
+[node name="ResourceSetterNew" parent="MinusWorldClip/Tiles2/LiquidTextureSetter" parent_id_path=PackedInt32Array(969009866, 1830483692) index="0" unique_id=1364274198]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/Liquid.json"
+[node name="ResourceSetterNew" parent="MinusWorldClip/Tiles2/DecoTileTextureSetter" parent_id_path=PackedInt32Array(969009866, 2007165853) index="0" unique_id=226971325]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
+[node name="ResourceSetterNew" parent="MinusWorldClip/Tiles2/ConveyorTextureSetter" parent_id_path=PackedInt32Array(969009866, 1480608045) index="0" unique_id=368331622]
+process_mode = 3
+json_path = "res://Assets/Sprites/Blocks/ConveyorBelt.json"
+[node name="ResourceSetterNew" parent="MinusWorldClip/Tiles2/OnOffConveyorTextureSetter" parent_id_path=PackedInt32Array(969009866, 758230177) index="0" unique_id=1832547189]
+process_mode = 3
+json_path = "res://Assets/Sprites/Blocks/OnOffConveyor.json"
 [node name="StaticBody2D" type="StaticBody2D" parent="MinusWorldClip" unique_id=2123946676]
 collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MinusWorldClip/StaticBody2D" unique_id=2036582200]
@@ -169,8 +184,13 @@ one_way_collision = true
 [node name="WarpZone" parent="." unique_id=1677306459 instance=ExtResource("24_hwpxg")]
 position = Vector2(2688, 0)
 pipe_destinations = [4, 3, 2]
+[node name="Pipe" parent="WarpZone/Pipes/Left" parent_id_path=PackedInt32Array(1677306459, 1105778885) index="0" unique_id=644825579]
+level_id = 0
 [node name="Pipe" parent="WarpZone/Pipes/Middle" parent_id_path=PackedInt32Array(1677306459, 2055117847) index="0" unique_id=1657359784]
 world_num = 5
+level_id = 0
+[node name="Pipe" parent="WarpZone/Pipes/Right" parent_id_path=PackedInt32Array(1677306459, 823629391) index="0" unique_id=174818605]
+level_id = 0
 [node name="Tiles" parent="WarpZone" unique_id=563110135 instance=ExtResource("4_0r7tg")]
 position = Vector2(-2672, 0)
 tile_map_data = PackedByteArray("AAChAAAAAAACAAAAAAChAAEAAAACAAEAAACiAAAAAAACAAAAAACiAAEAAAACAAEAAACjAAAAAAACAAAAAACjAAEAAAACAAEAAACkAAAAAAACAAAAAACkAAEAAAACAAEAAAClAAAAAAACAAAAAAClAAEAAAACAAEAAACmAAAAAAACAAAAAACmAAEAAAACAAEAAACnAAAAAAACAAAAAACnAAEAAAACAAEAAACoAAAAAAACAAAAAACoAAEAAAACAAEAAACpAAAAAAACAAAAAACpAAEAAAACAAEAAACqAAAAAAACAAAAAACqAAEAAAACAAEAAACrAAAAAAACAAAAAACrAAEAAAACAAEAAACsAAAAAAACAAAAAACsAAEAAAACAAEAAACtAAAAAAACAAAAAACtAAEAAAACAAEAAACuAAAAAAACAAAAAACuAAEAAAACAAEAAACvAAAAAAACAAAAAACvAAEAAAACAAEAAACuAPf/AQAAAAAAAQCuAPj/AQAAAAAAAQCuAPn/AQAAAAAAAQCuAPr/AQAAAAAAAQCuAPv/AQAAAAAAAQCuAPz/AQAAAAAAAQCuAP3/AQAAAAAAAQCuAP7/AQAAAAAAAQCuAP//AQAAAAAAAQCvAPf/AQAAAAAAAQCvAPj/AQAAAAAAAQCvAPn/AQAAAAAAAQCvAPr/AQAAAAAAAQCvAPv/AQAAAAAAAQCvAPz/AQAAAAAAAQCvAP3/AQAAAAAAAQCvAP7/AQAAAAAAAQCvAP//AQAAAAAAAQCqAP7/AAAIAAMAAACrAP7/AAAJAAMAAACqAP3/AAAIAAIAAACrAP3/AAAJAAIAAACmAP3/AAAIAAQAAACmAP7/AAAIAAUAAACnAP3/AAAJAAQAAACnAP7/AAAJAAUAAACiAP3/AAAIAAYAAACjAP3/AAAJAAYAAACiAP7/AAAIAAcAAACjAP7/AAAJAAcAAACiAP//AAAIAAcAAACjAP//AAAJAAcAAACmAP//AAAIAAUAAACnAP//AAAJAAUAAACqAP//AAAIAAMAAACrAP//AAAJAAMAAAChAAIAAAACAAIAAACiAAIAAAACAAIAAACjAAIAAAACAAIAAACkAAIAAAACAAIAAAClAAIAAAACAAIAAACmAAIAAAACAAIAAACnAAIAAAACAAIAAACoAAIAAAACAAIAAACpAAIAAAACAAIAAACqAAIAAAACAAIAAACrAAIAAAACAAIAAACsAAIAAAACAAIAAACtAAIAAAACAAIAAACuAAIAAAACAAIAAACvAAIAAAACAAIAAACuAPX/AQAAAAAAAQCuAPb/AQAAAAAAAQCvAPX/AQAAAAAAAQCvAPb/AQAAAAAAAQCgAAAAAAACAAAAAACgAAEAAAACAAEAAACgAAIAAAACAAIAAACgAPf/AQAAAAAAAQCgAPj/AQAAAAAAAQCgAPn/AQAAAAAAAQCgAPr/AQAAAAAAAQCgAPv/AQAAAAAAAQCgAPz/AQAAAAAAAQCgAP3/AQAAAAAAAQCgAP7/AQAAAAAAAQCgAP//AQAAAAAAAQCfAAAAAAACAAAAAACfAAEAAAACAAEAAACfAAIAAAACAAIAAAA=")

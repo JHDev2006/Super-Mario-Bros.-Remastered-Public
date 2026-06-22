@@ -31,6 +31,9 @@ rotation = 0.619592
 scale = Vector2(2.01, 2.01)
 flip_h = true
 flip_v = true
+[node name="ResourceSetterNew" parent="CastleToad/Sprite" index="0" unique_id=1786679475]
+process_mode = 3
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 [node name="CameraRightLimit" parent="CastleToad" parent_id_path=PackedInt32Array(678873648) index="3" unique_id=105448341]
 position = Vector2(168, -80)
 [node name="CameraRightLimit" parent="CastleBridge/Axe" parent_id_path=PackedInt32Array(1751774818, 99773570) index="1" unique_id=1025344155]

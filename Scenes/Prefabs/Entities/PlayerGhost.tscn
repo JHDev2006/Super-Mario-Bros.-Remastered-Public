@@ -39,6 +39,7 @@ offset_bottom = 517.0
 color = Color(0.968627, 0.223529, 0.0627451, 1)
 
 [node name="ResourceSetterNew" type="Node" parent="PlayerSprite" unique_id=1910088194]
+process_mode = 3
 script = ExtResource("4_nj8xm")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

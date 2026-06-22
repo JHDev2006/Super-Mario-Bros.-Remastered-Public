@@ -51,8 +51,16 @@ position = Vector2(2824, -40)
 position = Vector2(2936, -48)
 can_hammer = true
 can_fire = false
+[node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/Sprite" parent_id_path=PackedInt32Array(833123544, 756073436) index="2" unique_id=555266942]
+process_mode = 3
+json_path = "res://Assets/Sprites/Enemies/Bowser.json"
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(833123544, 1311530935) index="0" unique_id=381174695]
+process_mode = 3
 resource_json = ExtResource("11_jqipl")
+json_path = "res://Assets/Sprites/Enemies/HammerBro.json"
+[node name="ResourceSetter" parent="Bowser/Hammer" parent_id_path=PackedInt32Array(833123544, 1437707171) index="0" unique_id=650587338]
+process_mode = 3
+json_path = "res://Assets/Sprites/Items/Hammer.json"
 [node name="DropShadow" parent="." unique_id=618679783 instance=ExtResource("6_oxjp2")]
 [node name="PickAPathTeleport" parent="." unique_id=79678754 instance=ExtResource("14_8suck")]
 position = Vector2(1144, -136)

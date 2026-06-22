@@ -120,7 +120,7 @@ func update_sprites() -> void:
 	for i in [%Left, %Selected, %Right]:
 		i.update()
 		i.play("Pose" if i == %Selected else "FaceForward")
-	%PlayerColourTexture.resource_json = Player.CHARACTER_COLOURS[selected_index]
+	%PlayerColourTexture.json_path = Player.CHARACTER_COLOURS[selected_index].resource_path
 	%CharacterName.text = tr(Player.CHARACTER_NAMES[selected_index])
 	$Panel/MarginContainer/VBoxContainer/CharacterName/TextShadowColourChanger/ColourPaletteSampler.texture = %ColourPaletteSampler.texture
 	$Panel/MarginContainer/VBoxContainer/CharacterName/TextShadowColourChanger.handle_shadow_colours()

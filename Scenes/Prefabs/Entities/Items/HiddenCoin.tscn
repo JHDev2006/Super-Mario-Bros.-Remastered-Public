@@ -35,10 +35,12 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=41158563 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_n8c86")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("5_w6imi")
+json_path = "res://Assets/Sprites/Items/HiddenCoin.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PlayerDetection" type="Area2D" parent="." unique_id=1757740240]
@@ -56,6 +58,7 @@ position = Vector2(0, 9999999)
 enabled = false
 
 [connection signal="player_entered" from="PlayerDetection" to="." method="on_player_entered" flags=6]
+[connection signal="area_entered" from="Coin/Hitbox" to="Coin" method="area_entered"]
 [connection signal="enabled" from="Coin/LevelPersistance" to="." method="queue_free"]
 
 [editable path="Coin"]

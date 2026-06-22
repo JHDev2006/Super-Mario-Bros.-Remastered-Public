@@ -17,9 +17,14 @@ region_rect = Rect2(0, 0, 24, 8)
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=1692721610]
 resource_json = ExtResource("3_hij3n")
+json_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1046612248]
 shape = SubResource("RectangleShape2D_i1uto")
+
+[node name="ResourceSetterNew" parent="Engine" parent_id_path=PackedInt32Array(1806516269) index="0" unique_id=16822266]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/TrackPlatformEngine.json"
 
 [node name="OnOffSwitcher" type="Node" parent="." index="9" unique_id=2030972507]
 script = ExtResource("4_i1uto")

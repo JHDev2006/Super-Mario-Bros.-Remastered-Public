@@ -71,10 +71,12 @@ metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="SpriteSetter" type="Node" parent="Sprite" unique_id=1746108447 node_paths=PackedStringArray("node_to_affect", "sync")]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("4_71l08")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("5_mook0")
+json_path = "res://Assets/Sprites/Enemies/GreenKoopaTroopa.json"
 sync = [NodePath("../../DeathSprite/ShellSetter")]
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -93,10 +95,12 @@ script = ExtResource("3_2rsfy")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ShellSetter" type="Node" parent="DeathSprite" unique_id=393858697 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_71l08")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_71l08")
+json_path = "res://Assets/Sprites/Enemies/GreenKoopaShell.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=468082206]

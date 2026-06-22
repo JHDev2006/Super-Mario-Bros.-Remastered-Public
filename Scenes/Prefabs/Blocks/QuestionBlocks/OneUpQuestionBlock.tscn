@@ -29,6 +29,10 @@ _bundled = {
 [node name="QuestionBlock" unique_id=769866425 instance=ExtResource("1_ub15u")]
 item = SubResource("PackedScene_dklm2")
 
+[node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(1322431434) index="0" unique_id=1093026474]
+process_mode = 3
+json_path = "res://Assets/Sprites/Blocks/QuestionBlock.json"
+
 [node name="Sprite2D" parent="ItemPreview" parent_id_path=PackedInt32Array(592965828) index="0" unique_id=1817836391]
 region_rect = Rect2(16, 0, 16, 16)
 

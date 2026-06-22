@@ -5,8 +5,16 @@
 [node name="GreenKoopaTroopa" unique_id=1977911019 instance=ExtResource("1_j41ky")]
 winged = true
 
+[node name="SpriteSetter" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="0" unique_id=1746108447]
+process_mode = 3
+json_path = "res://Assets/Sprites/Enemies/GreenKoopaTroopa.json"
+
 [node name="Wing" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="1" unique_id=1386975840]
 visible = true
+
+[node name="ShellSetter" parent="DeathSprite" parent_id_path=PackedInt32Array(81522450) index="0" unique_id=393858697]
+process_mode = 3
+json_path = "res://Assets/Sprites/Enemies/GreenKoopaShell.json"
 
 [node name="BasicEnemyMovement" parent="." index="14" unique_id=1775651446]
 bounce_height = -250

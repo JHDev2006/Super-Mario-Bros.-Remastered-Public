@@ -25,7 +25,9 @@ HAS_COLLISION = false
 sprite_frames = SubResource("SpriteFrames_vvsen")
 
 [node name="ResourceSetterNew" parent="Sprite" index="1" unique_id=2060036098]
+process_mode = 3
 resource_json = ExtResource("3_j1i7c")
+json_path = "res://Assets/Sprites/Enemies/BowserJrFireball.json"
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=410120936]
 shape = SubResource("CircleShape2D_55fv1")

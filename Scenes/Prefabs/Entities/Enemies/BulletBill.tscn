@@ -30,10 +30,12 @@ script = ExtResource("2_dwbhe")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=979926632 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_4je76")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_myh77")
+json_path = "res://Assets/Sprites/Enemies/BulletBill.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=209427212]

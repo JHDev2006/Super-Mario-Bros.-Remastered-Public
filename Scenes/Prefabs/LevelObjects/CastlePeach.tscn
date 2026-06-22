@@ -7,7 +7,9 @@
 play_end_music = true
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(1713929806) index="0" unique_id=1786679475]
+process_mode = 3
 resource_json = ExtResource("2_dujhx")
+json_path = "res://Assets/Sprites/Players/PeachNPC.json"
 
 [node name="ThankYou" parent="StandardMSG" parent_id_path=PackedInt32Array(1180436761) index="0" unique_id=581752424]
 text = "CUTSCENE_CASTLE_PEACH_1"

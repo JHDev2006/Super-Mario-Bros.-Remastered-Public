@@ -61,7 +61,13 @@ animation = &"On"
 frame_progress = 0.6434357
 
 [node name="ResourceSetterNew" parent="Sprite" index="0" unique_id=1589738587]
+process_mode = 3
 resource_json = ExtResource("3_doyjh")
+json_path = "res://Assets/Sprites/Blocks/OffFan.json"
+
+[node name="ResourceSetterNew" parent="Particles" parent_id_path=PackedInt32Array(175320873) index="0" unique_id=1551857723]
+process_mode = 3
+json_path = "res://Assets/Sprites/Particles/WindParticles.json"
 
 [node name="OnOffSwitcher" parent="." index="9" unique_id=1639367544]
 invert = true

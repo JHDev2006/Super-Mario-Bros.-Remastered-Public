@@ -15,5 +15,6 @@ can_hammer = false
 can_fire = true
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(853963108, 1311530935) index="0" unique_id=381174695]
 resource_json = ExtResource("2_yq5dk")
+json_path = "res://Assets/Sprites/Enemies/BulletBill.json"
 [editable path="CastleBridge"]
 [editable path="Bowser"]

@@ -55,11 +55,13 @@ frame_progress = 0.710764
 
 [node name="ResourceSetter" type="Node" parent="Sprite" unique_id=1393776669 node_paths=PackedStringArray("node_to_affect", "property_node")]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("3_7mdmn")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_b5lmc")
+json_path = "res://Assets/Sprites/Items/SpinningCoin.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Timer" type="Timer" parent="." unique_id=745859106]

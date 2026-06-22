@@ -1349,10 +1349,9 @@ func time_up() -> void:
 
 func set_power_state_frame() -> void:
 	colour_palette = ResourceSetter.get_resource(preload("uid://b0quveyqh25dn"))
-	$PlayerPalette/ResourceSetterNew.resource_json = (CHARACTER_PALETTES[int(Global.player_characters[player_id])])
+	$PlayerPalette/ResourceSetterNew.json_path = (CHARACTER_PALETTES[int(Global.player_characters[player_id])]).resource_path
 	if power_state != null:
-		$ResourceSetterNew.resource_json = load(get_character_sprite_path())
-		$ResourceSetterNew.update_resource()
+		$ResourceSetterNew.json_path = (get_character_sprite_path())
 	var frames = %Sprite.sprite_frames
 	if frames:
 		can_pose_anim = frames.has_animation("PoseDoor")

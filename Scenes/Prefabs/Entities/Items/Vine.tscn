@@ -53,11 +53,13 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="ResourceSetterNew" type="Node" parent="Visuals/Top" unique_id=824773028 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_e75m7")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_cmcye")
+json_path = "res://Assets/Sprites/Items/Vine.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Middle" type="NinePatchRect" parent="Visuals" unique_id=1848044494]
@@ -71,11 +73,13 @@ region_rect = Rect2(0, 16, 16, 16)
 axis_stretch_vertical = 1
 
 [node name="ResourceSetterNew" type="Node" parent="Visuals/Middle" unique_id=703421939 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_e75m7")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_cmcye")
+json_path = "res://Assets/Sprites/Items/Vine.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Bottom" type="Sprite2D" parent="Visuals" unique_id=709992208]
@@ -85,11 +89,13 @@ region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
 [node name="ResourceSetterNew" type="Node" parent="Visuals/Bottom" unique_id=357439461 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_e75m7")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_cmcye")
+json_path = "res://Assets/Sprites/Items/Vine.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1558826366]

@@ -38,8 +38,26 @@ metadata/_custom_type_script = "uid://bdq0373j5n5o0"
 position = Vector2(120, 0)
 [node name="EndSmallCastle" parent="." unique_id=1707507643 instance=ExtResource("8_6h2ch")]
 position = Vector2(216, 0)
+[node name="ResourceSetterNew" parent="EndSmallCastle/FlagJoint/Flag" parent_id_path=PackedInt32Array(1707507643, 579394229) index="0" unique_id=1127788130]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/CastleFlag.json"
 [node name="CameraRightLimit" parent="EndSmallCastle" index="1" unique_id=733835491]
 position = Vector2(808, 0)
+[node name="ResourceSetterNew" parent="EndSmallCastle/SmallCastleVisual/Tiles/TilesetTextureSetter" parent_id_path=PackedInt32Array(1707507643, 866852705, 673177660) index="0" unique_id=1895220454]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
+[node name="ResourceSetterNew" parent="EndSmallCastle/SmallCastleVisual/Tiles/BG/TilesetTextureSetter" parent_id_path=PackedInt32Array(1707507643, 866852705, 1481925576) index="0" unique_id=1635772121]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
+[node name="ResourceSetterNew" parent="EndSmallCastle/SmallCastleVisual/Sprite" parent_id_path=PackedInt32Array(1707507643, 866852705, 1275665957) index="0" unique_id=421162122]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/SmallCastle.json"
+[node name="ResourceSetter" parent="EndSmallCastle/Overlay/TilesetTextureSetter" parent_id_path=PackedInt32Array(1707507643, 282415918) index="0" unique_id=1878193882]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
+[node name="ResourceSetterNew" parent="EndSmallCastle/OverlaySprite" parent_id_path=PackedInt32Array(1707507643, 384211588) index="0" unique_id=1207966391]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/SmallCastle.json"
 [node name="PipeArea" parent="." unique_id=1024724159 instance=ExtResource("10_or54s")]
 position = Vector2(-208, -64)
 exit_only = true

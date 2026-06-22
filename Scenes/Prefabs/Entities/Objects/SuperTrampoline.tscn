@@ -19,5 +19,9 @@ trampoline_type = "SUPER_TRAMPOLINE"
 [node name="Sprite" parent="." index="0" unique_id=1821197216]
 texture = SubResource("AtlasTexture_p1ygu")
 
+[node name="ResourceSetterNew" parent="Sprite/Brick" parent_id_path=PackedInt32Array(2111926506) index="0" unique_id=207592112]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
+
 [node name="ResourceSetter" parent="Sprite" index="1" unique_id=1235787959]
 themed_resource = SubResource("Resource_dij8c")

@@ -1,5 +1,4 @@
 [gd_scene format=4 uid="uid://b0omfelsiothx"]
-
 [ext_resource type="Script" uid="uid://caugelxhwlvl0" path="res://Scripts/Parts/LostLevelsEnding.gd" id="1_qmhaw"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Ending.json" id="2_k7rel"]
 [ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="4_fxsfu"]
@@ -15,7 +14,6 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="13_k7rel"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Players/ToadNPC.json" id="14_ecp1v"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="14_motu5"]
-
 [sub_resource type="Animation" id="Animation_xoqts"]
 resource_name = "Appear"
 length = 5.0
@@ -115,7 +113,6 @@ tracks/7/keys = {
 "update": 1,
 "values": [false, true]
 }
-
 [sub_resource type="Animation" id="Animation_wr0ye"]
 length = 0.001
 tracks/0/type = "value"
@@ -214,13 +211,11 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k7rel"]
 _data = {
 &"Appear": SubResource("Animation_xoqts"),
 &"RESET": SubResource("Animation_wr0ye")
 }
-
 [sub_resource type="Animation" id="Animation_ecp1v"]
 resource_name = "Main"
 length = 50.0
@@ -299,7 +294,6 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-
 [sub_resource type="Animation" id="Animation_1flm1"]
 length = 0.001
 tracks/0/type = "value"
@@ -350,21 +344,17 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3n3sl"]
 _data = {
 &"Main": SubResource("Animation_ecp1v"),
 &"RESET": SubResource("Animation_1flm1")
 }
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_xoqts"]
 atlas = ExtResource("11_iab5g")
 region = Rect2(32, 0, 16, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_wr0ye"]
 atlas = ExtResource("11_iab5g")
 region = Rect2(48, 0, 16, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_k7rel"]
 animations = [{
 "frames": [{
@@ -378,7 +368,6 @@ animations = [{
 "name": &"Talk",
 "speed": 5.0
 }]
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wr0ye"]
 texture = ExtResource("11_xoqts")
 4:5/0 = 0
@@ -387,15 +376,12 @@ texture = ExtResource("11_xoqts")
 5:7/0 = 0
 5:5/0 = 0
 4:7/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_k7rel"]
 sources/0 = SubResource("TileSetAtlasSource_wr0ye")
-
 [sub_resource type="Resource" id="Resource_lm4pj"]
 script = ExtResource("14_motu5")
 Overworld = ExtResource("11_xoqts")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
-
 [node name="LostLevelsEnding" type="Node" unique_id=1711187041]
 script = ExtResource("1_qmhaw")
 music = ExtResource("2_k7rel")
@@ -404,14 +390,11 @@ campaign = "SMBLL"
 world_id = 8
 level_id = 4
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=83495059]
 position = Vector2(0, -88)
 process_callback = 0
-
 [node name="Node2D" type="Node2D" parent="." unique_id=623444826]
 position = Vector2(0, 1)
-
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Node2D" unique_id=895567798 node_paths=PackedStringArray("resource_setter")]
 sprite_frames = ExtResource("4_fxsfu")
 animation = &"Idle"
@@ -419,24 +402,19 @@ offset = Vector2(0, 1)
 script = ExtResource("4_tkq3a")
 resource_setter = NodePath("ResourceSetterNew")
 metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
-
 [node name="ResourceSetterNew" type="Node" parent="Node2D/PlayerSprite" unique_id=1449914842]
+process_mode = 3
 script = ExtResource("13_k7rel")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1375737612]
-
 [node name="TextAnimation" type="AnimationPlayer" parent="." unique_id=937665763]
 libraries/ = SubResource("AnimationLibrary_k7rel")
 speed_scale = 0.5
-
 [node name="MainSequence" type="AnimationPlayer" parent="." unique_id=1651003073]
 libraries/ = SubResource("AnimationLibrary_3n3sl")
 autoplay = &"Main"
-
 [node name="Peach" parent="." unique_id=780318776 instance=ExtResource("9_k7rel")]
 position = Vector2(-8, -1)
-
 [node name="ThankYou" type="Label" parent="." unique_id=1388092997]
 visible = false
 visibility_layer = 2
@@ -448,9 +426,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "CUTSCENE_CASTLE_PEACH_1"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="Text2" type="Node2D" parent="." unique_id=1055138343]
-
 [node name="PeaceIsPaved" type="Label" parent="Text2" unique_id=1750923006]
 visible = false
 visibility_layer = 2
@@ -464,7 +440,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_1"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="KingdomSaved" type="Label" parent="Text2" unique_id=1582907932]
 visible = false
 visibility_layer = 2
@@ -479,7 +454,6 @@ text = "CUTSCENE_LL_PEACH_2"
 horizontal_alignment = 1
 uppercase = true
 visible_characters_behavior = 1
-
 [node name="Hurrah" type="Label" parent="Text2" unique_id=205532848]
 visible = false
 visibility_layer = 2
@@ -493,7 +467,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_3"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="Hero" type="Label" parent="Text2" unique_id=1941219545]
 visible = false
 visibility_layer = 2
@@ -507,7 +480,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_4"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="EndsTrip" type="Label" parent="Text2" unique_id=1844608071]
 visible = false
 visibility_layer = 2
@@ -521,7 +493,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_5"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="LongFriendship" type="Label" parent="Text2" unique_id=1962399239]
 visible = false
 visibility_layer = 2
@@ -535,7 +506,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_6"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="PointsAdded" type="Label" parent="Text2" unique_id=867146543]
 visible = false
 visibility_layer = 2
@@ -549,7 +519,6 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_7"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="ForEachLife" type="Label" parent="Text2" unique_id=1097964573]
 visible = false
 visibility_layer = 2
@@ -563,9 +532,7 @@ theme_override_fonts/font = ExtResource("9_1flm1")
 text = "CUTSCENE_LL_PEACH_8"
 horizontal_alignment = 1
 uppercase = true
-
 [node name="Toads" type="Node" parent="." unique_id=2088456219]
-
 [node name="1" type="AnimatedSprite2D" parent="Toads" unique_id=53468523]
 visible = false
 position = Vector2(-88, -16)
@@ -573,14 +540,14 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/1" unique_id=1706761699 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="2" type="AnimatedSprite2D" parent="Toads" unique_id=1218612190]
 visible = false
 position = Vector2(-64, -16)
@@ -588,14 +555,14 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/2" unique_id=1980938916 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="3" type="AnimatedSprite2D" parent="Toads" unique_id=2095503278]
 visible = false
 position = Vector2(-40, -16)
@@ -603,14 +570,14 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/3" unique_id=1569870405 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="4" type="AnimatedSprite2D" parent="Toads" unique_id=310052237]
 visible = false
 position = Vector2(-16, -16)
@@ -618,14 +585,14 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/4" unique_id=1762184883 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="5" type="AnimatedSprite2D" parent="Toads" unique_id=1424507602]
 visible = false
 position = Vector2(40, -16)
@@ -633,14 +600,14 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/5" unique_id=1137761362 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="6" type="AnimatedSprite2D" parent="Toads" unique_id=1722656019]
 visible = false
 position = Vector2(64, -16)
@@ -648,14 +615,14 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/6" unique_id=622120433 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="7" type="AnimatedSprite2D" parent="Toads" unique_id=1356185919]
 visible = false
 position = Vector2(88, -16)
@@ -663,100 +630,150 @@ sprite_frames = SubResource("SpriteFrames_k7rel")
 animation = &"Talk"
 autoplay = "Talk"
 offset = Vector2(0, 1)
-
 [node name="ResourceSetterNew" type="Node" parent="Toads/7" unique_id=54691425 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("13_k7rel")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("14_ecp1v")
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=589209533]
 z_index = -50
 repeat_size = Vector2(256, 512)
 repeat_times = 8
-
 [node name="TileMapLayer" type="TileMapLayer" parent="Parallax2D" unique_id=111629799]
 tile_map_data = PackedByteArray("AAD4/wAAAAAFAAUAAAD5/wAAAAAEAAUAAAD6/wAAAAAFAAUAAAD7/wAAAAAEAAUAAAD8/wAAAAAFAAUAAAD9/wAAAAAEAAUAAAD+/wAAAAAFAAUAAAD//wAAAAAEAAUAAAAAAAAAAAAFAAUAAAABAAAAAAAEAAUAAAACAAAAAAAFAAUAAAADAAAAAAAEAAUAAAAEAAAAAAAFAAUAAAAFAAAAAAAEAAUAAAAGAAAAAAAFAAUAAAAHAAAAAAAEAAUAAAD4/wEAAAAFAAYAAAD5/wEAAAAEAAYAAAD6/wEAAAAFAAYAAAD7/wEAAAAEAAYAAAD8/wEAAAAFAAYAAAD9/wEAAAAEAAYAAAD+/wEAAAAFAAYAAAD//wEAAAAEAAYAAAAAAAEAAAAFAAYAAAABAAEAAAAEAAYAAAACAAEAAAAFAAYAAAADAAEAAAAEAAYAAAAEAAEAAAAFAAYAAAAFAAEAAAAEAAYAAAAGAAEAAAAFAAYAAAAHAAEAAAAEAAYAAAA=")
 tile_set = SubResource("TileSet_k7rel")
-
 [node name="TilesetTextureSetter" type="Node" parent="Parallax2D/TileMapLayer" unique_id=1220497354 node_paths=PackedStringArray("tile_map")]
 script = ExtResource("12_ecp1v")
 tile_map = NodePath("..")
 texture = ExtResource("11_xoqts")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
-
 [node name="ResourceSetter" type="Node" parent="Parallax2D/TileMapLayer/TilesetTextureSetter" unique_id=1582205578 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("13_3n3sl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 themed_resource = SubResource("Resource_lm4pj")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
-
 [node name="Day" type="Node2D" parent="." unique_id=2101083876]
-
 [node name="LevelBG" parent="Day" unique_id=1291160966 instance=ExtResource("10_iab5g")]
 primary_layer = 1
-
 [node name="ResourceSetter" parent="Day/LevelBG/SkyLayer/Sky" parent_id_path=PackedInt32Array(1291160966, 1567232516) index="0" unique_id=1448806414]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
 use_cache = false
 force_properties = {
 "Time": "Day"
 }
-
+[node name="ResourceSetter" parent="Day/LevelBG/PrimaryLayer/Hills" parent_id_path=PackedInt32Array(1291160966, 2094505978) index="0" unique_id=1085100083]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Hills/Hill.json"
 [node name="ResourceSetter" parent="Day/LevelBG/PrimaryLayer/Bush" parent_id_path=PackedInt32Array(1291160966, 1658473420) index="0" unique_id=653505830]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Bushes/Bush.json"
 use_cache = false
 force_properties = {
 "Time": "Day"
 }
-
+[node name="ResourceSetterNew" parent="Day/LevelBG/TopEdge/Sprite" parent_id_path=PackedInt32Array(1291160966, 750812347) index="0" unique_id=1443367621]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/TopEdge.json"
+[node name="ResourceSetterNew" parent="Day/LevelBG/SecondaryLayer/Trees/Tint/ColourPaletteSampler" parent_id_path=PackedInt32Array(1291160966, 1903806123) index="0" unique_id=530819962]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
+[node name="ResourceSetterNew" parent="Day/LevelBG/SecondaryLayer/Trees" parent_id_path=PackedInt32Array(1291160966, 2048034587) index="1" unique_id=1524968664]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/SecondaryTrees/SecondaryTrees.json"
+[node name="ResourceSetterNew" parent="Day/LevelBG/SecondaryLayer/Mushrooms" parent_id_path=PackedInt32Array(1291160966, 978660926) index="0" unique_id=1336031657]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/SecondaryMushrooms/Mushrooms.json"
+[node name="ResourceSetterNew" parent="Day/LevelBG/SecondaryLayer/Mushrooms/Tint/ColourPaletteSampler" parent_id_path=PackedInt32Array(1291160966, 1374362209) index="0" unique_id=1145216853]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
+[node name="ResourceSetter" parent="Day/LevelBG/OverlayLayer/CloudLayer/Clouds" parent_id_path=PackedInt32Array(1291160966, 1266660399) index="0" unique_id=181819975]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/CloudOverlays/OverlayClouds.json"
+[node name="ResourceSetter" parent="Day/LevelBG/OverlayLayer/Particles/Snow" parent_id_path=PackedInt32Array(1291160966, 334746212) index="0" unique_id=863458771]
+process_mode = 3
+json_path = "res://Assets/Sprites/Particles/Snow.json"
+[node name="ResourceSetterNew" parent="Day/LevelBG/OverlayLayer/Particles/Leaves" parent_id_path=PackedInt32Array(1291160966, 1295962048) index="0" unique_id=1249667146]
+process_mode = 3
+json_path = "res://Assets/Sprites/Particles/Leaves.json"
+[node name="ResourceSetterNew" parent="Day/LevelBG/FGLayer/Sprite" parent_id_path=PackedInt32Array(1291160966, 1675199376) index="0" unique_id=1554701366]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/FGs/FGLayer.json"
 [node name="Water" parent="Day/LevelBG/LiquidLayer" parent_id_path=PackedInt32Array(1291160966, 817618312) index="0" unique_id=1241372610]
 visible = false
-
 [node name="Lava" parent="Day/LevelBG/LiquidLayer" parent_id_path=PackedInt32Array(1291160966, 817618312) index="1" unique_id=577472942]
 visible = false
-
 [node name="Poison" parent="Day/LevelBG/LiquidLayer" parent_id_path=PackedInt32Array(1291160966, 817618312) index="2" unique_id=1871222385]
 visible = false
-
 [node name="DropShadow" parent="Day" unique_id=1022488551 instance=ExtResource("6_g1x38")]
 z_as_relative = false
-
 [node name="ResourceSetter" parent="Day/DropShadow/ColourPaletteSampler" parent_id_path=PackedInt32Array(1022488551, 839336673) index="0" unique_id=295284895]
+json_path = "res://Assets/Sprites/Particles/DropShadow.json"
 use_cache = false
 force_properties = {
 "Time": "Day"
 }
-
 [node name="Night" type="Node2D" parent="." unique_id=1563939056]
-
 [node name="LevelBG" parent="Night" unique_id=994953103 instance=ExtResource("10_iab5g")]
 primary_layer = 1
-
 [node name="ResourceSetter" parent="Night/LevelBG/SkyLayer/Sky" parent_id_path=PackedInt32Array(994953103, 1567232516) index="0" unique_id=1448806414]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
 use_cache = false
 force_properties = {
 "Time": "Night"
 }
-
+[node name="ResourceSetter" parent="Night/LevelBG/PrimaryLayer/Hills" parent_id_path=PackedInt32Array(994953103, 2094505978) index="0" unique_id=1085100083]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Hills/Hill.json"
 [node name="ResourceSetter" parent="Night/LevelBG/PrimaryLayer/Bush" parent_id_path=PackedInt32Array(994953103, 1658473420) index="0" unique_id=653505830]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Bushes/Bush.json"
 use_cache = false
 force_properties = {
 "Time": "Night"
 }
-
+[node name="ResourceSetterNew" parent="Night/LevelBG/TopEdge/Sprite" parent_id_path=PackedInt32Array(994953103, 750812347) index="0" unique_id=1443367621]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/TopEdge.json"
+[node name="ResourceSetterNew" parent="Night/LevelBG/SecondaryLayer/Trees/Tint/ColourPaletteSampler" parent_id_path=PackedInt32Array(994953103, 1903806123) index="0" unique_id=530819962]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
+[node name="ResourceSetterNew" parent="Night/LevelBG/SecondaryLayer/Trees" parent_id_path=PackedInt32Array(994953103, 2048034587) index="1" unique_id=1524968664]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/SecondaryTrees/SecondaryTrees.json"
+[node name="ResourceSetterNew" parent="Night/LevelBG/SecondaryLayer/Mushrooms" parent_id_path=PackedInt32Array(994953103, 978660926) index="0" unique_id=1336031657]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/SecondaryMushrooms/Mushrooms.json"
+[node name="ResourceSetterNew" parent="Night/LevelBG/SecondaryLayer/Mushrooms/Tint/ColourPaletteSampler" parent_id_path=PackedInt32Array(994953103, 1374362209) index="0" unique_id=1145216853]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
+[node name="ResourceSetter" parent="Night/LevelBG/OverlayLayer/CloudLayer/Clouds" parent_id_path=PackedInt32Array(994953103, 1266660399) index="0" unique_id=181819975]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/CloudOverlays/OverlayClouds.json"
+[node name="ResourceSetter" parent="Night/LevelBG/OverlayLayer/Particles/Snow" parent_id_path=PackedInt32Array(994953103, 334746212) index="0" unique_id=863458771]
+process_mode = 3
+json_path = "res://Assets/Sprites/Particles/Snow.json"
+[node name="ResourceSetterNew" parent="Night/LevelBG/OverlayLayer/Particles/Leaves" parent_id_path=PackedInt32Array(994953103, 1295962048) index="0" unique_id=1249667146]
+process_mode = 3
+json_path = "res://Assets/Sprites/Particles/Leaves.json"
+[node name="ResourceSetterNew" parent="Night/LevelBG/FGLayer/Sprite" parent_id_path=PackedInt32Array(994953103, 1675199376) index="0" unique_id=1554701366]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/FGs/FGLayer.json"
 [node name="Water" parent="Night/LevelBG/LiquidLayer" parent_id_path=PackedInt32Array(994953103, 817618312) index="0" unique_id=1241372610]
 visible = false
-
 [node name="Lava" parent="Night/LevelBG/LiquidLayer" parent_id_path=PackedInt32Array(994953103, 817618312) index="1" unique_id=577472942]
 visible = false
-
 [node name="Poison" parent="Night/LevelBG/LiquidLayer" parent_id_path=PackedInt32Array(994953103, 817618312) index="2" unique_id=1871222385]
 visible = false
-
 [node name="DropShadow" parent="Night" unique_id=1100264371 instance=ExtResource("6_g1x38")]
 z_as_relative = false
-
+[node name="ResourceSetter" parent="Night/DropShadow/ColourPaletteSampler" parent_id_path=PackedInt32Array(1100264371, 839336673) index="0" unique_id=295284895]
+json_path = "res://Assets/Sprites/Particles/DropShadow.json"
 [editable path="Day/LevelBG"]
 [editable path="Day/DropShadow"]
 [editable path="Night/LevelBG"]

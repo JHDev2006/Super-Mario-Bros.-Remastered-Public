@@ -7,6 +7,7 @@
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(469346055) index="0" unique_id=1325056225]
 resource_json = ExtResource("2_mhe8b")
+json_path = "res://Assets/Sprites/Enemies/Goombrat.json"
 
 [node name="LedgeDetectionCast" parent="." index="13" unique_id=1692928272]
 position = Vector2(-4, -5)

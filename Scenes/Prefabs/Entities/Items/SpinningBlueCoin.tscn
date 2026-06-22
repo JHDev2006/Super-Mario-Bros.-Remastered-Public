@@ -13,4 +13,6 @@ autoplay = "Spin"
 frame_progress = 0.0
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=1393776669]
+process_mode = 3
 resource_json = ExtResource("3_da77p")
+json_path = "res://Assets/Sprites/Items/SpinningBlueCoin.json"

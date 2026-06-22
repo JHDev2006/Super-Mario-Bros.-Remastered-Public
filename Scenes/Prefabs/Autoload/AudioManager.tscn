@@ -19,6 +19,7 @@ parameters/looping = true
 bus = &"Music"
 
 [node name="ResourceSetterNew" type="Node" parent="." unique_id=1588724306 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_yp3lf")
 node_to_affect = NodePath("..")
 property_name = "gotten_resource"

@@ -151,11 +151,13 @@ position = Vector2(0, -88)
 texture = SubResource("AtlasTexture_uwkl1")
 
 [node name="ResourceSetterNew" type="Node" parent="Pole" unique_id=1759828279 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_sjcdg")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_nykv5")
+json_path = "res://Assets/Sprites/Tilesets/FlagPole.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="FlagJoint" type="Node2D" parent="." unique_id=431859251]
@@ -167,10 +169,12 @@ sprite_frames = SubResource("SpriteFrames_tpsyw")
 autoplay = "default"
 
 [node name="ResourceSetterNew" type="Node" parent="FlagJoint/Flag" unique_id=494528197 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_sjcdg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_tpsyw")
+json_path = "res://Assets/Sprites/Tilesets/Flag.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=2097646295]

@@ -41,18 +41,22 @@ gravity = Vector2(0, 0)
 color_ramp = SubResource("Gradient_n5h2d")
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite/Trail" unique_id=566647175 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("2_tvbh4")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("4_n5h2d")
+json_path = "res://Assets/Sprites/Particles/SuperballTrail.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetter" type="Node" parent="Sprite" unique_id=1875566693 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("2_tvbh4")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("3_e4hr8")
+json_path = "res://Assets/Sprites/Items/SuperballProjectile.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=779969667]

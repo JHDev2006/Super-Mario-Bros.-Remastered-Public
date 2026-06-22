@@ -97,6 +97,7 @@ autoplay = ""
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=873755014]
 resource_json = ExtResource("3_yech7")
+json_path = "res://Assets/Sprites/Blocks/BooBlueOnOffBlock.json"
 
 [node name="Collision" parent="." index="1" unique_id=687421064]
 disabled = false

@@ -63,20 +63,20 @@ offset_bottom = 16.0
 axis_stretch_vertical = 2
 
 [node name="ResourceSetterNew" type="Node" parent="." unique_id=633166499 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_bh0ve")
 node_to_affect = NodePath("../Button/Icon")
 property_name = "texture"
 mode = 1
-use_metadata = false
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetterNew2" type="Node" parent="." unique_id=1958858714 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_bh0ve")
 node_to_affect = NodePath("../Button/Icon/SecondaryIcon")
 property_name = "texture"
 mode = 1
-use_metadata = false
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

@@ -72,10 +72,12 @@ script = ExtResource("3_1x1il")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="RotationJoint/Sprite" unique_id=1213319844 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_xj1cg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("5_bc7fo")
+json_path = "res://Assets/Sprites/Enemies/PiranhaPlant.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="RotationJoint" unique_id=154198614]

@@ -67,6 +67,42 @@ script = ExtResource("14_wo30q")
 tilemap = NodePath("../Tiles")
 metadata/_custom_type_script = "uid://cybpwmw4ywoow"
 [node name="LevelBG" parent="." unique_id=500988386 instance=ExtResource("13_wo30q")]
+[node name="ResourceSetter" parent="LevelBG/SkyLayer/Sky" parent_id_path=PackedInt32Array(500988386, 1567232516) index="0" unique_id=1448806414]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
+[node name="ResourceSetter" parent="LevelBG/PrimaryLayer/Hills" parent_id_path=PackedInt32Array(500988386, 2094505978) index="0" unique_id=1085100083]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Hills/Hill.json"
+[node name="ResourceSetter" parent="LevelBG/PrimaryLayer/Bush" parent_id_path=PackedInt32Array(500988386, 1658473420) index="0" unique_id=653505830]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Bushes/Bush.json"
+[node name="ResourceSetterNew" parent="LevelBG/TopEdge/Sprite" parent_id_path=PackedInt32Array(500988386, 750812347) index="0" unique_id=1443367621]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/TopEdge.json"
+[node name="ResourceSetterNew" parent="LevelBG/SecondaryLayer/Trees/Tint/ColourPaletteSampler" parent_id_path=PackedInt32Array(500988386, 1903806123) index="0" unique_id=530819962]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
+[node name="ResourceSetterNew" parent="LevelBG/SecondaryLayer/Trees" parent_id_path=PackedInt32Array(500988386, 2048034587) index="1" unique_id=1524968664]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/SecondaryTrees/SecondaryTrees.json"
+[node name="ResourceSetterNew" parent="LevelBG/SecondaryLayer/Mushrooms" parent_id_path=PackedInt32Array(500988386, 978660926) index="0" unique_id=1336031657]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/SecondaryMushrooms/Mushrooms.json"
+[node name="ResourceSetterNew" parent="LevelBG/SecondaryLayer/Mushrooms/Tint/ColourPaletteSampler" parent_id_path=PackedInt32Array(500988386, 1374362209) index="0" unique_id=1145216853]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
+[node name="ResourceSetter" parent="LevelBG/OverlayLayer/CloudLayer/Clouds" parent_id_path=PackedInt32Array(500988386, 1266660399) index="0" unique_id=181819975]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/CloudOverlays/OverlayClouds.json"
+[node name="ResourceSetter" parent="LevelBG/OverlayLayer/Particles/Snow" parent_id_path=PackedInt32Array(500988386, 334746212) index="0" unique_id=863458771]
+process_mode = 3
+json_path = "res://Assets/Sprites/Particles/Snow.json"
+[node name="ResourceSetterNew" parent="LevelBG/OverlayLayer/Particles/Leaves" parent_id_path=PackedInt32Array(500988386, 1295962048) index="0" unique_id=1249667146]
+process_mode = 3
+json_path = "res://Assets/Sprites/Particles/Leaves.json"
+[node name="ResourceSetterNew" parent="LevelBG/FGLayer/Sprite" parent_id_path=PackedInt32Array(500988386, 1675199376) index="0" unique_id=1554701366]
+process_mode = 3
+json_path = "res://Assets/Sprites/Backgrounds/FGs/FGLayer.json"
 [node name="ChallengeNodes" type="Node" parent="." unique_id=2112457358]
 script = ExtResource("16_xh2w8")
 metadata/_custom_type_script = "uid://cgm3opb5qudc1"

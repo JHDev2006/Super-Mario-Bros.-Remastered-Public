@@ -66,7 +66,7 @@ func handle_main_hud() -> void:
 
 func update_character_info() -> void:
 	%CharacterName.text = tr(Player.CHARACTER_NAMES[int(Global.player_characters[0])])
-	%CharacterIcon.get_node("ResourceSetterNew").resource_json = (character_icons[int(Global.player_characters[0])])
+	%CharacterIcon.get_node("ResourceSetterNew").json_path = (character_icons[int(Global.player_characters[0])]).resource_path
 	current_chara = Global.player_characters[0]
 
 func handle_modern_hud() -> void:

@@ -13,6 +13,7 @@ size = Vector2(16, 4)
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(90981639) index="0" unique_id=2112420637]
 resource_json = ExtResource("2_sigod")
+json_path = "res://Assets/Sprites/Blocks/SmallOneWayPanel.json"
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1034277210]
 shape = SubResource("RectangleShape2D_sigod")

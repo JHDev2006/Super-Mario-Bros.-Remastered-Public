@@ -295,7 +295,6 @@ text = "EDITOR_MAIN_CREATE_1"
 uppercase = true
 
 [node name="TextureRect" type="TextureRect" parent="BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button" unique_id=596551789]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -306,11 +305,13 @@ offset_bottom = 4.0
 grow_vertical = 2
 
 [node name="ResourceSetterNew" type="Node" parent="BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button/TextureRect" unique_id=1958571745 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("15_7mmoe")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Control" type="Control" parent="BG/Border/Levels/VBoxContainer/LevelList/TopBit" unique_id=704573966]
@@ -370,11 +371,13 @@ texture = SubResource("AtlasTexture_f5g2b")
 stretch_mode = 3
 
 [node name="ResourceSetter" type="Node" parent="BG/Border/Levels/VBoxContainer/LevelList/Search/Control/Cursor" unique_id=620948338 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("15_7mmoe")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="TextureRect" type="TextureRect" parent="BG/Border/Levels/VBoxContainer/LevelList/Search" unique_id=396363867]
@@ -491,15 +494,20 @@ focus_mode = 0
 mouse_filter = 2
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="0" unique_id=1149291090]
-scroll_horizontal = 216
+scroll_horizontal = 2
 is_active = true
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="1" unique_id=1538947480]
+scroll_horizontal = 2
 is_active = true
 
 [node name="ScrollContainer3" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="2" unique_id=1855133180]
-scroll_horizontal = 112
+scroll_horizontal = 2
 is_active = true
+
+[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/TextureRect" parent_id_path=PackedInt32Array(1573298747, 2090391159) index="0" unique_id=753910969]
+process_mode = 3
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 
 [node name="Panel" type="PanelContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo" unique_id=2125756912]
 layout_mode = 2
@@ -509,7 +517,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/Panel" unique_id=975980634]
 layout_mode = 2
 mouse_filter = 0
-scroll_vertical = 127
+scroll_vertical = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("24_wf6nb")
@@ -553,6 +561,10 @@ focus_neighbor_right = NodePath("../Edit")
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Play" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_LEVEL_PLAY"
 
+[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Play/Cursor/Control/TextureRect" parent_id_path=PackedInt32Array(1811287982, 332120313) index="0" unique_id=376339991]
+process_mode = 3
+json_path = "res://Assets/Sprites/UI/Cursor.json"
+
 [node name="Edit" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer" unique_id=722726036 instance=ExtResource("19_hvf3u")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -568,6 +580,10 @@ texture = SubResource("AtlasTexture_hvf3u")
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Edit" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_LEVEL_EDIT"
 
+[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Edit/Cursor/Control/TextureRect" parent_id_path=PackedInt32Array(722726036, 332120313) index="0" unique_id=376339991]
+process_mode = 3
+json_path = "res://Assets/Sprites/UI/Cursor.json"
+
 [node name="Delete" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer" unique_id=1897618213 instance=ExtResource("19_hvf3u")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -582,6 +598,10 @@ texture = SubResource("AtlasTexture_otk5o")
 
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Delete" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_LEVEL_DELETE"
+
+[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/Delete/Cursor/Control/TextureRect" parent_id_path=PackedInt32Array(1897618213, 332120313) index="0" unique_id=376339991]
+process_mode = 3
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 
 [node name="DeleteConfirm" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer" unique_id=1029580246 instance=ExtResource("19_hvf3u")]
 visible = false
@@ -599,6 +619,10 @@ texture = SubResource("AtlasTexture_otk5o")
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/DeleteConfirm" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_LEVEL_CONFIRM"
 
+[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/DeleteConfirm/Cursor/Control/TextureRect" parent_id_path=PackedInt32Array(1029580246, 332120313) index="0" unique_id=376339991]
+process_mode = 3
+json_path = "res://Assets/Sprites/UI/Cursor.json"
+
 [node name="OpenAutosaves" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer" unique_id=1979739147 instance=ExtResource("19_hvf3u")]
 unique_name_in_owner = true
 layout_mode = 2
@@ -614,6 +638,10 @@ texture = SubResource("AtlasTexture_cwgd5")
 
 [node name="Label" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves" index="2" unique_id=1354378166]
 text = "EDITOR_MAIN_AUTOSAVES"
+
+[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LevelInfo/HBoxContainer/OpenAutosaves/Cursor/Control/TextureRect" parent_id_path=PackedInt32Array(1979739147, 332120313) index="0" unique_id=376339991]
+process_mode = 3
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 
 [node name="LSSBrowser" type="VBoxContainer" parent="BG/Border/Levels/VBoxContainer" unique_id=1228715031]
 unique_name_in_owner = true
@@ -674,11 +702,13 @@ texture = SubResource("AtlasTexture_f5g2b")
 stretch_mode = 3
 
 [node name="ResourceSetter" type="Node" parent="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer/Search/Control/Cursor" unique_id=1312277964 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("15_7mmoe")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="TextureRect" type="TextureRect" parent="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer/Search" unique_id=22885893]
@@ -787,13 +817,18 @@ focus_mode = 0
 mouse_filter = 2
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(561241708, 788084636) index="0" unique_id=339759982]
-scroll_horizontal = 50
+scroll_horizontal = 2
 is_active = true
 auto_connect_focus = false
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(561241708, 788084636) index="1" unique_id=1470364982]
+scroll_horizontal = 2
 is_active = true
 auto_connect_focus = false
+
+[node name="ResourceSetterNew" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/TextureRect" parent_id_path=PackedInt32Array(561241708, 1809654753) index="0" unique_id=1523521567]
+process_mode = 3
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 
 [node name="Panel" type="PanelContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo" unique_id=911678100]
 layout_mode = 2
@@ -804,7 +839,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/Panel" unique_id=1801631913]
 layout_mode = 2
 mouse_filter = 0
-scroll_vertical = 68
+scroll_vertical = 2
 horizontal_scroll_mode = 3
 script = ExtResource("24_wf6nb")
 direction = 1
@@ -887,11 +922,13 @@ texture = SubResource("AtlasTexture_f5g2b")
 stretch_mode = 3
 
 [node name="ResourceSetter" type="Node" parent="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/Control/Cursor" unique_id=310944073 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("15_7mmoe")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="SelectableLabel" type="Label" parent="BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings" unique_id=1846027017]
@@ -968,11 +1005,13 @@ stream = ExtResource("23_22hnx")
 bus = &"Music"
 
 [node name="ResourceSetterNew" type="Node" parent="BGM" unique_id=1054115827 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("14_tjro6")
 node_to_affect = NodePath("..")
 property_name = "stream"
 mode = 2
 resource_json = ExtResource("29_r5ajm")
+json_path = "res://Assets/Audio/BGM/CustomLevel.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CharacterSelect" parent="." unique_id=1584069562 instance=ExtResource("28_u8fen")]

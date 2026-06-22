@@ -1129,9 +1129,11 @@ script = ExtResource("42_pagxn")
 tile_map = NodePath("..")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 [node name="ResourceSetterNew" type="Node" parent="Tiles2/BG/TilesetTextureSetter" unique_id=6936796 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("43_q2kg8")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("44_i1bin")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

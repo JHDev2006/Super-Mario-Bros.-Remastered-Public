@@ -225,10 +225,12 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_px5di")
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=2072809490 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_ddx5o")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_dhnkc")
+json_path = "res://Assets/Sprites/Enemies/Spike.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Ball" type="AnimatedSprite2D" parent="Sprite" unique_id=1815306687]
@@ -240,10 +242,12 @@ scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_1nkq5")
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite/Ball" unique_id=955874857 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_ddx5o")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("7_l0d5l")
+json_path = "res://Assets/Sprites/Items/SpikeBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2118366870]

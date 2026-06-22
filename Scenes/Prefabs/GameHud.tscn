@@ -233,17 +233,21 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Main/CoinCount/KeyCount/Icon/Shadow" unique_id=1126161187 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_jt73e")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_mqa5s")
+json_path = "res://Assets/Sprites/UI/KeyIcon.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetterNew" type="Node" parent="Main/CoinCount/KeyCount/Icon" unique_id=1619030652 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_jt73e")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_mqa5s")
+json_path = "res://Assets/Sprites/UI/KeyIcon.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="KeyAmount" type="Label" parent="Main/CoinCount/KeyCount" unique_id=1342230329]
@@ -264,10 +268,12 @@ frame_progress = 0.132926
 centered = false
 
 [node name="ResourceSetter" type="Node" parent="Main/CoinCount/CoinIcon" unique_id=104121286 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_jt73e")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_niy8w")
+json_path = "res://Assets/Sprites/UI/CoinIcon.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CoinLabel" type="Label" parent="Main/CoinCount" unique_id=922211751]
@@ -625,10 +631,12 @@ frame_progress = 0.982312
 centered = false
 
 [node name="ResourceSetter" type="Node" parent="ModernHUD/TopLeft/CoinCount/Coin" unique_id=1160435973 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_jt73e")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("4_niy8w")
+json_path = "res://Assets/Sprites/UI/CoinIcon.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ModernCoinCount" type="Label" parent="ModernHUD/TopLeft/CoinCount" unique_id=1169933334]
@@ -855,6 +863,7 @@ texture = ExtResource("10_2w8b3")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="ModernHUD/TopLeft/LifeCount/CharacterIcon" unique_id=1925756470 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_jt73e")
 node_to_affect = NodePath("..")
 property_name = "texture"
@@ -909,17 +918,21 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="ModernHUD/TopLeft/ModernKeyCount/Icon/Shadow" unique_id=1915489393 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_jt73e")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_mqa5s")
+json_path = "res://Assets/Sprites/UI/KeyIcon.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetterNew" type="Node" parent="ModernHUD/TopLeft/ModernKeyCount/Icon" unique_id=1627969939 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_jt73e")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 resource_json = ExtResource("6_mqa5s")
+json_path = "res://Assets/Sprites/UI/KeyIcon.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ModernKeyAmount" type="Label" parent="ModernHUD/TopLeft/ModernKeyCount" unique_id=223885825]
@@ -1078,11 +1091,13 @@ value_to_set = "global_text_shadow_color"
 metadata/_custom_type_script = "uid://dwtrmo82e12ud"
 
 [node name="ResourceSetterNew" type="Node" parent="ColourPaletteSampler" unique_id=1048625178 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_jt73e")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
 resource_json = ExtResource("25_oeqb4")
+json_path = "res://Assets/Sprites/UI/TextShadow.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="TextShadowColourChanger" type="Node" parent="." unique_id=1809238252 node_paths=PackedStringArray("labels", "shadow_node")]

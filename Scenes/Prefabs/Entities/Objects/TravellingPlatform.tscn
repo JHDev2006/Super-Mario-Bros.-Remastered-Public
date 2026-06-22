@@ -16,6 +16,10 @@ offset_left = -16.0
 offset_right = 16.0
 texture = ExtResource("2_c263f")
 
+[node name="ResourceSetterNew" parent="Sprite" index="0" unique_id=1577693591]
+process_mode = 3
+json_path = "res://Assets/Sprites/Tilesets/CloudPlatform.json"
+
 [node name="Collision" parent="." index="1" unique_id=357597138]
 shape = SubResource("RectangleShape2D_kdp6m")
 

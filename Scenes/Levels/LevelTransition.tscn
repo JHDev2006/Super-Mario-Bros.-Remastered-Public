@@ -313,6 +313,7 @@ force_power_state = "Small"
 resource_setter = NodePath("ResourceSetterNew")
 
 [node name="ResourceSetterNew" type="Node" parent="BG/Control/PlayerSprite" unique_id=1331077916]
+process_mode = 3
 script = ExtResource("5_mcaat")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 

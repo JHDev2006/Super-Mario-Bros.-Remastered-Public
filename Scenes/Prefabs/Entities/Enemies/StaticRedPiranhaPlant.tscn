@@ -7,3 +7,4 @@
 
 [node name="ResourceSetterNew" parent="RotationJoint/Sprite" parent_id_path=PackedInt32Array(1886446228) index="0" unique_id=1213319844]
 resource_json = ExtResource("2_1fvmx")
+json_path = "res://Assets/Sprites/Enemies/RedPiranhaPlant.json"
