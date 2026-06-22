@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="2_4m1ya"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BulletBill.json" id="2_yq5dk"]
 [node name="C-4" unique_id=583667770 instance=ExtResource("1_yq5dk")]
+theme_time = "Day"
 time_limit = 300
 world_id = 12
 [node name="Tiles" parent="." index="0" unique_id=1442026388]
