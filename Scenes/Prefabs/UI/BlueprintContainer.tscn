@@ -35,7 +35,7 @@ theme_override_constants/margin_right = 3
 
 [node name="AutoScrollContainer" type="ScrollContainer" parent="Button/MarginContainer" unique_id=1932372163]
 layout_mode = 2
-scroll_horizontal = 2
+scroll_horizontal = 7
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 script = ExtResource("2_yixlu")

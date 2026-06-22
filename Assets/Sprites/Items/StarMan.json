@@ -2,24 +2,56 @@
 	"animations": {
 		"default": {
 			"frames": [
-				[0, 0, 16, 16],
-				[16, 0, 16, 16],
-				[32, 0, 16, 16],
-				[48, 0, 16, 16]
+				[
+					0.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					16.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					32.0,
+					0.0,
+					16.0,
+					16.0
+				],
+				[
+					48.0,
+					0.0,
+					16.0,
+					16.0
+				]
 			],
-			"speed": 15,
+			"speed": 15.0,
 			"loop": true
 		}
 	},
 	"variations": {
 		"SMB1": {
 			"source": "SuperStar.png",
-			"rect": [0, 0, 64, 16]
+			"rect": [
+				0.0,
+				0.0,
+				64.0,
+				16.0
+			]
 		},
 		"SMBS": {
 			"source": "SuperStar.png",
-			"rect": [0, 16, 64, 16]
+			"rect": [
+				0.0,
+				16.0,
+				64.0,
+				16.0
+			]
 		},
-		"SMBANN": {"source": "DiscoStar.png"}
+		"SMBANN": {
+			"source": "DiscoStar.png"
+		}
 	}
 }

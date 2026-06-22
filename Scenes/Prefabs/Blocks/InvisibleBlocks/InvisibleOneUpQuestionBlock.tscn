@@ -29,15 +29,4 @@ _bundled = {
 [node name="InvisibleQuestionBlock" unique_id=574723668 instance=ExtResource("1_etg4d")]
 item = SubResource("PackedScene_vm6bi")
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=1808784462]
-texture = ExtResource("3_anjgk")
-region_enabled = true
-region_rect = Rect2(16, 0, 16, 16)
-
-[node name="Timer" type="Timer" parent="Sprite2D" index="0" unique_id=1022494223]
-wait_time = 0.001
-autostart = true
-
-[connection signal="timeout" from="Sprite2D/Timer" to="Sprite2D" method="queue_free"]
-
 [editable path="BlockAnimations"]

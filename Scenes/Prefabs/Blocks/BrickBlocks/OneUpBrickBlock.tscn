@@ -28,15 +28,3 @@ _bundled = {
 
 [node name="BrickBlock" unique_id=1542994487 instance=ExtResource("1_37s05")]
 item = SubResource("PackedScene_jtx2j")
-
-[node name="Sprite2D" type="Sprite2D" parent="." index="4" unique_id=139123314]
-texture = ExtResource("3_l5hxg")
-region_enabled = true
-region_rect = Rect2(16, 0, 16, 16)
-region_filter_clip_enabled = true
-
-[node name="Timer" type="Timer" parent="Sprite2D" index="0" unique_id=480645652]
-wait_time = 0.001
-autostart = true
-
-[connection signal="timeout" from="Sprite2D/Timer" to="Sprite2D" method="queue_free"]

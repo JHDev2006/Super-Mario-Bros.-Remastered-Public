@@ -12,6 +12,7 @@ particles_anim_loop = false
 [node name="CoinSparkle" type="CPUParticles2D" unique_id=95346280]
 z_as_relative = false
 material = SubResource("CanvasItemMaterial_0guw6")
+emitting = false
 amount = 3
 texture = ExtResource("1_4p5kk")
 lifetime = 0.5
