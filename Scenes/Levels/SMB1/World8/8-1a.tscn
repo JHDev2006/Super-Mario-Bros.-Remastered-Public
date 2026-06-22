@@ -2,6 +2,7 @@
 [ext_resource type="PackedScene" uid="uid://duc0y2qt8vug6" path="res://Scenes/Levels/SMB1/World1/1-2a.tscn" id="1_2bdfy"]
 [ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="2_m0ga1"]
 [node name="1-2A" unique_id=1793642380 instance=ExtResource("1_2bdfy")]
+theme_time = "Night"
 world_id = 8
 level_id = 1
 [node name="Tiles" parent="." index="1" unique_id=1119525758]

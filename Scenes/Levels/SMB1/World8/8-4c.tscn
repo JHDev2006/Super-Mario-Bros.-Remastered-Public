@@ -20,6 +20,7 @@ normal = Vector2(0, 1)
 script = ExtResource("1_o0w4o")
 music = ExtResource("2_0n16v")
 theme = "CastleWater"
+theme_time = "Night"
 world_id = 8
 level_id = 4
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
