@@ -548,8 +548,9 @@ func handle_tile_cursor() -> void:
 				if entity_tiles[current_layer][tile_position].get_node_or_null("SignalExposer") != null:
 					if entity_tiles[current_layer][tile_position].get_node("SignalExposer").can_input:
 						connection_node_found.emit(entity_tiles[current_layer][tile_position])
-						current_state = EditorState.MODIFYING_TILE
-						current_connecting_node = null
+						if Input.is_action_pressed("editor_inspect") == false:
+							current_state = EditorState.MODIFYING_TILE
+							current_connecting_node = null
 		if Global.multibind_action_just_pressed("mb_right") or Global.multibind_action_just_pressed("editor_open_menu"):
 			%TileModifierMenu.cancel_connection()
 	

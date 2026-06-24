@@ -172,7 +172,6 @@ func close() -> void:
 	clear_nodes()
 	editing_node.tree_exiting.disconnect(close)
 	properties.clear()
-	closed.emit()
 	if get_tree() == null: return
 	if Global.level_editor.quick_connecting:
 		await left_click_release
@@ -181,6 +180,7 @@ func close() -> void:
 	Global.level_editor.current_inspect_tile = null
 	Global.level_editor.current_state = LevelEditor.EditorState.IDLE
 	hide()
+	closed.emit()
 
 var old_scale = Vector2.ONE
 
@@ -189,6 +189,9 @@ func connect_signal(new_node: Node) -> void:
 	var exposer := editing_node.get_node("SignalExposer")
 	exposer.connect_to_node(node_to_recieve, true, true)
 	can_exit = true
+	if Input.is_action_pressed("editor_inspect"):
+		begin_signal_connection()
+		return
 	if Global.level_editor.quick_connecting:
 		close()
 	else:
