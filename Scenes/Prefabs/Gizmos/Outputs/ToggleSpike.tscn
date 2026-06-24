@@ -45,6 +45,7 @@ sync_to_physics = false
 script = ExtResource("1_ms32v")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=499631677]
+process_mode = 1
 sprite_frames = SubResource("SpriteFrames_kmd32")
 animation = &"On"
 
