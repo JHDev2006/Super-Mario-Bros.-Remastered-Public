@@ -661,6 +661,7 @@ func load_default_translations() -> void:
 
 func create_translation_from_json(locale := "") -> void:
 	var locale_json := {}
+	var is_cjk := locale.begins_with("zh") or locale.begins_with("jp")
 	for resource_pack in Settings.file.visuals.resource_packs:
 		var path = $ResourceSetterNew.get_resource_pack_path("res://Assets/Locale/" + locale + ".json", resource_pack)
 		var file_json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
@@ -674,9 +675,21 @@ func create_translation_from_json(locale := "") -> void:
 	var trans = Translation.new()
 	trans.locale = locale
 	for i in locale_json.keys():
-		trans.add_message(i, locale_json[i])
+		var msg: String = locale_json[i]
+		if is_cjk:
+			msg = _add_cjk_line_breaks(msg)
+		trans.add_message(i, msg)
 	TranslationServer.remove_translation(TranslationServer.get_translation_object(locale))
 	TranslationServer.add_translation(trans)
+
+func _add_cjk_line_breaks(text: String) -> String:
+	var result := ""
+	var zws := "​"  # U+200B zero-width space
+	for ch in text:
+		result += ch
+		if ord(ch) > 0x2000:
+			result += zws
+	return result
 
 func remove_cryllic_characters(message := "") -> String:
 	const cryllic := "авекмнорстух’"
