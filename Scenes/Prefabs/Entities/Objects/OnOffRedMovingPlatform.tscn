@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://27kpnmk5wqlb"]
 
 [ext_resource type="PackedScene" uid="uid://cx2310jyd3fnv" path="res://Scenes/Prefabs/Entities/Objects/MovingPlatform.tscn" id="1_wrm8c"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/OnOffPlatform.json" id="2_c3e6f"]
 [ext_resource type="Script" uid="uid://q45b31h6356r" path="res://Scripts/Classes/Components/OnOffSwitcher.gd" id="3_3tder"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tder"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3e6f"]
 resource_local_to_scene = true
 size = Vector2(32, 8)
 
@@ -16,16 +15,16 @@ moving = false
 region_rect = Rect2(0, 0, 24, 8)
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=1692721610]
-resource_json = ExtResource("2_c3e6f")
+json_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1046612248]
-shape = SubResource("RectangleShape2D_3tder")
+shape = SubResource("RectangleShape2D_c3e6f")
 
 [node name="Projection" parent="." index="4" unique_id=1165185292]
 region_rect = Rect2(0, 0, 24, 8)
 
 [node name="ResourceSetter" parent="Projection" index="0" unique_id=888381645]
-resource_json = ExtResource("2_c3e6f")
+json_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
 
 [node name="OnOffToggle" parent="." index="6" unique_id=431716092]
 visible = true

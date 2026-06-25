@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://mf3ekx4nq7gc"]
 
 [ext_resource type="PackedScene" uid="uid://gw1a8atigo5f" path="res://Scenes/Prefabs/Entities/Objects/Grinder.tscn" id="1_o4mbm"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/SmallGrinder.json" id="2_2e2s3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l01o7"]
 radius = 12.0
@@ -9,7 +8,7 @@ radius = 12.0
 [node name="Grinder" unique_id=791978333 instance=ExtResource("1_o4mbm")]
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(743663117) index="0" unique_id=1285050373]
-resource_json = ExtResource("2_2e2s3")
+json_path = "res://Assets/Sprites/Enemies/SmallGrinder.json"
 
 [node name="CollisionShape2D" parent="PlayerDetection" parent_id_path=PackedInt32Array(2122668487) index="0" unique_id=964042954]
 shape = SubResource("CircleShape2D_l01o7")

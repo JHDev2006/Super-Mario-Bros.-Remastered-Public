@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://7g55o2cjwrap" path="res://Assets/Sprites/Tilesets/CloudPlatform.png" id="2_ikg3d"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_1ny6m"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_np2pg"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/CloudPlatform.json" id="4_fy0hu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ny6m"]
 size = Vector2(48, 8)
@@ -26,11 +25,12 @@ patch_margin_right = 8
 axis_stretch_horizontal = 1
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1577693591 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_1ny6m")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_fy0hu")
+json_path = "res://Assets/Sprites/Tilesets/CloudPlatform.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=357597138]

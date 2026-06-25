@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="4_vxi4p"]
 [ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="5_3uucm"]
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="7_ice7i"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Spiny.json" id="8_0fnbe"]
 [ext_resource type="PackedScene" uid="uid://cxdj1ea1rt1r4" path="res://Scenes/Prefabs/Entities/Enemies/Podoboo.tscn" id="8_3uucm"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="9_lpixx"]
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="10_ice7i"]
@@ -60,7 +59,7 @@ position = Vector2(2424, -48)
 sprite_frames = SubResource("SpriteFrames_0fnbe")
 animation = &"Walk"
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" index="0" unique_id=381174695]
-resource_json = ExtResource("8_0fnbe")
+json_path = "res://Assets/Sprites/Enemies/Spiny.json"
 [node name="CastleToad" parent="." unique_id=678873648 instance=ExtResource("10_ice7i")]
 position = Vector2(2688, 0)
 [node name="CastleBridge" parent="." unique_id=1751774818 instance=ExtResource("11_ayiq6")]

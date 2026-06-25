@@ -487,17 +487,22 @@ var last_damage_source := ""
 
 static var CHARACTER_NAMES := ["CHAR_MARIO", "CHAR_LUIGI", "CHAR_TOAD", "CHAR_TOADETTE"]
 
-static var CHARACTER_COLOURS := [preload("res://Assets/Sprites/Players/Mario/CharacterColour.json"), preload("res://Assets/Sprites/Players/Luigi/CharacterColour.json"), preload("res://Assets/Sprites/Players/Toad/CharacterColour.json"), preload("res://Assets/Sprites/Players/Toadette/CharacterColour.json")]
+static var CHARACTER_COLOURS := [
+	("res://Assets/Sprites/Players/Mario/CharacterColour.json"),
+	("res://Assets/Sprites/Players/Luigi/CharacterColour.json"), 
+	("res://Assets/Sprites/Players/Toad/CharacterColour.json"),
+	("res://Assets/Sprites/Players/Toadette/CharacterColour.json")
+]
 
 var can_timer_warn := true
 
 var colour_palette_texture: Texture = null
 
 static var CHARACTER_PALETTES := [
-	preload("res://Assets/Sprites/Players/Mario/ColourPalette.json"),
-	preload("res://Assets/Sprites/Players/Luigi/ColourPalette.json"),
-	preload("res://Assets/Sprites/Players/Toad/ColourPalette.json"),
-	preload("res://Assets/Sprites/Players/Toadette/ColourPalette.json")
+	("res://Assets/Sprites/Players/Mario/ColourPalette.json"),
+	("res://Assets/Sprites/Players/Luigi/ColourPalette.json"),
+	("res://Assets/Sprites/Players/Toad/ColourPalette.json"),
+	("res://Assets/Sprites/Players/Toadette/ColourPalette.json")
 ]
 
 #region Animation Fallbacks, these determine what animations will use as a back-up if they aren't present.
@@ -1351,10 +1356,9 @@ func time_up() -> void:
 
 func set_power_state_frame() -> void:
 	colour_palette = ResourceSetter.get_resource(preload("uid://b0quveyqh25dn"))
-	$PlayerPalette/ResourceSetterNew.resource_json = (CHARACTER_PALETTES[int(Global.player_characters[player_id])])
+	$PlayerPalette/ResourceSetterNew.json_path = (CHARACTER_PALETTES[int(Global.player_characters[player_id])])
 	if power_state != null:
-		$ResourceSetterNew.resource_json = load(get_character_sprite_path())
-		$ResourceSetterNew.update_resource()
+		$ResourceSetterNew.json_path = (get_character_sprite_path())
 	var frames = %Sprite.sprite_frames
 	if frames:
 		can_pose_anim = frames.has_animation("PoseDoor")

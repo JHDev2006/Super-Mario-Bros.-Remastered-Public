@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dwfnvpioh2kvi" path="res://Scripts/Parts/EndFlagpole.gd" id="1_3rtm4"]
 [ext_resource type="Texture2D" uid="uid://3vg41a5plc4e" path="res://Assets/Sprites/Tilesets/FlagPole.png" id="1_hnd65"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/FlagPole.json" id="4_nykv5"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_dm4yn"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="5_jihtx"]
 [ext_resource type="Texture2D" uid="uid://bwr6tw20gji88" path="res://Assets/Sprites/Tilesets/Flag.png" id="5_nykv5"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_sjcdg"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Flag.json" id="6_tpsyw"]
 [ext_resource type="FontVariation" uid="uid://cflgloiossd8a" path="res://Resources/ThemedResources/ScoreFont.tres" id="8_sjcdg"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="9_jihtx"]
 [ext_resource type="Texture2D" uid="uid://bm7mgynp4ow0g" path="res://Assets/Sprites/Tilesets/HollowFlag.png" id="11_tpsyw"]
@@ -151,11 +149,12 @@ position = Vector2(0, -88)
 texture = SubResource("AtlasTexture_uwkl1")
 
 [node name="ResourceSetterNew" type="Node" parent="Pole" unique_id=1759828279 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_sjcdg")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_nykv5")
+json_path = "res://Assets/Sprites/Tilesets/FlagPole.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="FlagJoint" type="Node2D" parent="." unique_id=431859251]
@@ -167,10 +166,11 @@ sprite_frames = SubResource("SpriteFrames_tpsyw")
 autoplay = "default"
 
 [node name="ResourceSetterNew" type="Node" parent="FlagJoint/Flag" unique_id=494528197 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_sjcdg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("6_tpsyw")
+json_path = "res://Assets/Sprites/Tilesets/Flag.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=2097646295]

@@ -9,8 +9,6 @@
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="6_r3crv"]
 [ext_resource type="Texture2D" uid="uid://dlldh5aks0wff" path="res://Assets/Sprites/Editor/GhostTile.png" id="7_eovtp"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="8_bnrke"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Track.json" id="9_m72p1"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/InvisibleTrack.json" id="10_m72p1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p5se"]
 size = Vector2(15, 15)
@@ -75,11 +73,12 @@ region_rect = Rect2(32, 16, 32, 16)
 shape = SubResource("RectangleShape2D_7p5se")
 
 [node name="ResourceSetterNew" type="Node" parent="PlacePreview/NW" unique_id=607087153 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_bnrke")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_m72p1")
+json_path = "res://Assets/Sprites/Tilesets/Track.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="N" type="Sprite2D" parent="PlacePreview" unique_id=1729022571]
@@ -95,11 +94,12 @@ region_rect = Rect2(32, 16, 32, 16)
 shape = SubResource("RectangleShape2D_7p5se")
 
 [node name="ResourceSetterNew" type="Node" parent="PlacePreview/N" unique_id=1170311601 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_bnrke")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_m72p1")
+json_path = "res://Assets/Sprites/Tilesets/Track.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="NE" type="Sprite2D" parent="PlacePreview" unique_id=181215597]
@@ -115,11 +115,12 @@ region_rect = Rect2(32, 16, 32, 16)
 shape = SubResource("RectangleShape2D_7p5se")
 
 [node name="ResourceSetterNew" type="Node" parent="PlacePreview/NE" unique_id=1610108150 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_bnrke")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_m72p1")
+json_path = "res://Assets/Sprites/Tilesets/Track.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="E" type="Sprite2D" parent="PlacePreview" unique_id=453513369]
@@ -135,11 +136,12 @@ region_rect = Rect2(32, 16, 32, 16)
 shape = SubResource("RectangleShape2D_7p5se")
 
 [node name="ResourceSetterNew" type="Node" parent="PlacePreview/E" unique_id=1034322373 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_bnrke")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_m72p1")
+json_path = "res://Assets/Sprites/Tilesets/Track.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="SE" type="Sprite2D" parent="PlacePreview" unique_id=2113462188]
@@ -155,11 +157,12 @@ region_rect = Rect2(32, 16, 32, 16)
 shape = SubResource("RectangleShape2D_7p5se")
 
 [node name="ResourceSetterNew" type="Node" parent="PlacePreview/SE" unique_id=57058549 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_bnrke")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_m72p1")
+json_path = "res://Assets/Sprites/Tilesets/Track.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="S" type="Sprite2D" parent="PlacePreview" unique_id=1029775032]
@@ -175,11 +178,12 @@ region_rect = Rect2(32, 16, 32, 16)
 shape = SubResource("RectangleShape2D_7p5se")
 
 [node name="ResourceSetterNew" type="Node" parent="PlacePreview/S" unique_id=2129041483 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_bnrke")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_m72p1")
+json_path = "res://Assets/Sprites/Tilesets/Track.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="SW" type="Sprite2D" parent="PlacePreview" unique_id=1300120046]
@@ -195,11 +199,12 @@ region_rect = Rect2(32, 16, 32, 16)
 shape = SubResource("RectangleShape2D_7p5se")
 
 [node name="ResourceSetterNew" type="Node" parent="PlacePreview/SW" unique_id=605760934 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_bnrke")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_m72p1")
+json_path = "res://Assets/Sprites/Tilesets/Track.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="W" type="Sprite2D" parent="PlacePreview" unique_id=131670953]
@@ -215,27 +220,30 @@ region_rect = Rect2(32, 16, 32, 16)
 shape = SubResource("RectangleShape2D_7p5se")
 
 [node name="ResourceSetterNew" type="Node" parent="PlacePreview/W" unique_id=1551747431 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_bnrke")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_m72p1")
+json_path = "res://Assets/Sprites/Tilesets/Track.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetterNew" type="Node" parent="." unique_id=269757700 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_bnrke")
 node_to_affect = NodePath("..")
 property_name = "track_texture"
 mode = 1
-resource_json = ExtResource("9_m72p1")
+json_path = "res://Assets/Sprites/Tilesets/Track.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetterNew2" type="Node" parent="." unique_id=1543136306 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_bnrke")
 node_to_affect = NodePath("..")
 property_name = "invis_track_texture"
 mode = 1
-resource_json = ExtResource("10_m72p1")
+json_path = "res://Assets/Sprites/Tilesets/InvisibleTrack.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="mouse_entered" from="PlacePreview/NW/MouseArea" to="." method="on_mouse_entered" binds= [0]]

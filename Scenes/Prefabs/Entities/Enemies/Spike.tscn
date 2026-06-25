@@ -8,9 +8,7 @@
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="4_w6nqc"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_ddx5o"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_w6nqc"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Spike.json" id="6_dhnkc"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="6_iboug"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/SpikeBall.json" id="7_l0d5l"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="7_m8jkd"]
 [ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="12_dhnkc"]
 [ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="13_vg6vt"]
@@ -225,10 +223,11 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_px5di")
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=2072809490 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_ddx5o")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("6_dhnkc")
+json_path = "res://Assets/Sprites/Enemies/Spike.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Ball" type="AnimatedSprite2D" parent="Sprite" unique_id=1815306687]
@@ -240,10 +239,11 @@ scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_1nkq5")
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite/Ball" unique_id=955874857 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_ddx5o")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("7_l0d5l")
+json_path = "res://Assets/Sprites/Items/SpikeBall.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2118366870]

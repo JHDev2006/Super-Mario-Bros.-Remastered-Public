@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://csjhgkhqqr4g"]
 
 [ext_resource type="PackedScene" uid="uid://csw2u3q38xrq0" path="res://Scenes/Prefabs/Entities/Enemies/StaticPiranhaPlant.tscn" id="1_a1ss0"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedPiranhaPlant.json" id="2_1fvmx"]
 
 [node name="StaticPiranhaPlant" unique_id=342003060 instance=ExtResource("1_a1ss0")]
 
 [node name="ResourceSetterNew" parent="RotationJoint/Sprite" parent_id_path=PackedInt32Array(1886446228) index="0" unique_id=1213319844]
-resource_json = ExtResource("2_1fvmx")
+json_path = "res://Assets/Sprites/Enemies/RedPiranhaPlant.json"

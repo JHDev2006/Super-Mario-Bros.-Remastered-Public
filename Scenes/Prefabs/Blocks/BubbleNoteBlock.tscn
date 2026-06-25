@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://bifdg1vybfkr5"]
 
 [ext_resource type="PackedScene" uid="uid://bxvcax2wc48xh" path="res://Scenes/Prefabs/Blocks/NoteBlock.tscn" id="1_xv5gc"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BubbleNoteBlock.json" id="2_0vh5c"]
 [ext_resource type="Texture2D" uid="uid://bu652bwoi0tvp" path="res://Assets/Sprites/Particles/BubbleNoteBlockBubble.png" id="3_6is2x"]
 
 [node name="BubbleNoteBlock" unique_id=1217401891 instance=ExtResource("1_xv5gc")]
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(147779313) index="0" unique_id=1722141441]
-resource_json = ExtResource("2_0vh5c")
+json_path = "res://Assets/Sprites/Blocks/BubbleNoteBlock.json"
 
 [node name="EditorPropertyExposer" parent="." index="3" unique_id=1570804738]
 properties = Array[String](["item"])

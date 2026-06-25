@@ -4,9 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dhk5jdqjqo77p" path="res://Assets/Sprites/Blocks/BurnerFlame.png" id="1_vrk50"]
 [ext_resource type="Texture2D" uid="uid://4l2medldwrwh" path="res://Assets/Sprites/Blocks/Burner.png" id="2_4fveq"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_fsldu"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BurnerFlame.json" id="4_m4qew"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="5_sqxap"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BurnerBlock.json" id="5_w52fl"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="7_m4qew"]
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="7_w52fl"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="8_oeevx"]
@@ -184,10 +182,11 @@ animation = &"Loop"
 frame_progress = 0.19739561
 
 [node name="ResourceSetterNew" type="Node" parent="RotationJoint/Flame" unique_id=719039732 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_fsldu")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_m4qew")
+json_path = "res://Assets/Sprites/Blocks/BurnerFlame.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="RotationJoint" unique_id=459609564]
@@ -199,11 +198,12 @@ update_scale = false
 texture = SubResource("AtlasTexture_5jhml")
 
 [node name="ResourceSetterNew" type="Node" parent="RotationJoint/Block" unique_id=734406874 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_fsldu")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("5_w52fl")
+json_path = "res://Assets/Sprites/Blocks/BurnerBlock.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="RotationJoint" unique_id=728145003]

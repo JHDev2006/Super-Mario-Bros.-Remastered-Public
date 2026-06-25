@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://mshpvsyuw15j" path="res://Scripts/Classes/Entities/Enemies/LeapingCheepCheep.gd" id="1_pbhdk"]
 [ext_resource type="Texture2D" uid="uid://dbq7oso3fo4n6" path="res://Assets/Sprites/Enemies/CheepCheep.png" id="2_pbhdk"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_11skd"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedCheepCheep.json" id="4_hwpvb"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_w3x8m"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="5_upc6k"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="6_l756v"]
@@ -51,10 +50,11 @@ frame_progress = 0.0672909
 flip_h = true
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=2002123104 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_11skd")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_hwpvb")
+json_path = "res://Assets/Sprites/Enemies/RedCheepCheep.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1307632770]

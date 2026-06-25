@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cvqh3d3x1aicv" path="res://Scripts/Classes/Entities/Enemies/StaticPiranhaPlant.gd" id="1_wftkx"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_cljum"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_cn5c6"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/FirePiranhaPlant.json" id="4_wftkx"]
 [ext_resource type="Script" uid="uid://dw25p2gplfkx0" path="res://Scripts/Classes/Entities/Enemies/FirePiranha.gd" id="5_x6gyp"]
 [ext_resource type="PackedScene" uid="uid://d4m3rae0x77vn" path="res://Scenes/Prefabs/Entities/Objects/PlantFireball.tscn" id="6_5rcfe"]
 [ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="6_g48xb"]
@@ -51,10 +50,11 @@ script = ExtResource("2_cljum")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="RotationJoint/Sprite" unique_id=1346772812 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_cn5c6")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_wftkx")
+json_path = "res://Assets/Sprites/Enemies/FirePiranhaPlant.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="RotationJoint" unique_id=154442466]

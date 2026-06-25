@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://lglmgqp3emy4" path="res://Scenes/Prefabs/Blocks/OnOffFanRed.tscn" id="1_d1mvb"]
 [ext_resource type="Texture2D" uid="uid://d0o6wgsrow8t1" path="res://Assets/Sprites/Blocks/OnOffFan.png" id="2_doyjh"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OffFan.json" id="3_doyjh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b8pdc"]
 atlas = ExtResource("2_doyjh")
@@ -61,7 +60,7 @@ animation = &"On"
 frame_progress = 0.6434357
 
 [node name="ResourceSetterNew" parent="Sprite" index="0" unique_id=1589738587]
-resource_json = ExtResource("3_doyjh")
+json_path = "res://Assets/Sprites/Blocks/OffFan.json"
 
 [node name="OnOffSwitcher" parent="." index="9" unique_id=1639367544]
 invert = true

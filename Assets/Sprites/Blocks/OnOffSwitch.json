@@ -1,63 +1,26 @@
 {
 	"animations": {
+		"default": {
+			"frames": [[0, 0, 16, 16]],
+			"speed": 5,
+			"loop": true
+		},
 		"Off": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				],
-				[
-					16.0,
-					0.0,
-					16.0,
-					16.0
-				]
+				[0, 0, 16, 16],
+				[16, 0, 16, 16]
 			],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		},
 		"On": {
 			"frames": [
-				[
-					0.0,
-					16.0,
-					16.0,
-					16.0
-				],
-				[
-					16.0,
-					16.0,
-					16.0,
-					16.0
-				]
+				[0, 16, 16, 16],
+				[16, 16, 16, 16]
 			],
-			"speed": 5.0,
-			"loop": true
-		},
-		"default": {
-			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		}
 	},
-	"variations": {
-		"default": {
-			"source": "OnOffSwitch.png",
-			"rect": [
-				0.0,
-				0.0,
-				32.0,
-				32.0
-			]
-		}
-	}
+	"variations": {"source": "OnOffSwitch.png"}
 }

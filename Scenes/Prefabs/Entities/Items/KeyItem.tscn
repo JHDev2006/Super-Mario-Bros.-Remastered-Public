@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cjgbt7iof66j0" path="res://Scripts/Classes/Entities/Items/KeyItem.gd" id="1_l02ex"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_ecusj"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_l02ex"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Key.json" id="4_m8uts"]
 [ext_resource type="Texture2D" uid="uid://sgrcmlktp2dk" path="res://Assets/Sprites/Particles/SRankParticles.png" id="7_2yl70"]
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="7_imihh"]
 [ext_resource type="Script" uid="uid://maqpreddu5kg" path="res://Scripts/Classes/Components/LevelPersistance.gd" id="8_imihh"]
@@ -139,10 +138,11 @@ script = ExtResource("2_ecusj")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=2079443886 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_l02ex")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_m8uts")
+json_path = "res://Assets/Sprites/Items/Key.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=502498006]

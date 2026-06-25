@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cs5o6yw4xj4wo" path="res://Scripts/UI/SelectableNumberNode.gd" id="1_v4dqv"]
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="2_2qsvo"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_3pjh6"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="4_rq0v2"]
 [ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="5_3x4xs"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="6_itylq"]
 
@@ -33,11 +32,12 @@ texture = SubResource("AtlasTexture_qti1l")
 stretch_mode = 2
 
 [node name="ResourceSetter" type="Node" parent="Cursor/Cursor" unique_id=605420492 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_3pjh6")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_rq0v2")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="AutoScrollContainer" type="ScrollContainer" parent="." unique_id=783604123]

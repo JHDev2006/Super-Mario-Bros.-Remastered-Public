@@ -19,7 +19,7 @@ static var best_times := [
 ]
 
 static var cleared_boo_levels := "00000000"
-const SILENCE = preload("res://Assets/Audio/BGM/Silence.json")
+const SILENCE = ("res://Assets/Audio/BGM/Silence.json")
 func _ready() -> void:
 	SpeedrunHandler.show_timer = true
 	SpeedrunHandler.timer = 0
@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func do_countdown() -> void:
 	var old_music = Global.current_level.music
-	Global.current_level.music = SILENCE
+	Global.current_level.music = load(SILENCE)
 	countdown_active = true
 	get_tree().paused = false
 	await get_tree().physics_frame

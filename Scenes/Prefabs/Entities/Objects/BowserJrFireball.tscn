@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://d4m3rae0x77vn" path="res://Scenes/Prefabs/Entities/Objects/PlantFireball.tscn" id="1_s06aa"]
 [ext_resource type="Texture2D" uid="uid://fqlmj88m8fux" path="res://Assets/Sprites/Enemies/BowserJrFireball.png" id="2_j1i7c"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BowserJrFireball.json" id="3_j1i7c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vvsen"]
 animations = [{
@@ -25,7 +24,7 @@ HAS_COLLISION = false
 sprite_frames = SubResource("SpriteFrames_vvsen")
 
 [node name="ResourceSetterNew" parent="Sprite" index="1" unique_id=2060036098]
-resource_json = ExtResource("3_j1i7c")
+json_path = "res://Assets/Sprites/Enemies/BowserJrFireball.json"
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=410120936]
 shape = SubResource("CircleShape2D_55fv1")

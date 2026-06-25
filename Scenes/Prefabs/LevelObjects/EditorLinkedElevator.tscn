@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://duxduhxe8vqdo" path="res://Scripts/Classes/Entities/Objects/EditorLinkedElevator.gd" id="1_0yjq3"]
 [ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="2_lcqnt"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_5tm0t"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="4_ohybb"]
 [ext_resource type="PackedScene" uid="uid://6rp3wgax4i51" path="res://Scenes/Prefabs/Entities/Objects/RopeElevatorPlatform.tscn" id="5_5qwbh"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="6_lcqnt"]
 
@@ -37,11 +36,12 @@ region_enabled = true
 region_rect = Rect2(160, 128, 16, 16)
 
 [node name="ResourceSetterNew" type="Node" parent="CornerL" unique_id=2063634915 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_5tm0t")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_ohybb")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Middle" type="NinePatchRect" parent="." unique_id=596877453]
@@ -54,11 +54,12 @@ region_rect = Rect2(176, 128, 16, 16)
 axis_stretch_horizontal = 1
 
 [node name="ResourceSetterNew" type="Node" parent="Middle" unique_id=873720073 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_5tm0t")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_ohybb")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CornerR" type="Sprite2D" parent="." unique_id=1811570415]
@@ -68,11 +69,12 @@ region_enabled = true
 region_rect = Rect2(192, 128, 16, 16)
 
 [node name="ResourceSetterNew" type="Node" parent="CornerR" unique_id=443664553 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_5tm0t")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_ohybb")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="RPlatform" parent="CornerR" unique_id=1016031752 node_paths=PackedStringArray("linked_platform") instance=ExtResource("5_5qwbh")]

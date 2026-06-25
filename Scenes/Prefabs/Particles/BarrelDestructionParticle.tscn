@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cyw7kk1em8h16" path="res://Scenes/Parts/Particles/BlockDestructionParticles.tscn" id="1_5wce4"]
 [ext_resource type="Texture2D" uid="uid://ek2rv5igsr8y" path="res://Assets/Sprites/Particles/BarrelDestructionParticle.png" id="2_prr6m"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/BarrelDestructionParticle.json" id="3_ltr7a"]
 
 [node name="BlockDestructionParticles" unique_id=1677803921 instance=ExtResource("1_5wce4")]
 
@@ -12,7 +11,7 @@ region_enabled = false
 region_rect = Rect2(0, 0, 8, 8)
 
 [node name="ResourceSetterNew" parent="TL/Sprite" index="0" unique_id=1629196801]
-resource_json = ExtResource("3_ltr7a")
+json_path = "res://Assets/Sprites/Particles/BarrelDestructionParticle.json"
 
 [node name="Sprite" parent="TR" parent_id_path=PackedInt32Array(1437535699) index="0" unique_id=1807107505]
 texture = ExtResource("2_prr6m")
@@ -21,7 +20,7 @@ region_enabled = false
 region_rect = Rect2(0, 0, 8, 8)
 
 [node name="ResourceSetterNew" parent="TR/Sprite" index="0" unique_id=1946695245]
-resource_json = ExtResource("3_ltr7a")
+json_path = "res://Assets/Sprites/Particles/BarrelDestructionParticle.json"
 
 [node name="Sprite" parent="BL" parent_id_path=PackedInt32Array(1862425218) index="0" unique_id=1521277823]
 texture = ExtResource("2_prr6m")
@@ -30,7 +29,7 @@ region_enabled = false
 region_rect = Rect2(8, 0, 8, 8)
 
 [node name="ResourceSetterNew" parent="BL/Sprite" index="0" unique_id=545736962]
-resource_json = ExtResource("3_ltr7a")
+json_path = "res://Assets/Sprites/Particles/BarrelDestructionParticle.json"
 
 [node name="Sprite" parent="BR" parent_id_path=PackedInt32Array(147078336) index="0" unique_id=718913820]
 texture = ExtResource("2_prr6m")
@@ -40,4 +39,4 @@ region_enabled = false
 region_rect = Rect2(8, 0, 8, 8)
 
 [node name="ResourceSetterNew" parent="BR/Sprite" index="0" unique_id=228121991]
-resource_json = ExtResource("3_ltr7a")
+json_path = "res://Assets/Sprites/Particles/BarrelDestructionParticle.json"

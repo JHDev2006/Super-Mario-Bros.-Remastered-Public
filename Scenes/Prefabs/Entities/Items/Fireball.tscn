@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://yh4pop7sm56c" path="res://Scripts/Classes/Entities/Items/Fireball.gd" id="1_00jom"]
 [ext_resource type="PackedScene" uid="uid://c0tn1w5hd5uol" path="res://Scenes/Prefabs/Particles/FireballExplosion.tscn" id="2_ajyso"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_gfqet"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/PlayerFireball.json" id="3_an01s"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_an01s"]
 
 [sub_resource type="Animation" id="Animation_gfqet"]
@@ -75,11 +74,12 @@ libraries/ = SubResource("AnimationLibrary_an01s")
 speed_scale = 2.0
 
 [node name="ResourceSetter" type="Node" parent="Sprite" unique_id=1274639605 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("2_gfqet")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("3_an01s")
+json_path = "res://Assets/Sprites/Items/PlayerFireball.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1261293152]

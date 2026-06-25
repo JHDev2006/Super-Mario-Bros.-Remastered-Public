@@ -15,10 +15,7 @@
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="10_bylb3"]
 [ext_resource type="Texture2D" uid="uid://de6otencrflfo" path="res://Assets/Sprites/UI/RedCoins.png" id="10_d76il"]
 [ext_resource type="Texture2D" uid="uid://wx6yyqabrelf" path="res://Assets/Sprites/UI/ChallengeResultsPanel.png" id="11_02i7h"]
-[ext_resource type="JSON" path="res://Assets/Audio/BGM/ChallengeResults.json" id="12_fb45j"]
 [ext_resource type="AudioStream" uid="uid://dhiy4bmyu3j0r" path="res://Assets/Audio/BGM/ChallengeEnd.mp3" id="12_x7w5s"]
-[ext_resource type="JSON" path="res://Assets/Audio/BGM/ChallengeEnd.json" id="12_y63tt"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/ToadNPC.json" id="14_sv6qk"]
 [ext_resource type="Texture2D" uid="uid://cxtan2ap83u3d" path="res://Assets/Sprites/UI/ChallengeMedals.png" id="14_woqpu"]
 [ext_resource type="AudioStream" uid="uid://bvyklj5qhjkvn" path="res://Assets/Audio/SFX/ChallengeMedalAward.wav" id="16_eupxr"]
 [ext_resource type="Texture2D" uid="uid://hdpdek7jitea" path="res://Assets/Sprites/Players/Yoshi.png" id="18_n4lt1"]
@@ -28,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="21_bob8r"]
 [ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="21_xk7j8"]
 [ext_resource type="AudioStream" uid="uid://b7acwb3r4teop" path="res://Assets/Audio/SFX/ChallengeModeGive.wav" id="21_y63tt"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/Yoshi.json" id="23_vohx7"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="24_cq5a1"]
 [ext_resource type="Texture2D" uid="uid://ccb8wtuolj7i3" path="res://Assets/Sprites/Backgrounds/ChallengeModeResults/Results3.png" id="27_w3bjn"]
 [ext_resource type="Texture2D" uid="uid://dyckss38aqmvl" path="res://Assets/Sprites/Backgrounds/ChallengeModeResults/Results2.png" id="28_vohx7"]
@@ -760,6 +756,7 @@ resource_setter = NodePath("ResourceSetterNew")
 metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
 
 [node name="ResourceSetterNew" type="Node" parent="PlayerSprite" unique_id=951425779]
+process_mode = 3
 script = ExtResource("7_bob8r")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -769,11 +766,12 @@ stream = ExtResource("7_6dwpv")
 bus = &"Music"
 
 [node name="ResourceSetterNew" type="Node" parent="ChallengeResults" unique_id=127176486 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "stream"
 mode = 2
-resource_json = ExtResource("12_fb45j")
+json_path = "res://Assets/Audio/BGM/ChallengeResults.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ChallengeEnd" type="AudioStreamPlayer" parent="." unique_id=377169015]
@@ -781,11 +779,12 @@ stream = ExtResource("12_x7w5s")
 bus = &"Music"
 
 [node name="ResourceSetterNew" type="Node" parent="ChallengeEnd" unique_id=593640018 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "stream"
 mode = 2
-resource_json = ExtResource("12_y63tt")
+json_path = "res://Assets/Audio/BGM/ChallengeEnd.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="MainSequence" type="AnimationPlayer" parent="." unique_id=877815898]
@@ -801,10 +800,11 @@ autoplay = "Idle"
 speed_scale = 2.0
 
 [node name="ResourceSetterNew" type="Node" parent="Toad" unique_id=826345731 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("14_sv6qk")
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1002,10 +1002,11 @@ themed_resource = SubResource("Resource_vohx7")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
 [node name="ResourceSetterNew" type="Node" parent="Yoshi" unique_id=1898262442 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_bob8r")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("23_vohx7")
+json_path = "res://Assets/Sprites/Players/Yoshi.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="SmokeParticle" type="AnimatedSprite2D" parent="." unique_id=865577033]

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b6sqq06q4dhnc"]
 
 [ext_resource type="PackedScene" uid="uid://13vxk381k4gt" path="res://Scenes/Prefabs/Entities/Enemies/AngrySun.tscn" id="1_7nval"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/HappyMoon.json" id="2_qmw72"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_vsw6t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ty1h4"]
@@ -9,7 +8,7 @@
 [node name="HappyMoon" unique_id=797123896 instance=ExtResource("1_7nval")]
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(2107662186) index="0" unique_id=365299931]
-resource_json = ExtResource("2_qmw72")
+json_path = "res://Assets/Sprites/Enemies/HappyMoon.json"
 
 [node name="Hitbox" parent="." index="3" unique_id=1629195984]
 monitoring = false

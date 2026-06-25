@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="3_a5qfu"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_1gkhc"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="4_cd02n"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/GreenCheepCheep.json" id="5_8m1k0"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="5_qwki7"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="6_qwki7"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="10_8m1k0"]
@@ -107,10 +106,11 @@ scale = Vector2(1, -1)
 enable_node_path = NodePath("../..")
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=998124050 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_1gkhc")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_8m1k0")
+json_path = "res://Assets/Sprites/Enemies/GreenCheepCheep.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="EnemyPlayerDetection" type="Node" parent="." unique_id=158974708 node_paths=PackedStringArray("hitbox")]

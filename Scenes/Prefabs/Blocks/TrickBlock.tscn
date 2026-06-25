@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_aqge3"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_mdw74"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="4_6pcvn"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/TrickBlock.json" id="4_aqge3"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hyhae"]
 
@@ -76,10 +75,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=957131727 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_mdw74")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_aqge3")
+json_path = "res://Assets/Sprites/Blocks/TrickBlock.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=709714657]

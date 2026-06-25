@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bk0p52ttwojml" path="res://Assets/Sprites/Tilesets/Platform.png" id="1_637rn"]
 [ext_resource type="Script" uid="uid://dnptn1i31npjc" path="res://Scripts/Classes/Entities/Objects/MovingPlatform.gd" id="1_om2jg"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_om2jg"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Platform.json" id="3_cjdml"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="5_cjdml"]
 [ext_resource type="PackedScene" uid="uid://dse5pwhodrqcr" path="res://Scenes/Prefabs/Editor/EditorProperties/TilePropertyIntRangeSpin.tscn" id="6_svgdm"]
 [ext_resource type="Texture2D" uid="uid://dpdrrkqtcedgm" path="res://Assets/Sprites/Tilesets/DottedLine.png" id="7_vsshs"]
@@ -33,11 +32,12 @@ patch_margin_right = 8
 axis_stretch_horizontal = 1
 
 [node name="ResourceSetter" type="Node" parent="Sprite" unique_id=1692721610 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("2_om2jg")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("3_cjdml")
+json_path = "res://Assets/Sprites/Tilesets/Platform.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046612248]
@@ -74,11 +74,12 @@ patch_margin_right = 8
 axis_stretch_horizontal = 1
 
 [node name="ResourceSetter" type="Node" parent="Projection" unique_id=888381645 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("2_om2jg")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("3_cjdml")
+json_path = "res://Assets/Sprites/Tilesets/Platform.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LevelEditorToggleDetection" type="Node" parent="." unique_id=1245014865]

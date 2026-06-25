@@ -7,9 +7,6 @@
 
 [node name="ChallengeModeResults" unique_id=1393486200 instance=ExtResource("1_vr3sy")]
 
-[node name="Yoshi" parent="." index="14" unique_id=227881632]
-position = Vector2(16, 1)
-
 [node name="LabelFontChanger" parent="." index="20" unique_id=1370610741 node_paths=PackedStringArray("labels")]
 labels = [NodePath("../Sprite2D/Sprite2D3/Score"), NodePath("../Sprite2D/Sprite2D3/Coins2"), NodePath("../Sprite2D/Sprite2D3/ScoreText"), NodePath("../Sprite2D/Sprite2D3/ScoreText/Target"), null, NodePath("../SpeechBubble/Your"), NodePath("../SpeechBubble/Your/Results"), NodePath("../SpeechBubble/Coins"), NodePath("../SpeechBubble/Score"), NodePath("../SpeechBubble/Score/ScoreLabel"), NodePath("../Label"), NodePath("../WorldLevel"), NodePath("../Label2")]
 

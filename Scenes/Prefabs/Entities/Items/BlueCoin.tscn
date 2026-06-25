@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://chjxyhlwohmi6" path="res://Scenes/Prefabs/Entities/Items/Coin.tscn" id="1_iq4uk"]
 [ext_resource type="PackedScene" uid="uid://bxuxtgn5wg108" path="res://Scenes/Prefabs/Entities/Items/SpinningBlueCoin.tscn" id="2_4rq0g"]
 [ext_resource type="PackedScene" uid="uid://2j5gl64gxbgy" path="res://Scenes/Prefabs/Particles/BlueCoinSparkle.tscn" id="2_mibmr"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/BlueCoin.json" id="2_r2p65"]
 
 [node name="Coin" unique_id=1759269202 instance=ExtResource("1_iq4uk")]
 COIN_SPARKLE = ExtResource("2_mibmr")
@@ -15,7 +14,7 @@ autoplay = "Idle"
 frame_progress = 0.0
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=829518313]
-resource_json = ExtResource("2_r2p65")
+json_path = "res://Assets/Sprites/Items/BlueCoin.json"
 
 [node name="PSwitcher" parent="." index="4" unique_id=27976043]
 new_scene = "uid://rjs2k335jmb5"

@@ -9,10 +9,12 @@
 			"rect": [16, 0, 16, 16]
 		},
 		"GhostHouse": {"link": "Underground"},
-		"Castle": {
+		"Castle": {"link": "Underground"},
+		"Underwater": {
 			"source": "Flag.png",
 			"rect": [32, 0, 16, 16]
 		},
+		"CastleWater": {"link": "Underwater"},
 		"Snow": {
 			"source": "Flag.png",
 			"rect": [0, 16, 16, 16]

@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://x0amyr0j3hoq"]
 [ext_resource type="PackedScene" uid="uid://2ianqfjihktc" path="res://Scenes/Levels/SMB1/World2/2-4.tscn" id="1_3kd2m"]
 [ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="3_hhnk4"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Lakitu.json" id="4_48qw5"]
 [ext_resource type="PackedScene" uid="uid://d3gnwmvds4ors" path="res://Scenes/Prefabs/Entities/Items/SpinningRedCoin.tscn" id="4_u4hxm"]
 [ext_resource type="PackedScene" uid="uid://chjxyhlwohmi6" path="res://Scenes/Prefabs/Entities/Items/Coin.tscn" id="5_48qw5"]
 [node name="5-4" unique_id=65951426 instance=ExtResource("1_3kd2m")]
@@ -32,7 +31,7 @@ position = Vector2(1848, -120)
 item = ExtResource("4_u4hxm")
 metadata/r_coin_id = 4
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(2072209909, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("4_48qw5")
+json_path = "res://Assets/Sprites/Enemies/Lakitu.json"
 [node name="SecondQuestNode" parent="." index="17" unique_id=1319909780]
 enabled = true
 [node name="Firebar11" parent="SecondQuestNode" index="7" unique_id=334660626]

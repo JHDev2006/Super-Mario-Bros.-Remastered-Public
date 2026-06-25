@@ -4,14 +4,11 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_l3xjf"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_7xlhl"]
 [ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_1x3lf"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/CastleFlag.json" id="4_7xlhl"]
 [ext_resource type="PackedScene" uid="uid://qn4g0qkjcuiy" path="res://Scenes/Parts/SmallCastleVisual.tscn" id="5_an8pi"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="7_oyrq2"]
 [ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="7_xg4af"]
 [ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="8_l3xjf"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="9_oyrq2"]
 [ext_resource type="Texture2D" uid="uid://dbacecqyfwr1m" path="res://Assets/Sprites/Tilesets/EndingCastleSprite.png" id="11_2hcdu"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/SmallCastle.json" id="12_xg4af"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="14_76jrx"]
 [ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="14_oyrq2"]
 
@@ -108,10 +105,11 @@ script = ExtResource("2_l3xjf")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="FlagJoint/Flag" unique_id=1127788130 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_7xlhl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_7xlhl")
+json_path = "res://Assets/Sprites/Tilesets/CastleFlag.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FlagJoint/Flag" unique_id=296074204]
@@ -131,7 +129,7 @@ autostart = true
 position = Vector2(0, -40)
 
 [node name="ResourceSetterNew" parent="SmallCastleVisual/Sprite" parent_id_path=PackedInt32Array(866852705, 1275665957) index="0" unique_id=421162122]
-resource_json = ExtResource("12_xg4af")
+json_path = "res://Assets/Sprites/Tilesets/SmallCastle.json"
 
 [node name="PlayerDetection" type="Area2D" parent="." unique_id=36552281]
 script = ExtResource("7_oyrq2")
@@ -154,11 +152,12 @@ tile_map = NodePath("..")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetter" type="Node" parent="Overlay/TilesetTextureSetter" unique_id=1878193882 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_7xlhl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_oyrq2")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PlayerDetection" type="StaticBody2D" parent="Overlay" unique_id=2047567451]
@@ -180,12 +179,13 @@ frame = 1
 region_rect = Rect2(0, 80, 80, 80)
 
 [node name="ResourceSetterNew" type="Node" parent="OverlaySprite" unique_id=1207966391 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("3_7xlhl")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("12_xg4af")
+json_path = "res://Assets/Sprites/Tilesets/SmallCastle.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LevelEditorToggleDetection" type="Node" parent="." unique_id=948683029]

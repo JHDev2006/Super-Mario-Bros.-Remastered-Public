@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dkebo0uw0dkkw" path="res://Assets/Sprites/Particles/CoinSparkle.png" id="1_4p5kk"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_wdqt2"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/CoinSparkle.json" id="3_igsqc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0guw6"]
 particles_animation = true
@@ -13,6 +12,7 @@ particles_anim_loop = false
 [node name="CoinSparkle" type="CPUParticles2D" unique_id=95346280]
 z_as_relative = false
 material = SubResource("CanvasItemMaterial_0guw6")
+emitting = false
 amount = 3
 texture = ExtResource("1_4p5kk")
 lifetime = 0.5
@@ -26,12 +26,13 @@ anim_speed_min = 2.0
 anim_speed_max = 2.0
 
 [node name="ResourceSetterNew" type="Node" parent="." unique_id=1336243642 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("2_wdqt2")
 node_to_affect = NodePath("..")
 property_node = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("3_igsqc")
+json_path = "res://Assets/Sprites/Particles/CoinSparkle.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="ready" from="." to="." method="set_emitting" binds= [true]]

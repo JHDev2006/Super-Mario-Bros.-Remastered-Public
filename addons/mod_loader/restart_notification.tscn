@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb85yktpgxq7n"]
+[gd_scene format=3 uid="uid://cb85yktpgxq7n"]
 
 [ext_resource type="Script" uid="uid://k10oyyxy00y1" path="res://addons/mod_loader/restart_notification.gd" id="1_mxg68"]
 

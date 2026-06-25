@@ -1,31 +1,11 @@
 {
-	"properties":
-	{
-		"play_sfx": false
-	},
+	"properties": {"play_sfx": false},
 	"animations": {
 		"default": {
-			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 5.0,
+			"frames": [[0, 0, 16, 16]],
+			"speed": 5,
 			"loop": true
 		}
 	},
-	"variations": {
-		"default": {
-			"source": "Podoboo.png",
-			"rect": [
-				0.0,
-				0.0,
-				16.0,
-				16.0
-			]
-		}
-	}
+	"variations": {"source": "Podoboo.png"}
 }

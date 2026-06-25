@@ -8,227 +8,44 @@
 [ext_resource type="PackedScene" uid="uid://kag5i607liua" path="res://Scenes/Prefabs/UI/TileModifierMenu.tscn" id="8_bovjk"]
 [ext_resource type="PackedScene" uid="uid://knfs0rx7n1ry" path="res://Scenes/Prefabs/Editor/EditorTileSelector.tscn" id="8_wkmjk"]
 [ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="9_p4o5x"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="10_vhlvp"]
 [ext_resource type="Texture2D" uid="uid://cbgeyn530cdj6" path="res://Assets/Sprites/UI/EditorIcons.png" id="11_24ald"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Goomba.json" id="11_bkyu5"]
 [ext_resource type="PackedScene" uid="uid://m5o0l71ne3u4" path="res://Scenes/Parts/LevelEditorTab.tscn" id="11_dp0ao"]
 [ext_resource type="Texture2D" uid="uid://c6pd7cdhx78od" path="res://Assets/Sprites/UI/Tab.png" id="11_i2jbr"]
 [ext_resource type="Texture2D" uid="uid://xsfs2psb84ql" path="res://Assets/Sprites/UI/EditorButtons.png" id="12_i2jbr"]
 [ext_resource type="Texture2D" uid="uid://bgjdnv8n8l1hb" path="res://Assets/Sprites/UI/TabSelected.png" id="12_qebwb"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/GreenKoopaTroopa.json" id="13_qrvw3"]
-[ext_resource type="Texture2D" uid="uid://c7p1x61ip4ckt" path="res://Assets/Sprites/Editor/TerrainIcon.png" id="14_o024b"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedKoopaTroopa.json" id="15_s3mep"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Goombrat.json" id="16_6kfoe"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Wings.json" id="16_083dx"]
-[ext_resource type="Texture2D" uid="uid://clbmg515rgdhs" path="res://Assets/Sprites/Tilesets/Liquids.png" id="17_awwgo"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Deco/DecoTiles.json" id="18_esk8u"]
 [ext_resource type="Script" uid="uid://c7xreamx2wvdq" path="res://Scripts/Classes/Editor/EditorSelectorScroller.gd" id="20_jc7xg"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Sign.json" id="21_idval"]
 [ext_resource type="Texture2D" uid="uid://dqi2e7yddiqhy" path="res://Assets/Sprites/Editor/ScrollerIcon.png" id="22_3cjpb"]
-[ext_resource type="Texture2D" uid="uid://ctsptxfwdh7c4" path="res://Assets/Sprites/Blocks/IceBlock.png" id="22_cnvg7"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/EmptyBlock.json" id="22_ulh3l"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/PiranhaPlant.json" id="23_0c3br"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedPiranhaPlant.json" id="25_1o7dj"]
-[ext_resource type="Texture2D" uid="uid://b3dptpxx5dfa" path="res://Assets/Sprites/Editor/PipeDirections.png" id="25_dl3il"]
-[ext_resource type="Texture2D" uid="uid://bf6et6kf6rjf0" path="res://Assets/Sprites/Editor/PipeSmall.png" id="25_m2rct"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BuzzyBeetle.json" id="28_r8qbt"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/QuestionBlock.json" id="28_tw8cd"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/SuperMushroom.json" id="30_ojsda"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Spiny.json" id="30_t07ek"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/GreenCheepCheep.json" id="32_qydh5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedCheepCheep.json" id="34_sfuh0"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Blooper.json" id="36_sfuh0"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/HammerBro.json" id="38_6xl1p"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Coin.json" id="38_ofb1x"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BowserJr.json" id="39_swqrt"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Bowser.json" id="40_62ull"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Lakitu.json" id="44_h5kf7"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BulletBill.json" id="46_kk6ga"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/FirePiranhaPlant.json" id="47_ts6bf"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Pokey.json" id="48_5n4dw"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedFirePiranhaPlant.json" id="49_5dmgy"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Podoboo.json" id="50_6q8wo"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/TurnBlock.json" id="52_01msc"]
-[ext_resource type="Texture2D" uid="uid://bylhrj768sua2" path="res://Assets/Sprites/Blocks/InvisibleBlock.png" id="52_5ujs8"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Boo.json" id="52_sbw3a"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Muncher.json" id="54_06gu1"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Spike.json" id="56_bovjk"]
-[ext_resource type="Texture2D" uid="uid://2omao1clnet8" path="res://Assets/Sprites/Editor/BooBuddiesIcon.png" id="57_7ncr5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/DryBones.json" id="58_u38n8"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BowsersBro.json" id="59_kxvns"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/MontyMole.json" id="60_vt1yk"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/PoisonMushroom.json" id="61_8hw1j"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/FireFlower.json" id="62_8a610"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BobOmb.json" id="63_67fxf"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/OneUp.json" id="63_my64r"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Thwomp.json" id="68_1lly0"]
-[ext_resource type="Texture2D" uid="uid://di0lgq3cojy41" path="res://Assets/Sprites/Editor/BillCannon.png" id="69_8vfnk"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/StarMan.json" id="69_ylfhp"]
-[ext_resource type="Texture2D" uid="uid://fy7jlabgyewp" path="res://Assets/Sprites/Blocks/Trampoline.png" id="70_a6o7q"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/LitBobOmb.json" id="73_nxlms"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/SideStepper.json" id="73_os7av"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/FighterFly.json" id="75_4ujsp"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/HomingBill.json" id="77_da0p4"]
-[ext_resource type="Texture2D" uid="uid://b4tc7t4k0kp3g" path="res://Assets/Sprites/Editor/FireBar.png" id="80_gixmk"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SpikeBlock.json" id="84_fx550"]
-[ext_resource type="Texture2D" uid="uid://dr67gxml5gxro" path="res://Assets/Sprites/Editor/PipeArea.png" id="84_wu64b"]
-[ext_resource type="Texture2D" uid="uid://dtx6lbaom4qld" path="res://Assets/Sprites/Editor/PipeGenerator.png" id="86_gixmk"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/DeathBlock.json" id="86_k1rrh"]
-[ext_resource type="Texture2D" uid="uid://ln7uey6c4mf" path="res://Assets/Sprites/Blocks/PSwitchBlock.png" id="87_gjfvx"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/DonutBlock.json" id="88_0kinh"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/CheckpointFlag.json" id="88_2umvb"]
 [ext_resource type="Script" uid="uid://c08y0c8163fec" path="res://Scripts/Parts/EntityIdMapper.gd" id="88_biei1"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Sigebou.json" id="89_y4bqs"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/MusicNoteBlock.json" id="90_0msv8"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RockyWrench.json" id="90_606p5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/NoteBlock.json" id="90_lw341"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/PSwitch.json" id="92_5n4dw"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SnakeBlockHead.json" id="93_aglcy"]
 [ext_resource type="PackedScene" uid="uid://biupk6yel683f" path="res://Scenes/Prefabs/Entities/Objects/SnakeBlock.tscn" id="94_jmysq"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Flag.json" id="94_t6g4q"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/BrickBlock.json" id="95_eby78"]
-[ext_resource type="Texture2D" uid="uid://boj5qawy6b6t2" path="res://Assets/Sprites/Editor/SmallCastle.png" id="96_lm8lu"]
-[ext_resource type="Texture2D" uid="uid://m86epuy45c3u" path="res://Assets/Sprites/Editor/LargeCastle.png" id="98_2umvb"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/WigglerHead.json" id="99_4cny5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BumpBlock.json" id="100_kr3hc"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Barrel.json" id="102_6c7k7"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnOffSwitch.json" id="103_mbniv"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Platform.json" id="104_111c4"]
-[ext_resource type="Texture2D" uid="uid://dsncqqhfsnq6s" path="res://Assets/Sprites/Editor/RotationIcon.png" id="106_3c4c7"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/AngrySun.json" id="106_ji0c6"]
-[ext_resource type="Texture2D" uid="uid://cga6aikeh2mv0" path="res://Assets/Sprites/Editor/GoalPipeArea.png" id="106_vcpfp"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/ChainChomp.json" id="107_0p3ev"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnOffBlockRed.json" id="107_mbniv"]
-[ext_resource type="Texture2D" uid="uid://h2ceiq5q4i15" path="res://Assets/Sprites/Editor/PlatformIcons/SideToSideHori.png" id="108_73mr2"]
-[ext_resource type="Texture2D" uid="uid://dg3rrr0n878nm" path="res://Assets/Sprites/Blocks/SuperTrampoline.png" id="108_adqgr"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/HappyMoon.json" id="108_fvohb"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/SpikeTop.json" id="108_ji0c6"]
-[ext_resource type="Texture2D" uid="uid://bcexym1q4xr6p" path="res://Assets/Sprites/Editor/SmallStartCastle.png" id="109_7a43i"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BlueOnOffBlock.json" id="109_c84f5"]
-[ext_resource type="Texture2D" uid="uid://dvnpnxpkvnb6o" path="res://Assets/Sprites/Editor/LargeStartCastle.png" id="110_606p5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/OnOffPlatform.json" id="111_cr6gn"]
-[ext_resource type="Texture2D" uid="uid://cke2nve5v64am" path="res://Assets/Sprites/Editor/PlatformIcons/Falling.png" id="111_dsu6a"]
-[ext_resource type="Texture2D" uid="uid://iwtwy2g6bjrn" path="res://Assets/Sprites/Tilesets/TrackPlatformEngine.png" id="112_dl3il"]
 [ext_resource type="Script" uid="uid://dja6281w30iv0" path="res://Scripts/UI/TextValidator.gd" id="114_cjvlm"]
-[ext_resource type="Texture2D" uid="uid://bi13n4mw0to20" path="res://Assets/Sprites/Blocks/TimedBooBlock.png" id="114_swqrt"]
-[ext_resource type="Texture2D" uid="uid://cv27sth0k3amk" path="res://Assets/Sprites/Blocks/SwitchSpike.png" id="118_xde7w"]
-[ext_resource type="Texture2D" uid="uid://dnjx65qkbf1aq" path="res://Assets/Sprites/Blocks/SpringBlock.png" id="119_24ald"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/PeachNPC.json" id="120_606p5"]
-[ext_resource type="Texture2D" uid="uid://bd25s0rlv8axh" path="res://Assets/Sprites/Blocks/SuperSpringBlock.png" id="120_i2jbr"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/TrickBlock.json" id="126_606p5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Clock.json" id="131_514ei"]
-[ext_resource type="Texture2D" uid="uid://bdb7ua7lnmwn" path="res://Assets/Sprites/Editor/WaterLevel.png" id="131_606p5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/Fan.json" id="132_o0k3u"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/BluePlatform.json" id="133_numt2"]
-[ext_resource type="Texture2D" uid="uid://onklykrkegkn" path="res://Assets/Sprites/Editor/PipeCutsceneNode.png" id="133_s60en"]
-[ext_resource type="Texture2D" uid="uid://c8ir37jmcm4f4" path="res://Assets/Sprites/Editor/CameraLock.png" id="134_q440o"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnFan.json" id="134_vlioy"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Grinder.json" id="135_51g7s"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/FrozenBrickBlock.json" id="135_cm3b2"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/SmallGrinder.json" id="136_jt16h"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OffFan.json" id="136_ym1gn"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/FrozenCoin.json" id="137_0lb7j"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/ToadNPC.json" id="137_jmysq"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BurnerBlock.json" id="138_sucb6"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/FrozenTurnBlock.json" id="139_ixc5s"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="139_ydoon"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Track.json" id="141_0jt4c"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/FrozenMuncher.json" id="141_kxobe"]
-[ext_resource type="Texture2D" uid="uid://dtrgyp1sjp568" path="res://Assets/Sprites/Editor/TrackRider.png" id="143_jmysq"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/HiddenCoin.json" id="143_xde7w"]
-[ext_resource type="Texture2D" uid="uid://cgtrhqpe20qbx" path="res://Assets/Sprites/Editor/TextLabel.png" id="145_gf7vd"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BubbleNoteBlock.json" id="151_26bgm"]
-[ext_resource type="Texture2D" uid="uid://bu83phly7km01" path="res://Assets/Sprites/Editor/Gizmos/PlayerDetection.png" id="153_gf7vd"]
 [ext_resource type="PackedScene" uid="uid://crmu32j38j4y0" path="res://Scenes/Prefabs/Gizmos/Inputs/PlayerDetection.tscn" id="154_nxlms"]
-[ext_resource type="Texture2D" uid="uid://cui738lv33yo8" path="res://Assets/Sprites/Editor/Gizmos/PlayerEventDetection.png" id="155_k5kal"]
-[ext_resource type="Texture2D" uid="uid://bcns43fy5y3n7" path="res://Assets/Sprites/Editor/Gizmos/Lamp.png" id="155_wo43l"]
 [ext_resource type="PackedScene" uid="uid://wuilwn5k1uqk" path="res://Scenes/Prefabs/Gizmos/Inputs/PlayerEventDetection.tscn" id="156_6c7k7"]
 [ext_resource type="PackedScene" uid="uid://cb7ydcmetjs8d" path="res://Scenes/Prefabs/Gizmos/Outputs/Lamp.tscn" id="156_7xqm2"]
-[ext_resource type="Texture2D" uid="uid://gv1pjlssjnso" path="res://Assets/Sprites/Editor/Gizmos/Switch.png" id="157_26a4w"]
-[ext_resource type="Texture2D" uid="uid://dri4i34qcd8xv" path="res://Assets/Sprites/Editor/Gizmos/EnemyDetection.png" id="157_sf60c"]
 [ext_resource type="PackedScene" uid="uid://df2mpmmdeumgo" path="res://Scenes/Prefabs/Gizmos/Inputs/Broadcaster.tscn" id="158_5yjx1"]
 [ext_resource type="PackedScene" uid="uid://dbhud5kb2qnvv" path="res://Scenes/Prefabs/Gizmos/Outputs/Switch.tscn" id="158_26a4w"]
 [ext_resource type="PackedScene" uid="uid://bibrr2kxrsy5f" path="res://Scenes/Prefabs/Gizmos/Inputs/EnemyDetection.tscn" id="158_adqgr"]
-[ext_resource type="Texture2D" uid="uid://cumync742jg78" path="res://Assets/Sprites/Editor/Gizmos/Counter.png" id="159_itqoj"]
-[ext_resource type="FontFile" uid="uid://djsv6aojrcuyg" path="res://Assets/Sprites/UI/Font.fnt" id="160_da57p"]
 [ext_resource type="PackedScene" uid="uid://1rjmesav4wm0" path="res://Scenes/Prefabs/Gizmos/Outputs/Counter.tscn" id="161_1i68c"]
 [ext_resource type="PackedScene" uid="uid://ivcbqb21gx8b" path="res://Scenes/Prefabs/Gizmos/Outputs/Timer.tscn" id="162_da57p"]
-[ext_resource type="Texture2D" uid="uid://62t4606wn3sw" path="res://Assets/Sprites/Editor/Gizmos/Broadcaster.png" id="163_0bfpc"]
-[ext_resource type="Texture2D" uid="uid://dpnrj1ue5s16f" path="res://Assets/Sprites/Editor/Gizmos/AND.png" id="163_hiqwy"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnOffConveyor.json" id="164_dl3il"]
 [ext_resource type="PackedScene" uid="uid://b5gs47nvw8q1k" path="res://Scenes/Prefabs/Gizmos/Outputs/ANDGate.tscn" id="164_f5y2p"]
-[ext_resource type="Texture2D" uid="uid://das61c03dnben" path="res://Assets/Sprites/Editor/Gizmos/OR.png" id="165_gq8kq"]
-[ext_resource type="Texture2D" uid="uid://bgtom1x1jmc06" path="res://Assets/Sprites/Editor/Gizmos/ItemCollectDetection.png" id="166_dp0ao"]
 [ext_resource type="PackedScene" uid="uid://ukg5xikl8n2i" path="res://Scenes/Prefabs/Gizmos/Outputs/ORGate.tscn" id="166_upqx4"]
-[ext_resource type="Texture2D" uid="uid://0uhljpmjcqbh" path="res://Assets/Sprites/Editor/BulletBillGenerator.png" id="167_cmcm2"]
-[ext_resource type="Texture2D" uid="uid://r1wsxep0hvxf" path="res://Assets/Sprites/Editor/Gizmos/NOT.png" id="167_snabn"]
-[ext_resource type="Texture2D" uid="uid://bv04xn76b41tw" path="res://Assets/Sprites/Editor/Gizmos/Trigger.png" id="167_swqrt"]
 [ext_resource type="PackedScene" uid="uid://b2hdafieb7w6x" path="res://Scenes/Prefabs/Gizmos/Outputs/NOTGate.tscn" id="168_chiiq"]
-[ext_resource type="Texture2D" uid="uid://7vndrgnnti11" path="res://Assets/Sprites/Editor/CheepCheepGenerator.png" id="169_2vwpv"]
-[ext_resource type="Texture2D" uid="uid://b78wawq5ds3gm" path="res://Assets/Sprites/Editor/Gizmos/PlayerStateDetection.png" id="169_401qx"]
-[ext_resource type="Texture2D" uid="uid://kvnxeoyttopv" path="res://Assets/Sprites/Editor/Gizmos/XOR.png" id="169_a6wyw"]
 [ext_resource type="PackedScene" uid="uid://sc5j2y2vpiyd" path="res://Scenes/Prefabs/Gizmos/Outputs/XORGate.tscn" id="170_wc8ue"]
-[ext_resource type="Texture2D" uid="uid://dtgpkjj1dy7pu" path="res://Assets/Sprites/Editor/BowserFlameGenerator.png" id="171_adqgr"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/Crate.json" id="172_2j7v4"]
-[ext_resource type="Texture2D" uid="uid://w2bfti6riv20" path="res://Assets/Sprites/Editor/Gizmos/Timer.png" id="172_xde7w"]
-[ext_resource type="Texture2D" uid="uid://dimtvmmic8y1u" path="res://Assets/Sprites/Editor/WindGenerator.png" id="173_6c7k7"]
-[ext_resource type="Texture2D" uid="uid://dleyxhhngy3r5" path="res://Assets/Sprites/Editor/Gizmos/TilePlacer.png" id="173_a6wyw"]
-[ext_resource type="Texture2D" uid="uid://xpyvr8u3dn1y" path="res://Assets/Sprites/Editor/Gizmos/InputDetection.png" id="173_x027r"]
-[ext_resource type="Texture2D" uid="uid://db8e2n65pq1ik" path="res://Assets/Sprites/Editor/Gizmos/Repeater.png" id="173_yjk03"]
 [ext_resource type="PackedScene" uid="uid://bo3sr1fjh6pcq" path="res://Scenes/Prefabs/Gizmos/Outputs/Repeater.tscn" id="174_2vwpv"]
-[ext_resource type="Texture2D" uid="uid://b4dgfpxq1x2lq" path="res://Assets/Sprites/Editor/Gizmos/GlobalCounter.png" id="174_qebwb"]
 [ext_resource type="PackedScene" uid="uid://wn8d6mt61hag" path="res://Scenes/Prefabs/Gizmos/Outputs/TilePlacer.tscn" id="174_wc8ue"]
-[ext_resource type="Texture2D" uid="uid://cyohkov1cy2vb" path="res://Assets/Sprites/Editor/GeneratorStop.png" id="175_2vwpv"]
-[ext_resource type="Texture2D" uid="uid://vmemt78mexln" path="res://Assets/Sprites/Editor/Gizmos/PlayerTeleporter.png" id="175_al0re"]
-[ext_resource type="Texture2D" uid="uid://bv0430aufafeh" path="res://Assets/Sprites/Editor/Gizmos/Fuse.png" id="175_sf60c"]
 [ext_resource type="PackedScene" uid="uid://dsfyv4ulvul6q" path="res://Scenes/Prefabs/Gizmos/Outputs/Fuse.tscn" id="176_adqgr"]
 [ext_resource type="PackedScene" uid="uid://rvrkmp0wgg5w" path="res://Scenes/Prefabs/Gizmos/Outputs/Teleporter.tscn" id="176_uggri"]
-[ext_resource type="Texture2D" uid="uid://wbsdfjs21yf0" path="res://Assets/Sprites/Editor/Gizmos/EnemyDefeatDetect.png" id="177_2l75x"]
-[ext_resource type="Texture2D" uid="uid://ctlqmuaxiu28w" path="res://Assets/Sprites/Editor/Gizmos/ObjectDetection.png" id="177_bcg6t"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/QuestionSwitch.json" id="177_ckl32"]
 [ext_resource type="PackedScene" uid="uid://dr5lmraq8gwtm" path="res://Scenes/Prefabs/Gizmos/Inputs/EnemyDefeatDetect.tscn" id="178_0bfpc"]
-[ext_resource type="Texture2D" uid="uid://cp6jjfs5n3jjd" path="res://Assets/Sprites/Editor/Gizmos/Dice.png" id="181_k6wox"]
 [ext_resource type="PackedScene" uid="uid://bbc6s5nyphtn2" path="res://Scenes/Prefabs/Gizmos/Outputs/Dice.tscn" id="182_3c4c7"]
-[ext_resource type="Texture2D" uid="uid://ba1s5nfrmpd5a" path="res://Assets/Sprites/Editor/Gizmos/Speaker.png" id="189_3c4c7"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/Cannon.json" id="190_numt2"]
 [ext_resource type="Texture2D" uid="uid://dd3s0d7y11p4x" path="res://Assets/Sprites/Editor/ConnectableIcon.png" id="194_24ald"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/HammerItem.json" id="194_k6wox"]
-[ext_resource type="Texture2D" uid="uid://4fafl7yuo5k0" path="res://Assets/Sprites/Editor/GravityInverter.png" id="195_co4xw"]
-[ext_resource type="Texture2D" uid="uid://dgamrlgy76d3a" path="res://Assets/Sprites/Editor/Gizmos/ConditionalClearer.png" id="196_i2jbr"]
-[ext_resource type="Texture2D" uid="uid://rbln0ee0fknc" path="res://Assets/Sprites/Enemies/Icicle.png" id="196_p4o5x"]
-[ext_resource type="Texture2D" uid="uid://ubdnbge6xo3s" path="res://Assets/Sprites/Editor/Gizmos/MusicSetter.png" id="197_5mw2n"]
-[ext_resource type="Texture2D" uid="uid://dfurem6jj7gso" path="res://Assets/Sprites/Editor/MoonGravity.png" id="199_klg4c"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/Bumper.json" id="200_l3prv"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Doors.json" id="203_ym1gn"]
 [ext_resource type="Script" uid="uid://1m5otytedbp4" path="res://Scripts/UI/SpinBoxContextDisabler.gd" id="204_idval"]
 [ext_resource type="Texture2D" uid="uid://da1j4turmb4rt" path="res://Assets/Sprites/UI/EditorOptionButtonIcon.png" id="205_51g7s"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/LockedDoors.json" id="205_gsewy"]
 [ext_resource type="PackedScene" uid="uid://bdctqn5p6wxna" path="res://Scenes/Prefabs/UI/ThemeSelect.tscn" id="206_dsu6a"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/BlueCoin.json" id="206_ofliq"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/PDoors.json" id="207_sucb6"]
-[ext_resource type="Texture2D" uid="uid://ds7hexn5nb4vt" path="res://Assets/Sprites/Editor/Gizmos/Warper.png" id="208_606p5"]
-[ext_resource type="Texture2D" uid="uid://ejdm7k30661p" path="res://Assets/Sprites/Editor/SecondCamera.png" id="208_ji0c6"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SwitchBlocks.json" id="211_bcg6t"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Hachisuke.json" id="211_fe6cg"]
 [ext_resource type="PackedScene" uid="uid://k4bgruingvi0" path="res://Scenes/Prefabs/UI/EditorGuide.tscn" id="211_numt2"]
-[ext_resource type="Texture2D" uid="uid://b40xfep1drlm1" path="res://Assets/Sprites/Editor/Gizmos/PlayerFlinger.png" id="212_vcpfp"]
 [ext_resource type="PackedScene" uid="uid://07ukmj7s77wu" path="res://Scenes/Prefabs/Gizmos/Outputs/Flinger.tscn" id="213_uk8sr"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/ToggleSpike.json" id="221_742fr"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/WingItem.json" id="221_o0k3u"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/LuckyStar.json" id="224_vjdbd"]
 [ext_resource type="Script" uid="uid://0h04dap8ddvf" path="res://Scripts/Parts/AutosaveHandler.gd" id="225_s60en"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Key.json" id="229_u1728"]
-[ext_resource type="Texture2D" uid="uid://d3km1t0r7dcg3" path="res://Assets/Sprites/Editor/VineWarp.png" id="235_d5512"]
-[ext_resource type="Texture2D" uid="uid://duxkbhsbnmrvs" path="res://Assets/Sprites/Editor/Darkness.png" id="236_i73lv"]
 [ext_resource type="Script" uid="uid://codql1f5eca56" path="res://Scripts/Classes/Editor/OptionButtonThatIsntFuckingBlurry.gd" id="241_8au2b"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OneWayPanel.json" id="241_kwldt"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SmallOneWayPanel.json" id="247_6mp6g"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="249_mdu03"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/SuperballFlower.json" id="254_75p8d"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/10Coin.json" id="275_dxhti"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Vine.json" id="276_fvohb"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/30Coin.json" id="277_ggvb3"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/50Coin.json" id="279_i4hak"]
 [ext_resource type="Script" uid="uid://b77kpu65i243a" path="res://Scripts/Parts/LevelSaver.gd" id="280_75p8d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i4hak"]
@@ -467,70 +284,6 @@ color = Color(1, 1, 1, 1)
 atlas = ExtResource("11_24ald")
 region = Rect2(40, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ckl32"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fe6cg"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bcg6t"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vcpfp"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uk8sr"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_401qx"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(48, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s60en"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ofliq"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2blp1"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p4o5x"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(64, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_evyrg"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(80, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_742fr"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(80, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5mf74"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(96, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l3prv"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(96, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vjdbd"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(112, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o0k3u"]
-atlas = ExtResource("25_dl3il")
-region = Rect2(112, 16, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_dsu6a"]
 atlas = ExtResource("11_24ald")
 region = Rect2(8, 0, 8, 8)
@@ -538,10 +291,6 @@ region = Rect2(8, 0, 8, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_51g7s"]
 atlas = ExtResource("11_24ald")
 region = Rect2(16, 0, 8, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ujs8"]
-atlas = ExtResource("52_5ujs8")
-region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jt16h"]
 atlas = ExtResource("11_24ald")
@@ -1324,26 +1073,26 @@ last_wrap_alignment = 1
 layout_mode = 2
 tile_name = "TERRAIN_GROUND"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(0, 48, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 
 [node name="Terrain2" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=18168025 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "TERRAIN_SEMI_A"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(0, 80, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 1
 
 [node name="Terrain3" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=1153732918 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "TERRAIN_SEMI_B"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(48, 80, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 2
 
 [node name="SteepSlope" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=1705876175]
@@ -1358,7 +1107,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE1_TL"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(0, 128, 16, 16)
 terrain_id = 18
 tile_coords = Vector2i(0, 8)
@@ -1369,7 +1118,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE1_TR"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(16, 128, 16, 16)
 terrain_id = 19
 tile_coords = Vector2i(1, 8)
@@ -1380,7 +1129,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE1_BL"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(0, 144, 16, 16)
 terrain_id = 20
 tile_coords = Vector2i(0, 9)
@@ -1391,7 +1140,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE1_BR"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(16, 144, 16, 16)
 terrain_id = 21
 tile_coords = Vector2i(1, 9)
@@ -1417,7 +1166,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE2_TLA"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(64, 128, 16, 16)
 tile_coords = Vector2i(4, 8)
 
@@ -1426,7 +1175,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE2_TRA"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(112, 128, 16, 16)
 tile_coords = Vector2i(7, 8)
 
@@ -1435,7 +1184,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE2_BLA"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(64, 144, 16, 16)
 tile_coords = Vector2i(4, 9)
 
@@ -1444,7 +1193,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE2_BRA"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(112, 144, 16, 16)
 tile_coords = Vector2i(7, 9)
 
@@ -1469,7 +1218,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE2_TLB"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(80, 128, 16, 16)
 tile_coords = Vector2i(5, 8)
 
@@ -1478,7 +1227,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE2_TRB"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(96, 128, 16, 16)
 tile_coords = Vector2i(6, 8)
 
@@ -1487,7 +1236,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE2_BLB"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(80, 144, 16, 16)
 tile_coords = Vector2i(5, 9)
 
@@ -1496,7 +1245,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_SLOPE2_BRB"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(96, 144, 16, 16)
 tile_coords = Vector2i(6, 9)
 
@@ -1514,7 +1263,7 @@ texture = ExtResource("22_3cjpb")
 layout_mode = 2
 tile_name = "TILE_DECO"
 type = 1
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(64, 32, 16, 16)
 entity_id = "AA"
 tile_coords = Vector2i(4, 2)
@@ -1523,7 +1272,7 @@ tile_coords = Vector2i(4, 2)
 layout_mode = 2
 tile_name = "TILE_ICE"
 type = 1
-icon_texture = ExtResource("22_cnvg7")
+icon_texture_path = "res://Assets/Sprites/Blocks/IceBlock.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ce"
 tile_coords = Vector2i(4, 2)
@@ -1532,25 +1281,25 @@ tile_coords = Vector2i(4, 2)
 layout_mode = 2
 tile_name = "TILE_EMPTY"
 type = 1
-icon_texture = ExtResource("22_ulh3l")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/EmptyBlock.json"
 entity_id = "Bo"
 
 [node name="TreeTop" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=1721671802 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "TILE_TREE_TOP"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(80, 0, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 3
 
 [node name="TreeTrunk" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=1209880970 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "TILE_TREE_BASE"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(80, 16, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 4
 
 [node name="Mushrooms" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=2098954266]
@@ -1565,9 +1314,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_MUSHROOM_1"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(80, 32, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 5
 tile_coords = Vector2i(8, 6)
 
@@ -1577,9 +1326,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_MUSHROOM_2"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(80, 48, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 6
 tile_coords = Vector2i(9, 6)
 
@@ -1589,9 +1338,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_MUSHROOM_3"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(80, 64, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 7
 tile_coords = Vector2i(8, 7)
 
@@ -1610,9 +1359,9 @@ texture = ExtResource("22_3cjpb")
 layout_mode = 2
 tile_name = "TILE_MUSH_STEM"
 type = 2
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(96, 80, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 8
 tile_coords = Vector2i(8, 7)
 
@@ -1628,7 +1377,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_WATER_1"
 type = 2
-icon_texture = ExtResource("17_awwgo")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Liquids.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 terrain_id = 9
 
@@ -1638,7 +1387,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_WATER_2"
 type = 2
-icon_texture = ExtResource("17_awwgo")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Liquids.png"
 icon_region_override = Rect2(0, 64, 16, 16)
 terrain_id = 12
 
@@ -1657,7 +1406,7 @@ texture = ExtResource("22_3cjpb")
 layout_mode = 2
 tile_name = "TILE_LAVA"
 type = 2
-icon_texture = ExtResource("17_awwgo")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Liquids.png"
 icon_region_override = Rect2(0, 32, 16, 16)
 terrain_id = 10
 
@@ -1665,7 +1414,7 @@ terrain_id = 10
 layout_mode = 2
 tile_name = "TILE_POISON"
 type = 2
-icon_texture = ExtResource("17_awwgo")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Liquids.png"
 icon_region_override = Rect2(0, 96, 16, 16)
 terrain_id = 11
 
@@ -1681,7 +1430,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_CANNON_TOP"
 tile_desc = "WILL NOT SHOOT WITHOUT A 'BILL CANNON' OBJECT!!!!!!!"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(16, 64, 16, 16)
 terrain_id = 12
 tile_coords = Vector2i(1, 4)
@@ -1691,7 +1440,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_CANNON_MIDDLE"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(32, 64, 16, 16)
 terrain_id = 12
 tile_coords = Vector2i(2, 4)
@@ -1701,7 +1450,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_CANNON_BOTTOM"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(48, 64, 16, 16)
 terrain_id = 12
 tile_coords = Vector2i(3, 4)
@@ -1728,7 +1477,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_WIDE_L"
-icon_texture = ExtResource("18_esk8u")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 source_id = 3
 
@@ -1737,7 +1486,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_WIDE_M"
-icon_texture = ExtResource("18_esk8u")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 icon_region_override = Rect2(16, 0, 16, 16)
 source_id = 3
 tile_coords = Vector2i(1, 0)
@@ -1747,7 +1496,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_WIDE_R"
-icon_texture = ExtResource("18_esk8u")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 icon_region_override = Rect2(32, 0, 16, 16)
 source_id = 3
 tile_coords = Vector2i(2, 0)
@@ -1774,7 +1523,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_SHORT_TOP"
-icon_texture = ExtResource("18_esk8u")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 icon_region_override = Rect2(48, 0, 16, 16)
 source_id = 3
 tile_coords = Vector2i(3, 0)
@@ -1784,7 +1533,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_SHORT_BOTTOM"
-icon_texture = ExtResource("18_esk8u")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 icon_region_override = Rect2(48, 16, 16, 16)
 source_id = 3
 tile_coords = Vector2i(3, 1)
@@ -1811,7 +1560,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_TALL_TOP"
-icon_texture = ExtResource("18_esk8u")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 icon_region_override = Rect2(64, 0, 16, 16)
 source_id = 3
 tile_coords = Vector2i(4, 0)
@@ -1821,7 +1570,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_TALL_MIDDLE"
-icon_texture = ExtResource("18_esk8u")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 icon_region_override = Rect2(64, 16, 16, 16)
 source_id = 3
 tile_coords = Vector2i(4, 1)
@@ -1831,7 +1580,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_TALL_BOTTOM"
-icon_texture = ExtResource("18_esk8u")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 icon_region_override = Rect2(0, 16, 16, 16)
 source_id = 3
 tile_coords = Vector2i(0, 1)
@@ -1858,7 +1607,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_SINGLE_A"
-icon_texture = ExtResource("18_esk8u")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 icon_region_override = Rect2(16, 16, 16, 16)
 source_id = 3
 tile_coords = Vector2i(1, 1)
@@ -1868,7 +1617,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "DECO_SINGLE_B"
-icon_texture = ExtResource("18_esk8u")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 icon_region_override = Rect2(32, 16, 16, 16)
 source_id = 3
 tile_coords = Vector2i(2, 1)
@@ -1895,7 +1644,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_BRIDGE_L"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 160, 16, 16)
 tile_coords = Vector2i(11, 10)
 
@@ -1904,7 +1653,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_BRIDGE_M"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 160, 16, 16)
 tile_coords = Vector2i(12, 10)
 
@@ -1913,7 +1662,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_BRIDGE_R"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 160, 16, 16)
 tile_coords = Vector2i(13, 10)
 
@@ -1939,7 +1688,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_BRIDGE_ROPE_L"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 144, 16, 16)
 tile_coords = Vector2i(11, 9)
 
@@ -1948,7 +1697,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_BRIDGE_ROPE_M"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 144, 16, 16)
 tile_coords = Vector2i(12, 9)
 
@@ -1957,7 +1706,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_BRIDGE_ROPE_R"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 144, 16, 16)
 tile_coords = Vector2i(13, 9)
 
@@ -1983,7 +1732,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_WALL_TOP"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(96, 112, 16, 16)
 tile_coords = Vector2i(6, 7)
 
@@ -1992,7 +1741,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_WALL_BASE"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(112, 112, 16, 16)
 tile_coords = Vector2i(7, 7)
 
@@ -2001,7 +1750,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_LWINDOW"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(48, 160, 16, 16)
 tile_coords = Vector2i(3, 10)
 
@@ -2010,7 +1759,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_RWINDOW"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(64, 160, 16, 16)
 tile_coords = Vector2i(4, 10)
 
@@ -2019,7 +1768,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_WALL_BASE"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(80, 160, 16, 16)
 tile_coords = Vector2i(5, 10)
 
@@ -2028,7 +1777,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_ARCH"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(96, 160, 16, 16)
 tile_coords = Vector2i(6, 10)
 
@@ -2037,7 +1786,7 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_CASTLE_BG"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 128, 16, 16)
 tile_coords = Vector2i(14, 8)
 
@@ -2055,21 +1804,21 @@ texture = ExtResource("22_3cjpb")
 [node name="CloudBlock" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=227376168 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "TILE_CLOUD"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(64, 16, 16, 16)
 tile_coords = Vector2i(4, 1)
 
 [node name="Soldi" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=400111642 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "TILE_SOLID"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(64, 64, 16, 16)
 tile_coords = Vector2i(4, 4)
 
 [node name="AltTile" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Tiles/MarginContainer/GridContainer" unique_id=1692516818 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "TILE_ALT"
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(112, 96, 16, 16)
 tile_coords = Vector2i(7, 6)
 
@@ -2077,9 +1826,9 @@ tile_coords = Vector2i(7, 6)
 layout_mode = 2
 tile_name = "TILE_SIGN"
 type = 1
-icon_texture = ExtResource("21_idval")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Sign.json"
 icon_region_override = Rect2(0, 0, 24, 24)
-secondary_icon_texture = ExtResource("21_idval")
+secondary_icon_texture_path = "res://Assets/Sprites/Tilesets/Sign.json"
 secondary_icon_region_override = Rect2(0, 72, 24, 24)
 entity_id = "DL"
 tile_coords = Vector2i(7, 6)
@@ -2132,18 +1881,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 0, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_ckl32")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(8, 0)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green" unique_id=535092742 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(144, 0, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_fe6cg")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 16, 16, 16)
 tile_coords = Vector2i(9, 0)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green" unique_id=1985676288]
@@ -2167,18 +1918,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 0, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_bcg6t")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(16, 0, 16, 16)
 tile_coords = Vector2i(14, 0)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green2" unique_id=1606179621 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 16, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_vcpfp")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(16, 16, 16, 16)
 tile_coords = Vector2i(14, 1)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green2" unique_id=1760218742]
@@ -2202,18 +1955,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 0, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_uk8sr")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(32, 0, 16, 16)
 tile_coords = Vector2i(10, 0)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green3" unique_id=295457833 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 16, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_401qx")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(32, 16, 16, 16)
 tile_coords = Vector2i(10, 1)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green3" unique_id=1262988940]
@@ -2237,18 +1992,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 0, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_s60en")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(48, 0, 16, 16)
 tile_coords = Vector2i(15, 0)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green4" unique_id=1293366978 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 16, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_ofliq")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(48, 16, 16, 16)
 tile_coords = Vector2i(15, 1)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green4" unique_id=838815698]
@@ -2272,18 +2029,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 0, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_2blp1")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(64, 0, 16, 16)
 tile_coords = Vector2i(11, 0)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green5" unique_id=420043740 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 16, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_p4o5x")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(64, 16, 16, 16)
 tile_coords = Vector2i(11, 1)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green5" unique_id=1571335071]
@@ -2307,18 +2066,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 16, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_evyrg")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(80, 0, 16, 16)
 tile_coords = Vector2i(8, 1)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green6" unique_id=1648670925 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
-icon_region_override = Rect2(128, 16, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_742fr")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
+icon_region_override = Rect2(144, 16, 16, 16)
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(80, 16, 16, 16)
 tile_coords = Vector2i(9, 1)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green6" unique_id=272190455]
@@ -2342,18 +2103,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 0, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_5mf74")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(96, 0, 16, 16)
 tile_coords = Vector2i(12, 0)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green7" unique_id=364247746 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 16, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_l3prv")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(96, 16, 16, 16)
 tile_coords = Vector2i(12, 1)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green7" unique_id=1639595950]
@@ -2377,18 +2140,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 0, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_vjdbd")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(112, 0, 16, 16)
 tile_coords = Vector2i(13, 0)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green8" unique_id=2044641521 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 16, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_o0k3u")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(112, 16, 16, 16)
 tile_coords = Vector2i(13, 1)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer/Green8" unique_id=329400283]
@@ -2415,18 +2180,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 32, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_ckl32")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(8, 2)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow" unique_id=102458161 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(144, 32, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_fe6cg")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 16, 16, 16)
 tile_coords = Vector2i(9, 2)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow" unique_id=671307284]
@@ -2450,18 +2217,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 32, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_bcg6t")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(16, 0, 16, 16)
 tile_coords = Vector2i(14, 2)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow2" unique_id=1749035245 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 48, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_vcpfp")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(16, 16, 16, 16)
 tile_coords = Vector2i(14, 3)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow2" unique_id=1780116179]
@@ -2485,18 +2254,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 32, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_uk8sr")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(32, 0, 16, 16)
 tile_coords = Vector2i(10, 2)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow3" unique_id=2082374477 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 48, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_401qx")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(32, 16, 16, 16)
 tile_coords = Vector2i(10, 3)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow3" unique_id=1370399033]
@@ -2520,18 +2291,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 32, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_s60en")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(48, 0, 16, 16)
 tile_coords = Vector2i(15, 2)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow4" unique_id=1162081313 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 48, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_ofliq")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(48, 16, 16, 16)
 tile_coords = Vector2i(15, 3)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow4" unique_id=197456197]
@@ -2555,18 +2328,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 32, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_2blp1")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(64, 0, 16, 16)
 tile_coords = Vector2i(11, 2)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow5" unique_id=121352534 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 48, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_p4o5x")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(64, 16, 16, 16)
 tile_coords = Vector2i(11, 3)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow5" unique_id=2101583684]
@@ -2590,18 +2365,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 48, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_evyrg")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(80, 0, 16, 16)
 tile_coords = Vector2i(8, 3)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow6" unique_id=245477033 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
-icon_region_override = Rect2(128, 48, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_742fr")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
+icon_region_override = Rect2(144, 48, 16, 16)
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(80, 16, 16, 16)
 tile_coords = Vector2i(9, 3)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow6" unique_id=1023669338]
@@ -2625,18 +2402,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 32, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_5mf74")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(96, 0, 16, 16)
 tile_coords = Vector2i(12, 2)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow7" unique_id=1140607460 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 48, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_l3prv")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(96, 16, 16, 16)
 tile_coords = Vector2i(12, 3)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow7" unique_id=2025369552]
@@ -2660,18 +2439,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 32, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_vjdbd")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(112, 0, 16, 16)
 tile_coords = Vector2i(13, 2)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow8" unique_id=127519034 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 48, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_o0k3u")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(112, 16, 16, 16)
 tile_coords = Vector2i(13, 3)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer2/Yellow8" unique_id=1744957031]
@@ -2698,18 +2479,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 64, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_ckl32")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(8, 4)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue" unique_id=613402870 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(144, 64, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_fe6cg")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(9, 4)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue" unique_id=921926188]
@@ -2733,18 +2516,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 64, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_bcg6t")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(14, 4)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue2" unique_id=1050793024 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 80, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_vcpfp")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(14, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue2" unique_id=1976612115]
@@ -2768,18 +2553,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 64, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_uk8sr")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(10, 4)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue3" unique_id=1818613911 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 80, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_401qx")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(10, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue3" unique_id=553331267]
@@ -2803,18 +2590,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 64, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_s60en")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(15, 4)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue4" unique_id=494111311 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 80, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_ofliq")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(15, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue4" unique_id=1575222710]
@@ -2838,18 +2627,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 64, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_2blp1")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(11, 4)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue5" unique_id=1471432308 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 80, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_p4o5x")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(11, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue5" unique_id=1050956183]
@@ -2873,18 +2664,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 80, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_evyrg")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(8, 5)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue6" unique_id=1929839085 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 80, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_742fr")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(9, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue6" unique_id=677997681]
@@ -2908,18 +2701,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 64, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_5mf74")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(12, 4)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue7" unique_id=1505926850 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 80, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_l3prv")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(12, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue7" unique_id=1978810958]
@@ -2943,18 +2738,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 64, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_vjdbd")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(13, 4)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue8" unique_id=693404553 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 80, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_o0k3u")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(13, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue8" unique_id=452624552]
@@ -2981,18 +2778,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 96, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_ckl32")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(8, 6)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red" unique_id=2006932897 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(144, 96, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_fe6cg")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(9, 6)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red" unique_id=68969898]
@@ -3016,18 +2815,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 96, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_bcg6t")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(14, 6)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red2" unique_id=335581540 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 112, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_vcpfp")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(14, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red2" unique_id=1390299417]
@@ -3051,18 +2852,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 96, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_uk8sr")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(10, 6)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red3" unique_id=623110740 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 112, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_401qx")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(10, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red3" unique_id=174837546]
@@ -3086,18 +2889,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 96, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_s60en")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(15, 6)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red4" unique_id=1678431175 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 112, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_ofliq")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(15, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red4" unique_id=718934109]
@@ -3121,18 +2926,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 96, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_2blp1")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(11, 6)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red5" unique_id=558456616 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 112, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_p4o5x")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(11, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red5" unique_id=1997585146]
@@ -3156,18 +2963,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 112, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_evyrg")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(8, 7)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red6" unique_id=964691925 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 112, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_742fr")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(9, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red6" unique_id=1848897676]
@@ -3191,18 +3000,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 96, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_5mf74")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(12, 6)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red7" unique_id=339308025 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 112, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_l3prv")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(12, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red7" unique_id=372449182]
@@ -3226,18 +3037,20 @@ script = ExtResource("20_jc7xg")
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 96, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_vjdbd")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(13, 6)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red8" unique_id=238111165 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 112, 16, 16)
-secondary_icon_texture = SubResource("AtlasTexture_o0k3u")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
+secondary_icon_region_override = Rect2(0, 0, 16, 16)
 tile_coords = Vector2i(13, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red8" unique_id=1017375419]
@@ -3295,7 +3108,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_GOOMBA"
 type = 1
-icon_texture = ExtResource("11_bkyu5")
+icon_texture_path = "res://Assets/Sprites/Enemies/Goomba.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AB"
 metadata/can_be_stored = true
@@ -3311,7 +3124,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_GOOMBRAT"
 type = 1
-icon_texture = ExtResource("16_6kfoe")
+icon_texture_path = "res://Assets/Sprites/Enemies/Goombrat.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AC"
 metadata/can_be_stored = true
@@ -3345,7 +3158,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_KOOPA_GREEN"
 type = 1
-icon_texture = ExtResource("13_qrvw3")
+icon_texture_path = "res://Assets/Sprites/Enemies/GreenKoopaTroopa.json"
 icon_region_override = Rect2(0, 8, 16, 16)
 entity_id = "AD"
 metadata/_edit_group_ = true
@@ -3363,9 +3176,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_PARAKOOPA_GREEN"
 type = 1
-icon_texture = ExtResource("13_qrvw3")
+icon_texture_path = "res://Assets/Sprites/Enemies/GreenKoopaTroopa.json"
 icon_region_override = Rect2(0, 8, 16, 16)
-secondary_icon_texture = ExtResource("16_083dx")
+secondary_icon_texture_path = "res://Assets/Sprites/Items/Wings.json"
 secondary_icon_region_override = Rect2(-8, -2, 16, 16)
 entity_id = "AE"
 metadata/_edit_group_ = true
@@ -3379,9 +3192,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_PARAKOOPA_GREEN_2"
 type = 1
-icon_texture = ExtResource("13_qrvw3")
+icon_texture_path = "res://Assets/Sprites/Enemies/GreenKoopaTroopa.json"
 icon_region_override = Rect2(0, 8, 16, 16)
-secondary_icon_texture = ExtResource("108_73mr2")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PlatformIcons/SideToSideHori.png"
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bt"
 metadata/_edit_group_ = true
@@ -3395,7 +3208,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_KOOPA_RED"
 type = 1
-icon_texture = ExtResource("15_s3mep")
+icon_texture_path = "res://Assets/Sprites/Enemies/RedKoopaTroopa.json"
 icon_region_override = Rect2(0, 8, 16, 16)
 entity_id = "AF"
 metadata/_edit_group_ = true
@@ -3412,9 +3225,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_PARAKOOPA_RED"
 type = 1
-icon_texture = ExtResource("15_s3mep")
+icon_texture_path = "res://Assets/Sprites/Enemies/RedKoopaTroopa.json"
 icon_region_override = Rect2(0, 8, 16, 16)
-secondary_icon_texture = ExtResource("16_083dx")
+secondary_icon_texture_path = "res://Assets/Sprites/Items/Wings.json"
 secondary_icon_region_override = Rect2(-8, -2, 16, 16)
 entity_id = "AG"
 metadata/_edit_group_ = true
@@ -3443,9 +3256,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_PLANT_PIPE"
 type = 1
-icon_texture = ExtResource("23_0c3br")
+icon_texture_path = "res://Assets/Sprites/Enemies/PiranhaPlant.json"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("25_m2rct")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeSmall.png"
 entity_id = "AH"
 
 [node name="PipeRedPiranhaPlant" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Plants" unique_id=199908887 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -3454,9 +3267,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_REDPLANT_PIPE"
 type = 1
-icon_texture = ExtResource("25_1o7dj")
+icon_texture_path = "res://Assets/Sprites/Enemies/RedPiranhaPlant.json"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("25_m2rct")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeSmall.png"
 entity_id = "AI"
 
 [node name="StaticPiranhaPlant" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/Plants" unique_id=1759612112 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -3465,7 +3278,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_PLANT"
 type = 1
-icon_texture = ExtResource("23_0c3br")
+icon_texture_path = "res://Assets/Sprites/Enemies/PiranhaPlant.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "B+"
 metadata/can_crate_store = false
@@ -3476,7 +3289,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_REDPLANT"
 type = 1
-icon_texture = ExtResource("25_1o7dj")
+icon_texture_path = "res://Assets/Sprites/Enemies/RedPiranhaPlant.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "B/"
 metadata/can_crate_store = false
@@ -3505,9 +3318,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_FIREPLANT_PIPE"
 type = 1
-icon_texture = ExtResource("47_ts6bf")
+icon_texture_path = "res://Assets/Sprites/Enemies/FirePiranhaPlant.json"
 icon_region_override = Rect2(8, 8, 16, 16)
-secondary_icon_texture = ExtResource("25_m2rct")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeSmall.png"
 entity_id = "CA"
 
 [node name="PipePiranhaPlant2" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/FirePlant" unique_id=1560516071 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -3516,9 +3329,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_REDFIREPLANT_PIPE"
 type = 1
-icon_texture = ExtResource("49_5dmgy")
+icon_texture_path = "res://Assets/Sprites/Enemies/RedFirePiranhaPlant.json"
 icon_region_override = Rect2(8, 8, 16, 16)
-secondary_icon_texture = ExtResource("25_m2rct")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeSmall.png"
 entity_id = "CB"
 
 [node name="PipePiranhaPlant3" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Enemies/MarginContainer/GridContainer/FirePlant" unique_id=1928094744 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -3527,7 +3340,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_FIREPLANT"
 type = 1
-icon_texture = ExtResource("47_ts6bf")
+icon_texture_path = "res://Assets/Sprites/Enemies/FirePiranhaPlant.json"
 icon_region_override = Rect2(8, 8, 16, 16)
 entity_id = "CC"
 
@@ -3537,7 +3350,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_REDFIREPLANT"
 type = 1
-icon_texture = ExtResource("49_5dmgy")
+icon_texture_path = "res://Assets/Sprites/Enemies/RedFirePiranhaPlant.json"
 icon_region_override = Rect2(8, 8, 16, 16)
 entity_id = "CD"
 
@@ -3557,7 +3370,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "ENEMY_BUZZY"
 type = 1
-icon_texture = ExtResource("28_r8qbt")
+icon_texture_path = "res://Assets/Sprites/Enemies/BuzzyBeetle.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AJ"
 metadata/can_be_stored = false
@@ -3571,7 +3384,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ENEMY_SPINY"
 type = 1
-icon_texture = ExtResource("30_t07ek")
+icon_texture_path = "res://Assets/Sprites/Enemies/Spiny.json"
 icon_region_override = Rect2(0, 16, 16, 16)
 entity_id = "AK"
 metadata/can_be_stored = false
@@ -3594,7 +3407,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_CHEEP_GREEN"
 type = 1
-icon_texture = ExtResource("32_qydh5")
+icon_texture_path = "res://Assets/Sprites/Enemies/GreenCheepCheep.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AL"
 metadata/_edit_group_ = true
@@ -3606,7 +3419,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_CHEEP_RED"
 type = 1
-icon_texture = ExtResource("34_sfuh0")
+icon_texture_path = "res://Assets/Sprites/Enemies/RedCheepCheep.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AM"
 metadata/_edit_group_ = true
@@ -3627,7 +3440,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "ENEMY_BLOOPER"
 type = 1
-icon_texture = ExtResource("36_sfuh0")
+icon_texture_path = "res://Assets/Sprites/Enemies/Blooper.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AN"
 
@@ -3635,7 +3448,7 @@ entity_id = "AN"
 layout_mode = 2
 tile_name = "ENEMY_HAMMERBRO"
 type = 1
-icon_texture = ExtResource("38_6xl1p")
+icon_texture_path = "res://Assets/Sprites/Enemies/HammerBro.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AO"
 metadata/can_be_stored = false
@@ -3656,7 +3469,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_BOWSER"
 type = 1
-icon_texture = ExtResource("40_62ull")
+icon_texture_path = "res://Assets/Sprites/Enemies/Bowser.json"
 icon_region_override = Rect2(8, 16, 16, 16)
 entity_id = "AP"
 metadata/can_be_stored = true
@@ -3668,7 +3481,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_BOWSERBRO"
 type = 1
-icon_texture = ExtResource("59_kxvns")
+icon_texture_path = "res://Assets/Sprites/Enemies/BowsersBro.json"
 icon_region_override = Rect2(8, 16, 16, 16)
 entity_id = "B9"
 metadata/can_be_stored = false
@@ -3689,7 +3502,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "ENEMY_BOWSERJR"
 type = 1
-icon_texture = ExtResource("39_swqrt")
+icon_texture_path = "res://Assets/Sprites/Enemies/BowserJr.json"
 icon_region_override = Rect2(0, 8, 16, 16)
 entity_id = "DC"
 metadata/can_be_stored = false
@@ -3698,7 +3511,7 @@ metadata/can_be_stored = false
 layout_mode = 2
 tile_name = "ENEMY_POKEY"
 type = 1
-icon_texture = ExtResource("48_5n4dw")
+icon_texture_path = "res://Assets/Sprites/Enemies/Pokey.json"
 icon_region_override = Rect2(8, 8, 16, 16)
 entity_id = "A9"
 metadata/can_be_stored = false
@@ -3707,7 +3520,7 @@ metadata/can_be_stored = false
 layout_mode = 2
 tile_name = "ENEMY_LAKITU"
 type = 1
-icon_texture = ExtResource("44_h5kf7")
+icon_texture_path = "res://Assets/Sprites/Enemies/Lakitu.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AQ"
 
@@ -3723,7 +3536,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_BULLETBILL"
 type = 1
-icon_texture = ExtResource("46_kk6ga")
+icon_texture_path = "res://Assets/Sprites/Enemies/BulletBill.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AR"
 metadata/cannon_ammo = false
@@ -3734,7 +3547,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_HOMING_BILL"
 type = 1
-icon_texture = ExtResource("77_da0p4")
+icon_texture_path = "res://Assets/Sprites/Enemies/HomingBill.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "CE"
 metadata/cannon_ammo = false
@@ -3756,7 +3569,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "ENEMY_PODOBOO"
 type = 1
-icon_texture = ExtResource("50_6q8wo")
+icon_texture_path = "res://Assets/Sprites/Enemies/Podoboo.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AS"
 
@@ -3772,7 +3585,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_BOO"
 type = 1
-icon_texture = ExtResource("52_sbw3a")
+icon_texture_path = "res://Assets/Sprites/Enemies/Boo.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AT"
 metadata/can_be_stored = true
@@ -3788,7 +3601,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_BOO_BUDDY"
 type = 1
-icon_texture = ExtResource("57_7ncr5")
+icon_texture_path = "res://Assets/Sprites/Editor/BooBuddiesIcon.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AU"
 metadata/can_be_stored = true
@@ -3809,7 +3622,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "ENEMY_MUNCHER"
 type = 1
-icon_texture = ExtResource("54_06gu1")
+icon_texture_path = "res://Assets/Sprites/Enemies/Muncher.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AV"
 metadata/can_be_stored = true
@@ -3821,7 +3634,7 @@ metadata/can_pipe_gen = false
 layout_mode = 2
 tile_name = "ENEMY_SPIKE"
 type = 1
-icon_texture = ExtResource("56_bovjk")
+icon_texture_path = "res://Assets/Sprites/Enemies/Spike.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AW"
 metadata/can_crate_store = false
@@ -3830,7 +3643,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ENEMY_DRYBONES"
 type = 1
-icon_texture = ExtResource("58_u38n8")
+icon_texture_path = "res://Assets/Sprites/Enemies/DryBones.json"
 icon_region_override = Rect2(4, 8, 16, 16)
 entity_id = "AX"
 metadata/can_be_stored = true
@@ -3844,7 +3657,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ENEMY_MOLE"
 type = 1
-icon_texture = ExtResource("60_vt1yk")
+icon_texture_path = "res://Assets/Sprites/Enemies/MontyMole.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AY"
 metadata/can_be_stored = true
@@ -3857,7 +3670,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ENEMY_THWOMP"
 type = 1
-icon_texture = ExtResource("68_1lly0")
+icon_texture_path = "res://Assets/Sprites/Enemies/Thwomp.json"
 icon_region_override = Rect2(48, 0, 16, 16)
 entity_id = "A/"
 
@@ -3873,7 +3686,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_BOBOMB"
 type = 1
-icon_texture = ExtResource("63_67fxf")
+icon_texture_path = "res://Assets/Sprites/Enemies/BobOmb.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "AZ"
 metadata/can_be_stored = true
@@ -3889,7 +3702,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_LIT_BOBOMB"
 type = 1
-icon_texture = ExtResource("73_nxlms")
+icon_texture_path = "res://Assets/Sprites/Enemies/LitBobOmb.json"
 icon_region_override = Rect2(16, 0, 16, 16)
 entity_id = "Aa"
 metadata/can_be_stored = true
@@ -3915,7 +3728,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "ENEMY_SIDESTEPPER"
 type = 1
-icon_texture = ExtResource("73_os7av")
+icon_texture_path = "res://Assets/Sprites/Enemies/SideStepper.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BG"
 metadata/can_be_stored = true
@@ -3928,7 +3741,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ENEMY_FIGHTERFLY"
 type = 1
-icon_texture = ExtResource("75_4ujsp")
+icon_texture_path = "res://Assets/Sprites/Enemies/FighterFly.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BH"
 metadata/can_be_stored = true
@@ -3941,7 +3754,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ENEMY_SIGEBOU"
 type = 1
-icon_texture = ExtResource("89_y4bqs")
+icon_texture_path = "res://Assets/Sprites/Enemies/Sigebou.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "B8"
 metadata/can_be_stored = true
@@ -3954,7 +3767,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ENEMY_BARREL"
 type = 1
-icon_texture = ExtResource("102_6c7k7")
+icon_texture_path = "res://Assets/Sprites/Enemies/Barrel.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BS"
 metadata/can_be_stored = true
@@ -3966,7 +3779,7 @@ metadata/can_pipe_gen = false
 layout_mode = 2
 tile_name = "ENEMY_WRENCH"
 type = 1
-icon_texture = ExtResource("90_606p5")
+icon_texture_path = "res://Assets/Sprites/Enemies/RockyWrench.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bu"
 metadata/can_be_stored = true
@@ -3976,7 +3789,7 @@ metadata/cannon_ammo = false
 layout_mode = 2
 tile_name = "ENEMY_WIGGLER"
 type = 1
-icon_texture = ExtResource("99_4cny5")
+icon_texture_path = "res://Assets/Sprites/Enemies/WigglerHead.json"
 icon_region_override = Rect2(8, 8, 16, 16)
 entity_id = "CG"
 metadata/can_be_stored = true
@@ -3986,7 +3799,7 @@ metadata/cannon_ammo = false
 layout_mode = 2
 tile_name = "ENEMY_CHOMP"
 type = 1
-icon_texture = ExtResource("107_0p3ev")
+icon_texture_path = "res://Assets/Sprites/Enemies/ChainChomp.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "CH"
 metadata/can_be_stored = true
@@ -4004,7 +3817,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_SUN"
 type = 1
-icon_texture = ExtResource("106_ji0c6")
+icon_texture_path = "res://Assets/Sprites/Enemies/AngrySun.json"
 icon_region_override = Rect2(8, 8, 16, 16)
 entity_id = "CI"
 
@@ -4014,7 +3827,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ENEMY_MOON"
 type = 1
-icon_texture = ExtResource("108_fvohb")
+icon_texture_path = "res://Assets/Sprites/Enemies/HappyMoon.json"
 icon_region_override = Rect2(8, 8, 16, 16)
 entity_id = "CJ"
 
@@ -4034,7 +3847,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "ENEMY_SPIKETOP"
 type = 1
-icon_texture = ExtResource("108_ji0c6")
+icon_texture_path = "res://Assets/Sprites/Enemies/SpikeTop.json"
 icon_region_override = Rect2(4, 4, 16, 16)
 entity_id = "CK"
 metadata/can_crate_store = false
@@ -4075,7 +3888,7 @@ layout_mode = 2
 layout_mode = 2
 tile_name = "BLOCK_MYSTERY"
 type = 1
-icon_texture = ExtResource("28_tw8cd")
+icon_texture_path = "res://Assets/Sprites/Blocks/QuestionBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ab"
 metadata/_edit_group_ = true
@@ -4094,7 +3907,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "BLOCK_BRICK"
 type = 1
-icon_texture = ExtResource("95_eby78")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/BrickBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(16, 0, 0, 0)
 entity_id = "Ac"
@@ -4114,7 +3927,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "BLOCK_TURN"
 type = 1
-icon_texture = ExtResource("52_01msc")
+icon_texture_path = "res://Assets/Sprites/Blocks/TurnBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ad"
 metadata/_edit_group_ = true
@@ -4123,7 +3936,7 @@ metadata/_edit_group_ = true
 layout_mode = 2
 tile_name = "BLOCK_INVISIBLE"
 type = 1
-icon_texture = SubResource("AtlasTexture_5ujs8")
+icon_texture_path = "res://Scenes/Levels/LevelEditor.tscn::AtlasTexture_5ujs8"
 entity_id = "Ae"
 
 [node name="Trampolines" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Blocks/MarginContainer/GridContainer" unique_id=1000139006]
@@ -4138,7 +3951,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_TRAMPOLINE"
 type = 1
-icon_texture = ExtResource("70_a6o7q")
+icon_texture_path = "res://Assets/Sprites/Blocks/Trampoline.png"
 icon_region_override = Rect2(16, 9, 16, 16)
 entity_id = "Af"
 
@@ -4148,7 +3961,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_TRAMPOLINE_SP"
 type = 1
-icon_texture = ExtResource("108_adqgr")
+icon_texture_path = "res://Assets/Sprites/Blocks/SuperTrampoline.png"
 icon_region_override = Rect2(16, 9, 16, 16)
 entity_id = "BT"
 
@@ -4176,7 +3989,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_ONOFF_SWITCH"
 type = 1
-icon_texture = ExtResource("103_mbniv")
+icon_texture_path = "res://Assets/Sprites/Blocks/OnOffSwitch.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ag"
 
@@ -4196,7 +4009,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_ONOFF_TIMER"
 type = 1
-icon_texture = ExtResource("114_swqrt")
+icon_texture_path = "res://Assets/Sprites/Blocks/TimedBooBlock.png"
 icon_region_override = Rect2(0, 16, 16, 16)
 entity_id = "Bb"
 
@@ -4224,7 +4037,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_ONOFF_BLOCK_RED"
 type = 1
-icon_texture = ExtResource("107_mbniv")
+icon_texture_path = "res://Assets/Sprites/Blocks/OnOffBlockRed.json"
 icon_region_override = Rect2(16, 16, 16, 16)
 entity_id = "Ah"
 
@@ -4234,7 +4047,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_ONOFF_BLOCK_BLUE"
 type = 1
-icon_texture = ExtResource("109_c84f5")
+icon_texture_path = "res://Assets/Sprites/Blocks/BlueOnOffBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ai"
 
@@ -4262,7 +4075,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_SPRING"
 type = 1
-icon_texture = ExtResource("119_24ald")
+icon_texture_path = "res://Assets/Sprites/Blocks/SpringBlock.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bd"
 
@@ -4272,7 +4085,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_SPRING_SP"
 type = 1
-icon_texture = ExtResource("120_i2jbr")
+icon_texture_path = "res://Assets/Sprites/Blocks/SuperSpringBlock.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Be"
 
@@ -4300,7 +4113,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_FROZEN_BRICK"
 type = 1
-icon_texture = ExtResource("135_cm3b2")
+icon_texture_path = "res://Assets/Sprites/Blocks/FrozenBrickBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "CL"
 
@@ -4310,7 +4123,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_FROZEN_COIN"
 type = 1
-icon_texture = ExtResource("137_0lb7j")
+icon_texture_path = "res://Assets/Sprites/Blocks/FrozenCoin.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "CM"
 
@@ -4320,7 +4133,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_FROZEN_TURN"
 type = 1
-icon_texture = ExtResource("139_ixc5s")
+icon_texture_path = "res://Assets/Sprites/Blocks/FrozenTurnBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "CN"
 
@@ -4330,7 +4143,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_FROZEN_MUNCHER"
 type = 1
-icon_texture = ExtResource("141_kxobe")
+icon_texture_path = "res://Assets/Sprites/Blocks/FrozenMuncher.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "CF"
 
@@ -4358,7 +4171,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_PSWITCH_OFF"
 type = 1
-icon_texture = ExtResource("87_gjfvx")
+icon_texture_path = "res://Assets/Sprites/Blocks/PSwitchBlock.png"
 icon_region_override = Rect2(16, 0, 16, 16)
 entity_id = "BA"
 
@@ -4368,7 +4181,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_PSWITCH_ON"
 type = 1
-icon_texture = ExtResource("87_gjfvx")
+icon_texture_path = "res://Assets/Sprites/Blocks/PSwitchBlock.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BB"
 
@@ -4396,7 +4209,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_NOTE"
 type = 1
-icon_texture = ExtResource("90_lw341")
+icon_texture_path = "res://Assets/Sprites/Blocks/NoteBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BD"
 
@@ -4406,7 +4219,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_MUSIC"
 type = 1
-icon_texture = ExtResource("90_0msv8")
+icon_texture_path = "res://Assets/Sprites/Blocks/MusicNoteBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BE"
 
@@ -4426,7 +4239,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_BUBBLE"
 type = 1
-icon_texture = ExtResource("151_26bgm")
+icon_texture_path = "res://Assets/Sprites/Blocks/BubbleNoteBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "CO"
 
@@ -4454,7 +4267,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_ONOFF_SPIKE"
 type = 1
-icon_texture = ExtResource("118_xde7w")
+icon_texture_path = "res://Assets/Sprites/Blocks/SwitchSpike.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bc"
 
@@ -4464,7 +4277,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_ONOFF_SPIKE_ALT"
 type = 1
-icon_texture = ExtResource("118_xde7w")
+icon_texture_path = "res://Assets/Sprites/Blocks/SwitchSpike.png"
 icon_region_override = Rect2(64, 16, 16, 16)
 entity_id = "Bm"
 
@@ -4484,7 +4297,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "BLOCK_SPIKE"
 type = 1
-icon_texture = ExtResource("84_fx550")
+icon_texture_path = "res://Assets/Sprites/Blocks/SpikeBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Aj"
 metadata/_edit_group_ = true
@@ -4493,7 +4306,7 @@ metadata/_edit_group_ = true
 layout_mode = 2
 tile_name = "BLOCK_TRICK"
 type = 1
-icon_texture = ExtResource("126_606p5")
+icon_texture_path = "res://Assets/Sprites/Blocks/TrickBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bf"
 metadata/_edit_group_ = true
@@ -4502,7 +4315,7 @@ metadata/_edit_group_ = true
 layout_mode = 2
 tile_name = "BLOCK_DEATH"
 type = 1
-icon_texture = ExtResource("86_k1rrh")
+icon_texture_path = "res://Assets/Sprites/Blocks/DeathBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ay"
 metadata/_edit_group_ = true
@@ -4511,7 +4324,7 @@ metadata/_edit_group_ = true
 layout_mode = 2
 tile_name = "BLOCK_DONUT"
 type = 1
-icon_texture = ExtResource("88_0kinh")
+icon_texture_path = "res://Assets/Sprites/Blocks/DonutBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Az"
 metadata/_edit_group_ = true
@@ -4520,7 +4333,7 @@ metadata/_edit_group_ = true
 layout_mode = 2
 tile_name = "BLOCK_FAN"
 type = 1
-icon_texture = ExtResource("132_o0k3u")
+icon_texture_path = "res://Assets/Sprites/Blocks/Fan.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bv"
 metadata/_edit_group_ = true
@@ -4537,7 +4350,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_ONOFF_FAN"
 type = 1
-icon_texture = ExtResource("134_vlioy")
+icon_texture_path = "res://Assets/Sprites/Blocks/OnFan.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bg"
 metadata/_edit_group_ = true
@@ -4548,7 +4361,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "BLOCK_ONBLU_FAN"
 type = 1
-icon_texture = ExtResource("136_ym1gn")
+icon_texture_path = "res://Assets/Sprites/Blocks/OffFan.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bh"
 metadata/_edit_group_ = true
@@ -4569,7 +4382,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "OBJ_BURNER"
 type = 1
-icon_texture = ExtResource("138_sucb6")
+icon_texture_path = "res://Assets/Sprites/Blocks/BurnerBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bw"
 metadata/_edit_group_ = true
@@ -4588,7 +4401,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "OBJ_CRATE"
 type = 1
-icon_texture = ExtResource("172_2j7v4")
+icon_texture_path = "res://Assets/Sprites/Blocks/Crate.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "CP"
 metadata/_edit_group_ = true
@@ -4607,7 +4420,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "BLOCK_SNAKE"
 type = 1
-icon_texture = ExtResource("93_aglcy")
+icon_texture_path = "res://Assets/Sprites/Blocks/SnakeBlockHead.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cf"
 entity_scene = ExtResource("94_jmysq")
@@ -4627,7 +4440,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "BLOCK_BUMP"
 type = 1
-icon_texture = ExtResource("100_kr3hc")
+icon_texture_path = "res://Assets/Sprites/Blocks/BumpBlock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DZ"
 entity_scene = ExtResource("94_jmysq")
@@ -4679,14 +4492,14 @@ layout_mode = 2
 layout_mode = 2
 tile_name = "OBJ_FIREBAR"
 type = 1
-icon_texture = ExtResource("80_gixmk")
+icon_texture_path = "res://Assets/Sprites/Editor/FireBar.png"
 entity_id = "Ak"
 
 [node name="PSwitch" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer" unique_id=521639386 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
 tile_name = "OBJ_PSWITCH"
 type = 1
-icon_texture = ExtResource("92_5n4dw")
+icon_texture_path = "res://Assets/Sprites/Items/PSwitch.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "A+"
 metadata/can_be_stored = true
@@ -4708,7 +4521,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "OBJ_CHECKPOINTFLAG"
 type = 1
-icon_texture = ExtResource("88_2umvb")
+icon_texture_path = "res://Assets/Sprites/Items/CheckpointFlag.json"
 icon_region_override = Rect2(8, 0, 16, 16)
 entity_id = "Ax"
 
@@ -4716,7 +4529,7 @@ entity_id = "Ax"
 layout_mode = 2
 tile_name = "OBJ_BLASTER"
 type = 1
-icon_texture = ExtResource("69_8vfnk")
+icon_texture_path = "res://Assets/Sprites/Editor/BillCannon.png"
 entity_id = "Al"
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/EntityCannon" unique_id=886214118]
@@ -4741,7 +4554,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_PIPEAREA"
 type = 1
-icon_texture = ExtResource("84_wu64b")
+icon_texture_path = "res://Assets/Sprites/Editor/PipeArea.png"
 entity_id = "Am"
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Pipes/PipeArea" unique_id=273640337]
@@ -4762,7 +4575,7 @@ offset_bottom = 16.0
 tile_name = "OBJ_GOALPIPE"
 tile_desc = "Instantly clears the level. In a custom campaign, warps you to another level."
 type = 1
-icon_texture = ExtResource("106_vcpfp")
+icon_texture_path = "res://Assets/Sprites/Editor/GoalPipeArea.png"
 entity_id = "Dg"
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Pipes/GoalPipe" unique_id=313252572]
@@ -4782,7 +4595,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_PIPE_GENERATOR"
 type = 1
-icon_texture = ExtResource("86_gixmk")
+icon_texture_path = "res://Assets/Sprites/Editor/PipeGenerator.png"
 entity_id = "An"
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Pipes/PipeGenerator" unique_id=35728952]
@@ -4799,7 +4612,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "OBJ_FLAGPOLE"
 type = 1
-icon_texture = ExtResource("94_t6g4q")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Flag.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ao"
 
@@ -4815,7 +4628,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_ENDCASTLE_SMALL"
 type = 1
-icon_texture = ExtResource("96_lm8lu")
+icon_texture_path = "res://Assets/Sprites/Editor/SmallCastle.png"
 entity_id = "Ap"
 
 [node name="BigCastle" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/EndCastle" unique_id=2130645406 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -4824,7 +4637,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_ENDCASTLE_BIG"
 type = 1
-icon_texture = ExtResource("98_2umvb")
+icon_texture_path = "res://Assets/Sprites/Editor/LargeCastle.png"
 entity_id = "Aq"
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/EndCastle" unique_id=1206695792]
@@ -4851,7 +4664,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_STARTCASTLE_SMALL"
 type = 1
-icon_texture = ExtResource("109_7a43i")
+icon_texture_path = "res://Assets/Sprites/Editor/SmallStartCastle.png"
 entity_id = "DV"
 
 [node name="BigCastle" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/StartCastle" unique_id=1610039560 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -4860,7 +4673,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_STARTCASTLE_BIG"
 type = 1
-icon_texture = ExtResource("110_606p5")
+icon_texture_path = "res://Assets/Sprites/Editor/LargeStartCastle.png"
 entity_id = "DW"
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/StartCastle" unique_id=430737844]
@@ -4887,9 +4700,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_MOVING_PLATFORM"
 type = 1
-icon_texture = ExtResource("104_111c4")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Platform.json"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("108_73mr2")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PlatformIcons/SideToSideHori.png"
 entity_id = "DE"
 
 [node name="Looping" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Platforms" unique_id=520436004 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -4898,9 +4711,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_LOOPING_PLATFORM"
 type = 1
-icon_texture = ExtResource("104_111c4")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Platform.json"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("106_3c4c7")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/RotationIcon.png"
 secondary_icon_region_override = Rect2(16, 0, 16, 16)
 entity_id = "DF"
 
@@ -4910,9 +4723,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_FALLING_PLATFORM"
 type = 1
-icon_texture = ExtResource("104_111c4")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Platform.json"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("111_dsu6a")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PlatformIcons/Falling.png"
 entity_id = "DO"
 
 [node name="Track" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Platforms" unique_id=130580354 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -4921,9 +4734,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_TRACK_PLATFORM"
 type = 1
-icon_texture = ExtResource("104_111c4")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Platform.json"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("112_dl3il")
+secondary_icon_texture_path = "res://Assets/Sprites/Tilesets/TrackPlatformEngine.png"
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DR"
 
@@ -4950,7 +4763,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_ONOFF_RED_PLATFORM"
 type = 1
-icon_texture = ExtResource("111_cr6gn")
+icon_texture_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
 icon_region_override = Rect2(0, 0, 16, 8)
 entity_id = "DM"
 
@@ -4960,7 +4773,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_ONOFF_BLU_PLATFORM"
 type = 1
-icon_texture = ExtResource("111_cr6gn")
+icon_texture_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
 icon_region_override = Rect2(0, 8, 16, 8)
 secondary_icon_region_override = Rect2(16, 0, 16, 16)
 entity_id = "DN"
@@ -4988,9 +4801,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_CONVEYOR_RIGHT"
 type = 2
-icon_texture = ExtResource("164_dl3il")
+icon_texture_path = "res://Assets/Sprites/Blocks/OnOffConveyor.json"
 icon_region_override = Rect2(64, 0, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 13
 tile_coords = Vector2i(8, 6)
 
@@ -5000,9 +4813,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_CONVEYOR_LEFT"
 type = 2
-icon_texture = ExtResource("164_dl3il")
+icon_texture_path = "res://Assets/Sprites/Blocks/OnOffConveyor.json"
 icon_region_override = Rect2(64, 48, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 14
 tile_coords = Vector2i(8, 6)
 
@@ -5029,9 +4842,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_ONOFF_CON_R"
 type = 2
-icon_texture = ExtResource("164_dl3il")
+icon_texture_path = "res://Assets/Sprites/Blocks/OnOffConveyor.json"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 16
 tile_coords = Vector2i(8, 6)
 
@@ -5041,9 +4854,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "TILE_ONOFF_CON_L"
 type = 2
-icon_texture = ExtResource("164_dl3il")
+icon_texture_path = "res://Assets/Sprites/Blocks/OnOffConveyor.json"
 icon_region_override = Rect2(0, 80, 16, 16)
-secondary_icon_texture = ExtResource("14_o024b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/TerrainIcon.png"
 terrain_id = 15
 tile_coords = Vector2i(8, 6)
 
@@ -5062,7 +4875,7 @@ texture = ExtResource("22_3cjpb")
 layout_mode = 2
 tile_name = "OBJ_SCROLL_STOP"
 type = 1
-icon_texture = ExtResource("134_q440o")
+icon_texture_path = "res://Assets/Sprites/Editor/CameraLock.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BJ"
 
@@ -5070,7 +4883,7 @@ entity_id = "BJ"
 layout_mode = 2
 tile_name = "OBJ_CAMERA"
 type = 1
-icon_texture = ExtResource("208_ji0c6")
+icon_texture_path = "res://Assets/Sprites/Editor/SecondCamera.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "CQ"
 
@@ -5088,7 +4901,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "OBJ_CASTLE_BRIDGE"
 type = 1
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(64, 48, 16, 16)
 entity_id = "BK"
 
@@ -5104,7 +4917,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_CASTLE_TOAD"
 type = 1
-icon_texture = ExtResource("137_jmysq")
+icon_texture_path = "res://Assets/Sprites/Players/ToadNPC.json"
 icon_region_override = Rect2(0, 8, 16, 16)
 entity_id = "BL"
 
@@ -5114,7 +4927,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_CASTLE_PEACH"
 type = 1
-icon_texture = ExtResource("120_606p5")
+icon_texture_path = "res://Assets/Sprites/Players/PeachNPC.json"
 icon_region_override = Rect2(0, 8, 16, 16)
 entity_id = "BM"
 
@@ -5133,9 +4946,9 @@ texture = ExtResource("22_3cjpb")
 layout_mode = 2
 tile_name = "OBJ_TRACK"
 type = 1
-icon_texture = ExtResource("141_0jt4c")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Track.json"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("141_0jt4c")
+secondary_icon_texture_path = "res://Assets/Sprites/Tilesets/Track.json"
 secondary_icon_region_override = Rect2(16, 16, 16, 16)
 entity_id = "BN"
 
@@ -5143,7 +4956,7 @@ entity_id = "BN"
 layout_mode = 2
 tile_name = "OBJ_TRACK_RIDER"
 type = 1
-icon_texture = ExtResource("143_jmysq")
+icon_texture_path = "res://Assets/Sprites/Editor/TrackRider.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(16, 16, 16, 16)
 entity_id = "BO"
@@ -5162,7 +4975,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "OBJ_TEXT_LABEL"
 type = 1
-icon_texture = ExtResource("145_gf7vd")
+icon_texture_path = "res://Assets/Sprites/Editor/TextLabel.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BU"
 
@@ -5188,7 +5001,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GEN_BILL"
 type = 1
-icon_texture = ExtResource("167_cmcm2")
+icon_texture_path = "res://Assets/Sprites/Editor/BulletBillGenerator.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BV"
 
@@ -5208,7 +5021,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GEN_CHEEP"
 type = 1
-icon_texture = ExtResource("169_2vwpv")
+icon_texture_path = "res://Assets/Sprites/Editor/CheepCheepGenerator.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BW"
 
@@ -5228,7 +5041,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GEN_FLAME"
 type = 1
-icon_texture = ExtResource("171_adqgr")
+icon_texture_path = "res://Assets/Sprites/Editor/BowserFlameGenerator.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BX"
 
@@ -5248,7 +5061,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GEN_WIND"
 type = 1
-icon_texture = ExtResource("173_6c7k7")
+icon_texture_path = "res://Assets/Sprites/Editor/WindGenerator.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BY"
 
@@ -5268,7 +5081,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "GEN_GRAVITY_INV"
 type = 1
-icon_texture = ExtResource("195_co4xw")
+icon_texture_path = "res://Assets/Sprites/Editor/GravityInverter.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "B6"
 
@@ -5297,7 +5110,7 @@ texture = ExtResource("22_3cjpb")
 layout_mode = 2
 tile_name = "GEN_STOP"
 type = 1
-icon_texture = ExtResource("175_2vwpv")
+icon_texture_path = "res://Assets/Sprites/Editor/GeneratorStop.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BR"
 
@@ -5315,7 +5128,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "OBJ_GRAVITY"
 type = 1
-icon_texture = ExtResource("199_klg4c")
+icon_texture_path = "res://Assets/Sprites/Editor/MoonGravity.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "B7"
 
@@ -5323,7 +5136,7 @@ entity_id = "B7"
 layout_mode = 2
 tile_name = "OBJ_WATER_AREA"
 type = 1
-icon_texture = ExtResource("131_606p5")
+icon_texture_path = "res://Assets/Sprites/Editor/WaterLevel.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DY"
 
@@ -5332,7 +5145,7 @@ layout_mode = 2
 tile_name = "OBJ_PIPECUTSCENE"
 tile_desc = "USE THIS TO CREATE YOUR OWN PIPE CUTSCENES! DONT FORGET TO MAKE YOUR PIPE FIRST!"
 type = 1
-icon_texture = ExtResource("133_s60en")
+icon_texture_path = "res://Assets/Sprites/Editor/PipeCutsceneNode.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(24, 0, 16, 16)
 entity_id = "Df"
@@ -5341,7 +5154,7 @@ entity_id = "Df"
 layout_mode = 2
 tile_name = "OBJ_VINEWARP"
 type = 1
-icon_texture = ExtResource("235_d5512")
+icon_texture_path = "res://Assets/Sprites/Editor/VineWarp.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(24, 0, 16, 16)
 entity_id = "CS"
@@ -5351,7 +5164,7 @@ visible = false
 layout_mode = 2
 tile_name = "OBJ_DARKNESS"
 type = 1
-icon_texture = ExtResource("236_i73lv")
+icon_texture_path = "res://Assets/Sprites/Editor/Darkness.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(24, 0, 16, 16)
 entity_id = "CT"
@@ -5368,7 +5181,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_ROPE_ELEVATOR"
 type = 1
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 128, 16, 16)
 entity_id = "Bq"
 
@@ -5378,9 +5191,9 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_ROPE_ELEVATOR_BLUE"
 type = 1
-icon_texture = ExtResource("10_vhlvp")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 128, 16, 16)
-secondary_icon_texture = ExtResource("133_numt2")
+secondary_icon_texture_path = "res://Assets/Sprites/Tilesets/BluePlatform.json"
 secondary_icon_region_override = Rect2(0, 0, 8, 8)
 entity_id = "DT"
 
@@ -5399,9 +5212,9 @@ texture = ExtResource("22_3cjpb")
 layout_mode = 2
 tile_name = "OBJ_CANNON"
 type = 1
-icon_texture = ExtResource("190_numt2")
+icon_texture_path = "res://Assets/Sprites/Blocks/Cannon.json"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("190_numt2")
+secondary_icon_texture_path = "res://Assets/Sprites/Blocks/Cannon.json"
 secondary_icon_region_override = Rect2(32, 0, 16, 16)
 entity_id = "By"
 
@@ -5419,7 +5232,7 @@ texture = ExtResource("194_24ald")
 layout_mode = 2
 tile_name = "OBJ_ICICLE"
 type = 1
-icon_texture = ExtResource("196_p4o5x")
+icon_texture_path = "res://Assets/Sprites/Enemies/Icicle.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(32, 0, 16, 16)
 entity_id = "Bs"
@@ -5428,7 +5241,7 @@ entity_id = "Bs"
 layout_mode = 2
 tile_name = "OBJ_BUMPER"
 type = 1
-icon_texture = ExtResource("200_l3prv")
+icon_texture_path = "res://Assets/Sprites/Blocks/Bumper.json"
 icon_region_override = Rect2(16, 0, 16, 16)
 secondary_icon_region_override = Rect2(24, 0, 16, 16)
 entity_id = "B1"
@@ -5445,7 +5258,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_GRINDER"
 type = 1
-icon_texture = ExtResource("135_51g7s")
+icon_texture_path = "res://Assets/Sprites/Enemies/Grinder.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(24, 0, 16, 16)
 entity_id = "DP"
@@ -5456,7 +5269,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_GRINDER_SMALL"
 type = 1
-icon_texture = ExtResource("136_jt16h")
+icon_texture_path = "res://Assets/Sprites/Enemies/SmallGrinder.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(24, 0, 16, 16)
 entity_id = "DQ"
@@ -5484,7 +5297,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_ONEWAY_PANEL"
 type = 1
-icon_texture = ExtResource("241_kwldt")
+icon_texture_path = "res://Assets/Sprites/Blocks/OneWayPanel.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(32, 0, 16, 16)
 entity_id = "CW"
@@ -5495,7 +5308,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_ONEWAY_SMALL"
 type = 1
-icon_texture = ExtResource("247_6mp6g")
+icon_texture_path = "res://Assets/Sprites/Blocks/SmallOneWayPanel.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(32, 0, 16, 16)
 entity_id = "CX"
@@ -5523,7 +5336,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_DOOR"
 type = 1
-icon_texture = ExtResource("203_ym1gn")
+icon_texture_path = "res://Assets/Sprites/Tilesets/Doors.json"
 icon_region_override = Rect2(16, 0, 16, 16)
 secondary_icon_region_override = Rect2(24, 0, 16, 16)
 entity_id = "B2"
@@ -5534,7 +5347,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_LOCKED_DOOR"
 type = 1
-icon_texture = ExtResource("205_gsewy")
+icon_texture_path = "res://Assets/Sprites/Tilesets/LockedDoors.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(24, 0, 16, 16)
 entity_id = "B4"
@@ -5545,7 +5358,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "OBJ_PDOOR"
 type = 1
-icon_texture = ExtResource("207_sucb6")
+icon_texture_path = "res://Assets/Sprites/Tilesets/PDoors.json"
 icon_region_override = Rect2(16, 0, 16, 16)
 secondary_icon_region_override = Rect2(24, 0, 16, 16)
 entity_id = "B5"
@@ -5605,7 +5418,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ITEM_MUSHROOM"
 type = 1
-icon_texture = ExtResource("30_ojsda")
+icon_texture_path = "res://Assets/Sprites/Items/SuperMushroom.json"
 entity_id = "Ar"
 metadata/can_be_stored = true
 metadata/can_note_store = false
@@ -5620,7 +5433,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ITEM_POISON_MUSHROOM"
 type = 1
-icon_texture = ExtResource("61_8hw1j")
+icon_texture_path = "res://Assets/Sprites/Items/PoisonMushroom.json"
 entity_id = "As"
 metadata/can_be_stored = true
 metadata/can_note_store = false
@@ -5635,7 +5448,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ITEM_ONE_UP"
 type = 1
-icon_texture = ExtResource("63_my64r")
+icon_texture_path = "res://Assets/Sprites/Items/OneUp.json"
 entity_id = "At"
 metadata/can_be_stored = true
 metadata/can_note_store = false
@@ -5668,7 +5481,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ITEM_FIRE_FLOWER"
 type = 1
-icon_texture = ExtResource("62_8a610")
+icon_texture_path = "res://Assets/Sprites/Items/FireFlower.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Au"
 metadata/can_be_stored = true
@@ -5684,7 +5497,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ITEM_SUPERBALL_FLOWER"
 type = 1
-icon_texture = ExtResource("254_75p8d")
+icon_texture_path = "res://Assets/Sprites/Items/SuperballFlower.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "CY"
 metadata/can_be_stored = true
@@ -5710,7 +5523,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "ITEM_COIN"
 type = 1
-icon_texture = ExtResource("38_ofb1x")
+icon_texture_path = "res://Assets/Sprites/Items/Coin.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Av"
 metadata/can_be_stored = true
@@ -5719,7 +5532,7 @@ metadata/can_be_stored = true
 layout_mode = 2
 tile_name = "ITEM_BLUE_COIN"
 type = 1
-icon_texture = ExtResource("206_ofliq")
+icon_texture_path = "res://Assets/Sprites/Items/BlueCoin.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bz"
 metadata/can_be_stored = true
@@ -5728,7 +5541,7 @@ metadata/can_be_stored = true
 layout_mode = 2
 tile_name = "ITEM_HIDDEN_COIN"
 type = 1
-icon_texture = ExtResource("143_xde7w")
+icon_texture_path = "res://Assets/Sprites/Items/HiddenCoin.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DD"
 metadata/can_be_stored = true
@@ -5745,7 +5558,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ITEM_10COIN"
 type = 1
-icon_texture = ExtResource("275_dxhti")
+icon_texture_path = "res://Assets/Sprites/Items/10Coin.json"
 icon_region_override = Rect2(7, 11, 16, 16)
 entity_id = "CZ"
 metadata/can_be_stored = true
@@ -5756,7 +5569,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ITEM_30COIN"
 type = 1
-icon_texture = ExtResource("277_ggvb3")
+icon_texture_path = "res://Assets/Sprites/Items/30Coin.json"
 icon_region_override = Rect2(7, 11, 16, 16)
 entity_id = "Ca"
 metadata/can_be_stored = true
@@ -5767,7 +5580,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 tile_name = "ITEM_50COIN"
 type = 1
-icon_texture = ExtResource("279_i4hak")
+icon_texture_path = "res://Assets/Sprites/Items/50Coin.json"
 icon_region_override = Rect2(7, 11, 16, 16)
 entity_id = "Cb"
 metadata/can_be_stored = true
@@ -5788,7 +5601,7 @@ stretch_mode = 3
 layout_mode = 2
 tile_name = "ITEM_STARMAN"
 type = 1
-icon_texture = ExtResource("69_ylfhp")
+icon_texture_path = "res://Assets/Sprites/Items/StarMan.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Aw"
 metadata/can_be_stored = true
@@ -5802,7 +5615,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ITEM_CLOCK"
 type = 1
-icon_texture = ExtResource("131_514ei")
+icon_texture_path = "res://Assets/Sprites/Items/Clock.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BC"
 metadata/can_be_stored = true
@@ -5813,7 +5626,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ITEM_HAMMER"
 type = 1
-icon_texture = ExtResource("194_k6wox")
+icon_texture_path = "res://Assets/Sprites/Items/HammerItem.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "BZ"
 metadata/can_be_stored = true
@@ -5824,7 +5637,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ITEM_WING"
 type = 1
-icon_texture = ExtResource("221_o0k3u")
+icon_texture_path = "res://Assets/Sprites/Items/WingItem.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "B0"
 metadata/can_be_stored = true
@@ -5835,7 +5648,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ITEM_HACHISUKI"
 type = 1
-icon_texture = ExtResource("211_fe6cg")
+icon_texture_path = "res://Assets/Sprites/Items/Hachisuke.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Br"
 metadata/can_be_stored = true
@@ -5846,7 +5659,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ITEM_LUCKYSTAR"
 type = 1
-icon_texture = ExtResource("224_vjdbd")
+icon_texture_path = "res://Assets/Sprites/Items/LuckyStar.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Bp"
 metadata/can_be_stored = true
@@ -5857,7 +5670,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ITEM_KEY"
 type = 1
-icon_texture = ExtResource("229_u1728")
+icon_texture_path = "res://Assets/Sprites/Items/Key.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "B3"
 metadata/can_be_stored = true
@@ -5867,7 +5680,7 @@ metadata/can_crate_store = false
 layout_mode = 2
 tile_name = "ITEM_VINE"
 type = 1
-icon_texture = ExtResource("276_fvohb")
+icon_texture_path = "res://Assets/Sprites/Items/Vine.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cc"
 metadata/can_be_stored = true
@@ -5877,9 +5690,9 @@ layout_mode = 2
 tile_name = "ITEM_EXIT_VINE"
 tile_desc = "Use this for the cutscene when transitioning to a Coin Heaven."
 type = 1
-icon_texture = ExtResource("276_fvohb")
+icon_texture_path = "res://Assets/Sprites/Items/Vine.json"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("84_wu64b")
+secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeArea.png"
 entity_id = "Cd"
 metadata/can_be_stored = true
 
@@ -5932,7 +5745,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_PLAYER_DETECT"
 tile_desc = "Powers on when the player is inside, powers off when the player is outside."
 type = 1
-icon_texture = ExtResource("153_gf7vd")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/PlayerDetection.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ci"
 entity_scene = ExtResource("154_nxlms")
@@ -5954,7 +5767,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_PLAYER_EVENT"
 tile_desc = "Will emit a pulse when a specific event happens to the player."
 type = 1
-icon_texture = ExtResource("155_k5kal")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/PlayerEventDetection.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cz"
 entity_scene = ExtResource("156_6c7k7")
@@ -5976,7 +5789,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_PLAYER_STATE"
 tile_desc = "Will turn on or off, depending on if the player matches the current state."
 type = 1
-icon_texture = ExtResource("169_401qx")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/PlayerStateDetection.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "De"
 entity_scene = ExtResource("156_6c7k7")
@@ -6008,7 +5821,7 @@ layout_mode = 2
 tile_name = "GIZMO_INPUT_DETECT"
 tile_desc = "Will turn on OR emit a pulse if a specific input is held/pressed."
 type = 1
-icon_texture = ExtResource("173_x027r")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/InputDetection.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DS"
@@ -6037,7 +5850,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_ENEMY_DETECT"
 tile_desc = "Will turn on when an enemy on the same layer is near it."
 type = 1
-icon_texture = ExtResource("157_sf60c")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/EnemyDetection.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cy"
@@ -6060,7 +5873,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_ENEMY_DEFEAT"
 tile_desc = "Will emit a pulse when an enemy on the same layer is defeated."
 type = 1
-icon_texture = ExtResource("177_2l75x")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/EnemyDefeatDetect.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cu"
@@ -6093,7 +5906,7 @@ layout_mode = 2
 tile_name = "GIZMO_BROADCASTER"
 tile_desc = "Will send out a signal to any broadcasters on the same channel, even across rooms."
 type = 1
-icon_texture = ExtResource("163_0bfpc")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Broadcaster.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cv"
@@ -6114,7 +5927,7 @@ layout_mode = 2
 tile_name = "GIZMO_ITEM_DETECTION"
 tile_desc = "Will emit a pulse when an item on its layer is collected."
 type = 1
-icon_texture = ExtResource("166_dp0ao")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/ItemCollectDetection.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DH"
@@ -6135,7 +5948,7 @@ layout_mode = 2
 tile_name = "GIZMO_OBJECT_DETECTION"
 tile_desc = "Will turn on or off depending on if a specific object is inside its area."
 type = 1
-icon_texture = ExtResource("177_bcg6t")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/ObjectDetection.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Dc"
@@ -6156,7 +5969,7 @@ layout_mode = 2
 tile_name = "GIZMO_QUESTION_SWITCH"
 tile_desc = "A Generic Switch Object. Emits a pulse when activated. Power or pulse it to restore it."
 type = 1
-icon_texture = ExtResource("177_ckl32")
+icon_texture_path = "res://Assets/Sprites/Items/QuestionSwitch.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Da"
@@ -6180,7 +5993,7 @@ layout_mode = 2
 tile_name = "GIZMO_SWITCH"
 tile_desc = "Toggle switch. Will switch on / off when powered."
 type = 1
-icon_texture = ExtResource("157_26a4w")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Switch.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ck"
 entity_scene = ExtResource("158_26a4w")
@@ -6200,9 +6013,9 @@ layout_mode = 2
 tile_name = "GIZMO_TRIGGER"
 tile_desc = "Will emit a pulse when powered on the rising edge."
 type = 1
-icon_texture = ExtResource("167_swqrt")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Trigger.png"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("160_da57p")
+secondary_icon_texture_path = "res://Assets/Sprites/UI/Font.fnt"
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DG"
 entity_scene = ExtResource("182_3c4c7")
@@ -6242,9 +6055,9 @@ offset_bottom = 16.0
 tile_name = "GIZMO_COUNTER"
 tile_desc = "Will count up every time it's pulsed or powered. Will emit a pulse when its threshold is reached."
 type = 1
-icon_texture = ExtResource("159_itqoj")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Counter.png"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("160_da57p")
+secondary_icon_texture_path = "res://Assets/Sprites/UI/Font.fnt"
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cl"
 entity_scene = ExtResource("161_1i68c")
@@ -6266,9 +6079,9 @@ offset_bottom = 16.0
 tile_name = "GIZMO_GLOBAL_COUNTER"
 tile_desc = "Same as the regular counter, however its amount is shared between all other global counters with a matching channel."
 type = 1
-icon_texture = ExtResource("174_qebwb")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/GlobalCounter.png"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("160_da57p")
+secondary_icon_texture_path = "res://Assets/Sprites/UI/Font.fnt"
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DJ"
 entity_scene = ExtResource("161_1i68c")
@@ -6300,9 +6113,9 @@ layout_mode = 2
 tile_name = "GIZMO_TIMER"
 tile_desc = "Emits a pulse once it's finished counting down. Will start counting when a pulse is recieved, otherwise will begin counting on level start."
 type = 1
-icon_texture = ExtResource("172_xde7w")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Timer.png"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("160_da57p")
+secondary_icon_texture_path = "res://Assets/Sprites/UI/Font.fnt"
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cm"
 entity_scene = ExtResource("162_da57p")
@@ -6322,9 +6135,9 @@ layout_mode = 2
 tile_name = "GIZMO_REPEATER"
 tile_desc = "Will repeat a power off, power on, or pulse signal a specific number of times."
 type = 1
-icon_texture = ExtResource("173_yjk03")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Repeater.png"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("160_da57p")
+secondary_icon_texture_path = "res://Assets/Sprites/UI/Font.fnt"
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cw"
 entity_scene = ExtResource("174_2vwpv")
@@ -6344,9 +6157,9 @@ layout_mode = 2
 tile_name = "GIZMO_FUSE"
 tile_desc = "Will destroy itself and relay the signal when powered. Useful for one-time events."
 type = 1
-icon_texture = ExtResource("175_sf60c")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Fuse.png"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("160_da57p")
+secondary_icon_texture_path = "res://Assets/Sprites/UI/Font.fnt"
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cx"
 entity_scene = ExtResource("176_adqgr")
@@ -6366,9 +6179,9 @@ layout_mode = 2
 tile_name = "GIZMO_DICE"
 tile_desc = "Will emit a pulse when powered, as long as a random number matches its odds."
 type = 1
-icon_texture = ExtResource("181_k6wox")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Dice.png"
 icon_region_override = Rect2(0, 0, 16, 16)
-secondary_icon_texture = ExtResource("160_da57p")
+secondary_icon_texture_path = "res://Assets/Sprites/UI/Font.fnt"
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DA"
 entity_scene = ExtResource("182_3c4c7")
@@ -6396,7 +6209,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_AND"
 tile_desc = "Powers on if all inputs are powered."
 type = 1
-icon_texture = ExtResource("163_hiqwy")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/AND.png"
 entity_id = "Cn"
 entity_scene = ExtResource("164_f5y2p")
 
@@ -6417,7 +6230,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_OR"
 tile_desc = "Powers on if at least one input is powered."
 type = 1
-icon_texture = ExtResource("165_gq8kq")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/OR.png"
 entity_id = "Co"
 entity_scene = ExtResource("166_upqx4")
 
@@ -6438,7 +6251,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_NOT"
 tile_desc = "Powers on if not powered."
 type = 1
-icon_texture = ExtResource("167_snabn")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/NOT.png"
 entity_id = "Cp"
 entity_scene = ExtResource("168_chiiq")
 
@@ -6459,7 +6272,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_XOR"
 tile_desc = "Will power on unless all inputs are the same."
 type = 1
-icon_texture = ExtResource("169_a6wyw")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/XOR.png"
 entity_id = "Cq"
 entity_scene = ExtResource("170_wc8ue")
 
@@ -6493,7 +6306,7 @@ layout_mode = 2
 tile_name = "GIZMO_LAMP"
 tile_desc = "Turns on when powered. Changes colour depending on how many inputs are powered."
 type = 1
-icon_texture = ExtResource("155_wo43l")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Lamp.png"
 icon_region_override = Rect2(16, 0, 16, 16)
 entity_id = "Cj"
 entity_scene = ExtResource("156_7xqm2")
@@ -6513,7 +6326,7 @@ layout_mode = 2
 tile_name = "GIZMO_PLACER"
 tile_desc = "Spawns in a specific entity / tile at its current location when powered."
 type = 1
-icon_texture = ExtResource("173_a6wyw")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/TilePlacer.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Cs"
@@ -6554,7 +6367,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_TELEPORTER"
 tile_desc = "Teleports the player to itself when powered."
 type = 1
-icon_texture = ExtResource("175_al0re")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/PlayerTeleporter.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Ct"
@@ -6577,7 +6390,7 @@ offset_bottom = 16.0
 tile_name = "GIZMO_WARPER"
 tile_desc = "Will transition to a different room when powered. Use matching channels on other Room Warpers to define positions upon warping."
 type = 1
-icon_texture = ExtResource("208_606p5")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Warper.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DU"
@@ -6610,7 +6423,7 @@ layout_mode = 2
 tile_name = "GIZMO_SPEAKER"
 tile_desc = "Plays a specific Sound Effect when powered."
 type = 1
-icon_texture = ExtResource("189_3c4c7")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/Speaker.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DB"
@@ -6631,7 +6444,7 @@ layout_mode = 2
 tile_name = "GIZMO_MUSIC_PLAYER"
 tile_desc = "Changes the current level song when powered."
 type = 1
-icon_texture = ExtResource("197_5mw2n")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/MusicSetter.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DK"
@@ -6652,7 +6465,7 @@ layout_mode = 2
 tile_name = "GIZMO_CONDITIONAL"
 tile_desc = "When powered, will either validate or fail the condition required to beat a level."
 type = 1
-icon_texture = ExtResource("196_i2jbr")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/ConditionalClearer.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "DI"
@@ -6673,7 +6486,7 @@ layout_mode = 2
 tile_name = "GIZMO_FLING"
 tile_desc = "Changes the player's velocity."
 type = 1
-icon_texture = ExtResource("212_vcpfp")
+icon_texture_path = "res://Assets/Sprites/Editor/Gizmos/PlayerFlinger.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Dd"
@@ -6694,7 +6507,7 @@ layout_mode = 2
 tile_name = "GIZMO_SWITCH_BLOCK"
 tile_desc = "A Generic Switch Block. Can be turned on and off via gizmos, and has a customizable colour."
 type = 1
-icon_texture = ExtResource("211_bcg6t")
+icon_texture_path = "res://Assets/Sprites/Blocks/SwitchBlocks.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Db"
@@ -6715,7 +6528,7 @@ layout_mode = 2
 tile_name = "GIZMO_TOGGLE_SPIKE"
 tile_desc = "A Generic, Toggleable Spike Block."
 type = 1
-icon_texture = ExtResource("221_742fr")
+icon_texture_path = "res://Assets/Sprites/Blocks/ToggleSpike.json"
 icon_region_override = Rect2(0, 0, 16, 16)
 secondary_icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "Dh"

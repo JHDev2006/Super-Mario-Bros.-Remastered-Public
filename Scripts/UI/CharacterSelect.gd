@@ -38,7 +38,7 @@ func get_custom_characters() -> void:
 			Player.CHARACTER_NAMES[idx] = json.name
 		path = ResourceSetter.get_pure_resource_path("res://Assets/Sprites/Players/" + i + "/CharacterColour.json")
 		if FileAccess.file_exists(path):
-			Player.CHARACTER_COLOURS[idx] = load(path)
+			Player.CHARACTER_COLOURS[idx] = (path)
 		idx += 1
 	
 	var base_path = Global.config_path
@@ -59,7 +59,7 @@ func get_custom_characters() -> void:
 			Player.CHARACTER_NAMES.append(json.name)
 			
 			if FileAccess.file_exists(char_path.path_join("CharacterColour.json")):
-				Player.CHARACTER_COLOURS.append(load(char_path.path_join("CharacterColour.json")))
+				Player.CHARACTER_COLOURS.append((char_path.path_join("CharacterColour.json")))
 			else:
 				Player.CHARACTER_COLOURS.append(null)
 			
@@ -120,7 +120,8 @@ func update_sprites() -> void:
 	for i in [%Left, %Selected, %Right]:
 		i.update()
 		i.play("Pose" if i == %Selected else "FaceForward")
-	%PlayerColourTexture.resource_json = Player.CHARACTER_COLOURS[selected_index]
+	print(Player.CHARACTER_COLOURS[selected_index])
+	%PlayerColourTexture.json_path = Player.CHARACTER_COLOURS[selected_index]
 	%CharacterName.text = tr(Player.CHARACTER_NAMES[selected_index])
 	$Panel/MarginContainer/VBoxContainer/CharacterName/TextShadowColourChanger/ColourPaletteSampler.texture = %ColourPaletteSampler.texture
 	$Panel/MarginContainer/VBoxContainer/CharacterName/TextShadowColourChanger.handle_shadow_colours()

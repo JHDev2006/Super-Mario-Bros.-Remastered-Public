@@ -2,13 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://6vykxewvvp2e" path="res://Scenes/Prefabs/Blocks/FrozenBrickBlock.tscn" id="1_3d4v8"]
 [ext_resource type="PackedScene" uid="uid://bi1hb03wk001p" path="res://Scenes/Prefabs/Entities/Enemies/Muncher.tscn" id="2_m3wri"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/FrozenMuncher.json" id="3_m3wri"]
 
 [node name="FrozenBrickBlock" unique_id=770776028 instance=ExtResource("1_3d4v8")]
 melted_scene = ExtResource("2_m3wri")
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(511132576) index="0" unique_id=410622682]
-resource_json = ExtResource("3_m3wri")
+json_path = "res://Assets/Sprites/Blocks/FrozenMuncher.json"
 
 [node name="PSwitcher" parent="." index="3" unique_id=115134147]
 new_scene = ""

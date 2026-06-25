@@ -1,78 +1,10 @@
 [gd_scene format=3 uid="uid://n1xyk5g5r4h6"]
 
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="1_okju0"]
-[ext_resource type="Script" uid="uid://cjkurwybsaywm" path="res://Scripts/Classes/Entities/Items/PowerUpItem.gd" id="2_xbua8"]
-[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_ftruy"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/FireFlower.json" id="5_3bcnt"]
-[ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="6_n8jdl"]
-[ext_resource type="Texture2D" uid="uid://hfh5i32uji5t" path="res://Assets/Sprites/Items/SuperMushroom.png" id="6_xbua8"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_db8fa"]
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_11cns"]
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_brn7u"]
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fwmx2"]
-region = Rect2(48, 16, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_gid51"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_db8fa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_11cns")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_brn7u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fwmx2")
-}],
-"loop": true,
-"name": &"default",
-"speed": 15.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_16uf3"]
-size = Vector2(12, 12)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kjjbq"]
-size = Vector2(8, 8)
-
-[sub_resource type="PackedScene" id="PackedScene_sst3l"]
-_bundled = {
-"conn_count": 1,
-"conns": PackedInt32Array(1073741831, 1073741830, 35, 34, 2, 0, 0),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("FireFlower", "CharacterBody2D", "z_index", "collision_layer", "collision_mask", "script", "power_up_state", "metadata/_custom_type_script", "Sprite", "AnimatedSprite2D", "position", "sprite_frames", "autoplay", "frame_progress", "ResourceSetterNew", "Node", "script", "node_to_affect", "property_name", "resource_json", "metadata/_custom_type_script", "Hitbox", "Area2D", "Shape", "CollisionShape2D", "position", "shape", "Collision", "CollisionShape2D", "position", "shape", "StaticEntityMovement", "Node", "script", "on_area_entered", "area_entered"),
-"node_count": 7,
-"node_ids": PackedInt32Array(),
-"node_paths": [NodePath("."), NodePath("./Sprite"), NodePath("."), NodePath("./Hitbox"), NodePath("."), NodePath("."), NodePath("."), NodePath("Hitbox")],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 6, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 0, 1073741824, 0, 9, 8, -1, 4, 10, 6, 11, 7, 12, 8, 13, 9, 0, 1073741825, 0, 15, 14, -1, 5, 16, 10, 1073741841, 11, 18, 12, 19, 13, 20, 14, 0, 1073741826, 0, 22, 21, -1, 0, 0, 1073741827, 0, 24, 23, -1, 2, 25, 15, 26, 16, 0, 1073741828, 0, 28, 27, -1, 2, 29, 17, 30, 18, 0, 1073741829, 0, 32, 31, -1, 1, 33, 19, 0),
-"variants": [-1, 8, 2, ExtResource("2_xbua8"), "Fire", "uid://cjkurwybsaywm", Vector2(0, -8), SubResource("SpriteFrames_gid51"), "default", 0.157931, ExtResource("4_ftruy"), NodePath(".."), "sprite_frames", ExtResource("5_3bcnt"), "uid://cbal8ms2oe1ik", Vector2(0, -8), SubResource("RectangleShape2D_16uf3"), Vector2(0, -4), SubResource("RectangleShape2D_kjjbq"), ExtResource("6_n8jdl")],
-"version": 3
-}
+[ext_resource type="PackedScene" uid="uid://dbjqtjhb2t4cn" path="res://Scenes/Prefabs/Entities/Items/FireFlower.tscn" id="2_ibxq6"]
 
 [node name="InvisibleQuestionBlock" unique_id=1655993878 instance=ExtResource("1_okju0")]
-item = SubResource("PackedScene_sst3l")
+item = ExtResource("2_ibxq6")
 mushroom_if_small = true
-
-[node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=192836204]
-texture = ExtResource("6_xbua8")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="Timer" type="Timer" parent="Sprite2D" index="0" unique_id=228472286]
-wait_time = 0.001
-autostart = true
-
-[connection signal="timeout" from="Sprite2D/Timer" to="Sprite2D" method="queue_free"]
 
 [editable path="BlockAnimations"]

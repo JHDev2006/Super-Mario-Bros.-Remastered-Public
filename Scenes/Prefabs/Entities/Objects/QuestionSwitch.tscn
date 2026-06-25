@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://y81rhybgt7kb" path="res://Assets/Sprites/Items/PSwitch.png" id="2_yk0ke"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_dcr74"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_o5dki"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/QuestionSwitch.json" id="5_y40fu"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="6_vbohx"]
 [ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="7_2jkle"]
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="9_bk8mh"]
@@ -159,10 +158,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1133385787 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_o5dki")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_y40fu")
+json_path = "res://Assets/Sprites/Items/QuestionSwitch.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PressedCollision" type="CollisionShape2D" parent="." unique_id=53196333]

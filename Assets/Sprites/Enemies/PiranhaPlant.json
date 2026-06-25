@@ -2,20 +2,10 @@
 	"animations": {
 		"default": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					24.0
-				],
-				[
-					16.0,
-					0.0,
-					16.0,
-					24.0
-				]
+				[0, 0, 16, 24],
+				[16, 0, 16, 24]
 			],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		}
 	},
@@ -23,131 +13,74 @@
 		"default": {
 			"SMB1": {
 				"source": "PiranhaPlant.png",
-				"rect": [
-					0.0,
-					0.0,
-					32.0,
-					24.0
-				]
+				"rect": [0, 0, 32, 24]
 			},
 			"SMBANN": {
 				"source": "DiscoPiranha.png",
-				"rect": [
-					0.0,
-					0.0,
-					32.0,
-					24.0
-				]
+				"rect": [0, 0, 32, 24]
 			}
 		},
 		"Underground": {
 			"SMB1": {
 				"source": "PiranhaPlant.png",
-				"rect": [
-					32.0,
-					0.0,
-					32.0,
-					24.0
-				]
+				"rect": [32, 0, 32, 24]
 			},
 			"SMBANN": {
 				"source": "DiscoPiranha.png",
-				"rect": [
-					32.0,
-					0.0,
-					32.0,
-					24.0
-				]
+				"rect": [32, 0, 32, 24]
 			}
 		},
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {"link": "Underground"},
 		"Underwater": {
-			"SMB1": {"source": "PiranhaPlant.png", "rect": [64, 0, 32, 24]},
-			"SMBANN": {"source": "DiscoPiranha.png", "rect": [64, 0, 32, 24]}
+			"SMB1": {
+				"source": "PiranhaPlant.png",
+				"rect": [64, 0, 32, 24]
+			},
+			"SMBANN": {
+				"source": "DiscoPiranha.png",
+				"rect": [64, 0, 32, 24]
+			}
 		},
-		"Castle": {
-			"link": "Underground"
-		},
-		"GhostHouse": {
-			"link": "Underground"
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Snow": {
 			"SMB1": {
 				"source": "PiranhaPlant.png",
-				"rect": [
-					0.0,
-					24.0,
-					32.0,
-					24.0
-				]
+				"rect": [0, 24, 32, 24]
 			},
 			"SMBANN": {
 				"source": "DiscoPiranha.png",
-				"rect": [
-					0.0,
-					24.0,
-					32.0,
-					24.0
-				]
+				"rect": [0, 24, 32, 24]
 			}
 		},
 		"Space": {
 			"SMB1": {
 				"source": "PiranhaPlant.png",
-				"rect": [
-					32.0,
-					24.0,
-					32.0,
-					24.0
-				]
+				"rect": [32, 24, 32, 24]
 			},
 			"SMBANN": {
 				"source": "DiscoPiranha.png",
-				"rect": [
-					32.0,
-					24.0,
-					32.0,
-					24.0
-				]
+				"rect": [32, 24, 32, 24]
 			}
 		},
 		"Volcano": {
 			"SMB1": {
 				"source": "PiranhaPlant.png",
-				"rect": [
-					64.0,
-					24.0,
-					32.0,
-					24.0
-				]
+				"rect": [64, 24, 32, 24]
 			},
 			"SMBANN": {
 				"source": "DiscoPiranha.png",
-				"rect": [
-					64.0,
-					24.0,
-					32.0,
-					24.0
-				]
+				"rect": [64, 24, 32, 24]
 			}
 		},
 		"Bonus": {
 			"SMB1": {
 				"source": "PiranhaPlant.png",
-				"rect": [
-					0.0,
-					48.0,
-					32.0,
-					24.0
-				]
+				"rect": [0, 48, 32, 24]
 			},
 			"SMBANN": {
 				"source": "DiscoPiranha.png",
-				"rect": [
-					0.0,
-					48.0,
-					32.0,
-					24.0
-				]
+				"rect": [0, 48, 32, 24]
 			}
 		}
 	}

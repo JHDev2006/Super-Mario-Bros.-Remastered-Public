@@ -2,10 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cmmv05bbjposs" path="res://Scenes/Prefabs/Entities/Objects/TrackPlatform.tscn" id="1_hledg"]
 [ext_resource type="Texture2D" uid="uid://dfpbjnd1o5tig" path="res://Assets/Sprites/Tilesets/OnOffPlatform.png" id="2_i1uto"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/OnOffPlatform.json" id="3_hij3n"]
 [ext_resource type="Script" uid="uid://q45b31h6356r" path="res://Scripts/Classes/Components/OnOffSwitcher.gd" id="4_i1uto"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i1uto"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hledg"]
 resource_local_to_scene = true
 size = Vector2(32, 8)
 
@@ -16,10 +15,10 @@ texture = ExtResource("2_i1uto")
 region_rect = Rect2(0, 0, 24, 8)
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=1692721610]
-resource_json = ExtResource("3_hij3n")
+json_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1046612248]
-shape = SubResource("RectangleShape2D_i1uto")
+shape = SubResource("RectangleShape2D_hledg")
 
 [node name="OnOffSwitcher" type="Node" parent="." index="9" unique_id=2030972507]
 script = ExtResource("4_i1uto")

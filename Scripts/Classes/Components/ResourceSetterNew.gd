@@ -5,9 +5,10 @@ extends Node
 @export var property_node: Node = null
 @export var property_name := ""
 @export var mode: ResourceMode = ResourceMode.SPRITE_FRAMES
-@export var resource_json: JSON = null:
+
+@export_file_path("*.json") var json_path := "":
 	set(value):
-		resource_json = value
+		json_path = value
 		update_resource()
 
 @export var metadata_node: Node = owner
@@ -58,14 +59,15 @@ func safety_check() -> void:
 
 func update_resource() -> void:
 	randomize()
-	if is_inside_tree() == false or is_queued_for_deletion() or resource_json == null or node_to_affect == null:
+	if is_inside_tree() == false or is_queued_for_deletion() or json_path == "" or node_to_affect == null:
 		return
 	if state != [Global.level_theme, Global.theme_time, Global.current_room_type]:
 		cache.clear()
 		active_flags.clear()
 		property_cache.clear()
 	if node_to_affect != null:
-		var resource = get_resource(resource_json)
+		var json = load(json_path)
+		var resource = get_resource(json)
 		if mode != ResourceMode.THEME:
 			node_to_affect.set(property_name, resource)
 			if node_to_affect is AnimatedSprite2D:

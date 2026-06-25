@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bxfc7hxw13s6q" path="res://Scripts/Classes/Entities/Enemies/Thwomp.gd" id="1_bl7l2"]
 [ext_resource type="Texture2D" uid="uid://dw5k3dr3kedw3" path="res://Assets/Sprites/Enemies/Thwomp.png" id="2_kdp37"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_bl7l2"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Thwomp.json" id="4_426pe"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="5_gvuxk"]
 [ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="6_5xuvp"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="7_01c5y"]
@@ -77,10 +76,11 @@ autoplay = "Idle"
 offset = Vector2(0, 1)
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=995186228 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_bl7l2")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_426pe")
+json_path = "res://Assets/Sprites/Enemies/Thwomp.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1849938005]

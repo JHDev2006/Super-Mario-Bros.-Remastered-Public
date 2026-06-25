@@ -2,69 +2,34 @@
 	"variations": {
 		"default": {
 			"source": "Vine.png",
-			"rect": [
-				0.0,
-				0.0,
-				16.0,
-				48.0
-			]
+			"rect": [0, 0, 16, 48]
 		},
 		"Underground": {
 			"source": "Vine.png",
-			"rect": [
-				16.0,
-				0.0,
-				16.0,
-				48.0
-			]
+			"rect": [16, 0, 16, 48]
 		},
-		"GhostHouse": {
-			"link": "Underground"
-		},
-		"Castle": {
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {"link": "Underground"},
+		"Underwater": {
 			"source": "Vine.png",
-			"rect": [
-				32.0,
-				0.0,
-				16.0,
-				48.0
-			]
+			"rect": [32, 0, 16, 48]
 		},
+		"CastleWater": {"link": "Underwater"},
 		"Snow": {
 			"source": "Vine.png",
-			"rect": [
-				0.0,
-				48.0,
-				16.0,
-				48.0
-			]
+			"rect": [0, 48, 16, 48]
 		},
 		"Space": {
 			"source": "Vine.png",
-			"rect": [
-				16.0,
-				48.0,
-				16.0,
-				48.0
-			]
+			"rect": [16, 48, 16, 48]
 		},
 		"Volcano": {
 			"source": "Vine.png",
-			"rect": [
-				32.0,
-				48.0,
-				16.0,
-				48.0
-			]
+			"rect": [32, 48, 16, 48]
 		},
 		"Bonus": {
 			"source": "Vine.png",
-			"rect": [
-				0.0,
-				96.0,
-				16.0,
-				48.0
-			]
+			"rect": [0, 96, 16, 48]
 		}
 	}
 }

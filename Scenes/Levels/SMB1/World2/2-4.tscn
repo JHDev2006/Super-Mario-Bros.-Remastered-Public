@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://cxdj1ea1rt1r4" path="res://Scenes/Prefabs/Entities/Enemies/Podoboo.tscn" id="14_ik07c"]
 [ext_resource type="PackedScene" uid="uid://bc1mrna4kybhv" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/QuestionBlock.tscn" id="15_3nhmb"]
 [ext_resource type="PackedScene" uid="uid://dbjqtjhb2t4cn" path="res://Scenes/Prefabs/Entities/Items/FireFlower.tscn" id="16_2jw65"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/GreenKoopaShell.json" id="16_5sds7"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="17_n7idk"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="23_5sds7"]
 [ext_resource type="PackedScene" uid="uid://dmv5rl1ckkwsk" path="res://Scenes/Prefabs/LevelObjects/BowserFlameGenerator.tscn" id="24_bibmg"]
@@ -93,7 +92,7 @@ position = Vector2(1800, -40)
 [node name="Bowser" parent="." unique_id=2072209909 instance=ExtResource("11_q4etu")]
 position = Vector2(1944, -48)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(2072209909, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("16_5sds7")
+json_path = "res://Assets/Sprites/Enemies/GreenKoopaShell.json"
 [node name="SmallSidewaysPlatform" parent="." unique_id=704535588 instance=ExtResource("12_3nhmb")]
 position = Vector2(1928, -112)
 [node name="Podoboo" parent="." unique_id=806419833 instance=ExtResource("14_ik07c")]

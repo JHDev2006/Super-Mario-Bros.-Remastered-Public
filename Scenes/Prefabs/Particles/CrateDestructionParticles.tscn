@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cq1cyk2gwwjis"]
 
 [ext_resource type="PackedScene" uid="uid://cyw7kk1em8h16" path="res://Scenes/Parts/Particles/BlockDestructionParticles.tscn" id="1_c1kmq"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/CrateDestructionParticles.json" id="2_2lsnr"]
 
 [node name="BlockDestructionParticles" unique_id=1786335563 instance=ExtResource("1_c1kmq")]
 
@@ -9,22 +8,22 @@
 region_enabled = false
 
 [node name="ResourceSetterNew" parent="TL/Sprite" index="0" unique_id=1629196801]
-resource_json = ExtResource("2_2lsnr")
+json_path = "res://Assets/Sprites/Particles/CrateDestructionParticles.json"
 
 [node name="Sprite" parent="TR" parent_id_path=PackedInt32Array(1437535699) index="0" unique_id=1807107505]
 region_enabled = false
 
 [node name="ResourceSetterNew" parent="TR/Sprite" index="0" unique_id=1946695245]
-resource_json = ExtResource("2_2lsnr")
+json_path = "res://Assets/Sprites/Particles/CrateDestructionParticles.json"
 
 [node name="Sprite" parent="BL" parent_id_path=PackedInt32Array(1862425218) index="0" unique_id=1521277823]
 region_enabled = false
 
 [node name="ResourceSetterNew" parent="BL/Sprite" index="0" unique_id=545736962]
-resource_json = ExtResource("2_2lsnr")
+json_path = "res://Assets/Sprites/Particles/CrateDestructionParticles.json"
 
 [node name="Sprite" parent="BR" parent_id_path=PackedInt32Array(147078336) index="0" unique_id=718913820]
 region_enabled = false
 
 [node name="ResourceSetterNew" parent="BR/Sprite" index="0" unique_id=228121991]
-resource_json = ExtResource("2_2lsnr")
+json_path = "res://Assets/Sprites/Particles/CrateDestructionParticles.json"

@@ -5,7 +5,7 @@ extends Node2D
 static var character_save := "Mario"
 
 func _ready() -> void:
-	activated.get_node("ResourceSetterNew").resource_json = load(get_character_sprite_path(0))
+	activated.get_node("ResourceSetterNew").json_path = (get_character_sprite_path(0))
 	owner.show()
 	if owner.passed:
 		sprite.hide()

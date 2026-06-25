@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://bdirphnfabey8" path="res://Scenes/Prefabs/Entities/Enemies/GreenCheepCheep.tscn" id="1_ie2kx"]
 [ext_resource type="Texture2D" uid="uid://dbq7oso3fo4n6" path="res://Assets/Sprites/Enemies/CheepCheep.png" id="2_y5sv7"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedCheepCheep.json" id="3_871bq"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_plbrw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrggu"]
@@ -34,11 +33,12 @@ move_speed = 45
 sprite_frames = SubResource("SpriteFrames_a8obf")
 
 [node name="ResourceSetterNew" parent="Sprite" index="2" unique_id=998124050]
-resource_json = ExtResource("3_871bq")
+json_path = "res://Assets/Sprites/Enemies/RedCheepCheep.json"
 
 [node name="ResourceSetterNew2" type="Node" parent="Sprite" index="3" unique_id=1900040734 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_plbrw")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("3_871bq")
+json_path = "res://Assets/Sprites/Enemies/RedCheepCheep.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

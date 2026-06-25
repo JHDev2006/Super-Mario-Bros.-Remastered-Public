@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_20ogn"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_i28px"]
 [ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="3_kycr3"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/SuperMushroom.json" id="4_waj2c"]
 [ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="6_waj2c"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="7_xop20"]
 
@@ -43,10 +42,11 @@ script = ExtResource("3_20ogn")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Mushroom" unique_id=1994287161 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_i28px")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_waj2c")
+json_path = "res://Assets/Sprites/Items/SuperMushroom.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=589769416]

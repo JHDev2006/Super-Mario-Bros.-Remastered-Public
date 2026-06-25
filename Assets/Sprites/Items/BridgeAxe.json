@@ -14,32 +14,83 @@
 				[0, 0, 16, 16],
 				[16, 0, 16, 16],
 				[32, 0, 16, 16],
-				[16, 0, 16, 16],
+				[16, 0, 16, 16]
 			],
-			"speed": 10.0,
+			"speed": 10,
 			"loop": true
 		}
 	},
 	"variations": {
-		"SMB1": {
-			"default": {"source": "BridgeAxe.png", "rect": [0, 0, 48, 16]},
-			"Underground": {"source": "BridgeAxe.png", "rect": [0, 16, 48, 16]},
-			"GhostHouse": {"link": "Underground"},
-			"Castle": {"source": "BridgeAxe.png", "rect": [0, 32, 48, 16]},
-			"Snow": {"source": "BridgeAxe.png", "rect": [0, 48, 48, 16]},
-			"Space": {"source": "BridgeAxe.png", "rect": [0, 64, 48, 16]},
-			"Volcano": {"source": "BridgeAxe.png", "rect": [0, 80, 48, 16]},
-			"Bonus": {"source": "BridgeAxe.png", "rect": [0, 96, 48, 16]}
+		"default": {
+			"SMB1": {
+				"source": "BridgeAxe.png",
+				"rect": [0, 0, 48, 16]
+			},
+			"SMBANN": {
+				"source": "DiscoAxe.png",
+				"rect": [0, 0, 48, 16]
+			}
 		},
-		"SMBANN": {
-			"default": {"source": "DiscoAxe.png", "rect": [0, 0, 48, 16]},
-			"Underground": {"source": "DiscoAxe.png", "rect": [0, 16, 48, 16]},
-			"GhostHouse": {"link": "Underground"},
-			"Castle": {"source": "DiscoAxe.png", "rect": [0, 32, 48, 16]},
-			"Snow": {"source": "DiscoAxe.png", "rect": [0, 48, 48, 16]},
-			"Space": {"source": "DiscoAxe.png", "rect": [0, 64, 48, 16]},
-			"Volcano": {"source": "DiscoAxe.png", "rect": [0, 80, 48, 16]},
-			"Bonus": {"source": "DiscoAxe.png", "rect": [0, 96, 48, 16]}
+		"Underground": {
+			"SMB1": {
+				"source": "BridgeAxe.png",
+				"rect": [0, 16, 48, 16]
+			},
+			"SMBANN": {
+				"source": "DiscoAxe.png",
+				"rect": [0, 16, 48, 16]
+			}
+		},
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {
+			"SMB1": {
+				"source": "BridgeAxe.png",
+				"rect": [0, 32, 48, 16]
+			},
+			"SMBANN": {
+				"source": "DiscoAxe.png",
+				"rect": [0, 32, 48, 16]
+			}
+		},
+		"Snow": {
+			"SMB1": {
+				"source": "BridgeAxe.png",
+				"rect": [0, 48, 48, 16]
+			},
+			"SMBANN": {
+				"source": "DiscoAxe.png",
+				"rect": [0, 48, 48, 16]
+			}
+		},
+		"Space": {
+			"SMB1": {
+				"source": "BridgeAxe.png",
+				"rect": [0, 64, 48, 16]
+			},
+			"SMBANN": {
+				"source": "DiscoAxe.png",
+				"rect": [0, 64, 48, 16]
+			}
+		},
+		"Volcano": {
+			"SMB1": {
+				"source": "BridgeAxe.png",
+				"rect": [0, 80, 48, 16]
+			},
+			"SMBANN": {
+				"source": "DiscoAxe.png",
+				"rect": [0, 80, 48, 16]
+			}
+		},
+		"Bonus": {
+			"SMB1": {
+				"source": "BridgeAxe.png",
+				"rect": [0, 96, 48, 16]
+			},
+			"SMBANN": {
+				"source": "DiscoAxe.png",
+				"rect": [0, 96, 48, 16]
+			}
 		}
 	}
 }

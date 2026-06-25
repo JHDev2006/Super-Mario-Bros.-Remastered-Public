@@ -1,5 +1,10 @@
 {
 	"animations": {
+		"Off": {
+			"frames": [[0, 0, 16, 48]],
+			"speed": 30,
+			"loop": true
+		},
 		"On": {
 			"frames": [
 				[0, 0, 16, 48],
@@ -7,16 +12,12 @@
 				[32, 0, 16, 48],
 				[48, 0, 16, 48]
 			],
-			"speed": 30.0,
-			"loop": true
-		},
-		"Off": {
-			"frames": [[0, 0, 16, 48]],
-			"speed": 30.0,
+			"speed": 30,
 			"loop": true
 		}
 	},
 	"variations": {
-		"default": {"source": "OnOffFan.png", "rect": [0, 0, 64, 48]}
+		"source": "OnOffFan.png",
+		"rect": [0, 0, 64, 48]
 	}
 }

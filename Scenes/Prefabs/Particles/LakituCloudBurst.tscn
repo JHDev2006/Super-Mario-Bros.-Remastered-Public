@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://boongcly3e2cl" path="res://Assets/Sprites/Particles/LakituCloudBurst.png" id="1_3jvpp"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_cic8a"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/LakituCloudBurst.json" id="3_3da8h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cic8a"]
 atlas = ExtResource("1_3jvpp")
@@ -52,10 +51,11 @@ wait_time = 10.0
 autostart = true
 
 [node name="ResourceSetterNew" type="Node" parent="." unique_id=365006018 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("2_cic8a")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("3_3da8h")
+json_path = "res://Assets/Sprites/Particles/LakituCloudBurst.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="timeout" from="Timer" to="." method="queue_free"]

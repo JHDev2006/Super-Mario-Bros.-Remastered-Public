@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://by6ndsjhlkmbt" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffBlock.tscn" id="1_qn0kk"]
 [ext_resource type="Texture2D" uid="uid://cv27sth0k3amk" path="res://Assets/Sprites/Blocks/SwitchSpike.png" id="2_kmalu"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SwitchSpikeBlock.json" id="3_gfl4j"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_kmalu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m1hcn"]
@@ -98,7 +97,7 @@ animation = &"Rest"
 autoplay = "Rest"
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=873755014]
-resource_json = ExtResource("3_gfl4j")
+json_path = "res://Assets/Sprites/Blocks/SwitchSpikeBlock.json"
 
 [node name="Collision" parent="." index="1" unique_id=687421064]
 visible = true

@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_8ee2c"]
 [ext_resource type="Texture2D" uid="uid://fyxbhdmqfxk5" path="res://Assets/Sprites/Tilesets/Doors.png" id="2_12ofo"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_12ofo"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Doors.json" id="4_jfxhu"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="5_8ee2c"]
 [ext_resource type="PackedScene" uid="uid://dse5pwhodrqcr" path="res://Scenes/Prefabs/Editor/EditorProperties/TilePropertyIntRangeSpin.tscn" id="6_12ofo"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="7_jfxhu"]
@@ -176,10 +175,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1666477828 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_12ofo")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_jfxhu")
+json_path = "res://Assets/Sprites/Tilesets/Doors.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="EditorPropertyExposer" type="Node" parent="." unique_id=1823176621]

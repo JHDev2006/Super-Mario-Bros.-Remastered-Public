@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://ckrna543ixu1b"]
 
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="1_ln8qg"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/PeachNPC.json" id="2_dujhx"]
 
 [node name="CastleToad" unique_id=854605359 instance=ExtResource("1_ln8qg")]
 play_end_music = true
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(1713929806) index="0" unique_id=1786679475]
-resource_json = ExtResource("2_dujhx")
+json_path = "res://Assets/Sprites/Players/PeachNPC.json"
 
 [node name="ThankYou" parent="StandardMSG" parent_id_path=PackedInt32Array(1180436761) index="0" unique_id=581752424]
 text = "CUTSCENE_CASTLE_PEACH_1"

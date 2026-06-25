@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://r7wy30fay4nx"]
 
 [ext_resource type="PackedScene" uid="uid://c0tn1w5hd5uol" path="res://Scenes/Prefabs/Particles/FireballExplosion.tscn" id="1_13yx6"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/Firework.json" id="2_r062j"]
 
 [node name="FireballExplosion" unique_id=1530782319 instance=ExtResource("1_13yx6")]
 
 [node name="ResourceSetter" parent="." index="1" unique_id=461146314]
-resource_json = ExtResource("2_r062j")
+json_path = "res://Assets/Sprites/Particles/Firework.json"

@@ -1,7 +1,60 @@
 {
 	"variations": {
-		"SMB1": {"source": "CloudOverlay.png"},
-		"SMBLL": {"source": "CloudOverlayLL.png"},
-		"SMBANN": {"link": "SMBLL"}
+		"Day": {
+			"default": {
+				"SMB1": {"source": "CloudOverlay.png"},
+				"SMBLL": {"source": "CloudOverlayLL.png"},
+				"SMBANN": {"link": "SMBLL"}
+			},
+			"Underground": {
+				"SMB1": {"source": "UndergroundCloudOverlay.png"},
+				"SMBLL": {"source": "UndergroundCloudOverlayLL.png"},
+				"SMBANN": {"link": "SMBLL"}
+			},
+			"Beach": {
+				"SMB1": {"source": "BeachCloudOverlay.png"},
+				"SMBLL": {"source": "BeachCloudOverlayLL.png"},
+				"SMBANN": {"link": "SMBLL"}
+			},
+			"Autumn": {
+				"SMB1": {"source": "AutumnCloudOverlay.png"},
+				"SMBLL": {"source": "AutumnCloudOverlayLL.png"},
+				"SMBANN": {"link": "SMBLL"}
+			},
+			"Space": {
+				"SMB1": {"source": "NightCloudOverlay.png"},
+				"SMBLL": {"source": "NightCloudOverlayLL.png"},
+				"SMBANN": {"link": "SMBLL"}
+			},
+			"Volcano": {
+				"SMB1": {"source": "VolcanoCloudOverlay.png"},
+				"SMBLL": {"source": "VolcanoCloudOverlayLL.png"},
+				"SMBANN": {"link": "SMBLL"}
+			},
+			"GhostHouse": {"link": "Underground"}
+		},
+		"Night": {
+			"default": {
+				"SMB1": {"source": "NightCloudOverlay.png"},
+				"SMBLL": {"source": "NightCloudOverlayLL.png"},
+				"SMBANN": {"link": "SMBLL"}
+			},
+			"Underground": {
+				"SMB1": {"source": "UndergroundCloudOverlay.png"},
+				"SMBLL": {"source": "UndergroundCloudOverlayLL.png"},
+				"SMBANN": {"link": "SMBLL"}
+			},
+			"Autumn": {
+				"SMB1": {"source": "AutumnNightCloudOverlay.png"},
+				"SMBLL": {"source": "AutumnNightCloudOverlayLL.png"},
+				"SMBANN": {"link": "SMBLL"}
+			},
+			"Volcano": {
+				"SMB1": {"source": "VolcanoCloudOverlay.png"},
+				"SMBLL": {"source": "VolcanoCloudOverlayLL.png"},
+				"SMBANN": {"link": "SMBLL"}
+			},
+			"GhostHouse": {"link": "Underground"}
+		}
 	}
 }

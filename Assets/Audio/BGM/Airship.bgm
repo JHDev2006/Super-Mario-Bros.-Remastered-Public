@@ -1,10 +1,10 @@
 {
-    "Normal": {
-        "source": "Airship.mp3",
-        "loop": 4.001
-    },
-    "Hurry": {
-        "source": "AirshipHurry.mp3",
-        "loop": 3.001
-    }
+	"Normal": {
+		"source": "Airship.mp3",
+		"loop": 4.001
+	},
+	"Hurry": {
+		"source": "AirshipHurry.mp3",
+		"loop": 3.001
+	}
 }

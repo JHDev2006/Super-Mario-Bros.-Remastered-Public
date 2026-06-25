@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dal8md4ms07j2" path="res://Assets/Sprites/Items/Clock.png" id="1_ybxan"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_heiyr"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ov4xw"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Clock.json" id="4_newwu"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="6_ggci8"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="7_eol0e"]
 
@@ -127,10 +126,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=634309988 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_ov4xw")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_newwu")
+json_path = "res://Assets/Sprites/Items/Clock.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="Sprite" unique_id=260905225]
