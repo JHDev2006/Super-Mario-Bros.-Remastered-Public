@@ -16,6 +16,7 @@ func open() -> void:
 	clear_options()
 	spawn_options()
 	show()
+	option_highlighted(%Options.get_child(1))
 	await get_tree().process_frame
 	%Options.active = true
 	active = true
@@ -31,7 +32,7 @@ func _process(_delta: float) -> void:
 
 func spawn_options() -> void:
 	for i in config_json.options:
-		var node = RESOURCE_PACK_CONFIG_OPTION_NODE.instantiate()
+		var node: PackConfigOption = RESOURCE_PACK_CONFIG_OPTION_NODE.instantiate()
 		node.config_name = i
 		if config_json.options[i] is bool:
 			node.values = ["SETTING_OFF", "SETTING_ON"]
@@ -42,6 +43,7 @@ func spawn_options() -> void:
 			node.selected_index = config_json.value_keys[i].find(config_json.options[i])
 		%Options.add_child(node)
 		node.value_changed.connect(value_changed)
+		node.focus_entered.connect(option_highlighted.bind(node))
 		%Options.options.append(node)
 
 func value_changed(option: PackConfigOption) -> void:
@@ -49,6 +51,7 @@ func value_changed(option: PackConfigOption) -> void:
 		config_json.options[option.config_name] = bool(option.selected_index)
 	else:
 		config_json.options[option.config_name] = option.values[option.selected_index]
+	option_highlighted(option)
 	update_json()
 
 func update_json() -> void:
@@ -66,3 +69,13 @@ func close() -> void:
 	hide()
 	%Options.active = false
 	active = false
+
+func option_highlighted(option: PackConfigOption) -> void:
+	%Description.hide()
+	if config_json.has("option_descs"):
+		if config_json.option_descs.has(option.config_name):
+			%Description.show()
+			if config_json.option_descs[option.config_name] is Array:
+				%DescText.text = config_json.option_descs[option.config_name][option.selected_index]
+			elif config_json.option_descs[option.config_name] is String:
+				%DescText.text = config_json.option_descs[option.config_name]
