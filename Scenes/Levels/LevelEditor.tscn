@@ -2492,7 +2492,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(144, 64, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(0, 16, 16, 16)
 tile_coords = Vector2i(9, 4)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue" unique_id=921926188]
@@ -2519,7 +2519,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 64, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(16, 0, 16, 16)
 tile_coords = Vector2i(14, 4)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue2" unique_id=1050793024 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2529,7 +2529,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 80, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(16, 16, 16, 16)
 tile_coords = Vector2i(14, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue2" unique_id=1976612115]
@@ -2556,7 +2556,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 64, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(32, 0, 16, 16)
 tile_coords = Vector2i(10, 4)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue3" unique_id=1818613911 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2566,7 +2566,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 80, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(32, 16, 16, 16)
 tile_coords = Vector2i(10, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue3" unique_id=553331267]
@@ -2593,7 +2593,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 64, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(48, 0, 16, 16)
 tile_coords = Vector2i(15, 4)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue4" unique_id=494111311 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2603,7 +2603,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 80, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(48, 16, 16, 16)
 tile_coords = Vector2i(15, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue4" unique_id=1575222710]
@@ -2630,7 +2630,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 64, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(64, 0, 16, 16)
 tile_coords = Vector2i(11, 4)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue5" unique_id=1471432308 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2640,7 +2640,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 80, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(64, 16, 16, 16)
 tile_coords = Vector2i(11, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue5" unique_id=1050956183]
@@ -2667,7 +2667,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 80, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(80, 0, 16, 16)
 tile_coords = Vector2i(8, 5)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue6" unique_id=1929839085 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2675,9 +2675,9 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
-icon_region_override = Rect2(128, 80, 16, 16)
+icon_region_override = Rect2(144, 80, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(80, 16, 16, 16)
 tile_coords = Vector2i(9, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue6" unique_id=677997681]
@@ -2704,7 +2704,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 64, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(96, 0, 16, 16)
 tile_coords = Vector2i(12, 4)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue7" unique_id=1505926850 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2714,7 +2714,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 80, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(96, 16, 16, 16)
 tile_coords = Vector2i(12, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue7" unique_id=1978810958]
@@ -2741,7 +2741,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 64, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(112, 0, 16, 16)
 tile_coords = Vector2i(13, 4)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue8" unique_id=693404553 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2751,7 +2751,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 80, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(112, 16, 16, 16)
 tile_coords = Vector2i(13, 5)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer3/Blue8" unique_id=452624552]
@@ -2791,7 +2791,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(144, 96, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(0, 16, 16, 16)
 tile_coords = Vector2i(9, 6)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red" unique_id=68969898]
@@ -2818,7 +2818,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 96, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(16, 0, 16, 16)
 tile_coords = Vector2i(14, 6)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red2" unique_id=335581540 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2828,7 +2828,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(224, 112, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(16, 16, 16, 16)
 tile_coords = Vector2i(14, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red2" unique_id=1390299417]
@@ -2855,7 +2855,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 96, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(32, 0, 16, 16)
 tile_coords = Vector2i(10, 6)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red3" unique_id=623110740 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2865,7 +2865,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(160, 112, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(32, 16, 16, 16)
 tile_coords = Vector2i(10, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red3" unique_id=174837546]
@@ -2892,7 +2892,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 96, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(48, 0, 16, 16)
 tile_coords = Vector2i(15, 6)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red4" unique_id=1678431175 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2902,7 +2902,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(240, 112, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(48, 16, 16, 16)
 tile_coords = Vector2i(15, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red4" unique_id=718934109]
@@ -2929,7 +2929,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 96, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(64, 0, 16, 16)
 tile_coords = Vector2i(11, 6)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red5" unique_id=558456616 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2939,7 +2939,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(176, 112, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(64, 16, 16, 16)
 tile_coords = Vector2i(11, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red5" unique_id=1997585146]
@@ -2966,7 +2966,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(128, 112, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(80, 0, 16, 16)
 tile_coords = Vector2i(8, 7)
 
 [node name="R" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red6" unique_id=964691925 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -2974,9 +2974,9 @@ layout_mode = 0
 offset_right = 16.0
 offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
-icon_region_override = Rect2(128, 112, 16, 16)
+icon_region_override = Rect2(144, 112, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(80, 16, 16, 16)
 tile_coords = Vector2i(9, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red6" unique_id=1848897676]
@@ -3003,7 +3003,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 96, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(96, 0, 16, 16)
 tile_coords = Vector2i(12, 6)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red7" unique_id=339308025 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -3013,7 +3013,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(192, 112, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(96, 16, 16, 16)
 tile_coords = Vector2i(12, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red7" unique_id=372449182]
@@ -3040,7 +3040,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 96, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(112, 0, 16, 16)
 tile_coords = Vector2i(13, 6)
 
 [node name="B" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red8" unique_id=238111165 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
@@ -3050,7 +3050,7 @@ offset_bottom = 16.0
 icon_texture_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 icon_region_override = Rect2(208, 112, 16, 16)
 secondary_icon_texture_path = "res://Assets/Sprites/Editor/PipeDirections.png"
-secondary_icon_region_override = Rect2(0, 0, 16, 16)
+secondary_icon_region_override = Rect2(112, 16, 16, 16)
 tile_coords = Vector2i(13, 7)
 
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Pipes/MarginContainer/VBoxContainer/GridContainer4/Red8" unique_id=1017375419]
@@ -5075,26 +5075,6 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("194_24ald")
 
-[node name="GravityFlipper" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Generators" unique_id=1050524617 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
-layout_mode = 0
-offset_right = 16.0
-offset_bottom = 16.0
-tile_name = "GEN_GRAVITY_INV"
-type = 1
-icon_texture_path = "res://Assets/Sprites/Editor/GravityInverter.png"
-icon_region_override = Rect2(0, 0, 16, 16)
-entity_id = "B6"
-
-[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Generators/GravityFlipper" unique_id=579979702]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("194_24ald")
-
 [node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Generators" unique_id=307105476]
 layout_mode = 1
 anchors_preset = -1
@@ -5124,13 +5104,42 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("194_24ald")
 
-[node name="MoonGravity" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer" unique_id=1991911832 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+[node name="Generators2" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer" unique_id=1499607227]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
+mouse_force_pass_scroll_events = false
+script = ExtResource("20_jc7xg")
+
+[node name="MoonGravity" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Generators2" unique_id=1991911832 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
 tile_name = "OBJ_GRAVITY"
 type = 1
 icon_texture_path = "res://Assets/Sprites/Editor/MoonGravity.png"
 icon_region_override = Rect2(0, 0, 16, 16)
 entity_id = "B7"
+
+[node name="GravityFlipper" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Generators2" unique_id=99412072 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+tile_name = "GEN_GRAVITY_INV"
+type = 1
+icon_texture_path = "res://Assets/Sprites/Editor/GravityInverter.png"
+icon_region_override = Rect2(0, 0, 16, 16)
+entity_id = "B6"
+
+[node name="TextureRect" type="TextureRect" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer/Generators2" unique_id=786374241]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("22_3cjpb")
 
 [node name="WaterArea" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Objects/MarginContainer/GridContainer" unique_id=2019926222 groups=["Selectors"] instance=ExtResource("8_wkmjk")]
 layout_mode = 2
