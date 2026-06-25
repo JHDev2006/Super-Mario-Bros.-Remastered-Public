@@ -116,7 +116,9 @@ var coins := 0:
 var time := 300
 var inf_time := false
 var lives := 3
-var world_num := 1
+var world_num := 1:
+	set(value):
+		world_num = value
 
 var level_num := 1
 var disco_mode := false

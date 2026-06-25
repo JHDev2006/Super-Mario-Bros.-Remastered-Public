@@ -124,6 +124,7 @@ func apply_save(json := {}) -> void:
 	if Global.world_num < 1:
 		Global.world_num = 1
 	Global.level_num = json.get_or_add("Level", 1)
+	print([Global.world_num, Global.level_num])
 	Global.lives = json["Lives"]
 	Global.coins = json["Coins"]
 	Global.score = json["Score"]
@@ -175,7 +176,26 @@ func clear_text(text := "") -> String:
 	return text
 
 func get_level_idx(world_num := 1, level_num := 1) -> int:
-	return ((world_num - 1) * 4) + (level_num - 1)
+	if Global.in_custom_campaign() == false:
+		return ((world_num - 1) * 4) + (level_num - 1)
+	else:
+		var idx := 0
+		var campaign_json = Global.custom_campaign_jsons[Global.current_custom_campaign]
+		var lvls_per_world = campaign_json.levels_per_world[0]
+		var world := 1
+		var level := 1
+		print("-------")
+		for i in campaign_json.levels:
+			if level > lvls_per_world:
+				world += 1
+				level = 1
+				lvls_per_world = campaign_json.levels_per_world[world - 1]
+			print([world, level])
+			if world_num == world && level_num == level:
+				return idx
+			level += 1
+			idx += 1
+		return -1
 
 func load_achievements() -> void:
 	var path = Global.config_path.path_join("achievements.sav")
