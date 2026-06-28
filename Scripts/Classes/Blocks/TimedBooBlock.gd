@@ -16,11 +16,13 @@ static var can_tick := true:
 
 func _ready() -> void:
 	main_block = self
-	$Timer.start()
 	can_change_animation = true
 
+func level_start() -> void:
+	$Timer.start()
+
 func on_timeout() -> void:
-	if can_tick == false or BooRaceHandler.countdown_active: return
+	if can_tick == false or BooRaceHandler.countdown_active or Global.level_editor_is_editing(): return
 	time = clamp(time - 1, 0, 3)
 	if main_block == self:
 		if time <= 0:
@@ -48,6 +50,8 @@ func _exit_tree() -> void:
 	can_tick = true
 
 func set_active(is_active := false) -> void:
+	if Global.level_editor_is_editing():
+		return
 	$Timer.stop()
 	time = 4
 	active = is_active
