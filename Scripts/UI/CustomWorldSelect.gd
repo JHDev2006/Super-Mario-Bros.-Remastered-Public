@@ -2,17 +2,13 @@ extends Control
 
 var selected_world := 0
 
-@export var has_speedrun_stuff := false
-@export var has_challenge_stuff := false
-@export var has_disco_stuff := false
-
-@export var world_offset := 0
-
 @export var num_of_worlds := 7
 
 signal world_selected
 signal cancelled
 var active := false
+
+var custom_campaign_json := {}
 
 var cursor_index := 0
 
@@ -29,68 +25,68 @@ const NUMBER_Y := [
 
 @onready var resource_getter := ResourceGetter.new()
 
+@onready var world_icons := [%Slot1]
+
 func _ready() -> void:
 	add_child(resource_getter)
 	for i in %SlotContainer.get_children():
 		i.focus_entered.connect(slot_focused.bind(i.get_index()))
-	for i in get_tree().get_nodes_in_group("Particles"):
-		start_particle(i)
-
-func start_particle(particle: GPUParticles2D) -> void:
-	await get_tree().create_timer(randf_range(0, 5)).timeout
-	if is_instance_valid(particle):
-		particle.emitting = true
 
 func _process(_delta: float) -> void:
 	if active:
 		handle_input()
-		Global.world_num = selected_world + 1 + world_offset
+		Global.world_num = selected_world + 1
+
+func clear_world_icons() -> void:
+	for i in world_icons:
+		if i.get_index() > 0:
+			world_icons.erase(i)
+			i.free()
 
 func open() -> void:
 	if starting_value == -1:
 		starting_value = Global.world_num
-	selected_world = Global.world_num - 1 - world_offset
-	if has_speedrun_stuff and not Global.current_game_mode in [Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE]: Global.current_game_mode = Global.GameMode.MARATHON
+	selected_world = Global.world_num - 1
+	clear_world_icons()
+	add_worlds()
 	setup_visuals()
 	show()
 	await get_tree().process_frame
-	if Global.current_game_mode != Global.GameMode.CAMPAIGN:
-		selected_world = clamp(selected_world, 0, 7)
+	selected_world = clamp(selected_world, 0, %SlotContainer.get_child_count() - 1)
 	$%SlotContainer.get_child(selected_world).grab_focus()
 	active = true
 
-func setup_visuals() -> void:
+func add_worlds() -> void:
 	var idx := 0
-	%Slot1.focus_neighbor_left = %Slot8.get_path()
-	%Slot8.focus_neighbor_right = %Slot1.get_path()
-	if Global.current_campaign == "SMBLL" && (Global.game_beaten or Global.debug_mode) && Global.current_game_mode == Global.GameMode.CAMPAIGN:
-		%Slot1.focus_neighbor_left = %Slot13.get_path()
-		%Slot8.focus_neighbor_right = %Slot9.get_path()
+	for i in custom_campaign_json.number_of_worlds:
+		if idx > 0:
+			var new_slot = %Slot1.duplicate()
+			world_icons.append(new_slot)
+			%SlotContainer.add_child(new_slot)
+			new_slot.focus_entered.connect(slot_focused.bind(idx))
+		idx += 1
+
+func setup_visuals() -> void:
+	print(custom_campaign_json)
+	var idx := 0
 	for i in %SlotContainer.get_children():
-		if idx >= 8:
-			i.visible = Global.current_campaign == "SMBLL" && (Global.game_beaten or Global.debug_mode) && Global.current_game_mode == Global.GameMode.CAMPAIGN
-		if i.visible == false:
-			idx += 1
-			continue
-		var level_theme = Global.LEVEL_THEMES[Global.current_campaign][idx + world_offset]
-		var world_visited = (SaveManager.visited_levels.substr((idx + world_offset) * 4, 4) != "0000" or Global.debug_mode or idx == 0)
+		var level_theme = custom_campaign_json.world_themes[idx][0]
+		var campaign_idx = ["Day", "Night"].find(custom_campaign_json.world_themes[idx][1])
+		print(custom_campaign_json["levels_per_world"])
+		var levels_per_world = custom_campaign_json["levels_per_world"][idx]
+		var world_visited = (SaveManager.visited_levels.substr((idx) * levels_per_world, levels_per_world) != "0".repeat(levels_per_world) or Global.debug_mode or idx == 0)
 		if world_visited == false:
 			level_theme = "Mystery"
-		var campaign_idx := 0
-		if ((idx >= 4 and idx <= 8) or Global.current_campaign == "SMBANN"): campaign_idx = 1
-		i.get_node("Icon").region_rect = CustomLevelContainer.THEME_RECTS[level_theme]
+		i.get_node("Icon").region_rect = CustomLevelContainer.THEME_RECTS.get(level_theme, CustomLevelContainer.THEME_RECTS.Overworld)
 		i.get_node("Icon").texture = resource_getter.get_resource(load(CustomLevelContainer.ICON_TEXTURES[campaign_idx]), false)
-		i.get_node("Icon/Number").position.y = 10 if has_challenge_stuff else 17
+		i.get_node("Icon/Number").position.y = 17
 		i.get_node("Icon/Number").region_rect.position.y = clamp(NUMBER_Y.find(level_theme) * 12, 0, 9999)
-		i.get_node("Icon/Number").region_rect.position.x = (idx + world_offset) * 12
-		setup_challenge_mode_bits(i.get_node("Icon/RedCoins"), i.get_node("Icon/Egg"), i.get_node("Icon/Score"), i.get_node("Icon/RedCoins/Full"), i.get_node("Icon/Egg/Full"), i.get_node("Icon/Score/Full"), idx + world_offset)
-		setup_marathon_bits(i.get_node("Icon/Medal"), i.get_node("Icon/Medal/Full"), idx + world_offset)
-		setup_disco_bits(i.get_node("Icon/Medal"), i.get_node("Icon/Medal/Full"), i.get_node("Icon/Medal/Full/SRankParticles"), i.get_node("Icon/Medal/Full/PRankParticles"), idx + world_offset)
+		i.get_node("Icon/Number").region_rect.position.x = (idx) * 12
 		idx += 1
 
 func handle_input() -> void:
 	if Global.multibind_action_just_pressed("ui_accept"):
-		if SaveManager.visited_levels.substr((selected_world + world_offset) * 4, 4) == "0000" and not Global.debug_mode and selected_world != 0:
+		if SaveManager.visited_levels.substr((selected_world) * 4, 4) == "0000" and not Global.debug_mode and selected_world != 0:
 			AudioManager.play_sfx("bump")
 		else:
 			select_world()
@@ -107,8 +103,8 @@ func slot_focused(idx := 0) -> void:
 
 func select_world() -> void:
 	if owner is Level:
-		owner.world_id = selected_world + world_offset + 1
-	Global.world_num = selected_world + world_offset + 1
+		owner.world_id = selected_world + 1
+	Global.world_num = selected_world + 1
 	world_selected.emit()
 	close()
 

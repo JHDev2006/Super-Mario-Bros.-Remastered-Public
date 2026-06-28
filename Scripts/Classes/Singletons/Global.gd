@@ -288,7 +288,7 @@ func check_for_rom() -> void:
 	if DirAccess.dir_exists_absolute(ROM_ASSETS_PATH):
 		var pack_json: String = FileAccess.get_file_as_string(ROM_ASSETS_PATH + "/pack_info.json")
 		var pack_dict: Dictionary = JSON.parse_string(pack_json)
-		if pack_dict.get("version", -1) == ROM_ASSETS_VERSION:
+		if pack_dict.get("version", -1) >= ROM_ASSETS_VERSION:
 			rom_assets_exist = true 
 		else:
 			ResourceGenerator.updating = true

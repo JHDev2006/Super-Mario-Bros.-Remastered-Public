@@ -103,6 +103,16 @@ func continue_story() -> void:
 	else:
 		$CanvasLayer/StoryMode/NoBeatenCharSelect.open()
 
+func custom_campaign_continue_selected() -> void:
+	SaveManager.apply_save(SaveManager.load_save(Global.current_custom_campaign))
+	Global.current_game_mode = Global.GameMode.CAMPAIGN
+	$CanvasLayer/StoryMode/CustomCampaign2/WorldSelect.custom_campaign_json = Global.custom_campaign_jsons[Global.current_custom_campaign]
+	$CanvasLayer/StoryMode/CustomCampaign2/LevelSelect.custom_campaign_json = Global.custom_campaign_jsons[Global.current_custom_campaign]
+	if Global.game_beaten or Global.debug_mode:
+		$CanvasLayer/StoryMode/CustomCampaign2/WorldSelect.open()
+	else:
+		$CanvasLayer/StoryMode/CustomCampaign2/CharSelect.open()
+
 func check_for_warpless() -> void:
 	SpeedrunHandler.is_warp_run = false
 	SpeedrunHandler.ghost_enabled = false

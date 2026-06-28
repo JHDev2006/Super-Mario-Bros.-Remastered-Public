@@ -10,6 +10,7 @@
 [ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="6_oofmi"]
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="8_jmbsi"]
 [ext_resource type="Script" uid="uid://c3c1o65wvi6tq" path="res://Scripts/UI/TitleScreenOptions.gd" id="9_dsf7o"]
+[ext_resource type="PackedScene" uid="uid://dfdaw4rgojswt" path="res://Scenes/Prefabs/UI/CustomLevelSelect.tscn" id="10_6t4fx"]
 [ext_resource type="PackedScene" uid="uid://dntk2js0tu3y2" path="res://Scenes/Prefabs/UI/WorldSelect.tscn" id="10_emltp"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="11_28b2v"]
 [ext_resource type="PackedScene" uid="uid://dnksdgorle8su" path="res://Scenes/Prefabs/UI/SettingsMenu.tscn" id="12_5iq4f"]
@@ -25,6 +26,7 @@
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="21_qti1l"]
 [ext_resource type="PackedScene" uid="uid://b75f3fd7xjeya" path="res://Scenes/Prefabs/UI/QuitDialog.tscn" id="22_wjo1g"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="23_8swpx"]
+[ext_resource type="PackedScene" uid="uid://bsok6isywjk2h" path="res://Scenes/Prefabs/UI/CustomWorldSelect.tscn" id="23_bt5h5"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="23_s06mt"]
 [ext_resource type="Shader" uid="uid://x7lh23cq2u38" path="res://Scenes/Parts/ShadowShader.gdshader" id="31_wjo1g"]
 [ext_resource type="PackedScene" uid="uid://b8e82usnfbw1t" path="res://Scenes/Prefabs/UI/ExtraWorldSelect.tscn" id="41_obcl5"]
@@ -657,12 +659,47 @@ offset_top = -35.0
 offset_right = 62.0
 offset_bottom = 35.0
 
+[node name="BeatenCharSelect" parent="CanvasLayer/StoryMode/CustomCampaign2" unique_id=695710139 instance=ExtResource("13_8wrri")]
+visible = false
+offset_left = -62.0
+offset_top = -35.0
+offset_right = 62.0
+offset_bottom = 35.0
+
 [node name="NewCharSelect" parent="CanvasLayer/StoryMode/CustomCampaign2" unique_id=138989214 instance=ExtResource("13_8wrri")]
 visible = false
 offset_left = -62.0
 offset_top = -35.0
 offset_right = 62.0
 offset_bottom = 35.0
+
+[node name="WorldSelect" parent="CanvasLayer/StoryMode/CustomCampaign2" unique_id=1916971691 instance=ExtResource("23_bt5h5")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -32.5
+offset_right = 90.0
+offset_bottom = 32.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelect" parent="CanvasLayer/StoryMode/CustomCampaign2" unique_id=942355576 instance=ExtResource("10_6t4fx")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="NewBeatenGame" type="Node" parent="CanvasLayer/StoryMode" unique_id=1323334796]
 
@@ -1701,12 +1738,18 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 [connection signal="option_2_selected" from="CanvasLayer/StoryMode/StoryOptions" to="." method="continue_game"]
 [connection signal="closed" from="CanvasLayer/StoryMode/CustomCampaign" to="CanvasLayer/Options1" method="open"]
 [connection signal="option_1_selected" from="CanvasLayer/StoryMode/CustomCampaign" to="CanvasLayer/StoryMode/CustomCampaign2/NewCharSelect" method="open"]
-[connection signal="option_2_selected" from="CanvasLayer/StoryMode/CustomCampaign" to="CanvasLayer/StoryMode/CustomCampaign2/CharSelect" method="open"]
+[connection signal="option_2_selected" from="CanvasLayer/StoryMode/CustomCampaign" to="." method="custom_campaign_continue_selected"]
 [connection signal="cancelled" from="CanvasLayer/StoryMode/CustomCampaign2/CharSelect" to="CanvasLayer/StoryMode/CustomCampaign" method="open"]
 [connection signal="selected" from="CanvasLayer/StoryMode/CustomCampaign2/CharSelect" to="." method="start_game"]
+[connection signal="cancelled" from="CanvasLayer/StoryMode/CustomCampaign2/BeatenCharSelect" to="CanvasLayer/StoryMode/CustomCampaign2/LevelSelect" method="open"]
+[connection signal="selected" from="CanvasLayer/StoryMode/CustomCampaign2/BeatenCharSelect" to="." method="start_game"]
 [connection signal="cancelled" from="CanvasLayer/StoryMode/CustomCampaign2/NewCharSelect" to="CanvasLayer/StoryMode/CustomCampaign" method="open"]
 [connection signal="selected" from="CanvasLayer/StoryMode/CustomCampaign2/NewCharSelect" to="." method="start_game"]
 [connection signal="selected" from="CanvasLayer/StoryMode/CustomCampaign2/NewCharSelect" to="." method="clear_custom_save"]
+[connection signal="cancelled" from="CanvasLayer/StoryMode/CustomCampaign2/WorldSelect" to="CanvasLayer/StoryMode/CustomCampaign" method="open"]
+[connection signal="world_selected" from="CanvasLayer/StoryMode/CustomCampaign2/WorldSelect" to="CanvasLayer/StoryMode/CustomCampaign2/LevelSelect" method="open"]
+[connection signal="cancelled" from="CanvasLayer/StoryMode/CustomCampaign2/LevelSelect" to="CanvasLayer/StoryMode/CustomCampaign2/WorldSelect" method="open"]
+[connection signal="level_selected" from="CanvasLayer/StoryMode/CustomCampaign2/LevelSelect" to="CanvasLayer/StoryMode/CustomCampaign2/BeatenCharSelect" method="open"]
 [connection signal="cancelled" from="CanvasLayer/StoryMode/NewBeatenGame/QuestSelect" to="CanvasLayer/StoryMode/StoryOptions" method="open"]
 [connection signal="selected" from="CanvasLayer/StoryMode/NewBeatenGame/QuestSelect" to="CanvasLayer/StoryMode/NewBeatenGame/WorldSelect" method="open"]
 [connection signal="cancelled" from="CanvasLayer/StoryMode/NewBeatenGame/WorldSelect" to="CanvasLayer/StoryMode/NewBeatenGame/QuestSelect" method="open"]

@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://dfdaw4rgojswt"]
+
+[ext_resource type="Script" uid="uid://dg8v0wsm8npt4" path="res://Scripts/UI/CustomLevelSelect.gd" id="1_pinse"]
+[ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="2_2c8f8"]
+[ext_resource type="Texture2D" uid="uid://bx7jvtnfom4ik" path="res://Assets/Sprites/UI/LevelIcons/DayLevelIcons.png" id="7_ngv0w"]
+[ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="8_51mdg"]
+[ext_resource type="Texture2D" uid="uid://dsi25p0odieg2" path="res://Assets/Sprites/UI/Numbers.png" id="9_p0h2q"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="15_6k3r3"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_d8v6d"]
+color = Color(1, 1, 1, 1)
+grow_begin = -4.0
+grow_end = -4.0
+
+[node name="LevelSelect" type="Control" unique_id=942355576]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 80.0
+script = ExtResource("1_pinse")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=356313982]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_2c8f8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1979348943]
+layout_mode = 2
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=751981661]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=359185561]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MENU_LEVEL_SELECT"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/Title" unique_id=174360854]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_d8v6d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=844360829]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=651899865]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="SlotContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer" unique_id=1735791676]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Slot1" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer" unique_id=250188621]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 32)
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Icon" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=2035924201]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 10
+texture = ExtResource("7_ngv0w")
+region_rect = Rect2(0, 0, 56, 32)
+script = ExtResource("8_51mdg")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Number" type="NinePatchRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Icon" unique_id=319084734]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+offset_left = -6.0
+offset_top = -3.0
+offset_right = 6.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("9_p0h2q")
+region_rect = Rect2(0, 0, 12, 12)
+script = ExtResource("8_51mdg")
+metadata/_custom_type_script = "uid://xem6lai3ufyj"
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=1999433899]
+layout_mode = 2
+
+[node name="Cursor" type="Control" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" unique_id=765048654]
+visible = false
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor" unique_id=2109581363]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 56.0
+offset_bottom = 15.0
+text = "^"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/VBoxContainer" unique_id=274803833]
+custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+
+[node name="LabelFontChanger" type="Node" parent="." unique_id=1253597928 node_paths=PackedStringArray("labels")]
+script = ExtResource("15_6k3r3")
+labels = [NodePath("../Panel/MarginContainer/VBoxContainer/Title")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="LabelFontChanger2" type="Node" parent="." unique_id=937053516 node_paths=PackedStringArray("labels")]
+script = ExtResource("15_6k3r3")
+labels = [NodePath("../Panel/MarginContainer/VBoxContainer/Title"), NodePath("../Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor/Label"), null, null, null, null, null, null]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor" method="show"]
+[connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor" method="hide"]
+[connection signal="ready" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" method="grab_focus"]
