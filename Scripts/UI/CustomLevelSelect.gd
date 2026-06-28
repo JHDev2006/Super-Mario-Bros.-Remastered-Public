@@ -29,8 +29,6 @@ var custom_campaign_json := {}
 
 func _ready() -> void:
 	add_child(resource_getter)
-	for i in %SlotContainer.get_children():
-		i.focus_entered.connect(slot_selected.bind(i.get_index()))
 
 func clear_slots() -> void:
 	for i in slots:
@@ -84,6 +82,7 @@ func setup_level_icon_data() -> void:
 func setup_visuals() -> void:
 	var idx := 0
 	for i in %SlotContainer.get_children():
+		i.focus_entered.connect(slot_selected.bind(i.get_index()))
 		if i.visible == false or level_icons.is_empty() or is_instance_valid(i) == false:
 			continue
 		var levels_per_world = custom_campaign_json.levels_per_world[Global.world_num - 1]
@@ -104,7 +103,7 @@ func setup_visuals() -> void:
 func handle_input() -> void:
 	selected_level = clamp(selected_level, 0, 3)
 	if Global.multibind_action_just_pressed("ui_accept"):
-		if visited_levels[selected_level] == "0" and selected_level != 0 and not Global.debug_mode:
+		if visited_levels[selected_level] == "0" and selected_level != 0 and not Global.debug_mode and not custom_campaign_json.get("force_level_select", false):
 			AudioManager.play_sfx("bump")
 		else:
 			select_world()
@@ -118,6 +117,8 @@ func select_world() -> void:
 	if owner is Level:
 		owner.level_id = selected_level + 1
 	Global.level_num = selected_level + 1
+	Global.custom_level_idx = get_custom_level_idx() + selected_level
+	print(Global.custom_level_idx)
 	level_selected.emit()
 	close()
 
@@ -138,3 +139,14 @@ func close() -> void:
 	active = false
 	clear_slots()
 	hide()
+
+func get_custom_level_idx() -> int:
+	var idx := 0
+	var world_num := 0
+	for i in custom_campaign_json.levels_per_world:
+		if world_num + 1 == Global.world_num:
+			return idx
+		else:
+			world_num += 1
+			idx += i
+	return -1

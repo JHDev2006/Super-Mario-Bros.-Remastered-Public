@@ -108,7 +108,7 @@ func custom_campaign_continue_selected() -> void:
 	Global.current_game_mode = Global.GameMode.CAMPAIGN
 	$CanvasLayer/StoryMode/CustomCampaign2/WorldSelect.custom_campaign_json = Global.custom_campaign_jsons[Global.current_custom_campaign]
 	$CanvasLayer/StoryMode/CustomCampaign2/LevelSelect.custom_campaign_json = Global.custom_campaign_jsons[Global.current_custom_campaign]
-	if Global.game_beaten or Global.debug_mode:
+	if Global.game_beaten or Global.debug_mode or Global.custom_campaign_jsons[Global.current_custom_campaign].get("force_level_select", false):
 		$CanvasLayer/StoryMode/CustomCampaign2/WorldSelect.open()
 	else:
 		$CanvasLayer/StoryMode/CustomCampaign2/CharSelect.open()

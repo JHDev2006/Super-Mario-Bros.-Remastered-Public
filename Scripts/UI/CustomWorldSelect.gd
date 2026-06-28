@@ -70,6 +70,8 @@ func setup_visuals() -> void:
 	print(custom_campaign_json)
 	var idx := 0
 	for i in %SlotContainer.get_children():
+		if is_instance_valid(i) == false:
+			continue
 		var level_theme = custom_campaign_json.world_themes[idx][0]
 		var campaign_idx = ["Day", "Night"].find(custom_campaign_json.world_themes[idx][1])
 		print(custom_campaign_json["levels_per_world"])
@@ -119,4 +121,5 @@ func cleanup() -> void:
 func close() -> void:
 	active = false
 	Global.world_num = 1
+	clear_world_icons()
 	hide()
