@@ -83,20 +83,24 @@ func setup_visuals() -> void:
 	var idx := 0
 	for i in %SlotContainer.get_children():
 		i.focus_entered.connect(slot_selected.bind(i.get_index()))
-		if i.visible == false or is_instance_valid(i) == false:
+		if is_instance_valid(i) == false:
 			continue
 		var levels_per_world = custom_campaign_json.levels_per_world[Global.world_num - 1]
 		var level_theme = Global.LEVEL_THEMES[Global.current_campaign][Global.world_num - 1]
 		visited_levels = (SaveManager.visited_levels.substr((Global.world_num - 1) * levels_per_world, levels_per_world))
 		var level_visited = SaveManager.visited_levels[SaveManager.get_level_idx(Global.world_num, idx + 1)] != "0" or Global.debug_mode
-		if level_icons.is_empty() == false:
+		if level_icons.is_empty() == false and level_visited:
 			var cur_level = level_icons[Global.world_num - 1][idx]
 			var cur_icon = ICON_LOCKED if not level_visited else ICON_NIGHT if cur_level[0] == "night" else ICON_DAY
 			cur_icon = resource_getter.get_resource(load(cur_icon))
 			var grid_size = [cur_icon.get_width() - icon_size[0], cur_icon.get_height() - icon_size[1]]
 			var clamp_icon = clamp([cur_level[1][0] * icon_size[0], cur_level[1][1] * icon_size[1]], [0, 0], grid_size)
-			i.get_node("Icon").texture = cur_icon
+			i.get_node("Icon").texture = (cur_icon)
 			i.get_node("Icon").region_rect = Rect2(clamp_icon[0], clamp_icon[1], icon_size[0], icon_size[1])
+		if not level_visited:
+			i.get_node("Icon").texture = load(ICON_LOCKED)
+			i.get_node("Icon").region_rect.position.y = 0
+			i.get_node("Icon").region_rect.position.x = 0
 		i.get_node("Icon/Number").region_rect.position.y = clamp(NUMBER_Y.find(level_theme) * 12, 0, 9999)
 		i.get_node("Icon/Number").region_rect.position.x = (idx) * 12
 		idx += 1
