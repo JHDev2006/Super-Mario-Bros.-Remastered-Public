@@ -307,6 +307,12 @@ func get_variation_json(json := {}) -> Dictionary:
 		else:
 			json = get_variation_json(json[level_string])
 	
+	var quest = "1stQuest"
+	if Global.second_quest:
+		quest = "2ndQuest"
+	if json.has(quest):
+		json = get_variation_json(json[quest])
+	
 	var room = "RoomType:" + Level.ROOM_STRINGS[Global.current_room_type]
 	if json.has(room) == false:
 		room = "RoomType:Default"
