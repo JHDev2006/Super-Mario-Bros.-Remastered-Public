@@ -109,6 +109,7 @@ sprite_frames = SubResource("SpriteFrames_wbo1r")
 animation = &"Idle"
 autoplay = "Fly"
 frame_progress = 0.526965
+flip_h = true
 script = ExtResource("3_j4row")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
