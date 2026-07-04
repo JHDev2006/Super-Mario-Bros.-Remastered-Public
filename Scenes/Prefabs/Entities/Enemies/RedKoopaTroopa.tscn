@@ -9,6 +9,9 @@ metadata/is_red = true
 [node name="SpriteSetter" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="0" unique_id=1746108447]
 json_path = "res://Assets/Sprites/Enemies/RedKoopaTroopa.json"
 
+[node name="Wing" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="1" unique_id=1386975840]
+metadata/WingType = "RedKoopa"
+
 [node name="ShellSetter" parent="DeathSprite" parent_id_path=PackedInt32Array(81522450) index="0" unique_id=393858697]
 json_path = "res://Assets/Sprites/Enemies/RedKoopaShell.json"
 

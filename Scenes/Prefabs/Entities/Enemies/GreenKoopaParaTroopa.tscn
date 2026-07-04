@@ -7,6 +7,7 @@ winged = true
 
 [node name="Wing" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="1" unique_id=1386975840]
 visible = true
+metadata/WingType = "GreenKoopa"
 
 [node name="BasicEnemyMovement" parent="." index="14" unique_id=1775651446]
 bounce_height = -250
