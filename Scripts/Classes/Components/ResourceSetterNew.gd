@@ -473,7 +473,7 @@ func get_variation_json(json := {}) -> Dictionary:
 	meta_data_keys = json.keys().filter(func(key): return key.contains("LevelMetadata"))
 	if meta_data_keys.is_empty() == false:
 		print(Global.level_metadata)
-		is_random = true
+		is_variable = true
 		for i in meta_data_keys:
 			var meta_name = i.get_slice(":", 1)
 			print(Global.level_metadata)
