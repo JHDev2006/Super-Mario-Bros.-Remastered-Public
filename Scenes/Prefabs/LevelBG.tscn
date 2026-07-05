@@ -409,13 +409,14 @@ script = ExtResource("7_y7xk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Hills" unique_id=1085100083 node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Hills" unique_id=1085100083 node_paths=PackedStringArray("node_to_affect", "property_node", "metadata_node")]
 process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_node = NodePath("../../..")
 property_name = "sprite_frames"
 json_path = "res://Assets/Sprites/Backgrounds/Hills/Hill.json"
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Bush" type="AnimatedSprite2D" parent="PrimaryLayer" unique_id=1658473420]
@@ -427,12 +428,13 @@ script = ExtResource("7_y7xk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Bush" unique_id=653505830 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Bush" unique_id=653505830 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
 process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
 json_path = "res://Assets/Sprites/Backgrounds/Bushes/Bush.json"
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="DiscoBits" type="Node2D" parent="." unique_id=957846129]
@@ -603,13 +605,14 @@ json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees" unique_id=1524968664 node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees" unique_id=1524968664 node_paths=PackedStringArray("node_to_affect", "property_node", "metadata_node")]
 process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_node = NodePath("../../..")
 property_name = "sprite_frames"
 json_path = "res://Assets/Sprites/Backgrounds/SecondaryTrees/SecondaryTrees.json"
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Mushrooms" type="AnimatedSprite2D" parent="SecondaryLayer" unique_id=978660926]
@@ -622,13 +625,14 @@ script = ExtResource("7_y7xk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms" unique_id=1336031657 node_paths=PackedStringArray("node_to_affect", "property_node")]
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms" unique_id=1336031657 node_paths=PackedStringArray("node_to_affect", "property_node", "metadata_node")]
 process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_node = NodePath("../../..")
 property_name = "sprite_frames"
 json_path = "res://Assets/Sprites/Backgrounds/SecondaryMushrooms/Mushrooms.json"
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Tint" type="ColorRect" parent="SecondaryLayer/Mushrooms" unique_id=641788286]

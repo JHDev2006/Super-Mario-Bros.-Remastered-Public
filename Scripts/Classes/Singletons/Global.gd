@@ -25,6 +25,7 @@ var secondary_bg_override := -1
 var liquid_override := -1
 var particle_override := -1
 var extra_music_override := ""
+var level_metadata := {}
 
 signal level_theme_changed
 
