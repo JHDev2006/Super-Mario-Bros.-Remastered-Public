@@ -221,6 +221,7 @@ func get_resource(json_file: JSON) -> Resource:
 			Global.time_override = json.get("time", "")
 			Global.music_override = json.get("music", "")
 			Global.primary_bg_override = json.get("primary_bg", -1)
+			Global.level_metadata = json.get("metadata", {})
 			Global.secondary_bg_override = json.get("secondary_bg", -1)
 			Global.particle_override = json.get("particles", -1)
 			Global.extra_music_override = json.get("extra_bgm", "")
@@ -419,7 +420,8 @@ func get_variation_json(json := {}) -> Dictionary:
 		else:
 			json = get_variation_json(json[boo])
 	
-	var meta_data_keys := json.keys().filter(func(key): return key.contains("Metadata"))
+  
+  var meta_data_keys := json.keys().filter(func(key): return key.contains("Metadata") && key.contains("LevelMetadata") == false)
 	if meta_data_keys.is_empty() == false:
 		is_random = true
 		for i in meta_data_keys:
@@ -435,9 +437,30 @@ func get_variation_json(json := {}) -> Dictionary:
 			elif json[i].has("Default"):
 				meta_json = json[i].get("Default")
 			if meta_json != null:
-				variation_needed.append(meta_value)
+        variation_needed.append(meta_value)
 				used_default = false
-				
+				if meta_json.has("link"):
+					json = get_variation_json(json[i][meta_json.get("link")])
+				else:
+					json = get_variation_json(meta_json)
+				break
+	
+	meta_data_keys = json.keys().filter(func(key): return key.contains("LevelMetadata"))
+	if meta_data_keys.is_empty() == false:
+		print(Global.level_metadata)
+		is_random = true
+		for i in meta_data_keys:
+			var meta_name = i.get_slice(":", 1)
+			print(Global.level_metadata)
+			var meta_value = str(Global.level_metadata.get(meta_name, "Default"))
+			var meta_json = null
+			if json[i].has(meta_value):
+				meta_json = json[i].get(meta_value)
+			elif json[i].has("Default"):
+				meta_json = json[i].get("Default")
+			if meta_json != null:
+        variation_needed.append(meta_value)
+				used_default = false
 				if meta_json.has("link"):
 					json = get_variation_json(json[i][meta_json.get("link")])
 				else:
@@ -446,7 +469,7 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	if (json.has("default") && used_default):
 		variation_needed.append("default")
-	
+		
 	return json
 
 func get_config_file(resource_pack := "") -> void:
