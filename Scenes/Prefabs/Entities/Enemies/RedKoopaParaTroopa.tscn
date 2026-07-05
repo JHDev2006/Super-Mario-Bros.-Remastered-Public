@@ -10,6 +10,7 @@ winged = true
 [node name="Wing" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="1" unique_id=1386975840]
 visible = true
 frame_progress = 0.539258
+metadata/WingType = "RedKoopa"
 
 [node name="Node2D" type="Node2D" parent="." index="15" unique_id=118285782]
 script = ExtResource("2_7ppsp")

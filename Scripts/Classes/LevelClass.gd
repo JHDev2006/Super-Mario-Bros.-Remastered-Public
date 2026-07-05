@@ -83,6 +83,7 @@ static var can_set_time := true
 @export_storage var enforce_resolution := Vector2.ZERO
 
 func _enter_tree() -> void:
+	Global.level_metadata.clear()
 	Level.extra_music = null
 	Global.current_level = self
 	Global.current_room_type = room_type
