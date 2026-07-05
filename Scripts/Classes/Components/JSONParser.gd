@@ -15,7 +15,6 @@ static func parse_to_dict(file_path: String) -> Dictionary:
 		var file_error := FileAccess.get_open_error()
 
 		Global.log_error("Mod File not opened: \"%s\", an error has occured.\nCODE: %s" % [file_path, error_string(file_error)])
-		file.close()
 		return {}
 
 	var json_str := file.get_as_text()
@@ -48,7 +47,6 @@ static func save_to_file(data: Variant, saving_path: String) -> Error:
 	if (file == null):
 		var file_error := FileAccess.get_open_error()
 		Global.log_error("File couldn't be created: \"%s\", an error has occured.\nCODE: %s" % [saving_path, error_string(file_error)])
-		file.close()
 		
 		return file_error
 	
