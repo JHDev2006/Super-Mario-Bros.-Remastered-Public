@@ -493,22 +493,24 @@ func create_sprite_frames_from_image(image: Resource, animation_json := {}, reso
 		if animation_json[anim_name].has("link"):
 			animation_json[anim_name] = animation_json[animation_json[anim_name].link]
 		sprite_frames.add_animation(anim_name)
-		for frame in animation_json[anim_name].frames:
-			var frame_texture = AtlasTexture.new()
-			frame_texture.atlas = image
-			
-			if (frame.size() != 4):
-				Global.log_error("Animation frame for resource: \"%s\" has incorrect rect size, should be 4 but is: %s. \"%s\":Frame%s" % [resource_path, str(frame.size()), anim_name, str(animation_json[anim_name].frames.find(frame))])
-				continue
-			
-			frame_texture.region = Rect2(int(frame[0]), int(frame[1]), int(frame[2]), int(frame[3]))
-			frame_texture.filter_clip = true
-			sprite_frames.add_frame(anim_name, frame_texture)
-			
-			if (frame_texture.region.end > image_region_end):
-				Global.log_warning("Animation frame for resource: \"%s\" exceeds the base rect region: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
-		sprite_frames.set_animation_loop(anim_name, animation_json[anim_name].loop)
-		sprite_frames.set_animation_speed(anim_name, animation_json[anim_name].speed)
+		if (animation_json[anim_name].has("frames")):
+			for frame in animation_json[anim_name].frames:
+				var frame_texture = AtlasTexture.new()
+				frame_texture.atlas = image
+				
+				if (frame.size() != 4):
+					Global.log_error("Animation frame for resource: \"%s\" has incorrect rect size, should be 4 but is: %s. \"%s\":Frame%s" % [resource_path, str(frame.size()), anim_name, str(animation_json[anim_name].frames.find(frame))])
+					continue
+				
+				frame_texture.region = Rect2(int(frame[0]), int(frame[1]), int(frame[2]), int(frame[3]))
+				frame_texture.filter_clip = true
+				sprite_frames.add_frame(anim_name, frame_texture)
+				
+				if (frame_texture.region.end > image_region_end):
+					Global.log_warning("Animation frame for resource: \"%s\" exceeds the base rect region: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
+		
+			sprite_frames.set_animation_loop(anim_name, animation_json[anim_name].loop)
+			sprite_frames.set_animation_speed(anim_name, animation_json[anim_name].speed)
 	
 	return sprite_frames
 
