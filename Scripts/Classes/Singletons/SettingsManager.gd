@@ -11,7 +11,7 @@ var file := {
 		"visuals": 0,
 		"hud_size": 0, 
 		"frame_limit" : 0,
-		"window_size": [256, 240]
+		"window_size": [1024, 960]
 	},
 	"audio": {
 		"master": 10,
@@ -170,9 +170,9 @@ var old_mode_value := 0
 
 ## Toggle Fullscreen with the press of a shortcut.
 func toggle_fullscreen() -> void:
-	if (Settings.file.video.mode != 2):
+	if (Settings.file.video.mode != 3):
 		old_mode_value = Settings.file.video.mode
-		$Apply/Video.window_mode_changed(2)
+		$Apply/Video.window_mode_changed(3)
 	else:
 		$Apply/Video.window_mode_changed(old_mode_value)
 	fullscreen_toggled.emit()
