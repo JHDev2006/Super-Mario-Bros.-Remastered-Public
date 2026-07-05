@@ -39,7 +39,7 @@ static func parse_string(file_path: String, json_str: String) -> Dictionary:
 static func save_to_file(data: Variant, saving_path: String) -> Error:
 	if (data is not String):
 		# We almost always use Dictionaries anyways LOL!
-		data = JSON.stringify(data, "\t")
+		data = JSON.stringify(data, "\t", false)
 	
 	var file := FileAccess.open(saving_path, FileAccess.WRITE)
 	
