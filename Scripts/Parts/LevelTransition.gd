@@ -42,6 +42,8 @@ func _ready() -> void:
 	var lvl_idx := SaveManager.get_level_idx(Global.world_num, Global.level_num)
 	SaveManager.visited_levels[lvl_idx] = "1"
 	
+	%PlayerSprite.play("LevelTransition")
+	
 	if Global.current_game_mode == Global.GameMode.CAMPAIGN:
 		SaveManager.write_save(Global.current_campaign)
 	DiscordManager.set_discord_status("Playing " + Global.current_campaign + ": " + str(world_num) + "-" + str(Global.level_num))
