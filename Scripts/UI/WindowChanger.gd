@@ -11,10 +11,19 @@ func window_mode_changed(new_value := 0) -> void:
 		2:
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	
+	Settings.update_window_size()
+	
 	Settings.file.video.mode = new_value
 
 func null_function(_fuck_you := 0) -> void:
 	pass
+
+# DawnLR: Now that we have screen resolutions, we better also have a little more window control.
+func window_multiplier_changed(new_value := 0) -> void:
+	Settings.file.video.multiplier = new_value + 1
+	
+	Settings.update_window_size()
 
 func window_size_changed(new_value := 0) -> void:
 	Settings.file.video.size = new_value
@@ -22,6 +31,9 @@ func window_size_changed(new_value := 0) -> void:
 	var res = Global.RESOLUTIONS[new_value]
 	get_tree().root.content_scale_size = res
 	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND if idx == Global.RESOLUTIONS.size() - 1 else Window.CONTENT_SCALE_ASPECT_KEEP
+	
+	Settings.file.video.window_size = [get_viewport().get_visible_rect().size.x, get_viewport().get_visible_rect().size.y]
+	Settings.update_window_size()
 
 func vsync_changed(new_value := 0) -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if new_value == 1 else DisplayServer.VSYNC_DISABLED)
@@ -71,6 +83,7 @@ func set_window_size(value := []) -> void:
 func set_value(value_name := "", value = null) -> void:
 	{
 		"mode": window_mode_changed,
+		"multiplier": window_multiplier_changed,
 		"size": window_size_changed,
 		"vsync": vsync_changed,
 		"drop_shadows": drop_shadows_changed,

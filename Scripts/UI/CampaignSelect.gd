@@ -36,19 +36,37 @@ func _process(_delta: float) -> void:
 
 func get_level_packs() -> void:
 	Global.custom_campaigns.clear()
-	for i in DirAccess.get_directories_at(Global.config_path.path_join("level_packs")):
-		var json = JSON.parse_string(FileAccess.open(Global.config_path.path_join("level_packs").path_join(i).path_join("pack_info.json"), FileAccess.READ).get_as_text())
-		if json == null:
-			Global.log_error("Error parsing pack info for: " + i)
+	
+	var packs_path = Global.config_path.path_join("level_packs")
+	for i in DirAccess.get_directories_at(packs_path):
+		var json = JSONParser.parse_to_dict(packs_path.path_join(i + "/pack_info.json"))
+		if json.is_empty():
 			continue
+		if (!json.has("number_of_worlds") || (json.has("number_of_worlds") && json["number_of_worlds"] == 0)):
+			Global.log_error("Couldn't load level pack: \"%s\". Missing number of worlds." % i)
+			continue
+		else:
+			Level.WORLD_COUNTS[i] = json.number_of_worlds
+		if (!json.has("levels_per_world") || (json.has("levels_per_world") && json["levels_per_world"].is_empty())):
+			Global.log_error("Couldn't load level pack: \"%s\". Missing levels per world." % i)
+			continue
+		if (!json.has("levels") || (json.has("levels") && json["levels"].is_empty())):
+			Global.log_error("Couldn't load level pack: \"%s\". There are no levels listed." % i)
+			continue
+
 		Global.custom_campaign_jsons[i] = json
 		Global.custom_campaigns.append(i)
-		Level.WORLD_COUNTS[i] = json.number_of_worlds
 		campaign.append(i)
 		campaign_icons.append(ImageTexture.create_from_image(Image.load_from_file(Global.config_path.path_join("level_packs/").path_join(i).path_join("icon.png"))))
 		var title: Label = %Custom.duplicate()
-		title.text = json.name + "\nBy " + json.author
-		title.add_theme_color_override("font_shadow_color", Color(json.text_colour))
+		var pack_name = "???" if !json.has("name") else json["name"]
+		var pack_author = "UNKNOWN" if !json.has("author") else json["author"]
+		title.text = pack_name + "\nBy " + pack_author
+		if (json.has("text_colour")):
+			title.add_theme_color_override("font_shadow_color", Color(json.text_colour))
+		if (!(json.has("name") || json.has("author") || json.has("text_colour"))):
+			# DawnLR: Those are essentials to have, the rest are just for information, so the level pack can proceed from here with a warning.
+			Global.log_warning("There is missing information for level pack: \"%s\" " % i)
 		%CampaignNames.add_child(title)
 
 func handle_visuals() -> void:
@@ -142,7 +160,7 @@ func select() -> void:
 		Global.current_game_mode = Global.GameMode.CAMPAIGN
 		if Global.custom_pack != "":
 			if DirAccess.dir_exists_absolute(ProjectSettings.globalize_path(Global.config_path.path_join("resource_packs/" + Global.custom_pack))) == false:
-				Global.log_error("Level Resource Pack not Found! Are you sure you installed it correctly?")
+				Global.log_error("Current campaign's resource pack was not found inside the resource packs folder.")
 			else:
 				Settings.file.visuals.resource_packs.push_front(Global.custom_pack)
 		custom_selected.emit()

@@ -1,6 +1,6 @@
 extends Node
 
-var SAVE_DIR : String = Global.config_path.path_join("saves/CAMPAIGN.sav")
+var SAVE_DIR: String = Global.config_path.path_join("saves/CAMPAIGN.sav")
 
 var visited_levels := "1000000000000000000000000000000010000000000000000000"
 
@@ -53,13 +53,11 @@ func _ready() -> void:
 	load_achievements()
 
 func load_save(campaign := "SMB1") -> Dictionary:
-	if FileAccess.file_exists(SAVE_DIR.replace("CAMPAIGN", campaign)) == false:
+	var save_path := SAVE_DIR.replace("CAMPAIGN", campaign)
+	if FileAccess.file_exists(save_path) == false:
 		write_save(campaign)
-	var file = FileAccess.open(SAVE_DIR.replace("CAMPAIGN", campaign), FileAccess.READ)
-	var json = JSON.parse_string(file.get_as_text())
-	current_file = json
-	file.close()
-	return json
+	current_file = JSONParser.parse_to_dict(save_path)
+	return current_file
 
 func verify_saves() -> void:
 	for campaign in Global.CAMPAIGNS:
@@ -75,9 +73,7 @@ func write_save(campaign: String = Global.current_campaign, force := false) -> v
 		campaign = Global.current_custom_campaign
 	var path = Global.config_path.path_join("saves/" + campaign + ".sav")
 	if FileAccess.file_exists(path):
-		save = FileAccess.open(path, FileAccess.READ)
-		save_json = JSON.parse_string(save.get_as_text())
-		save.close()
+		save_json = JSONParser.parse_to_dict(path)
 	else:
 		save_json = SAVE_TEMPLATE.duplicate(true)
 	match Global.current_game_mode:
@@ -111,12 +107,8 @@ func write_save(campaign: String = Global.current_campaign, force := false) -> v
 	if Global.current_game_mode == Global.GameMode.DISCO:
 		save_json["Ranks"] = DiscoLevel.level_ranks
 		save_json["LevelsVisited"] = visited_levels
-	write_save_to_file(save_json, path)
-
-func write_save_to_file(json := {}, path := "") -> void:
-	var file = FileAccess.open(path, FileAccess.WRITE)
-	file.store_string(JSON.stringify(json, "\t", false, false))
-	file.close()
+	
+	JSONParser.save_to_file(save_json, path)
 
 func apply_save(json := {}) -> void:
 	
@@ -211,6 +203,4 @@ func load_achievements() -> void:
 
 func write_achievements() -> void:
 	var path = Global.config_path.path_join("achievements.sav")
-	var file = FileAccess.open(path, FileAccess.WRITE)
-	file.store_string(Global.achievements)
-	file.close()
+	JSONParser.save_to_file(Global.achievements, path)

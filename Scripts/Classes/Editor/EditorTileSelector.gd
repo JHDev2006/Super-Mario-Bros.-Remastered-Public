@@ -103,7 +103,7 @@ func get_id() -> void:
 	
 	var new_id = encode_to_base64_2char(EntityIDMapper.map.size())
 	EntityIDMapper.map[new_id] = [entity_scene.resource_path, str(tile_offset.x) + "," + str(tile_offset.y)]
-	FileAccess.open("res://EntityIDMap.json", FileAccess.WRITE).store_string(JSON.stringify(EntityIDMapper.map, "\t"))
+	JSONParser.save_to_file(EntityIDMapper.map, "res://EntityIDMap.json")
 	entity_id = new_id
 
 func encode_to_base64_2char(value: int) -> String:

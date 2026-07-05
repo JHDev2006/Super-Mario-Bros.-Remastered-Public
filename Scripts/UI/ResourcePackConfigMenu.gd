@@ -55,9 +55,7 @@ func value_changed(option: PackConfigOption) -> void:
 	update_json()
 
 func update_json() -> void:
-	var file = FileAccess.open(json_path, FileAccess.WRITE)
-	file.store_string(JSON.stringify(config_json, "\t", false))
-	file.close()
+	JSONParser.save_to_file(config_json, json_path)
 
 func close() -> void:
 	ResourceSetter.cache.clear()

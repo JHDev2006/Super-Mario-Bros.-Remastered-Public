@@ -4,6 +4,7 @@ var file := {
 	"video": {
 		"mode": 0,
 		"size": 0,
+		"multiplier": 3,
 		"vsync": 1,
 		"drop_shadows": 1,
 		"scaling": 0,
@@ -106,7 +107,7 @@ var file := {
 	}
 }
 
-static var SETTINGS_DIR := Global.config_path.path_join("settings.cfg")
+static var SETTINGS_DIR: String = Global.config_path.path_join("settings.cfg")
 
 func _enter_tree() -> void:
 	DirAccess.make_dir_absolute(Global.config_path.path_join("resource_packs"))
@@ -114,11 +115,6 @@ func _enter_tree() -> void:
 	await get_tree().physics_frame
 	apply_settings()
 	TranslationServer.set_locale(Settings.file.game.lang)
-	get_window().size_changed.connect(update_window_size)
-
-func update_window_size() -> void:
-	var window_size = get_window().size
-	Settings.file.video.window_size = [window_size.x, window_size.y]
 
 func save_settings() -> void:
 	var cfg_file = ConfigFile.new()
@@ -162,3 +158,27 @@ func apply_settings() -> void:
 			idx += 1
 	if Global.CAMPAIGNS.has(Global.current_campaign) == false:
 		Global.current_campaign = "SMB1"
+
+## Used for the settings menu to update when pressing the fullscreen shortcut.
+signal fullscreen_toggled
+
+## The last window mode before toggle to Fullscreen.
+var old_mode_value := 0
+
+## Toggle Fullscreen with the press of a shortcut.
+func toggle_fullscreen() -> void:
+	if (Settings.file.video.mode != 2):
+		old_mode_value = Settings.file.video.mode
+		$Apply/Video.window_mode_changed(2)
+	else:
+		$Apply/Video.window_mode_changed(old_mode_value)
+	fullscreen_toggled.emit()
+
+## Updates the window size according to the setting input. If force_size is set, it will use that value instead.
+func update_window_size(force_size := Vector2i.ZERO) -> void:
+	if (get_tree().root.mode < Window.MODE_MAXIMIZED):
+		if (force_size == Vector2i.ZERO):
+			get_tree().root.size = Vector2i(Settings.file.video.window_size[0] * Settings.file.video.multiplier, Settings.file.video.window_size[1] * Settings.file.video.multiplier)
+		else:
+			get_tree().root.size = force_size * Settings.file.video.multiplier
+		get_window().move_to_center()

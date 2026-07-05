@@ -418,9 +418,9 @@ visible = false
 z_index = 50
 z_as_relative = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1461227004]
+[node name="Logs" type="CanvasLayer" parent="." unique_id=1461227004]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=851351030]
+[node name="VBoxContainer" type="VBoxContainer" parent="Logs" unique_id=851351030]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -428,31 +428,70 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ErrorMessage" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1615437496]
+[node name="ErrorMessage" type="Label" parent="Logs/VBoxContainer" unique_id=1615437496]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "ERROR! PLEASE REPORT!"
-autowrap_mode = 1
+autowrap_mode = 3
 uppercase = true
 
-[node name="Warning" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1325052095]
+[node name="ColorRect" type="ColorRect" parent="Logs/VBoxContainer/ErrorMessage" unique_id=144924234]
+self_modulate = Color(1, 1, 1, 0.3529412)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="WarningMessage" type="Label" parent="Logs/VBoxContainer" unique_id=1325052095]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "Warning!"
-autowrap_mode = 1
+autowrap_mode = 3
 uppercase = true
 
-[node name="Comment" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=876225458]
+[node name="ColorRect" type="ColorRect" parent="Logs/VBoxContainer/WarningMessage" unique_id=1975693673]
+self_modulate = Color(1, 1, 1, 0.3529412)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CommentMessage" type="Label" parent="Logs/VBoxContainer" unique_id=876225458]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "Comment"
-autowrap_mode = 1
+autowrap_mode = 3
 uppercase = true
+
+[node name="ColorRect" type="ColorRect" parent="Logs/VBoxContainer/CommentMessage" unique_id=1005887466]
+self_modulate = Color(1, 1, 1, 0.3529412)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="PanelSetter" type="Node" parent="." unique_id=1039533656]
 script = SubResource("GDScript_30rl1")
@@ -502,7 +541,7 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="TextShadowColourChanger" type="Node" parent="." unique_id=1387042580 node_paths=PackedStringArray("labels")]
 script = ExtResource("19_l7dvb")
-labels = [NodePath("../CanvasLayer/VBoxContainer/ErrorMessage"), NodePath("../CanvasLayer/VBoxContainer/Comment"), NodePath("../CanvasLayer/VBoxContainer/Warning"), NodePath("../GameHUD/FPSCount")]
+labels = [NodePath("../Logs/VBoxContainer/ErrorMessage"), NodePath("../Logs/VBoxContainer/CommentMessage"), NodePath("../Logs/VBoxContainer/WarningMessage"), NodePath("../GameHUD/FPSCount")]
 metadata/_custom_type_script = "uid://dt2p68xl462v2"
 
 [node name="ScreenShaker" type="Node" parent="." unique_id=1052498364]

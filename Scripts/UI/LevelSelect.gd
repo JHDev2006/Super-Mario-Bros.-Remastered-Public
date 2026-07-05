@@ -192,7 +192,7 @@ const ICON_LOCKED := ("res://Assets/Sprites/UI/LevelIcons/LockedLevelIcon.png")
 var icon_size := [56, 32]
 
 func setup_level_icon_data() -> void:
-	var json = JSON.parse_string(FileAccess.open(LEVEL_ICON_JSON_PATH, FileAccess.READ).get_as_text())
+	var json = JSONParser.parse_to_dict(LEVEL_ICON_JSON_PATH)
 	icon_size = json.icon_size
 	for key in json.icon_data:
 		if get(key) is Dictionary and json.icon_data[key] is Dictionary:

@@ -142,7 +142,7 @@ var holding_commit := false
 var something_changed := false
 
 static func set_stack_level_name(new_level_name := "") -> String:
-	var path = Global.config_path.path_join("custom_levels/autosaves/" + new_level_name)
+	var path: String = Global.config_path.path_join("custom_levels/autosaves/" + new_level_name)
 	
 	var idx := 0
 	while DirAccess.dir_exists_absolute(path):
@@ -1442,15 +1442,14 @@ func set_state(state := EditorState.IDLE) -> void:
 
 func save_blueprint() -> void:
 	var file_name = %BlueprintName.text.to_pascal_case() + ".mbp"
-	var file = FileAccess.open(Global.config_path.path_join("blueprints").path_join(file_name), FileAccess.WRITE)
-	file.store_string($LevelSaver.compress_string(JSON.stringify(area_to_save)))
-	file.close()
-	Global.log_comment(file_name + " saved.")
+	var err := JSONParser.save_to_file($LevelSaver.compress_string(JSON.stringify(area_to_save)), Global.config_path.path_join("blueprints/" + file_name))
+	if (err == OK):
+		Global.log_comment(file_name + " saved.")
 	area_to_save = {}
 
 func load_blueprint(blueprint_path := "") -> void:
 	var file = FileAccess.open(blueprint_path, FileAccess.READ).get_as_text()
-	var json = JSON.parse_string($LevelSaver.decompress_string(file))
+	var json = JSONParser.parse_string(blueprint_path, $LevelSaver.decompress_string(file))
 	copied_area = json
 	pasting_area = true
 	var size_str = json["Size"].split(",", false)
@@ -1465,7 +1464,7 @@ const BLUEPRINT_CONTAINER = preload("uid://cgij8pg22drfx")
 func get_blueprints() -> void:
 	for i in %Blueprints.get_children():
 		i.queue_free()
-	var blueprint_path = Global.config_path.path_join("blueprints")
+	var blueprint_path: String = Global.config_path.path_join("blueprints")
 	for i in DirAccess.get_files_at(blueprint_path):
 		var container = BLUEPRINT_CONTAINER.instantiate()
 		container.path = blueprint_path.path_join(i)
