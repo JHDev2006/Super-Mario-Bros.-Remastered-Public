@@ -349,7 +349,7 @@ func generate_interactive_stream(bgm_file := {}) -> AudioStreamInteractive:
 	
 	if (bgm_file.has("Normal")):
 		if (bgm_file["Normal"].has("source")):
-			normal_path = ResourceSetter.get_pure_resource_path("res://Assets/Audio/BGM/" + bgm_file.Normal.source)
+			normal_path = ResourceSetter.get_pure_resource_path("res://Assets/Audio/BGM/" + bgm_file["Normal"]["source"])
 		else:
 			Global.log_error("Normal variation source for current track was not found.")
 		if (bgm_file["Normal"].has("loop")):
