@@ -71,6 +71,7 @@
 	"VIDEO_SHADOWS": "Drop Shadows",
 	"VIDEO_HUD_SCALING": "HUD Spacing",
 	"VIDEO_MODE_WINDOWED": "Windowed",
+	"VIDEO_MODE_MAXIMIZED": "Maximized",
 	"VIDEO_FRAMELIMIT": "Framerate Limit",
 	"VIDEO_MODE_FULLSCREEN": "Fullscreen",
 	"VIDEO_MODE_BORDERLESS": "Borderless",

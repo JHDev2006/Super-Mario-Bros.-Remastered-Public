@@ -303,7 +303,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_VIDEO"
-options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Multiplier"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle"), NodePath("FrameLimit")]
+options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle"), NodePath("FrameLimit")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=777382522]
 custom_minimum_size = Vector2(0, 4)
@@ -330,20 +330,13 @@ metadata/_custom_type_script = "uid://xem6lai3ufyj"
 layout_mode = 2
 option_key = "mode"
 title = "VIDEO_MODE"
-values = ["VIDEO_MODE_WINDOWED", "VIDEO_MAXIMIZED", "VIDEO_MODE_BORDERLESS", "VIDEO_MODE_FULLSCREEN"]
+values = ["VIDEO_MODE_WINDOWED", "VIDEO_MODE_MAXIMIZED", "VIDEO_MODE_BORDERLESS", "VIDEO_MODE_FULLSCREEN"]
 
 [node name="Size" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=432969620 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "size"
 title = "VIDEO_SIZE"
 values = ["VIDEO_ASPECT_NES", "VIDEO_ASPECT_SP", "VIDEO_ASPECT_WIDESCREEN", "VIDEO_ASPECT_UNLOCKED"]
-selected = true
-
-[node name="Multiplier" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=215292564 groups=["Options"] instance=ExtResource("3_dl6kk")]
-layout_mode = 2
-option_key = "multiplier"
-title = "VIDEO_MULTIPLIER"
-values = ["1x", "2x", "3x", "4x"]
 selected = true
 
 [node name="Visuals" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=295796466 groups=["Options"] instance=ExtResource("3_dl6kk")]
@@ -1179,7 +1172,6 @@ uppercase = true
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Language" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="language_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/WindowMode" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="window_mode_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Size" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="window_size_changed"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Multiplier" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="window_multiplier_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Visuals" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="visuals_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Scaling" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="scaling_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/VSync" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="vsync_changed"]
