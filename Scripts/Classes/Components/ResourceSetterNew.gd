@@ -25,6 +25,7 @@ enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW, FONT, THEME}
 static var cache := {}
 static var property_cache := {}
 static var active_flags := []
+static var sequences := {}
 
 static var state := [0, 0, 0]
 
@@ -32,7 +33,7 @@ static var pack_configs := {}
 
 var config_to_use := {}
 
-var is_random := false
+var is_variable := false
 
 signal updated
 
@@ -230,7 +231,7 @@ func get_resource(json_file: JSON) -> Resource:
 			Global.particle_override = json.get("particles", -1)
 			Global.extra_music_override = json.get("extra_bgm", "")
 			Global.liquid_override = json.get("liquid", -1)
-	if cache.has(json_file.resource_path) == false and use_cache and not is_random:
+	if cache.has(json_file.resource_path) == false and use_cache and not is_variable:
 		cache[json_file.resource_path] = resource
 	
 	ignore_resource_from.clear()
@@ -332,7 +333,7 @@ func get_variation_json(json := {}) -> Dictionary:
 			json = get_variation_json(json[campaign])
 	
 	if json.has("choices"):
-		is_random = true
+		is_variable = true
 		var idx := randi_range(0, json.choices.size() - 1)
 		if has_meta("RNGChoice"):
 			idx = get_meta("RNGChoice", -1)
@@ -347,6 +348,21 @@ func get_variation_json(json := {}) -> Dictionary:
 			json = get_variation_json(json[random_json.get("link")])
 		else:
 			json = get_variation_json(random_json)
+			
+	if json.has("sequence"):
+		is_variable = true
+		var idx := 0
+		if has_meta("SequencePos"):
+			idx = get_meta("SequencePos", -1)
+		else:
+			idx = sequences.get(json_path, -1) + 1
+			set_meta("SequencePos", idx)
+			sequences[json_path] = idx
+		var sequence_json = json.sequence[posmod(idx, json.sequence.size())]
+		if sequence_json.has("link"):
+			json = get_variation_json(json[sequence_json.get("link")])
+		else:
+			json = get_variation_json(sequence_json)
 	
 	var world = "World" + str(Global.world_num)
 	if force_properties.has("World"):
@@ -432,7 +448,7 @@ func get_variation_json(json := {}) -> Dictionary:
 			
 	var meta_data_keys := json.keys().filter(func(key): return key.contains("Metadata") && key.contains("LevelMetadata") == false)
 	if meta_data_keys.is_empty() == false:
-		is_random = true
+		is_variable = true
 		for i in meta_data_keys:
 			var meta_name = i.get_slice(":", 1)
 			var node_to_use = metadata_node
@@ -537,6 +553,7 @@ static func clear_cache() -> void:
 	cache.clear()
 	active_flags.clear()
 	property_cache.clear()
+	sequences.clear()
 
 func load_image_from_path(path := "") -> Texture2D:
 	if path.contains("res://"):
