@@ -97,7 +97,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a6q03")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Attack",
 "speed": 5.0
 }, {
@@ -108,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gkdsh")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Climb",
 "speed": 5.0
 }, {
@@ -116,7 +116,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_akfsq")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Crouch",
 "speed": 5.0
 }, {
@@ -124,7 +124,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1peph")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Die",
 "speed": 5.0
 }, {
@@ -132,7 +132,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5p68d")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Fall",
 "speed": 5.0
 }, {
@@ -143,7 +143,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dmoxr")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Grow",
 "speed": 5.0
 }, {
@@ -151,7 +151,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hoisf")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -159,7 +159,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i0epd")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Jump",
 "speed": 5.0
 }, {
@@ -173,7 +173,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s68w0")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Move",
 "speed": 5.0
 }, {
@@ -181,7 +181,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cx5ce")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Skid",
 "speed": 5.0
 }, {
@@ -192,7 +192,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jbh4o")
 }],
-"loop": 1,
+"loop": true,
 "name": &"SwimIdle",
 "speed": 5.0
 }, {
@@ -215,7 +215,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c02gr")
 }],
-"loop": 1,
+"loop": true,
 "name": &"SwimUp",
 "speed": 5.0
 }]

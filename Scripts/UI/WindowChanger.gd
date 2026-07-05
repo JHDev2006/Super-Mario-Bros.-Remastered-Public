@@ -6,13 +6,14 @@ func window_mode_changed(new_value := 0) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 		1:
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+		2:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-		2:
+		3:
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	
-	Settings.update_window_size()
 	
 	Settings.file.video.mode = new_value
 
@@ -21,9 +22,7 @@ func null_function(_fuck_you := 0) -> void:
 
 # DawnLR: Now that we have screen resolutions, we better also have a little more window control.
 func window_multiplier_changed(new_value := 0) -> void:
-	Settings.file.video.multiplier = new_value + 1
-	
-	Settings.update_window_size()
+	pass
 
 func window_size_changed(new_value := 0) -> void:
 	Settings.file.video.size = new_value
@@ -31,9 +30,6 @@ func window_size_changed(new_value := 0) -> void:
 	var res = Global.RESOLUTIONS[new_value]
 	get_tree().root.content_scale_size = res
 	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND if idx == Global.RESOLUTIONS.size() - 1 else Window.CONTENT_SCALE_ASPECT_KEEP
-	
-	Settings.file.video.window_size = [get_viewport().get_visible_rect().size.x, get_viewport().get_visible_rect().size.y]
-	Settings.update_window_size()
 
 func vsync_changed(new_value := 0) -> void:
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if new_value == 1 else DisplayServer.VSYNC_DISABLED)
@@ -74,11 +70,11 @@ func frame_limit_changed(new_value := 0) -> void:
 	Settings.file.video.frame_limit = new_value
 
 func set_window_size(value := []) -> void:
-	pass
-	# nabbup: Recenter resized window on launch
-	#var newpos = get_window().position - Vector2i((value[0]-get_window().size.x), (value[1]-get_window().size.y))/2
-	#get_window().size = Vector2(value[0], value[1])
-	#get_window().position = newpos
+	print(Settings.file.video)
+	print(value)
+	var new_size = Vector2(value[0], value[1])
+	get_tree().root.size = new_size
+	get_window().move_to_center()
 
 func set_value(value_name := "", value = null) -> void:
 	{

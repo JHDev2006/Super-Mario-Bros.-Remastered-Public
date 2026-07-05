@@ -330,7 +330,7 @@ metadata/_custom_type_script = "uid://xem6lai3ufyj"
 layout_mode = 2
 option_key = "mode"
 title = "VIDEO_MODE"
-values = ["VIDEO_MODE_WINDOWED", "VIDEO_MODE_BORDERLESS", "VIDEO_MODE_FULLSCREEN"]
+values = ["VIDEO_MODE_WINDOWED", "VIDEO_MAXIMIZED", "VIDEO_MODE_BORDERLESS", "VIDEO_MODE_FULLSCREEN"]
 
 [node name="Size" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=432969620 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2

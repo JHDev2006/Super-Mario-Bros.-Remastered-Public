@@ -89,7 +89,7 @@ region = Rect2(128, 32, 32, 32)
 [resource]
 animations = [{
 "frames": [],
-"loop": 1,
+"loop": true,
 "name": &"Attack",
 "speed": 5.0
 }, {
@@ -100,7 +100,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hvl5q")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Climb",
 "speed": 5.0
 }, {
@@ -108,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n7di1")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Crouch",
 "speed": 5.0
 }, {
@@ -116,7 +116,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1peph")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Die",
 "speed": 5.0
 }, {
@@ -124,7 +124,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lj1it")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Fall",
 "speed": 5.0
 }, {
@@ -135,7 +135,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gf223")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Grow",
 "speed": 5.0
 }, {
@@ -143,7 +143,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_si2kc")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -151,7 +151,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cma5t")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Jump",
 "speed": 5.0
 }, {
@@ -165,7 +165,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qy2u4")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Move",
 "speed": 5.0
 }, {
@@ -173,7 +173,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nncln")
 }],
-"loop": 1,
+"loop": true,
 "name": &"Skid",
 "speed": 5.0
 }, {
@@ -184,7 +184,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_phb7q")
 }],
-"loop": 1,
+"loop": true,
 "name": &"SwimIdle",
 "speed": 5.0
 }, {
@@ -207,7 +207,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dtyhy")
 }],
-"loop": 1,
+"loop": true,
 "name": &"SwimUp",
 "speed": 5.0
 }]

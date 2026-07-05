@@ -115,6 +115,7 @@ func _enter_tree() -> void:
 	await get_tree().physics_frame
 	apply_settings()
 	TranslationServer.set_locale(Settings.file.game.lang)
+	get_last_exclusive_window().size_changed.connect(on_window_resized)
 
 func save_settings() -> void:
 	var cfg_file = ConfigFile.new()
@@ -139,6 +140,8 @@ func load_settings() -> void:
 	for section in cfg_file.get_sections():
 		for key in cfg_file.get_section_keys(section):
 			file[section][key] = cfg_file.get_value(section, key)
+			print([section, key, cfg_file.get_value(section, key)])
+			print(file[section][key])
 	fix_broken_settings()
 
 func fix_broken_settings() -> void:
@@ -174,11 +177,13 @@ func toggle_fullscreen() -> void:
 		$Apply/Video.window_mode_changed(old_mode_value)
 	fullscreen_toggled.emit()
 
-## Updates the window size according to the setting input. If force_size is set, it will use that value instead.
-func update_window_size(force_size := Vector2i.ZERO) -> void:
-	if (get_tree().root.mode < Window.MODE_MAXIMIZED):
-		if (force_size == Vector2i.ZERO):
-			get_tree().root.size = Vector2i(Settings.file.video.window_size[0] * Settings.file.video.multiplier, Settings.file.video.window_size[1] * Settings.file.video.multiplier)
-		else:
-			get_tree().root.size = force_size * Settings.file.video.multiplier
-		get_window().move_to_center()
+func on_window_resized() -> void:
+	print("Changed")
+	var window_size = get_viewport().get_window().size
+	if get_viewport().get_window().mode == Window.Mode.MODE_MAXIMIZED:
+		Settings.file.video.mode = 1
+	else:
+		Settings.file.video.mode = 0
+	Settings.file.video.window_size[0] = window_size.x
+	Settings.file.video.window_size[1] = window_size.y
+	Settings.save_settings()
