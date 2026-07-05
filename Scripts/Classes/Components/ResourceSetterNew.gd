@@ -6,6 +6,9 @@ extends Node
 @export var property_name := ""
 @export var mode: ResourceMode = ResourceMode.SPRITE_FRAMES
 
+var surpress_warnings := false
+var surpress_errors := false
+
 ## Backup of the last json path.
 var backup_json_path := ""
 @export_file_path("*.json") var json_path := "":
@@ -88,7 +91,7 @@ func get_resource(json_file: JSON) -> Resource:
 		var scene_name = owner.scene_file_path.get_file().get_basename()
 		
 		# DawnLR: Is this even possible? Like, I know I managed to do it once, but it's really hard to pull off.
-		Global.log_error("JSON file not found. Missing for Node: %s" % str(scene_name))
+		log_error("JSON file not found. Missing for Node: %s" % str(scene_name))
 		return
 	if cache.has(json_file.resource_path) and use_cache and force_properties.is_empty():
 		if property_cache.has(json_file.resource_path):
@@ -108,6 +111,8 @@ func get_resource(json_file: JSON) -> Resource:
 		resource_path = new_path
 	
 	source_json = JSONParser.parse_to_dict(resource_path)
+	surpress_warnings = false
+	surpress_errors = false
 	if (FileAccess.file_exists(resource_path) && source_json.is_empty() && current_resource_pack != "BaseAssets"):
 		# DawnLR: Given file cannot be worked with, skipping resource pack!
 		ignore_resource_from.append(current_resource_pack)
@@ -125,7 +130,7 @@ func get_resource(json_file: JSON) -> Resource:
 					source_resource_path = json_file.resource_path.replace(json_file.resource_path.get_file(), json.source)
 			elif mode != ResourceMode.THEME && current_resource_pack != "BaseAssets":
 				# DawnLR: If "source" is not set, then there's no way to reach the resource, skipping resource pack!
-				Global.log_error("Variation source needed wasn't found inside: \"%s\". Stopped at %s." % [resource_path, get_variation_path()], false)
+				log_error("Variation source needed wasn't found inside: \"%s\". Stopped at %s." % [resource_path, get_variation_path()], false)
 				ignore_resource_from.append(current_resource_pack)
 				return get_resource(json_file)
 			if json.has("flags"):
@@ -139,11 +144,11 @@ func get_resource(json_file: JSON) -> Resource:
 			continue
 		source_resource_path = get_resource_pack_path(source_resource_path, i)
 		if (!FileAccess.file_exists(source_resource_path) && i != "BaseAssets" && mode != ResourceMode.THEME):
-			Global.log_error("Variation source needed is not an existing file: \"%s\". Stopped at %s." % [resource_path, get_variation_path()], false)
+			log_error("Variation source needed is not an existing file: \"%s\". Stopped at %s." % [resource_path, get_variation_path()], false)
 			ignore_resource_from.append(i)
 			return get_resource(json_file)
 		
-	var rect_error_message := func(): Global.log_error("Variation source for: \"%s\" has incorrect rect size, should be 4 but is: %s. Stopped at: %s" % [resource_path, str(json["rect"].size()), get_variation_path()])
+	var rect_error_message := func(): log_error("Variation source for: \"%s\" has incorrect rect size, should be 4 but is: %s. Stopped at: %s" % [resource_path, str(json["rect"].size()), get_variation_path()])
 	
 	if json.has("rect"):
 		resource = load_image_from_path(source_resource_path)
@@ -270,6 +275,11 @@ func get_variation_path() -> String:
 
 func get_variation_json(json := {}) -> Dictionary:
 	var used_default := true
+	print(json)
+	if json.has("mute_warnings"):
+		surpress_warnings = true
+	if json.has("mute_errors"):
+		surpress_errors = true
 	
 	for i in json.keys().filter(func(key): return key.contains("config:")):
 		get_config_file(current_resource_pack)
@@ -525,23 +535,23 @@ func create_sprite_frames_from_image(image: Resource, animation_json := {}, reso
 				frame_texture.atlas = image
 				
 				if (frame.size() != 4):
-					Global.log_error("Animation frame for resource: \"%s\" has incorrect rect size, should be 4 but is: %s. \"%s\":Frame%s" % [resource_path, str(frame.size()), anim_name, str(animation_json[anim_name].frames.find(frame))])
+					log_error("Animation frame for resource: \"%s\" has incorrect rect size, should be 4 but is: %s. \"%s\":Frame%s" % [resource_path, str(frame.size()), anim_name, str(animation_json[anim_name].frames.find(frame))])
 					continue
 				if (animation_json[anim_name].has("loop")):
 					sprite_frames.set_animation_loop(anim_name, animation_json[anim_name].loop)
 				else:
-					Global.log_warning("Animation frame for resource: \"%s\" has no loop set: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
+					log_warning("Animation frame for resource: \"%s\" has no loop set: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
 				if (animation_json[anim_name].has("speed")):
 					sprite_frames.set_animation_speed(anim_name, animation_json[anim_name].speed)
 				else:
-					Global.log_warning("Animation frame for resource: \"%s\" has no speed set: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
+					log_warning("Animation frame for resource: \"%s\" has no speed set: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
 				
 				frame_texture.region = Rect2(int(frame[0]), int(frame[1]), int(frame[2]), int(frame[3]))
 				frame_texture.filter_clip = true
 				sprite_frames.add_frame(anim_name, frame_texture)
 				
 				if (frame_texture.region.end > image_region_end):
-					Global.log_warning("Animation frame for resource: \"%s\" exceeds the base rect region: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
+					log_warning("Animation frame for resource: \"%s\" exceeds the base rect region: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
 				
 	
 	return sprite_frames
@@ -589,3 +599,11 @@ func clear_metadata() -> void:
 func copy_meta(new_node: Node) -> void:
 	for meta in get_meta_list():
 		new_node.set_meta(meta, get_meta(meta))
+
+func log_error(msg := "", can_spam := true, timer := 10) -> void:
+	if surpress_errors == false:
+		Global.log_error(msg, can_spam, timer)
+
+func log_warning(msg := "", timer := 10) -> void:
+	if surpress_warnings == false:
+		Global.log_warning(msg, timer)
