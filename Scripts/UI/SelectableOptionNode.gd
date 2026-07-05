@@ -27,7 +27,7 @@ func update_starting_values() -> void:
 			
 			if settings_category == "video" && option_key == "mode":
 				Settings.fullscreen_toggled.connect(func(): selected_index = Settings.file.video.mode)
-			if settings_category == "video" && option_key == "mulitplier":
+			if settings_category == "video" && option_key == "multiplier":
 				selected_index -= 1
 	selected_index = clamp(selected_index, 0, values.size() - 1)
 
