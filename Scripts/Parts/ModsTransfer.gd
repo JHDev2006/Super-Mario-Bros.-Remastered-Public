@@ -45,13 +45,13 @@ static func move_file(path := "", move_to := "") -> void:
 	
 	var pasted := FileAccess.open(move_to, FileAccess.WRITE)
 	var success := pasted.store_buffer(source.get_buffer(source.get_length()))
-	pasted.close()
-	source.close()
 	
 	if not success:
 		Global.log_error("Couldn't move file \"%s\" to: %s" % [path.get_file(), move_to])
 		return
-	
+
+	pasted.close()
+	source.close()
 	
 	if success:
 		print("Succesfully moved \"%s\"" % path.get_file())
