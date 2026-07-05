@@ -178,7 +178,6 @@ func toggle_fullscreen() -> void:
 	fullscreen_toggled.emit()
 
 func on_window_resized() -> void:
-	print("Changed")
 	var window_size = get_viewport().get_window().size
 	if get_viewport().get_window().mode == Window.Mode.MODE_MAXIMIZED:
 		Settings.file.video.mode = 1

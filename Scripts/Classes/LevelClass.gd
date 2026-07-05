@@ -131,8 +131,6 @@ func apply_resolution_enforcement() -> void:
 	if enforce_resolution != Vector2.ZERO:
 		get_tree().root.content_scale_size = enforce_resolution
 		get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
-		
-		Settings.update_window_size(enforce_resolution)
 	else:
 		reset_resolution()
 
@@ -141,8 +139,7 @@ func reset_resolution() -> void:
 	var res = Global.RESOLUTIONS[idx]
 	get_tree().root.content_scale_size = res
 	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND if idx == Global.RESOLUTIONS.size() - 1 else Window.CONTENT_SCALE_ASPECT_KEEP
-	
-	Settings.update_window_size()
+
 
 func spawn_in_extra_players() -> void:
 	# Fuck you lmao, no multiplayer
