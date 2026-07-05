@@ -513,6 +513,7 @@ static var ANIMATION_FALLBACKS: Dictionary = {
 	"Stunned": "Idle",
 	
 	# --- Cutscene States ---
+	"LevelTransition": "Idle",
 	"PosePeach": "PoseToad",
 	
 	"FlingJump": "Jump",
