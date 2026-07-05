@@ -512,7 +512,7 @@ func create_sprite_frames_from_image(image: Resource, animation_json := {}, reso
 				if (animation_json[anim_name].has("speed")):
 					sprite_frames.set_animation_speed(anim_name, animation_json[anim_name].speed)
 				else:
-					Global.log_warning("Animation frame for resource: \"%s\" has no loop set: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
+					Global.log_warning("Animation frame for resource: \"%s\" has no speed set: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
 				
 				frame_texture.region = Rect2(int(frame[0]), int(frame[1]), int(frame[2]), int(frame[3]))
 				frame_texture.filter_clip = true
