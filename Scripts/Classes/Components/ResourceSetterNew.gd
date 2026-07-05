@@ -419,9 +419,8 @@ func get_variation_json(json := {}) -> Dictionary:
 			json = get_variation_json(json[json.get(boo).get("link")])
 		else:
 			json = get_variation_json(json[boo])
-	
-  
-  var meta_data_keys := json.keys().filter(func(key): return key.contains("Metadata") && key.contains("LevelMetadata") == false)
+			
+	var meta_data_keys := json.keys().filter(func(key): return key.contains("Metadata") && key.contains("LevelMetadata") == false)
 	if meta_data_keys.is_empty() == false:
 		is_random = true
 		for i in meta_data_keys:
@@ -437,7 +436,7 @@ func get_variation_json(json := {}) -> Dictionary:
 			elif json[i].has("Default"):
 				meta_json = json[i].get("Default")
 			if meta_json != null:
-        variation_needed.append(meta_value)
+				variation_needed.append(meta_value)
 				used_default = false
 				if meta_json.has("link"):
 					json = get_variation_json(json[i][meta_json.get("link")])
@@ -459,7 +458,7 @@ func get_variation_json(json := {}) -> Dictionary:
 			elif json[i].has("Default"):
 				meta_json = json[i].get("Default")
 			if meta_json != null:
-        variation_needed.append(meta_value)
+				variation_needed.append(meta_value)
 				used_default = false
 				if meta_json.has("link"):
 					json = get_variation_json(json[i][meta_json.get("link")])
