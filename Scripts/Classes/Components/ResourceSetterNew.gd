@@ -496,6 +496,11 @@ func create_sprite_frames_from_image(image: Resource, animation_json := {}, reso
 		for frame in animation_json[anim_name].frames:
 			var frame_texture = AtlasTexture.new()
 			frame_texture.atlas = image
+			
+			if (frame.size() != 4):
+				Global.log_error("Animation frame for resource: \"%s\" has incorrect rect size, should be 4 but is: %s. \"%s\":Frame%s" % [resource_path, str(frame.size()), anim_name, str(animation_json[anim_name].frames.find(frame))])
+				continue
+			
 			frame_texture.region = Rect2(int(frame[0]), int(frame[1]), int(frame[2]), int(frame[3]))
 			frame_texture.filter_clip = true
 			sprite_frames.add_frame(anim_name, frame_texture)
