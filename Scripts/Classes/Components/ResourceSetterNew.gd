@@ -374,9 +374,9 @@ func get_variation_json(json := {}) -> Dictionary:
 		else:
 			json = get_variation_json(json[level_string])
 	
-	var quest = "1stQuest"
+	var quest = "Quest:1"
 	if Global.second_quest:
-		quest = "2ndQuest"
+		quest = "Quest:2"
 	if json.has(quest):
 		json = get_variation_json(json[quest])
 	
