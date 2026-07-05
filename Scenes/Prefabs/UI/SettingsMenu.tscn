@@ -45,6 +45,8 @@ var input_nodes := []
 
 var actions := [\"jump\", \"run\", \"action\", \"move_left\", \"move_right\", \"move_up\", \"move_down\", \"ui_accept\", \"ui_back\", \"pause\"]
 
+static var deadzone := 0.5
+
 @export_enum(\"Keyboard\", \"Controller\") var type := 0
 
 func _ready() -> void:
@@ -131,6 +133,13 @@ func get_str_for_event(event: InputEvent):
 	elif event is InputEventJoypadMotion:
 		rep = str(event.axis) + \",\" + str(event.axis_value)
 	return rep
+
+func set_deadzone(new_idx := 0) -> void:
+	deadzone = new_idx / 10.0
+	deadzone = min(deadzone, 0.95)
+	for action in InputMap.get_actions():
+		InputMap.action_set_deadzone(action, deadzone)
+	Settings.file.controller.deadzone = int(new_idx)
 "
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_k6yev"]
@@ -925,7 +934,13 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_CONTROLLER"
-options = [NodePath("Jump"), NodePath("Run"), NodePath("Action"), NodePath("Left"), NodePath("Right"), NodePath("Up"), NodePath("Down"), NodePath("Accept"), NodePath("Back"), NodePath("Pause")]
+options = [NodePath("Deadzone"), NodePath("Jump"), NodePath("Run"), NodePath("Action"), NodePath("Left"), NodePath("Right"), NodePath("Up"), NodePath("Down"), NodePath("Accept"), NodePath("Back"), NodePath("Pause")]
+
+[node name="Deadzone" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=1191660399 groups=["Options"] instance=ExtResource("7_om3lc")]
+layout_mode = 2
+settings_key = "controller"
+option_key = "deadzone"
+title = "Deadzone"
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Controller" unique_id=1430586928]
 custom_minimum_size = Vector2(0, 4)
@@ -1217,6 +1232,7 @@ uppercase = true
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/GameOverStyle" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="game_over_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/LevelDesign" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="level_design_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Difficulty/ScrollContainer/VBoxContainer/TimeLimit" to="PanelContainer/MarginContainer/VBoxContainer/Difficulty/DifficultySetter" method="time_limit_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Controller/Deadzone" to="PanelContainer/MarginContainer/VBoxContainer/Controller/InputMapSaving" method="set_deadzone"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/CampaignData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_story"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/ChallengeModeData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_challenge"]
 [connection signal="deleted" from="PanelContainer/MarginContainer/VBoxContainer/Data/BooRaceData" to="PanelContainer/MarginContainer/VBoxContainer/Data/DataDeletion" method="delete_boo"]

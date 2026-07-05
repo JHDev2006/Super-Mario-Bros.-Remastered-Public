@@ -53,6 +53,7 @@ var file := {
 	},
 	"controller":
 	{
+		"deadzone": 0.5,
 		"jump": [0, 1],
 		"run": [2, 3],
 		"action": [2, 3],
