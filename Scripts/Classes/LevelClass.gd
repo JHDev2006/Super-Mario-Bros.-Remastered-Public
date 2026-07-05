@@ -141,6 +141,7 @@ func reset_resolution() -> void:
 	get_tree().root.content_scale_size = res
 	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND if idx == Global.RESOLUTIONS.size() - 1 else Window.CONTENT_SCALE_ASPECT_KEEP
 
+
 func spawn_in_extra_players() -> void:
 	# Fuck you lmao, no multiplayer
 	return

@@ -18,7 +18,7 @@ func _ready() -> void:
 		update_map()
 
 static func load_entity_map() -> void:
-	map = JSON.parse_string(FileAccess.open(MAP_PATH, FileAccess.READ).get_as_text())
+	map = JSONParser.parse_to_dict(MAP_PATH)
 
 func update_map() -> void:
 	load_entity_map()
@@ -50,9 +50,7 @@ static func get_selector_info_arr(selector: EditorTileSelector) -> Array:
 	return [selector.entity_scene.resource_path, str(selector.tile_offset.x) + "," + str(selector.tile_offset.y)]
 
 func save_to_json() -> void:
-	var file = FileAccess.open(MAP_PATH, FileAccess.WRITE)
-	file.store_string(JSON.stringify(map, "\t", false))
-	file.close()
+	JSONParser.save_to_file(map, MAP_PATH)
 
 static func get_map_id(entity_scene := "") -> String:
 	var idx := 0

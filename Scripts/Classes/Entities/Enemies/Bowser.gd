@@ -36,7 +36,7 @@ var modern_starting_timers := [1, 1, 0.5]
 var classic_fire_table := [3.2, 1.0667, 3.2, 3.2, 3.2, 1.0667, 1.0667, 3.2]
 var jump_height := 100 if modern else 128
 var fall_speed := 2.5 if modern else 3.52
-var max_fall_speed := Global.entity_max_fall_speed if modern else 150
+var max_fall_speed: int = Global.entity_max_fall_speed if modern else 150
 
 var fire_charge_speed := 1.0 if modern else 0.5333
 

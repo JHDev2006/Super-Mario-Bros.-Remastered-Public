@@ -339,7 +339,7 @@ metadata/_custom_type_script = "uid://xem6lai3ufyj"
 layout_mode = 2
 option_key = "mode"
 title = "VIDEO_MODE"
-values = ["VIDEO_MODE_WINDOWED", "VIDEO_MODE_BORDERLESS", "VIDEO_MODE_FULLSCREEN"]
+values = ["VIDEO_MODE_WINDOWED", "VIDEO_MODE_MAXIMIZED", "VIDEO_MODE_BORDERLESS", "VIDEO_MODE_FULLSCREEN"]
 
 [node name="Size" parent="PanelContainer/MarginContainer/VBoxContainer/Video" unique_id=432969620 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
@@ -645,7 +645,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = -4
 
-[node name="PhysicsStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Gameplay/ScrollContainer/VBoxContainer" unique_id=215292564 groups=["Options"] instance=ExtResource("3_dl6kk")]
+[node name="PhysicsStyle" parent="PanelContainer/MarginContainer/VBoxContainer/Gameplay/ScrollContainer/VBoxContainer" unique_id=540048908 groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
 option_key = "physics_style"
 title = "DIFFI_PHYSICS_STYLE"

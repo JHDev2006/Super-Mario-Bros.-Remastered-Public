@@ -54,11 +54,11 @@ func _process(_delta: float) -> void:
 func level_selected() -> void:
 	active = false
 	
-	LevelEditor.level_file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
+	LevelEditor.level_file = JSONParser.parse_to_dict(file_path)
 	level_play.emit()
 
 func level_edited() -> void:
-	LevelEditor.level_file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
+	LevelEditor.level_file = JSONParser.parse_to_dict(file_path)
 	level_edit.emit()
 
 func close(back := true) -> void:

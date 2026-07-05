@@ -6,8 +6,12 @@ extends Node
 @export var property_name := ""
 @export var mode: ResourceMode = ResourceMode.SPRITE_FRAMES
 
+## Backup of the last json path.
+var backup_json_path := ""
 @export_file_path("*.json") var json_path := "":
 	set(value):
+		backup_json_path = json_path
+		
 		json_path = value
 		update_resource()
 
@@ -21,8 +25,6 @@ enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW, FONT, THEME}
 static var cache := {}
 static var property_cache := {}
 static var active_flags := []
-
-var current_json_path := ""
 
 static var state := [0, 0, 0]
 
@@ -67,6 +69,9 @@ func update_resource() -> void:
 		property_cache.clear()
 	if node_to_affect != null:
 		var json = load(json_path)
+		# DawnLR: Load backup if the json path doesn't return a file.
+		if (json == null):
+			json = load(backup_json_path)
 		var resource = get_resource(json)
 		if mode != ResourceMode.THEME:
 			node_to_affect.set(property_name, resource)
@@ -75,7 +80,15 @@ func update_resource() -> void:
 	state = [Global.level_theme, Global.theme_time, Global.current_room_type]
 	updated.emit()
 
+## Array that lists Resource Packs that should be skipped for that Resource.
+var ignore_resource_from := []
 func get_resource(json_file: JSON) -> Resource:
+	if (json_file == null):
+		var scene_name = owner.scene_file_path.get_file().get_basename()
+		
+		# DawnLR: Is this even possible? Like, I know I managed to do it once, but it's really hard to pull off.
+		Global.log_error("JSON file not found. Missing for Node: %s" % str(scene_name))
+		return
 	if cache.has(json_file.resource_path) and use_cache and force_properties.is_empty():
 		if property_cache.has(json_file.resource_path):
 			apply_properties(property_cache[json_file.resource_path])
@@ -86,15 +99,19 @@ func get_resource(json_file: JSON) -> Resource:
 	config_to_use = {}
 	current_resource_pack = ""
 	for i in Settings.file.visuals.resource_packs:
+		if (ignore_resource_from.has(i) && i != "BaseAssets"):
+			continue
 		var new_path = get_resource_pack_path(resource_path, i)
 		if resource_path != new_path or current_resource_pack == "":
 			current_resource_pack = i
 		resource_path = new_path
 	
-	source_json = JSON.parse_string(FileAccess.open(resource_path, FileAccess.READ).get_as_text())
-	if source_json == null:
-		Global.log_error("Error parsing " + resource_path + "!")
-		return
+	source_json = JSONParser.parse_to_dict(resource_path)
+	if (FileAccess.file_exists(resource_path) && source_json.is_empty() && current_resource_pack != "BaseAssets"):
+		# DawnLR: Given file cannot be worked with, skipping resource pack!
+		ignore_resource_from.append(current_resource_pack)
+		return get_resource(json_file)
+	
 	var json = source_json.duplicate()
 	var source_resource_path = ""
 	var finished = false
@@ -105,9 +122,11 @@ func get_resource(json_file: JSON) -> Resource:
 			if json.has("source"):
 				if json.get("source") is String:
 					source_resource_path = json_file.resource_path.replace(json_file.resource_path.get_file(), json.source)
-			elif mode != ResourceMode.THEME:
-				Global.log_error("Error getting variations! " + resource_path)
-				return
+			elif mode != ResourceMode.THEME && current_resource_pack != "BaseAssets":
+				# DawnLR: If "source" is not set, then there's no way to reach the resource, skipping resource pack!
+				Global.log_error("Variation source needed wasn't found inside: \"%s\". Stopped at %s." % [resource_path, get_variation_path()], false)
+				ignore_resource_from.append(current_resource_pack)
+				return get_resource(json_file)
 			if json.has("flags"):
 				for i in json["flags"]:
 					active_flags.append(i)
@@ -115,13 +134,25 @@ func get_resource(json_file: JSON) -> Resource:
 				finished = false
 		finished = true
 	for i in Settings.file.visuals.resource_packs:
+		if (ignore_resource_from.has(i) && i != "BaseAssets"):
+			continue
 		source_resource_path = get_resource_pack_path(source_resource_path, i)
+		if (!FileAccess.file_exists(source_resource_path) && i != "BaseAssets" && mode != ResourceMode.THEME):
+			Global.log_error("Variation source needed is not an existing file: \"%s\". Stopped at %s." % [resource_path, get_variation_path()], false)
+			ignore_resource_from.append(i)
+			return get_resource(json_file)
+		
+	var rect_error_message := func(): Global.log_error("Variation source for: \"%s\" has incorrect rect size, should be 4 but is: %s. Stopped at: %s" % [resource_path, str(json["rect"].size()), get_variation_path()])
+	
 	if json.has("rect"):
 		resource = load_image_from_path(source_resource_path)
-		var atlas = AtlasTexture.new()
-		atlas.atlas = resource
-		atlas.region = Rect2(json.rect[0], json.rect[1], json.rect[2], json.rect[3])
-		resource = atlas
+		if (json["rect"].size() == 4):
+			var atlas = AtlasTexture.new()
+			atlas.atlas = resource
+			atlas.region = Rect2(json.rect[0], json.rect[1], json.rect[2], json.rect[3])
+			resource = atlas
+		else:
+			rect_error_message.call()
 	if json.has("properties"):
 		apply_properties(json.get("properties"))
 		if use_cache:
@@ -142,22 +173,20 @@ func get_resource(json_file: JSON) -> Resource:
 			if json.has("animation_overrides"):
 				for i in json.get("animation_overrides").keys():
 					animation_json[i] = json.get("animation_overrides")[i]
-					
+			
+			resource = load_image_from_path(source_resource_path)
+			if json.has("rect"):
+				if (json["rect"].size() == 4):
+					var atlas = AtlasTexture.new()
+					atlas.atlas = resource
+					atlas.region = Rect2(json.rect[0], json.rect[1], json.rect[2], json.rect[3])
+					resource = atlas
+				else:
+					rect_error_message.call()
+			
 			if animation_json != {}:
-				resource = load_image_from_path(source_resource_path)
-				if json.has("rect"):
-					var atlas = AtlasTexture.new()
-					atlas.atlas = resource
-					atlas.region = Rect2(json.rect[0], json.rect[1], json.rect[2], json.rect[3])
-					resource = atlas
-				resource = create_sprite_frames_from_image(resource, animation_json)
+				resource = create_sprite_frames_from_image(resource, animation_json, resource_path)
 			else:
-				resource = load_image_from_path(source_resource_path)
-				if json.has("rect"):
-					var atlas = AtlasTexture.new()
-					atlas.atlas = resource
-					atlas.region = Rect2(json.rect[0], json.rect[1], json.rect[2], json.rect[3])
-					resource = atlas
 				var sprite_frames = SpriteFrames.new()
 				sprite_frames.add_frame("default", resource)
 				resource = sprite_frames
@@ -173,11 +202,13 @@ func get_resource(json_file: JSON) -> Resource:
 			else:
 				resource = load_image_from_path(source_resource_path)
 			if json.has("rect"):
-				var rect = json.rect
-				var atlas = AtlasTexture.new()
-				atlas.atlas = resource
-				atlas.region = Rect2(rect[0], rect[1], rect[2], rect[3])
-				resource = atlas
+				if (json["rect"].size() == 4):
+					var atlas = AtlasTexture.new()
+					atlas.atlas = resource
+					atlas.region = Rect2(json.rect[0], json.rect[1], json.rect[2], json.rect[3])
+					resource = atlas
+				else:
+					rect_error_message.call()
 		ResourceMode.AUDIO:
 			resource = load_audio_from_path(source_resource_path)
 		ResourceMode.RAW:
@@ -201,6 +232,10 @@ func get_resource(json_file: JSON) -> Resource:
 			Global.liquid_override = json.get("liquid", -1)
 	if cache.has(json_file.resource_path) == false and use_cache and not is_random:
 		cache[json_file.resource_path] = resource
+	
+	ignore_resource_from.clear()
+	variation_needed.clear()
+	
 	return resource
 
 func apply_properties(properties := {}) -> void:
@@ -223,14 +258,26 @@ func apply_properties(properties := {}) -> void:
 					obj.set(p, properties[i])
 					continue
 
-
+var variation_needed := []
+func get_variation_path() -> String:
+	var variation_path := ""
+	for i in variation_needed:
+		if (variation_needed.find(i) != 0):
+			variation_path += "/"
+		variation_path += "\"%s\"" % i
+	return variation_path
 
 func get_variation_json(json := {}) -> Dictionary:
+	var used_default := true
+	
 	for i in json.keys().filter(func(key): return key.contains("config:")):
 		get_config_file(current_resource_pack)
 		if config_to_use != {}:
 			var option_name = i.get_slice(":", 1)
 			if config_to_use.options.has(option_name):
+				variation_needed.append(option_name)
+				used_default = false
+				
 				var config_json = json[i][config_to_use.options[option_name]]
 				if config_json.has("link"):
 					json = get_variation_json(json[config_json.get("link")])
@@ -251,6 +298,9 @@ func get_variation_json(json := {}) -> Dictionary:
 	if json.has(level_theme) == false:
 		level_theme = "default"
 	if json.has(level_theme):
+		variation_needed.append(level_theme)
+		used_default = false
+		
 		if json.get(level_theme).has("link"):
 			json = get_variation_json(json[json.get(level_theme).get("link")])
 		else:
@@ -262,14 +312,20 @@ func get_variation_json(json := {}) -> Dictionary:
 	if Global.time_override != "":
 		level_time = Global.time_override
 	if json.has(level_time):
+		variation_needed.append(level_time)
+		used_default = false
+		
 		json = get_variation_json(json[level_time])
 	
-	var campaign = Global.current_campaign
+	var campaign: String = Global.current_campaign
 	if force_properties.has("Campaign"):
 		campaign = force_properties.Campaign
 	if json.has(campaign) == false:
 		campaign = "SMB1"
 	if json.has(campaign):
+		variation_needed.append(campaign)
+		used_default = false
+		
 		if json.get(campaign).has("link"):
 			json = get_variation_json(json[json.get(campaign).get("link")])
 		else:
@@ -283,6 +339,10 @@ func get_variation_json(json := {}) -> Dictionary:
 		else:
 			set_meta("RNGChoice", idx)
 		var random_json = json.choices[idx]
+		
+		variation_needed.append("choices:" + str(idx))
+		used_default = false
+		
 		if random_json.has("link"):
 			json = get_variation_json(json[random_json.get("link")])
 		else:
@@ -294,6 +354,9 @@ func get_variation_json(json := {}) -> Dictionary:
 	if json.has(world) == false:
 		world = "World1"
 	if json.has(world):
+		variation_needed.append(world)
+		used_default = false
+		
 		if json.get(world).has("link"):
 			json = get_variation_json(json[json.get(world).get("link")])
 		else:
@@ -303,6 +366,9 @@ func get_variation_json(json := {}) -> Dictionary:
 	if json.has(level_string) == false:
 		level_string = "Level1"
 	if json.has(level_string):
+		variation_needed.append(level_string)
+		used_default = false
+		
 		if json.get(level_string).has("link"):
 			json = get_variation_json(json[json.get(level_string).get("link")])
 		else:
@@ -312,6 +378,9 @@ func get_variation_json(json := {}) -> Dictionary:
 	if json.has(room) == false:
 		room = "RoomType:Default"
 	if json.has(room):
+		variation_needed.append(room)
+		used_default = false
+		
 		if json.get(room).has("link"):
 			json = get_variation_json(json[json.get(room).get("link")])
 		else:
@@ -321,6 +390,9 @@ func get_variation_json(json := {}) -> Dictionary:
 	if json.has(game_mode) == false:
 		game_mode = "GameMode:" + Global.game_mode_strings[0]
 	if json.has(game_mode):
+		variation_needed.append(game_mode)
+		used_default = false
+		
 		if json.get(game_mode).has("link"):
 			json = get_variation_json(json[json.get(game_mode).get("link")])
 		else:
@@ -330,6 +402,9 @@ func get_variation_json(json := {}) -> Dictionary:
 	if json.has(chara) == false:
 		chara = "Character:default"
 	if json.has(chara):
+		variation_needed.append(chara)
+		used_default = false
+		
 		if json.get(chara).has("link"):
 			json = get_variation_json(json[json.get(chara).get("link")])
 		else:
@@ -341,11 +416,14 @@ func get_variation_json(json := {}) -> Dictionary:
 	if force_properties.has("RaceBoo"):
 		boo = "RaceBoo:" + str(force_properties["RaceBoo"])
 	if json.has(boo):
+		variation_needed.append(boo)
+		used_default = false
+		
 		if json.get(boo).has("link"):
 			json = get_variation_json(json[json.get(boo).get("link")])
 		else:
 			json = get_variation_json(json[boo])
-	
+			
 	var meta_data_keys := json.keys().filter(func(key): return key.contains("Metadata") && key.contains("LevelMetadata") == false)
 	if meta_data_keys.is_empty() == false:
 		is_random = true
@@ -362,6 +440,8 @@ func get_variation_json(json := {}) -> Dictionary:
 			elif json[i].has("Default"):
 				meta_json = json[i].get("Default")
 			if meta_json != null:
+				variation_needed.append(meta_value)
+				used_default = false
 				if meta_json.has("link"):
 					json = get_variation_json(json[i][meta_json.get("link")])
 				else:
@@ -382,20 +462,23 @@ func get_variation_json(json := {}) -> Dictionary:
 			elif json[i].has("Default"):
 				meta_json = json[i].get("Default")
 			if meta_json != null:
+				variation_needed.append(meta_value)
+				used_default = false
 				if meta_json.has("link"):
 					json = get_variation_json(json[i][meta_json.get("link")])
 				else:
 					json = get_variation_json(meta_json)
 				break
+	
+	if (json.has("default") && used_default):
+		variation_needed.append("default")
 		
 	return json
 
 func get_config_file(resource_pack := "") -> void:
-	if FileAccess.file_exists(Global.config_path.path_join("resource_packs/" + resource_pack + "/config.json")):
-		config_to_use = JSON.parse_string(FileAccess.open(Global.config_path.path_join("resource_packs/" + resource_pack + "/config.json"), FileAccess.READ).get_as_text())
-		if config_to_use == null:
-			Global.log_error("Error parsing Config File! (" + resource_pack + ")")
-			config_to_use = {}
+	var config_file_path: String = Global.config_path.path_join("resource_packs/" + resource_pack + "/config.json")
+	if FileAccess.file_exists(config_file_path):
+		config_to_use = JSONParser.parse_to_dict(config_file_path)
 
 func get_resource_pack_path(res_path := "", resource_pack := "") -> String:
 	var user_path := res_path.replace("res://Assets", Global.config_path.path_join("resource_packs/" + resource_pack))
@@ -405,21 +488,39 @@ func get_resource_pack_path(res_path := "", resource_pack := "") -> String:
 	else:
 		return res_path
 
-func create_sprite_frames_from_image(image: Resource, animation_json := {}) -> SpriteFrames:
+func create_sprite_frames_from_image(image: Resource, animation_json := {}, resource_path := "") -> SpriteFrames:
+	var image_region_end = image.get_size()
+	
 	var sprite_frames = SpriteFrames.new()
 	sprite_frames.remove_animation("default")
 	for anim_name in animation_json.keys():
 		if animation_json[anim_name].has("link"):
 			animation_json[anim_name] = animation_json[animation_json[anim_name].link]
 		sprite_frames.add_animation(anim_name)
-		for frame in animation_json[anim_name].frames:
-			var frame_texture = AtlasTexture.new()
-			frame_texture.atlas = image
-			frame_texture.region = Rect2(int(frame[0]), int(frame[1]), int(frame[2]), int(frame[3]))
-			frame_texture.filter_clip = true
-			sprite_frames.add_frame(anim_name, frame_texture)
-		sprite_frames.set_animation_loop(anim_name, animation_json[anim_name].loop)
-		sprite_frames.set_animation_speed(anim_name, animation_json[anim_name].speed)
+		if (animation_json[anim_name].has("frames")):
+			for frame in animation_json[anim_name].frames:
+				var frame_texture = AtlasTexture.new()
+				frame_texture.atlas = image
+				
+				if (frame.size() != 4):
+					Global.log_error("Animation frame for resource: \"%s\" has incorrect rect size, should be 4 but is: %s. \"%s\":Frame%s" % [resource_path, str(frame.size()), anim_name, str(animation_json[anim_name].frames.find(frame))])
+					continue
+				if (animation_json[anim_name].has("loop")):
+					sprite_frames.set_animation_loop(anim_name, animation_json[anim_name].loop)
+				else:
+					Global.log_warning("Animation frame for resource: \"%s\" has no loop set: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
+				if (animation_json[anim_name].has("speed")):
+					sprite_frames.set_animation_speed(anim_name, animation_json[anim_name].speed)
+				else:
+					Global.log_warning("Animation frame for resource: \"%s\" has no speed set: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
+				
+				frame_texture.region = Rect2(int(frame[0]), int(frame[1]), int(frame[2]), int(frame[3]))
+				frame_texture.filter_clip = true
+				sprite_frames.add_frame(anim_name, frame_texture)
+				
+				if (frame_texture.region.end > image_region_end):
+					Global.log_warning("Animation frame for resource: \"%s\" exceeds the base rect region: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
+				
 	
 	return sprite_frames
 

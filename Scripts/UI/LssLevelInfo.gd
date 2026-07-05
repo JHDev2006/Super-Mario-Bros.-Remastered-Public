@@ -103,11 +103,10 @@ func save_thumbnail() -> void:
 		thumbnail.get_image().save_png(Global.config_path.path_join("custom_levels/downloaded/thumbnails/" + level_id + ".png"))
 
 func play_level() -> void:
-	var file_path := Global.config_path.path_join("custom_levels/downloaded/" + level_id + ".lvl")
-	var file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
-	LevelEditor.level_file = file
+	var file_path = Global.config_path.path_join("custom_levels/downloaded/" + level_id + ".lvl")
+	LevelEditor.level_file = JSONParser.parse_to_dict(file_path)
 	set_process(false)
-	var info = file["Info"]
+	var info = LevelEditor.level_file["Info"]
 	LevelEditor.level_author = info["Author"]
 	LevelEditor.level_name = info["Name"]
 	level_play.emit()

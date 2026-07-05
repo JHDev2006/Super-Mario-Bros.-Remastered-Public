@@ -296,7 +296,6 @@ func check_for_rom() -> void:
 			OS.move_to_trash(ROM_ASSETS_PATH)
 
 func _process(delta: float) -> void:
-	
 	if multibind_action_just_pressed("debug_reload"):
 		ResourceSetter.cache.clear()
 		ResourceSetterNew.clear_cache()
@@ -319,11 +318,18 @@ func _process(delta: float) -> void:
 	
 	handle_input()
 	
-	if Input.is_key_label_pressed(KEY_F11) and debug_mode == false and OS.is_debug_build():
-		AudioManager.play_global_sfx("switch")
-		debug_mode = true
-		log_comment("Debug Mode enabled! some bugs may occur!")
-		
+	# DawnLR: Pluh! It just a quick way to get to the title screen, you can delete it if you want. 👍️👍️👍️
+	if OS.is_debug_build():
+		if Input.is_key_label_pressed(KEY_F11) and debug_mode == false:
+			AudioManager.play_global_sfx("switch")
+			debug_mode = true
+			log_comment("Debug Mode enabled! some bugs may occur!")
+		if Input.is_key_label_pressed(KEY_F10) && debug_mode && get_tree().current_scene is not TitleScreen:
+			transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
+	
+	# DawnLR: WE ARE ALT+ENTER TO FULLSCREEN!
+	if multibind_action_just_pressed("fullscreen_toggle"):
+		Settings.toggle_fullscreen()
 	if multibind_action_just_pressed("ui_screenshot"):
 		take_screenshot()
 
@@ -575,38 +581,48 @@ func version_got(_result, response_code, _headers, body) -> void:
 	else:
 		server_version = -2
 
-var error_log_cooldown := false
+# DawnLR: Just some rewrite, the functionality is still the same
 
-func log_error(msg := "", can_spam := true) -> void:
+var error_log_cooldown := false
+func log_error(msg := "", can_spam := true, timer := 10) -> void:
+	msg = tr(msg)
+	push_error(msg)
+	
 	if error_log_cooldown and not can_spam:
 		return
-	var error_message = $CanvasLayer/VBoxContainer/ErrorMessage.duplicate()
+	var error_message = %ErrorMessage.duplicate()
 	error_message.text = "Error - " + msg
-	error_message.visible = true
-	if can_spam == false:
-		do_cooldown()
-	$CanvasLayer/VBoxContainer.add_child(error_message)
-	await get_tree().create_timer(10, false).timeout
-	error_message.queue_free()
+	
+	create_log(error_message, timer, can_spam)
+
+func log_warning(msg := "", timer := 10) -> void:
+	msg = tr(msg)
+	push_warning(msg)
+	
+	var error_message: Label = %WarningMessage.duplicate()
+	error_message.text = "Warning - " + str(msg)
+	
+	create_log(error_message, timer)
+
+func log_comment(msg := "", timer := 2) -> void:
+	msg = tr(msg)
+	print(msg)
+	
+	var error_message = %CommentMessage.duplicate()
+	error_message.text = str(msg)
+	
+	create_log(error_message, timer)
 
 func do_cooldown() -> void:
 	error_log_cooldown = true
 	await get_tree().create_timer(1, false).timeout
 	error_log_cooldown = false
 
-func log_warning(text) -> void:
-	var error_message: Label = $CanvasLayer/VBoxContainer/Warning.duplicate()
-	error_message.text = "Warning - " + str(text)
+func create_log(error_message: Label, timer: int, can_spam := false) -> void:
 	error_message.visible = true
-	$CanvasLayer/VBoxContainer.add_child(error_message)
-	await get_tree().create_timer(10, false).timeout
-	error_message.queue_free()
-	
-func log_comment(text, timer := 2) -> void:
-	var error_message = $CanvasLayer/VBoxContainer/Comment.duplicate()
-	error_message.text = str(text)
-	error_message.visible = true
-	$CanvasLayer/VBoxContainer.add_child(error_message)
+	if can_spam == false:
+		do_cooldown()
+	$Logs/VBoxContainer.add_child(error_message)
 	await get_tree().create_timer(timer, false).timeout
 	error_message.queue_free()
 
@@ -643,7 +659,7 @@ func sanitize_string(string := "") -> String:
 	return string
 
 func get_base_asset_version() -> int:
-	var json = JSON.parse_string(FileAccess.open(config_path.path_join("BaseAssets/pack_info.json"), FileAccess.READ).get_as_text())
+	var json = JSONParser.parse_to_dict(config_path.path_join("BaseAssets/pack_info.json"))
 	var version = json.version
 	return get_version_num_int(version)
 
@@ -667,7 +683,7 @@ func create_translation_from_json(locale := "") -> void:
 	var locale_json := {}
 	for resource_pack in Settings.file.visuals.resource_packs:
 		var path = $ResourceSetterNew.get_resource_pack_path("res://Assets/Locale/" + locale + ".json", resource_pack)
-		var file_json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
+		var file_json = JSONParser.parse_to_dict(path)
 		for i in file_json.keys():
 			var value = file_json[i]
 			if value is Dictionary:
@@ -692,7 +708,7 @@ func remove_cryllic_characters(message := "") -> String:
 	return message
 
 func create_gal_translation(en_json_path := "") -> void:
-	var en_json = JSON.parse_string(FileAccess.open(en_json_path, FileAccess.READ).get_as_text())
+	var en_json = JSONParser.parse_to_dict(en_json_path)
 	var translation = Translation.new()
 	for i in en_json.keys():
 		translation.add_message(i, convert_en_to_gal(en_json[i]))

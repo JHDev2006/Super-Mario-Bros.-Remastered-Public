@@ -41,7 +41,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dai6d")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Hit",
 "speed": 20.0
 }, {
@@ -49,7 +49,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2u6vm")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 5.0
 }]
@@ -89,6 +89,7 @@ process_mode = 3
 script = ExtResource("3_sdjg4")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
+json_path = "res://Assets/Sprites/Players/Mario/CheckpointFlag.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PlayerDetection" type="Area2D" parent="." unique_id=1190311934]

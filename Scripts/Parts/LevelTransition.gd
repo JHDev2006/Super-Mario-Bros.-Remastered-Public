@@ -86,8 +86,8 @@ func begin_transition_wait() -> void:
 				var level_file_name = Global.custom_campaign_jsons[Global.current_custom_campaign].levels[Global.custom_level_idx]
 				var path = Global.config_path.path_join("level_packs").path_join(Global.current_custom_campaign).path_join(level_file_name)
 				Level.first_load = true
-				var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
-				NewLevelBuilder.load_level(json)
+				
+				NewLevelBuilder.load_level(JSONParser.parse_to_dict(path))
 		else:
 			$Timer.start()
 			await get_tree().create_timer(0.1, false).timeout
