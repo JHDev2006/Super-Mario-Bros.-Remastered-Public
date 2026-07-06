@@ -1,36 +1,9 @@
 [gd_scene format=3 uid="uid://um8m5iu20qj3"]
 
 [ext_resource type="PackedScene" uid="uid://bc1mrna4kybhv" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/QuestionBlock.tscn" id="1_l2pjc"]
-[ext_resource type="PackedScene" uid="uid://beq7b3hp44onn" path="res://Scenes/Prefabs/Entities/Items/SuperMushroom.tscn" id="2_cyrh8"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/PoisonMushroom.json" id="3_0pdxv"]
-[ext_resource type="Texture2D" uid="uid://011dooyd0elr" path="res://Assets/Sprites/Items/PoisonMushroom.png" id="3_rsq7m"]
-[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="3_whgk1"]
-
-[sub_resource type="PackedScene" id="PackedScene_qyrv6"]
-_bundled = {
-"base_scene": 0,
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("SuperMushroom", "metadata/is_poison", "Mushroom", "region_enabled", "region_rect", "ResourceSetterNew", "resource_json"),
-"node_count": 3,
-"node_ids": PackedInt32Array(),
-"node_paths": [NodePath("."), NodePath("./Mushroom")],
-"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 1073741824, -1, 2147483647, 262146, -1, 2, 3, 2, 4, 3, 0, 1073741825, -1, 2147483647, 262149, -1, 1, 6, 4, 0),
-"variants": [ExtResource("2_cyrh8"), false, false, Rect2(32, 0, 16, 16), ExtResource("3_0pdxv")],
-"version": 3
-}
+[ext_resource type="PackedScene" uid="uid://n7nskl10ouem" path="res://Scenes/Prefabs/Entities/Items/PoisonMushroom.tscn" id="2_lvgr5"]
 
 [node name="QuestionBlock" unique_id=196660718 instance=ExtResource("1_l2pjc")]
-item = SubResource("PackedScene_qyrv6")
-
-[node name="Node2D" type="Node2D" parent="." index="3" unique_id=1161319840]
-script = ExtResource("3_whgk1")
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D" index="0" unique_id=2121811921]
-texture = ExtResource("3_rsq7m")
-region_enabled = true
-region_rect = Rect2(32, 0, 16, 16)
+item = ExtResource("2_lvgr5")
 
 [editable path="BlockAnimations"]

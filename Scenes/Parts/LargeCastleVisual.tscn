@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://qn4g0qkjcuiy" path="res://Scenes/Parts/SmallCastleVisual.tscn" id="1_kxe1w"]
 [ext_resource type="Texture2D" uid="uid://dkcs5i8l1y4y6" path="res://Assets/Sprites/Tilesets/EndingFinalCastleSprite.png" id="2_3bs51"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/FinalCastle.json" id="3_f0rgi"]
 
 [node name="SmallCastleVisual" unique_id=671792054 instance=ExtResource("1_kxe1w")]
 
@@ -18,4 +17,4 @@ position = Vector2(32, -48)
 texture = ExtResource("2_3bs51")
 
 [node name="ResourceSetterNew" parent="Sprite" index="0" unique_id=421162122]
-resource_json = ExtResource("3_f0rgi")
+json_path = "res://Assets/Sprites/Tilesets/FinalCastle.json"

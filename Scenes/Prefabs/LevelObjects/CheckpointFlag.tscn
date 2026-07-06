@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dtdc4oaygllfa" path="res://Scripts/Parts/Checkpoint.gd" id="1_dai6d"]
 [ext_resource type="Texture2D" uid="uid://3rk8lq7kdaox" path="res://Assets/Sprites/Items/CheckpointFlag.png" id="1_iutnx"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_sdjg4"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/CheckpointFlag.json" id="4_2u6vm"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="4_dai6d"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="7_2u6vm"]
 
@@ -42,7 +41,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dai6d")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Hit",
 "speed": 20.0
 }, {
@@ -50,7 +49,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2u6vm")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 5.0
 }]
@@ -73,10 +72,11 @@ animation = &"Hit"
 autoplay = "Idle"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=588317761 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_sdjg4")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_2u6vm")
+json_path = "res://Assets/Sprites/Items/CheckpointFlag.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Activated" type="AnimatedSprite2D" parent="." unique_id=1760330322]
@@ -85,9 +85,11 @@ position = Vector2(8, -16)
 sprite_frames = SubResource("SpriteFrames_sdjg4")
 
 [node name="ResourceSetterNew" type="Node" parent="Activated" unique_id=1952035775 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_sdjg4")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
+json_path = "res://Assets/Sprites/Players/Mario/CheckpointFlag.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PlayerDetection" type="Area2D" parent="." unique_id=1190311934]

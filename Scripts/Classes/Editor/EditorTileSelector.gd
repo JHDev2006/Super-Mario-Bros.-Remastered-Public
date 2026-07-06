@@ -4,10 +4,11 @@ extends Control
 @export var tile_name := ""
 @export_multiline var tile_desc := ""
 @export_enum("Tile", "Entity", "Terrain") var type := 0
-@export var icon_texture: Resource = null
+
+@export_file_path("*.json") var icon_texture_path := ""
 @export var icon_region_override := Rect2(0, 0, 0, 0)
 
-@export var secondary_icon_texture: Resource = null
+@export_file_path("*.json") var secondary_icon_texture_path := ""
 @export var secondary_icon_region_override := Rect2(0, 0, 0, 0)
 
 @export_category("Entity")
@@ -57,24 +58,21 @@ func _process(_delta: float) -> void:
 		%DescriptionSizer.visible = %Description.visible
 
 func set_icon_texture():
-	if icon_texture == null:
+	if icon_texture_path == "":
 		return
-	if icon_texture is JSON:
-		$ResourceSetterNew.resource_json = icon_texture
+	if icon_texture_path.get_extension() == "json":
+		$ResourceSetterNew.json_path = icon_texture_path
 		$ResourceSetterNew.update_resource()
 	else:
-		%Icon.texture = ResourceSetter.get_resource(icon_texture, %Icon)
+		%Icon.texture = ResourceSetter.get_resource(load(icon_texture_path), %Icon)
 
 func set_second_icon_texture():
-	if secondary_icon_texture == null:
+	if secondary_icon_texture_path == "":
 		return
-	if secondary_icon_texture is JSON:
-		$ResourceSetterNew2.resource_json = secondary_icon_texture
-		$ResourceSetterNew2.update_resource()
-	elif secondary_icon_texture is ThemedResource:
-		%SecondaryIcon.texture = ResourceSetter.get_resource(secondary_icon_texture, %SecondaryIcon)
+	if secondary_icon_texture_path.get_extension() == "json":
+		$ResourceSetterNew2.json_path = secondary_icon_texture_path
 	else:
-		%SecondaryIcon.texture = secondary_icon_texture
+		%SecondaryIcon.texture = load(secondary_icon_texture_path)
 
 
 func on_pressed() -> void:
@@ -105,7 +103,7 @@ func get_id() -> void:
 	
 	var new_id = encode_to_base64_2char(EntityIDMapper.map.size())
 	EntityIDMapper.map[new_id] = [entity_scene.resource_path, str(tile_offset.x) + "," + str(tile_offset.y)]
-	FileAccess.open("res://EntityIDMap.json", FileAccess.WRITE).store_string(JSON.stringify(EntityIDMapper.map, "\t"))
+	JSONParser.save_to_file(EntityIDMapper.map, "res://EntityIDMap.json")
 	entity_id = new_id
 
 func encode_to_base64_2char(value: int) -> String:

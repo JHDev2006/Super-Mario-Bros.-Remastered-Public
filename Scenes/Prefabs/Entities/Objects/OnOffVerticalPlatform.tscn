@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://c6x7gv2lqeu1x" path="res://Scenes/Prefabs/Entities/Objects/VerticalPlatform.tscn" id="1_nwvxx"]
 [ext_resource type="Texture2D" uid="uid://dfpbjnd1o5tig" path="res://Assets/Sprites/Tilesets/OnOffPlatform.png" id="2_iy32g"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/OnOffPlatform.json" id="3_50hv7"]
 [ext_resource type="Script" uid="uid://cb0spbe0l8mof" path="res://Scripts/Classes/Components/AnimationPauser.gd" id="3_iy32g"]
 [ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="4_0jnxm"]
 [ext_resource type="Script" uid="uid://q45b31h6356r" path="res://Scripts/Classes/Components/OnOffSwitcher.gd" id="6_onaos"]
@@ -16,7 +15,7 @@ texture = ExtResource("2_iy32g")
 region_rect = Rect2(0, 0, 24, 8)
 
 [node name="ResourceSetter" parent="AnimatableBody2D/Sprite" index="0" unique_id=1827702455]
-resource_json = ExtResource("3_50hv7")
+json_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D/Sprite" index="1" unique_id=1627706176]
 position = Vector2(16, 0)

@@ -1,5 +1,6 @@
 extends HBoxContainer
 
+@export var settings_key := "audio"
 @export var option_key := ""
 @export var title := ""
 
@@ -15,7 +16,7 @@ func _ready() -> void:
 	update_starting_values()
 
 func update_starting_values() -> void:
-	selected_index = Settings.file.audio[option_key]
+	selected_index = Settings.file[settings_key].get(option_key, 5)
 
 func _process(_delta: float) -> void:
 	if selected:

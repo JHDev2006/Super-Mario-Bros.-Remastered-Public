@@ -83,6 +83,7 @@ static var can_set_time := true
 @export_storage var enforce_resolution := Vector2.ZERO
 
 func _enter_tree() -> void:
+	Global.level_metadata.clear()
 	Level.extra_music = null
 	Global.current_level = self
 	Global.current_room_type = room_type
@@ -139,6 +140,7 @@ func reset_resolution() -> void:
 	var res = Global.RESOLUTIONS[idx]
 	get_tree().root.content_scale_size = res
 	get_tree().root.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND if idx == Global.RESOLUTIONS.size() - 1 else Window.CONTENT_SCALE_ASPECT_KEEP
+
 
 func spawn_in_extra_players() -> void:
 	# Fuck you lmao, no multiplayer

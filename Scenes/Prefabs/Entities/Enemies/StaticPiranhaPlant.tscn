@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="4_oy87v"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_xj1cg"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="5_1x1il"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/PiranhaPlant.json" id="5_bc7fo"]
 [ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="6_jddy0"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="7_hqsfc"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="8_q1mv6"]
@@ -72,10 +71,11 @@ script = ExtResource("3_1x1il")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="RotationJoint/Sprite" unique_id=1213319844 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_xj1cg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_bc7fo")
+json_path = "res://Assets/Sprites/Enemies/PiranhaPlant.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="RotationJoint" unique_id=154198614]

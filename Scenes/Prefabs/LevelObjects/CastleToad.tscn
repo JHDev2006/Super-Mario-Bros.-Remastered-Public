@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_puq45"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_ccewg"]
 [ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_griru"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/ToadNPC.json" id="5_i6fb7"]
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="10_puq45"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="11_ccewg"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="11_i6fb7"]
@@ -61,10 +60,11 @@ script = ExtResource("3_puq45")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1786679475 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_ccewg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_i6fb7")
+json_path = "res://Assets/Sprites/Players/ToadNPC.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="StandardMSG" type="Node2D" parent="." unique_id=1180436761]

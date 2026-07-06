@@ -30,7 +30,6 @@ metadata/_custom_type_script = "uid://bcqr1v25ygedb"
 [node name="LevelBG" parent="." unique_id=1736623110 instance=ExtResource("2_fcb41")]
 time_of_day = 1
 primary_layer = 1
-particles = 2
 [node name="Player" parent="." unique_id=764399766 instance=ExtResource("3_rjmwl")]
 position = Vector2(-216, 0)
 [node name="Tiles" parent="." unique_id=2126414771 instance=ExtResource("4_r6520")]

@@ -18,7 +18,6 @@ region_enabled = false
 
 [node name="ResourceSetterNew" parent="TL/Sprite" index="0" unique_id=1629196801]
 property_name = ""
-resource_json = null
 
 [node name="ResourceSetter" type="Node" parent="TL/Sprite" index="1" unique_id=120434526 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_asaem")
@@ -33,7 +32,6 @@ region_enabled = false
 
 [node name="ResourceSetterNew" parent="TR/Sprite" index="0" unique_id=1946695245]
 property_name = ""
-resource_json = null
 
 [node name="ResourceSetter" type="Node" parent="TR/Sprite" index="1" unique_id=153510640 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_asaem")
@@ -48,7 +46,6 @@ region_enabled = false
 
 [node name="ResourceSetterNew" parent="BL/Sprite" index="0" unique_id=545736962]
 property_name = ""
-resource_json = null
 
 [node name="ResourceSetter" type="Node" parent="BL/Sprite" index="1" unique_id=372864826 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_asaem")
@@ -63,7 +60,6 @@ region_enabled = false
 
 [node name="ResourceSetterNew" parent="BR/Sprite" index="0" unique_id=228121991]
 property_name = ""
-resource_json = null
 
 [node name="ResourceSetter" type="Node" parent="BR/Sprite" index="1" unique_id=1713612777 node_paths=PackedStringArray("node_to_affect")]
 script = ExtResource("3_asaem")

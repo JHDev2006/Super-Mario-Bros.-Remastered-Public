@@ -252,6 +252,9 @@ func swim_acceleration(delta: float) -> void:
 func swim_up() -> void:
 	player.velocity.y = -player.physics_params("SWIM_HEIGHT") * player.gravity_vector.y
 	AudioManager.play_sfx("swim", player.global_position)
+	swim_up_meter = 0
+	if player.swim_stroke:
+		handle_animations()
 	swim_up_meter = 0.5
 	player.crouching = false
 

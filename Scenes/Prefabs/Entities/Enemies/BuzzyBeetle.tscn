@@ -2,17 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://r6dlmokkdyar" path="res://Scenes/Prefabs/Entities/Enemies/GreenKoopaTroopa.tscn" id="1_rps11"]
 [ext_resource type="Script" uid="uid://by2qbddawq4yv" path="res://Scripts/Classes/Components/SignalDisconnector.gd" id="2_lavm2"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BuzzyBeetle.json" id="4_316n2"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BuzzyBeetleShell.json" id="5_obcjq"]
 
 [node name="BuzzyBeetle" unique_id=1280362122 instance=ExtResource("1_rps11")]
 shell_scene = "uid://csdbt4vd14fsg"
 
 [node name="SpriteSetter" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="0" unique_id=1746108447]
-resource_json = ExtResource("4_316n2")
+json_path = "res://Assets/Sprites/Enemies/BuzzyBeetle.json"
 
 [node name="ShellSetter" parent="DeathSprite" parent_id_path=PackedInt32Array(81522450) index="0" unique_id=393858697]
-resource_json = ExtResource("5_obcjq")
+json_path = "res://Assets/Sprites/Enemies/BuzzyBeetleShell.json"
 
 [node name="FireballDetection" parent="." index="8" unique_id=1490339431]
 play_sfx_on_hit = true

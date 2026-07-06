@@ -6,14 +6,22 @@ func window_mode_changed(new_value := 0) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 		1:
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+		2:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-		2:
+		3:
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	
 	Settings.file.video.mode = new_value
 
 func null_function(_fuck_you := 0) -> void:
+	pass
+
+# DawnLR: Now that we have screen resolutions, we better also have a little more window control.
+func window_multiplier_changed(new_value := 0) -> void:
 	pass
 
 func window_size_changed(new_value := 0) -> void:
@@ -62,15 +70,16 @@ func frame_limit_changed(new_value := 0) -> void:
 	Settings.file.video.frame_limit = new_value
 
 func set_window_size(value := []) -> void:
-	pass
-	# nabbup: Recenter resized window on launch
-	#var newpos = get_window().position - Vector2i((value[0]-get_window().size.x), (value[1]-get_window().size.y))/2
-	#get_window().size = Vector2(value[0], value[1])
-	#get_window().position = newpos
+	print(Settings.file.video)
+	print(value)
+	var new_size = Vector2(value[0], value[1])
+	get_tree().root.size = new_size
+	get_window().move_to_center()
 
 func set_value(value_name := "", value = null) -> void:
 	{
 		"mode": window_mode_changed,
+		"multiplier": window_multiplier_changed,
 		"size": window_size_changed,
 		"vsync": vsync_changed,
 		"drop_shadows": drop_shadows_changed,

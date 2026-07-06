@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bx6ts0cjrp7pg" path="res://Scripts/Classes/Entities/Enemies/Grinder.gd" id="1_rvu4a"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_rvu4a"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Grinder.json" id="3_rvu4a"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="4_x0hcj"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="5_ncrgh"]
 
@@ -19,11 +18,12 @@ metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 physics_interpolation_mode = 2
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1285050373 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("2_rvu4a")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("3_rvu4a")
+json_path = "res://Assets/Sprites/Enemies/Grinder.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PlayerDetection" type="Area2D" parent="." unique_id=2122668487]

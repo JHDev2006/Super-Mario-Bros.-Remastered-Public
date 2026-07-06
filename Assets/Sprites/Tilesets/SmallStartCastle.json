@@ -1,9 +1,4 @@
 {
-	"properties":
-	{
-		"use_sprite": false
-	},
-	"variations": {
-		"default": {"source": "NULL"}
-	}
+	"properties": {"use_sprite": false},
+	"variations": {"source": "EndingCastleSprite.png"}
 }

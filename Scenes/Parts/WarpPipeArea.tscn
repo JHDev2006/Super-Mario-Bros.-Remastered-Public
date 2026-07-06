@@ -8,7 +8,7 @@
 script = ExtResource("2_6mf6l")
 world_num = 1
 level_num = 1
-level_id = null
+level_id = 0
 pipe_id = -1
 target_level = "uid://ckpuxdilk5u0"
 
@@ -16,10 +16,10 @@ target_level = "uid://ckpuxdilk5u0"
 debug_color = Color(1, 0.6, 0, 0.419608)
 
 [node name="Node2D" parent="." index="4" unique_id=1862855632]
-position = Vector2(0, 8)
+position = Vector2(-3.496911e-07, 8)
 
 [node name="Label" parent="Node2D/CenterContainer" parent_id_path=PackedInt32Array(188264350) index="0" unique_id=121679609]
-text = "1-1"
+text = "LVL 0"
 horizontal_alignment = 1
 
 [node name="EditorPropertyExposer" parent="." index="5" unique_id=875653293]

@@ -1,8 +1,20 @@
 {
 	"variations": {
-		"SMB1": {"source": "MenuBorder.png", "rect": [0, 0, 32, 32]},
-		"SMBLL": {"source": "MenuBorder.png", "rect": [32, 0, 32, 32]},
-		"SMBS": {"source": "MenuBorder.png", "rect": [0, 32, 32, 32]},
-		"SMBANN": {"source": "MenuBorder.png", "rect": [32, 32, 32, 32]}
+		"SMB1": {
+			"source": "MenuBorder.png",
+			"rect": [0, 0, 32, 32]
+		},
+		"SMBLL": {
+			"source": "MenuBorder.png",
+			"rect": [32, 0, 32, 32]
+		},
+		"SMBS": {
+			"source": "MenuBorder.png",
+			"rect": [0, 32, 32, 32]
+		},
+		"SMBANN": {
+			"source": "MenuBorder.png",
+			"rect": [32, 32, 32, 32]
+		}
 	}
 }

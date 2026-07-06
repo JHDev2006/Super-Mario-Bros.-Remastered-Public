@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="2_lt76n"]
 [ext_resource type="PackedScene" uid="uid://cqvr7a6e84oti" path="res://Scenes/Prefabs/Blocks/BrickBlocks/CoinBrickBlock.tscn" id="3_mqnju"]
 [node name="5-1A" unique_id=1154693032 instance=ExtResource("1_ow70n")]
+theme_time = "Night"
 world_id = 5
 level_id = 1
 [node name="Tiles" parent="." index="1" unique_id=1119525758]

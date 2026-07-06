@@ -928,7 +928,7 @@ texture = ExtResource("25_4iqk6")
 8: [17],
 &"type": 17
 }
-[sub_resource type="TileSet" id="TileSet_rdo6i"]
+[sub_resource type="TileSet" id="TileSet_p6tu8"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
@@ -1011,7 +1011,7 @@ world_id = 7
 time_of_day = 1
 primary_layer = 1
 [node name="Tiles" parent="." index="2" unique_id=918083686]
-tile_set = SubResource("TileSet_rdo6i")
+tile_set = SubResource("TileSet_p6tu8")
 [node name="ChallengeNodes" parent="." index="9" unique_id=1297324198 node_paths=PackedStringArray("nodes_to_delete")]
 nodes_to_delete = []
 [node name="RedCoin" parent="ChallengeNodes" index="0" unique_id=1002999350]

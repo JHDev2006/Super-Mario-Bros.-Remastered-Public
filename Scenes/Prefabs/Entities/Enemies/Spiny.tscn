@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://diemx33h3bxa2" path="res://Assets/Sprites/Enemies/Spiny.png" id="2_u8w4p"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_m3lgl"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_velug"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Spiny.json" id="4_a74i7"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_qcd6q"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="5_f6841"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="6_velug"]
@@ -85,10 +84,11 @@ script = ExtResource("3_m3lgl")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1774904843 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_velug")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_a74i7")
+json_path = "res://Assets/Sprites/Enemies/Spiny.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=253522398]

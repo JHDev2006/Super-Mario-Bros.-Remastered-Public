@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="2_jt66n"]
 [ext_resource type="Texture2D" uid="uid://dhu46wvad72wp" path="res://Assets/Sprites/UI/MarathonIcons.png" id="3_kqsc3"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_vlkxh"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="5_6pjre"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_vlkxh"]
 color = Color(1, 1, 1, 1)
@@ -77,11 +76,12 @@ texture = SubResource("AtlasTexture_6pjre")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="Panel/VBoxContainer/NoGhost/Cursor" unique_id=1088032212 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_vlkxh")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("5_6pjre")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/NoGhost" unique_id=551578824]
@@ -108,11 +108,12 @@ texture = SubResource("AtlasTexture_6pjre")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="Panel/VBoxContainer/Ghost/Cursor" unique_id=1736005235 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_vlkxh")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("5_6pjre")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Ghost" unique_id=814226993]

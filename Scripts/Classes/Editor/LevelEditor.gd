@@ -142,7 +142,7 @@ var holding_commit := false
 var something_changed := false
 
 static func set_stack_level_name(new_level_name := "") -> String:
-	var path = Global.config_path.path_join("custom_levels/autosaves/" + new_level_name)
+	var path: String = Global.config_path.path_join("custom_levels/autosaves/" + new_level_name)
 	
 	var idx := 0
 	while DirAccess.dir_exists_absolute(path):
@@ -242,6 +242,10 @@ func _physics_process(delta: float) -> void:
 	
 	if current_state == EditorState.TILE_MENU && $TileMenu.visible:
 		handle_shortcuts()
+
+func _exit_tree() -> void:
+	Global.level_editor = null
+	OffScreenDespawner.editor_testing_safety = false
 
 func handle_player_trail() -> void:
 	$PlayerTrail.modulate.a = int(current_state != EditorState.PLAYTESTING)
@@ -544,8 +548,9 @@ func handle_tile_cursor() -> void:
 				if entity_tiles[current_layer][tile_position].get_node_or_null("SignalExposer") != null:
 					if entity_tiles[current_layer][tile_position].get_node("SignalExposer").can_input:
 						connection_node_found.emit(entity_tiles[current_layer][tile_position])
-						current_state = EditorState.MODIFYING_TILE
-						current_connecting_node = null
+						if Input.is_action_pressed("editor_inspect") == false:
+							current_state = EditorState.MODIFYING_TILE
+							current_connecting_node = null
 		if Global.multibind_action_just_pressed("mb_right") or Global.multibind_action_just_pressed("editor_open_menu"):
 			%TileModifierMenu.cancel_connection()
 	
@@ -1437,15 +1442,14 @@ func set_state(state := EditorState.IDLE) -> void:
 
 func save_blueprint() -> void:
 	var file_name = %BlueprintName.text.to_pascal_case() + ".mbp"
-	var file = FileAccess.open(Global.config_path.path_join("blueprints").path_join(file_name), FileAccess.WRITE)
-	file.store_string($LevelSaver.compress_string(JSON.stringify(area_to_save)))
-	file.close()
-	Global.log_comment(file_name + " saved.")
+	var err := JSONParser.save_to_file($LevelSaver.compress_string(JSON.stringify(area_to_save)), Global.config_path.path_join("blueprints/" + file_name))
+	if (err == OK):
+		Global.log_comment(file_name + " saved.")
 	area_to_save = {}
 
 func load_blueprint(blueprint_path := "") -> void:
 	var file = FileAccess.open(blueprint_path, FileAccess.READ).get_as_text()
-	var json = JSON.parse_string($LevelSaver.decompress_string(file))
+	var json = JSONParser.parse_string(blueprint_path, $LevelSaver.decompress_string(file))
 	copied_area = json
 	pasting_area = true
 	var size_str = json["Size"].split(",", false)
@@ -1460,7 +1464,7 @@ const BLUEPRINT_CONTAINER = preload("uid://cgij8pg22drfx")
 func get_blueprints() -> void:
 	for i in %Blueprints.get_children():
 		i.queue_free()
-	var blueprint_path = Global.config_path.path_join("blueprints")
+	var blueprint_path: String = Global.config_path.path_join("blueprints")
 	for i in DirAccess.get_files_at(blueprint_path):
 		var container = BLUEPRINT_CONTAINER.instantiate()
 		container.path = blueprint_path.path_join(i)

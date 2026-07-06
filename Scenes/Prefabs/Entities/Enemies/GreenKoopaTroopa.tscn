@@ -6,8 +6,6 @@
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_1sj6f"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_71l08"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="5_8y4pd"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/GreenKoopaTroopa.json" id="5_mook0"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/GreenKoopaShell.json" id="6_71l08"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="6_fop3r"]
 [ext_resource type="PackedScene" uid="uid://bupy7th8ln45c" path="res://Scenes/Parts/Wing.tscn" id="6_gkyfa"]
 [ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="7_fop3r"]
@@ -71,10 +69,11 @@ metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="SpriteSetter" type="Node" parent="Sprite" unique_id=1746108447 node_paths=PackedStringArray("node_to_affect", "sync")]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("4_71l08")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_mook0")
+json_path = "res://Assets/Sprites/Enemies/GreenKoopaTroopa.json"
 sync = [NodePath("../../DeathSprite/ShellSetter")]
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -85,6 +84,7 @@ position = Vector2(-8, 3)
 autoplay = "Flap"
 frame_progress = 0.0
 flip_h = true
+metadata/WingType = "GreenKoopa"
 
 [node name="DeathSprite" type="AnimatedSprite2D" parent="." unique_id=81522450]
 visible = false
@@ -93,10 +93,11 @@ script = ExtResource("3_2rsfy")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ShellSetter" type="Node" parent="DeathSprite" unique_id=393858697 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_71l08")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("6_71l08")
+json_path = "res://Assets/Sprites/Enemies/GreenKoopaShell.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=468082206]
@@ -197,8 +198,8 @@ metadata/_custom_type_script = "uid://maqpreddu5kg"
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="LevelPersistance" method="set_as_active" unbinds=1]
 [connection signal="fireball_hit" from="FireballDetection" to="." method="die_from_object"]
 [connection signal="fireball_hit" from="FireballDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
-[connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounced" unbinds=1]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
 [connection signal="icicle_detected" from="IcicleDetection" to="." method="die_from_object"]
 [connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]

@@ -87,9 +87,7 @@ func create_template() -> void:
 	
 	var pack_info_path = Global.config_path.path_join("resource_packs/new_pack/pack_info.json")
 	DirAccess.make_dir_recursive_absolute(pack_info_path.get_base_dir())
-	var file = FileAccess.open(pack_info_path, FileAccess.WRITE)
-	file.store_string(JSON.stringify(base_info_json, "\t"))
-	file.close()
+	JSONParser.save_to_file(base_info_json, pack_info_path)
 	print("Done")
 	pack_created.emit()
 

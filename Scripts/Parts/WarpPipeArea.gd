@@ -63,9 +63,9 @@ func run_player_check(player: Player) -> void:
 			Global.reset_values()
 			LevelEditor.sub_areas = [null, null, null, null, null]
 			Global.custom_level_idx = level_id
-			var lvls_per_world: int = Global.custom_campaign_jsons[Global.current_custom_campaign].levels_per_world[0]
-			Global.world_num = floor((Global.custom_level_idx + lvls_per_world) / float(lvls_per_world))
-			Global.level_num = (Global.custom_level_idx + 1) % lvls_per_world
+			var arr = get_new_level_world_nums_from_idx(level_id)
+			Global.world_num = arr[0]
+			Global.level_num = arr[1]
 			Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
 			return
 		elif Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE:
@@ -90,4 +90,15 @@ func run_player_check(player: Player) -> void:
 			Global.level_num = level_num
 			Global.world_num = world_num
 		LevelTransition.level_to_transition_to = Level.get_scene_string(Global.world_num, Global.level_num)
-	
+
+func get_new_level_world_nums_from_idx(idx := 0) -> Array:
+	var arr := [1, 1]
+	var campaign_json = Global.custom_campaign_jsons[Global.current_custom_campaign]
+	var lvls_per_world = campaign_json.levels_per_world[0]
+	for i in idx:
+		arr[1] += 1
+		if arr[1] > lvls_per_world:
+			arr[1] = 1
+			lvls_per_world = campaign_json.levels_per_world[arr[0] - 1]
+			arr[0] += 1
+	return arr

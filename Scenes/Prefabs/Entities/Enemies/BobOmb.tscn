@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_b6iml"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_6tynh"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="4_afkce"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BobOmb.json" id="5_xehcv"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="6_v5mno"]
 [ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="7_rol8r"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="8_6tynh"]
@@ -115,10 +114,11 @@ script = ExtResource("3_b6iml")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=287184371 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_6tynh")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_xehcv")
+json_path = "res://Assets/Sprites/Enemies/BobOmb.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LCollision" type="CollisionShape2D" parent="." unique_id=1652588540]

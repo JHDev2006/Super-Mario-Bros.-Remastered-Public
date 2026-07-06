@@ -13,15 +13,12 @@
 [ext_resource type="Script" uid="uid://c8xvkkv34fjr4" path="res://Scripts/Classes/PowerStates/PowerUpState.gd" id="5_rs3l8"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="5_x2idl"]
 [ext_resource type="Script" uid="uid://cnjpqn05bfm57" path="res://Scripts/Classes/States/Player/PlayerState.gd" id="6_8f1du"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/HammerItem.json" id="7_2mfvl"]
 [ext_resource type="Script" uid="uid://ri1g4nllpkfj" path="res://Scripts/Classes/States/Player/FlagPole.gd" id="7_8f1du"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="8_4ojwh"]
 [ext_resource type="Script" uid="uid://bx2kc62lpphxv" path="res://Scripts/Classes/States/Player/LevelExit.gd" id="8_mqpnb"]
 [ext_resource type="Texture2D" uid="uid://tidb7wgqraj2" path="res://Assets/Sprites/Items/Wings.png" id="8_t1xso"]
 [ext_resource type="Script" uid="uid://cvbj4qlyfat7e" path="res://Scripts/Classes/States/Player/Dead.gd" id="9_mqpnb"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Wings.json" id="9_o70e0"]
 [ext_resource type="Script" uid="uid://c7kmriol0gj16" path="res://Scripts/Classes/States/Player/Climb.gd" id="10_shhao"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/Mario/ColourPalette.json" id="10_xy8gq"]
 [ext_resource type="Script" uid="uid://b10ui1x45l6ly" path="res://Scripts/Classes/States/Player/WallSlide.gd" id="11_057py"]
 [ext_resource type="Texture2D" uid="uid://dht3hx742rrim" path="res://Assets/Sprites/Particles/ShakeLines.png" id="11_pm4ir"]
 [ext_resource type="Texture2D" uid="uid://bqra7e5xsdg5r" path="res://Assets/Sprites/Particles/SkidParticles.png" id="11_vijl6"]
@@ -37,11 +34,9 @@
 [ext_resource type="Script" uid="uid://dlpwuohgub5nk" path="res://Scripts/Classes/States/Player/PipeCutscene.gd" id="23_o5ef6"]
 [ext_resource type="Script" uid="uid://cmvlgsjmsk0v5" path="res://Scripts/Classes/Resources/ThemedResource.gd" id="24_hu5lw"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="25_cekpg"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/Mario/Small.json" id="26_o4wvw"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="27_6ws8x"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="28_hu5lw"]
 [ext_resource type="Texture2D" uid="uid://cpoksuhnwvh5l" path="res://Assets/Sprites/UI/TimerIcons.png" id="29_uwhl4"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/InvinciblePalettes/InvinciblePalette.json" id="29_vphr8"]
 [ext_resource type="Script" uid="uid://dn5efttgugwvb" path="res://Scripts/Classes/Components/TimerSprite.gd" id="30_o70e0"]
 [ext_resource type="Script" uid="uid://cwti0ks5sfov3" path="res://Scripts/Classes/Components/ScalableCollisionPolygon.gd" id="35_nbkfn"]
 [ext_resource type="AudioStream" uid="uid://oghj2q665pfj" path="res://Assets/Audio/SFX/TimerRunningLow.wav" id="40_o70e0"]
@@ -481,7 +476,7 @@ func _physics_process(_delta: float) -> void:
 		var state = %PowerStates.get_child(owner.starting_power_state).name
 		if current_state != state:
 			current_state = state
-			%ResourceSetterNew.resource_json = load(\"res://Assets/Sprites/Players/\" + owner.character + \"/\" + state + \".json\")
+			%ResourceSetterNew.json_path = (\"res://Assets/Sprites/Players/\" + owner.character + \"/\" + state + \".json\")
 		if Global.multibind_action_just_pressed(\"editor_move_player\"):
 			var new_position = Global.level_editor.cursor_tile_position * 16
 			owner.global_position = new_position + Vector2i(8, 16)
@@ -553,11 +548,12 @@ libraries/ = SubResource("AnimationLibrary_bl5al")
 autoplay = &"Swing"
 
 [node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Hammer/HammerSprite" unique_id=1507131769 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("7_2mfvl")
+json_path = "res://Assets/Sprites/Items/HammerItem.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="HammerHitbox" type="Area2D" parent="SpriteScaleJoint/Sprite/Hammer" unique_id=1387928444]
@@ -578,6 +574,7 @@ shape = SubResource("RectangleShape2D_xy8gq")
 [node name="Wings" type="Node2D" parent="SpriteScaleJoint/Sprite" unique_id=1765238875]
 unique_name_in_owner = true
 visible = false
+metadata/WingType = "Player"
 
 [node name="Wing" type="AnimatedSprite2D" parent="SpriteScaleJoint/Sprite/Wings" unique_id=220386174]
 unique_name_in_owner = true
@@ -587,11 +584,13 @@ sprite_frames = SubResource("SpriteFrames_uwhl4")
 animation = &"Idle"
 flip_h = true
 
-[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Wings/Wing" unique_id=1491180846 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="SpriteScaleJoint/Sprite/Wings/Wing" unique_id=1491180846 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
+process_mode = 3
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("9_o70e0")
+json_path = "res://Assets/Sprites/Items/Wings.json"
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteScaleJoint/Sprite/Wings" unique_id=305580541]
@@ -1008,11 +1007,12 @@ metadata/_custom_type_script = "uid://cqif1li7otvpl"
 
 [node name="ResourceSetterNew" type="Node" parent="." unique_id=1447207111 node_paths=PackedStringArray("node_to_affect", "property_node")]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("../SpriteScaleJoint/Sprite")
 property_node = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("26_o4wvw")
+json_path = "res://Assets/Sprites/Players/Mario/Small.json"
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -1021,11 +1021,12 @@ visible = false
 texture = ExtResource("2_bl5al")
 
 [node name="ResourceSetter" type="Node" parent="InvinciblePalette" unique_id=1911763224 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("29_vphr8")
+json_path = "res://Assets/Sprites/Players/InvinciblePalettes/InvinciblePalette.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PlayerPalette" type="Sprite2D" parent="." unique_id=1481358352]
@@ -1034,11 +1035,12 @@ position = Vector2(0, -8)
 texture = ExtResource("3_x2idl")
 
 [node name="ResourceSetterNew" type="Node" parent="PlayerPalette" unique_id=714228866 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("25_cekpg")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("10_xy8gq")
+json_path = "res://Assets/Sprites/Players/Mario/ColourPalette.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionPolygon2D" parent="." unique_id=1622259203]

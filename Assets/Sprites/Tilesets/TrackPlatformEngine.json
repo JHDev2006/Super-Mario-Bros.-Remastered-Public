@@ -2,16 +2,17 @@
 	"animations": {
 		"Idle": {
 			"frames": [[0, 0, 16, 16]],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		},
 		"Active": {
-			"frames": [[0, 0, 16, 16], [16, 0, 16, 16]],
-			"speed": 5.0,
+			"frames": [
+				[0, 0, 16, 16],
+				[16, 0, 16, 16]
+			],
+			"speed": 5,
 			"loop": true
 		}
 	},
-	"variations": {
-		"default": {"source": "TrackPlatformEngine.png"}
-	}
+	"variations": {"source": "TrackPlatformEngine.png"}
 }

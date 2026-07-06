@@ -156,7 +156,7 @@ func connect_to_node(node_to_recieve := [], animate := true, can_disconnect := f
 	has_output = true
 	var node: Node = get_node_from_tile(node_to_recieve[0], node_to_recieve[1])
 	if node == null:
-		Global.log_error("Bad signal connection! Fixing...")
+		Global.log_error("Bad signal connection! Broken Gizmos got disconnected!")
 		queue_free()
 		return
 	if (can_disconnect && connections.has(node_to_recieve)):

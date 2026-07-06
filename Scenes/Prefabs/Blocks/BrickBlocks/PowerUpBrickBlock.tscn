@@ -2,24 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="1_esw26"]
 [ext_resource type="PackedScene" uid="uid://dbjqtjhb2t4cn" path="res://Scenes/Prefabs/Entities/Items/FireFlower.tscn" id="2_2eoa6"]
-[ext_resource type="Texture2D" uid="uid://hfh5i32uji5t" path="res://Assets/Sprites/Items/SuperMushroom.png" id="3_ddqrk"]
-[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="3_esw26"]
 
 [node name="BrickBlock" unique_id=57027260 instance=ExtResource("1_esw26")]
 item = ExtResource("2_2eoa6")
 mushroom_if_small = true
-
-[node name="EditorVisibleNode" type="Node2D" parent="." index="3" unique_id=1877751026]
-script = ExtResource("3_esw26")
-
-[node name="Sprite2D" type="Sprite2D" parent="EditorVisibleNode" index="0" unique_id=477321280]
-texture = ExtResource("3_ddqrk")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-region_filter_clip_enabled = true
-
-[node name="Timer" type="Timer" parent="EditorVisibleNode/Sprite2D" index="0" unique_id=159928907]
-wait_time = 0.001
-autostart = true
-
-[connection signal="timeout" from="EditorVisibleNode/Sprite2D/Timer" to="EditorVisibleNode/Sprite2D" method="queue_free"]

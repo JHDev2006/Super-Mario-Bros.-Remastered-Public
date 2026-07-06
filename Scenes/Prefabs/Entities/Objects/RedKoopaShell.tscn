@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://dam4dqebjgk1n"]
 
 [ext_resource type="PackedScene" uid="uid://bowadxqfmg636" path="res://Scenes/Prefabs/Entities/Objects/GreenKoopaShell.tscn" id="1_0kf1t"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedKoopaShell.json" id="2_n6ryx"]
 
 [node name="RedKoopaShell" unique_id=207162092 instance=ExtResource("1_0kf1t")]
 
 [node name="ResourceSetter" parent="Sprite" parent_id_path=PackedInt32Array(606427555) index="0" unique_id=113289807]
-resource_json = ExtResource("2_n6ryx")
+json_path = "res://Assets/Sprites/Enemies/RedKoopaShell.json"

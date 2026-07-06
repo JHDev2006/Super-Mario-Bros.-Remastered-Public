@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dbq6cn2hp6ijx" path="res://Assets/Sprites/Enemies/PiranhaPlant.png" id="1_x4w6w"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_w2s1w"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/PiranhaPlant.json" id="3_xojev"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_ffw06"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="5_f8jgs"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="6_slv0q"]
@@ -45,10 +44,11 @@ autoplay = "default"
 offset = Vector2(0, 1)
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1028226469 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("2_w2s1w")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("3_xojev")
+json_path = "res://Assets/Sprites/Enemies/PiranhaPlant.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="EnemyPlayerDetection" type="Node" parent="Sprite" unique_id=1830629709 node_paths=PackedStringArray("hitbox")]

@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://biq4hwvm6q8qr"]
 
 [ext_resource type="PackedScene" uid="uid://b1ytbn4cu7msu" path="res://Scenes/Prefabs/Particles/CoinSparkle.tscn" id="1_e4h0e"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/MoonSparkle.json" id="2_lihs7"]
 
 [node name="CoinSparkle" unique_id=95346280 instance=ExtResource("1_e4h0e")]
 
 [node name="ResourceSetterNew" parent="." index="0" unique_id=1336243642]
-resource_json = ExtResource("2_lihs7")
+json_path = "res://Assets/Sprites/Particles/MoonSparkle.json"
 
 [connection signal="finished" from="." to="." method="queue_free"]

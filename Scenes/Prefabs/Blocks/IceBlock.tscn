@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bugxh43j6muyh" path="res://Scenes/Prefabs/Particles/IceBlockDestructionParticles.tscn" id="2_phn8x"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_0d0kv"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_phn8x"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/IceBlock.json" id="5_0d0kv"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="5_sqi3g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74q7l"]
@@ -24,10 +23,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=2120461870 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_0d0kv")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_0d0kv")
+json_path = "res://Assets/Sprites/Blocks/IceBlock.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=74112644]

@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://b07v70sioegsj" path="res://Scenes/Prefabs/Entities/Enemies/BobOmb.tscn" id="1_w8ebw"]
 [ext_resource type="PackedScene" uid="uid://d075e1520ngrv" path="res://Scenes/Prefabs/Entities/Objects/BobOmbHeld.tscn" id="2_i60fb"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/LitBobOmb.json" id="3_j2qyw"]
 
 [sub_resource type="PackedScene" id="PackedScene_j2qyw"]
 _bundled = {
@@ -24,7 +23,7 @@ _bundled = {
 held_scene = SubResource("PackedScene_j2qyw")
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(1481848789) index="0" unique_id=287184371]
-resource_json = ExtResource("3_j2qyw")
+json_path = "res://Assets/Sprites/Enemies/LitBobOmb.json"
 
 [node name="Timer" type="Timer" parent="." index="12" unique_id=115745415]
 wait_time = 3.0

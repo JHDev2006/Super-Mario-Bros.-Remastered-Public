@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_8f4k7"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_3unjp"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="3_eh4yc"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/Hachisuke.json" id="4_db2kr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6c253"]
 size = Vector2(16, 16)
@@ -24,10 +23,11 @@ script = ExtResource("2_8f4k7")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=311639593 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_3unjp")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_db2kr")
+json_path = "res://Assets/Sprites/Items/Hachisuke.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ScoreNoteSpawner" type="Node" parent="." unique_id=1538843862]

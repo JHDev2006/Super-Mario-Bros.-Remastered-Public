@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://fdui2xw387sx"]
 [ext_resource type="PackedScene" uid="uid://c6t1fsp6mlb4r" path="res://Scenes/Levels/SMBLL/World13/13-4b.tscn" id="1_bx7wv"]
 [node name="C-1a" unique_id=565633138 instance=ExtResource("1_bx7wv")]
+room_type = 1
 world_id = 12
 level_id = 1
 [node name="Tiles" parent="." index="0" unique_id=365787150]

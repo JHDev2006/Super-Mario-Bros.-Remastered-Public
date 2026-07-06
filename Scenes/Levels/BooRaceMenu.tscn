@@ -13,16 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://3ai0ggxah360" path="res://Assets/Sprites/UI/MenuBorder.png" id="4_vpste"]
 [ext_resource type="SpriteFrames" uid="uid://cjblhx4flkqva" path="res://Resources/SpriteFrames/Player/Mario/Big.tres" id="5_nhs2i"]
 [ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="5_tgnw3"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="8_2t6wu"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="8_jl8ul"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/MenuBorder.json" id="8_vpste"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/MenuBG.json" id="8_wunmb"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="8_xx8pl"]
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="9_mm3k3"]
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="10_nk4wu"]
-[ext_resource type="JSON" path="res://Assets/Audio/BGM/BooMenu.json" id="11_kqv8e"]
 [ext_resource type="PackedScene" uid="uid://bxp1l23w1kq41" path="res://Scenes/Prefabs/UI/BooSelect.tscn" id="12_pinst"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RaceBoo.json" id="12_tgnw3"]
 [ext_resource type="PackedScene" uid="uid://ci678koo0peoa" path="res://Scenes/Prefabs/UI/CharacterSelect.tscn" id="13_u5tsp"]
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="16_e7l5x"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="17_e7l5x"]
@@ -269,19 +264,21 @@ script = ExtResource("3_dwawm")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="ResourceSetterNew" type="Node" parent="BG/Border" unique_id=505597117 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_vpste")
+json_path = "res://Assets/Sprites/UI/MenuBorder.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ResourceSetterNew" type="Node" parent="BG" unique_id=556738426 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_wunmb")
+json_path = "res://Assets/Sprites/UI/MenuBG.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1434766974]
@@ -289,11 +286,12 @@ stream = ExtResource("1_uucdm")
 bus = &"Music"
 
 [node name="ResourceSetterNew" type="Node" parent="Music" unique_id=1222120859 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "stream"
 mode = 2
-resource_json = ExtResource("11_kqv8e")
+json_path = "res://Assets/Audio/BGM/BooMenu.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1457511798]
@@ -346,11 +344,12 @@ texture = SubResource("AtlasTexture_hpo87")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/1-1/Cursor/Texture" unique_id=1586396585 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_2t6wu")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/1-1" unique_id=11609689]
@@ -387,11 +386,12 @@ texture = SubResource("AtlasTexture_hpo87")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/1-2/Cursor/Texture" unique_id=1177737988 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_2t6wu")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/1-2" unique_id=1846751115]
@@ -429,11 +429,12 @@ texture = SubResource("AtlasTexture_hpo87")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/1-3/Cursor/Texture" unique_id=2015001686 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_2t6wu")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/1-3" unique_id=1225472151]
@@ -471,11 +472,12 @@ texture = SubResource("AtlasTexture_hpo87")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/1-4/Cursor/Texture" unique_id=26088653 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_2t6wu")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/1-4" unique_id=1883564670]
@@ -513,11 +515,12 @@ texture = SubResource("AtlasTexture_hpo87")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/2-1/Cursor/Texture" unique_id=2145471647 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_2t6wu")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/2-1" unique_id=1119358163]
@@ -555,11 +558,12 @@ texture = SubResource("AtlasTexture_hpo87")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/2-2/Cursor/Texture" unique_id=1794112451 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_2t6wu")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/2-2" unique_id=1866479327]
@@ -597,11 +601,12 @@ texture = SubResource("AtlasTexture_hpo87")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/2-3/Cursor/Texture" unique_id=1438331116 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_2t6wu")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/2-3" unique_id=1208961057]
@@ -639,11 +644,12 @@ texture = SubResource("AtlasTexture_hpo87")
 stretch_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/2-4/Cursor/Texture" unique_id=1899813655 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_2t6wu")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LevelLabels/2-4" unique_id=31454068]
@@ -687,6 +693,7 @@ resource_setter = NodePath("ResourceSetterNew")
 metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/PlayerSprite" unique_id=1771073159]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -707,10 +714,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/Boos/0" unique_id=454904469 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("12_tgnw3")
+json_path = "res://Assets/Sprites/Enemies/RaceBoo.json"
 force_properties = {
 "RaceBoo": 0
 }
@@ -724,10 +732,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/Boos/1" unique_id=1166852376 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("12_tgnw3")
+json_path = "res://Assets/Sprites/Enemies/RaceBoo.json"
 force_properties = {
 "RaceBoo": 1
 }
@@ -741,10 +750,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/Boos/2" unique_id=298138757 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("12_tgnw3")
+json_path = "res://Assets/Sprites/Enemies/RaceBoo.json"
 force_properties = {
 "RaceBoo": 2
 }
@@ -758,10 +768,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/Boos/3" unique_id=1382260237 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("12_tgnw3")
+json_path = "res://Assets/Sprites/Enemies/RaceBoo.json"
 force_properties = {
 "RaceBoo": 3
 }
@@ -775,10 +786,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="PanelContainer/Boos/4" unique_id=886686063 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_xx8pl")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("12_tgnw3")
+json_path = "res://Assets/Sprites/Enemies/RaceBoo.json"
 force_properties = {
 "RaceBoo": 4
 }

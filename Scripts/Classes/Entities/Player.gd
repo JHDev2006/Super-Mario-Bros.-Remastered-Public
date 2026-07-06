@@ -487,17 +487,22 @@ var last_damage_source := ""
 
 static var CHARACTER_NAMES := ["CHAR_MARIO", "CHAR_LUIGI", "CHAR_TOAD", "CHAR_TOADETTE"]
 
-static var CHARACTER_COLOURS := [preload("res://Assets/Sprites/Players/Mario/CharacterColour.json"), preload("res://Assets/Sprites/Players/Luigi/CharacterColour.json"), preload("res://Assets/Sprites/Players/Toad/CharacterColour.json"), preload("res://Assets/Sprites/Players/Toadette/CharacterColour.json")]
+static var CHARACTER_COLOURS := [
+	("res://Assets/Sprites/Players/Mario/CharacterColour.json"),
+	("res://Assets/Sprites/Players/Luigi/CharacterColour.json"), 
+	("res://Assets/Sprites/Players/Toad/CharacterColour.json"),
+	("res://Assets/Sprites/Players/Toadette/CharacterColour.json")
+]
 
 var can_timer_warn := true
 
 var colour_palette_texture: Texture = null
 
 static var CHARACTER_PALETTES := [
-	preload("res://Assets/Sprites/Players/Mario/ColourPalette.json"),
-	preload("res://Assets/Sprites/Players/Luigi/ColourPalette.json"),
-	preload("res://Assets/Sprites/Players/Toad/ColourPalette.json"),
-	preload("res://Assets/Sprites/Players/Toadette/ColourPalette.json")
+	("res://Assets/Sprites/Players/Mario/ColourPalette.json"),
+	("res://Assets/Sprites/Players/Luigi/ColourPalette.json"),
+	("res://Assets/Sprites/Players/Toad/ColourPalette.json"),
+	("res://Assets/Sprites/Players/Toadette/ColourPalette.json")
 ]
 
 #region Animation Fallbacks, these determine what animations will use as a back-up if they aren't present.
@@ -508,6 +513,7 @@ static var ANIMATION_FALLBACKS: Dictionary = {
 	"Stunned": "Idle",
 	
 	# --- Cutscene States ---
+	"LevelTransition": "Idle",
 	"PosePeach": "PoseToad",
 	
 	"FlingJump": "Jump",
@@ -621,6 +627,8 @@ var teleporting := false
 var on_ice := false
 var cooldown := false
 
+var swim_stroke := false
+
 var simulated_velocity := Vector2.ZERO
 
 func _ready() -> void:
@@ -717,11 +725,13 @@ func apply_character_physics() -> void:
 	if int(Global.player_characters[player_id]) > 3:
 		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 	path = ResourceSetter.get_pure_resource_path(path)
-	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
+	var json = JSONParser.parse_to_dict(path)
 	
 	# SkyanUltra: This section controls all CHARACTER PHYSICS values. This should be
 	# preventing physics changes to stop potential cheating in modes like You VS. Boo
 	# and Marathon mode.
+	if (!json.has("physics")):
+		return
 	for key in json.physics:
 		if key in ["PHYSICS_PARAMETERS", "CLASSIC_PARAMETERS", "POWER_PARAMETERS", "ENDING_PARAMETERS"]:
 			if apply_gameplay_changes:
@@ -738,7 +748,7 @@ func apply_character_physics() -> void:
 		physics_dict = PHYSICS_PARAMETERS if Settings.file.gameplay.physics_style else CLASSIC_PARAMETERS
 
 func apply_classic_physics() -> void:
-	var json = JSON.parse_string(FileAccess.open("res://Resources/ClassicPhysics.json", FileAccess.READ).get_as_text())
+	var json = JSONParser.parse_to_dict("res://Resources/ClassicPhysics.json")
 	for i in json:
 		set(i, json[i])
 
@@ -877,10 +887,7 @@ func apply_character_sfx_map() -> void:
 		custom_character = true
 		path = path.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
 	path = ResourceSetter.get_pure_resource_path(path)
-	if FileAccess.file_exists(path) == false:
-		AudioManager.load_sfx_map({})
-		return
-	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
+	var json = JSONParser.parse_to_dict(path)
 	
 	for i in json:
 		var res_path = "res://Assets/Audio/SFX/" + json[i]
@@ -1349,10 +1356,12 @@ func time_up() -> void:
 
 func set_power_state_frame() -> void:
 	colour_palette = ResourceSetter.get_resource(preload("uid://b0quveyqh25dn"))
-	$PlayerPalette/ResourceSetterNew.resource_json = (CHARACTER_PALETTES[int(Global.player_characters[player_id])])
+	
+	var cur_palette = CHARACTER_PALETTES[int(Global.player_characters[player_id])]
+	if (cur_palette != null):
+		$PlayerPalette/ResourceSetterNew.json_path = cur_palette
 	if power_state != null:
-		$ResourceSetterNew.resource_json = load(get_character_sprite_path())
-		$ResourceSetterNew.update_resource()
+		$ResourceSetterNew.json_path = (get_character_sprite_path())
 	var frames = %Sprite.sprite_frames
 	if frames:
 		can_pose_anim = frames.has_animation("PoseDoor")

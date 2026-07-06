@@ -3,13 +3,11 @@
 [ext_resource type="Script" uid="uid://dnptn1i31npjc" path="res://Scripts/Classes/Entities/Objects/MovingPlatform.gd" id="1_5bar7"]
 [ext_resource type="Texture2D" uid="uid://bk0p52ttwojml" path="res://Assets/Sprites/Tilesets/Platform.png" id="2_niabi"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_33j4l"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Platform.json" id="4_dv1co"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="5_6s043"]
 [ext_resource type="PackedScene" uid="uid://dse5pwhodrqcr" path="res://Scenes/Prefabs/Editor/EditorProperties/TilePropertyIntRangeSpin.tscn" id="6_8mmeq"]
 [ext_resource type="Texture2D" uid="uid://dpdrrkqtcedgm" path="res://Assets/Sprites/Tilesets/DottedLine.png" id="7_fl8xg"]
 [ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="8_7dysp"]
 [ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="10_dv1co"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="11_6s043"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_svgdm"]
 resource_local_to_scene = true
@@ -32,11 +30,12 @@ patch_margin_right = 8
 axis_stretch_horizontal = 1
 
 [node name="ResourceSetter" type="Node" parent="Sprite" unique_id=1692721610 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_33j4l")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_dv1co")
+json_path = "res://Assets/Sprites/Tilesets/Platform.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046612248]
@@ -73,11 +72,12 @@ patch_margin_right = 8
 axis_stretch_horizontal = 1
 
 [node name="ResourceSetter" type="Node" parent="Projection" unique_id=888381645 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_33j4l")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_dv1co")
+json_path = "res://Assets/Sprites/Tilesets/Platform.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LevelEditorToggleDetection" type="Node" parent="." unique_id=1245014865]
@@ -98,11 +98,12 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="ResourceSetterNew" type="Node" parent="Rope" unique_id=1086601277 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_33j4l")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("11_6s043")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="level_start" from="LevelEditorToggleDetection" to="." method="_ready"]

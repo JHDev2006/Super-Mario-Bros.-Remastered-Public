@@ -5,7 +5,7 @@
 			"Default": {},
 			"Small": {},
 			"Big": {},
-			"Fire": {},
+			"Fire": {}
 		},
 		"CLASSIC_PARAMETERS": {
 			"Default": {
@@ -29,17 +29,17 @@
 				
 				"FALL_GRAVITY_IDLE": 15.47,
 				"FALL_GRAVITY_WALK": 14.53,
-				"FALL_GRAVITY_RUN": 21.8,
+				"FALL_GRAVITY_RUN": 21.8
 			},
 			"Small": {},
 			"Big": {},
-			"Fire": {},
+			"Fire": {}
 		},
 		"ENDING_PARAMETERS": {
 			"Default": {},
 			"Small": {},
 			"Big": {},
-			"Fire": {},
+			"Fire": {}
 		},
 		"DEATH_PARAMETERS": {
 			"Default": {}
@@ -48,7 +48,7 @@
 			"Default": {},
 			"Small": {},
 			"Big": {},
-			"Fire": {},
-		},
-	},
+			"Fire": {}
+		}
+	}
 }

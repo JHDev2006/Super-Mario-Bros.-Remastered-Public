@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bjs5mlc3xrxud" path="res://Scripts/Parts/DiscoLevel.gd" id="2_6xm61"]
 [ext_resource type="PackedScene" uid="uid://1rxw4k4wq3ni" path="res://Scenes/Prefabs/Entities/Enemies/PiranhaPlant.tscn" id="3_6xm61"]
 [node name="8-4a" unique_id=902469562 instance=ExtResource("1_aa1yb")]
-theme_time = "Night"
 campaign = "SMBANN"
 [node name="PipeArea2" parent="." index="8" unique_id=1000574229]
 target_level = "uid://ck5d1abcduiku"

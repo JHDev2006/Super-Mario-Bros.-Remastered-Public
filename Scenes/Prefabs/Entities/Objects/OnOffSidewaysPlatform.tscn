@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://c8m8455b6ikrn" path="res://Scenes/Prefabs/Entities/Objects/SidewaysPlatform.tscn" id="1_m1s5k"]
 [ext_resource type="Texture2D" uid="uid://dfpbjnd1o5tig" path="res://Assets/Sprites/Tilesets/OnOffPlatform.png" id="2_m1s5k"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/OnOffPlatform.json" id="3_p1l0p"]
 [ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="4_mdd6r"]
 [ext_resource type="Script" uid="uid://cb0spbe0l8mof" path="res://Scripts/Classes/Components/AnimationPauser.gd" id="4_p1l0p"]
 [ext_resource type="Script" uid="uid://q45b31h6356r" path="res://Scripts/Classes/Components/OnOffSwitcher.gd" id="6_jsrxu"]
@@ -19,7 +18,7 @@ texture = ExtResource("2_m1s5k")
 region_rect = Rect2(0, 0, 24, 8)
 
 [node name="ResourceSetter" parent="AnimatableBody2D/Sprite" index="0" unique_id=675104811]
-resource_json = ExtResource("3_p1l0p")
+json_path = "res://Assets/Sprites/Tilesets/OnOffPlatform.json"
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D/Sprite" index="1" unique_id=54457281]
 position = Vector2(16, 0)

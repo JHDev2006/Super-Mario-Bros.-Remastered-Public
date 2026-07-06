@@ -4,21 +4,11 @@
 			"choices": [
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						0.0,
-						0.0,
-						8.0,
-						8.0
-					]
+					"rect": [0, 0, 8, 8]
 				},
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						8.0,
-						0.0,
-						8.0,
-						8.0
-					]
+					"rect": [8, 0, 8, 8]
 				}
 			]
 		},
@@ -26,46 +16,24 @@
 			"choices": [
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						0.0,
-						8.0,
-						8.0,
-						8.0
-					]
+					"rect": [0, 8, 8, 8]
 				},
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						8.0,
-						8.0,
-						8.0,
-						8.0
-					]
+					"rect": [8, 8, 8, 8]
 				}
 			]
 		},
-		"GhostHouse": {
-			"link": "Underground"
-		},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {
 			"choices": [
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						0.0,
-						16.0,
-						8.0,
-						8.0
-					]
+					"rect": [0, 16, 8, 8]
 				},
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						8.0,
-						16.0,
-						8.0,
-						8.0
-					]
+					"rect": [8, 16, 8, 8]
 				}
 			]
 		},
@@ -73,21 +41,11 @@
 			"choices": [
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						0.0,
-						24.0,
-						8.0,
-						8.0
-					]
+					"rect": [0, 24, 8, 8]
 				},
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						8.0,
-						24.0,
-						8.0,
-						8.0
-					]
+					"rect": [8, 24, 8, 8]
 				}
 			]
 		},
@@ -95,21 +53,11 @@
 			"choices": [
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						0.0,
-						32.0,
-						8.0,
-						8.0
-					]
+					"rect": [0, 32, 8, 8]
 				},
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						8.0,
-						32.0,
-						8.0,
-						8.0
-					]
+					"rect": [8, 32, 8, 8]
 				}
 			]
 		},
@@ -117,21 +65,11 @@
 			"choices": [
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						0.0,
-						40.0,
-						8.0,
-						8.0
-					]
+					"rect": [0, 40, 8, 8]
 				},
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						8.0,
-						40.0,
-						8.0,
-						8.0
-					]
+					"rect": [8, 40, 8, 8]
 				}
 			]
 		},
@@ -139,21 +77,11 @@
 			"choices": [
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						0.0,
-						48.0,
-						8.0,
-						8.0
-					]
+					"rect": [0, 48, 8, 8]
 				},
 				{
 					"source": "SpikeBallDestructionParticles.png",
-					"rect": [
-						8.0,
-						48.0,
-						8.0,
-						8.0
-					]
+					"rect": [8, 48, 8, 8]
 				}
 			]
 		}

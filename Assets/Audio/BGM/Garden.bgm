@@ -1,10 +1,10 @@
 {
-    "Normal": {
-        "source": "Garden.mp3",
-        "loop": 1.884
-    },
-    "Hurry": {
-        "source": "GardenHurry.mp3",
-        "loop": 1.418
-    }
+	"Normal": {
+		"source": "Garden.mp3",
+		"loop": 1.884
+	},
+	"Hurry": {
+		"source": "GardenHurry.mp3",
+		"loop": 1.418
+	}
 }

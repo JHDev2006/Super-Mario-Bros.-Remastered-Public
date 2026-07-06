@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://cslo85tq3ve2c"]
 [ext_resource type="PackedScene" uid="uid://7ijschult60q" path="res://Scenes/Levels/SMBLL/World7/7-4.tscn" id="1_yq5dk"]
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="2_4m1ya"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BulletBill.json" id="2_yq5dk"]
 [node name="C-4" unique_id=583667770 instance=ExtResource("1_yq5dk")]
+theme_time = "Day"
 time_limit = 300
 world_id = 12
 [node name="Tiles" parent="." index="0" unique_id=1442026388]
@@ -14,6 +14,6 @@ scale = Vector2(1, -1)
 can_hammer = false
 can_fire = true
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(853963108, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("2_yq5dk")
+json_path = "res://Assets/Sprites/Enemies/BulletBill.json"
 [editable path="CastleBridge"]
 [editable path="Bowser"]

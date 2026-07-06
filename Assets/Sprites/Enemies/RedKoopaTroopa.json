@@ -2,41 +2,21 @@
 	"animations": {
 		"Walk": {
 			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					32.0
-				],
-				[
-					16.0,
-					0.0,
-					16.0,
-					32.0
-				]
+				[0, 0, 16, 32],
+				[16, 0, 16, 32]
 			],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		}
 	},
 	"variations": {
 		"default": {
 			"source": "KoopaTroopa.png",
-			"rect": [
-				96.0,
-				64.0,
-				32.0,
-				32.0
-			]
+			"rect": [96, 64, 32, 32]
 		},
 		"Snow": {
 			"source": "KoopaTroopa.png",
-			"rect": [
-				192.0,
-				64.0,
-				32.0,
-				32.0
-			]
+			"rect": [192, 64, 32, 32]
 		}
 	}
 }

@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bafdl3y53ly60" path="res://Scripts/Classes/UI/PackAnimatedSprite2D.gd" id="2_724cb"]
 [ext_resource type="Texture2D" uid="uid://bbdcmhyxmc3pu" path="res://Assets/Sprites/Items/SPItems.png" id="2_wnlnm"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ke2o5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/LuckyStar.json" id="4_4cwfa"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_724cb"]
 
 [sub_resource type="GDScript" id="GDScript_y0edb"]
@@ -57,10 +56,11 @@ script = ExtResource("2_724cb")
 metadata/_custom_type_script = "uid://bafdl3y53ly60"
 
 [node name="ResourceSetter" type="Node" parent="Sprite" unique_id=763671982 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_ke2o5")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_4cwfa")
+json_path = "res://Assets/Sprites/Items/LuckyStar.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=309477025]

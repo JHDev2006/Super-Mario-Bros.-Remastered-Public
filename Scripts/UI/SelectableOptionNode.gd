@@ -24,6 +24,12 @@ func update_starting_values() -> void:
 				selected_index = values.find(Settings.file[settings_category][option_key])
 			else:
 				selected_index = Settings.file[settings_category][option_key]
+			
+			if settings_category == "video" && option_key == "mode":
+				Settings.fullscreen_toggled.connect(func(): selected_index = Settings.file.video.mode)
+			if settings_category == "video" && option_key == "multiplier":
+				selected_index -= 1
+	selected_index = clamp(selected_index, 0, values.size() - 1)
 
 func _process(_delta: float) -> void:
 	if selected:

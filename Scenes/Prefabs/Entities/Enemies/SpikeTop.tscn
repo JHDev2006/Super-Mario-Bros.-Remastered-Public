@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dehhxend1vj2m" path="res://Scripts/Classes/Entities/Enemies/SpikeTop.gd" id="1_ol6o0"]
 [ext_resource type="Texture2D" uid="uid://drww2yy32q3qv" path="res://Assets/Sprites/Enemies/SpikeTop.png" id="2_7s4ia"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_as5ol"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/SpikeTop.json" id="4_b28ri"]
 [ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="5_b28ri"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="6_fmlc0"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="7_5smfw"]
@@ -69,10 +68,11 @@ offset = Vector2(0, 1)
 flip_h = true
 
 [node name="ResourceSetterNew" type="Node" parent="RotationJoint/Sprite" unique_id=680243608 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_as5ol")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_b28ri")
+json_path = "res://Assets/Sprites/Enemies/SpikeTop.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Checks" type="Node2D" parent="RotationJoint" unique_id=837557960]

@@ -1,6 +1,13 @@
 {
 	"sprites": [
 		"res://Assets/Sprites/Backgrounds/CloudOverlays/CloudOverlay.png",
+		"res://Assets/Sprites/Backgrounds/CloudOverlays/AutumnCloudOverlay.png",
+		"res://Assets/Sprites/Backgrounds/CloudOverlays/AutumnNightCloudOverlay.png",
+		"res://Assets/Sprites/Backgrounds/CloudOverlays/BeachCloudOverlay.png",
+		"res://Assets/Sprites/Backgrounds/CloudOverlays/CloudOverlay.png",
+		"res://Assets/Sprites/Backgrounds/CloudOverlays/NightCloudOverlay.png",
+		"res://Assets/Sprites/Backgrounds/CloudOverlays/UndergroundCloudOverlay.png",
+		"res://Assets/Sprites/Backgrounds/CloudOverlays/VolcanoCloudOverlay.png",
 		
 		"res://Assets/Sprites/Backgrounds/Hills/Overworld.png",
 		"res://Assets/Sprites/Backgrounds/Hills/OverworldAlt.png",
@@ -64,6 +71,7 @@
 		
 		"res://Assets/Sprites/Players/Mario/Big.png",
 		"res://Assets/Sprites/Players/Mario/Fire.png",
+		"res://Assets/Sprites/Players/Mario/Superball.png",
 		"res://Assets/Sprites/Players/Mario/Small.png",
 		
 		"res://Assets/Sprites/Players/Peach.png",
@@ -103,6 +111,7 @@
 		"res://Assets/Sprites/Tilesets/Terrain/CastleWater.png",
 		"res://Assets/Sprites/Tilesets/Terrain/CastleWaterLL.png",
 		"res://Assets/Sprites/Tilesets/Terrain/CastleWaterSP.png",
+		"res://Assets/Sprites/Tilesets/Terrain/CastleWaterANN.png",
 		"res://Assets/Sprites/Tilesets/Terrain/Desert.png",
 		"res://Assets/Sprites/Tilesets/Terrain/DesertANN.png",
 		"res://Assets/Sprites/Tilesets/Terrain/DesertLL.png",
@@ -127,6 +136,7 @@
 		"res://Assets/Sprites/Tilesets/Terrain/Space.png",
 		"res://Assets/Sprites/Tilesets/Terrain/SpaceLL.png",
 		"res://Assets/Sprites/Tilesets/Terrain/SpaceSP.png",
+		"res://Assets/Sprites/Tilesets/Terrain/SpaceANN.png",
 		"res://Assets/Sprites/Tilesets/Terrain/Snow.png",
 		"res://Assets/Sprites/Tilesets/Terrain/SnowLL.png",
 		"res://Assets/Sprites/Tilesets/Terrain/SnowANN.png",

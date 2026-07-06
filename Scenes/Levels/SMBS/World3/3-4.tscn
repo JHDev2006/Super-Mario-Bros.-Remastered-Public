@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://byu7xm153ktle" path="res://Scenes/Prefabs/Entities/Enemies/Barrel.tscn" id="10_f8a6r"]
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="11_ul44o"]
 [ext_resource type="PackedScene" uid="uid://bwdwavf4rp1m1" path="res://Scenes/Prefabs/Entities/Items/HammerItem.tscn" id="12_m7oqh"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BuzzyBeetleShell.json" id="13_rsplc"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="14_7abqx"]
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="14_xh3ce"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="15_6bgvu"]
@@ -74,7 +73,7 @@ length = 17
 [node name="Bowser" parent="." unique_id=843377812 instance=ExtResource("15_6bgvu")]
 position = Vector2(2376, -48)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(843377812, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("13_rsplc")
+json_path = "res://Assets/Sprites/Enemies/BuzzyBeetleShell.json"
 [node name="LevelBG" parent="." unique_id=94106636 instance=ExtResource("15_xh3ce")]
 particles = 3
 [node name="TileMapConverter" type="Node" parent="." unique_id=2025441774 node_paths=PackedStringArray("tilemap")]

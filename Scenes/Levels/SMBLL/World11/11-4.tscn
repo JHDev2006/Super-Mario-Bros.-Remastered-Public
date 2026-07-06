@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://kj5pw3xhq8f7" path="res://Scenes/Prefabs/Entities/Enemies/RedPiranhaPlant.tscn" id="8_xdh1h"]
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="9_g4h3f"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="10_x5tb4"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/GreenCheepCheep.json" id="11_vd3y8"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="11_vly3g"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="14_2ydu0"]
 [ext_resource type="PackedScene" uid="uid://c6t324yc5gx7p" path="res://Scenes/Parts/TeleportPipeArea.tscn" id="15_vd3y8"]
@@ -64,7 +63,7 @@ position = Vector2(3336, -40)
 [node name="Bowser" parent="." unique_id=1579102671 instance=ExtResource("11_vly3g")]
 position = Vector2(3472, -48)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(1579102671, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("11_vd3y8")
+json_path = "res://Assets/Sprites/Enemies/GreenCheepCheep.json"
 [node name="DropShadow" parent="." unique_id=1987793835 instance=ExtResource("14_2ydu0")]
 [node name="TeleportPipeArea" parent="." unique_id=916165463 node_paths=PackedStringArray("connecting_pipe") instance=ExtResource("15_vd3y8")]
 position = Vector2(1312, -48)

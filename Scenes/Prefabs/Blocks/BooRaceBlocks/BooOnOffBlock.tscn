@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://be2x40pxmueyo" path="res://Scripts/Classes/Blocks/BooOnOffBlock.gd" id="1_mttsc"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_ds5j0"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_sf1e4"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/BooOnOffBlockRed.json" id="4_ofstd"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="6_y6qjl"]
 [ext_resource type="Script" uid="uid://q45b31h6356r" path="res://Scripts/Classes/Components/OnOffSwitcher.gd" id="7_oe2r8"]
 
@@ -121,10 +120,11 @@ animation = &"Default"
 autoplay = "Default"
 
 [node name="ResourceSetter" type="Node" parent="Sprite" unique_id=873755014 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_sf1e4")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_ofstd")
+json_path = "res://Assets/Sprites/Blocks/BooOnOffBlockRed.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=687421064]

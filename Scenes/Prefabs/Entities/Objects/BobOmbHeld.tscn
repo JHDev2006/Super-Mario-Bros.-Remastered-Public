@@ -6,9 +6,7 @@
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="3_5qjsg"]
 [ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="4_70th7"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_hgi3d"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BobOmb.json" id="5_pn2vf"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="6_j3rs3"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/LitBobOmb.json" id="6_pn2vf"]
 [ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="7_yf454"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="9_yf454"]
 [ext_resource type="Script" uid="uid://da45dj0tx6jfd" path="res://Scripts/Classes/Components/FireDetection.gd" id="13_2cg8p"]
@@ -167,10 +165,11 @@ script = ExtResource("2_dd5rd")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="ScaleJoint/Sprite" unique_id=1376677532 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_hgi3d")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_pn2vf")
+json_path = "res://Assets/Sprites/Enemies/BobOmb.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="ScaleJoint/Sprite" unique_id=2023667887]
@@ -189,10 +188,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="ScaleJoint/Sprite/FlashSprite" unique_id=470439205 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_hgi3d")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("6_pn2vf")
+json_path = "res://Assets/Sprites/Enemies/LitBobOmb.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1390925268]

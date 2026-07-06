@@ -2,7 +2,6 @@
 [ext_resource type="PackedScene" uid="uid://b1cgn0pwii7yq" path="res://Scenes/Levels/PipeCutscene.tscn" id="1_mgpnp"]
 [ext_resource type="PackedScene" uid="uid://dn2oonncrmxb3" path="res://Scenes/Parts/LargeSPCastleDeco.tscn" id="2_wp0yq"]
 [node name="PipeCutscene" unique_id=1071908811 instance=ExtResource("1_mgpnp")]
-room_type = 3
 [node name="LevelBG" parent="." index="0" unique_id=1426199494]
 primary_layer = 0
 second_layer = 2

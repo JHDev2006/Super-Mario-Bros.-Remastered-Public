@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="12_o5xfh"]
 [ext_resource type="Script" uid="uid://cybpwmw4ywoow" path="res://Scripts/Parts/TileMapConverter.gd" id="13_gg8o3"]
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="25_lygw1"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Spiny.json" id="34_0t167"]
 [ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="39_0t167"]
 [ext_resource type="PackedScene" uid="uid://cmbpqnq10arts" path="res://Scenes/Prefabs/Entities/Items/RedCoin.tscn" id="40_d3wxu"]
 [ext_resource type="PackedScene" uid="uid://c75cko8tyt467" path="res://Scenes/Prefabs/LevelObjects/CastleChallengeEnd.tscn" id="40_oum72"]
@@ -103,7 +102,7 @@ position = Vector2(3640, -32)
 sprite_frames = SubResource("SpriteFrames_0t167")
 animation = &"Walk"
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" index="0" unique_id=381174695]
-resource_json = ExtResource("34_0t167")
+json_path = "res://Assets/Sprites/Enemies/Spiny.json"
 [node name="DropShadow" parent="." unique_id=1103541154 instance=ExtResource("12_o5xfh")]
 [node name="LevelBG" parent="." unique_id=268626612 instance=ExtResource("12_1vvbo")]
 particles = 3

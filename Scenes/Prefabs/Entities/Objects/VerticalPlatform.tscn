@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bk0p52ttwojml" path="res://Assets/Sprites/Tilesets/Platform.png" id="1_sh7r3"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_sxeqe"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Platform.json" id="3_35mwj"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="4_2ywm4"]
 [ext_resource type="Texture2D" uid="uid://dpdrrkqtcedgm" path="res://Assets/Sprites/Tilesets/DottedLine.png" id="5_fity7"]
 [ext_resource type="Script" uid="uid://d0mqkvopasu8k" path="res://Scripts/Classes/Components/SecondQuestReplaceComponent.gd" id="6_fity7"]
@@ -63,11 +62,12 @@ patch_margin_right = 8
 axis_stretch_horizontal = 1
 
 [node name="ResourceSetter" type="Node" parent="AnimatableBody2D/Sprite" unique_id=1827702455 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("2_sxeqe")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("3_35mwj")
+json_path = "res://Assets/Sprites/Tilesets/Platform.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=661225405]

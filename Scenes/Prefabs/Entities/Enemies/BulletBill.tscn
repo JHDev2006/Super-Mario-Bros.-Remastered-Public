@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://7b27p232kp7w" path="res://Scripts/Classes/Entities/Enemies/BulletBill.gd" id="1_52tat"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_dwbhe"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_4je76"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BulletBill.json" id="4_myh77"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="5_edyyd"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="6_jwkii"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="9_4je76"]
@@ -30,10 +29,11 @@ script = ExtResource("2_dwbhe")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=979926632 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_4je76")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_myh77")
+json_path = "res://Assets/Sprites/Enemies/BulletBill.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=209427212]
