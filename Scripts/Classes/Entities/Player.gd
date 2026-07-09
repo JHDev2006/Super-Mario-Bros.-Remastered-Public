@@ -131,11 +131,13 @@ extends CharacterBody2D
 		
 		"BOUNCE_SPEED": {
 			"SMB1": {"value": 248.0},
-			"SMBLL": {"value": 370.0}
+			"SMBLL": {"value": 370.0},
+			"SMBANN": {"link": "SMBLL"}
 		},
 		"BOUNCE_JUMP_SPEED": {
 			"SMB1": {"value": 310.0},
-			"SMBLL": {"value": 370.0}
+			"SMBLL": {"value": 370.0},
+			"SMBANN": {"link": "SMBLL"}
 		},                                 # The strength at which the player bounces off enemies without any extra input, measured in px/sec.   # The strength at which the player bounces off enemies while holding jump, measured in px/sec.
 		
 		"FALL_GRAVITY_PREDETERMINED": true,          # Determines if the player's gravity is determined by their last X velocity from leaving the ground rather than their current X velocity.
