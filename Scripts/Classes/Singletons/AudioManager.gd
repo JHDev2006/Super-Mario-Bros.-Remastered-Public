@@ -362,7 +362,7 @@ func generate_interactive_stream(bgm_file := {}) -> AudioStreamInteractive:
 		else:
 			Global.log_error("Hurry variation source for current track was not found.")
 		if (bgm_file["Hurry"].has("loop")):
-			normal_loop = bgm_file["Hurry"]["loop"]
+			hurry_loop = bgm_file["Hurry"]["loop"]
 		else:
 			Global.log_warning("Hurry variation looping for current track was not found.")
 	stream.set_clip_stream(0, import_stream(normal_path, normal_loop))
