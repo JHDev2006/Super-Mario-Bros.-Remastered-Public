@@ -14,7 +14,7 @@ type = 2
 shape = SubResource("RectangleShape2D_wuhh6")
 
 [node name="EditorPropertyExposer" parent="." index="2" unique_id=1975160876]
-properties = Array[String]([])
+properties = Array[String](["length"])
 
 [node name="Line" parent="." index="3" unique_id=531388326]
 visible = false
