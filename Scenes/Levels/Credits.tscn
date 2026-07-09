@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b3stoe2kp1nv1" path="res://Scripts/UI/Credits.gd" id="1_db8c5"]
 [ext_resource type="AudioStream" uid="uid://cdhsj02wqdt7y" path="res://Assets/Audio/BGM/Credits.mp3" id="1_k57dj"]
-[ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="3_suvme"]
 [ext_resource type="Texture2D" uid="uid://bmvf1l15447r" path="res://Assets/Sprites/UI/Staff.png" id="4_g2gtw"]
 [ext_resource type="Texture2D" uid="uid://vqtqnrt5rco1" path="res://Assets/Sprites/UI/CreditsDioramas/1.png" id="4_j3afk"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_x745s"]
 [ext_resource type="Texture2D" uid="uid://dvo3gs4wg68hl" path="res://Assets/Sprites/UI/CreditsDioramas/2.png" id="6_s34bh"]
 [ext_resource type="Texture2D" uid="uid://c3wphsst0h6ie" path="res://Assets/Sprites/UI/CreditsDioramas/3.png" id="7_k6bv2"]
 [ext_resource type="Texture2D" uid="uid://bn3mqsvovdtbx" path="res://Assets/Sprites/UI/CreditsDioramas/4.png" id="8_3648a"]
@@ -331,11 +331,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=2055088138]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=975875184]
 stream = ExtResource("1_k57dj")
 bus = &"Music"
-script = ExtResource("3_suvme")
-metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
+
+[node name="ResourceSetterNew" type="Node" parent="Music" unique_id=496570686 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_x745s")
+node_to_affect = NodePath("..")
+property_name = "stream"
+mode = 2
+json_path = "res://Assets/Audio/BGM/Credits.json"
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Labels" type="Node" parent="." unique_id=1273351746]
 
@@ -3203,3 +3209,4 @@ labels = [NodePath("../Skip")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [connection signal="finished" from="Music" to="." method="exit"]
+[connection signal="updated" from="Music/ResourceSetterNew" to="Music" method="play"]

@@ -216,7 +216,8 @@ func get_resource(json_file: JSON) -> Resource:
 				else:
 					rect_error_message.call()
 		ResourceMode.AUDIO:
-			resource = load_audio_from_path(source_resource_path)
+			var loop_point = json.get("loop", 0.0)
+			resource = load_audio_from_path(source_resource_path, loop_point)
 		ResourceMode.RAW:
 			pass
 		ResourceMode.FONT:
@@ -571,7 +572,7 @@ func load_image_from_path(path := "") -> Texture2D:
 	image.load(path)
 	return ImageTexture.create_from_image(image)
 
-func load_audio_from_path(path := "") -> AudioStream:
+func load_audio_from_path(path := "", loop := 0.0) -> AudioStream:
 	var stream = null
 	if path.contains(".bgm"):
 		stream = AudioManager.generate_interactive_stream(JSON.parse_string(FileAccess.get_file_as_string(path)))
@@ -581,8 +582,12 @@ func load_audio_from_path(path := "") -> AudioStream:
 		stream = AudioStreamWAV.load_from_file(path)
 	elif path.contains(".mp3"):
 		stream = AudioStreamMP3.load_from_file(path)
+		stream.set_loop(loop >= 0)
+		stream.set_loop_offset(loop)
 	elif path.contains(".ogg"):
 		stream = AudioStreamOggVorbis.load_from_file(path)
+		stream.set_loop(loop >= 0)
+		stream.set_loop_offset(loop)
 	return stream
 
 func sync_metadata() -> void:
