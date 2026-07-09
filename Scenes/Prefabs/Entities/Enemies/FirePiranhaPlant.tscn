@@ -22,7 +22,6 @@ flip_h = true
 monitoring = false
 
 [node name="FirePiranhaPlant" parent="RotationJoint/PositionJoint/Visuals" index="2" unique_id=122564629 node_paths=PackedStringArray("plant")]
-shoot_amount = null
 fireball_scene = ExtResource("3_t5jdg")
 plant = NodePath("../../../..")
 

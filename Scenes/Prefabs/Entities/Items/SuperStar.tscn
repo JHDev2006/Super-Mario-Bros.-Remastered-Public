@@ -106,5 +106,8 @@ script = ExtResource("8_yyobd")
 movement_node = NodePath("../BasicEnemyMovement")
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1959679235]
+position = Vector2(0, -8)
+
 [connection signal="collected" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
