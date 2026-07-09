@@ -143,7 +143,7 @@ func get_resource(json_file: JSON) -> Resource:
 		if (ignore_resource_from.has(i) && i != "BaseAssets"):
 			continue
 		source_resource_path = get_resource_pack_path(source_resource_path, i)
-		if (!FileAccess.file_exists(source_resource_path) && i != "BaseAssets" && mode != ResourceMode.THEME):
+		if (!FileAccess.file_exists(source_resource_path) && i != "BaseAssets" && i.contains("user://") && mode != ResourceMode.THEME):
 			log_error("Variation source needed is not an existing file: \"%s\". Stopped at %s." % [resource_path, get_variation_path()], false)
 			ignore_resource_from.append(i)
 			return get_resource(json_file)
