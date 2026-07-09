@@ -275,7 +275,6 @@ func get_variation_path() -> String:
 
 func get_variation_json(json := {}) -> Dictionary:
 	var used_default := true
-	print(json)
 	if json.has("mute_warnings"):
 		surpress_warnings = true
 	if json.has("mute_errors"):
@@ -482,11 +481,9 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	meta_data_keys = json.keys().filter(func(key): return key.contains("LevelMetadata"))
 	if meta_data_keys.is_empty() == false:
-		print(Global.level_metadata)
 		is_variable = true
 		for i in meta_data_keys:
 			var meta_name = i.get_slice(":", 1)
-			print(Global.level_metadata)
 			var meta_value = str(Global.level_metadata.get(meta_name, "Default"))
 			var meta_json = null
 			if json[i].has(meta_value):
