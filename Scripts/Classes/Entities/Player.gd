@@ -814,8 +814,8 @@ func _physics_process(delta: float) -> void:
 	elif is_actually_on_floor():
 		has_flung = false
 		projectiles_fired_since_left_ground = 0
+		land_on_ground()
 		if not is_invincible:
-			land_on_ground()
 			stomp_combo = 0
 	elif actual_velocity_y() > 15:
 		can_bump_sfx = true
