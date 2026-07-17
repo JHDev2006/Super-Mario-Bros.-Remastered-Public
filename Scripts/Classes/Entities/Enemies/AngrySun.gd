@@ -11,7 +11,7 @@ var screen_direction := -1
 
 var screen_center_pos := Vector2.ZERO
 
-var margin := Vector2(32, 32)
+var margin := Vector2(32, 48)
 
 var target_position := Vector2.ZERO
 
