@@ -3936,7 +3936,8 @@ metadata/_edit_group_ = true
 layout_mode = 2
 tile_name = "BLOCK_INVISIBLE"
 type = 1
-icon_texture_path = "res://Scenes/Levels/LevelEditor.tscn::AtlasTexture_5ujs8"
+icon_texture_path = "res://Assets/Sprites/Blocks/InvisibleBlock.png"
+icon_region_override = Rect2(16, 0, 16, 16)
 entity_id = "Ae"
 
 [node name="Trampolines" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Blocks/MarginContainer/GridContainer" unique_id=1000139006]
