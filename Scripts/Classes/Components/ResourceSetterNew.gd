@@ -237,6 +237,8 @@ func get_resource(json_file: JSON) -> Resource:
 			Global.particle_override = json.get("particles", -1)
 			Global.extra_music_override = json.get("extra_bgm", "")
 			Global.liquid_override = json.get("liquid", -1)
+			Global.overlay_clouds_override = json.get("overlay_clouds", -1)
+			Global.second_order_override = json.get("second_layer_order", -1)
 	if cache.has(json_file.resource_path) == false and use_cache and not is_variable:
 		cache[json_file.resource_path] = resource
 	

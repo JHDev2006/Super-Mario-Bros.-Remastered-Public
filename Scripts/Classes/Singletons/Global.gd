@@ -26,6 +26,8 @@ var liquid_override := -1
 var particle_override := -1
 var extra_music_override := ""
 var level_metadata := {}
+var overlay_clouds_override := -1
+var second_order_override := -1
 
 signal level_theme_changed
 

@@ -29,6 +29,10 @@ extends Node2D
 	set(value):
 		second_layer_order = value
 		update_visuals()
+	get:
+		if Engine.is_editor_hint() == false && Global.second_order_override > -1:
+			return Global.second_order_override
+		return second_layer
 
 @export var second_layer_offset := Vector2.ZERO:
 	set(value):
@@ -62,6 +66,10 @@ extends Node2D
 	set(value):
 		overlay_clouds = value
 		update_visuals()
+	get:
+		if Engine.is_editor_hint() == false && Global.overlay_clouds_override > -1:
+			return bool(Global.overlay_clouds_override)
+		return overlay_clouds
 
 func set_value(value := 0, value_name := "") -> void:
 	set(value_name, value)
@@ -83,7 +91,7 @@ var sky_scroll_speed := -4.0
 const disco_sfx_threshold := [0.05, 0.5, 0.8]
 
 func set_second_y_offset(value := 0.0) -> void:
-	second_layer_offset.y = -value
+	second_layer_offset.y = 0
 
 func _ready() -> void:
 	if particles == 4:
@@ -200,7 +208,7 @@ func update_visuals() -> void:
 	$PrimaryLayer/Bush.visible = primary_layer == 1
 	
 	$SecondaryLayer.visible = second_layer > 0
-	$SecondaryLayer.scroll_offset = Vector2(80, 64) + second_layer_offset
+	$SecondaryLayer.scroll_offset = Vector2(80, 64)
 	if Engine.is_editor_hint() == false and get_viewport().get_camera_2d() != null:
 		for i in [$PrimaryLayer, $SecondaryLayer, $SkyLayer]:
 			i.screen_offset.x = get_viewport().get_camera_2d().get_screen_center_position().x / i.scroll_scale.x
