@@ -12,5 +12,5 @@
 			"loop": false
 		}
 	},
-	"variations": "default": {"source": "Smoke.png"}
+	"variations": {"default": {"source": "Smoke.png"}}
 }

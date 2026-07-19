@@ -333,8 +333,8 @@ extends CharacterBody2D
 		"RAINBOW_POWERUP_FX": true,        # Determines whether or not the player will play the rainbow effect when powering up.
 		"RAINBOW_FX_SPEED": 15.0,          # Determines the speed of the rainbow effect in other scenarios, measured in cycles/sec
 		"ICE_SPEED_MOD": 1.5,
-		"WALK_SFX": "walk",                # Determines which sound effect to play when walking.
-		"RUN_SFX": "run",                  # Determines which sound effect to play when running.
+		"WALK_SFX": "",                # Determines which sound effect to play when walking.
+		"RUN_SFX": "",                  # Determines which sound effect to play when running.
 		"SKID_SFX": "skid",            # Determines which sound effect to play when skidding.
 		"JUMP_SFX": "big_jump",            # Determines which sound effect to play when jumping.
 		"TRAMPOLINE_SFX": "big_trampoline",          # Determines which sound effect to play when bouncing on a trampoline.
