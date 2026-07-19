@@ -375,16 +375,15 @@ func import_stream(file_path := "", loop_point := -1.0) -> AudioStream:
 		stream = load(file_path)
 	elif file_path.ends_with(".mp3"):
 		stream = AudioStreamMP3.load_from_file(file_path)
+		stream.set_loop(loop_point >= 0)
+		stream.set_loop_offset(loop_point)
 	elif file_path.ends_with(".ogg"):
 		stream = AudioStreamOggVorbis.load_from_file(file_path)
+		stream.set_loop(loop_point >= 0)
+		stream.set_loop_offset(loop_point)
 	elif file_path.ends_with(".wav"):
 		stream = AudioStreamWAV.load_from_file(file_path)
-	if file_path.ends_with(".mp3"):
-		stream.set_loop(loop_point >= 0)
-		stream.set_loop_offset(loop_point)
-	elif file_path.ends_with(".ogg"):
-		stream.set_loop(loop_point >= 0)
-		stream.set_loop_offset(loop_point)
+		stream.loop_begin = loop_point
 	elif file_path.ends_with(".json"):
 		stream = create_stream_from_json(file_path)
 	return stream

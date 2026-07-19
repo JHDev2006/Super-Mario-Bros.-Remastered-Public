@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://byy3k1pdrp77" path="res://Assets/Sprites/Particles/Smoke.png" id="1_tpri6"]
 [ext_resource type="Script" uid="uid://bafdl3y53ly60" path="res://Scripts/Classes/UI/PackAnimatedSprite2D.gd" id="2_x2ehg"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_g3yun"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x2ehg"]
 atlas = ExtResource("1_tpri6")
@@ -59,5 +60,12 @@ metadata/_custom_type_script = "uid://bafdl3y53ly60"
 [node name="Timer" type="Timer" parent="." unique_id=871202933]
 one_shot = true
 autostart = true
+
+[node name="ResourceSetterNew" type="Node" parent="." unique_id=1353613232 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("3_g3yun")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+json_path = "res://Assets/Sprites/Particles/Smoke.json"
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="timeout" from="Timer" to="." method="queue_free"]
