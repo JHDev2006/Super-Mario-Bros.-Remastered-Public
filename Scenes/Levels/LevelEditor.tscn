@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c6pd7cdhx78od" path="res://Assets/Sprites/UI/Tab.png" id="11_i2jbr"]
 [ext_resource type="Texture2D" uid="uid://xsfs2psb84ql" path="res://Assets/Sprites/UI/EditorButtons.png" id="12_i2jbr"]
 [ext_resource type="Texture2D" uid="uid://bgjdnv8n8l1hb" path="res://Assets/Sprites/UI/TabSelected.png" id="12_qebwb"]
+[ext_resource type="Script" uid="uid://bwtenjnqfca6l" path="res://Scripts/Classes/UI/PackButton.gd" id="14_dsr3e"]
 [ext_resource type="Script" uid="uid://c7xreamx2wvdq" path="res://Scripts/Classes/Editor/EditorSelectorScroller.gd" id="20_jc7xg"]
 [ext_resource type="Texture2D" uid="uid://dqi2e7yddiqhy" path="res://Assets/Sprites/Editor/ScrollerIcon.png" id="22_3cjpb"]
 [ext_resource type="Script" uid="uid://c08y0c8163fec" path="res://Scripts/Parts/EntityIdMapper.gd" id="88_biei1"]
@@ -916,7 +917,6 @@ script = ExtResource("9_p4o5x")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TileMenu" type="CanvasLayer" parent="." unique_id=683279179]
-visible = false
 
 [node name="Panel" type="ColorRect" parent="TileMenu" unique_id=625984302]
 texture_filter = 1
@@ -973,7 +973,7 @@ icon = SubResource("AtlasTexture_xde7w")
 title = "EDITOR_MENU_BLUEPRINTS"
 linked_control = NodePath("../../PanelContainer/Blueprints")
 
-[node name="Bindings" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=834950599]
+[node name="Bindings" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=478129053]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -984,8 +984,10 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_qebwb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qebwb")
 icon = SubResource("AtlasTexture_kr3hc")
 icon_alignment = 1
+script = ExtResource("14_dsr3e")
+metadata/_custom_type_script = "uid://bwtenjnqfca6l"
 
-[node name="Save" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=635133480]
+[node name="Save" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=1305437018]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -996,8 +998,10 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_qebwb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qebwb")
 icon = SubResource("AtlasTexture_x027r")
 icon_alignment = 1
+script = ExtResource("14_dsr3e")
+metadata/_custom_type_script = "uid://bwtenjnqfca6l"
 
-[node name="Exit" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=1405931413]
+[node name="Exit" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=1615610558]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -1008,6 +1012,8 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_qebwb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qebwb")
 icon = SubResource("AtlasTexture_numt2")
 icon_alignment = 1
+script = ExtResource("14_dsr3e")
+metadata/_custom_type_script = "uid://bwtenjnqfca6l"
 
 [node name="PanelContainer" type="PanelContainer" parent="TileMenu/MarginContainer/VBoxContainer" unique_id=997442337]
 layout_mode = 2

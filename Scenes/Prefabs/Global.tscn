@@ -30,6 +30,9 @@
 [ext_resource type="StyleBox" uid="uid://cv3vildm3bnc2" path="res://Resources/UI/ScrollBarSlider.tres" id="20_s6b5m"]
 [ext_resource type="StyleBox" uid="uid://bfagahow5b21a" path="res://Resources/UI/ScrollBarBG.tres" id="21_jflqi"]
 [ext_resource type="Script" uid="uid://ci0mnknqe2d7d" path="res://Scripts/Classes/Components/ScreenShaker.gd" id="26_mpjtu"]
+[ext_resource type="StyleBox" uid="uid://dym50k6bgpd2" path="res://Resources/UI/TabSelected.tres" id="27_jflqi"]
+[ext_resource type="Texture2D" uid="uid://dirturk5rw733" path="res://Resources/UI/CheckboxChecked.tres" id="31_s6b5m"]
+[ext_resource type="Texture2D" uid="uid://cdwaxjlcmkks8" path="res://Resources/UI/CheckboxUnchecked.tres" id="32_jflqi"]
 
 [sub_resource type="Shader" id="Shader_m6bur"]
 code = "shader_type canvas_item;
@@ -264,51 +267,6 @@ Volcano = SubResource("AtlasTexture_0jga0")
 Castle = SubResource("Resource_0vgiw")
 metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
-[sub_resource type="GDScript" id="GDScript_30rl1"]
-script/source = "extends Node
-
-@export var panel: StyleBoxTexture = null
-
-@onready var resource_getter := ResourceGetter.new()
-
-@export var texture: Texture = null
-
-func _ready() -> void:
-	update_texture()
-	Global.level_theme_changed.connect(update_texture)
-
-func update_texture() -> void:
-	panel.texture = resource_getter.get_resource(texture)
-"
-
-[sub_resource type="GDScript" id="GDScript_mpjtu"]
-script/source = "extends Node
-
-@export var up_arrow: AtlasTexture = null
-@export var down_arrow: AtlasTexture = null
-
-@export var slider: StyleBoxTexture = null
-@export var bg: StyleBoxTexture = null
-
-@onready var resource_getter := ResourceGetter.new()
-
-func _ready() -> void:
-	update_texture(up_arrow)
-	update_texture(down_arrow)
-	update_texture(slider)
-	update_texture(bg)
-	Global.level_theme_changed.connect(update_texture.bind(up_arrow))
-	Global.level_theme_changed.connect(update_texture.bind(down_arrow))
-	Global.level_theme_changed.connect(update_texture.bind(slider))
-	Global.level_theme_changed.connect(update_texture.bind(bg))
-
-func update_texture(resource: Resource) -> void:
-	if resource is AtlasTexture:
-		resource.atlas = resource_getter.get_resource(resource.atlas)
-	elif resource is StyleBoxTexture:
-		resource.texture = resource_getter.get_resource(resource.texture)
-"
-
 [sub_resource type="GDScript" id="GDScript_l7dvb"]
 script/source = "extends Node
 
@@ -333,6 +291,41 @@ region = Rect2(0, 0, 8, 8)
 shader = ExtResource("2_77asf")
 shader_parameter/shadow_colour = Vector4(1, 1, 1, 1)
 shader_parameter/allow_transparency = true
+
+[sub_resource type="GDScript" id="GDScript_30rl1"]
+script/source = "extends Node
+
+@export var panel: StyleBoxTexture = null
+
+@onready var resource_getter := ResourceGetter.new()
+
+@export var texture: Texture = null
+
+func _ready() -> void:
+	update_texture()
+	Global.level_theme_changed.connect(update_texture)
+
+func update_texture() -> void:
+	panel.texture = resource_getter.get_resource(texture)
+"
+
+[sub_resource type="GDScript" id="GDScript_mpjtu"]
+script/source = "extends Node
+
+@export var resource: Resource = null
+@onready var resource_getter := ResourceGetter.new()
+
+func _ready() -> void:
+	add_child(resource_getter)
+	update_texture(resource)
+	Global.level_theme_changed.connect(update_texture.bind(resource))
+
+func update_texture(resource: Resource) -> void:
+	if resource is AtlasTexture:
+		resource.atlas = resource_getter.get_resource(resource.atlas)
+	elif resource is StyleBoxTexture:
+		resource.texture = resource_getter.get_resource(resource.texture)
+"
 
 [node name="Global" type="Node" unique_id=1897878467]
 process_mode = 3
@@ -525,23 +518,6 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="PanelSetter" type="Node" parent="." unique_id=1039533656]
-script = SubResource("GDScript_30rl1")
-panel = ExtResource("16_l7dvb")
-texture = ExtResource("16_qalov")
-
-[node name="PanelSetter2" type="Node" parent="." unique_id=2047387154]
-script = SubResource("GDScript_30rl1")
-panel = ExtResource("18_yyu8s")
-texture = ExtResource("19_xspbb")
-
-[node name="ScrollbarSetter" type="Node" parent="." unique_id=1968484630]
-script = SubResource("GDScript_mpjtu")
-up_arrow = ExtResource("18_cv2bn")
-down_arrow = ExtResource("19_vfpkh")
-slider = ExtResource("20_s6b5m")
-bg = ExtResource("21_jflqi")
-
 [node name="CursorSetter" type="Node" parent="." unique_id=395644393]
 script = SubResource("GDScript_l7dvb")
 cursor = ExtResource("18_xcxrh")
@@ -650,6 +626,50 @@ size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "EDITOR_LOADING"
 uppercase = true
+
+[node name="UITextureSetters" type="Node" parent="." unique_id=1366647275]
+
+[node name="Panels" type="Node" parent="UITextureSetters" unique_id=695902269]
+
+[node name="PanelSetter" type="Node" parent="UITextureSetters/Panels" unique_id=1039533656]
+script = SubResource("GDScript_30rl1")
+panel = ExtResource("16_l7dvb")
+texture = ExtResource("16_qalov")
+
+[node name="PanelSetter2" type="Node" parent="UITextureSetters/Panels" unique_id=2047387154]
+script = SubResource("GDScript_30rl1")
+panel = ExtResource("18_yyu8s")
+texture = ExtResource("19_xspbb")
+
+[node name="UpArrow" type="Node" parent="UITextureSetters/Panels" unique_id=459072945]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("27_jflqi")
+
+[node name="Scrollbar" type="Node" parent="UITextureSetters" unique_id=216792308]
+
+[node name="UpArrow" type="Node" parent="UITextureSetters/Scrollbar" unique_id=1968484630]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("18_cv2bn")
+
+[node name="DownArrow" type="Node" parent="UITextureSetters/Scrollbar" unique_id=1445256184]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("19_vfpkh")
+
+[node name="Slider" type="Node" parent="UITextureSetters/Scrollbar" unique_id=1248766413]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("20_s6b5m")
+
+[node name="BG" type="Node" parent="UITextureSetters/Scrollbar" unique_id=2110268959]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("21_jflqi")
+
+[node name="Checkbox" type="Node" parent="UITextureSetters" unique_id=838961905]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("31_s6b5m")
+
+[node name="CheckboxUnchecked" type="Node" parent="UITextureSetters" unique_id=377914856]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("32_jflqi")
 
 [connection signal="finished" from="ScoreTally" to="." method="on_score_sfx_finished"]
 [connection signal="finished" from="ScoreTallyEnd" to="." method="on_score_sfx_finished"]

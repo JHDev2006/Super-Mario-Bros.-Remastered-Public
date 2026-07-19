@@ -1,12 +1,13 @@
 [gd_resource type="Theme" format=3 uid="uid://dtn507x2b5de7"]
 
 [ext_resource type="FontVariation" uid="uid://bl7sbw4nx3l1t" path="res://Resources/ThemedResources/FontMain.tres" id="1_kpcpn"]
-[ext_resource type="Texture2D" uid="uid://7qtdxl2cjxeh" path="res://Assets/Sprites/UI/Checkbox.png" id="1_rioqa"]
 [ext_resource type="Texture2D" uid="uid://dp4b0cpisp5cs" path="res://Assets/Sprites/UI/Arrow.png" id="1_vmxg5"]
 [ext_resource type="Texture2D" uid="uid://b4vej1pkyqomg" path="res://Assets/Sprites/UI/PanelHover.png" id="2_2ratw"]
 [ext_resource type="Texture2D" uid="uid://bnv2ocqgws3p7" path="res://Assets/Sprites/UI/Panel.png" id="2_rij67"]
 [ext_resource type="Texture2D" uid="uid://da1j4turmb4rt" path="res://Assets/Sprites/UI/EditorOptionButtonIcon.png" id="3_dbcfw"]
 [ext_resource type="Texture2D" uid="uid://bhgjvnslkt143" path="res://Assets/Sprites/UI/PanelSelected.png" id="3_eltnc"]
+[ext_resource type="Texture2D" uid="uid://dirturk5rw733" path="res://Resources/UI/CheckboxChecked.tres" id="4_u3www"]
+[ext_resource type="Texture2D" uid="uid://cdwaxjlcmkks8" path="res://Resources/UI/CheckboxUnchecked.tres" id="5_7t41e"]
 [ext_resource type="Texture2D" uid="uid://dktb2ljmou31p" path="res://Resources/UI/Cursor.tres" id="6_f6qpy"]
 [ext_resource type="Texture2D" uid="uid://m14upykpri8v" path="res://Assets/Sprites/UI/SpinBoxArrows.png" id="7_f6qpy"]
 [ext_resource type="Texture2D" uid="uid://ech7ab0klhel" path="res://Resources/UI/ScrollBarUpArrow.tres" id="10_pbjdw"]
@@ -44,14 +45,6 @@ texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f6qpy"]
-atlas = ExtResource("1_rioqa")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wytm8"]
-atlas = ExtResource("1_rioqa")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eltnc"]
 
@@ -188,10 +181,10 @@ Button/styles/focus = SubResource("StyleBoxEmpty_2ratw")
 Button/styles/hover = SubResource("StyleBoxTexture_pbjdw")
 Button/styles/normal = SubResource("StyleBoxTexture_u3www")
 Button/styles/pressed = SubResource("StyleBoxTexture_7t41e")
-CheckBox/icons/checked = SubResource("AtlasTexture_f6qpy")
-CheckBox/icons/radio_checked = SubResource("AtlasTexture_f6qpy")
-CheckBox/icons/radio_unchecked = SubResource("AtlasTexture_wytm8")
-CheckBox/icons/unchecked = SubResource("AtlasTexture_wytm8")
+CheckBox/icons/checked = ExtResource("4_u3www")
+CheckBox/icons/radio_checked = ExtResource("4_u3www")
+CheckBox/icons/radio_unchecked = ExtResource("5_7t41e")
+CheckBox/icons/unchecked = ExtResource("5_7t41e")
 CheckBox/styles/disabled = SubResource("StyleBoxEmpty_eltnc")
 CheckBox/styles/focus = SubResource("StyleBoxEmpty_f6qpy")
 CheckBox/styles/hover = SubResource("StyleBoxEmpty_w50ow")

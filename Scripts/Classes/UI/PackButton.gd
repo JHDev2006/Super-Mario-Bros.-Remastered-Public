@@ -1,12 +1,12 @@
-class_name PackTextureRect
-extends TextureRect
+class_name PackButton
+extends Button
 
-@export var use_cache := true
 @onready var resource_getter = ResourceGetter.new()
 
 func _ready() -> void:
+	add_child(resource_getter)
 	update()
 	Global.level_theme_changed.connect(update)
 
 func update() -> void:
-	texture = resource_getter.get_resource(texture, use_cache)
+	icon = resource_getter.get_resource(icon)
