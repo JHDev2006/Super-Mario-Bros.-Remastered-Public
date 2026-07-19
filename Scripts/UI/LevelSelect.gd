@@ -14,14 +14,14 @@ var starting_value := -1
 
 const LEVEL_ICON_JSON_PATH := "res://Assets/Sprites/UI/LevelIcons/LevelIcons.json"
 
-const LEVEL_ICONS := {
+var LEVEL_ICONS := {
 	"SMB1": SMB1_ICONS,
 	"SMBLL": SMBLL_ICONS,
 	"SMBS": SMBS_ICONS,
 	"SMBANN": SMBANN_ICONS
 }
 
-const SMB1_ICONS := [
+var SMB1_ICONS := [
 	[
 		["day", [0,0]],["day", [0,4]],["day", [1,0]],["day", [1,4]],
 	],
@@ -48,7 +48,7 @@ const SMB1_ICONS := [
 	],
 ]
 
-const SMBLL_ICONS := [
+var SMBLL_ICONS := [
 	[
 		["day", [0,2]],["day", [0,7]],["day", [1,0]],["day", [1,4]],
 	],
@@ -90,7 +90,7 @@ const SMBLL_ICONS := [
 	],
 ]
 
-const SMBS_ICONS := [
+var SMBS_ICONS := [
 	[
 		["day", [0,1]],["day", [0,4]],["day", [1,0]],["day", [1,6]],
 	],
@@ -117,7 +117,7 @@ const SMBS_ICONS := [
 	],
 ]
 
-const SMBANN_ICONS := [
+var SMBANN_ICONS := [
 	[
 		["night", [0,0]],["night", [0,4]],["night", [1,0]],["night", [1,4]],
 	],
@@ -144,6 +144,9 @@ const SMBANN_ICONS := [
 	],
 ]
 
+@export var day_level_icons: Texture = null
+@export var night_level_icons: Texture = null
+
 const NUMBER_Y := [
 	"Overworld",
 	"Underground",
@@ -153,10 +156,7 @@ const NUMBER_Y := [
 	"Volcano"
 ]
 
-@onready var resource_getter := ResourceGetter.new()
-
 func _ready() -> void:
-	add_child(resource_getter)
 	for i in %SlotContainer.get_children():
 		i.focus_entered.connect(slot_selected.bind(i.get_index()))
 	for i in get_tree().get_nodes_in_group("Particles"):
@@ -186,19 +186,16 @@ func open() -> void:
 
 var visited_levels := "0000"
 
-const ICON_DAY := ("res://Assets/Sprites/UI/LevelIcons/DayLevelIcons.png")
-const ICON_NIGHT := ("res://Assets/Sprites/UI/LevelIcons/NightLevelIcons.png")
 const ICON_LOCKED := ("res://Assets/Sprites/UI/LevelIcons/LockedLevelIcon.png")
 var icon_size := [56, 32]
 
 func setup_level_icon_data() -> void:
-	var json = JSONParser.parse_to_dict(LEVEL_ICON_JSON_PATH)
+	var json = JSONParser.parse_to_dict(ResourceSetter.get_pure_resource_path(LEVEL_ICON_JSON_PATH))
 	icon_size = json.icon_size
+	print(json)
 	for key in json.icon_data:
-		if get(key) is Dictionary and json.icon_data[key] is Dictionary:
-			Global.merge_dict(get(key), json.icon_data[key])
-		else:
-			set(key, json.icon_data[key])
+		set(key, json.icon_data[key])
+	print(SMB1_ICONS)
 
 func setup_visuals() -> void:
 	%MarathonBits.visible = Global.current_game_mode == Global.GameMode.MARATHON_PRACTICE
@@ -210,9 +207,8 @@ func setup_visuals() -> void:
 		var level_theme = Global.LEVEL_THEMES[Global.current_campaign][Global.world_num - 1]
 		visited_levels = (SaveManager.visited_levels.substr((Global.world_num - 1) * 4, 4))
 		var level_visited = SaveManager.visited_levels[SaveManager.get_level_idx(Global.world_num, idx + 1)] != "0" or Global.debug_mode
-		var cur_level = LEVEL_ICONS[Global.current_campaign][Global.world_num - 1][idx]
-		var cur_icon = ICON_LOCKED if not level_visited else ICON_NIGHT if cur_level[0] == "night" else ICON_DAY
-		cur_icon = resource_getter.get_resource(load(cur_icon))
+		var cur_level = {"SMB1": SMB1_ICONS,"SMBLL": SMBLL_ICONS,"SMBS": SMBS_ICONS,"SMBANN": SMBANN_ICONS}[Global.current_campaign][Global.world_num - 1][idx]
+		var cur_icon = ICON_LOCKED if not level_visited else night_level_icons if cur_level[0] == "night" else day_level_icons
 		var grid_size = [cur_icon.get_width() - icon_size[0], cur_icon.get_height() - icon_size[1]]
 		var clamp_icon = clamp([cur_level[1][0] * icon_size[0], cur_level[1][1] * icon_size[1]], [0, 0], grid_size)
 		i.get_node("Icon").texture = cur_icon

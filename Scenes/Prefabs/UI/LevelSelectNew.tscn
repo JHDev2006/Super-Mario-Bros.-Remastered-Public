@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ccqgekbac45f8" path="res://Assets/Sprites/UI/YoshiEggs.png" id="11_sk22j"]
 [ext_resource type="Texture2D" uid="uid://bgfsdyjhoies2" path="res://Assets/Sprites/UI/ScoreMedal.png" id="12_asr3n"]
 [ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="14_ywryf"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="16_sk22j"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_d8v6d"]
 color = Color(1, 1, 1, 1)
@@ -921,6 +922,7 @@ process_material = SubResource("ParticleProcessMaterial_gxb4q")
 layout_mode = 2
 
 [node name="Cursor" type="Control" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4" unique_id=1764243599]
+visible = false
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
@@ -1114,6 +1116,22 @@ metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 script = ExtResource("5_x05vu")
 labels = [NodePath("../Panel/MarginContainer/VBoxContainer/Title"), NodePath("../Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor/Label"), NodePath("../Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot2/Cursor/Label"), NodePath("../Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot3/Cursor/Label"), NodePath("../Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot4/Cursor/Label"), NodePath("../Panel/MarginContainer/VBoxContainer/MarathonBits/Label"), NodePath("../Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer/FullRun/FullRunPB"), NodePath("../Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer/Warp/WarpRunPB")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="ResourceSetterNew" type="Node" parent="." unique_id=1830920655 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("16_sk22j")
+node_to_affect = NodePath("..")
+property_name = "day_level_icons"
+mode = 1
+json_path = "res://Assets/Sprites/UI/LevelIcons/DayLevelIcons.json"
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ResourceSetterNew2" type="Node" parent="." unique_id=1747809082 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("16_sk22j")
+node_to_affect = NodePath("..")
+property_name = "night_level_icons"
+mode = 1
+json_path = "res://Assets/Sprites/UI/LevelIcons/NightLevelIcons.json"
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="focus_entered" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor" method="show"]
 [connection signal="focus_exited" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1" to="Panel/MarginContainer/VBoxContainer/HBoxContainer/ScrollContainer/SlotContainer/Slot1/Cursor" method="hide"]

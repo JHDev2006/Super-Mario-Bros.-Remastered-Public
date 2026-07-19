@@ -179,7 +179,6 @@ func get_resource(json_file: JSON) -> Resource:
 			if json.has("animation_overrides"):
 				for i in json.get("animation_overrides").keys():
 					animation_json[i] = json.get("animation_overrides")[i]
-			print(source_resource_path)
 			resource = load_image_from_path(source_resource_path)
 			if json.has("rect"):
 				if (json["rect"].size() == 4):
@@ -232,6 +231,7 @@ func get_resource(json_file: JSON) -> Resource:
 			Global.time_override = json.get("time", "")
 			Global.music_override = json.get("music", "")
 			Global.primary_bg_override = json.get("primary_bg", -1)
+			print(json)
 			Global.level_metadata = json.get("metadata", {})
 			Global.secondary_bg_override = json.get("secondary_bg", -1)
 			Global.particle_override = json.get("particles", -1)
@@ -391,6 +391,7 @@ func get_variation_json(json := {}) -> Dictionary:
 			json = get_variation_json(json[world])
 	
 	var level_string = "Level" + str(Global.level_num)
+	print([level_string, source_json])
 	if json.has(level_string) == false:
 		level_string = "Level1"
 	if json.has(level_string):
@@ -488,6 +489,7 @@ func get_variation_json(json := {}) -> Dictionary:
 		for i in meta_data_keys:
 			var meta_name = i.get_slice(":", 1)
 			var meta_value = str(Global.level_metadata.get(meta_name, "Default"))
+			print([meta_name, meta_value])
 			var meta_json = null
 			if json[i].has(meta_value):
 				meta_json = json[i].get(meta_value)
