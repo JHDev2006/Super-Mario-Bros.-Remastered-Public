@@ -1114,7 +1114,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_7l5ko")
-region_rect = Rect2(24, 0, 24, 23)
+region_rect = Rect2(24, 0, 24, 24)
 script = ExtResource("6_yvj4y")
 metadata/_custom_type_script = "uid://xem6lai3ufyj"
 
