@@ -19,12 +19,16 @@
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="16_l7dvb"]
 [ext_resource type="Texture2D" uid="uid://bnv2ocqgws3p7" path="res://Assets/Sprites/UI/Panel.png" id="16_qalov"]
 [ext_resource type="Script" uid="uid://ctsjagoa5t33f" path="res://Scripts/Parts/FontUpdater.gd" id="18_1la0o"]
+[ext_resource type="Texture2D" uid="uid://ech7ab0klhel" path="res://Resources/UI/ScrollBarUpArrow.tres" id="18_cv2bn"]
 [ext_resource type="Texture2D" uid="uid://dktb2ljmou31p" path="res://Resources/UI/Cursor.tres" id="18_xcxrh"]
 [ext_resource type="StyleBox" uid="uid://dlbdmqmnl30sq" path="res://Resources/UI/PanelSelected.tres" id="18_yyu8s"]
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="19_3l3ph"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="19_l7dvb"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="19_okfpr"]
+[ext_resource type="Texture2D" uid="uid://dbba7rin1sl6e" path="res://Resources/UI/ScrollBarDownArrow.tres" id="19_vfpkh"]
 [ext_resource type="Texture2D" uid="uid://bhgjvnslkt143" path="res://Assets/Sprites/UI/PanelSelected.png" id="19_xspbb"]
+[ext_resource type="StyleBox" uid="uid://cv3vildm3bnc2" path="res://Resources/UI/ScrollBarSlider.tres" id="20_s6b5m"]
+[ext_resource type="StyleBox" uid="uid://bfagahow5b21a" path="res://Resources/UI/ScrollBarBG.tres" id="21_jflqi"]
 [ext_resource type="Script" uid="uid://ci0mnknqe2d7d" path="res://Scripts/Classes/Components/ScreenShaker.gd" id="26_mpjtu"]
 
 [sub_resource type="Shader" id="Shader_m6bur"]
@@ -277,6 +281,34 @@ func update_texture() -> void:
 	panel.texture = resource_getter.get_resource(texture)
 "
 
+[sub_resource type="GDScript" id="GDScript_mpjtu"]
+script/source = "extends Node
+
+@export var up_arrow: AtlasTexture = null
+@export var down_arrow: AtlasTexture = null
+
+@export var slider: StyleBoxTexture = null
+@export var bg: StyleBoxTexture = null
+
+@onready var resource_getter := ResourceGetter.new()
+
+func _ready() -> void:
+	update_texture(up_arrow)
+	update_texture(down_arrow)
+	update_texture(slider)
+	update_texture(bg)
+	Global.level_theme_changed.connect(update_texture.bind(up_arrow))
+	Global.level_theme_changed.connect(update_texture.bind(down_arrow))
+	Global.level_theme_changed.connect(update_texture.bind(slider))
+	Global.level_theme_changed.connect(update_texture.bind(bg))
+
+func update_texture(resource: Resource) -> void:
+	if resource is AtlasTexture:
+		resource.atlas = resource_getter.get_resource(resource.atlas)
+	elif resource is StyleBoxTexture:
+		resource.texture = resource_getter.get_resource(resource.texture)
+"
+
 [sub_resource type="GDScript" id="GDScript_l7dvb"]
 script/source = "extends Node
 
@@ -502,6 +534,13 @@ texture = ExtResource("16_qalov")
 script = SubResource("GDScript_30rl1")
 panel = ExtResource("18_yyu8s")
 texture = ExtResource("19_xspbb")
+
+[node name="ScrollbarSetter" type="Node" parent="." unique_id=1968484630]
+script = SubResource("GDScript_mpjtu")
+up_arrow = ExtResource("18_cv2bn")
+down_arrow = ExtResource("19_vfpkh")
+slider = ExtResource("20_s6b5m")
+bg = ExtResource("21_jflqi")
 
 [node name="CursorSetter" type="Node" parent="." unique_id=395644393]
 script = SubResource("GDScript_l7dvb")

@@ -179,7 +179,7 @@ func get_resource(json_file: JSON) -> Resource:
 			if json.has("animation_overrides"):
 				for i in json.get("animation_overrides").keys():
 					animation_json[i] = json.get("animation_overrides")[i]
-			
+			print(source_resource_path)
 			resource = load_image_from_path(source_resource_path)
 			if json.has("rect"):
 				if (json["rect"].size() == 4):

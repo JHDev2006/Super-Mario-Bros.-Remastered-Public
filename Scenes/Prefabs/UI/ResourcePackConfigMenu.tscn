@@ -65,7 +65,6 @@ theme_override_styles/separator = SubResource("StyleBoxLine_n21uo")
 
 [node name="Description" type="VBoxContainer" parent="Panel/VBoxContainer" unique_id=990537872]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer/Description" unique_id=1861755037]

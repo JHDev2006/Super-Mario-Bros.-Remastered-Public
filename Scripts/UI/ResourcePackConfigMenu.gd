@@ -1,7 +1,6 @@
 extends Control
 
 var config_json := {}
-const RESOURCE_PACK_CONFIG_OPTION_NODE = preload("uid://c5ea03ob6ncq7")
 
 signal closed
 
@@ -16,6 +15,7 @@ func open() -> void:
 	clear_options()
 	spawn_options()
 	show()
+	%Options.active = true
 	option_highlighted(%Options.get_child(1))
 	await get_tree().process_frame
 	%Options.active = true
@@ -23,7 +23,7 @@ func open() -> void:
 
 func clear_options() -> void:
 	for i in %Options.options:
-		i.queue_free()
+		i.free()
 	%Options.options.clear()
 
 func _process(_delta: float) -> void:
@@ -32,7 +32,7 @@ func _process(_delta: float) -> void:
 
 func spawn_options() -> void:
 	for i in config_json.options:
-		var node: PackConfigOption = RESOURCE_PACK_CONFIG_OPTION_NODE.instantiate()
+		var node: PackConfigOption = load("res://Scenes/Parts/ResourcePackConfigOptionNode.tscn").instantiate()
 		node.config_name = i
 		if config_json.options[i] is bool:
 			node.values = ["SETTING_OFF", "SETTING_ON"]
@@ -40,7 +40,8 @@ func spawn_options() -> void:
 			node.is_bool = true
 		else:
 			node.values = config_json.value_keys[i]
-			node.selected_index = config_json.value_keys[i].find(config_json.options[i])
+			var val = config_json.value_keys[i].find(config_json.options[i])
+			node.selected_index = val
 		%Options.add_child(node)
 		node.value_changed.connect(value_changed)
 		node.focus_entered.connect(option_highlighted.bind(node))
@@ -72,8 +73,9 @@ func option_highlighted(option: PackConfigOption) -> void:
 	%Description.hide()
 	if config_json.has("option_descs"):
 		if config_json.option_descs.has(option.config_name):
-			%Description.show()
 			if config_json.option_descs[option.config_name] is Array:
-				%DescText.text = config_json.option_descs[option.config_name][option.selected_index]
+				%DescText.text = str(config_json.option_descs[option.config_name][option.selected_index])
 			elif config_json.option_descs[option.config_name] is String:
-				%DescText.text = config_json.option_descs[option.config_name]
+				%DescText.text = str(config_json.option_descs[option.config_name])
+		%Description.show.call_deferred()
+	print("Set")
