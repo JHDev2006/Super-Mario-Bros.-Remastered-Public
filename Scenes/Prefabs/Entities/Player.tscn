@@ -726,6 +726,7 @@ debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 
 [node name="LavaDetect" type="Area2D" parent="." unique_id=272558444]
+position = Vector2(0, 1)
 collision_layer = 0
 collision_mask = 128
 
@@ -736,6 +737,7 @@ debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 
 [node name="PoisonDetect" type="Area2D" parent="." unique_id=949078937]
+position = Vector2(0, 1)
 collision_layer = 0
 collision_mask = 256
 
