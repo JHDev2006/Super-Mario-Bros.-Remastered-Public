@@ -2385,7 +2385,6 @@ script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Github" type="Control" parent="Labels" unique_id=1714294472]
-visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -2464,6 +2463,7 @@ script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label4" type="Label" parent="Labels/Github/Label3" unique_id=1168154163]
+visible = false
 layout_mode = 0
 offset_left = -40.0
 offset_top = 56.0
@@ -2541,6 +2541,29 @@ text = "skyanultra"
 uppercase = true
 
 [node name="TextureRect" type="TextureRect" parent="Labels/Github/Label3/Label7" unique_id=1284052703]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_i07m6")
+stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="Label25" type="Label" parent="Labels/Github/Label3" unique_id=1070078399]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 56.0
+offset_right = 48.0
+offset_bottom = 72.0
+text = "DawnLR"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Github/Label3/Label25" unique_id=193627832]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -3209,4 +3232,3 @@ labels = [NodePath("../Skip")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [connection signal="finished" from="Music" to="." method="exit"]
-[connection signal="updated" from="Music/ResourceSetterNew" to="Music" method="play"]

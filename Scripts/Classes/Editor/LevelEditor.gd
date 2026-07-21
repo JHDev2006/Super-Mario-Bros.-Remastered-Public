@@ -850,6 +850,7 @@ func replace_area(top_corner := Vector2i.ZERO, layer_num := current_layer, area 
 		var true_target_position = top_corner + Vector2i(int(decode[2]), int(decode[3]))
 		var source = entity_tiles[layer_num][true_source_position]
 		source.get_node("SignalExposer").connections.append([layer_num, true_target_position])
+		source.get_node("SignalExposer").connect_pre_existing_signals()
 
 func save_area(top_corner := Vector2i.ZERO, select_start := Vector2i.ZERO, select_end := Vector2i.ZERO, layer_num := current_layer) -> Dictionary:
 	var dict := {"Tiles": "", "Entities": "", "Connections": "", "Empty": "", "Size": "0,0"}

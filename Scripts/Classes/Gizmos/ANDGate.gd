@@ -30,6 +30,7 @@ func input_added() -> void:
 	update.call_deferred()
 
 func update() -> void:
+	print([total_inputs, $SignalExposer.total_inputs])
 	total_inputs = clamp(total_inputs, 0, $SignalExposer.total_inputs)
 	var test_condition = get_condition()
 	if test_condition != condition_filled:
@@ -47,7 +48,7 @@ func update() -> void:
 func get_condition() -> bool:
 	match type:
 		0:
-			return total_inputs >= $SignalExposer.total_inputs
+			return total_inputs >= $SignalExposer.total_inputs and total_inputs > 0
 		1:
 			return total_inputs > 0
 		2:

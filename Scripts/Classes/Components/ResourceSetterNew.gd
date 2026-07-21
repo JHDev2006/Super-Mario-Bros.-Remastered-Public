@@ -231,7 +231,6 @@ func get_resource(json_file: JSON) -> Resource:
 			Global.time_override = json.get("time", "")
 			Global.music_override = json.get("music", "")
 			Global.primary_bg_override = json.get("primary_bg", -1)
-			print(json)
 			Global.level_metadata = json.get("metadata", {})
 			Global.secondary_bg_override = json.get("secondary_bg", -1)
 			Global.particle_override = json.get("particles", -1)
@@ -488,7 +487,6 @@ func get_variation_json(json := {}) -> Dictionary:
 		for i in meta_data_keys:
 			var meta_name = i.get_slice(":", 1)
 			var meta_value = str(Global.level_metadata.get(meta_name, "Default"))
-			print([meta_name, meta_value])
 			var meta_json = null
 			if json[i].has(meta_value):
 				meta_json = json[i].get(meta_value)
