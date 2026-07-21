@@ -573,22 +573,28 @@ func load_image_from_path(path := "") -> Texture2D:
 	image.load(path)
 	return ImageTexture.create_from_image(image)
 
-func load_audio_from_path(path := "", loop := 0.0) -> AudioStream:
+func load_audio_from_path(path := "", loop := -1.0) -> AudioStream:
 	var stream = null
+	# Importing
 	if path.contains(".bgm"):
 		stream = AudioManager.generate_interactive_stream(JSON.parse_string(FileAccess.get_file_as_string(path)))
 	elif path.contains("res://"):
 		return load(path)
-	if path.contains(".wav"):
-		stream = AudioStreamWAV.load_from_file(path)
 	elif path.contains(".mp3"):
 		stream = AudioStreamMP3.load_from_file(path)
+	elif path.contains(".ogg"):
+		stream = AudioStreamOggVorbis.load_from_file(path)
+	elif path.contains(".wav"):
+		stream = AudioStreamWAV.load_from_file(path)
+	
+	if path.contains(".mp3"):
 		stream.set_loop(loop >= 0)
 		stream.set_loop_offset(loop)
 	elif path.contains(".ogg"):
-		stream = AudioStreamOggVorbis.load_from_file(path)
 		stream.set_loop(loop >= 0)
 		stream.set_loop_offset(loop)
+	elif path.contains(".wav"):
+		stream.loop_begin = loop
 	return stream
 
 func sync_metadata() -> void:
