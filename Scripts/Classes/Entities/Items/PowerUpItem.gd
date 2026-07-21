@@ -32,7 +32,7 @@ func on_area_entered(area: Area2D) -> void:
 func block_bounce_up(block: Node2D) -> void:
 	if rising: return
 	direction = -sign(block.global_position.x - global_position.x + 0.1)
-	velocity.y = -200
+	velocity.y = -160
 
 func block_dispense_tween() -> void:
 	rising = true
