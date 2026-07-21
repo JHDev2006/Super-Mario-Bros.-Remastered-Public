@@ -318,7 +318,8 @@ disabled = true
 [node name="Hammer" type="AnimatedSprite2D" parent="." unique_id=1437707171]
 visible = false
 show_behind_parent = true
-position = Vector2(-16, -32)
+position = Vector2(-17.6, -35.800003)
+scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_exf4b")
 animation = &"Hold"
 script = ExtResource("4_2qn7a")
@@ -385,6 +386,7 @@ metadata/_custom_type_script = "uid://ba18grqjixded"
 [connection signal="player_stomped_below" from="HammerPlayerDetection" to="." method="damage_player"]
 [connection signal="player_stomped_on" from="HammerPlayerDetection" to="." method="damage_player"]
 [connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="play_music" flags=6]
+[connection signal="modifier_applied" from="EditorPropertyExposer" to="." method="on_modifiers_changed"]
 [connection signal="moving_shell_entered" from="ShellDetection" to="ShellDetection" method="destroy_shell"]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="fireball_hit" unbinds=1]
 [connection signal="hammer_player_hit" from="EnemyPlayerDetection" to="." method="die_from_hammer"]
