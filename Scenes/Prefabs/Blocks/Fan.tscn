@@ -48,7 +48,7 @@ animations = [{
 size = Vector2(16, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qr7a"]
-size = Vector2(256, 36)
+size = Vector2(256, 44)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wo6ri"]
 particles_animation = true
