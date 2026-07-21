@@ -864,7 +864,7 @@ func camera_make_current() -> void:
 	camera.make_current()
 	
 func can_fire_projectile():
-	return (not cooldown) and ((projectile_amount < physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) or physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) < 0))
+	return (not cooldown) and (not crouching) and ((projectile_amount < physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) or physics_params("MAX_PROJ_COUNT", POWER_PARAMETERS) < 0))
 
 func play_animation(animation_name := "", force := false) -> void:
 	if sprite.sprite_frames == null: return
