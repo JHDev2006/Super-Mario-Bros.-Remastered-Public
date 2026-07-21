@@ -1426,7 +1426,7 @@ func power_up_animation(new_power_state := "") -> void:
 	
 	var hitbox_changed = new_state.power_tier != old_state.power_tier
 	var shrinking = hitbox_changed and (new_state.power_tier < old_state.power_tier)
-	var can_powerup_jump = Global.player_action_pressed("jump", player_id) == false
+	var can_powerup_jump = !shrinking and Global.player_action_pressed("jump", player_id) == false
 	var anim_name := ""
 	if old_state.state_name != "Small" and new_power_state != "Small":
 		if %Sprite.sprite_frames.has_animation(new_power_state + "Grow"): # SkyanUltra: Optional check for animations for going from Big to Fire-equivalent power states.
