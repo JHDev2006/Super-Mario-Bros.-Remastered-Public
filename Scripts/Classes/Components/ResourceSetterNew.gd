@@ -635,12 +635,23 @@ func log_warning(msg := "", timer := 10) -> void:
 func set_material(blend_mode := "mix") -> void:
 	if node_to_affect is not CanvasItem or node_to_affect.material is ShaderMaterial:
 		return
-	if blend_mode != "mix":
+	var particle_animation := false
+	if node_to_affect.material is CanvasItemMaterial:
+		node_to_affect.material.blend_mode = {
+			"mix": 0,
+			"add": 1,
+			"sub": 2,
+			"mult": 3
+		}[blend_mode]
+	elif blend_mode != "mix":
 		const MATERIALS := {
 			"add": "res://Resources/Materials/Add.tres",
 			"mult": "res://Resources/Materials/Mult.tres",
 			"sub": "res://Resources/Materials/Sub.tres",
 		}
 		node_to_affect.material = load(MATERIALS[blend_mode])
-	else:
-		node_to_affect.material = null
+		node_to_affect.material.set_particles_animation(particle_animation)
+	elif node_to_affect.material != null:
+		if node_to_affect.material.resource_path.has("res://"):
+			node_to_affect.material = null
+		
