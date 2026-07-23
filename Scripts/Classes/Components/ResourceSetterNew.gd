@@ -26,6 +26,7 @@ enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW, FONT, THEME}
 @export var sync: Array[ResourceSetterNew] = []
 
 static var cache := {}
+static var material_cache := {}
 static var property_cache := {}
 static var active_flags := []
 static var sequences := {}
@@ -72,7 +73,7 @@ func update_resource() -> void:
 		active_flags.clear()
 		property_cache.clear()
 	if node_to_affect != null:
-		var json = load(json_path)
+		var json: JSON = load(json_path)
 		# DawnLR: Load backup if the json path doesn't return a file.
 		if (json == null):
 			json = load(backup_json_path)
@@ -94,6 +95,8 @@ func get_resource(json_file: JSON) -> Resource:
 		log_error("JSON file not found. Missing for Node: %s" % str(scene_name))
 		return
 	if cache.has(json_file.resource_path) and use_cache and force_properties.is_empty():
+		if material_cache.has(json_file.resource_path):
+			set_material(material_cache[json_file.resource_path])
 		if property_cache.has(json_file.resource_path):
 			apply_properties(property_cache[json_file.resource_path])
 		return cache[json_file.resource_path]
@@ -238,6 +241,17 @@ func get_resource(json_file: JSON) -> Resource:
 			Global.liquid_override = json.get("liquid", -1)
 			Global.overlay_clouds_override = json.get("overlay_clouds", -1)
 			Global.second_order_override = json.get("second_layer_order", -1)
+	
+	if mode in [ResourceMode.TEXTURE, ResourceMode.SPRITE_FRAMES]:
+		var blend_mode := "mix"
+		if json.has("blend"):
+			blend_mode = json["blend"]
+		elif source_json.has("blend"):
+			blend_mode = source_json["blend"]
+		if use_cache and not is_variable:
+			material_cache[json_file.resource_path] = blend_mode
+		set_material(blend_mode)
+	
 	if cache.has(json_file.resource_path) == false and use_cache and not is_variable:
 		cache[json_file.resource_path] = resource
 	
@@ -560,6 +574,7 @@ static func clear_cache() -> void:
 		if cache[i] == null:
 			cache.erase(i)
 	cache.clear()
+	material_cache.clear()
 	active_flags.clear()
 	property_cache.clear()
 	sequences.clear()
@@ -616,3 +631,27 @@ func log_error(msg := "", can_spam := true, timer := 10) -> void:
 func log_warning(msg := "", timer := 10) -> void:
 	if surpress_warnings == false:
 		Global.log_warning(msg, timer)
+
+func set_material(blend_mode := "mix") -> void:
+	if node_to_affect is not CanvasItem or node_to_affect.material is ShaderMaterial:
+		return
+	var particle_animation := false
+	if node_to_affect.material is CanvasItemMaterial:
+		node_to_affect.material.blend_mode = {
+			"mix": 0,
+			"add": 1,
+			"sub": 2,
+			"mult": 3
+		}[blend_mode]
+	elif blend_mode != "mix":
+		const MATERIALS := {
+			"add": "res://Resources/Materials/Add.tres",
+			"mult": "res://Resources/Materials/Mult.tres",
+			"sub": "res://Resources/Materials/Sub.tres",
+		}
+		node_to_affect.material = load(MATERIALS[blend_mode])
+		node_to_affect.material.set_particles_animation(particle_animation)
+	elif node_to_affect.material != null:
+		if node_to_affect.material.resource_path.has("res://"):
+			node_to_affect.material = null
+		
