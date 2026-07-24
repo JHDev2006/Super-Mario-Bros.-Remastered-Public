@@ -92,7 +92,7 @@ func get_resource(json_file: JSON) -> Resource:
 		var scene_name = owner.scene_file_path.get_file().get_basename()
 		
 		# DawnLR: Is this even possible? Like, I know I managed to do it once, but it's really hard to pull off.
-		log_error("JSON file not found. Missing for Node: %s" % str(scene_name))
+		log_error("JSON file not found. Missing for Node: %s" % str(scene_name) + " Check the log.")
 		return
 	if cache.has(json_file.resource_path) and use_cache and force_properties.is_empty():
 		if material_cache.has(json_file.resource_path):
