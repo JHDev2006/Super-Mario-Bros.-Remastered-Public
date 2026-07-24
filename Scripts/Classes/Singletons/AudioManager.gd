@@ -388,11 +388,9 @@ func import_stream(file_path := "", loop_point := -1.0) -> AudioStream:
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
 	elif file_path.ends_with(".ogg"):
-		stream = AudioStreamOggVorbis.load_from_file(file_path)
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
 	elif file_path.ends_with(".wav"):
-		stream = AudioStreamWAV.load_from_file(file_path)
 		stream.loop_begin = loop_point
 	return stream
 	
