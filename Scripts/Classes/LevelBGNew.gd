@@ -32,7 +32,7 @@ extends Node2D
 	get:
 		if Engine.is_editor_hint() == false && Global.second_order_override > -1:
 			return Global.second_order_override
-		return second_layer
+		return second_layer_order
 
 @export var second_layer_offset := Vector2.ZERO:
 	set(value):
