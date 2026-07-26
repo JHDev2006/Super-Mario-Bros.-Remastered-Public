@@ -232,6 +232,7 @@ func get_resource(json_file: JSON) -> Resource:
 				resource = load(source_resource_path)
 			resource.set_meta("base_path", source_resource_path)
 		ResourceMode.THEME:
+			print([json, get_variation_path()])
 			Global.theme_override = json.get("theme", "")
 			Global.time_override = json.get("time", "")
 			Global.music_override = json.get("music", "")
