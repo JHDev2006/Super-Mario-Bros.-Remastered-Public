@@ -87,6 +87,7 @@ var top_edge_enabled := true
 var can_mushroom_tint := true
 
 var sky_scroll_speed := -4.0
+var cloud_scroll := [-12, 0]
 
 const disco_sfx_threshold := [0.05, 0.5, 0.8]
 
@@ -204,6 +205,7 @@ func update_visuals() -> void:
 	$OverlayLayer/Particles.visible = (Settings.file.visuals.bg_particles == 1 or Global.particle_override > 0)
 	$OverlayLayer/Particles/LavaEmber.visible = particles == 3
 	$SkyLayer.autoscroll.x = sky_scroll_speed
+	$OverlayLayer/CloudLayer.autoscroll = Vector2(cloud_scroll[0], cloud_scroll[1])
 	$PrimaryLayer/Hills.visible = primary_layer == 0
 	$PrimaryLayer/Bush.visible = primary_layer == 1
 	
