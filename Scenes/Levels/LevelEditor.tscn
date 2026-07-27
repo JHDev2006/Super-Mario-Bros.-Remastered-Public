@@ -7031,7 +7031,8 @@ layout_mode = 2
 text = "..."
 uppercase = true
 
-[node name="Description" type="Label" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer" unique_id=1958655815]
+[node name="TileDescription" type="Label" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer" unique_id=1958655815]
+unique_name_in_owner = true
 visible = false
 modulate = Color(0.46229053, 0.4622907, 0.46229017, 1)
 layout_mode = 2

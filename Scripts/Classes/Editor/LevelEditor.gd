@@ -941,9 +941,9 @@ func open_tile_selection_menu_scene_ref(selector: TilePropertySceneRef) -> void:
 var current_hovered_selector: EditorTileSelector = null
 
 func tile_selector_hovered(selector: EditorTileSelector) -> void:
-	%NamePanel.show()
+	%NamePanel.visible = selector.tile_name != ""
 	%NameLabel.text = selector.tile_name
-	%Description.text = selector.tile_desc
+	%TileDescription.text = selector.tile_desc
 	%DescPreview.visible = selector.tile_desc != ""
 	current_hovered_selector = selector
 
@@ -958,13 +958,16 @@ func handle_tile_nametag() -> void:
 	%NamePanel.position = target_position
 	if current_hovered_selector == null:
 		return
-	%Description.text = current_hovered_selector.tile_desc
+	%TileDescription.text = current_hovered_selector.tile_desc
 	%Line.visible = current_hovered_selector.tile_desc != ""
-	%Description.custom_minimum_size.x = get_viewport().get_visible_rect().size.x / 2
+	%TileDescription.custom_minimum_size.x = get_viewport().get_visible_rect().size.x / 2
 	if current_hovered_selector.tile_desc != "":
 		%DescPreview.visible = not Input.is_action_pressed("editor_inspect")
-		%Description.visible = not %DescPreview.visible
-		%DescriptionSizer.visible = %Description.visible
+		%TileDescription.visible = not %DescPreview.visible
+	else:
+		%TileDescription.hide()
+		%DescPreview.hide()
+	%DescriptionSizer.visible = %TileDescription.visible
 
 func start_signal_connection(node: Node, connection_type := SignalExposer.ConnectType.SIGNAL) -> void:
 	current_state = LevelEditor.EditorState.CONNECTING
@@ -996,6 +999,8 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 	$TileCursor/Previews.hide()
 	var old_tile = null
 	var old_tile_info = []
+	if tile_to_place == null:
+		return
 	if entity_tiles[layer_num].get(tile_position) != null:
 		var overlapping_tile = entity_tiles[layer_num][tile_position]
 		if overlapping_tile is Player:
