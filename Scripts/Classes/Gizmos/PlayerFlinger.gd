@@ -1,7 +1,7 @@
 class_name FlingerGizmo
 extends Node2D
 
-@export_range(-8.0, 8.0, 0.1) var horizontal_speed := 0.0:
+@export_range(-16.0, 16.0, 0.1) var horizontal_speed := 0.0:
 	set(value):
 		horizontal_speed = value
 
