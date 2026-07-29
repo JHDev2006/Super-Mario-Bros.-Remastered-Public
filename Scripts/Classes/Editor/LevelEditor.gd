@@ -290,11 +290,15 @@ func close_tile_menu() -> void:
 	for i in get_tree().get_nodes_in_group("Selectors"):
 		i.disabled = false
 
+var exit_after_save := false
+
 func save_level_before_exit() -> void:
 	tile_menu_open = true
 	open_save_dialog()
+	exit_after_save = true
 	await level_saved
-	go_back_to_menu()
+	if exit_after_save:
+		go_back_to_menu()
 
 func go_back_to_menu() -> void:
 	clear_undoredo()
@@ -308,6 +312,7 @@ func open_bindings_menu() -> void:
 	current_state = EditorState.IDLE
 
 func open_save_dialog() -> void:
+	exit_after_save = false
 	current_state = EditorState.SAVE_MENU
 	can_move_cam = false
 	%SaveLevelDialog.show()
