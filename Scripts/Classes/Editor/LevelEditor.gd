@@ -164,6 +164,8 @@ func _ready() -> void:
 	OffScreenDespawner.editor_testing_safety = true
 	Global.can_time_tick = false
 	for i in get_tree().get_nodes_in_group("Selectors"):
+		i.mouse_entered.connect(tile_selector_hovered.bind(i))
+		i.mouse_exited.connect(tile_selector_stop_hover.bind(i))
 		tile_list.append(i)
 	var idx := 0
 	for i in music_track_list:
@@ -219,6 +221,7 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(%ThemeName):
 		%ThemeName.text = Global.level_theme
 	handle_hud()
+	handle_tile_nametag()
 	if Global.multibind_action_just_pressed("editor_open_menu"):
 		if current_state == EditorState.IDLE:
 			open_tile_menu()
@@ -286,7 +289,6 @@ func close_tile_menu() -> void:
 	current_state = EditorState.IDLE
 	for i in get_tree().get_nodes_in_group("Selectors"):
 		i.disabled = false
-		i.set_mouse_hovered(false)
 
 func save_level_before_exit() -> void:
 	tile_menu_open = true
@@ -936,6 +938,37 @@ func open_tile_selection_menu_scene_ref(selector: TilePropertySceneRef) -> void:
 	close_tile_menu()
 	current_state = EditorState.MODIFYING_TILE
 
+var current_hovered_selector: EditorTileSelector = null
+
+func tile_selector_hovered(selector: EditorTileSelector) -> void:
+	%NamePanel.visible = selector.tile_name != ""
+	%NameLabel.text = selector.tile_name
+	%TileDescription.text = selector.tile_desc
+	%DescPreview.visible = selector.tile_desc != ""
+	current_hovered_selector = selector
+
+func tile_selector_stop_hover(selector: EditorTileSelector) -> void:
+	if current_entity_selector == current_hovered_selector:
+		current_hovered_selector = null
+	%NamePanel.hide()
+
+func handle_tile_nametag() -> void:
+	var target_position = get_viewport().get_mouse_position()
+	target_position.x = clamp(target_position.x, %Panel.size.x / 2, (get_viewport().get_visible_rect().size.x) - %Panel.size.x / 2)
+	%NamePanel.position = target_position
+	if current_hovered_selector == null:
+		return
+	%TileDescription.text = current_hovered_selector.tile_desc
+	%Line.visible = current_hovered_selector.tile_desc != ""
+	%TileDescription.custom_minimum_size.x = get_viewport().get_visible_rect().size.x / 2
+	if current_hovered_selector.tile_desc != "":
+		%DescPreview.visible = not Input.is_action_pressed("editor_inspect")
+		%TileDescription.visible = not %DescPreview.visible
+	else:
+		%TileDescription.hide()
+		%DescPreview.hide()
+	%DescriptionSizer.visible = %TileDescription.visible
+
 func start_signal_connection(node: Node, connection_type := SignalExposer.ConnectType.SIGNAL) -> void:
 	current_state = LevelEditor.EditorState.CONNECTING
 	current_connection_type = connection_type
@@ -966,6 +999,8 @@ func place_tile(tile_position := Vector2i.ZERO, layer_num := current_layer, tile
 	$TileCursor/Previews.hide()
 	var old_tile = null
 	var old_tile_info = []
+	if tile_to_place == null:
+		return
 	if entity_tiles[layer_num].get(tile_position) != null:
 		var overlapping_tile = entity_tiles[layer_num][tile_position]
 		if overlapping_tile is Player:

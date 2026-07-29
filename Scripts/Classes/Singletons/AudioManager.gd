@@ -371,8 +371,12 @@ func generate_interactive_stream(bgm_file := {}) -> AudioStreamInteractive:
 
 func import_stream(file_path := "", loop_point := -1.0) -> AudioStream:
 	var stream = null
-	## Importing
-	if file_path.begins_with("res://"):
+	# Importing
+
+	if file_path.ends_with(".bgm"):
+		stream = generate_interactive_stream(JSONParser.parse_to_dict(file_path))
+
+	elif file_path.begins_with("res://"):
 		stream = load(file_path)
 	elif file_path.ends_with(".mp3"):
 		stream = AudioStreamMP3.load_from_file(file_path)
@@ -383,16 +387,14 @@ func import_stream(file_path := "", loop_point := -1.0) -> AudioStream:
 	elif file_path.ends_with(".json"):
 		stream = create_stream_from_json(file_path)
 	
-	## Setting Loops
+	# Looping
 	if file_path.ends_with(".mp3"):
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
 	elif file_path.ends_with(".ogg"):
-		stream = AudioStreamOggVorbis.load_from_file(file_path)
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
 	elif file_path.ends_with(".wav"):
-		stream = AudioStreamWAV.load_from_file(file_path)
 		stream.loop_begin = loop_point
 	return stream
 	

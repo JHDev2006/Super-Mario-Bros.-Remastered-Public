@@ -40,22 +40,8 @@ func _ready() -> void:
 	set_icon_texture()
 	set_second_icon_texture()
 	update_visuals()
-	set_process(false)
 	if tile_selected.is_connected(owner.on_tile_selected) == false:
 		tile_selected.connect(owner.on_tile_selected)
-	%NameLabel.text = tile_name
-
-func _process(_delta: float) -> void:
-	var target_position = get_viewport().get_mouse_position()
-	target_position.x = clamp(target_position.x, %Panel.size.x / 2, (get_viewport().get_visible_rect().size.x) - %Panel.size.x / 2)
-	%NamePanel.position = target_position
-	%Description.text = tile_desc
-	%Line.visible = tile_desc != ""
-	%Description.custom_minimum_size.x = get_viewport().get_visible_rect().size.x / 2
-	if tile_desc != "":
-		%DescPreview.visible = not Input.is_action_pressed("editor_inspect")
-		%Description.visible = not %DescPreview.visible
-		%DescriptionSizer.visible = %Description.visible
 
 func set_icon_texture():
 	if icon_texture_path == "":
@@ -86,14 +72,6 @@ func update_visuals() -> void:
 		%SecondaryIcon.region_rect = secondary_icon_region_override
 	modulate = Color.WHITE if not disabled else Color.DIM_GRAY
 
-func set_mouse_hovered(hovered := false) -> void:
-	%NamePanel.visible = hovered and tile_name.is_empty() == false
-	mouse_hovered = hovered
-	$Button.disabled = disabled
-	set_process(hovered)
-
-func on_mouse_entered() -> void:
-	set_mouse_hovered(true)
 
 func get_id() -> void:
 	for i in EntityIDMapper.map.keys():
@@ -115,7 +93,3 @@ func encode_to_base64_2char(value: int) -> String:
 	var char2 = BASE64[value & 0b111111]         # Bottom 6 bits
 
 	return char1 + char2
-
-func on_mouse_exited() -> void:
-	set_mouse_hovered(false)
-	%NamePanel.hide()

@@ -318,6 +318,14 @@ border_color = Color(0.8, 0.8, 0.8, 0)
 atlas = ExtResource("205_51g7s")
 region = Rect2(16, 0, 16, 16)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsr3e"]
+bg_color = Color(0, 0, 0, 0.892)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_sfuh0"]
+color = Color(1, 1, 1, 1)
+grow_begin = -1.0
+grow_end = -1.0
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_e20nl"]
 color = Color(1, 1, 1, 1)
 
@@ -6961,6 +6969,76 @@ size_flags_vertical = 3
 
 [node name="ThemeSelect" parent="TileMenu" unique_id=1361028610 instance=ExtResource("206_dsu6a")]
 visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TileMenu" unique_id=628759239]
+layer = 99999
+
+[node name="NamePanel" type="Node2D" parent="TileMenu/CanvasLayer" unique_id=833173828]
+unique_name_in_owner = true
+visible = false
+
+[node name="Panel" type="PanelContainer" parent="TileMenu/CanvasLayer/NamePanel" unique_id=283092702]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsr3e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TileMenu/CanvasLayer/NamePanel/Panel" unique_id=1451365598]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer" unique_id=1880723556]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "DICE"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Line" type="HSeparator" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer/NameLabel" unique_id=1212186095]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_sfuh0")
+
+[node name="DescriptionSizer" type="Control" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer" unique_id=868548857]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="DescPreview" type="Label" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer" unique_id=1810572914]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.46229053, 0.4622907, 0.46229017, 1)
+layout_mode = 2
+text = "..."
+uppercase = true
+
+[node name="TileDescription" type="Label" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer" unique_id=1958655815]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.46229053, 0.4622907, 0.46229017, 1)
+layout_mode = 2
+text = "Emits a Signal"
+autowrap_mode = 2
+uppercase = true
 
 [node name="Info" type="CanvasLayer" parent="." unique_id=1889936080]
 

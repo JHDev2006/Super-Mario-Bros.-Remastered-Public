@@ -670,10 +670,11 @@ script = ExtResource("7_y7xk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetter" type="Node" parent="OverlayLayer/CloudLayer/Clouds" unique_id=181819975 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetter" type="Node" parent="OverlayLayer/CloudLayer/Clouds" unique_id=181819975 node_paths=PackedStringArray("node_to_affect", "property_node")]
 process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
+property_node = NodePath("../../../..")
 property_name = "sprite_frames"
 json_path = "res://Assets/Sprites/Backgrounds/CloudOverlays/OverlayClouds.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

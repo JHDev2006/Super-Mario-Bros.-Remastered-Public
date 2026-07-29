@@ -32,7 +32,7 @@ extends Node2D
 	get:
 		if Engine.is_editor_hint() == false && Global.second_order_override > -1:
 			return Global.second_order_override
-		return second_layer
+		return second_layer_order
 
 @export var second_layer_offset := Vector2.ZERO:
 	set(value):
@@ -87,6 +87,7 @@ var top_edge_enabled := true
 var can_mushroom_tint := true
 
 var sky_scroll_speed := -4.0
+var cloud_scroll := [-12, 0]
 
 const disco_sfx_threshold := [0.05, 0.5, 0.8]
 
@@ -201,9 +202,10 @@ func update_visuals() -> void:
 	$LiquidLayer.scroll_offset.y = liquid_offset
 	$OverlayLayer/Particles/Snow.visible = particles == 1
 	$OverlayLayer/Particles/Leaves.visible = particles == 2
-	$OverlayLayer/Particles.visible = Settings.file.visuals.bg_particles == 1
+	$OverlayLayer/Particles.visible = (Settings.file.visuals.bg_particles == 1 or Global.particle_override > 0)
 	$OverlayLayer/Particles/LavaEmber.visible = particles == 3
 	$SkyLayer.autoscroll.x = sky_scroll_speed
+	$OverlayLayer/CloudLayer.autoscroll = Vector2(cloud_scroll[0], cloud_scroll[1])
 	$PrimaryLayer/Hills.visible = primary_layer == 0
 	$PrimaryLayer/Bush.visible = primary_layer == 1
 	
@@ -247,5 +249,5 @@ func update_visuals() -> void:
 	$SecondaryLayer/Trees.get_node("Tint").modulate.a = tree_tint_amount
 	
 	$PrimaryLayer.z_index = int(not bool(second_layer_order))
-	$OverlayLayer/CloudLayer.visible = overlay_clouds and Settings.file.visuals.bg_particles == 1
+	$OverlayLayer/CloudLayer.visible = overlay_clouds and (Settings.file.visuals.bg_particles == 1 or Global.overlay_clouds_override == 1)
 	$TopEdge.visible = ["Underground", "Castle", "GhostHouse", "Bonus"].has(Global.level_theme) and primary_layer == 0 and top_edge_enabled

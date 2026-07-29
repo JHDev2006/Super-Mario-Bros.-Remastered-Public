@@ -675,6 +675,9 @@ func get_snapshot_num_int(ver_num := "26w00a") -> int:
 	
 	return (int(year) * int(week)) + int(num.unicode_at(0))
 
+func get_rc_num_int(rc_num := "rc1") -> int:
+	return int(rc_num.right(1)) * 1000
+
 func load_default_translations() -> void:
 	for i in lang_codes:
 		if i != "gal":
