@@ -57,7 +57,7 @@ func handle_movement(delta: float) -> void:
 		handle_swimming(delta)
 	else:
 		handle_air_movement(delta)
-	player.move_and_slide()
+	player.move()
 	player.moved.emit()
 
 func grounded(delta: float) -> void:

@@ -17,7 +17,7 @@ func physics_update(delta: float) -> void:
 	wave = fmod(wave + delta, PI * 2)
 	player.sprite.position.x = sin(wave * 64)
 	player.apply_gravity(delta)
-	player.move_and_slide()
+	player.move()
 
 func exit() -> void:
 	player.sprite.position.x = old_x

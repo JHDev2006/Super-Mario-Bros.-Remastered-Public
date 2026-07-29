@@ -1715,6 +1715,14 @@ func water_entered() -> void:
 	projectiles_fired_since_left_ground = 0
 	velocity.y = max(-physics_params("SWIM_HEIGHT"), velocity.y)
 
+func apply_active_flingers() -> void:
+	for i: FlingerGizmo in get_tree().get_nodes_in_group("PlayerFlingers"):
+		if i.active:
+			i.launch()
+
+func move() -> void:
+	apply_active_flingers()
+	move_and_slide()
 
 func on_modifier_applied() -> void:
 	pass
