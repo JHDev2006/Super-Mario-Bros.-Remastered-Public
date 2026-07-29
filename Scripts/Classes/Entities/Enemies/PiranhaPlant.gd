@@ -2,7 +2,7 @@ extends Enemy
 
 @export var player_range := 24
 
-@export_enum("Up", "Down", "Left", "Right") var pipe_direction := 0
+@export_enum("Up", "Down", "Right", "Left") var pipe_direction := 0
 
 @export var rise_animation := "Rise"
 
