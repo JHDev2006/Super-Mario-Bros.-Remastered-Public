@@ -97,4 +97,4 @@ region_rect = Rect2(24, 0, 16, 8)
 script = ExtResource("10_dkrgw")
 metadata/_custom_type_script = "uid://364rywt44hy6"
 
-[connection signal="level_start" from="LevelEditorToggleDetection" to="." method="_ready"]
+[connection signal="level_start" from="LevelEditorToggleDetection" to="." method="start"]
