@@ -1471,13 +1471,12 @@ func create_player_trail() -> void:
 	saved_trail.clear()
 
 func clear_level() -> void:
-	Global.reload_editor()
-
 	clear_trail()
 	sub_areas = [null, null, null, null, null]
 	level_file = BLANK_FILE.duplicate_deep()
-
 	sub_level_id = 0
+	load_level(0)
+	set_state(EditorState.IDLE)
 
 func set_state(state := EditorState.IDLE) -> void:
 	current_state = state
