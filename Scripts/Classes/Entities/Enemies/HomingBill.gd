@@ -14,7 +14,7 @@ var can_turn := true
 
 var can_explode := true
 
-var smooth_rotation := true
+var smooth_rotation := false
 
 func _ready() -> void:
 	if has_meta("block_item"):
