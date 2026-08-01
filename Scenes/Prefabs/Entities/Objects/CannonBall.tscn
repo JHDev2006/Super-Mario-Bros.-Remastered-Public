@@ -44,7 +44,7 @@ metadata/_custom_type_script = "uid://chj8hu207lrh"
 
 [node name="GibSpawner" type="Node" parent="." unique_id=1439009766 node_paths=PackedStringArray("visuals")]
 script = ExtResource("4_yim3j")
-visuals = NodePath("")
+visuals = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://c3gg32ivrlq8n"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1285109388]
