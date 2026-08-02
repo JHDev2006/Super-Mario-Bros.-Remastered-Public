@@ -25,7 +25,7 @@ func physics_update(delta: float) -> void:
 		# nabbup : Flip death gravity when upside down
 		player.velocity.y += (death_params("DEATH_FALL_GRAVITY") / delta) * delta * player.gravity_vector.y
 		player.velocity.y = clamp(player.velocity.y, -death_params("DEATH_MAX_FALL_SPEED"), death_params("DEATH_MAX_FALL_SPEED")) # wish this could be better than just substituting -INF but you can't win em all ~ nabbup
-		player.move_and_slide()
+		player.move()
 		if Global.multibind_action_just_pressed("ui_accept") or Global.multibind_action_just_pressed("jump_0"):
 			player.death_load()
 		if player.is_actually_on_floor():

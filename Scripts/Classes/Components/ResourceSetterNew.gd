@@ -555,6 +555,8 @@ func create_sprite_frames_from_image(image: Resource, animation_json := {}, reso
 					continue
 				if (animation_json[anim_name].has("loop")):
 					sprite_frames.set_animation_loop(anim_name, animation_json[anim_name].loop)
+					if animation_json[anim_name].has("loop_offset") and node_to_affect is AnimatedSprite2D:
+						node_to_affect.animation_looped.connect(on_animation_looped.bind(anim_name, animation_json[anim_name].get("loop_offset", 0)))
 				else:
 					log_warning("Animation frame for resource: \"%s\" has no loop set: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
 				if (animation_json[anim_name].has("speed")):
@@ -633,4 +635,8 @@ func set_material(blend_mode := "mix") -> void:
 	elif node_to_affect.material != null:
 		if node_to_affect.material.resource_path.has("res://"):
 			node_to_affect.material = null
-		
+
+func on_animation_looped(anim_name := "", loop_offset := 0) -> void:
+	var sprite: AnimatedSprite2D = node_to_affect
+	if sprite.animation == anim_name:
+		sprite.set_frame_and_progress(loop_offset, 0)

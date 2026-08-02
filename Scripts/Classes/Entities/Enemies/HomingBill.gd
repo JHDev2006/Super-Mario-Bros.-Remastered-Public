@@ -14,6 +14,8 @@ var can_turn := true
 
 var can_explode := true
 
+var smooth_rotation := false
+
 func _ready() -> void:
 	if has_meta("block_item"):
 		can_explode = false
@@ -36,14 +38,17 @@ func handle_movement(delta: float) -> void:
 	global_position += velocity * delta
 
 func handle_visuals() -> void:
-	var angle = snapped(rad_to_deg(direction_vector.angle()), 45)
-	var diagonal = angle % 90 != 0
+	var angle = rad_to_deg(direction_vector.angle())
+	var diagonal := false
+	if not smooth_rotation:
+		angle = snapped(angle, 45)
+		diagonal = angle % 90 != 0
 	$Sprite.global_rotation_degrees = angle + (180 if direction == -1 else 0)
 	if diagonal:
 		$Sprite.global_rotation_degrees += (45 if direction == 1 else 135)
 	$ParticlesRotation.global_rotation_degrees = angle
 	$ParticlesRotation.show()
-	$Sprite.play("Diagonal" if diagonal else "Normal")
+	$Sprite.play("Diagonal" if diagonal and not smooth_rotation else "Normal")
 	$Sprite.scale.x = direction
 
 func hit_solid() -> void:
