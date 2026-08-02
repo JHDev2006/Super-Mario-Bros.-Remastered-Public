@@ -476,7 +476,7 @@ func _physics_process(_delta: float) -> void:
 		var state = %PowerStates.get_child(owner.starting_power_state).name
 		if current_state != state:
 			current_state = state
-			%ResourceSetterNew.json_path = (\"res://Assets/Sprites/Players/\" + owner.character + \"/\" + state + \".json\")
+			%ResourceSetterNew.json_path = owner.get_character_sprite_path(current_state)
 		if Global.multibind_action_just_pressed(\"editor_move_player\"):
 			var new_position = Global.level_editor.cursor_tile_position * 16
 			owner.global_position = new_position + Vector2i(8, 16)
