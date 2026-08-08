@@ -1,202 +1,47 @@
 [gd_scene format=4 uid="uid://bdxq1i52o3yk8"]
-
 [ext_resource type="PackedScene" uid="uid://cjkhxnjpdqhmn" path="res://Scenes/Levels/SMB1/World1/1-3.tscn" id="1_c22oi"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Desert.json" id="2_chcvv"]
 [ext_resource type="PackedScene" uid="uid://b3or4h5ke6lni" path="res://Scenes/Prefabs/Entities/Objects/SmallSidewaysPlatform.tscn" id="3_ij8to"]
 [ext_resource type="PackedScene" uid="uid://cjkmd2yf3f84v" path="res://Scenes/Prefabs/Entities/Objects/SmallVerticalPlatform.tscn" id="4_dctha"]
-
 [node name="5-3" unique_id=1432274436 instance=ExtResource("1_c22oi")]
 music = ExtResource("2_chcvv")
 theme = "Desert"
 theme_time = "Night"
 world_id = 5
-
 [node name="LevelBG" parent="." index="0" unique_id=1161188026]
 time_of_day = 1
 second_layer_order = 2
-
 [node name="Tiles" parent="." index="1" unique_id=1841912682]
 tile_map_data = PackedByteArray("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AAAtAAAAAAAGAAAAAAAzAAAAAAAGAAAAAAA+APn/AAAGAAAAAABaAPr/AAAGAAAAAABbAPr/AAAGAAAAAABcAPr/AAAGAAAAAABZAPv/AAAFAAEAAABZAPz/AAAFAAEAAABZAP3/AAAFAAEAAABZAP7/AAAFAAEAAABZAP//AAAFAAEAAABZAAAAAAAFAAEAAABZAAEAAAAFAAEAAABaAPv/AAAGAAEAAABaAPz/AAAGAAEAAABaAP3/AAAGAAEAAABaAP7/AAAGAAEAAABaAP//AAAGAAEAAABaAAAAAAAGAAEAAABaAAEAAAAGAAEAAABbAPv/AAAGAAEAAABbAPz/AAAGAAEAAABbAP3/AAAGAAEAAABbAP7/AAAGAAEAAABbAP//AAAGAAEAAABbAAAAAAAGAAEAAABbAAEAAAAGAAEAAABcAPv/AAAGAAEAAABcAPz/AAAGAAEAAABcAP3/AAAGAAEAAABcAP7/AAAGAAEAAABcAP//AAAGAAEAAABcAAAAAAAGAAEAAABcAAEAAAAGAAEAAABdAPv/AAAGAAEAAABdAPz/AAAGAAEAAABdAP3/AAAGAAEAAABdAP7/AAAGAAEAAABdAP//AAAGAAEAAABdAAAAAAAGAAEAAABdAAEAAAAGAAEAAABeAPv/AAAHAAEAAABeAPz/AAAHAAEAAABeAP3/AAAHAAEAAABeAP7/AAAHAAEAAABeAP//AAAHAAEAAABeAAAAAAAHAAEAAABeAAEAAAAHAAEAAABlAP3/AAAFAAEAAABlAP7/AAAFAAEAAABlAP//AAAFAAEAAABlAAAAAAAFAAEAAABlAAEAAAAFAAEAAABmAP3/AAAHAAEAAABmAP7/AAAHAAEAAABmAP//AAAHAAEAAABmAAAAAAAHAAEAAABmAAEAAAAHAAEAAABrAP3/AAAFAAEAAABrAP7/AAAFAAEAAABrAP//AAAFAAEAAABrAAAAAAAFAAEAAABrAAEAAAAFAAEAAABsAP3/AAAHAAEAAABsAP7/AAAHAAEAAABsAP//AAAHAAEAAABsAAAAAAAHAAEAAABsAAEAAAAHAAEAAABTAP//AAAFAAEAAABTAAAAAAAFAAEAAABTAAEAAAAFAAEAAABUAP//AAAHAAEAAABUAAAAAAAHAAEAAABUAAEAAAAHAAEAAAA9APr/AAAFAAEAAAA9APv/AAAFAAEAAAA9APz/AAAFAAEAAAA9AP3/AAAFAAEAAAA9AP7/AAAFAAEAAAA9AP//AAAFAAEAAAA9AAAAAAAFAAEAAAA9AAEAAAAFAAEAAAA+APr/AAAGAAEAAAA+APv/AAAGAAEAAAA+APz/AAAGAAEAAAA+AP3/AAAGAAEAAAA+AP7/AAAGAAEAAAA+AP//AAAGAAEAAAA+AAAAAAAGAAEAAAA+AAEAAAAGAAEAAAA/APr/AAAGAAEAAAA/APv/AAAGAAEAAAA/APz/AAAGAAEAAAA/AP3/AAAGAAEAAAA/AP7/AAAGAAEAAAA/AP//AAAGAAEAAAA/AAAAAAAGAAEAAAA/AAEAAAAGAAEAAABAAPr/AAAHAAEAAABAAPv/AAAHAAEAAABAAPz/AAAHAAEAAABAAP3/AAAHAAEAAABAAP7/AAAHAAEAAABAAP//AAAHAAEAAABAAAAAAAAHAAEAAABAAAEAAAAHAAEAAAA3AP3/AAAGAAYAAAA3AP7/AAAGAAYAAAA3AP//AAAGAAYAAAA3AAAAAAAGAAYAAAA3AAEAAAAGAAYAAAAzAAEAAAAGAAEAAAA0AAEAAAAHAAEAAAAyAAEAAAAFAAEAAAAsAAEAAAAFAAEAAAAtAAEAAAAGAAEAAAAuAAEAAAAHAAEAAAAtAPn/AAAFAAEAAAAtAPr/AAAFAAEAAAAtAPv/AAAFAAEAAAAtAPz/AAAFAAEAAAAtAP3/AAAFAAEAAAAtAP7/AAAFAAEAAAAtAP//AAAFAAEAAAAuAPn/AAAHAAEAAAAuAPr/AAAHAAEAAAAuAPv/AAAHAAEAAAAuAPz/AAAHAAEAAAAuAP3/AAAHAAEAAAAuAP7/AAAHAAEAAAAuAP//AAAHAAEAAAAZAPj/AAAFAAEAAAAZAPn/AAAFAAEAAAAZAPr/AAAFAAEAAAAZAPv/AAAFAAEAAAAZAPz/AAAFAAEAAAAZAP3/AAAFAAEAAAAZAP7/AAAFAAEAAAAZAP//AAAFAAEAAAAZAAAAAAAFAAEAAAAZAAEAAAAFAAEAAAAaAPj/AAAGAAEAAAAaAPn/AAAGAAEAAAAaAPr/AAAGAAEAAAAaAPv/AAAGAAEAAAAaAPz/AAAGAAEAAAAaAP3/AAAGAAEAAAAaAP7/AAAGAAEAAAAaAP//AAAGAAEAAAAaAAAAAAAGAAEAAAAaAAEAAAAGAAEAAAAbAPj/AAAGAAEAAAAbAPn/AAAGAAEAAAAbAPr/AAAGAAEAAAAbAPv/AAAGAAEAAAAbAPz/AAAGAAEAAAAbAP3/AAAGAAEAAAAbAP7/AAAGAAEAAAAbAP//AAAGAAEAAAAbAAAAAAAGAAEAAAAbAAEAAAAGAAEAAAAcAPj/AAAGAAEAAAAcAPn/AAAGAAEAAAAcAPr/AAAGAAEAAAAcAPv/AAAGAAEAAAAcAPz/AAAGAAEAAAAcAP3/AAAGAAEAAAAcAP7/AAAGAAEAAAAcAP//AAAGAAEAAAAcAAAAAAAGAAEAAAAcAAEAAAAGAAEAAAAdAPj/AAAHAAEAAAAdAPn/AAAHAAEAAAAdAPr/AAAHAAEAAAAdAPv/AAAHAAEAAAAdAPz/AAAHAAEAAAAdAP3/AAAHAAEAAAAdAP7/AAAHAAEAAAAdAP//AAAHAAEAAAAdAAAAAAAHAAEAAAAdAAEAAAAHAAEAAAAjAAEAAAAFAAEAAAAkAAEAAAAHAAEAAAAUAPz/AAAFAAEAAAAUAP3/AAAFAAEAAAAUAP7/AAAFAAEAAAAUAP//AAAFAAEAAAAUAAAAAAAFAAEAAAAUAAEAAAAFAAEAAAAVAPz/AAAGAAEAAAAVAP3/AAAGAAEAAAAVAP7/AAAGAAEAAAAVAP//AAAGAAEAAAAVAAAAAAAGAAEAAAAVAAEAAAAGAAEAAAAWAPz/AAAHAAEAAAAWAP3/AAAHAAEAAAAWAP7/AAAHAAEAAAAWAP//AAAHAAEAAAAWAAAAAAAHAAEAAAAWAAEAAAAHAAEAAAARAAAAAAAGAAYAAAARAAEAAAAGAAYAAAALAPf/AQAAAAAAAwANAPf/AQAAAAAAAwAiAPn/AQAAAAAAAwAjAPn/AQAAAAAAAwAVAPX/AQAAAAAAAwAWAPX/AQAAAAAAAwAsAPf/AQAAAAAAAwAtAPf/AQAAAAAAAwAuAPf/AQAAAAAAAwAvAPf/AQAAAAAAAwBFAPj/AQAAAAAAAwBGAPj/AQAAAAAAAwBNAPf/AQAAAAAAAwBOAPf/AQAAAAAAAwBRAPf/AQAAAAAAAwBSAPf/AQAAAAAAAwBhAP//AQAAAAAAAwBjAP//AQAAAAAAAwBoAPj/AQAAAAAAAwBpAPj/AQAAAAAAAwBxAAAAAAABAAAAAABxAAEAAAABAAEAAAByAAAAAAACAAAAAAByAAEAAAACAAEAAABzAAAAAAACAAAAAABzAAEAAAACAAEAAAB0AAAAAAACAAAAAAB0AAEAAAACAAEAAAB1AAAAAAACAAAAAAB1AAEAAAACAAEAAAB2AAAAAAACAAAAAAB2AAEAAAACAAEAAAB3AAAAAAACAAAAAAB3AAEAAAACAAEAAAB4AAAAAAACAAAAAAB4AAEAAAACAAEAAAB5AAAAAAACAAAAAAB5AAEAAAACAAEAAAB6AAAAAAACAAAAAAB6AAEAAAACAAEAAAB7AAAAAAACAAAAAAB7AAEAAAACAAEAAAB8AAAAAAACAAAAAAB8AAEAAAACAAEAAAB9AAAAAAACAAAAAAB9AAEAAAACAAEAAAB+AAAAAAACAAAAAAB+AAEAAAACAAEAAAB/AAAAAAACAAAAAAB/AAEAAAACAAEAAACAAAAAAAACAAAAAACAAAEAAAACAAEAAACBAAAAAAACAAAAAACBAAEAAAACAAEAAACCAAAAAAACAAAAAACCAAEAAAACAAEAAACDAAAAAAACAAAAAACDAAEAAAACAAEAAACEAAAAAAACAAAAAACEAAEAAAACAAEAAACFAAAAAAACAAAAAACFAAEAAAACAAEAAACGAAAAAAACAAAAAACGAAEAAAACAAEAAACHAAAAAAACAAAAAACHAAEAAAACAAEAAACIAAAAAAACAAAAAACIAAEAAAACAAEAAACJAAAAAAACAAAAAACJAAEAAAACAAEAAACKAAAAAAACAAAAAACKAAEAAAACAAEAAACLAAAAAAACAAAAAACLAAEAAAACAAEAAACMAAAAAAACAAAAAACMAAEAAAACAAEAAACNAAAAAAACAAAAAACNAAEAAAACAAEAAACOAAAAAAACAAAAAACOAAEAAAACAAEAAACPAAAAAAACAAAAAACPAAEAAAACAAEAAACQAAAAAAACAAAAAACQAAEAAAACAAEAAACRAAAAAAACAAAAAACRAAEAAAACAAEAAACSAAAAAAACAAAAAACSAAEAAAACAAEAAACTAAAAAAACAAAAAACTAAEAAAACAAEAAACUAAAAAAACAAAAAACUAAEAAAACAAEAAACVAAAAAAACAAAAAACVAAEAAAACAAEAAACWAAAAAAACAAAAAACWAAEAAAACAAEAAACXAAAAAAACAAAA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BABgAAIAAQAAAAAABABhAAIAAQAAAAAABABiAAIAAQAAAAAABABjAAIAAQAAAAAABABkAAIAAQAAAAAABABlAAIAAQAAAAAABABmAAIAAQAAAAAABABnAAIAAQAAAAAABABoAAIAAQAAAAAABABpAAIAAQAAAAAABABqAAIAAQAAAAAABABrAAIAAQAAAAAABABsAAIAAQAAAAAABABtAAIAAQAAAAAABABuAAIAAQAAAAAABABvAAIAAQAAAAAABABwAAIAAQAAAAAABADv/wAAAAABAAAAAADv/wEAAAABAAEAAADv/wIAAAABAAIAAADw/wIAAAACAAIAAADx/wIAAAACAAIAAADy/wIAAAACAAIAAADz/wIAAAACAAIAAAD0/wIAAAACAAIAAAD1/wIAAAACAAIAAAD2/wIAAAACAAIAAAD3/wIAAAACAAIAAAD4/wIAAAACAAIAAAD5/wIAAAACAAIAAAD6/wIAAAACAAIAAAD7/wIAAAACAAIAAAD8/wIAAAACAAIAAAD9/wIAAAACAAIAAAD+/wIAAAACAAIAAAD//wIAAAADAAIAAABxAAIAAAABAAIAAAByAAIAAAACAAIAAABzAAIAAAACAAIAAAB0AAIAAAACAAIAAAB1AAIAAAACAAIAAAB2AAIAAAACAAIAAAB3AAIAAAACAAIAAAB4AAIAAAACAAIAAAB5AAIAAAACAAIAAAB6AAIAAAACAAIAAAB7AAIAAAACAAIAAAB8AAIAAAACAAIAAAB9AAIAAAACAAIAAAB+AAIAAAACAAIAAAB/AAIAAAACAAIAAACAAAIAAAACAAIAAACBAAIAAAACAAIAAACCAAIAAAACAAIAAACDAAIAAAACAAIAAACEAAIAAAACAAIAAACFAAIAAAACAAIAAACGAAIAAAACAAIAAACHAAIAAAACAAIAAACIAAIAAAACAAIAAACJAAIAAAACAAIAAACKAAIAAAACAAIAAACLAAIAAAACAAIAAACMAAIAAAACAAIAAACNAAIAAAACAAIAAACOAAIAAAACAAIAAACPAAIAAAACAAIAAACQAAIAAAACAAIAAACRAAIAAAACAAIAAACSAAIAAAACAAIAAACTAAIAAAACAAIAAACUAAIAAAACAAIAAACVAAIAAAACAAIAAACWAAIAAAACAAIAAACXAAIAAAACAAIAAACYAAIAAAACAAIAAACZAAIAAAACAAIAAACaAAIAAAACAAIAAACbAAIAAAACAAIAAACcAAIAAAACAAIAAACdAAIAAAACAAIAAACeAAIAAAACAAIAAACfAAIAAAADAAIAAAAiAAAAAAAFAAAAAABiAAEAAAAGAAYAAAAMAPf/AQAAAAAAAwA=")
-
 [node name="SidewaysPlatform2" parent="Platforms" parent_id_path=PackedInt32Array(1007259768) index="0" unique_id=323188793]
 position = Vector2(1464, 392)
-
 [node name="SidewaysPlatform3" parent="Platforms" parent_id_path=PackedInt32Array(1007259768) index="1" unique_id=20774364]
 position = Vector2(1592, 408)
-
 [node name="SidewaysPlatform4" parent="Platforms" parent_id_path=PackedInt32Array(1007259768) index="2" unique_id=169613532]
 position = Vector2(2184, 360)
-
 [node name="SidewaysPlatform" parent="Platforms" parent_id_path=PackedInt32Array(1007259768) index="3" unique_id=1618743856]
 position = Vector2(968, 360)
-
 [node name="SmallSidewaysPlatform" parent="Platforms" parent_id_path=PackedInt32Array(1007259768) index="4" unique_id=260259577 instance=ExtResource("3_ij8to")]
 position = Vector2(1144, -80)
-
 [node name="SmallSidewaysPlatform2" parent="Platforms" parent_id_path=PackedInt32Array(1007259768) index="5" unique_id=726269754 instance=ExtResource("3_ij8to")]
 position = Vector2(1272, -64)
-
 [node name="SmallSidewaysPlatform3" parent="Platforms" parent_id_path=PackedInt32Array(1007259768) index="6" unique_id=2063188238 instance=ExtResource("3_ij8to")]
 position = Vector2(1864, -112)
-
 [node name="SidewaysPlatform5" parent="Platforms" parent_id_path=PackedInt32Array(1007259768) index="7" unique_id=867348071 instance=ExtResource("4_dctha")]
 position = Vector2(648, -112)
-
 [node name="RedCoin" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1191968339) index="0" unique_id=333879875]
 position = Vector2(280, -24)
-
 [node name="RedCoin2" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1191968339) index="1" unique_id=24991453]
 position = Vector2(1080, -120)
-
 [node name="RedCoin3" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1191968339) index="2" unique_id=714066380]
 position = Vector2(1256, -104)
-
 [node name="RedCoin4" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1191968339) index="3" unique_id=251613792]
 position = Vector2(1384, -168)
-
 [node name="RedCoin5" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1191968339) index="4" unique_id=935832297]
 position = Vector2(1576, -8)
-
 [node name="InvisibleQuestionBlock" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1191968339) index="5" unique_id=1039545611]
 position = Vector2(2056, -72)
-
 [node name="Coin" parent="." index="12" unique_id=66906728]
 position = Vector2(280, -24)
-
 [node name="SecondQuestNode" parent="." index="15" unique_id=1100086277]
 enabled = true
-
-[connection signal="collected" from="Tiles/Coin" to="Tiles/Coin/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204209" to="Tiles/@Node2D@204209/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204210" to="Tiles/@Node2D@204210/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204211" to="Tiles/@Node2D@204211/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204212" to="Tiles/@Node2D@204212/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204213" to="Tiles/@Node2D@204213/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204214" to="Tiles/@Node2D@204214/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204215" to="Tiles/@Node2D@204215/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204216" to="Tiles/@Node2D@204216/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204217" to="Tiles/@Node2D@204217/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204218" to="Tiles/@Node2D@204218/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204219" to="Tiles/@Node2D@204219/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204220" to="Tiles/@Node2D@204220/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204221" to="Tiles/@Node2D@204221/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204222" to="Tiles/@Node2D@204222/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204223" to="Tiles/@Node2D@204223/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204224" to="Tiles/@Node2D@204224/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204225" to="Tiles/@Node2D@204225/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204226" to="Tiles/@Node2D@204226/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@204227" to="Tiles/@Node2D@204227/LevelPersistance" method="set_as_active"]
-[connection signal="area_entered" from="Tiles/DeathPit" to="Tiles/DeathPit" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204228" to="Tiles/@Area2D@204228" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204229" to="Tiles/@Area2D@204229" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204230" to="Tiles/@Area2D@204230" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204231" to="Tiles/@Area2D@204231" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204232" to="Tiles/@Area2D@204232" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204233" to="Tiles/@Area2D@204233" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204234" to="Tiles/@Area2D@204234" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204235" to="Tiles/@Area2D@204235" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204236" to="Tiles/@Area2D@204236" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204237" to="Tiles/@Area2D@204237" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204238" to="Tiles/@Area2D@204238" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204239" to="Tiles/@Area2D@204239" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204240" to="Tiles/@Area2D@204240" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204241" to="Tiles/@Area2D@204241" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204242" to="Tiles/@Area2D@204242" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204243" to="Tiles/@Area2D@204243" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204244" to="Tiles/@Area2D@204244" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204245" to="Tiles/@Area2D@204245" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204246" to="Tiles/@Area2D@204246" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204247" to="Tiles/@Area2D@204247" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204248" to="Tiles/@Area2D@204248" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204249" to="Tiles/@Area2D@204249" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204250" to="Tiles/@Area2D@204250" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204251" to="Tiles/@Area2D@204251" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204252" to="Tiles/@Area2D@204252" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204253" to="Tiles/@Area2D@204253" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204254" to="Tiles/@Area2D@204254" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204255" to="Tiles/@Area2D@204255" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204256" to="Tiles/@Area2D@204256" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204257" to="Tiles/@Area2D@204257" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204258" to="Tiles/@Area2D@204258" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204259" to="Tiles/@Area2D@204259" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204260" to="Tiles/@Area2D@204260" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204261" to="Tiles/@Area2D@204261" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204262" to="Tiles/@Area2D@204262" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204263" to="Tiles/@Area2D@204263" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204264" to="Tiles/@Area2D@204264" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204265" to="Tiles/@Area2D@204265" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204266" to="Tiles/@Area2D@204266" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204267" to="Tiles/@Area2D@204267" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204268" to="Tiles/@Area2D@204268" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204269" to="Tiles/@Area2D@204269" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204270" to="Tiles/@Area2D@204270" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204271" to="Tiles/@Area2D@204271" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204272" to="Tiles/@Area2D@204272" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204273" to="Tiles/@Area2D@204273" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204274" to="Tiles/@Area2D@204274" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204275" to="Tiles/@Area2D@204275" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204276" to="Tiles/@Area2D@204276" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204277" to="Tiles/@Area2D@204277" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204278" to="Tiles/@Area2D@204278" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204279" to="Tiles/@Area2D@204279" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204280" to="Tiles/@Area2D@204280" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204281" to="Tiles/@Area2D@204281" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204282" to="Tiles/@Area2D@204282" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204283" to="Tiles/@Area2D@204283" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204284" to="Tiles/@Area2D@204284" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204285" to="Tiles/@Area2D@204285" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204286" to="Tiles/@Area2D@204286" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204287" to="Tiles/@Area2D@204287" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204288" to="Tiles/@Area2D@204288" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204289" to="Tiles/@Area2D@204289" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204290" to="Tiles/@Area2D@204290" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204291" to="Tiles/@Area2D@204291" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204292" to="Tiles/@Area2D@204292" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204293" to="Tiles/@Area2D@204293" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204294" to="Tiles/@Area2D@204294" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204295" to="Tiles/@Area2D@204295" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204296" to="Tiles/@Area2D@204296" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204297" to="Tiles/@Area2D@204297" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204298" to="Tiles/@Area2D@204298" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204299" to="Tiles/@Area2D@204299" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204300" to="Tiles/@Area2D@204300" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204301" to="Tiles/@Area2D@204301" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204302" to="Tiles/@Area2D@204302" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204303" to="Tiles/@Area2D@204303" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204304" to="Tiles/@Area2D@204304" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204305" to="Tiles/@Area2D@204305" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204306" to="Tiles/@Area2D@204306" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204307" to="Tiles/@Area2D@204307" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204308" to="Tiles/@Area2D@204308" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204309" to="Tiles/@Area2D@204309" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204310" to="Tiles/@Area2D@204310" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204311" to="Tiles/@Area2D@204311" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204312" to="Tiles/@Area2D@204312" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204313" to="Tiles/@Area2D@204313" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204314" to="Tiles/@Area2D@204314" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204315" to="Tiles/@Area2D@204315" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204316" to="Tiles/@Area2D@204316" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204317" to="Tiles/@Area2D@204317" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204318" to="Tiles/@Area2D@204318" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204319" to="Tiles/@Area2D@204319" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204320" to="Tiles/@Area2D@204320" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204321" to="Tiles/@Area2D@204321" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204322" to="Tiles/@Area2D@204322" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204323" to="Tiles/@Area2D@204323" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204324" to="Tiles/@Area2D@204324" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204325" to="Tiles/@Area2D@204325" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204326" to="Tiles/@Area2D@204326" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204327" to="Tiles/@Area2D@204327" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204328" to="Tiles/@Area2D@204328" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204329" to="Tiles/@Area2D@204329" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204330" to="Tiles/@Area2D@204330" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204331" to="Tiles/@Area2D@204331" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204332" to="Tiles/@Area2D@204332" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204333" to="Tiles/@Area2D@204333" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204334" to="Tiles/@Area2D@204334" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204335" to="Tiles/@Area2D@204335" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204336" to="Tiles/@Area2D@204336" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204337" to="Tiles/@Area2D@204337" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204338" to="Tiles/@Area2D@204338" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@204339" to="Tiles/@Area2D@204339" method="area_entered"]
-[connection signal="collected" from="Tiles/@Node2D@204340" to="Tiles/@Node2D@204340/LevelPersistance" method="set_as_active"]
