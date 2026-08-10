@@ -6,8 +6,8 @@ extends Node
 @export var property_name := ""
 @export var mode: ResourceMode = ResourceMode.SPRITE_FRAMES
 
-var surpress_warnings := false
-var surpress_errors := false
+static var surpress_warnings = null
+static var surpress_errors := false
 
 ## Backup of the last json path.
 var backup_json_path := ""
@@ -114,8 +114,6 @@ func get_resource(json_file: JSON) -> Resource:
 		resource_path = new_path
 	
 	source_json = JSONParser.parse_to_dict(resource_path)
-	surpress_warnings = false
-	surpress_errors = false
 	if (FileAccess.file_exists(resource_path) && source_json.is_empty() && current_resource_pack != "BaseAssets"):
 		# DawnLR: Given file cannot be worked with, skipping resource pack!
 		ignore_resource_from.append(current_resource_pack)
@@ -294,10 +292,6 @@ func get_variation_path() -> String:
 
 func get_variation_json(json := {}) -> Dictionary:
 	var used_default := true
-	if json.has("mute_warnings"):
-		surpress_warnings = true
-	if json.has("mute_errors"):
-		surpress_errors = true
 	
 	for i in json.keys().filter(func(key): return key.contains("config:")):
 		get_config_file(current_resource_pack)
@@ -610,8 +604,16 @@ func log_error(msg := "", can_spam := true, timer := 10) -> void:
 		Global.log_error(msg, can_spam, timer)
 
 func log_warning(msg := "", timer := 10) -> void:
+	if surpress_warnings == null:
+		surpress_warnings = is_warnings_enabled()
 	if surpress_warnings == false:
 		Global.log_warning(msg, timer)
+
+func is_warnings_enabled() -> bool:
+	var pack_json = JSONParser.parse_to_dict(Global.get_config_path().path_join("/resource_packs/" + current_resource_pack + "/pack_info.json"))
+	if pack_json.get("enable_warnings", false):
+		return true
+	return false
 
 func set_material(blend_mode := "mix") -> void:
 	if node_to_affect is not CanvasItem or node_to_affect.material is ShaderMaterial:
