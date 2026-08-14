@@ -82,8 +82,8 @@ func setup_visuals() -> void:
 		i.get_node("Icon").region_rect = CustomLevelContainer.THEME_RECTS.get(level_theme, CustomLevelContainer.THEME_RECTS.Overworld)
 		i.get_node("Icon").texture = resource_getter.get_resource(load(CustomLevelContainer.ICON_TEXTURES[campaign_idx]), false)
 		i.get_node("Icon/Number").position.y = 17
-		i.get_node("Icon/Number").region_rect.position.y = clamp(NUMBER_Y.find(level_theme) * 12, 0, 9999)
-		i.get_node("Icon/Number").region_rect.position.x = (idx) * 12
+		i.get_node("Icon/Number").region_rect.position.y = clamp(NUMBER_Y.find(level_theme) * 12, 0, 76)
+		i.get_node("Icon/Number").region_rect.position.x = clamp((idx) * 12, 0, 160)
 		idx += 1
 
 func handle_input() -> void:
