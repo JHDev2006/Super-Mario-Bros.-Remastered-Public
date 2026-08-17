@@ -146,10 +146,10 @@ func play_sfx(stream_name = "", position := Vector2.ZERO, pitch := 1.0, can_over
 		var stream = stream_name
 		var is_custom = false
 		if stream_name is String:
-			is_custom = sfx_library[stream_name].contains(Global.config_path.path_join("custom_characters"))
 			var stream_path = sfx_library[stream_name]
 			if stream_path is Array:
 				stream_path = stream_path.pick_random()
+			is_custom = stream_path.contains(Global.config_path.path_join("custom_characters"))
 			stream_path = ResourceSetter.get_pure_resource_path(stream_path)
 			var json_path = ResourceSetter.get_pure_resource_path(stream_path.replace(stream_path.get_extension(), "json"))
 			if FileAccess.file_exists(json_path):
