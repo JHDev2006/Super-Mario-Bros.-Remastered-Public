@@ -208,7 +208,7 @@ func setup_visuals() -> void:
 		visited_levels = (SaveManager.visited_levels.substr((Global.world_num - 1) * 4, 4))
 		var level_visited = SaveManager.visited_levels[SaveManager.get_level_idx(Global.world_num, idx + 1)] != "0" or Global.debug_mode
 		var cur_level = {"SMB1": SMB1_ICONS,"SMBLL": SMBLL_ICONS,"SMBS": SMBS_ICONS,"SMBANN": SMBANN_ICONS}[Global.current_campaign][Global.world_num - 1][idx]
-		var cur_icon = ICON_LOCKED if not level_visited else night_level_icons if cur_level[0] == "night" else day_level_icons
+		var cur_icon = load(ICON_LOCKED) if not level_visited else night_level_icons if cur_level[0] == "night" else day_level_icons
 		var grid_size = [cur_icon.get_width() - icon_size[0], cur_icon.get_height() - icon_size[1]]
 		var clamp_icon = clamp([cur_level[1][0] * icon_size[0], cur_level[1][1] * icon_size[1]], [0, 0], grid_size)
 		i.get_node("Icon").texture = cur_icon

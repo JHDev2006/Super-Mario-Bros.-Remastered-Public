@@ -57,7 +57,7 @@ polygon = PackedVector2Array(1536, -160, 1536, -48, 2112, -48, 2112, -160)
 [node name="UpsideDownGravityArea3" parent="." unique_id=2024689124 node_paths=PackedStringArray("polygon") instance=ExtResource("14_uxm62")]
 polygon = NodePath("CollisionPolygon2D")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UpsideDownGravityArea3" unique_id=1042557524]
-polygon = PackedVector2Array(2144, -160, 2144, -48, 3072, -48, 3072, -160)
+polygon = PackedVector2Array(2144, -168, 2144, -48, 3072, -48, 3072, -160)
 [node name="DropShadow" parent="." unique_id=1354967232 instance=ExtResource("7_20lvo")]
 [node name="TileMapConverter" type="Node" parent="." unique_id=1491916087 node_paths=PackedStringArray("tilemap")]
 script = ExtResource("15_njeru")

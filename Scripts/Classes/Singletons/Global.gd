@@ -240,6 +240,7 @@ func setup_config_dirs() -> void:
 	var dirs = [
 		"custom_characters",
 		"custom_levels",
+		"custom_levels/autosaves",
 		"logs",
 		"marathon_recordings",
 		"resource_packs",

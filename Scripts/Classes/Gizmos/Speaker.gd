@@ -5,6 +5,8 @@ extends Node2D
 @export var global := false
 
 func play_sfx() -> void:
+	if is_inside_tree() == false:
+		return
 	if global:
 		AudioManager.play_global_sfx(AudioManager.sfx_library.keys()[sfx], pitch)
 	else:

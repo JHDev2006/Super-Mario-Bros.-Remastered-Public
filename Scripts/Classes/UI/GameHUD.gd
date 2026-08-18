@@ -46,7 +46,7 @@ func handle_main_hud() -> void:
 	%ModernLifeCount.visible = Global.current_game_mode != Global.GameMode.BOO_RACE
 	var world_num := str(Global.world_num)
 	if int(world_num) >= 10:
-		world_num = ["A", "B", "C", "D"][int(world_num) % 10]
+		world_num = LevelTransition.LETTER_WORLDS[int(world_num) % 10]
 	elif int(world_num) < 1:
 		world_num = " "
 	%LevelNum.text = world_num + "-" + str(Global.level_num)

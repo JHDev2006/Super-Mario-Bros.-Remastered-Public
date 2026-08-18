@@ -892,21 +892,27 @@ func apply_character_sfx_map() -> void:
 	var json = JSONParser.parse_to_dict(path)
 	
 	for i in json:
-		var res_path = "res://Assets/Audio/SFX/" + json[i]
-		res_path = ResourceSetter.get_pure_resource_path(res_path)
-		if FileAccess.file_exists(res_path) == false or custom_character:
-			var directory = "res://Assets/Sprites/Players/" + character + "/" + json[i]
-			if int(Global.player_characters[player_id]) > 3:
-				directory = directory.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
-			directory = ResourceSetter.get_pure_resource_path(directory)
-			if FileAccess.file_exists(directory):
-				json[i] = directory
-			else:
-				json[i] = res_path
+		if json[i] is Array:
+			var arr := []
+			for x in json[i]:
+				arr.append(get_sfx_path(x, json, custom_character))
+			json[i] = arr
 		else:
-			json[i] = res_path
+			json[i] = get_sfx_path(json[i], json, custom_character)
 	
 	AudioManager.load_sfx_map(json)
+
+func get_sfx_path(starting_path := "", json := {}, is_custom_character := false) -> String:
+	var res_path = "res://Assets/Audio/SFX/" + starting_path
+	res_path = ResourceSetter.get_pure_resource_path(res_path)
+	if FileAccess.file_exists(res_path) == false or is_custom_character:
+		var directory = "res://Assets/Sprites/Players/" + character + "/" + starting_path
+		if int(Global.player_characters[player_id]) > 3:
+			directory = directory.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
+		directory = ResourceSetter.get_pure_resource_path(directory)
+		if FileAccess.file_exists(directory):
+			return directory
+	return res_path
 
 func refresh_hitbox() -> void:
 	for i in $Hitbox.get_overlapping_areas():
