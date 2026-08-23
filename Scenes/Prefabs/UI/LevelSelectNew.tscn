@@ -992,12 +992,14 @@ texture = SubResource("AtlasTexture_h2uw4")
 script = ExtResource("14_ywryf")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Full" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer/FullRun/FullRunMedals/Bronze" unique_id=550164013]
+[node name="Full" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer/FullRun/FullRunMedals/Bronze" unique_id=1126155573]
 layout_mode = 1
 offset_right = 8.0
 offset_bottom = 8.0
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_x05vu")
+script = ExtResource("14_ywryf")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Silver" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer/FullRun/FullRunMedals" unique_id=952688192]
 layout_mode = 2
@@ -1006,12 +1008,14 @@ texture = SubResource("AtlasTexture_h2uw4")
 script = ExtResource("14_ywryf")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Full" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer/FullRun/FullRunMedals/Silver" unique_id=507254173]
+[node name="Full" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer/FullRun/FullRunMedals/Silver" unique_id=504571332]
 layout_mode = 1
 offset_right = 8.0
 offset_bottom = 8.0
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_21y1v")
+script = ExtResource("14_ywryf")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Gold" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer/FullRun/FullRunMedals" unique_id=1303394409]
 layout_mode = 2
@@ -1020,12 +1024,14 @@ texture = SubResource("AtlasTexture_h2uw4")
 script = ExtResource("14_ywryf")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Full" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer/FullRun/FullRunMedals/Gold" unique_id=1557953505]
+[node name="Full" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer/FullRun/FullRunMedals/Gold" unique_id=993407294]
 layout_mode = 1
 offset_right = 8.0
 offset_bottom = 8.0
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_r70xa")
+script = ExtResource("14_ywryf")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Warp" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/MarathonBits/VBoxContainer" unique_id=1008002008]
 layout_mode = 2
