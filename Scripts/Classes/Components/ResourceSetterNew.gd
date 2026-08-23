@@ -583,6 +583,7 @@ static func clear_cache() -> void:
 	for i in cache.keys():
 		if cache[i] == null:
 			cache.erase(i)
+	surpress_warnings = null
 	cache.clear()
 	material_cache.clear()
 	active_flags.clear()
@@ -616,13 +617,13 @@ func log_error(msg := "", can_spam := true, timer := 10) -> void:
 
 func log_warning(msg := "", timer := 10) -> void:
 	if surpress_warnings == null:
-		surpress_warnings = is_warnings_enabled()
+		surpress_warnings = !is_warnings_enabled()
 	if surpress_warnings == false:
 		Global.log_warning(msg, timer)
 
 func is_warnings_enabled() -> bool:
 	var pack_json = JSONParser.parse_to_dict(Global.get_config_path().path_join("/resource_packs/" + current_resource_pack + "/pack_info.json"))
-	if pack_json.get("enable_warnings", false):
+	if pack_json.get("show_warnings", false):
 		return true
 	return false
 
