@@ -77,5 +77,5 @@ func option_highlighted(option: PackConfigOption) -> void:
 				%DescText.text = str(config_json.option_descs[option.config_name][option.selected_index])
 			elif config_json.option_descs[option.config_name] is String:
 				%DescText.text = str(config_json.option_descs[option.config_name])
-		%Description.show.call_deferred()
+			%Description.show()
 	print("Set")
