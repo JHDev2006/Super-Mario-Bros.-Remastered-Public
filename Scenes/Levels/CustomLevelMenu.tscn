@@ -293,6 +293,7 @@ text = "EDITOR_MAIN_CREATE_1"
 uppercase = true
 
 [node name="TextureRect" type="TextureRect" parent="BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button" unique_id=596551789]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -324,15 +325,18 @@ layout_mode = 2
 [node name="SelectableLabel" parent="BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer" unique_id=1424008125 instance=ExtResource("12_psbt7")]
 layout_mode = 2
 text = "EDITOR_MAIN_OPEN_FOLDER"
+accept_mouse_clicks = true
 
 [node name="SelectableLabel2" parent="BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer" unique_id=265241081 instance=ExtResource("12_psbt7")]
 layout_mode = 2
 text = "EDITOR_MAIN_REFRESH"
+accept_mouse_clicks = true
 
 [node name="SelectableLabel3" parent="BG/Border/Levels/VBoxContainer/LevelList/TopBit/MarginContainer/VBoxContainer" unique_id=849967971 instance=ExtResource("12_psbt7")]
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../Button")
 text = "EDITOR_MAIN_LSS"
+accept_mouse_clicks = true
 
 [node name="HSeparator" type="HSeparator" parent="BG/Border/Levels/VBoxContainer/LevelList" unique_id=1815239064]
 layout_mode = 2
@@ -490,15 +494,15 @@ focus_mode = 0
 mouse_filter = 2
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="0" unique_id=1149291090]
-scroll_horizontal = 6
+scroll_horizontal = 187
 is_active = true
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="1" unique_id=1538947480]
-scroll_horizontal = 6
+scroll_horizontal = 28
 is_active = true
 
 [node name="ScrollContainer3" parent="BG/Border/Levels/VBoxContainer/LevelInfo/SelectedLevel/MarginContainer/HBoxContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(1573298747, 456570900) index="2" unique_id=1855133180]
-scroll_horizontal = 6
+scroll_horizontal = 112
 is_active = true
 
 [node name="Panel" type="PanelContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo" unique_id=2125756912]
@@ -509,7 +513,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LevelInfo/Panel" unique_id=975980634]
 layout_mode = 2
 mouse_filter = 0
-scroll_vertical = 6
+scroll_vertical = 92
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("24_wf6nb")
@@ -630,6 +634,7 @@ theme_override_constants/separation = 0
 unique_name_in_owner = true
 layout_mode = 2
 text = "EDITOR_MAIN_REFRESH"
+accept_mouse_clicks = true
 
 [node name="Sort" parent="BG/Border/Levels/VBoxContainer/LSSBrowser/VBoxContainer" unique_id=638628928 instance=ExtResource("22_13and")]
 unique_name_in_owner = true
@@ -788,12 +793,12 @@ focus_mode = 0
 mouse_filter = 2
 
 [node name="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(561241708, 788084636) index="0" unique_id=339759982]
-scroll_horizontal = 6
+scroll_horizontal = 3
 is_active = true
 auto_connect_focus = false
 
 [node name="ScrollContainer2" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/SelectedOnlineLevel/MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" parent_id_path=PackedInt32Array(561241708, 788084636) index="1" unique_id=1470364982]
-scroll_horizontal = 6
+scroll_horizontal = 28
 is_active = true
 auto_connect_focus = false
 
@@ -806,7 +811,7 @@ theme_override_styles/panel = ExtResource("8_psbt7")
 [node name="AutoScrollContainer" type="ScrollContainer" parent="BG/Border/Levels/VBoxContainer/LSSLevelInfo/Panel" unique_id=1801631913]
 layout_mode = 2
 mouse_filter = 0
-scroll_vertical = 6
+scroll_vertical = 44
 horizontal_scroll_mode = 3
 script = ExtResource("24_wf6nb")
 direction = 1
@@ -905,6 +910,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_bg4p8")
 text = "EDITOR_TOOLBAR_AUTOSAVE"
 uppercase = true
 script = ExtResource("32_vig88")
+accept_mouse_clicks = true
 
 [node name="AutosavesDelete" parent="BG/Border/Levels/VBoxContainer/AutosavesList" unique_id=1412415357 instance=ExtResource("32_cwgd5")]
 layout_mode = 2
