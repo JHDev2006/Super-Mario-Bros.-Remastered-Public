@@ -36,7 +36,7 @@ func handle_main_hud() -> void:
 	%KeyAmount.text = "*" + str(KeyItem.total_collected).pad_zeros(2)
 	$Main.set_anchors_preset(Control.PRESET_CENTER_TOP if Settings.file.video.hud_size == 1 else Control.PRESET_TOP_WIDE, true)
 	$ModernHUD.set_anchors_preset(Control.PRESET_CENTER_TOP if Settings.file.video.hud_size == 1 else Control.PRESET_TOP_WIDE, true)
-	%Score.text = str(Global.score).pad_zeros(6)
+	%Score.text = str(clamp(Global.score, 0, 9999990)).pad_zeros(6)
 	%CoinLabel.text = "*" + str(Global.coins).pad_zeros(2)
 	if current_chara != Global.player_characters[0]:
 		update_character_info()
@@ -77,7 +77,7 @@ func handle_modern_hud() -> void:
 	%ModernPB.hide()
 	%ModernStopwatch.hide()
 	%ModernCoinCount.text = "*" + str(Global.coins).pad_zeros(2)
-	%ModernScore.text = str(Global.score).pad_zeros(9)
+	%ModernScore.text = str(clamp(Global.score, 0, 999999990)).pad_zeros(9)
 	%ModernTime.text = "⏲" + str(Global.time).pad_zeros(3)
 	%ModernKeyCount.visible = KeyItem.total_collected > 0
 	%ModernKeyAmount.text = "*" + str(KeyItem.total_collected).pad_zeros(2)
