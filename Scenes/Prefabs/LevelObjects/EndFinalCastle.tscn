@@ -4,15 +4,12 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_1kswc"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_gbn2t"]
 [ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="4_w7qld"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/CastleFlag.json" id="4_wqi45"]
 [ext_resource type="PackedScene" uid="uid://bikdod5ra10ra" path="res://Scenes/Parts/LargeCastleVisual.tscn" id="6_w7qld"]
 [ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="8_akqko"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="8_rgjtr"]
 [ext_resource type="PackedScene" uid="uid://bem5ht17ukgcs" path="res://Scenes/Parts/LargeSPCastleVisual.tscn" id="10_kd4m5"]
 [ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="10_wqi45"]
 [ext_resource type="Texture2D" uid="uid://dkcs5i8l1y4y6" path="res://Assets/Sprites/Tilesets/EndingFinalCastleSprite.png" id="11_wqi45"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/FinalCastle.json" id="12_kd4m5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="12_rgjtr"]
 [ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="13_kd4m5"]
 
 [sub_resource type="Animation" id="Animation_an8pi"]
@@ -102,10 +99,11 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_fnvmm")
 
 [node name="ResourceSetterNew" type="Node" parent="FlagJoint/Flag" unique_id=311970280 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_gbn2t")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_wqi45")
+json_path = "res://Assets/Sprites/Tilesets/CastleFlag.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CameraRightLimit" type="Node2D" parent="." unique_id=1195426027]
@@ -144,12 +142,13 @@ frame = 1
 region_rect = Rect2(0, 80, 80, 80)
 
 [node name="ResourceSetterNew" type="Node" parent="OverlaySprite" unique_id=620517024 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("3_gbn2t")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("12_kd4m5")
+json_path = "res://Assets/Sprites/Tilesets/FinalCastle.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Wall" parent="." unique_id=2087037809 instance=ExtResource("13_kd4m5")]
@@ -170,11 +169,12 @@ tile_map = NodePath("..")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetter" type="Node" parent="Overlay/TilesetTextureSetter" unique_id=1194055490 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_gbn2t")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("12_rgjtr")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PlayerDetection" type="StaticBody2D" parent="Overlay" unique_id=592288252]
@@ -197,11 +197,12 @@ tile_map = NodePath("..")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetter" type="Node" parent="Overlay/Overlay2/TilesetTextureSetter" unique_id=1400800987 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_gbn2t")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("12_rgjtr")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PlayerDetection" type="StaticBody2D" parent="Overlay/Overlay2" unique_id=617465400]

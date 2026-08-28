@@ -15,4 +15,3 @@ const OVERWORLD_STYLES := ["Overworld", "Desert", "Snow", "Jungle", "Garden", "B
 func _enter_tree() -> void:
 	owner.theme = OVERWORLD_STYLES.pick_random()
 	Global.level_theme = owner.theme
-	print(owner.theme)

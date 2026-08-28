@@ -22,6 +22,7 @@ script/source = "extends Node2D
 func _ready() -> void:
 	show()
 	$TextLabel.visible_ratio = 1
+	start()
 
 func clean_text(text := \"\") -> String:
 	text = text.replace(\"{CHARACTER}\", Player.CHARACTER_NAMES[Global.player_characters[0]])

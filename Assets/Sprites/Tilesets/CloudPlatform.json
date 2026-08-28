@@ -1,7 +1,1 @@
-{
-	"variations": {
-		"default": {
-			"source": "CloudPlatform.png"
-		}
-	}
-}
+{"variations": {"source": "CloudPlatform.png"}}

@@ -1,0 +1,21 @@
+{
+	"animations": {
+		"Float": {
+			"frames": [
+				[0, 0, 32, 32],
+				[32, 0, 32, 32]
+			],
+			"speed": 5,
+			"loop": true
+		},
+		"Dissolve": {
+			"frames": [
+				[64, 0, 32, 32],
+				[32, 0, 32, 32]
+			],
+			"speed": 10,
+			"loop": true
+		}
+	},
+	"variations": {"source": "Bubble.png"}
+}

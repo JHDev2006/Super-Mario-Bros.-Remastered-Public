@@ -16,11 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://cdrgm3154qxxy" path="res://Scenes/Prefabs/Entities/Objects/Trampoline.tscn" id="13_ty7yf"]
 [ext_resource type="PackedScene" uid="uid://c6loucilra6da" path="res://Scenes/Prefabs/LevelObjects/EndFlagpole.tscn" id="15_0qu0f"]
 [ext_resource type="PackedScene" uid="uid://byqmn8yi7iuac" path="res://Scenes/Prefabs/LevelObjects/EndSmallCastle.tscn" id="16_ukm2q"]
-[ext_resource type="PackedScene" uid="uid://dn2oonncrmxb3" path="res://Scenes/Parts/LargeSPCastleDeco.tscn" id="18_ukm2q"]
 [ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="21_um4rv"]
 [ext_resource type="PackedScene" uid="uid://cmbpqnq10arts" path="res://Scenes/Prefabs/Entities/Items/RedCoin.tscn" id="22_blm4d"]
 [ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="23_far8k"]
 [ext_resource type="PackedScene" uid="uid://d3gnwmvds4ors" path="res://Scenes/Prefabs/Entities/Items/SpinningRedCoin.tscn" id="24_ty7yf"]
+[ext_resource type="PackedScene" uid="uid://cbl8l51osppso" path="res://Scenes/Parts/LargeStartCastle.tscn" id="25_anwxx"]
 [ext_resource type="PackedScene" uid="uid://cqvr7a6e84oti" path="res://Scenes/Prefabs/Blocks/BrickBlocks/CoinBrickBlock.tscn" id="25_ty7yf"]
 [ext_resource type="PackedScene" uid="uid://ctx0nbkjf2osn" path="res://Scenes/Prefabs/Entities/Items/YoshiEgg.tscn" id="26_anwxx"]
 [ext_resource type="PackedScene" uid="uid://dkgu57is78lro" path="res://Scenes/Parts/PipeArea.tscn" id="27_sq1d2"]
@@ -126,8 +126,6 @@ position = Vector2(2456, 0)
 position = Vector2(3272, 0)
 [node name="EndSmallCastle" parent="." unique_id=2091041177 instance=ExtResource("16_ukm2q")]
 position = Vector2(3368, 0)
-[node name="LargeCastleDeco" parent="." unique_id=1501648502 instance=ExtResource("18_ukm2q")]
-position = Vector2(-216, -88)
 [node name="ChallengeNodes" type="Node" parent="." unique_id=1495930362 node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("21_um4rv")
 nodes_to_delete = [NodePath("../Blocks")]
@@ -167,3 +165,5 @@ position = Vector2(2992, -48)
 pipe_id = 2
 target_level = "uid://cbrdel5m0lwf7"
 exit_only = true
+[node name="LargeCastleDeco" parent="." unique_id=1423333120 instance=ExtResource("25_anwxx")]
+position = Vector2(-248, -88)

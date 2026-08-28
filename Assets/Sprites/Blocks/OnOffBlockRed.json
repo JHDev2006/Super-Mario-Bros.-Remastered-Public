@@ -1,51 +1,23 @@
 {
 	"animations": {
 		"Default": {
-			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 5.0,
+			"frames": [[0, 0, 16, 16]],
+			"speed": 5,
 			"loop": true
 		},
 		"Off": {
-			"frames": [
-				[
-					16.0,
-					0.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 15.0,
+			"frames": [[16, 0, 16, 16]],
+			"speed": 15,
 			"loop": false
 		},
 		"On": {
-			"frames": [
-				[
-					0.0,
-					0.0,
-					16.0,
-					16.0
-				]
-			],
-			"speed": 15.0,
+			"frames": [[0, 0, 16, 16]],
+			"speed": 15,
 			"loop": false
 		}
 	},
 	"variations": {
-		"default": {
-			"source": "OnOffBlock.png",
-			"rect": [
-				0.0,
-				16.0,
-				32.0,
-				16.0
-			]
-		}
+		"source": "OnOffBlock.png",
+		"rect": [0, 16, 32, 16]
 	}
 }

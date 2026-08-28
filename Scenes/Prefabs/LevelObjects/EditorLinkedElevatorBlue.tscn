@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bbvaa4j1hsqem"]
 
 [ext_resource type="PackedScene" uid="uid://bhqyp8mia3mo3" path="res://Scenes/Prefabs/LevelObjects/EditorLinkedElevator.tscn" id="1_l7tnw"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/BluePlatform.json" id="2_x8gar"]
 
 [node name="EditorLinkedElevator" unique_id=1412513806 instance=ExtResource("1_l7tnw")]
 
@@ -9,13 +8,13 @@
 can_fall = false
 
 [node name="ResourceSetter" parent="CornerR/RPlatform/Platform/Sprite" parent_id_path=PackedInt32Array(1016031752, 1185437037) index="0" unique_id=1272875723]
-resource_json = ExtResource("2_x8gar")
+json_path = "res://Assets/Sprites/Tilesets/BluePlatform.json"
 
 [node name="LPlatform" parent="." index="3" unique_id=1973596100]
 can_fall = false
 
 [node name="ResourceSetter" parent="LPlatform/Platform/Sprite" parent_id_path=PackedInt32Array(1973596100, 1185437037) index="0" unique_id=1272875723]
-resource_json = ExtResource("2_x8gar")
+json_path = "res://Assets/Sprites/Tilesets/BluePlatform.json"
 
 [editable path="CornerR/RPlatform"]
 [editable path="LPlatform"]

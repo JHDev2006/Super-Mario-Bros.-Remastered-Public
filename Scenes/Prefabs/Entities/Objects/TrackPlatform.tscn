@@ -3,10 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cx2310jyd3fnv" path="res://Scenes/Prefabs/Entities/Objects/MovingPlatform.tscn" id="1_52hcw"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_7dllu"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_qi7va"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/TrackPlatformEngine.json" id="4_qwfbt"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="5_qi7va"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3c1m"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqj17"]
 resource_local_to_scene = true
 size = Vector2(32, 8)
 
@@ -19,7 +18,7 @@ offset_bottom = 0.0
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1046612248]
 position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_m3c1m")
+shape = SubResource("RectangleShape2D_vqj17")
 
 [node name="EditorPropertyExposer" parent="." index="2" unique_id=1975160876]
 properties = Array[String](["length"])
@@ -35,7 +34,6 @@ modulate = Color(1, 1, 1, 0)
 
 [node name="ResourceSetter" parent="Projection" index="0" unique_id=888381645]
 property_name = ""
-resource_json = null
 use_cache = false
 
 [node name="Engine" type="AnimatedSprite2D" parent="." index="7" unique_id=1806516269]
@@ -44,10 +42,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Engine" index="0" unique_id=16822266 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_qi7va")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_qwfbt")
+json_path = "res://Assets/Sprites/Tilesets/TrackPlatformEngine.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="TrackJoint" type="Node" parent="." index="8" unique_id=410105833]

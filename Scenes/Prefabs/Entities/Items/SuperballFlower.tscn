@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://ildroacg1kui"]
 
 [ext_resource type="PackedScene" uid="uid://dbjqtjhb2t4cn" path="res://Scenes/Prefabs/Entities/Items/FireFlower.tscn" id="1_nibwi"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/SuperballFlower.json" id="2_d6erm"]
 
 [node name="SuperballFlower" unique_id=701089051 instance=ExtResource("1_nibwi")]
 power_up_state = "Superball"
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(929899976) index="0" unique_id=1815355599]
-resource_json = ExtResource("2_d6erm")
+json_path = "res://Assets/Sprites/Items/SuperballFlower.json"

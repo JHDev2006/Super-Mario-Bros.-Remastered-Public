@@ -29,7 +29,6 @@ func update_queue() -> void:
 		Global.current_level.music = load(LevelEditor.music_track_list[song_queue.back()])
 	else:
 		Global.current_level.music = old_song
-	print(song_queue)
 
 func toggle() -> void:
 	if playing:

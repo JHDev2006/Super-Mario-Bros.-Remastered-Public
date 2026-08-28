@@ -1,6 +1,22 @@
 [gd_scene format=3 uid="uid://cbl8l51osppso"]
 
 [ext_resource type="PackedScene" uid="uid://13td5gfryp7k" path="res://Scenes/Parts/LargeStartCastleVisual.tscn" id="1_lxjw8"]
+[ext_resource type="PackedScene" uid="uid://bem5ht17ukgcs" path="res://Scenes/Parts/LargeSPCastleVisual.tscn" id="2_lpq2f"]
+
+[sub_resource type="GDScript" id="GDScript_lpq2f"]
+script/source = "extends Node2D
+
+@export var nodes_to_delete: Array[Node] = []
+@export var campaign := \"\"
+
+func _ready() -> void:
+	if Global.current_campaign != campaign:
+		queue_free()
+		return
+	else:
+		for i in nodes_to_delete:
+			i.queue_free()
+"
 
 [node name="LargeCastleDeco" type="Sprite2D" unique_id=1423333120]
 region_enabled = true
@@ -9,3 +25,11 @@ region_filter_clip_enabled = true
 
 [node name="SmallCastleVisual" parent="." unique_id=671792054 instance=ExtResource("1_lxjw8")]
 position = Vector2(0, 48)
+
+[node name="SPCastle" type="Node2D" parent="." unique_id=955575090 node_paths=PackedStringArray("nodes_to_delete")]
+script = SubResource("GDScript_lpq2f")
+nodes_to_delete = [NodePath("../SmallCastleVisual")]
+campaign = "SMBS"
+
+[node name="SmallCastleVisual2" parent="SPCastle" unique_id=316241467 instance=ExtResource("2_lpq2f")]
+position = Vector2(32, 48)

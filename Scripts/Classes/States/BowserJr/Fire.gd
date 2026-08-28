@@ -2,6 +2,7 @@ extends State
 
 func enter(msg := {}) -> void:
 	for i in 3:
+		if %VisibleOnScreenEnabler2D.is_on_screen() == false: break
 		if await breathe_fire() == false:
 			return
 	state_machine.transition_to("Idle")

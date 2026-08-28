@@ -15,7 +15,9 @@
 [node name="7-1a" type="Node" unique_id=1824667655]
 script = ExtResource("1_gtx7a")
 music = ExtResource("2_xnlfq")
+room_type = 1
 theme = "Underground"
+theme_time = "Night"
 campaign = "SMBS"
 world_id = 7
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"

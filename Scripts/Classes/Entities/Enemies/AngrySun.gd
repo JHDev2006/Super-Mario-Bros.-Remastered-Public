@@ -11,7 +11,7 @@ var screen_direction := -1
 
 var screen_center_pos := Vector2.ZERO
 
-var margin := Vector2(32, 32)
+var margin := Vector2(32, 48)
 
 var target_position := Vector2.ZERO
 
@@ -42,6 +42,7 @@ func handle_states(delta: float) -> void:
 			handle_wave(delta)
 
 func start_charging() -> void:
+	%Sprite.play("Charge")
 	current_state = States.CHARGING
 	$ChargeMeter.start()
 
@@ -61,7 +62,6 @@ func start_diving() -> void:
 	current_state = States.DIVING
 
 func handle_charging(delta: float) -> void:
-	%Sprite.play("Charge")
 	wave += delta
 	target_position += Vector2(sin(wave * 16) * 8, cos(wave * 16) * 8)
 	global_position = lerp(global_position, target_position, delta * 20)

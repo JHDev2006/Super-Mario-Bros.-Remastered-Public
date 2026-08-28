@@ -15,12 +15,11 @@ var time := 0.0
 
 signal text_submitted(text: String)
 
+@export var needs_enter := false
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and focused:
 		if can_input:
-			if event.keycode == KEY_ENTER:
-				text_submitted.emit(input_text)
-				return
 			if event.keycode == KEY_BACKSPACE: 
 				input_text = input_text.erase(input_text.length() - 1, 1)
 			else:
@@ -28,6 +27,11 @@ func _input(event: InputEvent) -> void:
 				var idx := character.unicode_at(0)
 				if FONT_MAIN.base_font.has_char(idx):
 					input_text += character
+			if (!needs_enter && input_text != ""):
+				text_submitted.emit(input_text)
+			else:
+				if (event.keycode == KEY_ENTER):
+					text_submitted.emit(input_text)
 
 	elif event.is_released():
 		can_input = true
@@ -46,3 +50,6 @@ func on_focus_entered() -> void:
 func on_focus_exited() -> void:
 	editing = false
 	focused = false
+
+func pressed_button() -> void:
+	text_submitted.emit(input_text)

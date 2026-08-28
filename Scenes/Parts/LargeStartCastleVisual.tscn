@@ -1,9 +1,11 @@
-[gd_scene format=3 uid="uid://13td5gfryp7k"]
+[gd_scene format=4 uid="uid://13td5gfryp7k"]
 
 [ext_resource type="PackedScene" uid="uid://bikdod5ra10ra" path="res://Scenes/Parts/LargeCastleVisual.tscn" id="1_aerfi"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/LargeStartCastle.json" id="2_1xuvh"]
 
 [node name="SmallCastleVisual" unique_id=671792054 instance=ExtResource("1_aerfi")]
 
+[node name="BG" parent="Tiles" parent_id_path=PackedInt32Array(1135526973) index="1" unique_id=1282696285]
+tile_map_data = PackedByteArray("AAAAAAAAAAAOAAgAAAAAAAEAAAAOAAgAAAACAPr/AAAOAAgAAAACAPv/AAAOAAgAAAABAP3/AAAOAAgAAAABAP7/AAAOAAgAAAADAP3/AAAOAAgAAAADAP7/AAAOAAgAAAACAAAAAAAOAAgAAAACAAEAAAAOAAgAAAAEAAAAAAAOAAgAAAAEAAEAAAAOAAgAAAA=")
+
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(1275665957) index="0" unique_id=421162122]
-resource_json = ExtResource("2_1xuvh")
+json_path = "res://Assets/Sprites/Tilesets/LargeStartCastle.json"

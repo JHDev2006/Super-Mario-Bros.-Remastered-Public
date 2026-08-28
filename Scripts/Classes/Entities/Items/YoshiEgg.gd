@@ -6,8 +6,10 @@ func _ready() -> void:
 	ChallengeModeHandler.set_value(ChallengeModeHandler.CoinValues.YOSHI_EGG, true)
 	velocity.y = -150
 	$Egg.play(["Green", "Yellow", "Red", "Blue"][Global.level_num - 1])
-	$Yoshi.play(["Green", "Yellow", "Red", "Blue"][Global.level_num - 1])
 	await get_tree().create_timer(1.5, false).timeout
+
+func yoshi_play_animation() -> void:
+	$Yoshi.play(["Green", "Yellow", "Red", "Blue"][Global.level_num - 1])
 
 func _physics_process(delta: float) -> void:
 	velocity.y += (Global.entity_gravity / delta) * delta

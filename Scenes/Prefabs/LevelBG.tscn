@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://b86x8nf8nso3" path="res://Assets/Sprites/Backgrounds/Skies/NightStars.png" id="7_yxjfg"]
 [ext_resource type="Texture2D" uid="uid://rv5wcnjulem0" path="res://Assets/Sprites/Backgrounds/Bushes/BushNight.png" id="8_b1lev"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="10_lvidp"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/Hills/Hill.json" id="11_kmegu"]
 [ext_resource type="Texture2D" uid="uid://4d5oglq575l1" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/TreesLL.png" id="12_qbp4r"]
 [ext_resource type="Texture2D" uid="uid://bsssrchx6qe0i" path="res://Assets/Sprites/Backgrounds/Hills/Jungle.png" id="13_i5r0m"]
 [ext_resource type="Texture2D" uid="uid://cx54ubn3schon" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SnowTrees.png" id="13_kf1vm"]
@@ -21,22 +20,14 @@
 [ext_resource type="AudioStream" uid="uid://mgub7yupxkau" path="res://Assets/Audio/SFX/ANNCheering1.wav" id="15_b1lev"]
 [ext_resource type="AudioStream" uid="uid://dxpllussaq340" path="res://Assets/Audio/SFX/ANNCheering2.wav" id="16_ugdi7"]
 [ext_resource type="AudioStream" uid="uid://cp0qfxaqq5v25" path="res://Assets/Audio/SFX/ANNCheering3.wav" id="17_aw4cr"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/TopEdge.json" id="17_b1lev"]
+[ext_resource type="Texture2D" uid="uid://cdsycwanymyto" path="res://Assets/Sprites/Particles/LavaEmber.png" id="17_f8dx7"]
 [ext_resource type="Script" uid="uid://dpoo4pluhin8p" path="res://Scripts/Classes/Resources/TimedResource.gd" id="17_q1cch"]
 [ext_resource type="Texture2D" uid="uid://nbfvmi0gi71a" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/JungleNightTrees.png" id="17_t06j2"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/Bushes/Bush.json" id="17_yxjfg"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/CloudOverlays/OverlayClouds.json" id="24_aw4cr"]
 [ext_resource type="Texture2D" uid="uid://d3m2nrl4js67e" path="res://Assets/Sprites/Backgrounds/SpotLight.png" id="24_ibh57"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/Snow.json" id="25_aw4cr"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SecondaryTrees.json" id="25_dmpyo"]
 [ext_resource type="Texture2D" uid="uid://dy3p03djelkb3" path="res://Assets/Sprites/Particles/Leaves.png" id="25_q36g4"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/Leaves.json" id="28_ugdi7"]
 [ext_resource type="Texture2D" uid="uid://ufcdaihxe85c" path="res://Assets/Sprites/Backgrounds/Lighting.png" id="31_78nlv"]
 [ext_resource type="Script" uid="uid://dwtrmo82e12ud" path="res://Scripts/Parts/ColourPaletteSampler.gd" id="31_dmpyo"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/FGs/FGLayer.json" id="31_ugdi7"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/SecondaryMushrooms/Mushrooms.json" id="32_nfso6"]
 [ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="33_7urbp"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Backgrounds/Skies/Sky.json" id="34_78nlv"]
 [ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="36_ekspk"]
 [ext_resource type="Texture2D" uid="uid://3y5hetq5n21x" path="res://Assets/Sprites/Backgrounds/SecondaryTrees/SnowNightTrees.png" id="36_ibh57"]
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="37_nfso6"]
@@ -278,17 +269,6 @@ particles_anim_h_frames = 3
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id="Gradient_dmpyo"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.333333, 0.666667)
-colors = PackedColorArray(0.52549, 0.192157, 0.054902, 1, 1, 0.717647, 0.384314, 1, 0.968627, 0.223529, 0.0627451, 1)
-metadata/_snap_enabled = true
-metadata/_snap_count = 3
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_78nlv"]
-gradient = SubResource("Gradient_dmpyo")
-width = 3
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ugdi7"]
 
 [sub_resource type="Gradient" id="Gradient_qkl8a"]
@@ -393,12 +373,12 @@ frame_progress = 0.8146292
 centered = false
 
 [node name="ResourceSetter" type="Node" parent="SkyLayer/Sky" unique_id=1448806414 node_paths=PackedStringArray("node_to_affect", "property_node")]
-process_mode = 1
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_node = NodePath("../../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("34_78nlv")
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PrimaryLayer" type="Parallax2D" parent="." unique_id=2091922489]
@@ -419,13 +399,14 @@ script = ExtResource("7_y7xk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Hills" unique_id=1085100083 node_paths=PackedStringArray("node_to_affect", "property_node")]
-process_mode = 1
+[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Hills" unique_id=1085100083 node_paths=PackedStringArray("node_to_affect", "property_node", "metadata_node")]
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_node = NodePath("../../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("11_kmegu")
+json_path = "res://Assets/Sprites/Backgrounds/Hills/Hill.json"
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Bush" type="AnimatedSprite2D" parent="PrimaryLayer" unique_id=1658473420]
@@ -437,12 +418,13 @@ script = ExtResource("7_y7xk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Bush" unique_id=653505830 node_paths=PackedStringArray("node_to_affect")]
-process_mode = 1
+[node name="ResourceSetter" type="Node" parent="PrimaryLayer/Bush" unique_id=653505830 node_paths=PackedStringArray("node_to_affect", "metadata_node")]
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("17_yxjfg")
+json_path = "res://Assets/Sprites/Backgrounds/Bushes/Bush.json"
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="DiscoBits" type="Node2D" parent="." unique_id=957846129]
@@ -563,11 +545,12 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="TopEdge/Sprite" unique_id=1443367621 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_node = NodePath("../../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("17_b1lev")
+json_path = "res://Assets/Sprites/Backgrounds/TopEdge.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="SecondaryLayer" type="Parallax2D" parent="." unique_id=2045657376]
@@ -603,21 +586,23 @@ value_to_set = "color"
 metadata/_custom_type_script = "uid://dwtrmo82e12ud"
 
 [node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees/Tint/ColourPaletteSampler" unique_id=530819962 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("34_78nlv")
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees" unique_id=1524968664 node_paths=PackedStringArray("node_to_affect", "property_node")]
-process_mode = 1
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Trees" unique_id=1524968664 node_paths=PackedStringArray("node_to_affect", "property_node", "metadata_node")]
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_node = NodePath("../../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("25_dmpyo")
+json_path = "res://Assets/Sprites/Backgrounds/SecondaryTrees/SecondaryTrees.json"
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Mushrooms" type="AnimatedSprite2D" parent="SecondaryLayer" unique_id=978660926]
@@ -630,13 +615,14 @@ script = ExtResource("7_y7xk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms" unique_id=1336031657 node_paths=PackedStringArray("node_to_affect", "property_node")]
-process_mode = 1
+[node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms" unique_id=1336031657 node_paths=PackedStringArray("node_to_affect", "property_node", "metadata_node")]
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_node = NodePath("../../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("32_nfso6")
+json_path = "res://Assets/Sprites/Backgrounds/SecondaryMushrooms/Mushrooms.json"
+metadata_node = NodePath("../..")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Tint" type="ColorRect" parent="SecondaryLayer/Mushrooms" unique_id=641788286]
@@ -654,11 +640,12 @@ value_to_set = "color"
 metadata/_custom_type_script = "uid://dwtrmo82e12ud"
 
 [node name="ResourceSetterNew" type="Node" parent="SecondaryLayer/Mushrooms/Tint/ColourPaletteSampler" unique_id=1145216853 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("34_78nlv")
+json_path = "res://Assets/Sprites/Backgrounds/Skies/Sky.json"
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
@@ -677,19 +664,19 @@ repeat_times = 4
 
 [node name="Clouds" type="AnimatedSprite2D" parent="OverlayLayer/CloudLayer" unique_id=1266660399]
 process_mode = 1
-self_modulate = Color(1, 1, 1, 0.52549)
 sprite_frames = SubResource("SpriteFrames_ww6w2")
 centered = false
 script = ExtResource("7_y7xk0")
 do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
-[node name="ResourceSetter" type="Node" parent="OverlayLayer/CloudLayer/Clouds" unique_id=181819975 node_paths=PackedStringArray("node_to_affect")]
-process_mode = 1
+[node name="ResourceSetter" type="Node" parent="OverlayLayer/CloudLayer/Clouds" unique_id=181819975 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
+property_node = NodePath("../../../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("24_aw4cr")
+json_path = "res://Assets/Sprites/Backgrounds/CloudOverlays/OverlayClouds.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Particles" type="Parallax2D" parent="OverlayLayer" unique_id=1110476740]
@@ -715,12 +702,12 @@ initial_velocity_min = 20.0
 initial_velocity_max = 50.0
 
 [node name="ResourceSetter" type="Node" parent="OverlayLayer/Particles/Snow" unique_id=863458771 node_paths=PackedStringArray("node_to_affect")]
-process_mode = 1
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("25_aw4cr")
+json_path = "res://Assets/Sprites/Particles/Snow.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Leaves" type="CPUParticles2D" parent="OverlayLayer/Particles" unique_id=1295962048]
@@ -745,11 +732,12 @@ angular_velocity_max = 720.0
 anim_offset_max = 1.0
 
 [node name="ResourceSetterNew" type="Node" parent="OverlayLayer/Particles/Leaves" unique_id=1249667146 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("28_ugdi7")
+json_path = "res://Assets/Sprites/Particles/Leaves.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LavaEmber" type="CPUParticles2D" parent="OverlayLayer/Particles" unique_id=281136756]
@@ -760,7 +748,7 @@ z_as_relative = false
 material = SubResource("CanvasItemMaterial_dmpyo")
 position = Vector2(256, 32)
 amount = 64
-texture = SubResource("GradientTexture1D_78nlv")
+texture = ExtResource("17_f8dx7")
 lifetime = 5.0
 preprocess = 10.0
 fract_delta = false
@@ -773,6 +761,15 @@ gravity = Vector2(0, -10)
 initial_velocity_min = 5.0
 initial_velocity_max = 20.0
 anim_offset_max = 1.0
+
+[node name="ResourceSetterNew" type="Node" parent="OverlayLayer/Particles/LavaEmber" unique_id=1986518990 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
+script = ExtResource("10_lvidp")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+json_path = "res://Assets/Sprites/Particles/LavaEmber.json"
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="FGLayer" type="Parallax2D" parent="." unique_id=98306353]
 process_mode = 1
@@ -793,12 +790,12 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="FGLayer/Sprite" unique_id=1554701366 node_paths=PackedStringArray("node_to_affect", "property_node")]
-process_mode = 1
+process_mode = 3
 script = ExtResource("10_lvidp")
 node_to_affect = NodePath("..")
 property_node = NodePath("../../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("31_ugdi7")
+json_path = "res://Assets/Sprites/Backgrounds/FGs/FGLayer.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LiquidLayer" type="Parallax2D" parent="." unique_id=817618312]

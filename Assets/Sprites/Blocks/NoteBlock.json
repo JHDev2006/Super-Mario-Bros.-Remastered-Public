@@ -2,18 +2,39 @@
 	"animations": {
 		"default": {
 			"frames": [[0, 0, 16, 16]],
-			"speed": 5.0,
+			"speed": 5,
 			"loop": true
 		}
 	},
 	"variations": {
-		"default": {"source": "NoteBlock.png", "rect": [0, 0, 16, 16]},
-		"Underground": {"source": "NoteBlock.png", "rect": [0, 16, 16, 16]},
+		"default": {
+			"source": "NoteBlock.png",
+			"rect": [0, 0, 16, 16]
+		},
+		"Underground": {
+			"source": "NoteBlock.png",
+			"rect": [0, 16, 16, 16]
+		},
 		"GhostHouse": {"link": "Underground"},
-		"Castle": {"source": "NoteBlock.png", "rect": [0, 32, 16, 16]},
-		"Snow": {"source": "NoteBlock.png", "rect": [0, 48, 16, 16]},
-		"Space": {"source": "NoteBlock.png", "rect": [0, 64, 16, 16]},
-		"Volcano": {"source": "NoteBlock.png", "rect": [0, 80, 16, 16]},
-		"Bonus": {"source": "NoteBlock.png", "rect": [0, 96, 16, 16]}
+		"Castle": {
+			"source": "NoteBlock.png",
+			"rect": [0, 32, 16, 16]
+		},
+		"Snow": {
+			"source": "NoteBlock.png",
+			"rect": [0, 48, 16, 16]
+		},
+		"Space": {
+			"source": "NoteBlock.png",
+			"rect": [0, 64, 16, 16]
+		},
+		"Volcano": {
+			"source": "NoteBlock.png",
+			"rect": [0, 80, 16, 16]
+		},
+		"Bonus": {
+			"source": "NoteBlock.png",
+			"rect": [0, 96, 16, 16]
+		}
 	}
 }

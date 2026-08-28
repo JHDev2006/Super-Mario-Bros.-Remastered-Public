@@ -4,7 +4,7 @@ func _ready() -> void:
 	get_tree().paused = false
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("jump_0"):
+	if Global.multibind_action_just_pressed("jump_0"):
 		go_back_to_title()
 
 func go_back_to_title() -> void:

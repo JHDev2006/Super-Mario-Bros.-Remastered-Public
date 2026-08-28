@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://o3rkd6bf2toj"]
+
+[ext_resource type="Texture2D" uid="uid://onklykrkegkn" path="res://Assets/Sprites/Editor/PipeCutsceneNode.png" id="1_3quwm"]
+[ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="2_6qxe3"]
+[ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="2_oa6vc"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ga0ye"]
+[ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="5_y3vbw"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="7_tm3gg"]
+
+[sub_resource type="GDScript" id="GDScript_oa6vc"]
+script/source = "extends Node2D
+
+@export var play_music := true
+
+func _enter_tree() -> void:
+	pass
+
+
+func _exit_tree() -> void:
+	Player.pipe_cutscene = false
+
+func on_level_start() -> void:
+	if $SignalExposer.total_inputs <= 0:
+		activate()
+
+func activate() -> void:
+	var old = Global.inf_time
+	Global.inf_time = true
+	Global.can_time_tick = false
+	Player.pipe_cutscene = true
+	for i in get_tree().get_nodes_in_group(\"Players\"):
+		i.state_machine.transition_to(\"PipeCutscene\")
+	if play_music:
+		Global.current_level.music = null
+		$Music.play()
+	await tree_exiting
+	Global.inf_time = old
+"
+
+[node name="Node2D" type="Node2D" unique_id=723278762]
+script = SubResource("GDScript_oa6vc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1807207578]
+texture = ExtResource("1_3quwm")
+script = ExtResource("2_6qxe3")
+
+[node name="LevelEditorToggleDetection" type="Node" parent="." unique_id=92686134]
+script = ExtResource("2_oa6vc")
+metadata/_custom_type_script = "uid://b8vmbtoaaq5nc"
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=68676344]
+bus = &"Music"
+
+[node name="ResourceSetterNew" type="Node" parent="Music" unique_id=1803027373 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
+script = ExtResource("3_ga0ye")
+node_to_affect = NodePath("..")
+property_name = "stream"
+mode = 2
+json_path = "res://Assets/Audio/BGM/PipeCutscene.json"
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="SignalExposer" type="Node2D" parent="." unique_id=430181305]
+script = ExtResource("5_y3vbw")
+can_output = false
+metadata/_custom_type_script = "uid://b3bokos5jcpr7"
+
+[node name="EditorPropertyExposer" type="Node" parent="." unique_id=1199608766]
+script = ExtResource("7_tm3gg")
+properties = Array[String](["play_music"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[connection signal="level_start" from="LevelEditorToggleDetection" to="." method="on_level_start"]
+[connection signal="recieved_power" from="SignalExposer" to="." method="activate"]
+[connection signal="recieved_pulse" from="SignalExposer" to="." method="activate"]

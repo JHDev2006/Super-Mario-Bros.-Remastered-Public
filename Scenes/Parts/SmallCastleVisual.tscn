@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://cdvxqkeqa7en5" path="res://Scripts/Parts/CastleVisual.gd" id="1_oxmfh"]
 [ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="2_tt5sy"]
 [ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="2_ulvy5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="5_my1op"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/SmallStartCastle.json" id="6_oxmfh"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="7_vjwyw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_80q5s"]
@@ -15,24 +13,10 @@ texture = ExtResource("2_tt5sy")
 7:7/0 = 0
 3:10/0 = 0
 4:10/0 = 0
+14:8/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_0n6c4"]
 sources/0 = SubResource("TileSetAtlasSource_80q5s")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oxmfh"]
-texture = ExtResource("2_tt5sy")
-texture_region_size = Vector2i(8, 8)
-5:10/0 = 0
-6:10/0 = 0
-7:10/0 = 0
-8:10/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-7:20/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_vjwyw"]
-tile_size = Vector2i(8, 8)
-sources/0 = SubResource("TileSetAtlasSource_oxmfh")
 
 [node name="SmallCastleVisual" type="Node2D" unique_id=807434750 node_paths=PackedStringArray("sprite")]
 process_mode = 3
@@ -51,29 +35,31 @@ tile_map = NodePath("..")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetterNew" type="Node" parent="Tiles/TilesetTextureSetter" unique_id=1895220454 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_vjwyw")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("5_my1op")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="BG" type="TileMapLayer" parent="Tiles" unique_id=1462532335]
+[node name="BG" type="TileMapLayer" parent="Tiles" unique_id=1282696285]
 show_behind_parent = true
-tile_map_data = PackedByteArray("AAAAAAAAAAAHABQAAAAAAAEAAAAHABQAAAAAAAIAAAAHABQAAAAAAAMAAAAHABQAAAABAAAAAAAHABQAAAABAAEAAAAHABQAAAABAAIAAAAHABQAAAABAAMAAAAHABQAAAA=")
-tile_set = SubResource("TileSet_vjwyw")
+tile_map_data = PackedByteArray("AAAAAAAAAAAOAAgAAAAAAAEAAAAOAAgAAAA=")
+tile_set = SubResource("TileSet_0n6c4")
 
-[node name="TilesetTextureSetter" type="Node" parent="Tiles/BG" unique_id=1481925576 node_paths=PackedStringArray("tile_map")]
+[node name="TilesetTextureSetter" type="Node" parent="Tiles/BG" unique_id=1016332116 node_paths=PackedStringArray("tile_map")]
 script = ExtResource("2_ulvy5")
 tile_map = NodePath("..")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
-[node name="ResourceSetterNew" type="Node" parent="Tiles/BG/TilesetTextureSetter" unique_id=1635772121 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Tiles/BG/TilesetTextureSetter" unique_id=809933575 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_vjwyw")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("5_my1op")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1275665957]
@@ -81,10 +67,11 @@ hframes = 2
 region_rect = Rect2(0, 0, 80, 80)
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=421162122 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("7_vjwyw")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("6_oxmfh")
+json_path = "res://Assets/Sprites/Tilesets/SmallStartCastle.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

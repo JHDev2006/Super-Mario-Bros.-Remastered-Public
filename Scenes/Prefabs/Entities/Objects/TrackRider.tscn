@@ -41,8 +41,10 @@ z_as_relative = false
 
 [node name="SignalExposer" type="Node2D" parent="." unique_id=920527108]
 script = ExtResource("6_62713")
+do_animation = false
 metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 
+[connection signal="reached_end" from="." to="SignalExposer" method="emit_pulse"]
 [connection signal="toggled" from="LevelEditorToggleDetection" to="." method="start"]
 [connection signal="lost_power" from="SignalExposer" to="." method="stop_moving"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="start_moving"]

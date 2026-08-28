@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="9_32x6h"]
 [ext_resource type="PackedScene" uid="uid://cxdj1ea1rt1r4" path="res://Scenes/Prefabs/Entities/Enemies/Podoboo.tscn" id="10_3q1v1"]
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="11_7d4er"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/SideStepper.json" id="11_8uvqo"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="13_5b2sc"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="14_m2i5e"]
 [ext_resource type="PackedScene" uid="uid://ctancgnvl58oc" path="res://Scenes/Prefabs/Entities/Objects/ElevatorPlatform.tscn" id="15_crmjp"]
@@ -24,6 +23,7 @@
 script = ExtResource("1_jul4x")
 music = ExtResource("2_5b2sc")
 theme = "Castle"
+theme_time = "Night"
 campaign = "SMBS"
 world_id = 5
 level_id = 4
@@ -68,7 +68,7 @@ length = 17
 [node name="Bowser" parent="." unique_id=1792116750 instance=ExtResource("14_m2i5e")]
 position = Vector2(2376, -32)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(1792116750, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("11_8uvqo")
+json_path = "res://Assets/Sprites/Enemies/SideStepper.json"
 [node name="ElevatorPlatform" parent="." unique_id=98981192 instance=ExtResource("15_crmjp")]
 position = Vector2(1144, -48)
 top = -176

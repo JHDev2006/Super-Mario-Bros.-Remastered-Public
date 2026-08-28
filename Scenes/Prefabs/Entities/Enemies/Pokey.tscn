@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_b54ls"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="4_30hxr"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_bjt0v"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Pokey.json" id="5_rjgwh"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="5_t1h12"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="6_bjt0v"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="7_rjgwh"]
@@ -84,10 +83,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Parts/Part1" unique_id=1454910882 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_bjt0v")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_rjgwh")
+json_path = "res://Assets/Sprites/Enemies/Pokey.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" type="Node" parent="Parts/Part1" unique_id=1984791451 node_paths=PackedStringArray("visuals")]
@@ -105,10 +105,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Parts/Part2" unique_id=1394510804 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_bjt0v")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_rjgwh")
+json_path = "res://Assets/Sprites/Enemies/Pokey.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" type="Node" parent="Parts/Part2" unique_id=183330759 node_paths=PackedStringArray("visuals")]
@@ -127,10 +128,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Parts/Part3" unique_id=708057604 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_bjt0v")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_rjgwh")
+json_path = "res://Assets/Sprites/Enemies/Pokey.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" type="Node" parent="Parts/Part3" unique_id=1711970225 node_paths=PackedStringArray("visuals")]
@@ -150,10 +152,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Parts/Part4" unique_id=759739623 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_bjt0v")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_rjgwh")
+json_path = "res://Assets/Sprites/Enemies/Pokey.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" type="Node" parent="Parts/Part4" unique_id=287705651 node_paths=PackedStringArray("visuals")]
@@ -173,10 +176,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Parts/Part5" unique_id=170616935 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_bjt0v")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_rjgwh")
+json_path = "res://Assets/Sprites/Enemies/Pokey.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" type="Node" parent="Parts/Part5" unique_id=156625211 node_paths=PackedStringArray("visuals")]
@@ -196,10 +200,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Parts/Part6" unique_id=1233588820 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_bjt0v")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_rjgwh")
+json_path = "res://Assets/Sprites/Enemies/Pokey.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" type="Node" parent="Parts/Part6" unique_id=1415608482 node_paths=PackedStringArray("visuals")]
@@ -219,10 +224,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Parts/Part7" unique_id=1853543652 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_bjt0v")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_rjgwh")
+json_path = "res://Assets/Sprites/Enemies/Pokey.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" type="Node" parent="Parts/Part7" unique_id=61043083 node_paths=PackedStringArray("visuals")]
@@ -242,10 +248,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Parts/Part8" unique_id=1936736043 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_bjt0v")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_rjgwh")
+json_path = "res://Assets/Sprites/Enemies/Pokey.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" type="Node" parent="Parts/Part8" unique_id=291218135 node_paths=PackedStringArray("visuals")]
@@ -265,10 +272,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Parts/Part9" unique_id=987511255 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_bjt0v")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_rjgwh")
+json_path = "res://Assets/Sprites/Enemies/Pokey.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" type="Node" parent="Parts/Part9" unique_id=791667719 node_paths=PackedStringArray("visuals")]
@@ -288,10 +296,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Parts/Part10" unique_id=955331471 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_bjt0v")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_rjgwh")
+json_path = "res://Assets/Sprites/Enemies/Pokey.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="GibSpawner" type="Node" parent="Parts/Part10" unique_id=857679534 node_paths=PackedStringArray("visuals")]

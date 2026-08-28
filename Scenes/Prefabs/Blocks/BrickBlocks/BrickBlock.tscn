@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_j224x"]
 [ext_resource type="PackedScene" uid="uid://cijkvfkthetn5" path="res://Scenes/Parts/BlockAnimations.tscn" id="3_nyd82"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_x80g6"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/BrickBlock.json" id="4_b3g5f"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="6_e3l5j"]
 [ext_resource type="Script" uid="uid://bul1nbd2in1gn" path="res://Scripts/Classes/Components/PSwitcher.gd" id="7_43oa6"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="8_7ej1a"]
@@ -21,9 +20,11 @@ z_index = -1
 disable_mode = 1
 collision_layer = 6
 collision_mask = 0
+sync_to_physics = false
 script = ExtResource("1_ci56s")
 visuals = NodePath("Sprite")
 destruction_particle_scene = ExtResource("2_x80g6")
+block_type = "Brick"
 metadata/_custom_type_script = "uid://b5ejlbl0vp1gm"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1353990492]
@@ -33,14 +34,14 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=446310778 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_j224x")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_b3g5f")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/BrickBlock.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=577117237]
-visible = false
 shape = SubResource("RectangleShape2D_b3g5f")
 
 [node name="BlockAnimations" parent="." unique_id=1221101267 instance=ExtResource("3_nyd82")]

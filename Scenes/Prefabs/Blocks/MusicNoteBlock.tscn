@@ -2,11 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bxvcax2wc48xh" path="res://Scenes/Prefabs/Blocks/NoteBlock.tscn" id="1_2p7lf"]
 [ext_resource type="Script" uid="uid://2gxl5hj6mf6a" path="res://Scripts/Classes/Blocks/MusicNoteBlock.gd" id="2_1gaxc"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/MusicNoteBlock.json" id="3_d6amy"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="3_lw6l2"]
 [ext_resource type="Texture2D" uid="uid://b8su0m8876337" path="res://Assets/Sprites/Editor/NoteBlockNotes.png" id="4_d6amy"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="6_gpide"]
-[ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="7_430f0"]
 
 [sub_resource type="GDScript" id="GDScript_lw6l2"]
 script/source = "extends Node
@@ -22,13 +20,14 @@ play_on_load = false
 instrument = 0
 note = 3
 octave = 2
+volume = 1.0
 play_sfx = false
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(147779313) index="0" unique_id=1722141441]
-resource_json = ExtResource("3_d6amy")
+json_path = "res://Assets/Sprites/Blocks/MusicNoteBlock.json"
 
 [node name="EditorPropertyExposer" parent="." index="3" unique_id=1570804738]
-properties = Array[String](["instrument", "note", "octave", "play_on_load"])
+properties = Array[String](["instrument", "note", "octave", "play_on_load", "volume"])
 
 [node name="Instrument" type="AudioStreamPlayer" parent="." index="4" unique_id=830912558]
 process_mode = 3
@@ -65,9 +64,8 @@ script = ExtResource("6_gpide")
 offset = Vector2(0, 0)
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
 
-[node name="SignalExposer" type="Node2D" parent="." index="10" unique_id=2144044909]
-script = ExtResource("7_430f0")
-metadata/_custom_type_script = "uid://b3bokos5jcpr7"
+[node name="SignalExposer" parent="." index="10" unique_id=310607942]
+can_input = true
 
 [connection signal="bounced" from="." to="." method="play_sfx_preview"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="on_screen_entered"]

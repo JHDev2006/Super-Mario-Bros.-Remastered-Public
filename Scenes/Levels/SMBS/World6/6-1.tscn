@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="3_x7pl2"]
 [ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="4_kox80"]
 [ext_resource type="PackedScene" uid="uid://c145qqkvy8pr5" path="res://Scenes/Parts/DecoTiles.tscn" id="5_dxfo4"]
-[ext_resource type="PackedScene" uid="uid://dn2oonncrmxb3" path="res://Scenes/Parts/LargeSPCastleDeco.tscn" id="7_gl61r"]
 [ext_resource type="PackedScene" uid="uid://4bb81eil6a4c" path="res://Scenes/Prefabs/Entities/Enemies/Lakitu.tscn" id="9_8p6o7"]
 [ext_resource type="PackedScene" uid="uid://1rxw4k4wq3ni" path="res://Scenes/Prefabs/Entities/Enemies/PiranhaPlant.tscn" id="10_gl61r"]
 [ext_resource type="PackedScene" uid="uid://c6loucilra6da" path="res://Scenes/Prefabs/LevelObjects/EndFlagpole.tscn" id="11_0k7ei"]
@@ -16,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="16_x1kgc"]
 [ext_resource type="PackedScene" uid="uid://d3gnwmvds4ors" path="res://Scenes/Prefabs/Entities/Items/SpinningRedCoin.tscn" id="17_3sf37"]
 [ext_resource type="PackedScene" uid="uid://bc1mrna4kybhv" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/QuestionBlock.tscn" id="18_3sf37"]
+[ext_resource type="PackedScene" uid="uid://cbl8l51osppso" path="res://Scenes/Parts/LargeStartCastle.tscn" id="19_3sf37"]
 [ext_resource type="PackedScene" uid="uid://ctx0nbkjf2osn" path="res://Scenes/Prefabs/Entities/Items/YoshiEgg.tscn" id="19_rmx74"]
 [ext_resource type="PackedScene" uid="uid://cmbpqnq10arts" path="res://Scenes/Prefabs/Entities/Items/RedCoin.tscn" id="20_5nm15"]
 [node name="Level" type="Node" unique_id=1159986266]
@@ -36,8 +36,6 @@ tile_map_data = PackedByteArray("AADv/wAAAAABAAAAAADw/wAAAAACAAAAAADx/wAAAAACAAA
 position = Vector2(-216, 0)
 [node name="DecoTiles" parent="." unique_id=1228933351 instance=ExtResource("5_dxfo4")]
 tile_map_data = PackedByteArray("AAD7////AAAAAAAAAAD8////AAABAAAAAAD9////AAABAAAAAAD+////AAACAAAAAAAiAP//AAAAAAAAAAAjAP//AAACAAAAAAAvAP//AAAAAAAAAAAwAP//AAACAAAAAABLAP//AAAAAAAAAABMAP//AAACAAAAAABaAP//AAAAAAAAAABbAP//AAABAAAAAABcAP//AAACAAAAAAC2AP//AAABAAAAAAC3AP//AAABAAAAAAC4AP//AAACAAAAAAC1AP//AAAAAAAAAADOAP//AAAAAAAAAADPAP//AAACAAAAAAA=")
-[node name="LargeCastleDeco" parent="." unique_id=678746987 instance=ExtResource("7_gl61r")]
-position = Vector2(-216, -88)
 [node name="Enemies" type="Node" parent="." unique_id=1393797263]
 [node name="Lakitu" parent="Enemies" unique_id=1942556270 instance=ExtResource("9_8p6o7")]
 position = Vector2(520, -152)
@@ -84,3 +82,5 @@ position = Vector2(2136, -72)
 [node name="QuestionBlock2" parent="Blocks" unique_id=390522870 instance=ExtResource("18_3sf37")]
 position = Vector2(2472, -40)
 [node name="DropShadow" parent="." unique_id=1163760398 instance=ExtResource("16_lw7xa")]
+[node name="LargeCastleDeco" parent="." unique_id=1423333120 instance=ExtResource("19_3sf37")]
+position = Vector2(-216, -88)

@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://1o654l3577lv" path="res://Assets/Sprites/Items/SuperStar.png" id="1_gpwv4"]
 [ext_resource type="AudioStream" uid="uid://73b2bhjg5idd" path="res://Assets/Audio/BGM/StarMan.mp3" id="2_orqf5"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_orqf5"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/StarMan.json" id="5_og7mc"]
 [ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="6_og7mc"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="7_sc6oi"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="8_yyobd"]
@@ -73,10 +72,11 @@ autoplay = "default"
 frame_progress = 0.792139
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1909908345 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_orqf5")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_og7mc")
+json_path = "res://Assets/Sprites/Items/StarMan.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=935769465]
@@ -105,6 +105,9 @@ metadata/_custom_type_script = "uid://5octqlf4ohel"
 script = ExtResource("8_yyobd")
 movement_node = NodePath("../BasicEnemyMovement")
 metadata/_custom_type_script = "uid://d4a7yp6e55u8t"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1959679235]
+position = Vector2(0, -8)
 
 [connection signal="collected" from="." to="ScoreNoteSpawner" method="spawn_note" binds= [1000]]
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bjs5mlc3xrxud" path="res://Scripts/Parts/DiscoLevel.gd" id="2_mpkel"]
 [ext_resource type="PackedScene" uid="uid://1rxw4k4wq3ni" path="res://Scenes/Prefabs/Entities/Enemies/PiranhaPlant.tscn" id="3_qw7d2"]
 [node name="4-4" unique_id=56521359 instance=ExtResource("1_mxym3")]
+theme_time = "Night"
 campaign = "SMBANN"
 world_id = 6
 [node name="RedPirannhaPlant" parent="Enemies" parent_id_path=PackedInt32Array(1465517944) index="7" unique_id=1774540225]
@@ -12,7 +13,6 @@ position = Vector2(2384, 208)
 [node name="DiscoLevel" type="Node" parent="." index="25" unique_id=2066206467]
 script = ExtResource("2_mpkel")
 combo_meter_rate = 0.6
-max_combo = 10
 metadata/_custom_type_script = "uid://bjs5mlc3xrxud"
 [node name="PirannhaPlant" parent="." index="26" unique_id=203038216 instance=ExtResource("3_qw7d2")]
 position = Vector2(1744, -112)

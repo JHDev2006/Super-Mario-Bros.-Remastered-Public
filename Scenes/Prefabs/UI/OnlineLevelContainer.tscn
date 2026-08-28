@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://35who743oaxe" path="res://Assets/Sprites/UI/LSSRatingStars.png" id="7_1k7iw"]
 [ext_resource type="Texture2D" uid="uid://dfeu75lbxfkim" path="res://Assets/Sprites/UI/GameStyles.png" id="7_scevv"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="8_vfnya"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="9_d0564"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="10_x7igx"]
 
 [sub_resource type="Animation" id="Animation_w0xci"]
@@ -56,7 +55,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 40.0
 grow_horizontal = 2
-mouse_filter = 2
 theme_override_styles/normal = ExtResource("1_1k7iw")
 theme_override_styles/pressed = ExtResource("1_1k7iw")
 theme_override_styles/hover = ExtResource("2_h6n8u")
@@ -135,6 +133,7 @@ theme_override_constants/separation = -4
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" unique_id=339759982]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+mouse_filter = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("5_ajmg3")
@@ -149,6 +148,7 @@ uppercase = true
 [node name="ScrollContainer2" type="ScrollContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" unique_id=1470364982]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+mouse_filter = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 3
 script = ExtResource("5_ajmg3")
@@ -286,11 +286,12 @@ offset_bottom = 4.0
 grow_vertical = 2
 
 [node name="ResourceSetterNew" type="Node" parent="TextureRect" unique_id=1523521567 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("8_vfnya")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("9_d0564")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LabelFontChanger" type="Node" parent="." unique_id=1978684210 node_paths=PackedStringArray("labels")]
@@ -304,5 +305,7 @@ metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 [connection signal="focus_entered" from="." to="." method="set_process" binds= [true]]
 [connection signal="focus_exited" from="." to="TextureRect" method="hide"]
 [connection signal="focus_exited" from="." to="." method="set_process" binds= [false]]
+[connection signal="mouse_entered" from="." to="." method="grab_focus"]
+[connection signal="mouse_exited" from="." to="." method="release_focus"]
 [connection signal="request_completed" from="ThumbnailDownloader" to="." method="on_request_completed"]
 [connection signal="tree_exiting" from="ThumbnailDownloader" to="ThumbnailDownloader" method="cancel_request"]

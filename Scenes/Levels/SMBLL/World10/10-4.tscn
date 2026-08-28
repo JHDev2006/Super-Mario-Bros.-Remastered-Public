@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cmvugag0kupgu" path="res://Scenes/Prefabs/Entities/Enemies/RedKoopaTroopa.tscn" id="8_oikdo"]
 [ext_resource type="PackedScene" uid="uid://cxdj1ea1rt1r4" path="res://Scenes/Prefabs/Entities/Enemies/Podoboo.tscn" id="9_osfb1"]
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="10_kdao6"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedKoopaShell.json" id="11_8asaa"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="11_xvmf8"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="12_j4q5r"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="13_2biis"]
@@ -65,7 +64,7 @@ position = Vector2(2312, -40)
 [node name="Bowser" parent="." unique_id=32449080 instance=ExtResource("12_j4q5r")]
 position = Vector2(2440, -48)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(32449080, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("11_8asaa")
+json_path = "res://Assets/Sprites/Enemies/RedKoopaShell.json"
 [node name="DropShadow" parent="." unique_id=206067960 instance=ExtResource("13_2biis")]
 [node name="TileMapConverter" type="Node" parent="." unique_id=1087367840 node_paths=PackedStringArray("tilemap")]
 script = ExtResource("13_oweu7")

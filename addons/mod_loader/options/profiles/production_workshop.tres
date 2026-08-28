@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ModLoaderOptionsProfile" format=3 uid="uid://cg0vv5k4o71rv"]
+
+[ext_resource type="Script" uid="uid://dsbicisgihjet" path="res://addons/mod_loader/resources/options_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+log_level = 2
+load_from_steam_workshop = true

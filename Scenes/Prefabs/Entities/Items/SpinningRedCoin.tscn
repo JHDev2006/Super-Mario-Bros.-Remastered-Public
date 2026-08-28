@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ke76m"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="3_oosg8"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_rnpac"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/RedCoin.json" id="4_rnpac"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwdcj"]
 atlas = ExtResource("2_1ws6h")
@@ -91,11 +90,12 @@ script = ExtResource("3_rnpac")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1254116428 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("3_ke76m")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_rnpac")
+json_path = "res://Assets/Sprites/Items/RedCoin.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Timer" type="Timer" parent="." unique_id=1840753567]

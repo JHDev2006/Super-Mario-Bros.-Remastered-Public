@@ -5,8 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="3_dfskb"]
 [ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="3_rdo6i"]
 [ext_resource type="PackedScene" uid="uid://dpukj2ja3i3qj" path="res://Scenes/Prefabs/Blocks/BrickBlocks/StarBrickBlock.tscn" id="4_er530"]
-[ext_resource type="PackedScene" uid="uid://r6dlmokkdyar" path="res://Scenes/Prefabs/Entities/Enemies/GreenKoopaTroopa.tscn" id="4_perlb"]
-[ext_resource type="PackedScene" uid="uid://cmvugag0kupgu" path="res://Scenes/Prefabs/Entities/Enemies/RedKoopaTroopa.tscn" id="5_2bmpu"]
 [ext_resource type="PackedScene" uid="uid://canoj6slqk5ee" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleOneUpQuestionBlock.tscn" id="5_q8vgg"]
 [ext_resource type="PackedScene" uid="uid://um8m5iu20qj3" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/PoisonQuestionBlock.tscn" id="6_hsxcb"]
 [ext_resource type="PackedScene" uid="uid://cih0lt6mbg3g8" path="res://Scenes/Prefabs/Blocks/BrickBlocks/PoisonMushroomBrickBlock.tscn" id="7_873tq"]
@@ -930,7 +928,7 @@ texture = ExtResource("25_4iqk6")
 8: [17],
 &"type": 17
 }
-[sub_resource type="TileSet" id="TileSet_rdo6i"]
+[sub_resource type="TileSet" id="TileSet_p6tu8"]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
@@ -1013,7 +1011,7 @@ world_id = 7
 time_of_day = 1
 primary_layer = 1
 [node name="Tiles" parent="." index="2" unique_id=918083686]
-tile_set = SubResource("TileSet_rdo6i")
+tile_set = SubResource("TileSet_p6tu8")
 [node name="ChallengeNodes" parent="." index="9" unique_id=1297324198 node_paths=PackedStringArray("nodes_to_delete")]
 nodes_to_delete = []
 [node name="RedCoin" parent="ChallengeNodes" index="0" unique_id=1002999350]
@@ -1030,21 +1028,5 @@ position = Vector2(2976, -96)
 position = Vector2(504, -104)
 [node name="InvisibleQuestionBlock3" parent="ChallengeNodes" index="6" unique_id=1581930835 instance=ExtResource("3_dfskb")]
 position = Vector2(1176, -104)
-[node name="Enemies" type="Node" parent="." index="13" unique_id=909139993]
-[node name="GreenKoopaTroopa" parent="Enemies" index="0" unique_id=2049606671 instance=ExtResource("4_perlb")]
-position = Vector2(376, -48)
-[node name="GreenKoopaTroopa2" parent="Enemies" index="1" unique_id=1723082435 instance=ExtResource("4_perlb")]
-position = Vector2(584, -48)
-winged = true
-[node name="GreenKoopaTroopa4" parent="Enemies" index="2" unique_id=795459091 instance=ExtResource("4_perlb")]
-position = Vector2(1992, -80)
-winged = true
-[node name="GreenKoopaTroopa5" parent="Enemies" index="3" unique_id=63041752 instance=ExtResource("4_perlb")]
-position = Vector2(2248, -48)
-winged = true
-[node name="RedKoopaTroopa" parent="Enemies" index="4" unique_id=1095586511 instance=ExtResource("5_2bmpu")]
-position = Vector2(1016, -48)
-[node name="RedKoopaTroopa2" parent="Enemies" index="5" unique_id=1010459961 instance=ExtResource("5_2bmpu")]
-position = Vector2(1272, -48)
-[node name="RedKoopaTroopa3" parent="Enemies" index="6" unique_id=64696328 instance=ExtResource("5_2bmpu")]
-position = Vector2(1656, 0)
+[node name="SecondQuestNode" parent="." index="13" unique_id=1303874464]
+enabled = true

@@ -1,5 +1,4 @@
 extends Control
-@onready var cursor: TextureRect = %Cursor
 
 var selected_index := 0
 
@@ -34,15 +33,13 @@ func get_custom_characters() -> void:
 	var idx := 0
 	for i in Player.CHARACTERS:
 		var path = ResourceSetter.get_pure_resource_path("res://Assets/Sprites/Players/" + i + "/CharacterInfo.json")
-		print(path)
 		if FileAccess.file_exists(path):
-			var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
+			var json = JSONParser.parse_to_dict(path)
 			Player.CHARACTER_NAMES[idx] = json.name
 		path = ResourceSetter.get_pure_resource_path("res://Assets/Sprites/Players/" + i + "/CharacterColour.json")
 		if FileAccess.file_exists(path):
-			Player.CHARACTER_COLOURS[idx] = load(path)
+			Player.CHARACTER_COLOURS[idx] = (path)
 		idx += 1
-	print(Player.CHARACTER_NAMES)
 	
 	var base_path = Global.config_path
 	var char_dir = base_path.path_join("custom_characters") 
@@ -50,57 +47,85 @@ func get_custom_characters() -> void:
 		var char_path = char_dir.path_join(i)
 		var char_info_path = char_path.path_join("CharacterInfo.json")
 		if FileAccess.file_exists(char_info_path):
-			var json = JSON.parse_string(FileAccess.open(char_path.path_join("CharacterInfo.json"), FileAccess.READ).get_as_text())
+			var json = JSONParser.parse_to_dict(char_path.path_join("CharacterInfo.json"))
 			if json == null:
 				continue
 			if json.has("physics"):
 				if json.physics.has("PHYSICS_PARAMETERS") == false:
 					json = CustomCharacterUpdater.update_json(json)
 					Global.log_comment("Updated CharacterInfo for: " + i)
-					FileAccess.open(char_path.path_join("CharacterInfo.json"), FileAccess.WRITE).store_string((JSON.stringify(json, "\t", false)))
+					JSONParser.save_to_file(json, char_path.path_join("CharacterInfo.json"))
 			Player.CHARACTERS.append(i)
-			Player.CHARACTER_NAMES.append(json.name)
+			
+			var character_doesnt_have := []
+			if (json.has("name")):
+				Player.CHARACTER_NAMES.append(json.name)
+			else:
+				Player.CHARACTER_NAMES.append("???")
+				character_doesnt_have.append("name")
 			
 			if FileAccess.file_exists(char_path.path_join("CharacterColour.json")):
-				Player.CHARACTER_COLOURS.append(load(char_path.path_join("CharacterColour.json")))
+				Player.CHARACTER_COLOURS.append(char_path.path_join("CharacterColour.json"))
 			else:
 				Player.CHARACTER_COLOURS.append(null)
+				character_doesnt_have.append("colour")
 			
 			if FileAccess.file_exists(char_path.path_join("LifeIcon.json")):
-				GameHUD.character_icons.append(load(char_path.path_join("LifeIcon.json")))
+				GameHUD.character_icons.append(char_path.path_join("LifeIcon.json"))
 			else:
 				GameHUD.character_icons.append(null)
+				character_doesnt_have.append("icon")
 				
 			if FileAccess.file_exists(char_path.path_join("ColourPalette.json")):
-				Player.CHARACTER_PALETTES.append(load(char_path.path_join("ColourPalette.json")))
+				Player.CHARACTER_PALETTES.append(char_path.path_join("ColourPalette.json"))
 			else:
 				Player.CHARACTER_PALETTES.append(null)
+				character_doesnt_have.append("palette")
+			if (!FileAccess.file_exists(char_path.path_join("CheckpointFlag.json"))):
+				character_doesnt_have.append("checkpoint flag")
 			
-			if FileAccess.file_exists(char_path.path_join("SFX.json")):
-				AudioManager.character_sfx_map[i] = JSON.parse_string(FileAccess.open(char_path.path_join("SFX.json"), FileAccess.READ).get_as_text())
-			else:
-				AudioManager.character_sfx_map[i] = {}
+			AudioManager.character_sfx_map[i] = JSONParser.parse_to_dict(char_path.path_join("SFX.json"))
+			
+			if (character_doesnt_have.size() != 0):
+				var final_list_str := ""
+				
+				var cur_idx := 0
+				for missing in character_doesnt_have:
+					if cur_idx != 0:
+						if (cur_idx == character_doesnt_have.size() - 1):
+							final_list_str += " and "
+						else:
+							final_list_str += ", "
+					
+					final_list_str += missing
+					cur_idx += 1
 
+				# DawnLR: Yeah, kind of unnecessary, but come on, at least it's cool!
+				Global.log_warning("Character: \"%s\" is missing: %s!" % [i, final_list_str])
 
 func open() -> void:
 	get_custom_characters()
 	show()
-	grab_focus()
 	selected_index = int(Global.player_characters[player_id])
 	update_sprites()
 	await get_tree().physics_frame
+	grab_focus()
 	active = true
 
 func handle_input() -> void:
-	if Input.is_action_just_pressed("ui_left"):
+	if Global.multibind_action_just_pressed("ui_left"):
 		selected_index = wrap(selected_index - 1, 0, Player.CHARACTERS.size())
 		update_sprites()
-	elif Input.is_action_just_pressed("ui_right"):
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
+	elif Global.multibind_action_just_pressed("ui_right"):
 		selected_index = wrap(selected_index + 1, 0, Player.CHARACTERS.size())
 		update_sprites()
-	if Input.is_action_just_pressed("ui_accept"):
+		if Settings.file.audio.extra_sfx == 1:
+			AudioManager.play_global_sfx("menu_move")
+	if Global.multibind_action_just_pressed("ui_accept"):
 		Global.player_characters[player_id] = (selected_index)
-		var characters := Global.player_characters
+		var characters: Array = Global.player_characters
 		for i in characters:
 			if int(i) > 3:
 				characters = [0, 0, 0, 0]
@@ -108,7 +133,7 @@ func handle_input() -> void:
 		Settings.save_settings()
 		selected.emit()
 		close()
-	elif Input.is_action_just_pressed("ui_back"):
+	elif Global.multibind_action_just_pressed("ui_back"):
 		close()
 		cancelled.emit()
 
@@ -119,7 +144,9 @@ func update_sprites() -> void:
 	for i in [%Left, %Selected, %Right]:
 		i.update()
 		i.play("Pose" if i == %Selected else "FaceForward")
-	%PlayerColourTexture.resource_json = Player.CHARACTER_COLOURS[selected_index]
+	print(Player.CHARACTER_COLOURS[selected_index])
+	if (Player.CHARACTER_COLOURS[selected_index] != null):
+		%PlayerColourTexture.json_path = Player.CHARACTER_COLOURS[selected_index]
 	%CharacterName.text = tr(Player.CHARACTER_NAMES[selected_index])
 	$Panel/MarginContainer/VBoxContainer/CharacterName/TextShadowColourChanger/ColourPaletteSampler.texture = %ColourPaletteSampler.texture
 	$Panel/MarginContainer/VBoxContainer/CharacterName/TextShadowColourChanger.handle_shadow_colours()

@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="4_p4ou4"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="6_p6y2f"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="7_htfei"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/BulletBill.json" id="7_p6y2f"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="9_p4ou4"]
 [ext_resource type="Script" uid="uid://bdq0373j5n5o0" path="res://Scripts/Parts/CameraRightLimit.gd" id="10_p4ou4"]
 [ext_resource type="PackedScene" uid="uid://d1wjw5tobpb3w" path="res://Scenes/Prefabs/LevelObjects/BooRaceHandler.tscn" id="11_rjapx"]
@@ -33,7 +32,7 @@ position = Vector2(-240, -80)
 [node name="Bowser" parent="." unique_id=1350460966 instance=ExtResource("6_p6y2f")]
 position = Vector2(3232, -48)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(1350460966, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("7_p6y2f")
+json_path = "res://Assets/Sprites/Enemies/BulletBill.json"
 [node name="CastleBridge" parent="." unique_id=938926553 instance=ExtResource("7_htfei")]
 z_index = -1
 position = Vector2(3080, -40)

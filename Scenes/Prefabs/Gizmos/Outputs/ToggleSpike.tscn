@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://b1rqxuulga8r1"]
+
+[ext_resource type="Texture2D" uid="uid://cv27sth0k3amk" path="res://Assets/Sprites/Blocks/SwitchSpike.png" id="1_8myxn"]
+[ext_resource type="Script" uid="uid://baoecvki56gpo" path="res://Scripts/Classes/Gizmos/ToggleSpike.gd" id="1_ms32v"]
+[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="2_x1ohv"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_kmd32"]
+[ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="4_ux2uv"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="5_ux2uv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms32v"]
+atlas = ExtResource("1_8myxn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux2uv"]
+atlas = ExtResource("1_8myxn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kmd32"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms32v")
+}],
+"loop": true,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux2uv")
+}],
+"loop": true,
+"name": &"On",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f5qf"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd0ud"]
+size = Vector2(17, 17)
+
+[node name="ToggleSpike" type="AnimatableBody2D" unique_id=808471118]
+sync_to_physics = false
+script = ExtResource("1_ms32v")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=499631677]
+process_mode = 1
+sprite_frames = SubResource("SpriteFrames_kmd32")
+animation = &"On"
+
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=732510698 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
+script = ExtResource("3_kmd32")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+json_path = "res://Assets/Sprites/Blocks/ToggleSpike.json"
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=622478694]
+shape = SubResource("RectangleShape2D_5f5qf")
+
+[node name="PlayerDetection" type="Area2D" parent="." unique_id=195363227]
+script = ExtResource("2_x1ohv")
+metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" unique_id=1655028308]
+shape = SubResource("RectangleShape2D_dd0ud")
+
+[node name="SignalExposer" type="Node2D" parent="." unique_id=1450571159]
+script = ExtResource("4_ux2uv")
+metadata/_custom_type_script = "uid://b3bokos5jcpr7"
+
+[node name="EditorPropertyExposer" type="Node" parent="." unique_id=1670236985]
+script = ExtResource("5_ux2uv")
+properties = Array[String](["is_active"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[connection signal="player_entered" from="PlayerDetection" to="PlayerDetection" method="damage_player"]
+[connection signal="lost_power" from="SignalExposer" to="." method="turn_off"]
+[connection signal="recieved_power" from="SignalExposer" to="." method="turn_on"]
+[connection signal="recieved_pulse" from="SignalExposer" to="." method="toggle"]
+[connection signal="modifier_applied" from="EditorPropertyExposer" to="." method="update"]

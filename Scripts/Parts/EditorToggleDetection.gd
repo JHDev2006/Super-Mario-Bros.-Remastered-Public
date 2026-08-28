@@ -13,6 +13,7 @@ func _ready() -> void:
 		Global.level_editor.editor_start.connect(editor_start.emit)
 		Global.level_editor.editor_start.connect(toggled.emit)
 		if Global.level_editor_is_playtesting():
+			await get_tree().process_frame
 			level_start.emit()
 		return
 	await get_tree().process_frame

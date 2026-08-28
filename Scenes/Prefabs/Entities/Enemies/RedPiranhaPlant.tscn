@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://kj5pw3xhq8f7"]
 
 [ext_resource type="PackedScene" uid="uid://1rxw4k4wq3ni" path="res://Scenes/Prefabs/Entities/Enemies/PiranhaPlant.tscn" id="1_potth"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedPiranhaPlant.json" id="2_6sjmx"]
 
 [node name="PirannhaPlant" unique_id=877679531 instance=ExtResource("1_potth")]
+player_range = 16
 rise_animation = "RiseRed"
 
 [node name="ResourceSetterNew" parent="RotationJoint/PositionJoint/Visuals/Sprite" parent_id_path=PackedInt32Array(533885688, 211744012) index="0" unique_id=1028226469]
-resource_json = ExtResource("2_6sjmx")
+json_path = "res://Assets/Sprites/Enemies/RedPiranhaPlant.json"
 
 [node name="ResourceSetterNew" parent="RotationJoint/LevelEditorVisibleNode/Sprite" parent_id_path=PackedInt32Array(280669304) index="0" unique_id=2135118533]
-resource_json = ExtResource("2_6sjmx")
+json_path = "res://Assets/Sprites/Enemies/RedPiranhaPlant.json"
 
 [node name="Animation" parent="." index="4" unique_id=1714542832]
 speed_scale = 2.0
 
-[node name="SecondQuestReplacer" parent="." index="5" unique_id=1574329925]
+[node name="SecondQuestReplacer" parent="." index="7" unique_id=1574329925]
 new_scene = ""
 
 [editable path="RotationJoint/PositionJoint/Visuals"]

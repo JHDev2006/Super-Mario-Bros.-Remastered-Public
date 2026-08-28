@@ -14,3 +14,5 @@ texture = ExtResource("2_bd4qu")
 visible = true
 
 [connection signal="player_entered" from="PlayerDetection" to="." method="deactivate_all_generators" unbinds=1]
+[connection signal="recieved_power" from="SignalExposer" to="." method="deactivate_all_generators"]
+[connection signal="recieved_pulse" from="SignalExposer" to="." method="deactivate_all_generators"]

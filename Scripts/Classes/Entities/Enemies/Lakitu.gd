@@ -21,7 +21,11 @@ var can_enter := false
 @export var max_spiny_amount := 3
 
 static var spiny_amount := 0
-@export var item: PackedScene = null
+@export var item: PackedScene = null:
+	set(value):
+		item = value
+		set_meta_data()
+		
 @export var retreat_x := 3072
 
 func _ready() -> void:
@@ -84,8 +88,8 @@ func throw_spiny() -> void:
 	spiny_amount += 1
 	node.set("in_egg", true)
 	node.global_position = $Cloud/Sprite.global_position
-	node.set("velocity", Vector2(0, -150))
-	if Settings.file.difficulty.lakitu_style == 1:
+	node.set("velocity", Vector2(0, -200))
+	if Settings.file.gameplay.lakitu_style == 1:
 		node.velocity.x = 50 * (sign(player.global_position.x - global_position.x))
 		node.set("direction", sign(node.velocity.x))
 	add_sibling(node)
@@ -100,3 +104,7 @@ func on_screen_entered() -> void:
 	add_to_group("Lakitus")
 	if get_tree().get_node_count_in_group("Lakitus") >= 2:
 		queue_free()
+
+func set_meta_data():
+	var item_path = item.resource_path
+	set_meta("Item", item_path.right(-item_path.rfind("/") - 1).left(-5))

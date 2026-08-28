@@ -40,9 +40,10 @@ func setup_visuals(container: OnlineLevelContainer) -> void:
 	$Panel/AutoScrollContainer.scroll_pos = 0
 	$Panel/AutoScrollContainer.move_direction = -1
 	%LSSDescription.text = "Fetching Description..."
+	print(saved_stuff)
 	if saved_stuff.is_empty():
 		$Description.request(LEVEL_INFO_URL + container.level_id)
-	else:
+	elif saved_stuff.has("description"):
 		%LSSDescription.text = saved_stuff.description
 	for i in ["level_name", "level_author", "level_id", "thumbnail_url", "level_thumbnail", "difficulty"]:
 		var value = null
@@ -57,7 +58,7 @@ func setup_visuals(container: OnlineLevelContainer) -> void:
 	%OnlinePlay.visible = has_downloaded
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_back"):
+	if Global.multibind_action_just_pressed("ui_back") || Input.is_action_just_pressed("mb_right"):
 		close()
 
 func close() -> void:
@@ -68,12 +69,10 @@ func close() -> void:
 func download_level() -> void:
 	DirAccess.make_dir_recursive_absolute(Global.config_path.path_join("custom_levels/downloaded"))
 	var url = "https://levelsharesquare.com/api/levels/" + level_id + "/code"
-	print(url)
 	$DownloadLevel.request(url, [], HTTPClient.METHOD_GET)
 	%Download.text = "DOWNLOADING..."
 
 func open_lss() -> void:
-	print(level_id)
 	OS.shell_open("https://levelsharesquare.com/levels/" + str(level_id))
 
 func on_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
@@ -105,11 +104,10 @@ func save_thumbnail() -> void:
 		thumbnail.get_image().save_png(Global.config_path.path_join("custom_levels/downloaded/thumbnails/" + level_id + ".png"))
 
 func play_level() -> void:
-	var file_path := Global.config_path.path_join("custom_levels/downloaded/" + level_id + ".lvl")
-	var file = JSON.parse_string(FileAccess.open(file_path, FileAccess.READ).get_as_text())
-	LevelEditor.level_file = file
+	var file_path = Global.config_path.path_join("custom_levels/downloaded/" + level_id + ".lvl")
+	LevelEditor.level_file = JSONParser.parse_to_dict(file_path)
 	set_process(false)
-	var info = file["Info"]
+	var info = LevelEditor.level_file["Info"]
 	LevelEditor.level_author = info["Author"]
 	LevelEditor.level_name = info["Name"]
 	level_play.emit()

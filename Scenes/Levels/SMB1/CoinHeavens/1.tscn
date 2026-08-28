@@ -19,6 +19,7 @@ normal = Vector2(-1, 0)
 script = ExtResource("1_h6lrm")
 all_coins_check = NodePath("CoinHeavenAllCoinsBonus")
 music = ExtResource("2_vevge")
+room_type = 2
 metadata/_custom_type_script = "uid://cyexnn0e723f2"
 [node name="CloudPlatform" parent="." unique_id=1058582462 instance=ExtResource("9_emix3")]
 position = Vector2(24, -48)

@@ -3,6 +3,8 @@ const SPIKE_BALL = preload("uid://c7il83r4ab05d")
 
 @export var can_move := false
 
+var can_turn := true
+
 func _ready() -> void:
 	$ThrowTimer.start()
 	if can_move:
@@ -17,16 +19,18 @@ func _physics_process(delta: float) -> void:
 		$StaticMovement.handle_movement(delta)
 		var target_player = get_tree().get_first_node_in_group("Players")
 		var target_direction = sign(target_player.global_position.x - global_position.x)
-		if target_direction != 0:
+		if target_direction != 0 and can_turn:
 			direction = target_direction
 
 func throw_ball() -> void:
+	can_turn = false
 	$Movement.can_move = false
 	%Animations.play("BallSpawn")
 	await %Animations.animation_finished
 	summon_ball()
 	%Animations.play("Idle")
 	$Movement.can_move = true
+	can_turn = true
 
 func summon_ball() -> void:
 	var ball = SPIKE_BALL.instantiate()

@@ -4,6 +4,7 @@ extends AudioStreamPlayer
 @onready var resource_getter = ResourceGetter.new()
 
 func _ready() -> void:
+	add_child(resource_getter)
 	update()
 	Global.level_theme_changed.connect(update)
 

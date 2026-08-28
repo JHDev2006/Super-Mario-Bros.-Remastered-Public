@@ -18,7 +18,7 @@ color = Color(1, 1, 1, 1)
 self_modulate = Color(1, 1, 1, 0.8)
 offset_right = 8.0
 offset_bottom = 8.0
-mouse_filter = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_wognt")
 script = ExtResource("2_0slfq")
 
@@ -27,6 +27,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Properties" type="VBoxContainer" parent="Container" unique_id=665623196]
 unique_name_in_owner = true
@@ -34,6 +35,7 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Container/Properties" unique_id=329792231]
 layout_mode = 2
@@ -49,10 +51,13 @@ anchor_bottom = 1.0
 offset_top = -4.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_wognt")
 
 [node name="SignalDisplay" parent="Container" unique_id=1676529677 instance=ExtResource("2_n7jgg")]
 unique_name_in_owner = true
 layout_mode = 2
 
+[connection signal="mouse_entered" from="." to="." method="is_mouse_inside"]
+[connection signal="mouse_exited" from="." to="." method="is_mouse_inside" binds= [false]]
 [connection signal="start_connecting" from="Container/SignalDisplay" to="." method="begin_signal_connection"]

@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dt0qtxu2l646n" path="res://Assets/Sprites/Tilesets/Terrain/Overworld.png" id="1_beitk"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="2_beitk"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json" id="3_ipntr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nqr4v"]
 size = Vector2(16, 16)
@@ -19,11 +18,12 @@ region_enabled = true
 region_rect = Rect2(64, 48, 16, 16)
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite2D" unique_id=1246252033 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("2_beitk")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("3_ipntr")
+json_path = "res://Assets/Sprites/Tilesets/Terrain/TerrainTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=620052869]

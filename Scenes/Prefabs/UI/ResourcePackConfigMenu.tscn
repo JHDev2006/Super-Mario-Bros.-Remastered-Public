@@ -26,12 +26,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_3eop1")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=1291855108]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=606293283]
 layout_mode = 2
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 3
 
-[node name="Options" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=345167906 node_paths=PackedStringArray("scroll_container")]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer" unique_id=1291855108]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/ScrollContainer" unique_id=228185510]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer" unique_id=1531571222]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Options" type="VBoxContainer" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=345167906 node_paths=PackedStringArray("scroll_container")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -39,16 +53,16 @@ size_flags_vertical = 3
 script = ExtResource("3_ji2kl")
 minimum_idx = 0
 active = false
-scroll_container = NodePath("..")
+scroll_container = NodePath("../../..")
 
-[node name="Title" type="Label" parent="Panel/ScrollContainer/Options" unique_id=1572188259]
+[node name="Title" type="Label" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Options" unique_id=1572188259]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Configure Pack"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="Panel/ScrollContainer/Options/Title" unique_id=716136439]
+[node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Options/Title" unique_id=716136439]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -58,3 +72,17 @@ offset_top = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/separator = SubResource("StyleBoxLine_n21uo")
+
+[node name="Description" type="VBoxContainer" parent="Panel/VBoxContainer" unique_id=990537872]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer/Description" unique_id=1861755037]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_n21uo")
+
+[node name="DescText" type="Label" parent="Panel/VBoxContainer/Description" unique_id=1209535564]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 2
+uppercase = true

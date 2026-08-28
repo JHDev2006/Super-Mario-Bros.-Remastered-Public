@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bpydbpyjk1mt4" path="res://Scripts/Classes/Entities/Enemy.gd" id="1_gcnju"]
 [ext_resource type="Texture2D" uid="uid://do13c2crob4td" path="res://Assets/Sprites/Blocks/SpikeBlock.png" id="2_dftxp"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_4g6tc"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SpikeBlock.json" id="4_dftxp"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_w3ysb"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="6_l3otb"]
 [ext_resource type="Script" uid="uid://cqif1li7otvpl" path="res://Scripts/Parts/SpriteFramesToJsonConverter.gd" id="7_4g6tc"]
@@ -145,10 +144,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=339151174 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_w3ysb")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_dftxp")
+json_path = "res://Assets/Sprites/Blocks/SpikeBlock.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2032827127]

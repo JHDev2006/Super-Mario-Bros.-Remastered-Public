@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://1rxw4k4wq3ni" path="res://Scenes/Prefabs/Entities/Enemies/PiranhaPlant.tscn" id="11_d7mec"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="13_2q7k7"]
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="14_016ks"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/FighterFly.json" id="14_b4pgy"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="15_5mbgc"]
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="25_q1dpq"]
 [ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="40_j4t72"]
@@ -24,6 +23,7 @@
 script = ExtResource("1_wplms")
 music = ExtResource("2_lr01v")
 theme = "Castle"
+theme_time = "Night"
 campaign = "SMBS"
 world_id = 6
 level_id = 4
@@ -85,7 +85,7 @@ length = 17
 [node name="Bowser" parent="." unique_id=204472843 instance=ExtResource("15_5mbgc")]
 position = Vector2(2320, -32)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(204472843, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("14_b4pgy")
+json_path = "res://Assets/Sprites/Enemies/FighterFly.json"
 [node name="ChallengeNodes" type="Node" parent="." unique_id=437980771 node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("40_j4t72")
 nodes_to_delete = [NodePath("../Blocks"), NodePath("../CastleToad")]

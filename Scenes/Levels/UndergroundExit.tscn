@@ -15,6 +15,7 @@
 [node name="UndergroundExit" type="Node" unique_id=1480855744]
 script = ExtResource("1_ivft4")
 music = ExtResource("2_3vcgs")
+room_type = 5
 auto_set_theme = true
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
 

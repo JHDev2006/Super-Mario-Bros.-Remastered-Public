@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://b3or4h5ke6lni" path="res://Scenes/Prefabs/Entities/Objects/SmallSidewaysPlatform.tscn" id="15_hfk1t"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="16_3bwbp"]
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="16_mnauu"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Spiny.json" id="17_icd8h"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="17_nlv7q"]
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="18_icd8h"]
 [ext_resource type="PackedScene" uid="uid://cmvugag0kupgu" path="res://Scenes/Prefabs/Entities/Enemies/RedKoopaTroopa.tscn" id="20_7s7ws"]
@@ -119,12 +118,12 @@ position = Vector2(-3823, 0)
 [node name="CastleBridgeSegment20" parent="CastleBridge/Bridge" parent_id_path=PackedInt32Array(1064853647, 1389252244) index="19" unique_id=1471292361]
 position = Vector2(-3823, 0)
 [node name="Bowser" parent="." unique_id=1343211845 instance=ExtResource("17_nlv7q")]
-position = Vector2(2912, -48)
+position = Vector2(2896, -48)
 [node name="DeathSprite" parent="Bowser/SpriteScaleJoint" parent_id_path=PackedInt32Array(1343211845, 239188381) index="2" unique_id=1311530935]
 sprite_frames = SubResource("SpriteFrames_icd8h")
 animation = &"Walk"
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" index="0" unique_id=381174695]
-resource_json = ExtResource("17_icd8h")
+json_path = "res://Assets/Sprites/Enemies/Spiny.json"
 [node name="RedKoopaTroopa" parent="." unique_id=892972097 instance=ExtResource("20_7s7ws")]
 position = Vector2(104, -64)
 [node name="Goomba" parent="." unique_id=1629227082 instance=ExtResource("12_mnauu")]

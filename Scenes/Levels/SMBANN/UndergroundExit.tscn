@@ -14,6 +14,7 @@
 [node name="UndergroundExit" type="Node" unique_id=1869218182]
 script = ExtResource("1_bujym")
 music = ExtResource("2_d2xif")
+room_type = 5
 theme_time = "Night"
 auto_set_theme = true
 campaign = "SMBANN"

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://chfnuhi45nquf"]
 
 [ext_resource type="PackedScene" uid="uid://u3t1k5j28yap" path="res://Scenes/Prefabs/Entities/Objects/Door.tscn" id="1_t0orm"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/LockedDoors.json" id="2_0bcyf"]
 [ext_resource type="Texture2D" uid="uid://fyxbhdmqfxk5" path="res://Assets/Sprites/Tilesets/Doors.png" id="2_0u2mu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kr4bu"]
@@ -72,4 +71,4 @@ frame = 0
 frame_progress = 0.0
 
 [node name="ResourceSetterNew" parent="Sprite" index="0" unique_id=1666477828]
-resource_json = ExtResource("2_0bcyf")
+json_path = "res://Assets/Sprites/Tilesets/LockedDoors.json"

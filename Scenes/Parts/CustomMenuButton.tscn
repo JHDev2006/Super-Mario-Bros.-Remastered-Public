@@ -5,7 +5,6 @@
 [ext_resource type="StyleBox" uid="uid://dlbdmqmnl30sq" path="res://Resources/UI/PanelSelected.tres" id="3_d66fe"]
 [ext_resource type="Texture2D" uid="uid://hg5ql8d3dck7" path="res://Assets/Sprites/UI/CustomLevelActionIcon.png" id="4_g3205"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_d66fe"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="6_g3205"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hykrg"]
 atlas = ExtResource("4_g3205")
@@ -20,6 +19,7 @@ offset_right = 16.0
 offset_bottom = 16.0
 focus_mode = 2
 focus_behavior_recursive = 2
+mouse_filter = 0
 theme_override_constants/margin_left = 8
 
 [node name="Button" type="Button" parent="." unique_id=47319333]
@@ -46,12 +46,14 @@ uppercase = true
 [node name="Cursor" type="Control" parent="." unique_id=1084264804]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Control" type="Control" parent="Cursor" unique_id=585994547]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="TextureRect" type="TextureRect" parent="Cursor/Control" unique_id=332120313]
 layout_mode = 1
@@ -66,15 +68,17 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_744m4")
 
 [node name="ResourceSetterNew" type="Node" parent="Cursor/Control/TextureRect" unique_id=376339991 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_d66fe")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("6_g3205")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="focus_entered" from="." to="." method="show"]
 [connection signal="focus_entered" from="." to="Button" method="grab_focus"]
+[connection signal="mouse_entered" from="." to="." method="grab_focus"]
 [connection signal="focus_entered" from="Button" to="Icon" method="hide"]
 [connection signal="focus_entered" from="Button" to="Label" method="show"]
 [connection signal="focus_entered" from="Button" to="Cursor" method="show"]

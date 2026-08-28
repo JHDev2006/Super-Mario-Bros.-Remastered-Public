@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bbrnvyt4tpk6t" path="res://Scripts/Classes/Blocks/FrozenBlock.gd" id="1_d6n84"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="1_mkugf"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/FrozenBrickBlock.json" id="2_d6n84"]
 [ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="2_p4aqe"]
 [ext_resource type="Script" uid="uid://bul1nbd2in1gn" path="res://Scripts/Classes/Components/PSwitcher.gd" id="5_44co0"]
 [ext_resource type="Script" uid="uid://da45dj0tx6jfd" path="res://Scripts/Classes/Components/FireDetection.gd" id="6_5eljv"]
+[ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="7_b3hph"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkugf"]
 size = Vector2(16, 16)
@@ -13,24 +13,29 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p4aqe"]
 
 [node name="FrozenBrickBlock" type="StaticBody2D" unique_id=882489170]
+disable_mode = 1
 collision_layer = 518
 collision_mask = 0
 script = ExtResource("1_d6n84")
 melted_scene = ExtResource("2_p4aqe")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=511132576]
+process_mode = 3
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=410622682 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("1_mkugf")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("2_d6n84")
+json_path = "res://Assets/Sprites/Blocks/FrozenBrickBlock.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1724316573]
 shape = SubResource("RectangleShape2D_mkugf")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=74162750]
+collision_layer = 0
+collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=288594040]
 shape = SubResource("RectangleShape2D_p4aqe")
@@ -44,6 +49,17 @@ metadata/_custom_type_script = "uid://bul1nbd2in1gn"
 script = ExtResource("6_5eljv")
 hitbox = NodePath("../Hitbox")
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=1180462873]
+
+[node name="ExplosionDetection" type="Node" parent="." unique_id=797522643]
+script = ExtResource("7_b3hph")
+metadata/_custom_type_script = "uid://ba18grqjixded"
+
+[node name="MeltedParent" type="Node2D" parent="." unique_id=2073036872]
+visible = false
+top_level = true
+position = Vector2(802, 6880)
+
 [connection signal="area_entered" from="Hitbox" to="." method="area_entered"]
 [connection signal="fiery_object_hit" from="FireDetection" to="." method="melt" flags=7 unbinds=1]
-[connection signal="fireball_hit" from="FireDetection" to="." method="fireball_entered" flags=6]
+[connection signal="fireball_hit" from="FireDetection" to="." method="fireball_entered" flags=7]

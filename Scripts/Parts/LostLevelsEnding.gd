@@ -23,7 +23,7 @@ func _ready() -> void:
 	$Text2/Hurrah.text = tr("CUTSCENE_LL_PEACH_3").replace("{PLAYER}", tr(Player.CHARACTER_NAMES[int(Global.player_characters[0])]))
 	$ThankYou.text = tr("CUTSCENE_CASTLE_PEACH_1").replace("{PLAYER}", tr(Player.CHARACTER_NAMES[int(Global.player_characters[0])]))
 func _process(_delta: float) -> void:
-	if can_exit and Input.is_action_just_pressed("jump_0"):
+	if can_exit and Global.multibind_action_just_pressed("jump_0"):
 		SaveManager.write_save()
 		if Global.current_game_mode == Global.GameMode.DISCO:
 			can_exit = false
@@ -33,7 +33,6 @@ func _process(_delta: float) -> void:
 		else:
 			CreditsLevel.go_to_title_screen = false
 			Global.transition_to_scene("res://Scenes/Levels/Credits.tscn")
-	$LevelBG.combo_progress = 1
 	DiscoLevel.can_meter_tick = false
 
 func tally_score() -> void:

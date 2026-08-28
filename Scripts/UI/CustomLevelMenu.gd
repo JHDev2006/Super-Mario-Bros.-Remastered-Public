@@ -13,28 +13,50 @@ static var last_played_container = null
 static var saved_search_values := [-1, -1, -1]
 static var level_id := ""
 
+func _input(event: InputEvent) -> void:
+	if (event is InputEventKey):
+		if get_viewport().gui_get_focus_owner() == null or ($CharacterSelect.visible or $LSSCharacterSelect.visible):
+			if (%LevelList.visible):
+				$BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button.grab_focus()
+			if (%LevelInfo.visible):
+				%Play.grab_focus()
+				if not %Play.visible:
+					%Edit.grab_focus()
+			if (%LSSBrowser.visible):
+				%RefreshList.grab_focus()
+			if (%LSSLevelInfo.visible):
+				%Download.grab_focus()
+				if not %Download.visible:
+					%OnlinePlay.grab_focus()
+			if (%AutosavesList.visible and not $AutosaveSettings.visible):
+				$BG/Border/Levels/VBoxContainer/AutosavesList/OpenSettings/SelectableLabel.grab_focus()
+			if $AutosaveSettings.visible:
+				$AutosaveSettings/Panel/ScrollContainer/Options/Enable.grab_focus()
+			
 func _ready() -> void:
 	has_entered = true
-	ResourceSetterNew.clear_cache()
 	ResourceSetter.cache.clear()
-	Global.level_theme_changed.emit()
+	ResourceSetterNew.clear_cache()
+	
+	AudioManager.stop_all_music()
 	Global.get_node("GameHUD").hide()
-	Checkpoint.passed_checkpoints.clear()
+	Global.clear_saved_values()
+	Global.reset_values()
+	Global.current_campaign = "SMB1"
+	Global.level_theme_changed.emit()
 	Global.world_num = 1
 	Global.level_num = 1
-	Global.reset_values()
-	LevelEditor.sub_areas = [null, null, null, null, null]
-	Global.clear_saved_values()
-	Checkpoint.sublevel_id = 0
-	Global.current_campaign = "SMB1"
-	AudioManager.stop_all_music()
 	Global.second_quest = false
+	
+	LevelEditor.sub_areas = [null, null, null, null, null]
+	LevelEditor.sub_level_id = 0
+	LevelEditor.selected_tile_index = 0
+	LevelEditor.last_camera_position = Vector2(-128, -88)
+	
+	Checkpoint.sublevel_id = 0
 	%LevelList.open(true)
-	for i in 5:
-		NewLevelBuilder.sub_levels[i] = null
 	await get_tree().process_frame
 	if last_played_container != null:
-		print(saved_search_values)
 		%LSSBrowser.setup_page_numbers()
 		%LSSBrowser.page_number = saved_search_values[0]
 		%Page.selected_index = saved_search_values[0] - 1
@@ -51,6 +73,12 @@ func _ready() -> void:
 		%LevelList.close()
 	$BGM.play()
 
+func _process(delta: float) -> void:
+	if ($CharacterSelect.visible):
+		$CharacterSelect.grab_focus()
+	if ($LSSCharacterSelect.visible):
+		$LSSCharacterSelect.grab_focus()
+
 func clear_saved_stuff() -> void:
 	last_played_container = null
 	%LSSLevelInfo.saved_stuff.clear()
@@ -61,13 +89,14 @@ func _exit_tree() -> void:
 	Global.get_node("GameHUD").show()
 
 func new_level() -> void:
-	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	LevelEditor.load_play = false
-	LevelEditor.level_name = ""
-	LevelEditor.level_author = ""
+	LevelEditor.level_name = LevelEditor.set_stack_level_name("UNNAMED LEVEL")
+	LevelEditor.level_author = "PLAYER"
 	LevelEditor.level_desc = ""
 	LevelEditor.difficulty = 0
 	LevelEditor.level_file = LevelEditor.BLANK_FILE.duplicate(true)
+	
+	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	Global.transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
 
 func back_to_title_screen() -> void:
@@ -76,14 +105,13 @@ func back_to_title_screen() -> void:
 
 func edit_level() -> void:
 	clear_saved_stuff()
-	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	LevelEditor.load_play = false
-	NewLevelBuilder.load_level(LevelEditor.level_file)
-	var idx := 0
-	for i in NewLevelBuilder.sub_levels:
-		LevelEditor.sub_areas[idx] = NewLevelBuilder.sub_levels[idx].instantiate()
-		idx += 1
+	LevelEditor.current_layer = 0
+	
+	Global.current_game_mode = Global.GameMode.LEVEL_EDITOR
 	Global.transition_to_scene("res://Scenes/Levels/LevelEditor.tscn")
+	
+	NewLevelBuilder.load_level(LevelEditor.level_file)
 
 func play_level() -> void:
 	Global.current_game_mode = Global.GameMode.CUSTOM_LEVEL
@@ -105,7 +133,6 @@ func online_play() -> void:
 func lss_level_played() -> void:
 	last_played_container = %LSSLevelInfo.container_to_play.duplicate()
 	level_id = %LSSLevelInfo.container_to_play.level_id
-	print(level_id)
 	page_number_save = %LSSBrowser.page_number
 	saved_search_values[0] = %LSSBrowser.page_number
 	saved_search_values[1] = %LSSBrowser.filter
@@ -113,16 +140,24 @@ func lss_level_played() -> void:
 
 func delete_level() -> void:
 	DirAccess.remove_absolute(current_level_file)
-	go_back_to_list()
-	%LevelList.refresh()
-	if %LevelList.containers.is_empty() == false:
-		%LevelList.containers[0].grab_focus()
+	if %AutosaveTime.visible:
+		go_back_to_autosaves()
+		%AutosavesList.refresh()
 	else:
-		$BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button.grab_focus()
+		go_back_to_list()
+		%LevelList.refresh()
+		if %LevelList.containers.is_empty() == false:
+			%LevelList.containers[0].grab_focus()
+		else:
+			$BG/Border/Levels/VBoxContainer/LevelList/TopBit/Button.grab_focus()
 
 func go_back_to_list() -> void:
 	$BG/Border/Levels/VBoxContainer/LevelList.show()
 	%LevelInfo.hide()
+
+func go_back_to_autosaves() -> void:
+	%LevelInfo.close()
+	%AutosavesList.open()
 
 func open_lss_browser() -> void:
 	$BG/Border/Levels/VBoxContainer/LevelList.hide()

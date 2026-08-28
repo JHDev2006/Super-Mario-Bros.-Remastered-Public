@@ -12,6 +12,7 @@ func _physics_process(_delta: float) -> void:
 		return
 	if randi_range(0, 8) == 8:
 		timer -= 1
+	print(timer)
 	if timer <= 0:
 		if Global.second_quest:
 			timer = HARD_TIME

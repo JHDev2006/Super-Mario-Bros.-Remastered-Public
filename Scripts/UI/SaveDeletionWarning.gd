@@ -25,15 +25,15 @@ func open() -> void:
 	hide()
 
 func handle_input() -> void:
-	if Input.is_action_just_pressed("ui_left"):
+	if Global.multibind_action_just_pressed("ui_left"):
 		selected_index -= 1
-	if Input.is_action_just_pressed("ui_right"):
+	if Global.multibind_action_just_pressed("ui_right"):
 		selected_index += 1
-	if Input.is_action_just_pressed("ui_back"):
+	if Global.multibind_action_just_pressed("ui_back"):
 		close()
 		cancelled.emit()
 	selected_index = clamp(selected_index, 0, 1)
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		select()
 
 func select() -> void:

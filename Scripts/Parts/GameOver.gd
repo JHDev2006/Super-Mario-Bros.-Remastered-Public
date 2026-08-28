@@ -7,7 +7,7 @@ extends Node
 var can_continue := false
 
 func _enter_tree() -> void:
-	Global.level_theme = "Underground"
+	Global.theme_override = "Underground"
 	Global.level_theme_changed.emit()
 	AudioManager.stop_all_music()
 
@@ -19,8 +19,7 @@ func _ready() -> void:
 	can_continue = true
 
 func _process(_delta: float) -> void:
-	print(can_continue)
-	if Input.is_action_just_pressed("jump_0") and can_continue:
+	if Global.multibind_action_just_pressed("jump_0") and can_continue:
 		can_continue = false
 		if Global.transitioning_scene:
 			await Global.transition_finished
@@ -57,26 +56,22 @@ func reset_values() -> void:
 	Global.coins = 0
 	if Global.current_game_mode == Global.GameMode.CHALLENGE:
 		return
+	if Global.current_game_mode == Global.GameMode.MARATHON:
+		Global.level_num = 1
+		Global.world_num = 1
+		Global.custom_level_idx = 0
+		SpeedrunHandler.timer = 0
+		SpeedrunHandler.paused_time = 0
 	match Settings.file.difficulty.game_over_behaviour:
 		0:
 			Global.level_num = 1
-			if Global.in_custom_campaign():
-				Global.custom_level_idx = calculate_level_idx()
 		1:
 			pass
 		2:
 			Global.level_num = 1
 			Global.world_num = 1
 			Global.custom_level_idx = 0
+	if Global.in_custom_campaign():
+		Global.custom_level_idx = SaveManager.get_level_idx(Global.world_num, Global.level_num)
 	Global.reset_values()
 	SaveManager.write_save()
-
-func calculate_level_idx() -> int:
-	var idx := 0
-	var new_idx := 0
-	for i in Global.custom_campaign_jsons[Global.current_custom_campaign].levels_per_world:
-		if idx >= Global.world_num:
-			break
-		new_idx += i
-		idx += 1
-	return new_idx

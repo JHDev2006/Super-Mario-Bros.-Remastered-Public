@@ -10,3 +10,6 @@ particle = ExtResource("2_vxiva")
 animation = &"Spin"
 autoplay = "Spin"
 frame_progress = 0.0
+
+[node name="ResourceSetter" parent="Sprite" index="0" unique_id=1393776669]
+json_path = "res://Assets/Sprites/Items/SpinningBlueCoin.json"

@@ -1,82 +1,10 @@
 [gd_scene format=3 uid="uid://urrtgm0h110y"]
 
 [ext_resource type="PackedScene" uid="uid://cmgahojpgp2cq" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/PowerUpQuestionBlock.tscn" id="1_t6w6o"]
-[ext_resource type="Script" uid="uid://dbeg86pjflojw" path="res://Scripts/Classes/Entities/Items/SuperStar.gd" id="2_2y0ea"]
-[ext_resource type="AudioStream" uid="uid://73b2bhjg5idd" path="res://Assets/Audio/BGM/StarMan.mp3" id="3_fs4uy"]
-[ext_resource type="Texture2D" uid="uid://1o654l3577lv" path="res://Assets/Sprites/Items/SuperStar.png" id="4_2tflf"]
-[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_a44we"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/StarMan.json" id="6_6b3t1"]
-[ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="7_r72oo"]
-
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_og7mc"]
-clip_count = 1
-clip_0/name = &"Star Man"
-clip_0/stream = ExtResource("3_fs4uy")
-clip_0/auto_advance = 0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptmgm"]
-atlas = ExtResource("4_2tflf")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aowox"]
-atlas = ExtResource("4_2tflf")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_53gld"]
-atlas = ExtResource("4_2tflf")
-region = Rect2(32, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_orqf5"]
-atlas = ExtResource("4_2tflf")
-region = Rect2(48, 32, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_og7mc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ptmgm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aowox")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_53gld")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_orqf5")
-}],
-"loop": true,
-"name": &"default",
-"speed": 15.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sc6oi"]
-custom_solver_bias = 1.0
-size = Vector2(8, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyobd"]
-size = Vector2(16, 16)
-
-[sub_resource type="PackedScene" id="PackedScene_3tsvi"]
-_bundled = {
-"conn_count": 1,
-"conns": PackedInt32Array(1073741831, 1073741830, 39, 38, 2, 0, 0),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("SuperStar", "CharacterBody2D", "z_index", "collision_layer", "collision_mask", "script", "star_bgm", "metadata/_custom_type_script", "Sprite", "AnimatedSprite2D", "position", "sprite_frames", "autoplay", "frame_progress", "ResourceSetterNew", "Node", "script", "node_to_affect", "property_name", "resource_json", "metadata/_custom_type_script", "Collision", "CollisionShape2D", "position", "shape", "Hitbox", "Area2D", "CollisionShape2D", "CollisionShape2D", "position", "shape", "BasicEnemyMovement", "Node", "script", "ledge_detection_cast", "move_speed", "bounce_on_land", "bounce_height", "on_area_entered", "area_entered"),
-"node_count": 7,
-"node_ids": PackedInt32Array(),
-"node_paths": [NodePath("."), NodePath("./Sprite"), NodePath("."), NodePath("."), NodePath("./Hitbox"), NodePath("."), NodePath("."), NodePath("Hitbox")],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 6, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 0, 1073741824, 0, 9, 8, -1, 4, 10, 6, 11, 7, 12, 8, 13, 9, 0, 1073741825, 0, 15, 14, -1, 5, 16, 10, 1073741841, 11, 18, 12, 19, 13, 20, 14, 0, 1073741826, 0, 22, 21, -1, 2, 23, 15, 24, 16, 0, 1073741827, 0, 26, 25, -1, 0, 0, 1073741828, 0, 28, 27, -1, 2, 29, 17, 30, 18, 0, 1073741829, 0, 32, 31, -1, 5, 33, 19, 1073741858, 20, 35, 21, 36, 22, 37, 23, 0),
-"variants": [-1, 8, 2, ExtResource("2_2y0ea"), SubResource("AudioStreamInteractive_og7mc"), "uid://cjkurwybsaywm", Vector2(0, -8), SubResource("SpriteFrames_og7mc"), "default", 0.792139, ExtResource("5_a44we"), NodePath(".."), "sprite_frames", ExtResource("6_6b3t1"), "uid://cbal8ms2oe1ik", Vector2(0, -4), SubResource("RectangleShape2D_sc6oi"), Vector2(0, -8), SubResource("RectangleShape2D_yyobd"), ExtResource("7_r72oo"), NodePath(""), 70, true, -250],
-"version": 3
-}
+[ext_resource type="PackedScene" uid="uid://5qg8po86pew4" path="res://Scenes/Prefabs/Entities/Items/SuperStar.tscn" id="2_t6w6o"]
 
 [node name="QuestionBlock" unique_id=1500571796 instance=ExtResource("1_t6w6o")]
-item = SubResource("PackedScene_3tsvi")
+item = ExtResource("2_t6w6o")
 mushroom_if_small = false
-
-[node name="Sprite2D" parent="ItemPreview" parent_id_path=PackedInt32Array(592965828) index="0" unique_id=1817836391]
-region_rect = Rect2(16, 32, 16, 16)
 
 [editable path="BlockAnimations"]

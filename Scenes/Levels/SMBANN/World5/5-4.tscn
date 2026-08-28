@@ -2,6 +2,7 @@
 [ext_resource type="PackedScene" uid="uid://dd6113ilxy1qy" path="res://Scenes/Levels/SMBLL/World2/2-4.tscn" id="1_aq2gf"]
 [ext_resource type="Script" uid="uid://bjs5mlc3xrxud" path="res://Scripts/Parts/DiscoLevel.gd" id="2_tn7ep"]
 [node name="2-4" unique_id=907406429 instance=ExtResource("1_aq2gf")]
+theme_time = "Night"
 campaign = "SMBANN"
 world_id = 5
 [node name="Tiles" parent="." index="0" unique_id=673821994]

@@ -14,7 +14,6 @@ func update_visuals() -> void:
 	%LevelName.text = json.name
 	%LevelAuthor.text = json.author
 	var icon_path = Global.config_path + "level_packs/" + pack_folder_name + "/icon.png"
-	print(icon_path)
 	if FileAccess.file_exists(icon_path):
 		%Thumbnail.texture = import_image(icon_path)
 

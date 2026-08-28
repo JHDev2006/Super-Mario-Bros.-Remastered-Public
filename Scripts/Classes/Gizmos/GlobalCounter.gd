@@ -32,3 +32,7 @@ func update(greater := false) -> void:
 		total_reached.emit()
 		if reset_on_total_reached:
 			amounts[channel] = amount % total_needed
+
+
+func on_visibility_changed() -> void:
+	pass # Replace with function body.

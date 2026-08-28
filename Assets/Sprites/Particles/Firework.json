@@ -8,11 +8,9 @@
 				[54, 0, 18, 18],
 				[0, 0, 1, 1]
 			],
-			"speed": 30.0,
+			"speed": 30,
 			"loop": false
 		}
 	},
-	"variations": {
-		"default": {"source": "Firework.png"}
-	}
+	"variations": {"source": "Firework.png"}
 }

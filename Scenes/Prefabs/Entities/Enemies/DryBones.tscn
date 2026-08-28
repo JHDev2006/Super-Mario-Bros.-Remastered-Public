@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_br3pe"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_y8gga"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="5_br3pe"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/DryBones.json" id="5_l4h6l"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="6_l4h6l"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="7_qya46"]
 [ext_resource type="Script" uid="uid://dlq6o2rg1x7in" path="res://Scripts/Classes/Components/BasicEnemyMovement.gd" id="10_br3pe"]
@@ -144,10 +143,11 @@ script = ExtResource("3_kio7v")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1513760713 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_br3pe")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_l4h6l")
+json_path = "res://Assets/Sprites/Enemies/DryBones.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LCollision" type="CollisionShape2D" parent="." unique_id=2079460658]

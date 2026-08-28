@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://by6ndsjhlkmbt" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffBlock.tscn" id="1_x3cu1"]
 [ext_resource type="Texture2D" uid="uid://dql2td7sut6m8" path="res://Assets/Sprites/Blocks/OnOffBlock.png" id="2_m1hcn"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnOffBlockRed.json" id="3_m1hcn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ieqkm"]
 atlas = ExtResource("2_m1hcn")
@@ -39,4 +38,4 @@ animation = &"Off"
 autoplay = ""
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=873755014]
-resource_json = ExtResource("3_m1hcn")
+json_path = "res://Assets/Sprites/Blocks/OnOffBlockRed.json"

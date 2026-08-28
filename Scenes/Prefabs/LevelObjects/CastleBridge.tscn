@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://d3enhh06i7xe2" path="res://Assets/Sprites/Items/InvalidAxe.png" id="8_m5y50"]
 [ext_resource type="Script" uid="uid://364rywt44hy6" path="res://Scripts/Classes/UI/PackSprite.gd" id="9_kvynl"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="9_m5y50"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/BridgeAxe.json" id="10_kvynl"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="10_wgdlx"]
 [ext_resource type="Script" uid="uid://cpwloakvp672a" path="res://Scripts/Parts/EditorVisibleNode.gd" id="11_puc3y"]
 [ext_resource type="Texture2D" uid="uid://dlldh5aks0wff" path="res://Assets/Sprites/Editor/GhostTile.png" id="12_do8w3"]
@@ -162,10 +161,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="AxeAnim" unique_id=1088984355 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("9_m5y50")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("10_kvynl")
+json_path = "res://Assets/Sprites/Items/BridgeAxe.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Axe" type="AnimatedSprite2D" parent="." unique_id=99773570]
@@ -195,10 +195,11 @@ position = Vector2(8, 0)
 shape = SubResource("WorldBoundaryShape2D_tmf7w")
 
 [node name="ResourceSetterNew" type="Node" parent="Axe" unique_id=634664480 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("9_m5y50")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("10_kvynl")
+json_path = "res://Assets/Sprites/Items/BridgeAxe.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Invalid" type="Sprite2D" parent="Axe" unique_id=943384056]
@@ -226,9 +227,6 @@ metadata/_custom_type_script = "uid://cq6f682453q6o"
 position = Vector2(216, -56)
 enabled = false
 process_callback = 0
-limit_left = -256
-limit_top = -208
-limit_bottom = 32
 editor_draw_limits = true
 
 [node name="EditorPropertyExposer" type="Node" parent="." unique_id=1761088113]

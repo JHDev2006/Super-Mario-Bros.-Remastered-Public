@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://btt618edhifoj" path="res://Assets/Sprites/Blocks/TurnBlock.png" id="2_2j2lx"]
 [ext_resource type="PackedScene" uid="uid://fqeqexyd7j0j" path="res://Scenes/Prefabs/Particles/TurnBlockDestructionParticles.tscn" id="2_rlxbk"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_wx1p4"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/TurnBlock.json" id="4_keywi"]
 [ext_resource type="PackedScene" uid="uid://cijkvfkthetn5" path="res://Scenes/Parts/BlockAnimations.tscn" id="5_xbwt3"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="6_2qcru"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="7_2j2lx"]
@@ -56,6 +55,7 @@ collision_mask = 0
 script = ExtResource("1_keywi")
 visuals = NodePath("Sprite")
 destruction_particle_scene = ExtResource("2_rlxbk")
+block_type = "Turn"
 metadata/_custom_type_script = "uid://b5ejlbl0vp1gm"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1316079653]
@@ -63,10 +63,11 @@ sprite_frames = SubResource("SpriteFrames_rlxbk")
 animation = &"Idle"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=195312103 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_wx1p4")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_keywi")
+json_path = "res://Assets/Sprites/Blocks/TurnBlock.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1415119604]

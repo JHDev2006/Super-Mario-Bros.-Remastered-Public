@@ -20,8 +20,6 @@ position = Vector2(2152, -64)
 position = Vector2(2520, -16)
 [node name="Blooper13" parent="Enemies" parent_id_path=PackedInt32Array(1549122985) index="13" unique_id=107844813 instance=ExtResource("3_4huqm")]
 position = Vector2(2616, -16)
-[node name="Checkpoint" parent="." index="12" unique_id=320824981 node_paths=PackedStringArray("nodes_to_delete")]
-nodes_to_delete = [null, NodePath("../Enemies/Blooper4")]
 [node name="RedCoin" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1490058376) index="0" unique_id=1234937921]
 position = Vector2(56, -152)
 [node name="RedCoin2" parent="ChallengeNodes" parent_id_path=PackedInt32Array(1490058376) index="1" unique_id=2074504533]

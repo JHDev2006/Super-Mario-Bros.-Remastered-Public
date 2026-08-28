@@ -2,6 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bod0jkf7jc5pm" path="res://Scenes/Prefabs/GameHud.tscn" id="1_ctvpw"]
 [ext_resource type="Script" uid="uid://bbxqn16ekbpcl" path="res://Scripts/Classes/Singletons/Global.gd" id="1_t23sr"]
+[ext_resource type="Shader" uid="uid://x7lh23cq2u38" path="res://Scenes/Parts/ShadowShader.gdshader" id="2_77asf"]
+[ext_resource type="SpriteFrames" uid="uid://d2f5cir67f1l0" path="res://Resources/SpriteFrames/Player/Toad/Small.tres" id="2_pxe6i"]
+[ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="3_77asf"]
 [ext_resource type="AudioStream" uid="uid://dhc2t3wbtsoss" path="res://Assets/Audio/SFX/ScoreLoop.wav" id="3_vjpdy"]
 [ext_resource type="Script" uid="uid://cq6f682453q6o" path="res://Scripts/Classes/Components/ResourceSetter.gd" id="4_7puui"]
 [ext_resource type="Script" uid="uid://26yissv8bnqw" path="res://Scripts/UI/WindowChanger.gd" id="4_nxm2a"]
@@ -16,16 +19,20 @@
 [ext_resource type="StyleBox" uid="uid://comkghpj0djcl" path="res://Resources/UI/Panel.tres" id="16_l7dvb"]
 [ext_resource type="Texture2D" uid="uid://bnv2ocqgws3p7" path="res://Assets/Sprites/UI/Panel.png" id="16_qalov"]
 [ext_resource type="Script" uid="uid://ctsjagoa5t33f" path="res://Scripts/Parts/FontUpdater.gd" id="18_1la0o"]
+[ext_resource type="Texture2D" uid="uid://ech7ab0klhel" path="res://Resources/UI/ScrollBarUpArrow.tres" id="18_cv2bn"]
 [ext_resource type="Texture2D" uid="uid://dktb2ljmou31p" path="res://Resources/UI/Cursor.tres" id="18_xcxrh"]
 [ext_resource type="StyleBox" uid="uid://dlbdmqmnl30sq" path="res://Resources/UI/PanelSelected.tres" id="18_yyu8s"]
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="19_3l3ph"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="19_l7dvb"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="19_okfpr"]
+[ext_resource type="Texture2D" uid="uid://dbba7rin1sl6e" path="res://Resources/UI/ScrollBarDownArrow.tres" id="19_vfpkh"]
 [ext_resource type="Texture2D" uid="uid://bhgjvnslkt143" path="res://Assets/Sprites/UI/PanelSelected.png" id="19_xspbb"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="20_3l3ph"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/FontMain.json" id="23_3l3ph"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/ScoreFont.json" id="24_m6bur"]
+[ext_resource type="StyleBox" uid="uid://cv3vildm3bnc2" path="res://Resources/UI/ScrollBarSlider.tres" id="20_s6b5m"]
+[ext_resource type="StyleBox" uid="uid://bfagahow5b21a" path="res://Resources/UI/ScrollBarBG.tres" id="21_jflqi"]
 [ext_resource type="Script" uid="uid://ci0mnknqe2d7d" path="res://Scripts/Classes/Components/ScreenShaker.gd" id="26_mpjtu"]
+[ext_resource type="StyleBox" uid="uid://dym50k6bgpd2" path="res://Resources/UI/TabSelected.tres" id="27_jflqi"]
+[ext_resource type="Texture2D" uid="uid://dirturk5rw733" path="res://Resources/UI/CheckboxChecked.tres" id="31_s6b5m"]
+[ext_resource type="Texture2D" uid="uid://cdwaxjlcmkks8" path="res://Resources/UI/CheckboxUnchecked.tres" id="32_jflqi"]
 
 [sub_resource type="Shader" id="Shader_m6bur"]
 code = "shader_type canvas_item;
@@ -69,7 +76,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_81m3w"]
@@ -258,24 +265,7 @@ Underwater = SubResource("Resource_dvjn7")
 Mountain = SubResource("AtlasTexture_0vgiw")
 Volcano = SubResource("AtlasTexture_0jga0")
 Castle = SubResource("Resource_0vgiw")
-metadata/_custom_type_script = ExtResource("5_eyjoc")
-
-[sub_resource type="GDScript" id="GDScript_30rl1"]
-script/source = "extends Node
-
-@export var panel: StyleBoxTexture = null
-
-@onready var resource_getter := ResourceGetter.new()
-
-@export var texture: Texture = null
-
-func _ready() -> void:
-	update_texture()
-	Global.level_theme_changed.connect(update_texture)
-
-func update_texture() -> void:
-	panel.texture = resource_getter.get_resource(texture)
-"
+metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 
 [sub_resource type="GDScript" id="GDScript_l7dvb"]
 script/source = "extends Node
@@ -297,6 +287,46 @@ func update_texture() -> void:
 atlas = ExtResource("19_3l3ph")
 region = Rect2(0, 0, 8, 8)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfpkh"]
+shader = ExtResource("2_77asf")
+shader_parameter/shadow_colour = Vector4(1, 1, 1, 1)
+shader_parameter/allow_transparency = true
+
+[sub_resource type="GDScript" id="GDScript_30rl1"]
+script/source = "extends Node
+
+@export var panel: StyleBoxTexture = null
+
+@onready var resource_getter := ResourceGetter.new()
+
+@export var texture: Texture = null
+
+func _ready() -> void:
+	update_texture()
+	Global.level_theme_changed.connect(update_texture)
+
+func update_texture() -> void:
+	panel.texture = resource_getter.get_resource(texture)
+"
+
+[sub_resource type="GDScript" id="GDScript_mpjtu"]
+script/source = "extends Node
+
+@export var resource: Resource = null
+@onready var resource_getter := ResourceGetter.new()
+
+func _ready() -> void:
+	add_child(resource_getter)
+	update_texture(resource)
+	Global.level_theme_changed.connect(update_texture.bind(resource))
+
+func update_texture(resource: Resource) -> void:
+	if resource is AtlasTexture:
+		resource.atlas = resource_getter.get_resource(resource.atlas)
+	elif resource is StyleBoxTexture:
+		resource.texture = resource_getter.get_resource(resource.texture)
+"
+
 [node name="Global" type="Node" unique_id=1897878467]
 process_mode = 3
 script = ExtResource("1_t23sr")
@@ -317,6 +347,14 @@ grow_vertical = 2
 layer = 128
 visible = false
 
+[node name="Freeze" type="TextureRect" parent="Transition" unique_id=1718465921]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="TransitionBlock" type="ColorRect" parent="Transition" unique_id=692611163]
 unique_name_in_owner = true
 anchors_preset = 15
@@ -326,14 +364,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-
-[node name="Freeze" type="TextureRect" parent="Transition" unique_id=1718465921]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=804731792]
 libraries/ = SubResource("AnimationLibrary_77asf")
@@ -356,6 +386,7 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "120FPS"
 horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="ScoreTally" type="AudioStreamPlayer" parent="." unique_id=1944532967]
 stream = ExtResource("3_vjpdy")
@@ -412,9 +443,9 @@ visible = false
 z_index = 50
 z_as_relative = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1461227004]
+[node name="Logs" type="CanvasLayer" parent="." unique_id=1461227004]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=851351030]
+[node name="VBoxContainer" type="VBoxContainer" parent="Logs" unique_id=851351030]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -422,41 +453,70 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ErrorMessage" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1615437496]
+[node name="ErrorMessage" type="Label" parent="Logs/VBoxContainer" unique_id=1615437496]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "ERROR! PLEASE REPORT!"
-autowrap_mode = 1
+autowrap_mode = 3
 uppercase = true
 
-[node name="Warning" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1325052095]
+[node name="ColorRect" type="ColorRect" parent="Logs/VBoxContainer/ErrorMessage" unique_id=144924234]
+self_modulate = Color(1, 1, 1, 0.3529412)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="WarningMessage" type="Label" parent="Logs/VBoxContainer" unique_id=1325052095]
+unique_name_in_owner = true
 visible = false
 modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "Warning!"
-autowrap_mode = 1
+autowrap_mode = 3
 uppercase = true
 
-[node name="Comment" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=876225458]
+[node name="ColorRect" type="ColorRect" parent="Logs/VBoxContainer/WarningMessage" unique_id=1975693673]
+self_modulate = Color(1, 1, 1, 0.3529412)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CommentMessage" type="Label" parent="Logs/VBoxContainer" unique_id=876225458]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.121569, 0.121569, 0.121569, 1)
 text = "Comment"
-autowrap_mode = 1
+autowrap_mode = 3
 uppercase = true
 
-[node name="PanelSetter" type="Node" parent="." unique_id=1039533656]
-script = SubResource("GDScript_30rl1")
-panel = ExtResource("16_l7dvb")
-texture = ExtResource("16_qalov")
-
-[node name="PanelSetter2" type="Node" parent="." unique_id=2047387154]
-script = SubResource("GDScript_30rl1")
-panel = ExtResource("18_yyu8s")
-texture = ExtResource("19_xspbb")
+[node name="ColorRect" type="ColorRect" parent="Logs/VBoxContainer/CommentMessage" unique_id=1005887466]
+self_modulate = Color(1, 1, 1, 0.3529412)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="CursorSetter" type="Node" parent="." unique_id=395644393]
 script = SubResource("GDScript_l7dvb")
@@ -464,11 +524,12 @@ cursor = ExtResource("18_xcxrh")
 texture = SubResource("AtlasTexture_m6bur")
 
 [node name="ResourceSetterNew" type="Node" parent="CursorSetter" unique_id=290805659 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("19_okfpr")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("20_3l3ph")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="FontUpdater" type="Node" parent="." unique_id=1029771607]
@@ -476,32 +537,139 @@ script = ExtResource("18_1la0o")
 metadata/_custom_type_script = "uid://ctsjagoa5t33f"
 
 [node name="MainFontGetter" type="Node" parent="FontUpdater" unique_id=1710480684 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("19_okfpr")
 node_to_affect = NodePath("..")
 property_name = "main_font"
 mode = 4
-resource_json = ExtResource("23_3l3ph")
+json_path = "res://Assets/Sprites/UI/FontMain.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="ScoreFontGetter" type="Node" parent="FontUpdater" unique_id=2059896858 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("19_okfpr")
 node_to_affect = NodePath("..")
 property_name = "score_font"
 mode = 4
-resource_json = ExtResource("24_m6bur")
+json_path = "res://Assets/Sprites/UI/ScoreFont.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="TextShadowColourChanger" type="Node" parent="." unique_id=1387042580 node_paths=PackedStringArray("labels")]
 script = ExtResource("19_l7dvb")
-labels = [NodePath("../CanvasLayer/VBoxContainer/ErrorMessage"), NodePath("../CanvasLayer/VBoxContainer/Comment"), NodePath("../CanvasLayer/VBoxContainer/Warning"), NodePath("../GameHUD/FPSCount")]
+labels = [NodePath("../Logs/VBoxContainer/ErrorMessage"), NodePath("../Logs/VBoxContainer/CommentMessage"), NodePath("../Logs/VBoxContainer/WarningMessage"), NodePath("../GameHUD/FPSCount")]
 metadata/_custom_type_script = "uid://dt2p68xl462v2"
 
 [node name="ScreenShaker" type="Node" parent="." unique_id=1052498364]
 script = ExtResource("26_mpjtu")
 
-[node name="ResourceSetterNew" type="Node" parent="." unique_id=985375576]
+[node name="ThemeGetter" type="Node" parent="." unique_id=985375576 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
+script = ExtResource("19_okfpr")
+node_to_affect = NodePath("..")
+mode = 5
+json_path = "res://Assets/themes.json"
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="ResourceSetterNew" type="Node" parent="." unique_id=1980776324]
+process_mode = 3
 script = ExtResource("19_okfpr")
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=2033601337]
+
+[node name="EditorLoading" type="ColorRect" parent="CanvasLayer2" unique_id=1056956960]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.34901962)
+
+[node name="Text" type="Control" parent="CanvasLayer2/EditorLoading" unique_id=40717061]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 96.0
+grow_vertical = 0
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="CanvasLayer2/EditorLoading/Text" unique_id=1851856169 node_paths=PackedStringArray("resource_setter")]
+material = SubResource("ShaderMaterial_vfpkh")
+position = Vector2(16, 20)
+sprite_frames = ExtResource("2_pxe6i")
+animation = &"Jump"
+offset = Vector2(0, -16)
+script = ExtResource("3_77asf")
+force_power_state = "0"
+resource_setter = NodePath("ResourceSetterNew")
+metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
+
+[node name="ResourceSetterNew" type="Node" parent="CanvasLayer2/EditorLoading/Text/PlayerSprite" unique_id=2127008457 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
+script = ExtResource("19_okfpr")
+node_to_affect = NodePath("..")
+property_name = "sprite_frames"
+use_cache = false
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="Label" type="Label" parent="CanvasLayer2/EditorLoading/Text" unique_id=700837014]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 8.0
+offset_right = 97.0
+offset_bottom = 24.0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "EDITOR_LOADING"
+uppercase = true
+
+[node name="UITextureSetters" type="Node" parent="." unique_id=1366647275]
+
+[node name="Panels" type="Node" parent="UITextureSetters" unique_id=695902269]
+
+[node name="PanelSetter" type="Node" parent="UITextureSetters/Panels" unique_id=1039533656]
+script = SubResource("GDScript_30rl1")
+panel = ExtResource("16_l7dvb")
+texture = ExtResource("16_qalov")
+
+[node name="PanelSetter2" type="Node" parent="UITextureSetters/Panels" unique_id=2047387154]
+script = SubResource("GDScript_30rl1")
+panel = ExtResource("18_yyu8s")
+texture = ExtResource("19_xspbb")
+
+[node name="UpArrow" type="Node" parent="UITextureSetters/Panels" unique_id=459072945]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("27_jflqi")
+
+[node name="Scrollbar" type="Node" parent="UITextureSetters" unique_id=216792308]
+
+[node name="UpArrow" type="Node" parent="UITextureSetters/Scrollbar" unique_id=1968484630]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("18_cv2bn")
+
+[node name="DownArrow" type="Node" parent="UITextureSetters/Scrollbar" unique_id=1445256184]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("19_vfpkh")
+
+[node name="Slider" type="Node" parent="UITextureSetters/Scrollbar" unique_id=1248766413]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("20_s6b5m")
+
+[node name="BG" type="Node" parent="UITextureSetters/Scrollbar" unique_id=2110268959]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("21_jflqi")
+
+[node name="Checkbox" type="Node" parent="UITextureSetters" unique_id=838961905]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("31_s6b5m")
+
+[node name="CheckboxUnchecked" type="Node" parent="UITextureSetters" unique_id=377914856]
+script = SubResource("GDScript_mpjtu")
+resource = ExtResource("32_jflqi")
 
 [connection signal="finished" from="ScoreTally" to="." method="on_score_sfx_finished"]
 [connection signal="finished" from="ScoreTallyEnd" to="." method="on_score_sfx_finished"]

@@ -15,6 +15,7 @@ const PIPE_CUTSCENE_OVERRIDE := {
 	"SMBANN": {[2, 2]: "res://Scenes/Levels/PipeCutsceneWater.tscn", [7, 2]: "res://Scenes/Levels/PipeCutsceneWater.tscn"},
 }
 
+const LETTER_WORLDS := ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"," X", "Y", "Z", "STOP."]
 
 var can_transition := false
 var level_best_time := 0.0
@@ -37,10 +38,12 @@ func _ready() -> void:
 	if world_num == "-1":
 		world_num = " "
 	if Global.world_num >= 10:
-		world_num = ["A", "B", "C", "D"][Global.world_num % 10]
+		world_num = LETTER_WORLDS[Global.world_num % 10]
 	
 	var lvl_idx := SaveManager.get_level_idx(Global.world_num, Global.level_num)
 	SaveManager.visited_levels[lvl_idx] = "1"
+	
+	%PlayerSprite.play("LevelTransition")
 	
 	if Global.current_game_mode == Global.GameMode.CAMPAIGN:
 		SaveManager.write_save(Global.current_campaign)
@@ -69,11 +72,11 @@ func _ready() -> void:
 	begin_transition_wait()
 
 func begin_transition_wait() -> void:
-	if Global.current_game_mode != Global.GameMode.CUSTOM_LEVEL and not Global.in_custom_campaign():
+	if (Global.current_game_mode != Global.GameMode.CUSTOM_LEVEL) and not Global.in_custom_campaign():
 		can_transition = true
 		$Timer.start()
 	else:
-		if NewLevelBuilder.sub_levels == [null, null, null, null, null]:
+		if LevelEditor.sub_areas == [null, null, null, null, null]:
 			if Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL:
 				Global.clear_saved_values()
 			Global.reset_values()
@@ -86,8 +89,8 @@ func begin_transition_wait() -> void:
 				var level_file_name = Global.custom_campaign_jsons[Global.current_custom_campaign].levels[Global.custom_level_idx]
 				var path = Global.config_path.path_join("level_packs").path_join(Global.current_custom_campaign).path_join(level_file_name)
 				Level.first_load = true
-				var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
-				NewLevelBuilder.load_level(json)
+				
+				NewLevelBuilder.load_level(JSONParser.parse_to_dict(path))
 		else:
 			$Timer.start()
 			await get_tree().create_timer(0.1, false).timeout
@@ -154,7 +157,7 @@ func value_cleanup() -> void:
 func transition() -> void:
 	Global.can_time_tick = true
 	if Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL or Global.in_custom_campaign():
-		Global.transition_to_scene(NewLevelBuilder.sub_levels[Checkpoint.sublevel_id])
+		Global.transition_to_scene(LevelEditor.sub_areas[Checkpoint.sublevel_id])
 	else:
 		if PIPE_CUTSCENE_LEVELS[Global.current_campaign].has([Global.world_num, Global.level_num]) and not PipeCutscene.seen_cutscene and [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) == false:
 			if PIPE_CUTSCENE_OVERRIDE[Global.current_campaign].has([Global.world_num, Global.level_num]):
@@ -174,7 +177,7 @@ func show_best_time() -> void:
 
 func _process(_delta: float) -> void:
 	if can_transition:
-		if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("jump_0"):
+		if Global.multibind_action_just_pressed("ui_accept") or Global.multibind_action_just_pressed("jump_0"):
 			transition()
 
 func _exit_tree() -> void:

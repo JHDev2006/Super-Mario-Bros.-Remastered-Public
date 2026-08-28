@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ccjm4qqrfvxqf" path="res://Scripts/UI/BlueprintContainer.gd" id="1_h5d3e"]
 [ext_resource type="Texture2D" uid="uid://bwldw4ekgbwa7" path="res://Assets/Sprites/UI/EditorShortcutIcons.png" id="2_gtqdb"]
+[ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="2_yixlu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yixlu"]
 atlas = ExtResource("2_gtqdb")
@@ -20,8 +21,32 @@ script = ExtResource("1_h5d3e")
 [node name="Button" type="Button" parent="." unique_id=920462777]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "JEW.MBP"
 alignment = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Button" unique_id=1265208753]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 3
+
+[node name="AutoScrollContainer" type="ScrollContainer" parent="Button/MarginContainer" unique_id=1932372163]
+layout_mode = 2
+scroll_horizontal = 7
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("2_yixlu")
+is_active = true
+metadata/_custom_type_script = "uid://d63p6qr5a748"
+
+[node name="BlueprintName" type="Label" parent="Button/MarginContainer/AutoScrollContainer" unique_id=184269835]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "ADWADADWWADWADAWDADAWDADWD"
 
 [node name="Delete" type="Button" parent="." unique_id=486706448]
 custom_minimum_size = Vector2(24, 0)

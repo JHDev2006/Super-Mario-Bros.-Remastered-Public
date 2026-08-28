@@ -15,6 +15,9 @@ var times_kicked := 0 ## For anti-infinite scoring in Challenge mode
 func _ready() -> void:
 	if has_meta("fly_2"):
 		fly_wave = 0
+	else:
+		if winged:
+			play_animation("Hop")
 
 func _physics_process(delta: float) -> void:
 	if winged and (has_meta("is_red") or has_meta("fly_2")):

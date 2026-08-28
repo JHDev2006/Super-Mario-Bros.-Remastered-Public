@@ -37,19 +37,18 @@ func update_visuals() -> void:
 
 func handle_input() -> void:
 	var old_colour = selected_boo
-	if Input.is_action_just_pressed("ui_left"):
+	if Global.multibind_action_just_pressed("ui_left"):
 		selected_boo -= 1
-	if Input.is_action_just_pressed("ui_right"):
+	if Global.multibind_action_just_pressed("ui_right"):
 		selected_boo += 1
 	selected_boo = clamp(selected_boo, 0, 4)
 	BooRaceHandler.boo_colour = selected_boo
 	if old_colour != selected_boo:
-		print(selected_boo)
 		boo_changed.emit()
-	if Input.is_action_just_pressed("ui_back"):
+	if Global.multibind_action_just_pressed("ui_back"):
 		cancelled.emit()
 		close()
-	if Input.is_action_just_pressed("ui_accept"):
+	if Global.multibind_action_just_pressed("ui_accept"):
 		if int(BooRaceHandler.cleared_boo_levels[lvl_idx]) < selected_boo and not Global.debug_mode:
 			AudioManager.play_sfx("bump")
 		else:

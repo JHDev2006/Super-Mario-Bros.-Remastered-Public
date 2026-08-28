@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cf2jub5s18wrs"]
 [ext_resource type="PackedScene" uid="uid://luvjp1hbt8ej" path="res://Scenes/Levels/SMB1/World1/1-4.tscn" id="1_ryiwt"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Blooper.json" id="2_1tffw"]
 [node name="6-4" unique_id=1421602951 instance=ExtResource("1_ryiwt")]
+theme_time = "Night"
 world_id = 6
 [node name="ChallengeNodes" parent="." index="5" unique_id=373733728 node_paths=PackedStringArray("nodes_to_delete")]
 nodes_to_delete = [NodePath("../CastleToad")]
@@ -21,7 +21,7 @@ position = Vector2(136, -104)
 can_hammer = true
 can_fire = false
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(881948682, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("2_1tffw")
+json_path = "res://Assets/Sprites/Enemies/Blooper.json"
 [node name="SecondQuestNode" parent="." index="10" unique_id=609202757]
 enabled = true
 [editable path="Bowser"]

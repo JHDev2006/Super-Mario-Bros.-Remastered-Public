@@ -17,9 +17,12 @@ var star_offset_x := 0
 var star_offset_y := 0
 
 func _enter_tree() -> void:
+	Global.current_room_type = room_type
 	check_for_unlocked_achievements()
 	Global.debugged_in = false
 	Global.current_campaign = Settings.file.game.campaign
+	if (Global.current_campaign in Global.CAMPAIGNS) == false:
+		Global.current_campaign = "SMB1"
 	Global.in_title_screen = true
 	Global.current_game_mode = Global.GameMode.NONE
 	last_campaign = Global.current_campaign
@@ -100,6 +103,16 @@ func continue_story() -> void:
 	else:
 		$CanvasLayer/StoryMode/NoBeatenCharSelect.open()
 
+func custom_campaign_continue_selected() -> void:
+	SaveManager.apply_save(SaveManager.load_save(Global.current_custom_campaign))
+	Global.current_game_mode = Global.GameMode.CAMPAIGN
+	$CanvasLayer/StoryMode/CustomCampaign2/WorldSelect.custom_campaign_json = Global.custom_campaign_jsons[Global.current_custom_campaign]
+	$CanvasLayer/StoryMode/CustomCampaign2/LevelSelect.custom_campaign_json = Global.custom_campaign_jsons[Global.current_custom_campaign]
+	if Global.game_beaten or Global.debug_mode or Global.custom_campaign_jsons[Global.current_custom_campaign].get("force_level_select", false):
+		$CanvasLayer/StoryMode/CustomCampaign2/WorldSelect.open()
+	else:
+		$CanvasLayer/StoryMode/CustomCampaign2/CharSelect.open()
+
 func check_for_warpless() -> void:
 	SpeedrunHandler.is_warp_run = false
 	SpeedrunHandler.ghost_enabled = false
@@ -144,7 +157,7 @@ func start_game() -> void:
 	PipeCutscene.seen_cutscene = false
 	first_load = true
 	Global.reset_values()
-	NewLevelBuilder.sub_levels = [null, null, null, null, null]
+	LevelEditor.sub_areas = [null, null, null, null, null]
 	if Global.in_custom_campaign() == false:
 		LevelTransition.level_to_transition_to = Level.get_scene_string(Global.world_num, Global.level_num)
 	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
@@ -283,6 +296,3 @@ func check_for_unlocked_achievements() -> void:
 		has_achievements_to_unlock = true
 		%AchievementUnlock.show_popup(new_achievements)
 	AchievementMenu.unlocked_achievements = Global.achievements
-
-func get_room_type() -> Global.Room:
-	return Global.Room.TITLE_SCREEN

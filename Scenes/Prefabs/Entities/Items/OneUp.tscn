@@ -2,13 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://beq7b3hp44onn" path="res://Scenes/Prefabs/Entities/Items/SuperMushroom.tscn" id="1_g2ftd"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="2_w8r6w"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/OneUp.json" id="3_iusab"]
 
 [node name="OneUp" unique_id=1654448568 instance=ExtResource("1_g2ftd")]
 metadata/is_oneup = true
 
 [node name="ResourceSetterNew" parent="Mushroom" parent_id_path=PackedInt32Array(1305897431) index="0" unique_id=1994287161]
-resource_json = ExtResource("3_iusab")
+json_path = "res://Assets/Sprites/Items/OneUp.json"
 
 [node name="ScoreNoteSpawner" type="Node" parent="." index="4" unique_id=76166507]
 script = ExtResource("2_w8r6w")

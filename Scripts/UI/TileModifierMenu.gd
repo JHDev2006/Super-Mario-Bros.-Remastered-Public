@@ -5,6 +5,8 @@ var editing_node: Node = null
 var properties := []
 var has_connection := false
 
+var mouse_inside := true
+
 var override_scenes := {}
 
 const VALUES := {
@@ -35,12 +37,18 @@ var can_exit := true:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("mb_left"): left_click_release.emit()
-	if active and (Input.is_action_just_pressed("ui_back") or Input.is_action_just_pressed("editor_open_menu")):
-		print(can_exit)
-		if can_exit:
-			close()
-		else:
-			pass
+	if active:
+		if Global.multibind_action_just_pressed("ui_back") or Global.multibind_action_just_pressed("editor_open_menu"):
+			if can_exit:
+				close()
+			else:
+				pass
+		await get_tree().process_frame
+		if Input.is_action_just_pressed("mb_left") && !mouse_inside:
+			if can_exit:
+				close()
+			else:
+				pass
 
 func open() -> void:
 	active = true
@@ -109,7 +117,6 @@ func add_properties() -> void:
 	update_minimum_size()
 
 func set_can_exit(new_value := false) -> void:
-	print(new_value)
 	if new_value:
 		pass
 	can_exit = new_value
@@ -143,8 +150,17 @@ func value_changed(property, new_value) -> void:
 	undo_redo.add_do_method(set_value.bind(editing_node, property.tile_property_name, new_value))
 	undo_redo.add_undo_method(set_value.bind(editing_node, property.tile_property_name, old_value))
 	undo_redo.commit_action(true)
+	
+	Global.level_editor.save_to_undoredo("Edited Node!%s" % get_path(),
+		[editing_node.get_path(), property.tile_property_name, new_value],
+		[editing_node.get_path(), property.tile_property_name, old_value],
+	)
+	
+	Global.level_editor.something_changed = true
 
-func set_value(node: Node, value_name := "", value = null) -> void:
+func set_value(node: Variant, value_name := "", value = null) -> void:
+	if (node is NodePath):
+		node = get_node_or_null(node)
 	if is_instance_valid(node) == false:
 		return
 	node.set(value_name, value)
@@ -156,7 +172,6 @@ func close() -> void:
 	clear_nodes()
 	editing_node.tree_exiting.disconnect(close)
 	properties.clear()
-	closed.emit()
 	if get_tree() == null: return
 	if Global.level_editor.quick_connecting:
 		await left_click_release
@@ -165,13 +180,18 @@ func close() -> void:
 	Global.level_editor.current_inspect_tile = null
 	Global.level_editor.current_state = LevelEditor.EditorState.IDLE
 	hide()
+	closed.emit()
 
 var old_scale = Vector2.ONE
 
 func connect_signal(new_node: Node) -> void:
-	editing_node.get_node("SignalExposer").connect_to_node([Global.level_editor.current_layer, new_node.get_meta("tile_position")])
+	var node_to_recieve := [Global.level_editor.current_layer, new_node.get_meta("tile_position")]
+	var exposer := editing_node.get_node("SignalExposer")
+	exposer.connect_to_node(node_to_recieve, true, true)
 	can_exit = true
-	print("Connected!")
+	if Input.is_action_pressed("editor_inspect"):
+		begin_signal_connection()
+		return
 	if Global.level_editor.quick_connecting:
 		close()
 	else:
@@ -187,8 +207,9 @@ func do_animation(node: Node) -> void:
 		old_scale = node.scale
 		node.scale += Vector2(0.5, 0.5)
 		create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "scale", old_scale, 0.1)
-		var sparkle = preload("uid://btuv0dcfc8u7x").instantiate()
-		sparkle.global_position = node.get_meta("tile_position") * 16
-		print([sparkle.global_position, node.global_position])
-		add_sibling(sparkle)
-		sparkle.animation_finished.connect(sparkle.queue_free)
+
+func is_mouse_inside(it_is := true) -> void:
+	var inside_check = get_global_rect().has_point(get_global_mouse_position())
+	if inside_check and not it_is:
+		it_is = true
+	mouse_inside = it_is

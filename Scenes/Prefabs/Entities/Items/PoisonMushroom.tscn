@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://n7nskl10ouem"]
 
 [ext_resource type="PackedScene" uid="uid://beq7b3hp44onn" path="res://Scenes/Prefabs/Entities/Items/SuperMushroom.tscn" id="1_0uuo6"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/PoisonMushroom.json" id="2_pfjfl"]
 
 [node name="SuperMushroom" unique_id=1249834341 instance=ExtResource("1_0uuo6")]
 metadata/is_poison = false
 
 [node name="ResourceSetterNew" parent="Mushroom" parent_id_path=PackedInt32Array(1305897431) index="0" unique_id=1994287161]
-resource_json = ExtResource("2_pfjfl")
+json_path = "res://Assets/Sprites/Items/PoisonMushroom.json"

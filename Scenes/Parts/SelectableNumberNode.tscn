@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://ccabvf866y58q"]
+
+[ext_resource type="Script" uid="uid://cs5o6yw4xj4wo" path="res://Scripts/UI/SelectableNumberNode.gd" id="1_v4dqv"]
+[ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="2_2qsvo"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_3pjh6"]
+[ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="5_3x4xs"]
+[ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="6_itylq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qti1l"]
+atlas = ExtResource("2_2qsvo")
+region = Rect2(0, 0, 8, 8)
+
+[node name="SelectableOptionNode" type="HBoxContainer" unique_id=1056089136]
+offset_right = 253.0
+offset_bottom = 23.0
+focus_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_v4dqv")
+minimum = 0.1
+
+[node name="Cursor" type="Control" parent="." unique_id=470985518]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="Cursor" type="TextureRect" parent="Cursor" unique_id=1804634223]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 8.0
+offset_bottom = 12.0
+texture = SubResource("AtlasTexture_qti1l")
+stretch_mode = 2
+
+[node name="ResourceSetter" type="Node" parent="Cursor/Cursor" unique_id=605420492 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
+script = ExtResource("3_3pjh6")
+node_to_affect = NodePath("..")
+property_name = "texture"
+mode = 1
+json_path = "res://Assets/Sprites/UI/Cursor.json"
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
+
+[node name="AutoScrollContainer" type="ScrollContainer" parent="." unique_id=783604123]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("5_3x4xs")
+metadata/_custom_type_script = "uid://d63p6qr5a748"
+
+[node name="Title" type="Label" parent="AutoScrollContainer" unique_id=314305518]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "modeadpiawjda:"
+uppercase = true
+
+[node name="LabelFontChanger" type="Node" parent="." unique_id=1778826004 node_paths=PackedStringArray("labels")]
+script = ExtResource("6_itylq")
+labels = [NodePath("../AutoScrollContainer/Title"), NodePath("../HBoxContainer/Value")]
+metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1684885994]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="LeftArrow" type="Label" parent="HBoxContainer" unique_id=423069490]
+unique_name_in_owner = true
+layout_mode = 2
+text = "◄"
+uppercase = true
+
+[node name="Value" type="Label" parent="HBoxContainer" unique_id=1518489968]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="RightArrow" type="Label" parent="HBoxContainer" unique_id=1237383621]
+unique_name_in_owner = true
+layout_mode = 2
+text = "►"
+horizontal_alignment = 2
+uppercase = true
+
+[connection signal="focus_entered" from="." to="." method="set_selected" binds= [true]]
+[connection signal="focus_exited" from="." to="." method="set_selected" binds= [false]]

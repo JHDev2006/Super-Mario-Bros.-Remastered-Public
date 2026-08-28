@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cjkurwybsaywm" path="res://Scripts/Classes/Entities/Items/PowerUpItem.gd" id="1_paqft"]
 [ext_resource type="Texture2D" uid="uid://qwqprcst4mtg" path="res://Assets/Sprites/Items/FireFlower.png" id="2_x8n8e"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_db8fa"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/FireFlower.json" id="4_11cns"]
 [ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="5_11cns"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="6_brn7u"]
 
@@ -64,10 +63,11 @@ autoplay = "default"
 frame_progress = 0.157931
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1815355599 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_db8fa")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_11cns")
+json_path = "res://Assets/Sprites/Items/FireFlower.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=942244260]

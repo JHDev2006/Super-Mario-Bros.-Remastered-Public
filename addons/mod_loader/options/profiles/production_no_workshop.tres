@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ModLoaderOptionsProfile" format=3 uid="uid://bodsw0jyh6rn5"]
+
+[ext_resource type="Script" uid="uid://dsbicisgihjet" path="res://addons/mod_loader/resources/options_profile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+log_level = 2

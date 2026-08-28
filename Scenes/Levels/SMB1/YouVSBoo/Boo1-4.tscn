@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bbrkol4k3yobq" path="res://Scenes/Prefabs/Entities/Enemies/RaceBoo.tscn" id="6_ppw77"]
 [ext_resource type="PackedScene" uid="uid://d1wjw5tobpb3w" path="res://Scenes/Prefabs/LevelObjects/BooRaceHandler.tscn" id="7_2rf2p"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="9_o4tjd"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/GreenCheepCheep.json" id="9_ppw77"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="10_tvqux"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="11_tvqux"]
 [ext_resource type="Script" uid="uid://cybpwmw4ywoow" path="res://Scripts/Parts/TileMapConverter.gd" id="12_ppw77"]
@@ -40,7 +39,7 @@ position = Vector2(3080, -40)
 [node name="Bowser" parent="." unique_id=518109015 instance=ExtResource("10_tvqux")]
 position = Vector2(3232, -48)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(518109015, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("9_ppw77")
+json_path = "res://Assets/Sprites/Enemies/GreenCheepCheep.json"
 [node name="DropShadow" parent="." unique_id=352016896 instance=ExtResource("11_tvqux")]
 [node name="Path2D" type="Path2D" parent="." unique_id=1755637317]
 curve = SubResource("Curve2D_usny3")

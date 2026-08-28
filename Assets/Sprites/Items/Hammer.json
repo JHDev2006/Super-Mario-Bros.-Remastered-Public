@@ -1,6 +1,15 @@
 {
 	"properties": {
+		"can_rotate": true,
 		"play_sfx": false
+	},
+	"animations": {
+		"default": {
+			"frames": [[0, 0, 16, 16]],
+			"speed": 5,
+			"loop": true
+		},
+		"Hold": {"link": "default"}
 	},
 	"variations": {
 		"default": {
@@ -11,10 +20,7 @@
 			"source": "Hammer.png",
 			"rect": [16, 0, 16, 16]
 		},
-		"GhostHouse": {
-			"source": "Hammer.png",
-			"rect": [16, 0, 16, 16]
-		},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {
 			"source": "Hammer.png",
 			"rect": [32, 0, 16, 16]
@@ -23,10 +29,7 @@
 			"source": "Hammer.png",
 			"rect": [48, 0, 16, 16]
 		},
-		"CastleWater": {
-			"source": "Hammer.png",
-			"rect": [48, 0, 16, 16]
-		},
+		"CastleWater": {"link": "Underwater"},
 		"Desert": {
 			"source": "Hammer.png",
 			"rect": [0, 16, 16, 16]

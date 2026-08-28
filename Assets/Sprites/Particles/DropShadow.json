@@ -1,16 +1,28 @@
 {
 	"variations": {
 		"default": {
-			"Day": {"source": "ShadowColours.png", "rect": [0, 0, 1, 1]},
-			"Night": {"source": "ShadowColours.png", "rect": [1, 0, 1, 1]}
+			"Day": {
+				"source": "ShadowColours.png",
+				"rect": [0, 0, 1, 1]
+			},
+			"Night": {
+				"source": "ShadowColours.png",
+				"rect": [1, 0, 1, 1]
+			}
 		},
-		"Underground": {"source": "ShadowColours.png", "rect": [1, 0, 1, 1]},
-		"GhostHouse": {"link": "Underground"},
+		"Underground": {
+			"source": "ShadowColours.png",
+			"rect": [1, 0, 1, 1]
+		},
 		"Jungle": {"link": "Underground"},
+		"Underwater": {
+			"source": "ShadowColours.png",
+			"rect": [0, 0, 1, 1]
+		},
+		"Volcano": {"link": "Underground"},
+		"GhostHouse": {"link": "Underground"},
 		"Castle": {"link": "Underground"},
-		"Bonus": {"link": "Underground"},
-		"Underwater": {"source": "ShadowColours.png", "rect": [0, 0, 1, 1]},
 		"CastleWater": {"link": "Underwater"},
-		"Volcano": {"link": "Underground"}
+		"Bonus": {"link": "Underground"}
 	}
 }

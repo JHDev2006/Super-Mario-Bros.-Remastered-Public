@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://vhxup1pn2v8q" path="res://Scripts/Classes/Entities/Items/HammerItem.gd" id="1_ws752"]
 [ext_resource type="Texture2D" uid="uid://bbdcmhyxmc3pu" path="res://Assets/Sprites/Items/SPItems.png" id="2_c0srl"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_uc7h7"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/HammerItem.json" id="5_6qq3q"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_uc7h7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uc7h7"]
@@ -25,11 +24,12 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1146930070 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_uc7h7")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("5_6qq3q")
+json_path = "res://Assets/Sprites/Items/HammerItem.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=429032568]

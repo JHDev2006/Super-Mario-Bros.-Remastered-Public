@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://cfr2hr8jhkxry"]
 
 [ext_resource type="PackedScene" uid="uid://djve7q2o304w1" path="res://Scenes/Prefabs/Entities/Items/10Coin.tscn" id="1_6xebq"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/30Coin.json" id="2_vbgog"]
 
 [node name="30Coin" unique_id=1133717281 instance=ExtResource("1_6xebq")]
 amount = 30
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(1158279776) index="0" unique_id=465438140]
-resource_json = ExtResource("2_vbgog")
+json_path = "res://Assets/Sprites/Items/30Coin.json"

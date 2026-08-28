@@ -4,12 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bfora2lrmtyj4" path="res://Assets/Sprites/Enemies/RockyWrench.png" id="2_8y80u"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_4h1b4"]
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="3_wom81"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RockyWrench.json" id="4_pl7bt"]
 [ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="5_8y80u"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="7_pl7bt"]
 [ext_resource type="Texture2D" uid="uid://cop8x5m20cqal" path="res://Assets/Sprites/Items/WrenchProjectile.png" id="7_w66sd"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="8_nqvoc"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/WrenchProjectile.json" id="9_kxgad"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="9_nxn7i"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="10_w66sd"]
 [ext_resource type="Script" uid="uid://ba18grqjixded" path="res://Scripts/Classes/Components/ExplosionDetection.gd" id="13_h21ug"]
@@ -285,10 +283,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1169281784 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_4h1b4")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_pl7bt")
+json_path = "res://Assets/Sprites/Enemies/RockyWrench.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="StompHitbox" type="Area2D" parent="Sprite" unique_id=606822192]
@@ -330,10 +329,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite/Wrench" unique_id=225124446 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_4h1b4")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("9_kxgad")
+json_path = "res://Assets/Sprites/Items/WrenchProjectile.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="BasicStaticMovement" type="Node" parent="." unique_id=806606881]

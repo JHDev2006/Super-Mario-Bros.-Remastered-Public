@@ -22,6 +22,7 @@
 script = ExtResource("1_c42te")
 music = ExtResource("2_o6woj")
 theme = "Castle"
+theme_time = "Night"
 campaign = "SMBLL"
 world_id = 8
 level_id = 4
@@ -66,6 +67,7 @@ script = ExtResource("16_8y1pn")
 tilemap = NodePath("../Tiles")
 metadata/_custom_type_script = "uid://cybpwmw4ywoow"
 [node name="LevelBG" parent="." unique_id=471146950 instance=ExtResource("17_jtpt3")]
+particles = 3
 [node name="ChallengeNodes" type="Node" parent="." unique_id=512059172 node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("17_8y1pn")
 nodes_to_delete = [NodePath("../LostLevelsEndingDoor")]

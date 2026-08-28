@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="3_a5qfu"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_1gkhc"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="4_cd02n"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/GreenCheepCheep.json" id="5_8m1k0"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="5_qwki7"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="6_qwki7"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="10_8m1k0"]
@@ -38,45 +37,6 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd02n"]
 size = Vector2(10, 10)
-
-[sub_resource type="Animation" id="Animation_a3qb1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_iib8n"]
-resource_name = "Swim"
-length = 0.4
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a5qfu"]
-_data = {
-&"RESET": SubResource("Animation_a3qb1"),
-&"Swim": SubResource("Animation_iib8n")
-}
 
 [sub_resource type="Animation" id="Animation_b7un4"]
 length = 0.001
@@ -126,6 +86,7 @@ score_note_adder = NodePath("ScoreNoteSpawner")
 position = Vector2(0, -8)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_pyihc")
+autoplay = "default"
 flip_h = true
 script = ExtResource("3_1gkhc")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
@@ -145,15 +106,12 @@ scale = Vector2(1, -1)
 enable_node_path = NodePath("../..")
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=998124050 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("4_1gkhc")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_8m1k0")
+json_path = "res://Assets/Sprites/Enemies/GreenCheepCheep.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
-
-[node name="Animations" type="AnimationPlayer" parent="." unique_id=1193360541]
-libraries/ = SubResource("AnimationLibrary_a5qfu")
-autoplay = &"Swim"
 
 [node name="EnemyPlayerDetection" type="Node" parent="." unique_id=158974708 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("3_a5qfu")

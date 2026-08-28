@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="10_42qki"]
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="11_igjtn"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="11_x8uan"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/HammerBro.json" id="12_e6kbl"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="12_j1ver"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="13_j1ver"]
 [ext_resource type="PackedScene" uid="uid://b3or4h5ke6lni" path="res://Scenes/Prefabs/Entities/Objects/SmallSidewaysPlatform.tscn" id="14_dgcob"]
@@ -28,6 +27,7 @@ size = Vector2(20, 370)
 script = ExtResource("1_0aqsa")
 music = ExtResource("2_2p3yq")
 theme = "Castle"
+theme_time = "Night"
 campaign = "SMBLL"
 world_id = 7
 level_id = 4
@@ -98,7 +98,7 @@ position = Vector2(3464, -48)
 can_hammer = true
 can_fire = false
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(853963108, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("12_e6kbl")
+json_path = "res://Assets/Sprites/Enemies/HammerBro.json"
 [node name="DropShadow" parent="." unique_id=910313424 instance=ExtResource("13_j1ver")]
 [node name="SmallSidewaysPlatform" parent="." unique_id=1729120899 instance=ExtResource("14_dgcob")]
 z_index = 24

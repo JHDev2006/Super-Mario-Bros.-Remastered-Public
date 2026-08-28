@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_6jgcs"]
 [ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="3_05vv4"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_mnfbm"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/PSwitch.json" id="4_1w7q1"]
 [ext_resource type="Script" uid="uid://bx6r8sjar6cwr" path="res://Scripts/Classes/Components/BasicStaticMovement.gd" id="4_6jgcs"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="7_1w7q1"]
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="9_i4nd2"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="10_eeyhw"]
+[ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="11_12hsl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnfbm"]
 atlas = ExtResource("1_x602l")
@@ -138,10 +138,11 @@ script = ExtResource("2_6jgcs")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1133385787 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_mnfbm")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("4_1w7q1")
+json_path = "res://Assets/Sprites/Items/PSwitch.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="PressedCollision" type="CollisionShape2D" parent="." unique_id=53196333]
@@ -194,7 +195,12 @@ script = ExtResource("10_eeyhw")
 properties = Array[String](["one_time"])
 metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
+[node name="BlockBouncingDetection" type="Node" parent="." unique_id=45239333]
+script = ExtResource("11_12hsl")
+metadata/_custom_type_script = "uid://cmg61722ktg2m"
+
 [connection signal="switch_pressed" from="." to="SignalExposer" method="emit_pulse"]
 [connection signal="player_entered" from="PlayerDetection" to="." method="on_player_entered"]
 [connection signal="recieved_power" from="SignalExposer" to="." method="pressed" binds= [false]]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="pressed" binds= [false]]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="bump_up" unbinds=1]

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://berh5yydmcbbp"]
 
 [ext_resource type="PackedScene" uid="uid://cfwnj3srwa7xh" path="res://Scenes/Prefabs/LevelObjects/OneWayPanel.tscn" id="1_rwisw"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SmallOneWayPanel.json" id="2_sigod"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sigod"]
 size = Vector2(16, 16)
@@ -12,7 +11,7 @@ size = Vector2(16, 4)
 [node name="OneWayPlatform" unique_id=1243276669 instance=ExtResource("1_rwisw")]
 
 [node name="ResourceSetterNew" parent="Sprite" parent_id_path=PackedInt32Array(90981639) index="0" unique_id=2112420637]
-resource_json = ExtResource("2_sigod")
+json_path = "res://Assets/Sprites/Blocks/SmallOneWayPanel.json"
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1034277210]
 shape = SubResource("RectangleShape2D_sigod")

@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="5_psjdr"]
 [ext_resource type="Script" uid="uid://xem6lai3ufyj" path="res://Scripts/Classes/UI/PackNinePatch.gd" id="7_psjdr"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="7_t47t0"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="8_l0vwk"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="10_psjdr"]
 
 [node name="CustomLevelContainer" type="Button" unique_id=1572140822]
@@ -18,7 +17,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 40.0
 grow_horizontal = 2
-mouse_filter = 2
 theme_override_styles/normal = ExtResource("1_54x78")
 theme_override_styles/pressed = ExtResource("1_54x78")
 theme_override_styles/hover = ExtResource("2_wmblk")
@@ -37,19 +35,16 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1742487208]
-layout_mode = 2
-
-[node name="HSplitContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1739030616]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1739030616]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="LeftHalf" type="HBoxContainer" parent="MarginContainer/HBoxContainer/HSplitContainer" unique_id=582701347]
+[node name="LeftHalf" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=582701347]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Thumbnail" type="TextureRect" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf" unique_id=691345533]
+[node name="Thumbnail" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftHalf" unique_id=691345533]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -58,7 +53,7 @@ size_flags_vertical = 4
 expand_mode = 3
 stretch_mode = 5
 
-[node name="LevelIcon" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf" unique_id=1590556306]
+[node name="LevelIcon" type="NinePatchRect" parent="MarginContainer/HBoxContainer/LeftHalf" unique_id=1590556306]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
@@ -68,31 +63,33 @@ texture = ExtResource("4_jiwhq")
 region_rect = Rect2(64, 64, 32, 32)
 script = ExtResource("7_psjdr")
 
-[node name="LevelInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf" unique_id=456570900]
+[node name="LevelInfo" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftHalf" unique_id=456570900]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -4
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" unique_id=1149291090]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/LeftHalf/LevelInfo" unique_id=1149291090]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+mouse_filter = 2
 horizontal_scroll_mode = 3
 script = ExtResource("5_psjdr")
 
-[node name="LevelName" type="Label" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo/ScrollContainer" unique_id=987547531]
+[node name="LevelName" type="Label" parent="MarginContainer/HBoxContainer/LeftHalf/LevelInfo/ScrollContainer" unique_id=987547531]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Level Name AIJOPDIOPJAWPDADAPDkaopD"
 uppercase = true
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo" unique_id=1538947480]
+[node name="ScrollContainer2" type="ScrollContainer" parent="MarginContainer/HBoxContainer/LeftHalf/LevelInfo" unique_id=1538947480]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+mouse_filter = 2
 horizontal_scroll_mode = 3
 script = ExtResource("5_psjdr")
 
-[node name="LevelAuthor" type="Label" parent="MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo/ScrollContainer2" unique_id=720591774]
+[node name="LevelAuthor" type="Label" parent="MarginContainer/HBoxContainer/LeftHalf/LevelInfo/ScrollContainer2" unique_id=720591774]
 unique_name_in_owner = true
 modulate = Color(0.47058824, 0.47058824, 0.47058824, 1)
 layout_mode = 2
@@ -100,15 +97,30 @@ size_flags_horizontal = 3
 text = "Level Name"
 uppercase = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/HSplitContainer" unique_id=1975319600]
+[node name="ScrollContainer3" type="ScrollContainer" parent="MarginContainer/HBoxContainer/LeftHalf/LevelInfo" unique_id=1855133180]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+horizontal_scroll_mode = 3
+script = ExtResource("5_psjdr")
+
+[node name="AutosaveDate" type="Label" parent="MarginContainer/HBoxContainer/LeftHalf/LevelInfo/ScrollContainer3" unique_id=1850751145]
+unique_name_in_owner = true
+modulate = Color(0.47058824, 0.47058824, 0.47058824, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "AUTOSAVE DATE"
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1975319600]
 layout_mode = 2
 
-[node name="DifficultyStars" type="HBoxContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer" unique_id=283467445]
+[node name="DifficultyStars" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=283467445]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Star1" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars" unique_id=801101619]
+[node name="Star1" type="NinePatchRect" parent="MarginContainer/HBoxContainer/VBoxContainer/DifficultyStars" unique_id=801101619]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 texture = ExtResource("5_6ktlh")
@@ -116,7 +128,7 @@ region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
 script = ExtResource("7_psjdr")
 
-[node name="Star2" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars" unique_id=241710234]
+[node name="Star2" type="NinePatchRect" parent="MarginContainer/HBoxContainer/VBoxContainer/DifficultyStars" unique_id=241710234]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 texture = ExtResource("5_6ktlh")
@@ -124,7 +136,7 @@ region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
 script = ExtResource("7_psjdr")
 
-[node name="Star3" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars" unique_id=1441045027]
+[node name="Star3" type="NinePatchRect" parent="MarginContainer/HBoxContainer/VBoxContainer/DifficultyStars" unique_id=1441045027]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 texture = ExtResource("5_6ktlh")
@@ -132,7 +144,7 @@ region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
 script = ExtResource("7_psjdr")
 
-[node name="Star4" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars" unique_id=1114676559]
+[node name="Star4" type="NinePatchRect" parent="MarginContainer/HBoxContainer/VBoxContainer/DifficultyStars" unique_id=1114676559]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 texture = ExtResource("5_6ktlh")
@@ -140,7 +152,7 @@ region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
 script = ExtResource("7_psjdr")
 
-[node name="Star5" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer/DifficultyStars" unique_id=907544]
+[node name="Star5" type="NinePatchRect" parent="MarginContainer/HBoxContainer/VBoxContainer/DifficultyStars" unique_id=907544]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 texture = ExtResource("5_6ktlh")
@@ -148,7 +160,7 @@ region_rect = Rect2(0, 0, 8, 8)
 patch_margin_bottom = 8
 script = ExtResource("7_psjdr")
 
-[node name="CampaignIcon" type="NinePatchRect" parent="MarginContainer/HBoxContainer/HSplitContainer/VBoxContainer" unique_id=1153018782]
+[node name="CampaignIcon" type="NinePatchRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1153018782]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(42, 16)
 layout_mode = 2
@@ -169,19 +181,22 @@ offset_bottom = 4.0
 grow_vertical = 2
 
 [node name="ResourceSetterNew" type="Node" parent="TextureRect" unique_id=753910969 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("7_t47t0")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_l0vwk")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="LabelFontChanger" type="Node" parent="." unique_id=111429646 node_paths=PackedStringArray("labels")]
 script = ExtResource("10_psjdr")
-labels = [NodePath("../MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo/ScrollContainer/LevelName"), NodePath("../MarginContainer/HBoxContainer/HSplitContainer/LeftHalf/LevelInfo/ScrollContainer2/LevelAuthor")]
+labels = [NodePath("../MarginContainer/HBoxContainer/LeftHalf/LevelInfo/ScrollContainer/LevelName"), NodePath("../MarginContainer/HBoxContainer/LeftHalf/LevelInfo/ScrollContainer2/LevelAuthor"), NodePath("../MarginContainer/HBoxContainer/LeftHalf/LevelInfo/ScrollContainer3/AutosaveDate")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"
 
 [connection signal="focus_entered" from="." to="TextureRect" method="show"]
 [connection signal="focus_entered" from="." to="." method="set_process" binds= [true]]
 [connection signal="focus_exited" from="." to="TextureRect" method="hide"]
 [connection signal="focus_exited" from="." to="." method="set_process" binds= [false]]
+[connection signal="mouse_entered" from="." to="." method="grab_focus"]
+[connection signal="mouse_exited" from="." to="." method="release_focus"]

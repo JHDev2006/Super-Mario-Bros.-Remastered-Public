@@ -6,6 +6,3 @@
 [node name="BrickBlock" unique_id=1052390856 instance=ExtResource("1_5t0h4")]
 item = ExtResource("2_6m2bg")
 mushroom_if_small = false
-
-[node name="Sprite2D" parent="EditorVisibleNode" parent_id_path=PackedInt32Array(1877751026) index="0" unique_id=477321280]
-region_rect = Rect2(0, 32, 16, 16)

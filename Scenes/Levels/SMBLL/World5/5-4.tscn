@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="9_j67n7"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="10_m6sq8"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="11_g2y8a"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Lakitu.json" id="11_m6sq8"]
 [ext_resource type="PackedScene" uid="uid://b3or4h5ke6lni" path="res://Scenes/Prefabs/Entities/Objects/SmallSidewaysPlatform.tscn" id="12_5e0rx"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="14_4vtb0"]
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="14_ninwg"]
@@ -23,6 +22,7 @@
 script = ExtResource("1_o5egk")
 music = ExtResource("2_ninwg")
 theme = "Castle"
+theme_time = "Night"
 time_limit = 300
 campaign = "SMBLL"
 world_id = 5
@@ -96,7 +96,7 @@ position = Vector2(2824, -40)
 [node name="Bowser" parent="." unique_id=1022645936 instance=ExtResource("11_g2y8a")]
 position = Vector2(2952, -48)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(1022645936, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("11_m6sq8")
+json_path = "res://Assets/Sprites/Enemies/Lakitu.json"
 [node name="SmallSidewaysPlatform" parent="." unique_id=78119921 instance=ExtResource("12_5e0rx")]
 position = Vector2(2992, -112)
 [node name="DropShadow" parent="." unique_id=1855641381 instance=ExtResource("14_4vtb0")]

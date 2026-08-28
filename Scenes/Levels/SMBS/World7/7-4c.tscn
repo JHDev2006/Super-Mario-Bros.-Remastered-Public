@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="5_jq5rr"]
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="6_5nbcb"]
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="8_fasgp"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Barrel.json" id="10_0c7dd"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="11_5nbcb"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="12_pu02p"]
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="12_r1ifj"]
@@ -20,6 +19,7 @@
 script = ExtResource("1_dtm57")
 music = ExtResource("2_5nbcb")
 theme = "Castle"
+theme_time = "Night"
 campaign = "SMBS"
 world_id = 7
 level_id = 4
@@ -40,7 +40,7 @@ length = 17
 [node name="Bowser" parent="." unique_id=491945553 instance=ExtResource("11_5nbcb")]
 position = Vector2(456, -32)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(491945553, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("10_0c7dd")
+json_path = "res://Assets/Sprites/Enemies/Barrel.json"
 [node name="CastleToad" parent="." unique_id=1502469272 instance=ExtResource("12_r1ifj")]
 position = Vector2(688, 0)
 [node name="PipeArea" parent="." unique_id=1400695932 instance=ExtResource("13_r1ifj")]

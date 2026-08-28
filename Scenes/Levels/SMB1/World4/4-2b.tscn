@@ -19,6 +19,7 @@ size = Vector2(16, 16)
 [node name="4-2b" type="Node" unique_id=490725243]
 script = ExtResource("1_u6xxb")
 music = ExtResource("2_y1xcp")
+room_type = 2
 theme = "Jungle"
 world_id = 4
 level_id = 2

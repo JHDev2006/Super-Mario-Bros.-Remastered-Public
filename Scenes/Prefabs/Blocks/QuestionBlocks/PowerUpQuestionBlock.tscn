@@ -2,19 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bc1mrna4kybhv" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/QuestionBlock.tscn" id="1_gy3k6"]
 [ext_resource type="PackedScene" uid="uid://dbjqtjhb2t4cn" path="res://Scenes/Prefabs/Entities/Items/FireFlower.tscn" id="2_h6l2a"]
-[ext_resource type="Texture2D" uid="uid://hfh5i32uji5t" path="res://Assets/Sprites/Items/SuperMushroom.png" id="4_h6l2a"]
 
 [node name="QuestionBlock" unique_id=1445112236 instance=ExtResource("1_gy3k6")]
 item = ExtResource("2_h6l2a")
 mushroom_if_small = true
-
-[node name="ItemPreview" type="Node2D" parent="." index="3" unique_id=592965828]
-visible = false
-
-[node name="Sprite2D" type="Sprite2D" parent="ItemPreview" index="0" unique_id=1817836391]
-texture = ExtResource("4_h6l2a")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-region_filter_clip_enabled = true
 
 [editable path="BlockAnimations"]

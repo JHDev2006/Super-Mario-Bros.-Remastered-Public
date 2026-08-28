@@ -16,6 +16,7 @@
 [node name="3-1A" type="Node" unique_id=1204537581]
 script = ExtResource("1_mp8td")
 music = ExtResource("2_6bfj3")
+room_type = 1
 theme = "Underground"
 metadata/_custom_type_script = "uid://bcqr1v25ygedb"
 [node name="Tiles" parent="." unique_id=153578397 instance=ExtResource("4_p8aak")]

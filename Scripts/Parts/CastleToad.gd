@@ -8,7 +8,7 @@ var talking := false
 
 func _ready() -> void:
 	Global.level_complete_begin.connect(begin)
-	for i in [$SpeedrunMSG/ThankYou, $StandardMSG/ThankYou]:
+	for i in get_tree().get_nodes_in_group("Messages"):
 		i.text = tr(i.text).replace("{PLAYER}", tr(Player.CHARACTER_NAMES[int(Global.player_characters[0])]))
 	if play_end_music and (Global.level_editor != null or Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL):
 		$EndingSpeech/AnotherCastle5.modulate.a = 0
@@ -64,7 +64,7 @@ func play_music() -> void:
 		can_menu = true
 
 func _process(_delta: float) -> void:
-	if can_menu and Input.is_action_just_pressed("jump_0"):
+	if can_menu and Global.multibind_action_just_pressed("jump_0"):
 		can_menu = false
 		peach_level_exit()
 

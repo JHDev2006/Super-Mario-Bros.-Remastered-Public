@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://bksxgpygrdjl7" path="res://Scenes/Prefabs/LevelBG.tscn" id="15_bdsjt"]
 [ext_resource type="Script" uid="uid://cybpwmw4ywoow" path="res://Scripts/Parts/TileMapConverter.gd" id="16_5f4fc"]
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="16_w8t2a"]
-[ext_resource type="PackedScene" uid="uid://dn2oonncrmxb3" path="res://Scenes/Parts/LargeSPCastleDeco.tscn" id="17_5f4fc"]
 [ext_resource type="PackedScene" uid="uid://ck0spcws71sg5" path="res://Scenes/Prefabs/Entities/Items/WingItem.tscn" id="17_gsl0t"]
 [ext_resource type="PackedScene" uid="uid://dhd0gp2xvl53l" path="res://Scenes/Prefabs/Entities/Items/LuckyStar.tscn" id="17_w8t2a"]
 [ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="21_hapk5"]
@@ -26,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://dkxkrqflg46b2" path="res://Scenes/Prefabs/Entities/Items/Vine.tscn" id="25_fcjcs"]
 [ext_resource type="PackedScene" uid="uid://d3gnwmvds4ors" path="res://Scenes/Prefabs/Entities/Items/SpinningRedCoin.tscn" id="25_waamh"]
 [ext_resource type="Script" uid="uid://pfwgmuchergf" path="res://Scripts/Parts/CoinHeavenWarpPoint.gd" id="26_3v23f"]
+[ext_resource type="PackedScene" uid="uid://cbl8l51osppso" path="res://Scenes/Parts/LargeStartCastle.tscn" id="27_smtwh"]
 [node name="4-1" type="Node" unique_id=1060064961]
 script = ExtResource("1_p5hxq")
 music = ExtResource("2_weaa5")
@@ -87,8 +87,6 @@ metadata/_custom_type_script = "uid://cybpwmw4ywoow"
 [node name="InvisibleQuestionBlock" parent="." unique_id=1509377438 instance=ExtResource("16_w8t2a")]
 position = Vector2(328, -136)
 item = ExtResource("17_gsl0t")
-[node name="LargeCastleDeco" parent="." unique_id=1493047460 instance=ExtResource("17_5f4fc")]
-position = Vector2(-200, -88)
 [node name="ChallengeNodes" type="Node" parent="." unique_id=1438835734 node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("21_hapk5")
 nodes_to_delete = [NodePath("../Node")]
@@ -129,3 +127,5 @@ position = Vector2(1304, -176)
 script = ExtResource("26_3v23f")
 heaven_scene = "uid://c35b7tv73rfqm"
 metadata/_custom_type_script = "uid://pfwgmuchergf"
+[node name="LargeCastleDeco" parent="." unique_id=1423333120 instance=ExtResource("27_smtwh")]
+position = Vector2(-232, -88)

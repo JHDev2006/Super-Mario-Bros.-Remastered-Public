@@ -26,6 +26,7 @@ func do_cycle() -> void:
 	%Shape.set_deferred("disabled", true)
 	if $SignalExposer.total_inputs <= 0:
 		$Timer.start()
+		can_burn = true
 
 func do_animation() -> void:
 	%Flame.show()

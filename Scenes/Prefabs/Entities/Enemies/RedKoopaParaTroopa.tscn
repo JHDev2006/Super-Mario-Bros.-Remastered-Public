@@ -10,6 +10,7 @@ winged = true
 [node name="Wing" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="1" unique_id=1386975840]
 visible = true
 frame_progress = 0.539258
+metadata/WingType = "RedKoopa"
 
 [node name="Node2D" type="Node2D" parent="." index="15" unique_id=118285782]
 script = ExtResource("2_7ppsp")
@@ -21,5 +22,3 @@ points = PackedVector2Array(0, 0, 0, 96)
 width = 1.0
 texture = ExtResource("3_q8ix4")
 texture_mode = 1
-
-[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounced" unbinds=1]

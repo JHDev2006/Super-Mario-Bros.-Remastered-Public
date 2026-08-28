@@ -1,18 +1,19 @@
 [gd_scene format=3 uid="uid://cmvugag0kupgu"]
 
 [ext_resource type="PackedScene" uid="uid://r6dlmokkdyar" path="res://Scenes/Prefabs/Entities/Enemies/GreenKoopaTroopa.tscn" id="1_3ce3s"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedKoopaTroopa.json" id="2_ji0l7"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/RedKoopaShell.json" id="3_870t0"]
 
 [node name="RedKoopaTroopa" unique_id=81293695 instance=ExtResource("1_3ce3s")]
 shell_scene = "uid://dam4dqebjgk1n"
 metadata/is_red = true
 
 [node name="SpriteSetter" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="0" unique_id=1746108447]
-resource_json = ExtResource("2_ji0l7")
+json_path = "res://Assets/Sprites/Enemies/RedKoopaTroopa.json"
+
+[node name="Wing" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="1" unique_id=1386975840]
+metadata/WingType = "RedKoopa"
 
 [node name="ShellSetter" parent="DeathSprite" parent_id_path=PackedInt32Array(81522450) index="0" unique_id=393858697]
-resource_json = ExtResource("3_870t0")
+json_path = "res://Assets/Sprites/Enemies/RedKoopaShell.json"
 
 [node name="LedgeDetectionCast" parent="." index="5" unique_id=1828102413]
 position = Vector2(-2, -2)

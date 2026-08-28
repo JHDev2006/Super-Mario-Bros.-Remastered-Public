@@ -119,7 +119,7 @@ const SMBLL_LEVEL_GOLD_WARPLESS_TIMES := [
 
 const SMB1_LEVEL_GOLD_ANY_TIMES := {
 	"1-2": 25,
-	"4-2": 26
+	"4-2": 28
 }
 
 const SMBLL_LEVEL_GOLD_ANY_TIMES := {
@@ -242,15 +242,15 @@ func gen_time_string(timer_dict := {}) -> String:
 func save_recording() -> void:
 	var recording := [timer, current_recording, levels, str(["Mario", "Luigi", "Toad", "Toadette"].find(get_tree().get_first_node_in_group("Players").character)), anim_list]
 	var recording_dir = Global.config_path.path_join("marathon_recordings/" + Global.current_campaign)
+
 	DirAccess.make_dir_recursive_absolute(recording_dir)
-	var file = FileAccess.open(recording_dir + "/" + str(Global.world_num) + "-" + str(Global.level_num) + ("warp" if is_warp_run else "") + ".json", FileAccess.WRITE)
-	file.store_string(compress_recording(JSON.stringify(recording, "", false, true)))
+	var file_path = recording_dir + "/" + str(Global.world_num) + "-" + str(Global.level_num) + ("warp" if is_warp_run else "") + ".json"
+	JSONParser.save_to_file(compress_recording(JSON.stringify(recording, "", false, true)), file_path)
+	
 	current_recording = ""
-	file.close()
 	levels.clear()
 
 func compress_recording(recording := "") -> String:
-	print(recording)
 	var bytes = recording.to_ascii_buffer()
 	var compressed_bytes = bytes.compress(FileAccess.CompressionMode.COMPRESSION_DEFLATE)
 	var b64 = Marshalls.raw_to_base64(compressed_bytes)
@@ -282,7 +282,6 @@ func load_best_marathon() -> void:
 func load_recording(world_num := 0, level_num := 0, is_warpless := true, campaign := "SMB1") -> Array:
 	var recording_dir = Global.config_path.path_join("marathon_recordings/" + campaign)
 	var path = recording_dir + "/" + str(world_num) + "-" + str(level_num) + ("" if is_warpless else "warp") + ".json"
-	print(path)
 	if FileAccess.file_exists(path) == false:
 		return []
 	var file = FileAccess.open(path, FileAccess.READ)

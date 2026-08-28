@@ -14,7 +14,9 @@
 [node name="5-3" type="Node" unique_id=1723966326]
 script = ExtResource("1_kgtpw")
 music = ExtResource("2_dmx8e")
+room_type = 1
 theme = "Underground"
+theme_time = "Night"
 campaign = "SMBS"
 world_id = 5
 level_id = 3

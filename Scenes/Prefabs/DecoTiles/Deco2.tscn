@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cnexuteg5rvye" path="res://Assets/Sprites/Tilesets/Deco/DecoTemplate.png" id="1_fb4vb"]
 [ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="2_fb4vb"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_fb4vb"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Tilesets/Deco/DecoTiles.json" id="4_07uk3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3eywr"]
 texture = ExtResource("1_fb4vb")
@@ -32,9 +31,10 @@ tile_map = NodePath("..")
 metadata/_custom_type_script = "uid://73oviwf6bbys"
 
 [node name="ResourceSetter" type="Node" parent="." unique_id=1703523584 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_fb4vb")
 node_to_affect = NodePath("../TilesetTextureSetter")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_07uk3")
+json_path = "res://Assets/Sprites/Tilesets/Deco/DecoTiles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

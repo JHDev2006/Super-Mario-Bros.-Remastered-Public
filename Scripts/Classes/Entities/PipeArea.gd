@@ -34,9 +34,12 @@ static var can_enter := true
 static var exiting_pipe_id := -1
 
 func _ready() -> void:
-	update_visuals()
 	if Engine.is_editor_hint() == false:
 		run_pipe_check.call_deferred()
+		if Global.level_editor != null:
+			visible = Global.level_editor_is_editing() or Global.level_editor.gizmos_visible
+		else:
+			hide()
 
 func run_pipe_check() -> void:
 	if exiting_pipe_id == pipe_id and exit_only:
@@ -59,13 +62,15 @@ func _exit_tree() -> void:
 	can_enter = true
 
 func update_visuals() -> void:
-	if Engine.is_editor_hint() or (Global.current_game_mode == Global.GameMode.LEVEL_EDITOR and LevelEditor.playing_level == false):
+	if Engine.is_editor_hint() or (Global.current_game_mode == Global.GameMode.LEVEL_EDITOR):
 		show()
 		$ArrowJoint.show()
 		$ArrowJoint.rotation = get_vector(enter_direction).angle() - deg_to_rad(90)
 		$ArrowJoint/Arrow.flip_v = exit_only
 		var id := pipe_id
 		$Node2D/CenterContainer/Label.text = str(id)
+	else:
+		$ArrowJoint.hide()
 
 func exit_pipe() -> void:
 	can_enter = false
@@ -123,7 +128,6 @@ func run_player_check(player: Player) -> void:
 	var max_distance = max(4, player.physics_params("COLLISION_SIZE")[0] - 2)
 	if enter_direction <= 2:
 		max_distance = 999
-	print([distance, max_distance])
 	if distance <= max_distance and Global.player_action_pressed(get_input_direction(enter_direction), player.player_id) and (player.is_actually_on_floor() or enter_direction == 1):
 		can_enter = false
 		pipe_entered.emit()

@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://5ua3p0lfl1bf" path="res://Scenes/Prefabs/Blocks/BooRaceBlocks/BooOnOffSwitch.tscn" id="1_bblk7"]
 [ext_resource type="Texture2D" uid="uid://sy6ivu4qc0o3" path="res://Assets/Sprites/Blocks/OnOffSwitch.png" id="2_xglou"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnOffSwitch.json" id="3_xglou"]
 [ext_resource type="Script" uid="uid://b3bokos5jcpr7" path="res://Scripts/Classes/Components/SignalExposer.gd" id="4_cs2ia"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs2ia"]
@@ -55,14 +54,14 @@ animation = &"Off"
 autoplay = "Off"
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=398479575]
-resource_json = ExtResource("3_xglou")
+json_path = "res://Assets/Sprites/Blocks/OnOffSwitch.json"
 
-[node name="SignalExposer" type="Node2D" parent="." index="3" unique_id=985513204]
+[node name="SignalExposer" type="Node2D" parent="." index="4" unique_id=985513204]
 script = ExtResource("4_cs2ia")
 do_animation = false
 metadata/_custom_type_script = "uid://b3bokos5jcpr7"
 
 [connection signal="shell_block_hit" from="." to="BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="switched" from="OnOffSwitcher" to="SignalExposer" method="emit_pulse"]
 [connection signal="recieved_power" from="SignalExposer" to="OnOffSwitcher" method="switch"]
 [connection signal="recieved_pulse" from="SignalExposer" to="OnOffSwitcher" method="switch"]
-[connection signal="switched" from="OnOffSwitcher" to="SignalExposer" method="emit_pulse"]

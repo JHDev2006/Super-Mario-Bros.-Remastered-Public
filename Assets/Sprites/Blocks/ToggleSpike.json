@@ -1,0 +1,27 @@
+{
+	"animations": {
+		"Off": {
+			"frames": [
+				[80, 0, 16, 16],
+				[96, 0, 16, 16],
+				[112, 0, 16, 16],
+				[0, 0, 16, 16]
+			],
+			"speed": 30.0,
+			"loop": false
+		},
+		"On": {
+			"frames": [
+				[16, 0, 16, 16],
+				[32, 0, 16, 16],
+				[48, 0, 16, 16],
+				[64, 0, 16, 16]
+			],
+			"speed": 30.0,
+			"loop": false
+		}
+	},
+	"variations": {
+		"default": {"source": "ToggleSpike.png"}
+	}
+}

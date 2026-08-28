@@ -81,7 +81,11 @@ const DEFAULT_SFX_LIBRARY := {
 	"speak": "res://Assets/Audio/SFX/Speaking.wav",
 	"countdown": "res://Assets/Audio/SFX/RaceCountdown.wav",
 	"bowser_fall": "res://Assets/Audio/SFX/BowserFall.wav",
-	"superball": "res://Assets/Audio/SFX/Superball.wav"
+	"superball": "res://Assets/Audio/SFX/Superball.wav",
+	"plant_fireball": ("res://Assets/Audio/SFX/Fireball.wav"),
+	"bowser_jr_fireball": ("res://Assets/Audio/SFX/Fireball.wav"),
+	"shell_spin": ("res://Assets/Audio/SFX/ShellSpin.wav"),
+	"bubble_bounce": ("res://Assets/Audio/SFX/BubbleBounce.json")
 }
 
 @onready var sfx_library = DEFAULT_SFX_LIBRARY.duplicate()
@@ -142,8 +146,15 @@ func play_sfx(stream_name = "", position := Vector2.ZERO, pitch := 1.0, can_over
 		var stream = stream_name
 		var is_custom = false
 		if stream_name is String:
-			is_custom = sfx_library[stream_name].contains(Global.config_path.path_join("custom_characters"))
-			stream = import_stream(sfx_library[stream_name])
+			var stream_path = sfx_library[stream_name]
+			if stream_path is Array:
+				stream_path = stream_path.pick_random()
+			is_custom = stream_path.contains(Global.config_path.path_join("custom_characters"))
+			stream_path = ResourceSetter.get_pure_resource_path(stream_path)
+			var json_path = ResourceSetter.get_pure_resource_path(stream_path.replace(stream_path.get_extension(), "json"))
+			if FileAccess.file_exists(json_path):
+				stream_path = json_path
+			stream = import_stream(stream_path)
 		if is_custom == false:
 			player.stream = ResourceSetter.get_resource(stream, player)
 		else:
@@ -159,10 +170,10 @@ func play_sfx(stream_name = "", position := Vector2.ZERO, pitch := 1.0, can_over
 		active_sfxs.erase(stream_name)
 		player.queue_free()
 
-func play_global_sfx(stream_name = "") -> void:
+func play_global_sfx(stream_name = "", pitch := 1.0) -> void:
 	if get_viewport().get_camera_2d() == null:
 		return
-	play_sfx(stream_name, get_viewport().get_camera_2d().get_screen_center_position())
+	play_sfx(stream_name, get_viewport().get_camera_2d().get_screen_center_position(), pitch)
 
 func _process(_delta: float) -> void:
 	handle_music()
@@ -229,7 +240,6 @@ func load_sfx_map(json := {}) -> void:
 	sfx_library = DEFAULT_SFX_LIBRARY.duplicate()
 	for i in json:
 		sfx_library[i] = json[i]
-	print(json)
 
 func handle_music() -> void:
 	if Global.in_title_screen:
@@ -250,11 +260,23 @@ func handle_music() -> void:
 			music_player.stop()
 			handle_music_override()
 			return
+		var music: JSON = Global.current_level.music
+		if Level.extra_music != null && Settings.file.audio.extra_bgm == 1:
+			music = Level.extra_music
+		var override := ""
+		if Global.music_override != null:
+			override = Global.music_override
+		if Global.extra_music_override && Settings.file.audio.extra_bgm == 1:
+			override = Global.extra_music_override
+		if override:
+			var path := "res://Assets/Audio/BGM/" + override + ".json"
+			if ResourceLoader.exists(path):
+				music = load(path)
 		music_player.stream_paused = false
-		if current_level_theme != Global.current_level.music.resource_path and Global.current_level.music != null:
-			var stream = create_stream_from_json(Global.current_level.music.resource_path)
+		if current_level_theme != music.resource_path and music != null:
+			var stream = create_stream_from_json(music.resource_path)
 			music_player.stream = stream
-			current_level_theme = Global.current_level.music.resource_path
+			current_level_theme = music.resource_path
 		if music_player.is_playing() == false and current_music_override == MUSIC_OVERRIDES.NONE:
 			music_player.stop()
 			current_music_override = MUSIC_OVERRIDES.NONE
@@ -291,13 +313,13 @@ func create_stream_from_json(json_path := "") -> AudioStream:
 	$ResourceSetterNew.clear_metadata()
 	path = ResourceSetter.get_pure_resource_path(json_path)
 	$ResourceSetterNew.current_resource_pack = ResourceGetter.get_resource_pack_from_path(path)
-	var final_json = $ResourceSetterNew.get_variation_json(JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text()).variations)
-	print(final_json)
+	var final_json = $ResourceSetterNew.get_variation_json(JSONParser.parse_to_dict(path).variations)
+	#print(final_json)
 	var bgm_file = final_json.source
 	path = ResourceSetter.get_pure_resource_path(json_path.replace(json_path.get_file(), bgm_file))
 	var stream = null
 	if path.get_file().ends_with(".bgm"):
-		stream = generate_interactive_stream(JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text()))
+		stream = generate_interactive_stream(JSONParser.parse_to_dict(path))
 	else:
 		if path.begins_with("res://"):
 			stream = load(path)
@@ -305,35 +327,74 @@ func create_stream_from_json(json_path := "") -> AudioStream:
 			stream = AudioStreamMP3.load_from_file(path)
 		elif path.ends_with(".ogg"):
 			stream = AudioStreamOggVorbis.load_from_file(path)
+		elif path.ends_with(".wav"):
+			stream = AudioStreamWAV.load_from_file(path)
 	return stream
 
 func generate_interactive_stream(bgm_file := {}) -> AudioStreamInteractive:
 	var stream = MUSIC_BASE.duplicate()
-	var normal_path = ResourceSetter.get_pure_resource_path("res://Assets/Audio/BGM/" + bgm_file.Normal.source)
-	var hurry_path = ResourceSetter.get_pure_resource_path("res://Assets/Audio/BGM/" + bgm_file.Hurry.source)
-	stream.set_clip_stream(0, import_stream(normal_path, bgm_file.Normal.loop))
-	stream.set_clip_stream(1, import_stream(hurry_path, bgm_file.Hurry.loop))
+	var normal_path := ""
+	var normal_loop := -1.0
+	
+	var hurry_path := ""
+	var hurry_loop := -1.0
+	
+	# Default stuff, in case you just want a simple loop.
+	if (bgm_file.has("source")):
+		normal_path = ResourceSetter.get_pure_resource_path("res://Assets/Audio/BGM/" + bgm_file["source"])
+		hurry_path = ResourceSetter.get_pure_resource_path("res://Assets/Audio/BGM/" + bgm_file["source"])
+	if (bgm_file.has("loop")):
+		normal_loop = bgm_file["loop"]
+		hurry_loop = bgm_file["loop"]
+	
+	if (bgm_file.has("Normal")):
+		if (bgm_file["Normal"].has("source")):
+			normal_path = ResourceSetter.get_pure_resource_path("res://Assets/Audio/BGM/" + bgm_file["Normal"]["source"])
+		else:
+			Global.log_error("Normal variation source for current track was not found.")
+		if (bgm_file["Normal"].has("loop")):
+			normal_loop = bgm_file["Normal"]["loop"]
+		else:
+			Global.log_warning("Normal variation looping for current track was not found.")
+	if (bgm_file.has("Hurry")):
+		if (bgm_file["Hurry"].has("source")):
+			hurry_path = ResourceSetter.get_pure_resource_path("res://Assets/Audio/BGM/" + bgm_file["Hurry"]["source"])
+		else:
+			Global.log_error("Hurry variation source for current track was not found.")
+		if (bgm_file["Hurry"].has("loop")):
+			hurry_loop = bgm_file["Hurry"]["loop"]
+		else:
+			Global.log_warning("Hurry variation looping for current track was not found.")
+	stream.set_clip_stream(0, import_stream(normal_path, normal_loop))
+	stream.set_clip_stream(1, import_stream(hurry_path, hurry_loop))
 	return stream
 
 func import_stream(file_path := "", loop_point := -1.0) -> AudioStream:
-	var path = file_path
 	var stream = null
-	if path.begins_with("res://"):
-		stream = load(path)
-	elif path.ends_with(".mp3"):
-		stream = AudioStreamMP3.load_from_file(ResourceSetter.get_pure_resource_path(file_path))
-	elif path.ends_with(".ogg"):
-		stream = AudioStreamOggVorbis.load_from_file(ResourceSetter.get_pure_resource_path(file_path))
-	elif path.ends_with(".wav"):
-		stream = AudioStreamWAV.load_from_file(path)
-		#print([path, stream])
-	if path.ends_with(".mp3"):
+	# Importing
+
+	if file_path.ends_with(".bgm"):
+		stream = generate_interactive_stream(JSONParser.parse_to_dict(file_path))
+
+	elif file_path.begins_with("res://"):
+		stream = load(file_path)
+	elif file_path.ends_with(".mp3"):
+		stream = AudioStreamMP3.load_from_file(file_path)
+	elif file_path.ends_with(".ogg"):
+		stream = AudioStreamOggVorbis.load_from_file(file_path)
+	elif file_path.ends_with(".wav"):
+		stream = AudioStreamWAV.load_from_file(file_path)
+	elif file_path.ends_with(".json"):
+		stream = create_stream_from_json(file_path)
+	
+	# Looping
+	if file_path.ends_with(".mp3"):
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
-	elif path.ends_with(".ogg"):
+	elif file_path.ends_with(".ogg"):
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
-	elif path.ends_with(".json"):
-		stream = create_stream_from_json(path)
+	elif file_path.ends_with(".wav"):
+		stream.loop_begin = loop_point
 	return stream
 	

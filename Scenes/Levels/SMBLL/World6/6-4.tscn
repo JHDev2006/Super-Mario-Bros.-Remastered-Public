@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://kr7i2kf6rew0" path="res://Scenes/Prefabs/Entities/Enemies/HammerBro.tscn" id="12_8nk3u"]
 [ext_resource type="PackedScene" uid="uid://c2ntyej6ddm72" path="res://Scenes/Prefabs/LevelObjects/CastleToad.tscn" id="13_2tp4a"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="14_4kqhs"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Blooper.json" id="14_qx8lw"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="15_6wngm"]
 [ext_resource type="PackedScene" uid="uid://b5fyj3qbppnyg" path="res://Scenes/Prefabs/LevelObjects/PickAPathTeleport.tscn" id="16_y3lqq"]
 [ext_resource type="PackedScene" uid="uid://cmcpug8hc74jf" path="res://Scenes/Prefabs/LevelObjects/PickAPathPoint.tscn" id="17_8nk3u"]
@@ -103,7 +102,7 @@ position = Vector2(2952, -48)
 can_hammer = true
 can_fire = false
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(1475722597, 1311530935) index="0" unique_id=381174695]
-resource_json = ExtResource("14_qx8lw")
+json_path = "res://Assets/Sprites/Enemies/Blooper.json"
 [node name="PickAPathTeleport" parent="." unique_id=1135404073 instance=ExtResource("16_y3lqq")]
 position = Vector2(1000, -152)
 reset_pos = Vector2(24, 0)

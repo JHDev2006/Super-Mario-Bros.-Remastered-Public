@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b2ole1qccbvf5"]
+
+[ext_resource type="PackedScene" uid="uid://b2r255cb4tt7t" path="res://Scenes/Prefabs/Gizmos/Inputs/BaseInput.tscn" id="1_tn415"]
+[ext_resource type="Script" uid="uid://dh5ij6fqsdhg4" path="res://Scripts/Classes/Gizmos/PlayerDetection.gd" id="2_seljx"]
+[ext_resource type="Texture2D" uid="uid://ctlqmuaxiu28w" path="res://Assets/Sprites/Editor/Gizmos/ObjectDetection.png" id="3_tn415"]
+[ext_resource type="Script" uid="uid://cnheej0sxmoxg" path="res://Scripts/Parts/PlayerDetection.gd" id="4_iy5pm"]
+[ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="5_2b5ph"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00yji"]
+size = Vector2(16, 16)
+
+[node name="ObjectDetection" unique_id=515746201 instance=ExtResource("1_tn415")]
+z_index = 0
+script = ExtResource("2_seljx")
+size_x = 1
+size_y = 1
+type = 2
+detect_items = true
+detect_shells = true
+detect_blocks = true
+detect_projectiles = true
+detect_physics_objs = true
+
+[node name="Sprite2D" parent="." index="0" unique_id=1224179792]
+texture = ExtResource("3_tn415")
+
+[node name="SignalExposer" parent="." index="1" unique_id=634423865]
+can_input = false
+do_animation = false
+
+[node name="Hitbox" type="Area2D" parent="." index="2" unique_id=1285879126]
+collision_mask = 65535
+script = ExtResource("4_iy5pm")
+metadata/_custom_type_script = "uid://cnheej0sxmoxg"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0" unique_id=1374569313]
+shape = SubResource("RectangleShape2D_00yji")
+
+[node name="EditorPropertyExposer" type="Node" parent="." index="3" unique_id=666886942]
+script = ExtResource("5_2b5ph")
+properties = Array[String](["size_x", "size_y", "detect_items", "detect_shells", "detect_blocks", "detect_projectiles", "detect_physics_objs"])
+metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
+
+[connection signal="object_entered" from="." to="SignalExposer" method="turn_on"]
+[connection signal="object_exited" from="." to="SignalExposer" method="turn_off"]

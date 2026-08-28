@@ -17,6 +17,7 @@ var can_attach := true
 var travelling_on_rail := false
 
 signal started
+signal reached_end
 
 var can_move := true
 
@@ -26,7 +27,11 @@ var point_idx := 0.0
 
 @onready var path := Curve2D.new()
 
+func _ready() -> void:
+	start()
+
 func start() -> void:
+	await get_tree().physics_frame
 	if $SignalExposer.total_inputs > 0:
 		can_move = false
 	current_track = null
@@ -56,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += 10
 		global_position += velocity * delta
 		check_for_rail()
-	elif path != null and is_instance_valid(current_track):
+	elif path != null and is_instance_valid(current_track) and can_move:
 		handle_moving(delta)
 
 func attach_to_joint(node: Node2D) -> void:
@@ -82,8 +87,10 @@ func handle_moving(delta: float) -> void:
 			point_idx = 0
 		elif current_track.end_point == 0:
 			direction = !direction
+			reached_end.emit()
 			bounce()
 		else:
+			reached_end.emit()
 			detach_from_rail()
 			return
 	elif point_idx <= 4 and direction == 1:
@@ -91,8 +98,10 @@ func handle_moving(delta: float) -> void:
 			point_idx = path.get_baked_length()
 		elif current_track.start_point == 0:
 			direction = !direction
+			reached_end.emit()
 			bounce()
 		else:
+			reached_end.emit()
 			detach_from_rail()
 			return
 	if can_move:

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cu43fwblwup82" path="res://Scripts/UI/ResourcePackConfigOptionNode.gd" id="1_dgc7v"]
 [ext_resource type="Texture2D" uid="uid://3p2l7rec0gh5" path="res://Assets/Sprites/UI/Cursor.png" id="2_p6kha"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="3_ru6uv"]
-[ext_resource type="JSON" path="res://Assets/Sprites/UI/Cursor.json" id="4_7f2hm"]
+[ext_resource type="Script" uid="uid://d63p6qr5a748" path="res://Scripts/UI/AutoScrollContainer.gd" id="4_smpgj"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="5_s1byh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qti1l"]
@@ -11,8 +11,10 @@ atlas = ExtResource("2_p6kha")
 region = Rect2(0, 0, 8, 8)
 
 [node name="PackOptionNode" type="HBoxContainer" unique_id=1097351080]
+custom_minimum_size = Vector2(0, 16)
 offset_right = 253.0
-offset_bottom = 8.0
+offset_bottom = 16.0
+focus_mode = 2
 theme_override_constants/separation = 0
 script = ExtResource("1_dgc7v")
 
@@ -22,20 +24,39 @@ texture = SubResource("AtlasTexture_qti1l")
 stretch_mode = 3
 
 [node name="ResourceSetter" type="Node" parent="Cursor" unique_id=1806217578 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("3_ru6uv")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("4_7f2hm")
+json_path = "res://Assets/Sprites/UI/Cursor.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
-[node name="Title" type="Label" parent="." unique_id=290787939]
+[node name="AutoScrollContainer2" type="ScrollContainer" parent="." unique_id=367019957]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("4_smpgj")
+metadata/_custom_type_script = "uid://d63p6qr5a748"
+
+[node name="Title" type="Label" parent="AutoScrollContainer2" unique_id=290787939]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "mode:"
 uppercase = true
 
-[node name="Value" type="Label" parent="." unique_id=1232288094]
+[node name="AutoScrollContainer" type="ScrollContainer" parent="." unique_id=432663737]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("4_smpgj")
+metadata/_custom_type_script = "uid://d63p6qr5a748"
+
+[node name="Value" type="Label" parent="AutoScrollContainer" unique_id=1232288094]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "◄windowed►"
@@ -43,5 +64,5 @@ uppercase = true
 
 [node name="LabelFontChanger" type="Node" parent="." unique_id=167922984 node_paths=PackedStringArray("labels")]
 script = ExtResource("5_s1byh")
-labels = [NodePath("../Title"), NodePath("../Value")]
+labels = [NodePath("../AutoScrollContainer2/Title"), NodePath("../AutoScrollContainer/Value")]
 metadata/_custom_type_script = "uid://co6tjg3w6qpd8"

@@ -15,6 +15,7 @@ const EMPTY_BLOCK = ("res://Scenes/Prefabs/Blocks/EmptyBlock.tscn")
 @export_range(1, 99) var item_amount := 1
 @export var combo_meter_amount := 25
 @export var mushroom_if_small := false
+@export var block_type := ""
 const SUPER_MUSHROOM = ("res://Scenes/Prefabs/Entities/Items/SuperMushroom.tscn")
 var can_hit := true
 var bouncing := false
@@ -46,6 +47,7 @@ func dispense_item() -> void:
 	var node = item_to_dispense.instantiate()
 	node.set_meta("block_item", true)
 	node.set_meta("no_persist", true)
+	node.set_meta("layer", get_meta("layer", -1))
 	if node is PowerUpItem or node.has_meta("is_item"):
 		for i in get_tree().get_nodes_in_group("Players"):
 			add_sibling(node)
@@ -69,7 +71,6 @@ func dispense_item() -> void:
 		parent.add_child(node)
 		node.reset_physics_interpolation()
 		parent.move_child(node, get_index() - 1)
-		print("FUCK: " + str(item.resource_path))
 		if NO_SFX_ITEMS.has(item.resource_path) == false:
 			AudioManager.play_sfx("item_appear", global_position)
 			node.set("velocity", Vector2(0, node.get_meta("block_launch_velocity", -150)))
@@ -92,6 +93,7 @@ func player_mushroom_check(player: Player = null) -> PackedScene:
 func spawn_empty_block() -> void:
 	var block = load(EMPTY_BLOCK).instantiate()
 	block.position = position
+	block.set_meta("BlockType", block_type)
 	add_sibling(block)
 	if get_parent().get_parent() is TrackRider:
 		get_parent().get_parent().attached_entity = block
@@ -99,6 +101,9 @@ func spawn_empty_block() -> void:
 	if get_parent() is TileMapLayer:
 		get_parent().erase_cell(get_parent().local_to_map(position))
 	queue_free()
+
+func emit_hit_signal() -> void:
+	block_hit.emit()
 
 func destroy() -> void:
 	block_destroyed.emit()

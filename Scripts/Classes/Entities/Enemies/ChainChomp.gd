@@ -55,6 +55,8 @@ func lunge() -> void:
 	$Rope.has_floor = false
 	var tween = create_tween().tween_property($Enemy, "position", target_pos, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	await get_tree().create_timer(1.5, false).timeout
+	if is_instance_valid(enemy) == false:
+		return
 	enemy.move_and_slide()
 	tween = create_tween().tween_property($Enemy, "position", Vector2(0, -8), 0.35).set_trans(Tween.TRANS_BACK)
 	await get_tree().create_timer(0.25, false).timeout

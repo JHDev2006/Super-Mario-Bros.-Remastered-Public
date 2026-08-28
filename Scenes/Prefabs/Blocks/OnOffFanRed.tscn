@@ -5,8 +5,6 @@
 [ext_resource type="Script" uid="uid://caq1qiwmy0mox" path="res://Scripts/Parts/BetterAnimatedSprite.gd" id="2_xmnks"]
 [ext_resource type="Texture2D" uid="uid://dy3p03djelkb3" path="res://Assets/Sprites/Particles/Leaves.png" id="4_wvhkg"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_ak3jd"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/OnFan.json" id="5_elapr"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/WindParticles.json" id="6_elapr"]
 [ext_resource type="Script" uid="uid://ctfbuoxtnnl0q" path="res://Scripts/Classes/Components/EditorPropertyExposer.gd" id="7_wvhkg"]
 [ext_resource type="Script" uid="uid://d4a7yp6e55u8t" path="res://Scripts/Classes/Components/TrackJoint.gd" id="8_ak3jd"]
 [ext_resource type="Script" uid="uid://q45b31h6356r" path="res://Scripts/Classes/Components/OnOffSwitcher.gd" id="10_wvrj8"]
@@ -121,10 +119,11 @@ do_offset = false
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1589738587 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_ak3jd")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_elapr")
+json_path = "res://Assets/Sprites/Blocks/OnFan.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=356400759]
@@ -145,11 +144,12 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_ixtv2")
 
 [node name="ResourceSetterNew" type="Node" parent="Particles" unique_id=1551857723 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("5_ak3jd")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("6_elapr")
+json_path = "res://Assets/Sprites/Particles/WindParticles.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Node" type="Node" parent="." unique_id=1570257566 node_paths=PackedStringArray("sprite")]

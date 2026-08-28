@@ -2,16 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bw7ada2n2vmww" path="res://Scripts/Parts/WaterCurrentArea.gd" id="1_5b2n0"]
 [ext_resource type="Texture2D" uid="uid://b7h6b0yqyi2kh" path="res://Assets/Sprites/Particles/Bubble.png" id="1_sh54q"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ssveo"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(32, 8, 1)
-direction = Vector3(0, 1, 0)
-spread = 0.0
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
-gravity = Vector3(0, 98, 0)
+[ext_resource type="Script" uid="uid://dde1tbnfum3yr" path="res://Scripts/Classes/Components/PackParticles.gd" id="3_fgs0e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5den3"]
 size = Vector2(80, 306)
@@ -19,14 +10,23 @@ size = Vector2(80, 306)
 [node name="WaterCurrentArea" type="Node2D" unique_id=1630974859]
 script = ExtResource("1_5b2n0")
 
-[node name="Particles" type="GPUParticles2D" parent="." unique_id=214642302]
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=1819086761]
 visibility_layer = 2
 amount = 32
 texture = ExtResource("1_sh54q")
 lifetime = 5.0
 preprocess = 5.0
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_ssveo")
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(32, 8)
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 98)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+script = ExtResource("3_fgs0e")
+metadata/_custom_type_script = "uid://dde1tbnfum3yr"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=469638199]
 

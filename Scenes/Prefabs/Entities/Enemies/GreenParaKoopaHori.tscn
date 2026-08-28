@@ -7,6 +7,9 @@
 [node name="GreenKoopaTroopa" unique_id=287819354 instance=ExtResource("1_pd6rg")]
 metadata/fly_2 = true
 
+[node name="Wing" parent="Sprite" parent_id_path=PackedInt32Array(1845041467) index="1" unique_id=1386975840]
+metadata/WingType = "GreenKoopaHori"
+
 [node name="LevelEditorVisibleNode" type="Node2D" parent="." index="18" unique_id=1769048555]
 script = ExtResource("2_6kidr")
 metadata/_custom_type_script = "uid://cpwloakvp672a"

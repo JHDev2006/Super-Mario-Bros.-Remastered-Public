@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_bv21p"]
 [ext_resource type="Script" uid="uid://chj8hu207lrh" path="res://Scripts/Classes/Components/EnemyPlayerDetection.gd" id="4_wwst8"]
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="5_8r3gq"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/HomingBill.json" id="5_wwst8"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="6_uhwd6"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="7_t33q4"]
 [ext_resource type="Script" uid="uid://b8vmbtoaaq5nc" path="res://Scripts/Parts/EditorToggleDetection.gd" id="8_pcobt"]
@@ -50,12 +49,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwst8"]
 size = Vector2(12, 12)
 
-[node name="HomingBill" type="CharacterBody2D" unique_id=1363697095]
+[node name="HomingBill" type="CharacterBody2D" unique_id=1363697095 node_paths=PackedStringArray("on_screen_enabler", "score_note_adder") groups=["Enemies"]]
 collision_layer = 16
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_ulw4f")
 explosion_scene = ExtResource("2_wwst8")
+on_screen_enabler = NodePath("VisibleOnScreenEnabler2D")
+score_note_adder = NodePath("ScoreNoteSpawner")
 metadata/_custom_type_script = "uid://bpydbpyjk1mt4"
 
 [node name="ParticlesRotation" type="Node2D" parent="." unique_id=1743374772]
@@ -79,11 +80,13 @@ sprite_frames = SubResource("SpriteFrames_qd5mn")
 animation = &"Normal"
 autoplay = "Normal"
 
-[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1702804011 node_paths=PackedStringArray("node_to_affect")]
+[node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1702804011 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("4_bv21p")
 node_to_affect = NodePath("..")
+property_node = NodePath("../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("5_wwst8")
+json_path = "res://Assets/Sprites/Enemies/HomingBill.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1483912271]

@@ -1,15 +1,19 @@
 [gd_resource type="Theme" format=3 uid="uid://dtn507x2b5de7"]
 
 [ext_resource type="FontVariation" uid="uid://bl7sbw4nx3l1t" path="res://Resources/ThemedResources/FontMain.tres" id="1_kpcpn"]
-[ext_resource type="Texture2D" uid="uid://7qtdxl2cjxeh" path="res://Assets/Sprites/UI/Checkbox.png" id="1_rioqa"]
 [ext_resource type="Texture2D" uid="uid://dp4b0cpisp5cs" path="res://Assets/Sprites/UI/Arrow.png" id="1_vmxg5"]
 [ext_resource type="Texture2D" uid="uid://b4vej1pkyqomg" path="res://Assets/Sprites/UI/PanelHover.png" id="2_2ratw"]
 [ext_resource type="Texture2D" uid="uid://bnv2ocqgws3p7" path="res://Assets/Sprites/UI/Panel.png" id="2_rij67"]
 [ext_resource type="Texture2D" uid="uid://da1j4turmb4rt" path="res://Assets/Sprites/UI/EditorOptionButtonIcon.png" id="3_dbcfw"]
 [ext_resource type="Texture2D" uid="uid://bhgjvnslkt143" path="res://Assets/Sprites/UI/PanelSelected.png" id="3_eltnc"]
-[ext_resource type="Texture2D" uid="uid://bcvq28r3d3pij" path="res://Assets/Sprites/UI/ScrollBar.png" id="5_xbsuy"]
+[ext_resource type="Texture2D" uid="uid://dirturk5rw733" path="res://Resources/UI/CheckboxChecked.tres" id="4_u3www"]
+[ext_resource type="Texture2D" uid="uid://cdwaxjlcmkks8" path="res://Resources/UI/CheckboxUnchecked.tres" id="5_7t41e"]
 [ext_resource type="Texture2D" uid="uid://dktb2ljmou31p" path="res://Resources/UI/Cursor.tres" id="6_f6qpy"]
 [ext_resource type="Texture2D" uid="uid://m14upykpri8v" path="res://Assets/Sprites/UI/SpinBoxArrows.png" id="7_f6qpy"]
+[ext_resource type="Texture2D" uid="uid://ech7ab0klhel" path="res://Resources/UI/ScrollBarUpArrow.tres" id="10_pbjdw"]
+[ext_resource type="Texture2D" uid="uid://dbba7rin1sl6e" path="res://Resources/UI/ScrollBarDownArrow.tres" id="11_u3www"]
+[ext_resource type="StyleBox" uid="uid://cv3vildm3bnc2" path="res://Resources/UI/ScrollBarSlider.tres" id="12_7t41e"]
+[ext_resource type="StyleBox" uid="uid://bfagahow5b21a" path="res://Resources/UI/ScrollBarBG.tres" id="13_i3xj7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w50ow"]
 texture = ExtResource("2_rij67")
@@ -41,14 +45,6 @@ texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f6qpy"]
-atlas = ExtResource("1_rioqa")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wytm8"]
-atlas = ExtResource("1_rioqa")
-region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eltnc"]
 
@@ -174,28 +170,6 @@ region = Rect2(0, 8, 8, 8)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_egwcr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tjro6"]
-atlas = ExtResource("5_xbsuy")
-region = Rect2(0, 0, 11, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qptw5"]
-atlas = ExtResource("5_xbsuy")
-region = Rect2(24, 4, 11, 8)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvf3u"]
-content_margin_top = 16.0
-content_margin_bottom = 16.0
-texture = ExtResource("5_xbsuy")
-texture_margin_left = 1.0
-texture_margin_top = 1.0
-texture_margin_right = 1.0
-texture_margin_bottom = 1.0
-region_rect = Rect2(0, 12, 11, 12)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7mmoe"]
-texture = ExtResource("5_xbsuy")
-region_rect = Rect2(12, 0, 11, 12)
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dbcfw"]
 
 [resource]
@@ -207,10 +181,10 @@ Button/styles/focus = SubResource("StyleBoxEmpty_2ratw")
 Button/styles/hover = SubResource("StyleBoxTexture_pbjdw")
 Button/styles/normal = SubResource("StyleBoxTexture_u3www")
 Button/styles/pressed = SubResource("StyleBoxTexture_7t41e")
-CheckBox/icons/checked = SubResource("AtlasTexture_f6qpy")
-CheckBox/icons/radio_checked = SubResource("AtlasTexture_f6qpy")
-CheckBox/icons/radio_unchecked = SubResource("AtlasTexture_wytm8")
-CheckBox/icons/unchecked = SubResource("AtlasTexture_wytm8")
+CheckBox/icons/checked = ExtResource("4_u3www")
+CheckBox/icons/radio_checked = ExtResource("4_u3www")
+CheckBox/icons/radio_unchecked = ExtResource("5_7t41e")
+CheckBox/icons/unchecked = ExtResource("5_7t41e")
 CheckBox/styles/disabled = SubResource("StyleBoxEmpty_eltnc")
 CheckBox/styles/focus = SubResource("StyleBoxEmpty_f6qpy")
 CheckBox/styles/hover = SubResource("StyleBoxEmpty_w50ow")
@@ -264,14 +238,14 @@ SpinBox/styles/down_background_pressed = SubResource("StyleBoxEmpty_7t41e")
 SpinBox/styles/up_background_hovered = SubResource("StyleBoxEmpty_i3xj7")
 SpinBox/styles/up_background_pressed = SubResource("StyleBoxEmpty_egwcr")
 VBoxContainer/constants/separation = 0
-VScrollBar/icons/decrement = SubResource("AtlasTexture_tjro6")
-VScrollBar/icons/decrement_highlight = SubResource("AtlasTexture_tjro6")
-VScrollBar/icons/decrement_pressed = SubResource("AtlasTexture_tjro6")
-VScrollBar/icons/increment = SubResource("AtlasTexture_qptw5")
-VScrollBar/icons/increment_highlight = SubResource("AtlasTexture_qptw5")
-VScrollBar/icons/increment_pressed = SubResource("AtlasTexture_qptw5")
-VScrollBar/styles/grabber = SubResource("StyleBoxTexture_hvf3u")
-VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_hvf3u")
-VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_hvf3u")
-VScrollBar/styles/scroll = SubResource("StyleBoxTexture_7mmoe")
+VScrollBar/icons/decrement = ExtResource("10_pbjdw")
+VScrollBar/icons/decrement_highlight = ExtResource("10_pbjdw")
+VScrollBar/icons/decrement_pressed = ExtResource("10_pbjdw")
+VScrollBar/icons/increment = ExtResource("11_u3www")
+VScrollBar/icons/increment_highlight = ExtResource("11_u3www")
+VScrollBar/icons/increment_pressed = ExtResource("11_u3www")
+VScrollBar/styles/grabber = ExtResource("12_7t41e")
+VScrollBar/styles/grabber_highlight = ExtResource("12_7t41e")
+VScrollBar/styles/grabber_pressed = ExtResource("12_7t41e")
+VScrollBar/styles/scroll = ExtResource("13_i3xj7")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_dbcfw")

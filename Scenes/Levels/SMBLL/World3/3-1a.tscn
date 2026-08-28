@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="2_j1vav"]
 [ext_resource type="PackedScene" uid="uid://cmbpqnq10arts" path="res://Scenes/Prefabs/Entities/Items/RedCoin.tscn" id="3_mrql5"]
 [node name="3-1a" unique_id=1989780910 instance=ExtResource("1_makeg")]
+room_type = 1
 world_id = 3
 level_id = 1
 [node name="Tiles" parent="." index="0" unique_id=590412825]

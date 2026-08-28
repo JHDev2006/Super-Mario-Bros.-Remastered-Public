@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bmn81e10obpjv" path="res://Scenes/Parts/SelectableLabel.tscn" id="4_7l60d"]
 [ext_resource type="PackedScene" uid="uid://dntk2js0tu3y2" path="res://Scenes/Prefabs/UI/WorldSelect.tscn" id="7_nvyky"]
 [ext_resource type="AudioStream" uid="uid://ekxoq3h38iuv" path="res://Assets/Audio/SFX/MarathonMedal.wav" id="7_orie5"]
+[ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="8_3vn76"]
 [ext_resource type="PackedScene" uid="uid://bvgigoyn7lrc2" path="res://Scenes/Prefabs/UI/SpeedrunTypeSelect.tscn" id="8_nvyky"]
 [ext_resource type="PackedScene" uid="uid://bsfkt344e6j38" path="res://Scenes/Prefabs/UI/LevelSelectNew.tscn" id="8_orie5"]
 
@@ -197,9 +198,11 @@ grow_horizontal = 2
 grow_vertical = 2
 has_speedrun_stuff = true
 
-[node name="PBSfx" type="AudioStreamPlayer" parent="." unique_id=862797966]
+[node name="PBSfx" type="AudioStreamPlayer" parent="." unique_id=621526419]
 stream = ExtResource("7_orie5")
 bus = &"SFX"
+script = ExtResource("8_3vn76")
+metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
 
 [node name="SpeedrunTypeSelect" parent="." unique_id=948576106 instance=ExtResource("8_nvyky")]
 visible = false

@@ -13,15 +13,18 @@ const base64_charset := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012
 var selectors_to_add := []
 
 func _ready() -> void:
-	map = JSON.parse_string(FileAccess.open(MAP_PATH, FileAccess.READ).get_as_text())
+	load_entity_map()
 	if Engine.is_editor_hint() == false and OS.is_debug_build() and auto_update:
 		update_map()
 
+static func load_entity_map() -> void:
+	map = JSONParser.parse_to_dict(MAP_PATH)
+
 func update_map() -> void:
-	map = JSON.parse_string(FileAccess.open(MAP_PATH, FileAccess.READ).get_as_text())
+	load_entity_map()
 	get_ids()
 	save_to_json()
-	print("done")
+	print("Update ID Map.")
 
 func clear_map() -> void:
 	map = {}
@@ -47,9 +50,7 @@ static func get_selector_info_arr(selector: EditorTileSelector) -> Array:
 	return [selector.entity_scene.resource_path, str(selector.tile_offset.x) + "," + str(selector.tile_offset.y)]
 
 func save_to_json() -> void:
-	var file = FileAccess.open(MAP_PATH, FileAccess.WRITE)
-	file.store_string(JSON.stringify(map, "\t", false))
-	file.close()
+	JSONParser.save_to_file(map, MAP_PATH)
 
 static func get_map_id(entity_scene := "") -> String:
 	var idx := 0
@@ -58,7 +59,6 @@ static func get_map_id(entity_scene := "") -> String:
 			return map.keys()[idx]
 		idx += 1
 	return ""
-
 
 func encode_to_base64_2char(value: int) -> String:
 	if value < 0 or value >= 4096:

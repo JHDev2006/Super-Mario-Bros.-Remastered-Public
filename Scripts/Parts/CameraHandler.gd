@@ -191,11 +191,12 @@ func handle_offsets(delta: float) -> void:
 		true_vel_dir = 0
 		true_velocity.x = 0
 	if Global.current_level.can_backscroll:
+		const CENTER_OFFSET := 8
 		if true_vel_dir != 0 and abs(true_velocity.x) > 80:
-			var left_bound := camera_position.x - 8 >= point_to_camera_limit(-256, -1)
-			var right_bound = camera_position.x + 8 <= point_to_camera_limit(camera_right_limit, 1)
+			var left_bound := camera_position.x - CENTER_OFFSET >= point_to_camera_limit(-256, -1)
+			var right_bound = camera_position.x + CENTER_OFFSET <= point_to_camera_limit(camera_right_limit, 1)
 			if abs(camera_position.x - player.global_position.x) <= 16 and left_bound and right_bound:
-				camera_offset.x = move_toward(camera_offset.x, 8 * true_vel_dir, abs(true_velocity.x) / 200)
+				camera_offset.x = move_toward(camera_offset.x, CENTER_OFFSET * true_vel_dir, abs(true_velocity.x) / 200)
 	else:
 		camera_offset.x = 8
 

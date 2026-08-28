@@ -10,18 +10,27 @@ var tween = null
 
 static var frame_one := false
 
+static var enforced_res := false
+
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	$Camera2D.global_position = global_position
 	$NinePatchRect.size = get_viewport().get_visible_rect().size
 	$NinePatchRect.position = -($NinePatchRect.size / 2)
 	for i in 4:
 		await get_tree().physics_frame
 	frame_one = true
+	if Global.level_editor != null and Global.current_level.enforce_resolution == Vector2.ZERO and enforced_res == false:
+		enforced_res = true
+		Global.level_editor.res_enforce_changed(true)
+		Global.log_comment("Automatically enabled 'Enforced Screen Size'!")
+		Global.level_editor.update_menu_values()
 
 func level_start() -> void:
 	if auto_activate:
 		active = true
 		activate()
+	_ready()
 
 func activate() -> void:
 	for i in 2:
@@ -40,7 +49,8 @@ func ended() -> void:
 	$Camera2D.make_current()
 
 func _physics_process(delta: float) -> void:
-	$Camera2D.global_position = lerp($Camera2D.global_position, global_position, delta * 5)
+	if get_tree().paused == false:
+		$Camera2D.global_position = lerp($Camera2D.global_position, global_position, delta * 5)
 
 func toggle() -> void:
 	active = !active
@@ -50,6 +60,7 @@ func toggle() -> void:
 	else:
 		active = true
 		return_to_old_camera.call_deferred()
+
 
 func return_to_old_camera() -> void:
 	if taken or not active:
@@ -99,3 +110,4 @@ func transition_to_self() -> void:
 func _exit_tree() -> void:
 	taken = false
 	frame_one = false
+	enforced_res = false

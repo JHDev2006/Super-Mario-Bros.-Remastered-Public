@@ -4,7 +4,6 @@
 [ext_resource type="Shader" uid="uid://x7lh23cq2u38" path="res://Scenes/Parts/ShadowShader.gdshader" id="2_g76ny"]
 [ext_resource type="Script" uid="uid://dwtrmo82e12ud" path="res://Scripts/Parts/ColourPaletteSampler.gd" id="6_03isl"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="7_5ikpa"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Particles/DropShadow.json" id="8_u22ru"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q8gs4"]
 shader = ExtResource("2_g76ny")
@@ -61,5 +60,5 @@ script = ExtResource("7_5ikpa")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("8_u22ru")
+json_path = "res://Assets/Sprites/Particles/DropShadow.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"

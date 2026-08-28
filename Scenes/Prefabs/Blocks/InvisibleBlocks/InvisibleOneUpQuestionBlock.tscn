@@ -1,43 +1,9 @@
 [gd_scene format=3 uid="uid://canoj6slqk5ee"]
 
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="1_etg4d"]
-[ext_resource type="PackedScene" uid="uid://beq7b3hp44onn" path="res://Scenes/Prefabs/Entities/Items/SuperMushroom.tscn" id="2_r7sg8"]
-[ext_resource type="Texture2D" uid="uid://bsyugykvflalf" path="res://Assets/Sprites/Items/1UP.png" id="3_anjgk"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Items/OneUp.json" id="4_x1m83"]
-[ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="5_tx2wx"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3yqrr"]
-atlas = ExtResource("3_anjgk")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="PackedScene" id="PackedScene_vm6bi"]
-_bundled = {
-"base_scene": 0,
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("OneUp", "metadata/is_oneup", "Mushroom", "texture", "region_enabled", "region_rect", "ResourceSetterNew", "resource_json", "ScoreNoteSpawner", "Node", "script", "metadata/_custom_type_script"),
-"node_count": 4,
-"node_ids": PackedInt32Array(),
-"node_paths": [NodePath("."), NodePath("./Mushroom"), NodePath(".")],
-"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 1073741824, -1, 2147483647, 262146, -1, 3, 3, 2, 4, 3, 5, 4, 0, 1073741825, -1, 2147483647, 262150, -1, 1, 7, 5, 0, 1073741826, 0, 9, 1310728, -1, 2, 10, 6, 11, 7, 0),
-"variants": [ExtResource("2_r7sg8"), true, SubResource("AtlasTexture_3yqrr"), false, Rect2(16, 0, 16, 16), ExtResource("4_x1m83"), ExtResource("5_tx2wx"), "uid://5octqlf4ohel"],
-"version": 3
-}
+[ext_resource type="PackedScene" uid="uid://cpk6idjoxjotv" path="res://Scenes/Prefabs/Entities/Items/OneUp.tscn" id="2_7o788"]
 
 [node name="InvisibleQuestionBlock" unique_id=574723668 instance=ExtResource("1_etg4d")]
-item = SubResource("PackedScene_vm6bi")
-
-[node name="Sprite2D" type="Sprite2D" parent="." index="6" unique_id=1808784462]
-texture = ExtResource("3_anjgk")
-region_enabled = true
-region_rect = Rect2(16, 0, 16, 16)
-
-[node name="Timer" type="Timer" parent="Sprite2D" index="0" unique_id=1022494223]
-wait_time = 0.001
-autostart = true
-
-[connection signal="timeout" from="Sprite2D/Timer" to="Sprite2D" method="queue_free"]
+item = ExtResource("2_7o788")
 
 [editable path="BlockAnimations"]

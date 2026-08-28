@@ -8,7 +8,6 @@
 [ext_resource type="SpriteFrames" uid="uid://df4enjjl84mji" path="res://Resources/SpriteFrames/Player/Mario/Small.tres" id="5_l7t2o"]
 [ext_resource type="Script" uid="uid://dt2p68xl462v2" path="res://Scripts/Parts/TextShadowColourChanger.gd" id="6_0j631"]
 [ext_resource type="Script" uid="uid://b08qfwj5jk6g1" path="res://Scripts/Parts/PlayerSprite.gd" id="6_0oqrn"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Players/Mario/CharacterInfo.json" id="7_agtau"]
 [ext_resource type="Script" uid="uid://dwtrmo82e12ud" path="res://Scripts/Parts/ColourPaletteSampler.gd" id="7_mgr7r"]
 [ext_resource type="Script" uid="uid://co6tjg3w6qpd8" path="res://Scripts/Parts/LabelFontChanger.gd" id="10_agtau"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="14_a25p8"]
@@ -90,11 +89,12 @@ metadata/_custom_type_script = "uid://dwtrmo82e12ud"
 
 [node name="PlayerColourTexture" type="Node" parent="Panel/MarginContainer/VBoxContainer/Spotlight/ColourPaletteSampler" unique_id=388455052 node_paths=PackedStringArray("node_to_affect")]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("14_a25p8")
 node_to_affect = NodePath("..")
 property_name = "texture"
 mode = 1
-resource_json = ExtResource("7_agtau")
+json_path = "res://Assets/Sprites/Players/Mario/CharacterColour.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Left" type="AnimatedSprite2D" parent="Panel/MarginContainer/VBoxContainer/Spotlight" unique_id=1293715445 node_paths=PackedStringArray("resource_setter")]
@@ -110,6 +110,7 @@ resource_setter = NodePath("ResourceSetterNew")
 metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
 
 [node name="ResourceSetterNew" type="Node" parent="Panel/MarginContainer/VBoxContainer/Spotlight/Left" unique_id=100776312 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("14_a25p8")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"
@@ -128,6 +129,7 @@ resource_setter = NodePath("ResourceSetterNew")
 metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
 
 [node name="ResourceSetterNew" type="Node" parent="Panel/MarginContainer/VBoxContainer/Spotlight/Selected" unique_id=1785795257]
+process_mode = 3
 script = ExtResource("14_a25p8")
 use_cache = false
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
@@ -145,6 +147,7 @@ resource_setter = NodePath("ResourceSetterNew")
 metadata/_custom_type_script = "uid://b08qfwj5jk6g1"
 
 [node name="ResourceSetterNew" type="Node" parent="Panel/MarginContainer/VBoxContainer/Spotlight/Right" unique_id=1845999083 node_paths=PackedStringArray("node_to_affect")]
+process_mode = 3
 script = ExtResource("14_a25p8")
 node_to_affect = NodePath("..")
 property_name = "sprite_frames"

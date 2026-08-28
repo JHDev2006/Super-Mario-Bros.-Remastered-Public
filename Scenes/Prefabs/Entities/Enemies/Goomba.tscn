@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://c3gg32ivrlq8n" path="res://Scripts/Classes/Components/GibSpawner.gd" id="4_7ob4c"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="5_75r84"]
 [ext_resource type="Script" uid="uid://cmg61722ktg2m" path="res://Scripts/Classes/Components/BlockBouncingDetection.gd" id="5_ncruo"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Goomba.json" id="6_magh7"]
 [ext_resource type="Script" uid="uid://dri2d5jtu0fbq" path="res://Scripts/Classes/Components/FireballDetection.gd" id="6_yt1if"]
 [ext_resource type="Script" uid="uid://bbww34oiexbx2" path="res://Scripts/Classes/Components/ShellDetection.gd" id="7_d04bf"]
 [ext_resource type="Script" uid="uid://5octqlf4ohel" path="res://Scripts/Classes/Components/ScoreNoteSpawner.gd" id="8_e62ic"]
@@ -75,11 +74,12 @@ script = ExtResource("3_75r84")
 metadata/_custom_type_script = "uid://caq1qiwmy0mox"
 
 [node name="ResourceSetterNew" type="Node" parent="Sprite" unique_id=1325056225 node_paths=PackedStringArray("node_to_affect", "property_node")]
+process_mode = 3
 script = ExtResource("5_75r84")
 node_to_affect = NodePath("..")
 property_node = NodePath("../..")
 property_name = "sprite_frames"
-resource_json = ExtResource("6_magh7")
+json_path = "res://Assets/Sprites/Enemies/Goomba.json"
 
 [node name="LCollision" type="CollisionShape2D" parent="." unique_id=1927726363]
 position = Vector2(0, -6)
@@ -153,14 +153,14 @@ script = ExtResource("13_magh7")
 script = ExtResource("14_3aros")
 hitbox = NodePath("../Hitbox")
 
+[node name="TrackJoint" type="Node" parent="." unique_id=1482960960 node_paths=PackedStringArray("movement_node")]
+script = ExtResource("17_6o7qg")
+movement_node = NodePath("../BasicEnemyMovement")
+
 [node name="SecondQuestReplacer" type="Node" parent="." unique_id=1511298851]
 script = ExtResource("15_dpode")
 new_scene = "uid://doo8617qiyp77"
 metadata/_custom_type_script = "uid://d0mqkvopasu8k"
-
-[node name="TrackJoint" type="Node" parent="." unique_id=1482960960 node_paths=PackedStringArray("movement_node")]
-script = ExtResource("17_6o7qg")
-movement_node = NodePath("../BasicEnemyMovement")
 
 [node name="LevelPersistance" type="Node" parent="." unique_id=1494396413]
 script = ExtResource("18_hkf3f")

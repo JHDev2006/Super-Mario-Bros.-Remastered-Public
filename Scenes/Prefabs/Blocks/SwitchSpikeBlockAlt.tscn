@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://d2ainv86lt68a" path="res://Scenes/Prefabs/Blocks/SwitchSpikeBlock.tscn" id="1_nuql5"]
 [ext_resource type="Texture2D" uid="uid://cv27sth0k3amk" path="res://Assets/Sprites/Blocks/SwitchSpike.png" id="2_s2uey"]
-[ext_resource type="JSON" path="res://Assets/Sprites/Blocks/SwitchSpikeBlockAlt.json" id="3_s2uey"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8y7p"]
 atlas = ExtResource("2_s2uey")
@@ -91,7 +90,7 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_twrdj")
 
 [node name="ResourceSetter" parent="Sprite" index="0" unique_id=873755014]
-resource_json = ExtResource("3_s2uey")
+json_path = "res://Assets/Sprites/Blocks/SwitchSpikeBlockAlt.json"
 
 [node name="OnOffSwitcher" parent="." index="5" unique_id=1468268568]
 invert = true

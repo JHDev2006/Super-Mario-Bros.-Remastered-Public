@@ -1,7 +1,1 @@
-{
-	"variations": {
-		"default": {
-			"source": "Tracks.png"
-		}
-	}
-}
+{"variations": {"source": "Tracks.png"}}

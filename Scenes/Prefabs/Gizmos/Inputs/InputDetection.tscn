@@ -8,6 +8,8 @@
 
 [node name="PlayerEventDetection" unique_id=515746201 instance=ExtResource("1_g4xrq")]
 process_mode = 0
+process_priority = 1
+process_physics_priority = 1
 script = ExtResource("2_g4xrq")
 action = 0
 
