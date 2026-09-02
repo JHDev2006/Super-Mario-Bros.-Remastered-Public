@@ -1114,6 +1114,7 @@ func throw_projectile() -> void:
 	attacked.emit()
 	projectile_type = load(physics_params("PROJ_TYPE", POWER_PARAMETERS) + ".tscn")
 	var node = projectile_type.instantiate()
+	node.set_meta("IsPlayerProjectile", "true")
 	var offset = physics_params("PROJ_OFFSET", POWER_PARAMETERS)
 	var angle = Vector2.ZERO if physics_params("PROJ_ANGLE", POWER_PARAMETERS) == null else Vector2.from_angle(deg_to_rad(physics_params("PROJ_ANGLE", POWER_PARAMETERS)))
 	var speed = physics_params("PROJ_SPEED", POWER_PARAMETERS)
