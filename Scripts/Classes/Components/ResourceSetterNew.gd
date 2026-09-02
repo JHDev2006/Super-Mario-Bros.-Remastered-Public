@@ -96,6 +96,8 @@ func get_resource(json_file: JSON) -> Resource:
 		return
 	if cache.has(json_file.resource_path) and use_cache and force_properties.is_empty():
 		var cached_resource = cache[json_file.resource_path]
+		if cached_resource == null:
+			return null
 		
 		if cached_resource.has_meta("loop_offsets") and node_to_affect is AnimatedSprite2D:
 			var loop_offsets = cached_resource.get_meta("loop_offsets")
@@ -199,7 +201,7 @@ func get_resource(json_file: JSON) -> Resource:
 				else:
 					rect_error_message.call()
 			
-			if animation_json != {}:
+			if animation_json != {} and resource != null:
 				resource = create_sprite_frames_from_image(resource, animation_json, resource_path)
 			else:
 				var sprite_frames = SpriteFrames.new()
