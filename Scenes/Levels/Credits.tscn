@@ -39,7 +39,7 @@ region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owhsx"]
 atlas = ExtResource("4_g2gtw")
-region = Rect2(16, 112, 16, 16)
+region = Rect2(0, 112, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8pyc7"]
 atlas = ExtResource("4_g2gtw")
@@ -128,6 +128,10 @@ region = Rect2(0, 32, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ttapi"]
 atlas = ExtResource("4_g2gtw")
 region = Rect2(32, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbi86"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g72p5"]
 atlas = ExtResource("4_g2gtw")
@@ -271,7 +275,7 @@ region = Rect2(96, 80, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_da2e7"]
 atlas = ExtResource("4_g2gtw")
-region = Rect2(32, 112, 16, 16)
+region = Rect2(16, 112, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2gfq"]
 atlas = ExtResource("4_g2gtw")
@@ -291,15 +295,11 @@ region = Rect2(48, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cgqty"]
 atlas = ExtResource("4_g2gtw")
-region = Rect2(80, 96, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gbi86"]
-atlas = ExtResource("4_g2gtw")
 region = Rect2(64, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrxkq"]
 atlas = ExtResource("4_g2gtw")
-region = Rect2(0, 112, 16, 16)
+region = Rect2(96, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x68qv"]
 atlas = ExtResource("4_g2gtw")
@@ -307,7 +307,7 @@ region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ma7ga"]
 atlas = ExtResource("4_g2gtw")
-region = Rect2(96, 96, 16, 16)
+region = Rect2(80, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7s4gc"]
 atlas = ExtResource("14_4e2pw")
@@ -1380,6 +1380,27 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
+[node name="Label9" type="Label" parent="Labels/Sound/Label2" unique_id=295952007]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 64.0
+offset_bottom = 96.0
+text = "OhTHATGUY"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label2/Label9" unique_id=1207822231]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_gbi86")
+stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
 [node name="TextureRect" type="TextureRect" parent="Labels/Sound" unique_id=2084301385]
 layout_mode = 0
 offset_left = 120.0
@@ -1766,7 +1787,7 @@ layout_mode = 0
 offset_top = 176.0
 offset_right = 56.0
 offset_bottom = 192.0
-text = "TheOliveOli"
+text = "MOXXTHEPOSSUM"
 uppercase = true
 
 [node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label12" unique_id=1275528308]
@@ -2598,33 +2619,11 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label9" type="Label" parent="Labels/Github/Label3" unique_id=2087669527]
+[node name="Label10" type="Label" parent="Labels/Github/Label3" unique_id=866544637]
 layout_mode = 0
 offset_left = -40.0
 offset_top = 88.0
-offset_right = 16.0
-offset_bottom = 104.0
-text = "Nabbup"
-uppercase = true
-
-[node name="TextureRect" type="TextureRect" parent="Labels/Github/Label3/Label9" unique_id=592847514]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 0
-texture = SubResource("AtlasTexture_gbi86")
-stretch_mode = 2
-script = ExtResource("11_d4vu4")
-metadata/_custom_type_script = "uid://ca3bew33g45eq"
-
-[node name="Label10" type="Label" parent="Labels/Github/Label3" unique_id=866544637]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 88.0
-offset_right = 120.0
+offset_right = 40.0
 offset_bottom = 104.0
 text = "jdaster64"
 uppercase = true
@@ -2711,9 +2710,9 @@ metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label15" type="Label" parent="Labels/Github/Label3" unique_id=1836890548]
 layout_mode = 0
-offset_left = 144.0
+offset_left = 64.0
 offset_top = 88.0
-offset_right = 208.0
+offset_right = 128.0
 offset_bottom = 104.0
 text = "renhoex"
 uppercase = true
@@ -2734,10 +2733,10 @@ metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label16" type="Label" parent="Labels/Github/Label3" unique_id=1304366771]
 layout_mode = 0
-offset_left = 152.0
-offset_top = 104.0
-offset_right = 200.0
-offset_bottom = 120.0
+offset_left = 136.0
+offset_top = 88.0
+offset_right = 184.0
+offset_bottom = 104.0
 text = "a2937"
 uppercase = true
 
@@ -2921,7 +2920,7 @@ offset_left = 24.0
 offset_top = 168.0
 offset_right = 120.0
 offset_bottom = 184.0
-text = "TheOliveOli"
+text = "MOXXTHEPOSSUM"
 uppercase = true
 
 [node name="TextureRect" type="TextureRect" parent="Labels/Github/Label3/Label23" unique_id=857962155]
