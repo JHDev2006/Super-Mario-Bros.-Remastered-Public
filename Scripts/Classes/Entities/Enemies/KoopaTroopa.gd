@@ -87,6 +87,7 @@ func summon_shell(flipped := false, launch := false) -> void:
 	shell.flipped = flipped
 	shell.times_kicked = times_kicked
 	shell.old_entity = self.duplicate()
+	shell.direction = direction
 	if launch:
 		AudioManager.play_sfx("kick", global_position)
 		shell.can_air_kick = true
