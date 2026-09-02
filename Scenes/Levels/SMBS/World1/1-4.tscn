@@ -38,8 +38,6 @@ position = Vector2(2232, -24)
 length = 16
 [node name="CastleToad" parent="." unique_id=1451912988 instance=ExtResource("9_2lgfk")]
 position = Vector2(2608, 0)
-[node name="Bowser" parent="." unique_id=947872370 instance=ExtResource("11_doyrh")]
-position = Vector2(2344, -32)
 [node name="Firebars" type="Node" parent="." unique_id=1309376572]
 [node name="Firebar" parent="Firebars" unique_id=285934901 instance=ExtResource("12_doyrh")]
 position = Vector2(24, -56)
@@ -101,4 +99,12 @@ position = Vector2(1712, -48)
 pipe_id = 1
 target_level = "uid://dyswbc7kccrju"
 exit_only = true
+[node name="Bowser" parent="." unique_id=1487129753 instance=ExtResource("11_doyrh")]
+position = Vector2(2344, -32)
+[node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(1487129753, 1311530935) index="0" unique_id=381174695]
+json_path = "res://Assets/Sprites/Enemies/Goomba.json"
+[node name="Hammer" parent="Bowser" index="10" unique_id=1437707171]
+position = Vector2(-16, -32)
+scale = Vector2(1, 1)
 [connection signal="victory_begin" from="CastleBridge" to="ChallengeNodes/CastleChallengeEnd" method="begin"]
+[editable path="Bowser"]

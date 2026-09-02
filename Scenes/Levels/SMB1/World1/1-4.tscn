@@ -98,6 +98,9 @@ position = Vector2(1800, -40)
 position = Vector2(1912, -48)
 [node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(881948682, 1311530935) index="0" unique_id=381174695]
 json_path = "res://Assets/Sprites/Enemies/Goomba.json"
+[node name="Hammer" parent="Bowser" index="10" unique_id=1437707171]
+position = Vector2(-16, -32)
+scale = Vector2(1, 1)
 [node name="SmallSidewaysPlatform" parent="." unique_id=2033991836 instance=ExtResource("17_hfd0r")]
 position = Vector2(1968, -112)
 [node name="SecondQuestNode" type="Node" parent="." unique_id=609202757]
