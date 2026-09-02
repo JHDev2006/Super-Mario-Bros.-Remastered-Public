@@ -509,6 +509,8 @@ func transition_to_scene(scene_path = "") -> void:
 		%TransitionBlock.modulate.a = 1
 		$Transition.show()
 		await get_tree().create_timer(0.1, true).timeout
+	if scene_path == null:
+		scene_path = "res://Scenes/Levels/CustomLevelBase.tscn"
 	if scene_path is String:
 		get_tree().change_scene_to_file(scene_path)
 	elif scene_path is PackedScene:
