@@ -716,6 +716,8 @@ debug_color = Color(1, 1, 0, 0.42000002)
 script = ExtResource("21_jl70t")
 
 [node name="WaterDetect" type="Area2D" parent="." unique_id=764842293]
+visible = false
+scale = Vector2(1.1, 1.1)
 collision_layer = 0
 collision_mask = 64
 
@@ -727,6 +729,7 @@ script = ExtResource("21_jl70t")
 
 [node name="LavaDetect" type="Area2D" parent="." unique_id=272558444]
 position = Vector2(0, 1)
+scale = Vector2(1.1, 1.1)
 collision_layer = 0
 collision_mask = 128
 
@@ -737,7 +740,9 @@ debug_color = Color(1, 0, 0, 0.419608)
 script = ExtResource("21_jl70t")
 
 [node name="PoisonDetect" type="Area2D" parent="." unique_id=949078937]
+visible = false
 position = Vector2(0, 1)
+scale = Vector2(1.1, 1.1)
 collision_layer = 0
 collision_mask = 256
 
@@ -749,6 +754,7 @@ script = ExtResource("21_jl70t")
 
 [node name="CameraCenterJoint" type="Node2D" parent="." unique_id=1981443036]
 physics_interpolation_mode = 2
+visible = false
 top_level = true
 
 [node name="LeftWall" type="StaticBody2D" parent="CameraCenterJoint" unique_id=1078529476]
@@ -1047,10 +1053,10 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionPolygon2D" parent="." unique_id=1622259203]
 unique_name_in_owner = true
-polygon = PackedVector2Array(4, 0, 4, -2, 1, -8, -1, -8, -4, -2, -4, 0, -2, 0, 2, 0)
+polygon = PackedVector2Array(4, 0, 4, -20.065, 1, -26.065, -1, -26.065, -4, -20.065, -4, 0, -2, 0, 2, 0)
 one_way_collision = true
 script = ExtResource("35_nbkfn")
-hitbox = Vector2(8, 8)
+hitbox = Vector2(8, 26.065)
 
 [node name="FootL" type="CollisionShape2D" parent="." unique_id=449333133 groups=["StepCollision"]]
 position = Vector2(-6, -4)
