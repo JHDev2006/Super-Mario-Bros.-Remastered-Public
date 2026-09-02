@@ -129,9 +129,9 @@ script = ExtResource("8_gkyfa")
 metadata/_custom_type_script = "uid://blfnd65xcx78c"
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=2048366223]
-self_modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -11)
 scale = Vector2(1, 1.3)
+rect = Rect2(-16, -16, 32, 32)
 
 [node name="EnemyPlayerDetection" type="Node" parent="." unique_id=1251780888 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("4_1sj6f")
@@ -198,8 +198,8 @@ metadata/_custom_type_script = "uid://maqpreddu5kg"
 [connection signal="player_stomped_on" from="EnemyPlayerDetection" to="LevelPersistance" method="set_as_active" unbinds=1]
 [connection signal="fireball_hit" from="FireballDetection" to="." method="die_from_object"]
 [connection signal="fireball_hit" from="FireballDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
-[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounced" unbinds=1]
 [connection signal="block_bounced" from="BlockBouncingDetection" to="ScoreNoteSpawner" method="spawn_note" binds= [200]]
+[connection signal="block_bounced" from="BlockBouncingDetection" to="." method="block_bounced" unbinds=1]
 [connection signal="moving_shell_entered" from="ShellDetection" to="." method="die_from_object"]
 [connection signal="icicle_detected" from="IcicleDetection" to="." method="die_from_object"]
 [connection signal="explosion_entered" from="ExplosionDetection" to="." method="die_from_object"]
