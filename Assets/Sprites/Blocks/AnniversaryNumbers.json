@@ -1,0 +1,33 @@
+{
+	"variations": {
+		"default": {
+			"source": "AnniversaryNumbers.png",
+			"rect": [0, 0, 32, 160]
+		},
+		"Underground": {
+			"source": "AnniversaryNumbers.png",
+			"rect": [32, 0, 32, 160]
+		},
+		"GhostHouse": {"link": "Underground"},
+		"Castle": {
+			"source": "AnniversaryNumbers.png",
+			"rect": [64, 0, 32, 160]
+		},
+		"Snow": {
+			"source": "AnniversaryNumbers.png",
+			"rect": [96, 0, 32, 160]
+		},
+		"Space": {
+			"source": "AnniversaryNumbers.png",
+			"rect": [128, 0, 32, 160]
+		},
+		"Volcano": {
+			"source": "AnniversaryNumbers.png",
+			"rect": [160, 0, 32, 160]
+		},
+		"Bonus": {
+			"source": "AnniversaryNumbers.png",
+			"rect": [192, 0, 32, 160]
+		}
+	}
+}
