@@ -308,16 +308,24 @@ func get_variation_json(json := {}) -> Dictionary:
 		get_config_file(current_resource_pack)
 		if config_to_use != {}:
 			var option_name = i.get_slice(":", 1)
+			var got_config := false
+			if config_to_use.options.has(option_name) == false:
+				for x in Settings.file.visuals.resource_packs:
+					get_config_file(x)
+					if config_to_use.options.has(option_name):
+						break
+					
 			if config_to_use.options.has(option_name):
 				variation_needed.append(option_name)
 				used_default = false
 				
 				var config_json = json[i][config_to_use.options[option_name]]
 				if config_json.has("link"):
-					json = get_variation_json(json[config_json.get("link")])
+					json = get_variation_json(json[i][config_json.get("link")])
 				else:
 					json = get_variation_json(config_json)
 				break
+				
 	
 	for i in json.keys().filter(func(key): return key.contains("flag:")):
 		if active_flags.has(i):
