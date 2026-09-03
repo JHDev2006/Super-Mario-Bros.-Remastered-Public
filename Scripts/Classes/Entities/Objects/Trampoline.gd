@@ -27,10 +27,12 @@ func bounce_players() -> void:
 			player.velocity.y = -player.physics_params(trampoline_type + "_SPEED")
 			player.gravity = player.calculate_speed_param("JUMP_GRAVITY")
 			player.has_jumped = true
-			AudioManager.play_sfx(player.physics_params("TRAMPOLINE_USED_SFX", player.COSMETIC_PARAMETERS), global_position)
+			if Settings.file.audio.extra_sfx == 1:
+				AudioManager.play_sfx(player.physics_params("TRAMPOLINE_USED_SFX", player.COSMETIC_PARAMETERS), global_position)
 		else:
 			player.velocity.y = -player.calculate_speed_param("JUMP_SPEED")
-			AudioManager.play_sfx(player.physics_params("TRAMPOLINE_SFX", player.COSMETIC_PARAMETERS), global_position)
+			if Settings.file.audio.extra_sfx == 1:
+				AudioManager.play_sfx(player.physics_params("TRAMPOLINE_SFX", player.COSMETIC_PARAMETERS), global_position)
 	players.clear()
 
 func on_area_exited(area: Area2D) -> void:
