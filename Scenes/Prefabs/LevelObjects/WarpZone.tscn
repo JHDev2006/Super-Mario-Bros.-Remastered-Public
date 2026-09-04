@@ -29,7 +29,9 @@ offset_right = 8.0
 offset_bottom = -8.0
 text = "1"
 
-[node name="PirannhaPlant" parent="Pipes/Left" unique_id=1801548070 groups=["Plants"] instance=ExtResource("4_usbud")]
+[node name="Plant" type="Node2D" parent="Pipes/Left" unique_id=1038733216 groups=["Plants"]]
+
+[node name="PirannhaPlant" parent="Pipes/Left/Plant" unique_id=1801548070 instance=ExtResource("4_usbud")]
 
 [node name="Middle" type="Node2D" parent="Pipes" unique_id=2055117847]
 position = Vector2(0, -48)
@@ -45,7 +47,9 @@ offset_right = 8.0
 offset_bottom = -8.0
 text = "1"
 
-[node name="PirannhaPlant" parent="Pipes/Middle" unique_id=685257709 groups=["Plants"] instance=ExtResource("4_usbud")]
+[node name="Plant" type="Node2D" parent="Pipes/Middle" unique_id=349165908 groups=["Plants"]]
+
+[node name="PirannhaPlant" parent="Pipes/Middle/Plant" unique_id=685257709 instance=ExtResource("4_usbud")]
 
 [node name="Right" type="Node2D" parent="Pipes" unique_id=823629391]
 position = Vector2(64, -48)
@@ -61,7 +65,9 @@ offset_right = 8.0
 offset_bottom = -8.0
 text = "1"
 
-[node name="PirannhaPlant" parent="Pipes/Right" unique_id=1533801816 groups=["Plants"] instance=ExtResource("4_usbud")]
+[node name="Plant" type="Node2D" parent="Pipes/Right" unique_id=591380371 groups=["Plants"]]
+
+[node name="PirannhaPlant" parent="Pipes/Right/Plant" unique_id=1533801816 instance=ExtResource("4_usbud")]
 
 [node name="TextLabel" parent="." unique_id=1713053611 groups=["Labels"] instance=ExtResource("3_xejae")]
 visible = false
