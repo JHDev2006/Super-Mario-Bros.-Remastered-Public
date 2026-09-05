@@ -1,0 +1,55 @@
+target = "template_release"
+debug_symbols = "no"
+optimize = "size"
+lto = "full"
+
+disable_3d = "yes"
+disable_physics_3d = "yes"
+disable_navigation_2d = "yes"
+disable_navigation_3d = "yes"
+disable_xr = "yes"
+accesskit = "no"
+
+# deprecated="no"  # Disables deprecated features. This breaks one of the extensions :/
+vulkan = "no"  # Disables the Vulkan driver (used in Forward+/Mobile Renderers)
+use_volk = "no"  # Disables more Vulkan stuff
+openxr = "no"  # Disables Virtual Reality/Augmented Reality stuff
+graphite = "no"  # Disables SIL Graphite smart fonts support
+# metal="yes"     # Uncomment this line when exporting to Mac
+
+
+module_astcenc_enabled = "no"
+module_basis_universal_enabled = "no"
+module_bcdec_enabled = "no"
+module_betsy_enabled = "no"
+betsy_export_templates = "no"
+module_bmp_enabled = "no"
+module_camera_enabled = "no"
+module_csg_enabled = "no"
+module_cvtt_enabled = "no"
+cvtt_export_template = "no"
+module_dds_enabled = "no"
+module_etcpak_enabled = "no"
+module_fbx_enabled = "no"
+module_gltf_enabled = "no"
+module_godot_physics_3d_enabled = "no"
+module_gridmap_enabled = "no"
+module_hdr_enabled = "no"
+module_jolt_physics_enabled = "no"
+module_ktx_enabled = "no"
+module_lightmapper_rd_enabled = "no"
+module_mbedtls_enabled = "no"
+module_meshoptimizer_enabled = "no"
+minimp3_extra_formats = "no"
+module_mobile_vr_enabled = "no"
+module_mono_enable = "no"
+module_navigation_2d_enabled = "no"
+module_navigation_3d_enabled = "no"
+module_objectdb_profiler_enabled = "no"
+module_openxr_enabled = "no"
+module_text_server_fb_enabled = "no"
+module_tga_enabled = "no"
+module_theora_enabled = "no"
+module_tinyexr_enabled = "no"
+module_webxr_enabled = "no"
+module_xatlas_unwrap_enabled = "no"
