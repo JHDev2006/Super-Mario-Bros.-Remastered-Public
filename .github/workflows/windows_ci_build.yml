@@ -1,0 +1,22 @@
+name: Godot Windows Build Test
+on: [push, pull_request]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Godot 4.5-beta3 (Windows headless)
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri https://github.com/godotengine/godot-builds/releases/download/4.5-beta3/Godot_v4.5-beta3_win64.exe.zip -OutFile godot.zip
+          Expand-Archive godot.zip -DestinationPath godot-bin
+
+      - name: Clear build directory
+        run: |
+          if (Test-Path build) { Remove-Item build -Recurse -Force }
+
+      - name: Export Windows build
+        run: |
+          godot-bin\Godot_v4.5-beta3_win64.exe --headless --verbose --path . --export-release "Windows Desktop x86" build\SMB1R.exe
