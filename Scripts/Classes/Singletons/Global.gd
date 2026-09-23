@@ -526,7 +526,7 @@ func transition_to_scene(scene_path = "") -> void:
 		$Transition.hide()
 	var time_stamp_2 = Time.get_ticks_msec()
 	var dif = (abs(time_stamp_2 - time_stamp_1) / 1000.0) / get_physics_process_delta_time()
-	if SpeedrunHandler.timer_active:])
+	if SpeedrunHandler.timer_active:
 		if (SpeedrunHandler.timer * 1000) > 96:
 			SpeedrunHandler.paused_time += dif * get_physics_process_delta_time()
 			SpeedrunHandler.paused_time = max(SpeedrunHandler.paused_time, 0)
