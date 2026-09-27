@@ -687,6 +687,10 @@ func physics_params(type: String, dict: Dictionary = {}, key: String = "") -> Va
 			var state_dict = dict[key]
 			if type in state_dict:
 				var value = state_dict[type]
+				if value is Dictionary:
+					value = $ResourceSetterNew.get_variation_json(value).value
+				if value is Array:
+					return Vector2(value[0], value[1])
 				if (value is int or value is float) and not (value is bool):
 					return value * mult_applied
 				return value
@@ -696,6 +700,8 @@ func physics_params(type: String, dict: Dictionary = {}, key: String = "") -> Va
 			var value = default_dict[type]
 			if value is Dictionary:
 				value = $ResourceSetterNew.get_variation_json(value).value
+			if value is Array:
+				return Vector2(value[0], value[1])
 			if (value is int or value is float) and not (value is bool):
 				return value * mult_applied
 			return value
