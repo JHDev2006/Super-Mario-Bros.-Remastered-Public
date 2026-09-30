@@ -28,14 +28,15 @@ func _ready() -> void:
 func get_custom_characters() -> void:
 	Player.CHARACTERS = ["Mario", "Luigi", "Toad", "Toadette"]
 	Player.CHARACTER_NAMES = ["CHAR_MARIO", "CHAR_LUIGI", "CHAR_TOAD", "CHAR_TOADETTE"]
+	Player.CHARACTER_GENDERS = ["M", "M", "M", "F"]
 	AudioManager.character_sfx_map.clear()
-	
 	var idx := 0
 	for i in Player.CHARACTERS:
 		var path = ResourceSetter.get_pure_resource_path("res://Assets/Sprites/Players/" + i + "/CharacterInfo.json")
 		if FileAccess.file_exists(path):
 			var json = JSONParser.parse_to_dict(path)
 			Player.CHARACTER_NAMES[idx] = json.name
+			if json.has("gender"): Player.CHARACTER_GENDERS[idx] = json.gender
 		path = ResourceSetter.get_pure_resource_path("res://Assets/Sprites/Players/" + i + "/CharacterColour.json")
 		if FileAccess.file_exists(path):
 			Player.CHARACTER_COLOURS[idx] = (path)
@@ -63,6 +64,8 @@ func get_custom_characters() -> void:
 			else:
 				Player.CHARACTER_NAMES.append("???")
 				character_doesnt_have.append("name")
+				
+			Player.CHARACTER_GENDERS.append(json.get("gender", ""))
 			
 			if FileAccess.file_exists(char_path.path_join("CharacterColour.json")):
 				Player.CHARACTER_COLOURS.append(char_path.path_join("CharacterColour.json"))

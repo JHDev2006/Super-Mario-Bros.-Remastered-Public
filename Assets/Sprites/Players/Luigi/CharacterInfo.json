@@ -1,5 +1,6 @@
 {
 	"name": "CHAR_LUIGI",
+	"gender": "M",
 	"physics": {
 		"PHYSICS_PARAMETERS": {
 			"Default": {},

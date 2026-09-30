@@ -489,6 +489,8 @@ var last_damage_source := ""
 
 static var CHARACTER_NAMES := ["CHAR_MARIO", "CHAR_LUIGI", "CHAR_TOAD", "CHAR_TOADETTE"]
 
+static var CHARACTER_GENDERS := ["M", "M", "M", "F"]
+
 static var CHARACTER_COLOURS := [
 	("res://Assets/Sprites/Players/Mario/CharacterColour.json"),
 	("res://Assets/Sprites/Players/Luigi/CharacterColour.json"), 

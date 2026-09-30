@@ -1,5 +1,6 @@
 {
 	"name": "CHAR_TOAD",
+	"gender": "M",
 	"physics": {
 		"PHYSICS_PARAMETERS": {
 			"Default": {},

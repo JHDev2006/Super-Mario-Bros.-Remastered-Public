@@ -16,7 +16,7 @@ text = ""
 
 [node name="EndingSpeech" type="Node2D" parent="." index="2" unique_id=1443762879]
 
-[node name="AnotherCastle4" type="Label" parent="EndingSpeech" index="0" unique_id=786280292]
+[node name="AnotherCastle4" type="Label" parent="EndingSpeech" index="0" unique_id=786280292 groups=["Messages"]]
 visible = false
 visibility_layer = 2
 offset_left = -112.0
@@ -30,7 +30,7 @@ vertical_alignment = 3
 autowrap_mode = 2
 uppercase = true
 
-[node name="AnotherCastle5" type="Label" parent="EndingSpeech" index="1" unique_id=408914055]
+[node name="AnotherCastle5" type="Label" parent="EndingSpeech" index="1" unique_id=408914055 groups=["Messages"]]
 visible = false
 visibility_layer = 2
 offset_left = -112.0
@@ -44,7 +44,7 @@ vertical_alignment = 3
 autowrap_mode = 2
 uppercase = true
 
-[node name="AnotherCastle6" type="Label" parent="EndingSpeech" index="2" unique_id=1776557786]
+[node name="AnotherCastle6" type="Label" parent="EndingSpeech" index="2" unique_id=1776557786 groups=["Messages"]]
 visible = false
 visibility_layer = 2
 offset_left = -112.0

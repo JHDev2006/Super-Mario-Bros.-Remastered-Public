@@ -823,3 +823,10 @@ func handle_input() -> void:
 func warper_cooldown() -> void:
 	await get_tree().create_timer(1, false).timeout
 	Warper.can_warp = true
+
+func translate_message(key) -> String:
+	var gendered_key = key + Player.CHARACTER_GENDERS[int(Global.player_characters[0])]
+	var message = tr(gendered_key)
+	if message == gendered_key: message = tr(key)
+	message = message.replace("{PLAYER}", tr(Player.CHARACTER_NAMES[int(Global.player_characters[0])]))
+	return message
