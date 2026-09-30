@@ -282,7 +282,7 @@ func get_animation_name() -> String:
 	var airborne := not on_floor
 	var has_flight := player.has_wings
 	var moving := vel_x >= 5 and not on_wall
-	var pushing := player.input_direction != 0 and on_wall
+	var pushing := player.input_direction != 0 and on_wall and not player.in_cutscene
 	var running: bool = vel_x >= player.physics_params("RUN_SPEED") - 10
 	var jogging: bool = vel_x > player.physics_params("WALK_SPEED") and not running
 	var run_jump: bool = abs(player.velocity_x_jump_stored) >= player.physics_params("RUN_SPEED") - 10
