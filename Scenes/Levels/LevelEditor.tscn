@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c6pd7cdhx78od" path="res://Assets/Sprites/UI/Tab.png" id="11_i2jbr"]
 [ext_resource type="Texture2D" uid="uid://xsfs2psb84ql" path="res://Assets/Sprites/UI/EditorButtons.png" id="12_i2jbr"]
 [ext_resource type="Texture2D" uid="uid://bgjdnv8n8l1hb" path="res://Assets/Sprites/UI/TabSelected.png" id="12_qebwb"]
+[ext_resource type="Script" uid="uid://bwtenjnqfca6l" path="res://Scripts/Classes/UI/PackButton.gd" id="14_dsr3e"]
 [ext_resource type="Script" uid="uid://c7xreamx2wvdq" path="res://Scripts/Classes/Editor/EditorSelectorScroller.gd" id="20_jc7xg"]
 [ext_resource type="Texture2D" uid="uid://dqi2e7yddiqhy" path="res://Assets/Sprites/Editor/ScrollerIcon.png" id="22_3cjpb"]
 [ext_resource type="Script" uid="uid://c08y0c8163fec" path="res://Scripts/Parts/EntityIdMapper.gd" id="88_biei1"]
@@ -316,6 +317,14 @@ border_color = Color(0.8, 0.8, 0.8, 0)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7a43i"]
 atlas = ExtResource("205_51g7s")
 region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsr3e"]
+bg_color = Color(0, 0, 0, 0.892)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_sfuh0"]
+color = Color(1, 1, 1, 1)
+grow_begin = -1.0
+grow_end = -1.0
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_e20nl"]
 color = Color(1, 1, 1, 1)
@@ -916,7 +925,6 @@ script = ExtResource("9_p4o5x")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="TileMenu" type="CanvasLayer" parent="." unique_id=683279179]
-visible = false
 
 [node name="Panel" type="ColorRect" parent="TileMenu" unique_id=625984302]
 texture_filter = 1
@@ -973,7 +981,7 @@ icon = SubResource("AtlasTexture_xde7w")
 title = "EDITOR_MENU_BLUEPRINTS"
 linked_control = NodePath("../../PanelContainer/Blueprints")
 
-[node name="Bindings" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=834950599]
+[node name="Bindings" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=478129053]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -984,8 +992,10 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_qebwb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qebwb")
 icon = SubResource("AtlasTexture_kr3hc")
 icon_alignment = 1
+script = ExtResource("14_dsr3e")
+metadata/_custom_type_script = "uid://bwtenjnqfca6l"
 
-[node name="Save" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=635133480]
+[node name="Save" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=1305437018]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -996,8 +1006,10 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_qebwb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qebwb")
 icon = SubResource("AtlasTexture_x027r")
 icon_alignment = 1
+script = ExtResource("14_dsr3e")
+metadata/_custom_type_script = "uid://bwtenjnqfca6l"
 
-[node name="Exit" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=1405931413]
+[node name="Exit" type="Button" parent="TileMenu/MarginContainer/VBoxContainer/TabButtons" unique_id=1615610558]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -1008,6 +1020,8 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_qebwb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qebwb")
 icon = SubResource("AtlasTexture_numt2")
 icon_alignment = 1
+script = ExtResource("14_dsr3e")
+metadata/_custom_type_script = "uid://bwtenjnqfca6l"
 
 [node name="PanelContainer" type="PanelContainer" parent="TileMenu/MarginContainer/VBoxContainer" unique_id=997442337]
 layout_mode = 2
@@ -3936,7 +3950,8 @@ metadata/_edit_group_ = true
 layout_mode = 2
 tile_name = "BLOCK_INVISIBLE"
 type = 1
-icon_texture_path = "res://Scenes/Levels/LevelEditor.tscn::AtlasTexture_5ujs8"
+icon_texture_path = "res://Assets/Sprites/Blocks/InvisibleBlock.png"
+icon_region_override = Rect2(16, 0, 16, 16)
 entity_id = "Ae"
 
 [node name="Trampolines" type="Control" parent="TileMenu/MarginContainer/VBoxContainer/PanelContainer/TILES/ScrollContainer/VBoxContainer/Blocks/MarginContainer/GridContainer" unique_id=1000139006]
@@ -6954,6 +6969,76 @@ size_flags_vertical = 3
 
 [node name="ThemeSelect" parent="TileMenu" unique_id=1361028610 instance=ExtResource("206_dsu6a")]
 visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TileMenu" unique_id=628759239]
+layer = 99999
+
+[node name="NamePanel" type="Node2D" parent="TileMenu/CanvasLayer" unique_id=833173828]
+unique_name_in_owner = true
+visible = false
+
+[node name="Panel" type="PanelContainer" parent="TileMenu/CanvasLayer/NamePanel" unique_id=283092702]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dsr3e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TileMenu/CanvasLayer/NamePanel/Panel" unique_id=1451365598]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer" unique_id=1880723556]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "DICE"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Line" type="HSeparator" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer/NameLabel" unique_id=1212186095]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_sfuh0")
+
+[node name="DescriptionSizer" type="Control" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer" unique_id=868548857]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="DescPreview" type="Label" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer" unique_id=1810572914]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.46229053, 0.4622907, 0.46229017, 1)
+layout_mode = 2
+text = "..."
+uppercase = true
+
+[node name="TileDescription" type="Label" parent="TileMenu/CanvasLayer/NamePanel/Panel/VBoxContainer" unique_id=1958655815]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0.46229053, 0.4622907, 0.46229017, 1)
+layout_mode = 2
+text = "Emits a Signal"
+autowrap_mode = 2
+uppercase = true
 
 [node name="Info" type="CanvasLayer" parent="." unique_id=1889936080]
 

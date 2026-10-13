@@ -20,6 +20,7 @@ z_index = -1
 disable_mode = 1
 collision_layer = 6
 collision_mask = 0
+sync_to_physics = false
 script = ExtResource("1_ci56s")
 visuals = NodePath("Sprite")
 destruction_particle_scene = ExtResource("2_x80g6")
@@ -41,7 +42,6 @@ json_path = "res://Assets/Sprites/Tilesets/Terrain/BrickBlock.json"
 metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=577117237]
-visible = false
 shape = SubResource("RectangleShape2D_b3g5f")
 
 [node name="BlockAnimations" parent="." unique_id=1221101267 instance=ExtResource("3_nyd82")]

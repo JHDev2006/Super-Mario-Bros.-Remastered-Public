@@ -166,8 +166,9 @@ position = Vector2(1601, -32)
 pipe_id = 1
 target_level = "uid://c5x75iaysnlfp"
 exit_only = true
-[node name="Checkpoint" parent="." unique_id=2076939687 instance=ExtResource("5_6ueh5")]
+[node name="Checkpoint" parent="." unique_id=2076939687 node_paths=PackedStringArray("nodes_to_delete") instance=ExtResource("5_6ueh5")]
 position = Vector2(1328, 0)
+nodes_to_delete = [NodePath("../Enemies/Goomba12")]
 [node name="CoinHeavenWarpPoint" type="Node2D" parent="." unique_id=301065488]
 position = Vector2(2352, -208)
 script = ExtResource("26_t70ek")
@@ -202,8 +203,9 @@ tile_map_data = PackedByteArray("AABQAP3/AAABAAEAAABQAP7/AAABAAEAAABQAP//AAABAAE
 position = Vector2(1288, -56)
 [node name="InvisibleQuestionBlock2" parent="ChallengeNodes" unique_id=1922595281 instance=ExtResource("13_v81jc")]
 position = Vector2(1304, -56)
-[node name="CheckpointFlag" parent="." unique_id=1153613428 instance=ExtResource("31_x3meh")]
+[node name="CheckpointFlag" parent="." unique_id=1153613428 node_paths=PackedStringArray("nodes_to_delete") instance=ExtResource("31_x3meh")]
 position = Vector2(1328, 0)
+nodes_to_delete = [NodePath("../Enemies/Goomba12")]
 [node name="ClassicThemeNode" type="Node" parent="." unique_id=631242042]
 script = ExtResource("32_m450w")
 metadata/_custom_type_script = "uid://don436dsjhc8w"

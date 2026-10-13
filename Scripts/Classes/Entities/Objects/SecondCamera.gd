@@ -49,7 +49,8 @@ func ended() -> void:
 	$Camera2D.make_current()
 
 func _physics_process(delta: float) -> void:
-	$Camera2D.global_position = lerp($Camera2D.global_position, global_position, delta * 5)
+	if get_tree().paused == false:
+		$Camera2D.global_position = lerp($Camera2D.global_position, global_position, delta * 5)
 
 func toggle() -> void:
 	active = !active

@@ -31,4 +31,4 @@ func handle_inputs() -> void:
 		selected_index -= 1
 	selected_index = clamp(selected_index, 0, selectors.size() - 1)
 	if old_selected != selected_index:
-		selectors[selected_index].get_node("Button").mouse_entered.emit()
+		selectors[selected_index].get_node("Button").mouse_entered.emit.call_deferred()

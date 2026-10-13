@@ -10,7 +10,7 @@ func _ready() -> void:
 	Global.level_complete_begin.connect(begin)
 	for i in get_tree().get_nodes_in_group("Messages"):
 		i.text = tr(i.text).replace("{PLAYER}", tr(Player.CHARACTER_NAMES[int(Global.player_characters[0])]))
-	if play_end_music and (Global.level_editor != null or Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL):
+	if play_end_music and (Global.level_editor != null or Global.current_game_mode == Global.GameMode.CUSTOM_LEVEL or Global.in_custom_campaign()) or Global.second_quest:
 		$EndingSpeech/AnotherCastle5.modulate.a = 0
 		$EndingSpeech/AnotherCastle6.modulate.a = 0
 

@@ -17,8 +17,8 @@ func _process(_delta: float) -> void:
 	if selected:
 		handle_inputs()
 	$Cursor.modulate.a = int(selected)
-	$Title.text = tr(config_name) + ":"
-	$Value.text = ("◄" if selected_index > 0 and selected else " ") + tr(str(values[selected_index])) + ("►" if selected_index < values.size() - 1 and selected else " ")
+	%Title.text = tr(config_name) + ":"
+	%Value.text = ("◄" if selected_index > 0 and selected else " ") + tr(str(values[selected_index])) + ("►" if selected_index < values.size() - 1 and selected else " ")
 
 func handle_inputs() -> void:
 	var old := selected_index

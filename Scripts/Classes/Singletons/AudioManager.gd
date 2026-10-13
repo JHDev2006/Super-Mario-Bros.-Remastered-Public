@@ -146,10 +146,10 @@ func play_sfx(stream_name = "", position := Vector2.ZERO, pitch := 1.0, can_over
 		var stream = stream_name
 		var is_custom = false
 		if stream_name is String:
-			is_custom = sfx_library[stream_name].contains(Global.config_path.path_join("custom_characters"))
 			var stream_path = sfx_library[stream_name]
 			if stream_path is Array:
 				stream_path = stream_path.pick_random()
+			is_custom = stream_path.contains(Global.config_path.path_join("custom_characters"))
 			stream_path = ResourceSetter.get_pure_resource_path(stream_path)
 			var json_path = ResourceSetter.get_pure_resource_path(stream_path.replace(stream_path.get_extension(), "json"))
 			if FileAccess.file_exists(json_path):
@@ -362,7 +362,7 @@ func generate_interactive_stream(bgm_file := {}) -> AudioStreamInteractive:
 		else:
 			Global.log_error("Hurry variation source for current track was not found.")
 		if (bgm_file["Hurry"].has("loop")):
-			normal_loop = bgm_file["Hurry"]["loop"]
+			hurry_loop = bgm_file["Hurry"]["loop"]
 		else:
 			Global.log_warning("Hurry variation looping for current track was not found.")
 	stream.set_clip_stream(0, import_stream(normal_path, normal_loop))
@@ -371,7 +371,12 @@ func generate_interactive_stream(bgm_file := {}) -> AudioStreamInteractive:
 
 func import_stream(file_path := "", loop_point := -1.0) -> AudioStream:
 	var stream = null
-	if file_path.begins_with("res://"):
+	# Importing
+
+	if file_path.ends_with(".bgm"):
+		stream = generate_interactive_stream(JSONParser.parse_to_dict(file_path))
+
+	elif file_path.begins_with("res://"):
 		stream = load(file_path)
 	elif file_path.ends_with(".mp3"):
 		stream = AudioStreamMP3.load_from_file(file_path)
@@ -379,13 +384,17 @@ func import_stream(file_path := "", loop_point := -1.0) -> AudioStream:
 		stream = AudioStreamOggVorbis.load_from_file(file_path)
 	elif file_path.ends_with(".wav"):
 		stream = AudioStreamWAV.load_from_file(file_path)
+	elif file_path.ends_with(".json"):
+		stream = create_stream_from_json(file_path)
+	
+	# Looping
 	if file_path.ends_with(".mp3"):
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
 	elif file_path.ends_with(".ogg"):
 		stream.set_loop(loop_point >= 0)
 		stream.set_loop_offset(loop_point)
-	elif file_path.ends_with(".json"):
-		stream = create_stream_from_json(file_path)
+	elif file_path.ends_with(".wav"):
+		stream.loop_begin = loop_point
 	return stream
 	

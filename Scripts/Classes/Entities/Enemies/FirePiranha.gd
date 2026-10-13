@@ -70,7 +70,7 @@ func spawn_fireball() -> void:
 	if Settings.file.audio.extra_sfx == 1:
 		AudioManager.play_sfx("plant_fireball", node.global_position)
 	var shoot_angle = node.global_position.direction_to(target_player.global_position).angle()
-	match get_direction_vector().rotated(%RotationJoint.global_rotation):
+	match get_direction_vector().rotated(plant.get_node("%RotationJoint").global_rotation):
 		Vector2(1, -1):
 			shoot_angle = clamp(snapped(shoot_angle, deg_to_rad(22.5)), deg_to_rad(-45), deg_to_rad(-22.5))
 		Vector2(1, 1):

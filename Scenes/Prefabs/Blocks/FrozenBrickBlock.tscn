@@ -55,6 +55,11 @@ hitbox = NodePath("../Hitbox")
 script = ExtResource("7_b3hph")
 metadata/_custom_type_script = "uid://ba18grqjixded"
 
+[node name="MeltedParent" type="Node2D" parent="." unique_id=2073036872]
+visible = false
+top_level = true
+position = Vector2(802, 6880)
+
 [connection signal="area_entered" from="Hitbox" to="." method="area_entered"]
 [connection signal="fiery_object_hit" from="FireDetection" to="." method="melt" flags=7 unbinds=1]
-[connection signal="fireball_hit" from="FireDetection" to="." method="fireball_entered" flags=6]
+[connection signal="fireball_hit" from="FireDetection" to="." method="fireball_entered" flags=7]

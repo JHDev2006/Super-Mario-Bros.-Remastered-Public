@@ -1,0 +1,13 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://cv3vildm3bnc2"]
+
+[ext_resource type="Texture2D" uid="uid://bcvq28r3d3pij" path="res://Assets/Sprites/UI/ScrollBar.png" id="1_45tr5"]
+
+[resource]
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("1_45tr5")
+texture_margin_left = 1.0
+texture_margin_top = 2.0
+texture_margin_right = 1.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(0, 12, 11, 12)

@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bc1mrna4kybhv" path="res://Scenes/Prefabs/Blocks/QuestionBlocks/QuestionBlock.tscn" id="16_26l1k"]
 [ext_resource type="PackedScene" uid="uid://bwdwavf4rp1m1" path="res://Scenes/Prefabs/Entities/Items/HammerItem.tscn" id="16_v3p8w"]
 [ext_resource type="PackedScene" uid="uid://cwhvsfp31cuu6" path="res://Scenes/Prefabs/Entities/Enemies/FighterFly.tscn" id="17_v3p8w"]
-[ext_resource type="PackedScene" uid="uid://dn2oonncrmxb3" path="res://Scenes/Parts/LargeSPCastleDeco.tscn" id="40_b1ggo"]
+[ext_resource type="PackedScene" uid="uid://cbl8l51osppso" path="res://Scenes/Parts/LargeStartCastle.tscn" id="23_60a4y"]
 [ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="43_q1cm3"]
 [ext_resource type="PackedScene" uid="uid://cmbpqnq10arts" path="res://Scenes/Prefabs/Entities/Items/RedCoin.tscn" id="44_w0fn8"]
 [ext_resource type="PackedScene" uid="uid://d3gnwmvds4ors" path="res://Scenes/Prefabs/Entities/Items/SpinningRedCoin.tscn" id="45_w0fn8"]
@@ -105,8 +105,6 @@ metadata/_custom_type_script = "uid://cybpwmw4ywoow"
 [node name="InvisibleQuestionBlock" parent="." unique_id=968656131 instance=ExtResource("15_23dpn")]
 position = Vector2(3048, -136)
 item = ExtResource("16_v3p8w")
-[node name="LargeCastleDeco" parent="." unique_id=48467756 instance=ExtResource("40_b1ggo")]
-position = Vector2(-184, -88)
 [node name="ChallengeNodes" type="Node" parent="." unique_id=415770154 node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("43_q1cm3")
 nodes_to_delete = [NodePath("../Blocks")]
@@ -141,3 +139,5 @@ position = Vector2(112, -48)
 pipe_id = 1
 target_level = "uid://dvqwotpb7kb5q"
 exit_only = true
+[node name="LargeCastleDeco" parent="." unique_id=1423333120 instance=ExtResource("23_60a4y")]
+position = Vector2(-216, -88)

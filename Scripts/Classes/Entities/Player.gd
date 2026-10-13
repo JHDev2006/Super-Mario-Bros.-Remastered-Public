@@ -131,11 +131,13 @@ extends CharacterBody2D
 		
 		"BOUNCE_SPEED": {
 			"SMB1": {"value": 248.0},
-			"SMBLL": {"value": 370.0}
+			"SMBLL": {"value": 370.0},
+			"SMBANN": {"link": "SMBLL"}
 		},
 		"BOUNCE_JUMP_SPEED": {
 			"SMB1": {"value": 310.0},
-			"SMBLL": {"value": 370.0}
+			"SMBLL": {"value": 370.0},
+			"SMBANN": {"link": "SMBLL"}
 		},                                 # The strength at which the player bounces off enemies without any extra input, measured in px/sec.   # The strength at which the player bounces off enemies while holding jump, measured in px/sec.
 		
 		"FALL_GRAVITY_PREDETERMINED": true,          # Determines if the player's gravity is determined by their last X velocity from leaving the ground rather than their current X velocity.
@@ -331,8 +333,8 @@ extends CharacterBody2D
 		"RAINBOW_POWERUP_FX": true,        # Determines whether or not the player will play the rainbow effect when powering up.
 		"RAINBOW_FX_SPEED": 15.0,          # Determines the speed of the rainbow effect in other scenarios, measured in cycles/sec
 		"ICE_SPEED_MOD": 1.5,
-		"WALK_SFX": "walk",                # Determines which sound effect to play when walking.
-		"RUN_SFX": "run",                  # Determines which sound effect to play when running.
+		"WALK_SFX": "",                # Determines which sound effect to play when walking.
+		"RUN_SFX": "",                  # Determines which sound effect to play when running.
 		"SKID_SFX": "skid",            # Determines which sound effect to play when skidding.
 		"JUMP_SFX": "big_jump",            # Determines which sound effect to play when jumping.
 		"TRAMPOLINE_SFX": "big_trampoline",          # Determines which sound effect to play when bouncing on a trampoline.
@@ -812,8 +814,8 @@ func _physics_process(delta: float) -> void:
 	elif is_actually_on_floor():
 		has_flung = false
 		projectiles_fired_since_left_ground = 0
+		land_on_ground()
 		if not is_invincible:
-			land_on_ground()
 			stomp_combo = 0
 	elif actual_velocity_y() > 15:
 		can_bump_sfx = true
@@ -890,21 +892,27 @@ func apply_character_sfx_map() -> void:
 	var json = JSONParser.parse_to_dict(path)
 	
 	for i in json:
-		var res_path = "res://Assets/Audio/SFX/" + json[i]
-		res_path = ResourceSetter.get_pure_resource_path(res_path)
-		if FileAccess.file_exists(res_path) == false or custom_character:
-			var directory = "res://Assets/Sprites/Players/" + character + "/" + json[i]
-			if int(Global.player_characters[player_id]) > 3:
-				directory = directory.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
-			directory = ResourceSetter.get_pure_resource_path(directory)
-			if FileAccess.file_exists(directory):
-				json[i] = directory
-			else:
-				json[i] = res_path
+		if json[i] is Array:
+			var arr := []
+			for x in json[i]:
+				arr.append(get_sfx_path(x, json, custom_character))
+			json[i] = arr
 		else:
-			json[i] = res_path
+			json[i] = get_sfx_path(json[i], json, custom_character)
 	
 	AudioManager.load_sfx_map(json)
+
+func get_sfx_path(starting_path := "", json := {}, is_custom_character := false) -> String:
+	var res_path = "res://Assets/Audio/SFX/" + starting_path
+	res_path = ResourceSetter.get_pure_resource_path(res_path)
+	if FileAccess.file_exists(res_path) == false or is_custom_character:
+		var directory = "res://Assets/Sprites/Players/" + character + "/" + starting_path
+		if int(Global.player_characters[player_id]) > 3:
+			directory = directory.replace("res://Assets/Sprites/Players", Global.config_path.path_join("custom_characters/"))
+		directory = ResourceSetter.get_pure_resource_path(directory)
+		if FileAccess.file_exists(directory):
+			return directory
+	return res_path
 
 func refresh_hitbox() -> void:
 	for i in $Hitbox.get_overlapping_areas():
@@ -1106,6 +1114,7 @@ func throw_projectile() -> void:
 	attacked.emit()
 	projectile_type = load(physics_params("PROJ_TYPE", POWER_PARAMETERS) + ".tscn")
 	var node = projectile_type.instantiate()
+	node.set_meta("IsPlayerProjectile", "true")
 	var offset = physics_params("PROJ_OFFSET", POWER_PARAMETERS)
 	var angle = Vector2.ZERO if physics_params("PROJ_ANGLE", POWER_PARAMETERS) == null else Vector2.from_angle(deg_to_rad(physics_params("PROJ_ANGLE", POWER_PARAMETERS)))
 	var speed = physics_params("PROJ_SPEED", POWER_PARAMETERS)
@@ -1713,6 +1722,14 @@ func water_entered() -> void:
 	projectiles_fired_since_left_ground = 0
 	velocity.y = max(-physics_params("SWIM_HEIGHT"), velocity.y)
 
+func apply_active_flingers() -> void:
+	for i: FlingerGizmo in get_tree().get_nodes_in_group("PlayerFlingers"):
+		if i.active:
+			i.launch()
+
+func move() -> void:
+	apply_active_flingers()
+	move_and_slide()
 
 func on_modifier_applied() -> void:
 	pass

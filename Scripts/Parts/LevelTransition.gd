@@ -15,6 +15,7 @@ const PIPE_CUTSCENE_OVERRIDE := {
 	"SMBANN": {[2, 2]: "res://Scenes/Levels/PipeCutsceneWater.tscn", [7, 2]: "res://Scenes/Levels/PipeCutsceneWater.tscn"},
 }
 
+const LETTER_WORLDS := ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"," X", "Y", "Z", "STOP."]
 
 var can_transition := false
 var level_best_time := 0.0
@@ -37,7 +38,7 @@ func _ready() -> void:
 	if world_num == "-1":
 		world_num = " "
 	if Global.world_num >= 10:
-		world_num = ["A", "B", "C", "D"][Global.world_num % 10]
+		world_num = LETTER_WORLDS[Global.world_num % 10]
 	
 	var lvl_idx := SaveManager.get_level_idx(Global.world_num, Global.level_num)
 	SaveManager.visited_levels[lvl_idx] = "1"

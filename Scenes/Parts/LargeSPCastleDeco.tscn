@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://dn2oonncrmxb3"]
 
 [ext_resource type="PackedScene" uid="uid://cbl8l51osppso" path="res://Scenes/Parts/LargeStartCastle.tscn" id="1_wnk7n"]
-[ext_resource type="PackedScene" uid="uid://bem5ht17ukgcs" path="res://Scenes/Parts/LargeSPCastleVisual.tscn" id="2_12kkg"]
 
 [node name="LargeCastleDeco" unique_id=117211497 instance=ExtResource("1_wnk7n")]
 
 [node name="SmallCastleVisual" parent="." index="0" unique_id=671792054]
 visible = false
-
-[node name="SmallCastleVisual2" parent="." index="1" unique_id=1791351898 instance=ExtResource("2_12kkg")]
-position = Vector2(0, 48)

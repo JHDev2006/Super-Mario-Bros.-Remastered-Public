@@ -30,7 +30,7 @@ func physics_update(_delta: float) -> void:
 	else:
 		player.sprite.speed_scale = 2
 	player.play_animation("FlagSlide")
-	player.move_and_slide()
+	player.move()
 
 func ending_params(type := ""):
 	return player.physics_params(type, player.ENDING_PARAMETERS)

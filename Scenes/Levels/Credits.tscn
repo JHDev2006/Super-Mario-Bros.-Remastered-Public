@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b3stoe2kp1nv1" path="res://Scripts/UI/Credits.gd" id="1_db8c5"]
 [ext_resource type="AudioStream" uid="uid://cdhsj02wqdt7y" path="res://Assets/Audio/BGM/Credits.mp3" id="1_k57dj"]
-[ext_resource type="Script" uid="uid://dmtw1jesw1vl7" path="res://Scripts/Classes/Components/PackStreamPlayer.gd" id="3_suvme"]
 [ext_resource type="Texture2D" uid="uid://bmvf1l15447r" path="res://Assets/Sprites/UI/Staff.png" id="4_g2gtw"]
 [ext_resource type="Texture2D" uid="uid://vqtqnrt5rco1" path="res://Assets/Sprites/UI/CreditsDioramas/1.png" id="4_j3afk"]
+[ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_x745s"]
 [ext_resource type="Texture2D" uid="uid://dvo3gs4wg68hl" path="res://Assets/Sprites/UI/CreditsDioramas/2.png" id="6_s34bh"]
 [ext_resource type="Texture2D" uid="uid://c3wphsst0h6ie" path="res://Assets/Sprites/UI/CreditsDioramas/3.png" id="7_k6bv2"]
 [ext_resource type="Texture2D" uid="uid://bn3mqsvovdtbx" path="res://Assets/Sprites/UI/CreditsDioramas/4.png" id="8_3648a"]
@@ -39,7 +39,7 @@ region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owhsx"]
 atlas = ExtResource("4_g2gtw")
-region = Rect2(16, 112, 16, 16)
+region = Rect2(0, 112, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8pyc7"]
 atlas = ExtResource("4_g2gtw")
@@ -128,6 +128,10 @@ region = Rect2(0, 32, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ttapi"]
 atlas = ExtResource("4_g2gtw")
 region = Rect2(32, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbi86"]
+atlas = ExtResource("4_g2gtw")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g72p5"]
 atlas = ExtResource("4_g2gtw")
@@ -271,7 +275,7 @@ region = Rect2(96, 80, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_da2e7"]
 atlas = ExtResource("4_g2gtw")
-region = Rect2(32, 112, 16, 16)
+region = Rect2(16, 112, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2gfq"]
 atlas = ExtResource("4_g2gtw")
@@ -291,15 +295,11 @@ region = Rect2(48, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cgqty"]
 atlas = ExtResource("4_g2gtw")
-region = Rect2(80, 96, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gbi86"]
-atlas = ExtResource("4_g2gtw")
 region = Rect2(64, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mrxkq"]
 atlas = ExtResource("4_g2gtw")
-region = Rect2(0, 112, 16, 16)
+region = Rect2(96, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x68qv"]
 atlas = ExtResource("4_g2gtw")
@@ -307,7 +307,7 @@ region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ma7ga"]
 atlas = ExtResource("4_g2gtw")
-region = Rect2(96, 96, 16, 16)
+region = Rect2(80, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7s4gc"]
 atlas = ExtResource("14_4e2pw")
@@ -331,11 +331,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=2055088138]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=975875184]
 stream = ExtResource("1_k57dj")
 bus = &"Music"
-script = ExtResource("3_suvme")
-metadata/_custom_type_script = "uid://dmtw1jesw1vl7"
+
+[node name="ResourceSetterNew" type="Node" parent="Music" unique_id=496570686 node_paths=PackedStringArray("node_to_affect")]
+script = ExtResource("4_x745s")
+node_to_affect = NodePath("..")
+property_name = "stream"
+mode = 2
+json_path = "res://Assets/Audio/BGM/Credits.json"
+metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [node name="Labels" type="Node" parent="." unique_id=1273351746]
 
@@ -1374,6 +1380,27 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
+[node name="Label9" type="Label" parent="Labels/Sound/Label2" unique_id=295952007]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 64.0
+offset_bottom = 96.0
+text = "OhTHATGUY"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Sound/Label2/Label9" unique_id=1207822231]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_gbi86")
+stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
 [node name="TextureRect" type="TextureRect" parent="Labels/Sound" unique_id=2084301385]
 layout_mode = 0
 offset_left = 120.0
@@ -1385,7 +1412,6 @@ script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Localizers" type="Control" parent="Labels" unique_id=1796768344]
-visible = false
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -1395,16 +1421,29 @@ offset_right = 128.0
 offset_bottom = 240.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="Labels/Localizers" unique_id=1631401474]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers" unique_id=103598155]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 256.0
+offset_bottom = 112.0
+texture = ExtResource("11_kpq8t")
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Labels/Localizers" unique_id=129145814]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 104.0
-offset_bottom = 24.0
+offset_right = 96.0
+offset_bottom = 48.0
+
+[node name="Label" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=1631401474]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "CREDITS_LOCALE"
 uppercase = true
 
-[node name="HSeparator" type="HSeparator" parent="Labels/Localizers/Label" unique_id=8788557]
+[node name="HSeparator" type="HSeparator" parent="Labels/Localizers/VBoxContainer/Label" unique_id=8788557]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -1415,15 +1454,13 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/separator = SubResource("StyleBoxLine_g2gtw")
 
-[node name="Label2" type="Label" parent="Labels/Localizers/Label" unique_id=667289768]
-layout_mode = 0
-offset_top = 16.0
-offset_right = 40.0
-offset_bottom = 32.0
+[node name="Label2" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=667289768]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "Cube"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label2" unique_id=852602510]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label2" unique_id=852602510]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1436,7 +1473,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label2/TextureRect" unique_id=1233921851]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label2/TextureRect" unique_id=1233921851]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1449,15 +1486,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label3" type="Label" parent="Labels/Localizers/Label" unique_id=2142714979]
-layout_mode = 0
-offset_top = 32.0
-offset_right = 40.0
-offset_bottom = 48.0
+[node name="Label3" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=2142714979]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "TRIPPY"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label3" unique_id=2116530336]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label3" unique_id=2116530336]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1470,7 +1505,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label3/TextureRect" unique_id=888855918]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label3/TextureRect" unique_id=888855918]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1483,15 +1518,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label4" type="Label" parent="Labels/Localizers/Label" unique_id=1979044852]
-layout_mode = 0
-offset_top = 48.0
-offset_right = 40.0
-offset_bottom = 64.0
+[node name="Label4" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=1979044852]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "SlavaWow"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label4" unique_id=403840305]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label4" unique_id=403840305]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1504,7 +1537,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label4/TextureRect" unique_id=1482430745]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label4/TextureRect" unique_id=1482430745]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1517,15 +1550,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label5" type="Label" parent="Labels/Localizers/Label" unique_id=905706831]
-layout_mode = 0
-offset_top = 64.0
-offset_right = 64.0
-offset_bottom = 80.0
+[node name="Label5" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=905706831]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "Makerk6"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label5" unique_id=522167757]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label5" unique_id=522167757]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1538,7 +1569,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label5/TextureRect" unique_id=1280685036]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label5/TextureRect" unique_id=1280685036]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1551,15 +1582,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label6" type="Label" parent="Labels/Localizers/Label" unique_id=1331486162]
-layout_mode = 0
-offset_top = 80.0
-offset_right = 64.0
-offset_bottom = 96.0
+[node name="Label6" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=1331486162]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "vannyarts"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label6" unique_id=286070239]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label6" unique_id=286070239]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1572,7 +1601,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label6/TextureRect" unique_id=1517718616]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label6/TextureRect" unique_id=1517718616]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1585,15 +1614,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label7" type="Label" parent="Labels/Localizers/Label" unique_id=1980451453]
-layout_mode = 0
-offset_top = 96.0
-offset_right = 80.0
-offset_bottom = 112.0
+[node name="Label7" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=1980451453]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "speedymcfly"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label7" unique_id=884238873]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label7" unique_id=884238873]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1606,7 +1633,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label7/TextureRect" unique_id=1041523939]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label7/TextureRect" unique_id=1041523939]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1619,15 +1646,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label8" type="Label" parent="Labels/Localizers/Label" unique_id=1165600220]
-layout_mode = 0
-offset_top = 112.0
-offset_right = 96.0
-offset_bottom = 128.0
+[node name="Label8" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=1165600220]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "Kirbo The Poyo"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label8" unique_id=1737382545]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label8" unique_id=1737382545]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1640,7 +1665,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label8/TextureRect" unique_id=1986692141]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label8/TextureRect" unique_id=1986692141]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1653,15 +1678,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label9" type="Label" parent="Labels/Localizers/Label" unique_id=1215010210]
-layout_mode = 0
-offset_top = 128.0
-offset_right = 96.0
-offset_bottom = 144.0
+[node name="Label9" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=1215010210]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "_Apostrophe"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label9" unique_id=808776928]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label9" unique_id=808776928]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1674,7 +1697,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label9/TextureRect" unique_id=1039728956]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label9/TextureRect" unique_id=1039728956]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1687,15 +1710,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label10" type="Label" parent="Labels/Localizers/Label" unique_id=706928944]
-layout_mode = 0
-offset_top = 144.0
-offset_right = 56.0
-offset_bottom = 160.0
+[node name="Label10" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=706928944]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "TBB369"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label10" unique_id=2048717439]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label10" unique_id=2048717439]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1708,7 +1729,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label10/TextureRect" unique_id=333295733]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label10/TextureRect" unique_id=333295733]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1721,15 +1742,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label11" type="Label" parent="Labels/Localizers/Label" unique_id=520566711]
-layout_mode = 0
-offset_top = 160.0
-offset_right = 56.0
-offset_bottom = 176.0
+[node name="Label11" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=520566711]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "CHRYSS"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label11" unique_id=2023029577]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label11" unique_id=2023029577]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1742,7 +1761,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label11/TextureRect" unique_id=1464464852]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label11/TextureRect" unique_id=1464464852]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1755,15 +1774,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label12" type="Label" parent="Labels/Localizers/Label" unique_id=1758826491]
-layout_mode = 0
-offset_top = 176.0
-offset_right = 56.0
-offset_bottom = 192.0
-text = "TheOliveOli"
+[node name="Label12" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=1758826491]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "MOXXTHEPOSSUM"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label12" unique_id=1275528308]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label12" unique_id=1275528308]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1776,7 +1793,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label12/TextureRect" unique_id=721585055]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label12/TextureRect" unique_id=721585055]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1789,15 +1806,13 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label13" type="Label" parent="Labels/Localizers/Label" unique_id=1786291351]
-layout_mode = 0
-offset_top = 192.0
-offset_right = 96.0
-offset_bottom = 208.0
+[node name="Label13" type="Label" parent="Labels/Localizers/VBoxContainer" unique_id=1786291351]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "Edwrin (Skopler)"
 uppercase = true
 
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/Label/Label13" unique_id=1604613376]
+[node name="TextureRect" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label13" unique_id=1604613376]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1810,7 +1825,7 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/Label/Label13/TextureRect" unique_id=1266348769]
+[node name="TextureRect2" type="TextureRect" parent="Labels/Localizers/VBoxContainer/Label13/TextureRect" unique_id=1266348769]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -1820,16 +1835,6 @@ offset_bottom = 16.0
 grow_horizontal = 0
 texture = SubResource("AtlasTexture_bdyah")
 stretch_mode = 2
-script = ExtResource("11_d4vu4")
-metadata/_custom_type_script = "uid://ca3bew33g45eq"
-
-[node name="TextureRect" type="TextureRect" parent="Labels/Localizers" unique_id=103598155]
-layout_mode = 0
-offset_left = 120.0
-offset_top = 8.0
-offset_right = 248.0
-offset_bottom = 120.0
-texture = ExtResource("11_kpq8t")
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
@@ -2458,6 +2463,7 @@ script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label4" type="Label" parent="Labels/Github/Label3" unique_id=1168154163]
+visible = false
 layout_mode = 0
 offset_left = -40.0
 offset_top = 56.0
@@ -2547,6 +2553,29 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
+[node name="Label25" type="Label" parent="Labels/Github/Label3" unique_id=1070078399]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 56.0
+offset_right = 48.0
+offset_bottom = 72.0
+text = "DawnLR"
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="Labels/Github/Label3/Label25" unique_id=193627832]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_i07m6")
+stretch_mode = 2
+script = ExtResource("11_d4vu4")
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
+
 [node name="Label8" type="Label" parent="Labels/Github/Label3" unique_id=486365366]
 layout_mode = 0
 offset_left = 144.0
@@ -2569,33 +2598,11 @@ stretch_mode = 2
 script = ExtResource("11_d4vu4")
 metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
-[node name="Label9" type="Label" parent="Labels/Github/Label3" unique_id=2087669527]
+[node name="Label10" type="Label" parent="Labels/Github/Label3" unique_id=866544637]
 layout_mode = 0
 offset_left = -40.0
 offset_top = 88.0
-offset_right = 16.0
-offset_bottom = 104.0
-text = "Nabbup"
-uppercase = true
-
-[node name="TextureRect" type="TextureRect" parent="Labels/Github/Label3/Label9" unique_id=592847514]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_right = 16.0
-offset_bottom = 16.0
-grow_horizontal = 0
-texture = SubResource("AtlasTexture_gbi86")
-stretch_mode = 2
-script = ExtResource("11_d4vu4")
-metadata/_custom_type_script = "uid://ca3bew33g45eq"
-
-[node name="Label10" type="Label" parent="Labels/Github/Label3" unique_id=866544637]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 88.0
-offset_right = 120.0
+offset_right = 40.0
 offset_bottom = 104.0
 text = "jdaster64"
 uppercase = true
@@ -2682,9 +2689,9 @@ metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label15" type="Label" parent="Labels/Github/Label3" unique_id=1836890548]
 layout_mode = 0
-offset_left = 144.0
+offset_left = 64.0
 offset_top = 88.0
-offset_right = 208.0
+offset_right = 128.0
 offset_bottom = 104.0
 text = "renhoex"
 uppercase = true
@@ -2705,10 +2712,10 @@ metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label16" type="Label" parent="Labels/Github/Label3" unique_id=1304366771]
 layout_mode = 0
-offset_left = 152.0
-offset_top = 104.0
-offset_right = 200.0
-offset_bottom = 120.0
+offset_left = 136.0
+offset_top = 88.0
+offset_right = 184.0
+offset_bottom = 104.0
 text = "a2937"
 uppercase = true
 
@@ -2892,7 +2899,7 @@ offset_left = 24.0
 offset_top = 168.0
 offset_right = 120.0
 offset_bottom = 184.0
-text = "TheOliveOli"
+text = "MOXXTHEPOSSUM"
 uppercase = true
 
 [node name="TextureRect" type="TextureRect" parent="Labels/Github/Label3/Label23" unique_id=857962155]

@@ -6,8 +6,8 @@ extends Node
 @export var property_name := ""
 @export var mode: ResourceMode = ResourceMode.SPRITE_FRAMES
 
-var surpress_warnings := false
-var surpress_errors := false
+static var surpress_warnings = null
+static var surpress_errors := false
 
 ## Backup of the last json path.
 var backup_json_path := ""
@@ -26,6 +26,7 @@ enum ResourceMode {SPRITE_FRAMES, TEXTURE, AUDIO, RAW, FONT, THEME}
 @export var sync: Array[ResourceSetterNew] = []
 
 static var cache := {}
+static var material_cache := {}
 static var property_cache := {}
 static var active_flags := []
 static var sequences := {}
@@ -72,7 +73,7 @@ func update_resource() -> void:
 		active_flags.clear()
 		property_cache.clear()
 	if node_to_affect != null:
-		var json = load(json_path)
+		var json: JSON = load(json_path)
 		# DawnLR: Load backup if the json path doesn't return a file.
 		if (json == null):
 			json = load(backup_json_path)
@@ -91,12 +92,25 @@ func get_resource(json_file: JSON) -> Resource:
 		var scene_name = owner.scene_file_path.get_file().get_basename()
 		
 		# DawnLR: Is this even possible? Like, I know I managed to do it once, but it's really hard to pull off.
-		log_error("JSON file not found. Missing for Node: %s" % str(scene_name))
+		log_error("JSON file not found. Missing for Node: %s" % str(scene_name) + " Check the log.")
 		return
 	if cache.has(json_file.resource_path) and use_cache and force_properties.is_empty():
+		var cached_resource = cache[json_file.resource_path]
+		if cached_resource == null:
+			return null
+		
+		if cached_resource.has_meta("loop_offsets") and node_to_affect is AnimatedSprite2D:
+			var loop_offsets = cached_resource.get_meta("loop_offsets")
+			for i in loop_offsets.keys():
+				node_to_affect.animation_looped.connect(on_animation_looped.bind(i, loop_offsets[i]))
+		
+		if material_cache.has(json_file.resource_path):
+			set_material(material_cache[json_file.resource_path])
+		
 		if property_cache.has(json_file.resource_path):
 			apply_properties(property_cache[json_file.resource_path])
-		return cache[json_file.resource_path]
+		
+		return cached_resource
 	
 	var resource: Resource = null
 	var resource_path = json_file.resource_path
@@ -111,8 +125,6 @@ func get_resource(json_file: JSON) -> Resource:
 		resource_path = new_path
 	
 	source_json = JSONParser.parse_to_dict(resource_path)
-	surpress_warnings = false
-	surpress_errors = false
 	if (FileAccess.file_exists(resource_path) && source_json.is_empty() && current_resource_pack != "BaseAssets"):
 		# DawnLR: Given file cannot be worked with, skipping resource pack!
 		ignore_resource_from.append(current_resource_pack)
@@ -143,7 +155,7 @@ func get_resource(json_file: JSON) -> Resource:
 		if (ignore_resource_from.has(i) && i != "BaseAssets"):
 			continue
 		source_resource_path = get_resource_pack_path(source_resource_path, i)
-		if (!FileAccess.file_exists(source_resource_path) && i != "BaseAssets" && mode != ResourceMode.THEME):
+		if (!FileAccess.file_exists(source_resource_path) && i != "BaseAssets" && i.contains("user://") && mode != ResourceMode.THEME):
 			log_error("Variation source needed is not an existing file: \"%s\". Stopped at %s." % [resource_path, get_variation_path()], false)
 			ignore_resource_from.append(i)
 			return get_resource(json_file)
@@ -179,7 +191,6 @@ func get_resource(json_file: JSON) -> Resource:
 			if json.has("animation_overrides"):
 				for i in json.get("animation_overrides").keys():
 					animation_json[i] = json.get("animation_overrides")[i]
-			
 			resource = load_image_from_path(source_resource_path)
 			if json.has("rect"):
 				if (json["rect"].size() == 4):
@@ -190,7 +201,7 @@ func get_resource(json_file: JSON) -> Resource:
 				else:
 					rect_error_message.call()
 			
-			if animation_json != {}:
+			if animation_json != {} and resource != null:
 				resource = create_sprite_frames_from_image(resource, animation_json, resource_path)
 			else:
 				var sprite_frames = SpriteFrames.new()
@@ -216,7 +227,10 @@ func get_resource(json_file: JSON) -> Resource:
 				else:
 					rect_error_message.call()
 		ResourceMode.AUDIO:
-			resource = load_audio_from_path(source_resource_path)
+			var loop_point = json.get("loop", -1.0)
+			print(source_resource_path)
+			resource = AudioManager.import_stream(source_resource_path, loop_point)
+			print(resource)
 		ResourceMode.RAW:
 			pass
 		ResourceMode.FONT:
@@ -227,6 +241,7 @@ func get_resource(json_file: JSON) -> Resource:
 				resource = load(source_resource_path)
 			resource.set_meta("base_path", source_resource_path)
 		ResourceMode.THEME:
+			print([json, get_variation_path()])
 			Global.theme_override = json.get("theme", "")
 			Global.time_override = json.get("time", "")
 			Global.music_override = json.get("music", "")
@@ -236,6 +251,19 @@ func get_resource(json_file: JSON) -> Resource:
 			Global.particle_override = json.get("particles", -1)
 			Global.extra_music_override = json.get("extra_bgm", "")
 			Global.liquid_override = json.get("liquid", -1)
+			Global.overlay_clouds_override = json.get("overlay_clouds", -1)
+			Global.second_order_override = json.get("second_layer_order", -1)
+	
+	if mode in [ResourceMode.TEXTURE, ResourceMode.SPRITE_FRAMES]:
+		var blend_mode := "mix"
+		if json.has("blend"):
+			blend_mode = json["blend"]
+		elif source_json.has("blend"):
+			blend_mode = source_json["blend"]
+		if use_cache and not is_variable:
+			material_cache[json_file.resource_path] = blend_mode
+		set_material(blend_mode)
+	
 	if cache.has(json_file.resource_path) == false and use_cache and not is_variable:
 		cache[json_file.resource_path] = resource
 	
@@ -275,26 +303,29 @@ func get_variation_path() -> String:
 
 func get_variation_json(json := {}) -> Dictionary:
 	var used_default := true
-	print(json)
-	if json.has("mute_warnings"):
-		surpress_warnings = true
-	if json.has("mute_errors"):
-		surpress_errors = true
 	
 	for i in json.keys().filter(func(key): return key.contains("config:")):
 		get_config_file(current_resource_pack)
 		if config_to_use != {}:
 			var option_name = i.get_slice(":", 1)
+			var got_config := false
+			if config_to_use.options.has(option_name) == false:
+				for x in Settings.file.visuals.resource_packs:
+					get_config_file(x)
+					if config_to_use.options.has(option_name):
+						break
+					
 			if config_to_use.options.has(option_name):
 				variation_needed.append(option_name)
 				used_default = false
 				
 				var config_json = json[i][config_to_use.options[option_name]]
 				if config_json.has("link"):
-					json = get_variation_json(json[config_json.get("link")])
+					json = get_variation_json(json[i][config_json.get("link")])
 				else:
 					json = get_variation_json(config_json)
 				break
+				
 	
 	for i in json.keys().filter(func(key): return key.contains("flag:")):
 		if active_flags.has(i):
@@ -482,11 +513,9 @@ func get_variation_json(json := {}) -> Dictionary:
 	
 	meta_data_keys = json.keys().filter(func(key): return key.contains("LevelMetadata"))
 	if meta_data_keys.is_empty() == false:
-		print(Global.level_metadata)
 		is_variable = true
 		for i in meta_data_keys:
 			var meta_name = i.get_slice(":", 1)
-			print(Global.level_metadata)
 			var meta_value = str(Global.level_metadata.get(meta_name, "Default"))
 			var meta_json = null
 			if json[i].has(meta_value):
@@ -525,6 +554,7 @@ func create_sprite_frames_from_image(image: Resource, animation_json := {}, reso
 	
 	var sprite_frames = SpriteFrames.new()
 	sprite_frames.remove_animation("default")
+	var loop_offsets := {}
 	for anim_name in animation_json.keys():
 		if animation_json[anim_name].has("link"):
 			animation_json[anim_name] = animation_json[animation_json[anim_name].link]
@@ -539,6 +569,9 @@ func create_sprite_frames_from_image(image: Resource, animation_json := {}, reso
 					continue
 				if (animation_json[anim_name].has("loop")):
 					sprite_frames.set_animation_loop(anim_name, animation_json[anim_name].loop)
+					if animation_json[anim_name].has("loop_offset") and node_to_affect is AnimatedSprite2D:
+						loop_offsets[anim_name] = animation_json[anim_name].get("loop_offset", 0)
+						node_to_affect.animation_looped.connect(on_animation_looped.bind(anim_name, animation_json[anim_name].get("loop_offset", 0)))
 				else:
 					log_warning("Animation frame for resource: \"%s\" has no loop set: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
 				if (animation_json[anim_name].has("speed")):
@@ -553,14 +586,16 @@ func create_sprite_frames_from_image(image: Resource, animation_json := {}, reso
 				if (frame_texture.region.end > image_region_end):
 					log_warning("Animation frame for resource: \"%s\" exceeds the base rect region: \"%s\":Frame%s" % [resource_path, anim_name, str(animation_json[anim_name].frames.find(frame))])
 				
-	
+	sprite_frames.set_meta("loop_offsets", loop_offsets)
 	return sprite_frames
 
 static func clear_cache() -> void:
 	for i in cache.keys():
 		if cache[i] == null:
 			cache.erase(i)
+	surpress_warnings = null
 	cache.clear()
+	material_cache.clear()
 	active_flags.clear()
 	property_cache.clear()
 	sequences.clear()
@@ -573,20 +608,6 @@ func load_image_from_path(path := "") -> Texture2D:
 	var image = Image.new()
 	image.load(path)
 	return ImageTexture.create_from_image(image)
-
-func load_audio_from_path(path := "") -> AudioStream:
-	var stream = null
-	if path.contains(".bgm"):
-		stream = AudioManager.generate_interactive_stream(JSON.parse_string(FileAccess.get_file_as_string(path)))
-	elif path.contains("res://"):
-		return load(path)
-	if path.contains(".wav"):
-		stream = AudioStreamWAV.load_from_file(path)
-	elif path.contains(".mp3"):
-		stream = AudioStreamMP3.load_from_file(path)
-	elif path.contains(".ogg"):
-		stream = AudioStreamOggVorbis.load_from_file(path)
-	return stream
 
 func sync_metadata() -> void:
 	for i in sync:
@@ -605,5 +626,41 @@ func log_error(msg := "", can_spam := true, timer := 10) -> void:
 		Global.log_error(msg, can_spam, timer)
 
 func log_warning(msg := "", timer := 10) -> void:
+	if surpress_warnings == null:
+		surpress_warnings = !is_warnings_enabled()
 	if surpress_warnings == false:
 		Global.log_warning(msg, timer)
+
+func is_warnings_enabled() -> bool:
+	var pack_json = JSONParser.parse_to_dict(Global.get_config_path().path_join("/resource_packs/" + current_resource_pack + "/pack_info.json"))
+	if pack_json.get("show_warnings", false):
+		return true
+	return false
+
+func set_material(blend_mode := "mix") -> void:
+	if node_to_affect is not CanvasItem or node_to_affect.material is ShaderMaterial:
+		return
+	var particle_animation := false
+	if node_to_affect.material is CanvasItemMaterial:
+		node_to_affect.material.blend_mode = {
+			"mix": 0,
+			"add": 1,
+			"sub": 2,
+			"mult": 3
+		}[blend_mode]
+	elif blend_mode != "mix":
+		const MATERIALS := {
+			"add": "res://Resources/Materials/Add.tres",
+			"mult": "res://Resources/Materials/Mult.tres",
+			"sub": "res://Resources/Materials/Sub.tres",
+		}
+		node_to_affect.material = load(MATERIALS[blend_mode])
+		node_to_affect.material.set_particles_animation(particle_animation)
+	elif node_to_affect.material != null:
+		if node_to_affect.material.resource_path.has("res://"):
+			node_to_affect.material = null
+
+func on_animation_looped(anim_name := "", loop_offset := 0) -> void:
+	var sprite: AnimatedSprite2D = node_to_affect
+	if sprite.animation == anim_name:
+		sprite.set_frame_and_progress(loop_offset, 0)

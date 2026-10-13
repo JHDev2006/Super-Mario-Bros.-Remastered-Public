@@ -5,17 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bgjdnv8n8l1hb" path="res://Assets/Sprites/UI/TabSelected.png" id="2_8b8gk"]
 [ext_resource type="StyleBox" uid="uid://btw30ed0dg4bt" path="res://Resources/UI/Tab.tres" id="2_sup1d"]
 [ext_resource type="Texture2D" uid="uid://xsfs2psb84ql" path="res://Assets/Sprites/UI/EditorButtons.png" id="3_sup1d"]
+[ext_resource type="StyleBox" uid="uid://dym50k6bgpd2" path="res://Resources/UI/TabSelected.tres" id="4_wt4vx"]
+[ext_resource type="Script" uid="uid://ca3bew33g45eq" path="res://Scripts/Classes/UI/PackTextureRect.gd" id="7_7wgmt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mw2n"]
 atlas = ExtResource("3_sup1d")
 region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wt4vx"]
-texture = ExtResource("2_8b8gk")
-texture_margin_left = 2.0
-texture_margin_top = 2.0
-texture_margin_right = 2.0
-texture_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qebwb"]
 texture = ExtResource("1_3ufth")
@@ -50,7 +45,7 @@ theme_override_styles/panel = ExtResource("2_sup1d")
 visible = false
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_wt4vx")
+theme_override_styles/panel = ExtResource("4_wt4vx")
 
 [node name="Button" type="Button" parent="." unique_id=590643637]
 layout_mode = 2
@@ -65,12 +60,15 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = -4
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=235398831]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1534829489]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 mouse_filter = 2
 texture = SubResource("AtlasTexture_5mw2n")
 stretch_mode = 3
+script = ExtResource("7_7wgmt")
+use_cache = false
+metadata/_custom_type_script = "uid://ca3bew33g45eq"
 
 [node name="Label" type="Label" parent="HBoxContainer" unique_id=1170607246]
 visible = false

@@ -21,7 +21,7 @@ func physics_update(delta: float) -> void:
 	if player.is_on_floor() or player.is_on_wall() == false or fall_off >= 1:
 		player.velocity.x = 50 * player.input_direction
 		state_machine.transition_to("Normal")
-	player.move_and_slide()
+	player.move()
 
 func jump_off() -> void:
 	AudioManager.play_sfx("bump", player.global_position)

@@ -27,7 +27,7 @@ func physics_update(_delta: float) -> void:
 	player.velocity.y = climb_speed * climb_direction
 	player.sprite.play("Climb")
 	player.sprite.speed_scale = abs(climb_direction * 1.5)
-	player.move_and_slide()
+	player.move()
 	if Global.player_action_just_pressed("jump", player.player_id) and not cutscene:
 		state_machine.transition_to("Normal")
 		player.jump()

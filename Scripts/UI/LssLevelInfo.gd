@@ -40,9 +40,10 @@ func setup_visuals(container: OnlineLevelContainer) -> void:
 	$Panel/AutoScrollContainer.scroll_pos = 0
 	$Panel/AutoScrollContainer.move_direction = -1
 	%LSSDescription.text = "Fetching Description..."
+	print(saved_stuff)
 	if saved_stuff.is_empty():
 		$Description.request(LEVEL_INFO_URL + container.level_id)
-	else:
+	elif saved_stuff.has("description"):
 		%LSSDescription.text = saved_stuff.description
 	for i in ["level_name", "level_author", "level_id", "thumbnail_url", "level_thumbnail", "difficulty"]:
 		var value = null

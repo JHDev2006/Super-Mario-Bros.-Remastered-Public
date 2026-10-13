@@ -37,7 +37,7 @@ func _ready() -> void:
 		if Settings.file.gameplay.checkpoint_style != 0:
 			queue_free()
 			return
-	elif Settings.file.gameplay.checkpoint_style == 0 and [Global.GameMode.CUSTOM_LEVEL, Global.GameMode.LEVEL_EDITOR].has(Global.current_game_mode) == false:
+	elif Settings.file.gameplay.checkpoint_style == 0 and [Global.GameMode.CUSTOM_LEVEL, Global.GameMode.LEVEL_EDITOR].has(Global.current_game_mode) == false and not Global.in_custom_campaign():
 		queue_free()
 		return
 	if passed and PipeArea.exiting_pipe_id == -1 and Global.current_game_mode != Global.GameMode.LEVEL_EDITOR and Level.vine_return_level == "" and passed_checkpoints[passed_checkpoints.size() - 1] == id:

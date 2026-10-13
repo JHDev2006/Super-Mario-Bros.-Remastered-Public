@@ -72,10 +72,10 @@ func _ready() -> void:
 	if line_drawer_added == false:
 		add_child(line_drawer)
 		line_drawer.top_level = true
-		line_drawer.global_position = global_position
 		line_drawer.queue_redraw()
 		line_drawer_added = true
 	line_drawer = get_child(0)
+	line_drawer.global_position = global_position
 	if Global.level_editor != null:
 		Global.level_editor.level_start.connect(line_drawer.queue_redraw)
 

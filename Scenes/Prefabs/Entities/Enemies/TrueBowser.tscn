@@ -4,6 +4,11 @@
 
 [node name="TrueBowser" unique_id=2024715158 instance=ExtResource("1_xtf8a")]
 can_hammer = true
+is_real = true
 
 [node name="GibSpawner" parent="." index="6" unique_id=383912089 node_paths=PackedStringArray("visuals")]
 visuals = NodePath("../SpriteScaleJoint/Sprite")
+
+[node name="Hammer" parent="." index="10" unique_id=1437707171]
+position = Vector2(-16, -32)
+scale = Vector2(1, 1)

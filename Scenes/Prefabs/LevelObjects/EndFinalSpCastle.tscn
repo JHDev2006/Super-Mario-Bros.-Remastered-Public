@@ -30,6 +30,3 @@ visible = false
 
 [node name="SmallCastleVisual2" parent="." index="4" unique_id=1862394936]
 visible = true
-
-[node name="Overlay" parent="." index="8" unique_id=204657650]
-visible = true

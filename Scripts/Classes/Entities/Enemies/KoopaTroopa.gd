@@ -15,9 +15,9 @@ var times_kicked := 0 ## For anti-infinite scoring in Challenge mode
 func _ready() -> void:
 	if has_meta("fly_2"):
 		fly_wave = 0
-	else:
-		if winged:
-			play_animation("Hop")
+	if winged:
+		if has_meta("is_red") or has_meta("fly_2"): play_animation("Fly")
+		else: play_animation("Hop")
 
 func _physics_process(delta: float) -> void:
 	if winged and (has_meta("is_red") or has_meta("fly_2")):
@@ -87,6 +87,7 @@ func summon_shell(flipped := false, launch := false) -> void:
 	shell.flipped = flipped
 	shell.times_kicked = times_kicked
 	shell.old_entity = self.duplicate()
+	shell.direction = direction
 	if launch:
 		AudioManager.play_sfx("kick", global_position)
 		shell.can_air_kick = true

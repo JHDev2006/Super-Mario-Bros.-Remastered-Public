@@ -207,10 +207,6 @@ func do_animation(node: Node) -> void:
 		old_scale = node.scale
 		node.scale += Vector2(0.5, 0.5)
 		create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "scale", old_scale, 0.1)
-		var sparkle = preload("uid://btuv0dcfc8u7x").instantiate()
-		sparkle.global_position = node.get_meta("tile_position") * 16
-		add_sibling(sparkle)
-		sparkle.animation_finished.connect(sparkle.queue_free)
 
 func is_mouse_inside(it_is := true) -> void:
 	var inside_check = get_global_rect().has_point(get_global_mouse_position())

@@ -32,7 +32,13 @@ position = Vector2(0, 8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0" unique_id=658281905]
 shape = SubResource("RectangleShape2D_f783k")
 
-[node name="Node2D" type="Node2D" parent="." index="4" unique_id=1452079836]
+[node name="UpsideDownHitbox" type="Area2D" parent="." index="4" unique_id=870588222]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpsideDownHitbox" index="0" unique_id=481761143]
+shape = SubResource("RectangleShape2D_f783k")
+
+[node name="Node2D" type="Node2D" parent="." index="5" unique_id=1452079836]
 visibility_layer = 2
 script = ExtResource("4_f783k")
 
@@ -51,5 +57,6 @@ metadata/_custom_type_script = "uid://cbal8ms2oe1ik"
 
 [connection signal="block_hit" from="." to="LevelPersistance" method="set_as_active"]
 [connection signal="area_entered" from="Hitbox" to="." method="on_area_entered"]
+[connection signal="area_entered" from="UpsideDownHitbox" to="." method="upside_down_area_entered"]
 
 [editable path="BlockAnimations"]

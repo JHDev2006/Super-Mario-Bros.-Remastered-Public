@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://1rxw4k4wq3ni" path="res://Scenes/Prefabs/Entities/Enemies/PiranhaPlant.tscn" id="1_potth"]
 
 [node name="PirannhaPlant" unique_id=877679531 instance=ExtResource("1_potth")]
+player_range = 16
 rise_animation = "RiseRed"
 
 [node name="ResourceSetterNew" parent="RotationJoint/PositionJoint/Visuals/Sprite" parent_id_path=PackedInt32Array(533885688, 211744012) index="0" unique_id=1028226469]

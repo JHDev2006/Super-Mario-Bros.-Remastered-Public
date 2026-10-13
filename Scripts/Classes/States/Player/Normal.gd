@@ -57,7 +57,7 @@ func handle_movement(delta: float) -> void:
 		handle_swimming(delta)
 	else:
 		handle_air_movement(delta)
-	player.move_and_slide()
+	player.move()
 	player.moved.emit()
 
 func grounded(delta: float) -> void:
@@ -306,7 +306,7 @@ func get_animation_name() -> String:
 	if player.has_star: jump_context = "Star" + jump_context
 	
 	var jump = func(anim_name: String) -> String:
-		if player.sprite.sprite_frames.has_animation(state_context + anim_name):
+		if player.sprite.sprite_frames.has_animation(jump_context + anim_name):
 			return jump_context + anim_name
 		return anim_name
 

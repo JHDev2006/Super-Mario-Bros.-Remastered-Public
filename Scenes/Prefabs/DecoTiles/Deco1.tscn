@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cw6ypkkhofyuq"]
 
-[ext_resource type="Texture2D" uid="uid://cntkcqc74qp50" path="res://Assets/Sprites/Tilesets/Deco/OverworldDeco.png" id="1_l50eh"]
+[ext_resource type="Texture2D" uid="uid://c0vf05e11i8t6" path="res://Assets/Sprites/Tilesets/Deco/OverworldDeco.png" id="1_l50eh"]
 [ext_resource type="Script" uid="uid://cve2q420hiur1" path="res://Scripts/Parts/Tileset.gd" id="2_j65d4"]
 [ext_resource type="Script" uid="uid://73oviwf6bbys" path="res://Scripts/Classes/Components/TilesetTextureSetter.gd" id="3_qfs4k"]
 [ext_resource type="Script" uid="uid://cbal8ms2oe1ik" path="res://Scripts/Classes/Components/ResourceSetterNew.gd" id="4_qfs4k"]
@@ -22,6 +22,7 @@ texture = ExtResource("1_l50eh")
 sources/0 = SubResource("TileSetAtlasSource_3eywr")
 
 [node name="DecoTiles" type="TileMapLayer" unique_id=475096668]
+visibility_layer = 2
 z_index = -10
 tile_map_data = PackedByteArray("AAD7////AAAAAAAAAAD8////AAABAAAAAAD9////AAABAAAAAAD+////AAACAAAAAAAaAP//AAAAAAAAAAAbAP//AAABAAAAAAAcAP//AAACAAAAAAAsAP//AAAAAAAAAAAtAP//AAABAAAAAAAuAP//AAABAAAAAAAvAP//AAACAAAAAABJAP//AAAAAAAAAABKAP//AAABAAAAAABLAP//AAACAAAAAABdAP//AAABAAAAAABeAP//AAACAAAAAABbAP//AAAAAAAAAABcAP//AAABAAAAAABoAP//AAACAAAAAABnAP//AAAAAAAAAAB6AP//AAAAAAAAAAB7AP//AAABAAAAAAB8AP//AAACAAAAAACOAP//AAABAAAAAACPAP//AAACAAAAAACMAP//AAAAAAAAAACNAP//AAABAAAAAACYAP//AAAAAAAAAACZAP//AAABAAAAAACpAP//AAAAAAAAAACqAP//AAABAAAAAACrAP//AAACAAAAAAAHAP//AAAAAAAAAAAIAP//AAACAAAAAAA=")
 tile_set = SubResource("TileSet_b50pv")

@@ -16,11 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://cinr6kcbmo6gr" path="res://Scenes/Parts/DropShadowRenderer.tscn" id="15_qqqsn"]
 [ext_resource type="PackedScene" uid="uid://c6loucilra6da" path="res://Scenes/Prefabs/LevelObjects/EndFlagpole.tscn" id="17_5brkg"]
 [ext_resource type="PackedScene" uid="uid://byqmn8yi7iuac" path="res://Scenes/Prefabs/LevelObjects/EndSmallCastle.tscn" id="18_1v5d6"]
-[ext_resource type="PackedScene" uid="uid://dn2oonncrmxb3" path="res://Scenes/Parts/LargeSPCastleDeco.tscn" id="19_1v5d6"]
 [ext_resource type="PackedScene" uid="uid://c145qqkvy8pr5" path="res://Scenes/Parts/DecoTiles.tscn" id="21_qqqsn"]
 [ext_resource type="Script" uid="uid://cgm3opb5qudc1" path="res://Scripts/Parts/ChallengeModeNodes.gd" id="22_ddfnw"]
 [ext_resource type="PackedScene" uid="uid://cmbpqnq10arts" path="res://Scenes/Prefabs/Entities/Items/RedCoin.tscn" id="23_v8ijr"]
 [ext_resource type="PackedScene" uid="uid://dsa8lpl7n8ge0" path="res://Scenes/Prefabs/Blocks/BrickBlocks/BrickBlock.tscn" id="24_adyti"]
+[ext_resource type="PackedScene" uid="uid://cbl8l51osppso" path="res://Scenes/Parts/LargeStartCastle.tscn" id="25_2wodi"]
 [ext_resource type="PackedScene" uid="uid://d3gnwmvds4ors" path="res://Scenes/Prefabs/Entities/Items/SpinningRedCoin.tscn" id="25_n1w01"]
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="26_64we7"]
 [ext_resource type="PackedScene" uid="uid://ctx0nbkjf2osn" path="res://Scenes/Prefabs/Entities/Items/YoshiEgg.tscn" id="27_m5wyf"]
@@ -143,8 +143,6 @@ position = Vector2(3328, -128)
 position = Vector2(3896, 0)
 [node name="EndSmallCastle" parent="." unique_id=227953919 instance=ExtResource("18_1v5d6")]
 position = Vector2(3976, 0)
-[node name="LargeCastleDeco" parent="." unique_id=901879746 instance=ExtResource("19_1v5d6")]
-position = Vector2(-184, -88)
 [node name="DecoTiles" parent="." unique_id=1628960332 instance=ExtResource("21_qqqsn")]
 tile_map_data = PackedByteArray("AAD7//7/AAADAAAAAAD7////AAADAAEAAAA=")
 [node name="ChallengeNodes" type="Node" parent="." unique_id=540405832 node_paths=PackedStringArray("nodes_to_delete")]
@@ -174,3 +172,5 @@ item = ExtResource("27_m5wyf")
 position = Vector2(2008, -104)
 [node name="InvisibleQuestionBlock" parent="Node" unique_id=2128880796 instance=ExtResource("26_64we7")]
 position = Vector2(2056, -88)
+[node name="LargeCastleDeco" parent="." unique_id=1423333120 instance=ExtResource("25_2wodi")]
+position = Vector2(-216, -88)

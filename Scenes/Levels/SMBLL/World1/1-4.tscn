@@ -57,8 +57,13 @@ position = Vector2(1368, -56)
 position = Vector2(2176, 0)
 [node name="CastleBridge" parent="." unique_id=120667298 instance=ExtResource("9_sbqa4")]
 position = Vector2(1800, -40)
-[node name="Bowser" parent="." unique_id=414997198 instance=ExtResource("10_csc3t")]
+[node name="Bowser" parent="." unique_id=1487129753 instance=ExtResource("10_csc3t")]
 position = Vector2(1912, -48)
+[node name="ResourceSetterNew" parent="Bowser/SpriteScaleJoint/DeathSprite" parent_id_path=PackedInt32Array(1487129753, 1311530935) index="0" unique_id=381174695]
+json_path = "res://Assets/Sprites/Enemies/Goomba.json"
+[node name="Hammer" parent="Bowser" index="10" unique_id=1437707171]
+position = Vector2(-16, -32)
+scale = Vector2(1, 1)
 [node name="SmallSidewaysPlatform" parent="." unique_id=1359752975 instance=ExtResource("11_o1ta1")]
 position = Vector2(1952, -112)
 [node name="GreenKoopaTroopa" parent="." unique_id=268440434 instance=ExtResource("12_8j1yq")]
@@ -94,3 +99,4 @@ item = ExtResource("18_ai06k")
 [node name="CastleChallengeEnd" parent="ChallengeNodes" unique_id=1359511849 instance=ExtResource("19_o1ta1")]
 position = Vector2(2176, 0)
 [connection signal="victory_begin" from="CastleBridge" to="ChallengeNodes/CastleChallengeEnd" method="begin"]
+[editable path="Bowser"]

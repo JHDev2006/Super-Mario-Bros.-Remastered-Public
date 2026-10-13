@@ -29,3 +29,4 @@ metadata/_custom_type_script = "uid://ctfbuoxtnnl0q"
 
 [connection signal="recieved_power" from="SignalExposer" to="." method="play_sfx"]
 [connection signal="recieved_pulse" from="SignalExposer" to="." method="play_sfx"]
+[connection signal="modifier_applied" from="EditorPropertyExposer" to="." method="play_sfx"]

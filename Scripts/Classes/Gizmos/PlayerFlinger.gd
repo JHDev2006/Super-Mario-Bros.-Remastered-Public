@@ -1,6 +1,7 @@
+class_name FlingerGizmo
 extends Node2D
 
-@export_range(-8.0, 8.0, 0.1) var horizontal_speed := 0.0:
+@export_range(-16.0, 16.0, 0.1) var horizontal_speed := 0.0:
 	set(value):
 		horizontal_speed = value
 
@@ -12,13 +13,11 @@ extends Node2D
 @export var additive := true
 @export var update_player_direction := true
 
+@export var can_freeze_x := false
+@export var can_freeze_y := false
+
 var active := false
 var launched_this_frame := false
-
-func _physics_process(_delta: float) -> void:
-	if active:
-		launch()
-	launched_this_frame = false
 
 func turn_on() -> void:
 	active = true
@@ -28,8 +27,6 @@ func turn_off() -> void:
 	active = false
 
 func launch() -> void:
-	if launched_this_frame:
-		return
 	if get_tree():
 		for i: Player in get_tree().get_nodes_in_group("Players"):
 			if i.in_water == false:
@@ -42,9 +39,9 @@ func launch() -> void:
 				else:
 					i.velocity.x = i.velocity.x + horizontal_speed*50
 			else:
-				if upwards_speed != 0:
+				if upwards_speed != 0 or can_freeze_y:
 					i.velocity.y = upwards_speed*-100
-				if horizontal_speed != 0:
+				if horizontal_speed != 0 or can_freeze_x:
 					if relative_to_direction:
 						i.velocity.x = horizontal_speed*50*i.direction
 					else:
