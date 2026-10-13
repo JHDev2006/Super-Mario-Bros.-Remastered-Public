@@ -322,7 +322,7 @@ layout_mode = 2
 layout_mode = 2
 option_key = "lang"
 title = "SETTINGS_LANGUAGE"
-values = ["LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME"]
+values = ["LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME", "LANGUAGE_NAME"]
 settings_category = "game"
 
 [node name="Flag" type="NinePatchRect" parent="PanelContainer/MarginContainer/VBoxContainer/Video/Language/HBoxContainer" parent_id_path=PackedInt32Array(1089169309, 1680938547) index="0" unique_id=2139547146]
