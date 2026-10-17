@@ -124,7 +124,7 @@ func _enter_tree() -> void:
 
 func inf_time_check() -> void:
 	Global.inf_time = false
-	if time_limit >= 999:
+	if time_limit >= 1001:
 		Global.can_time_tick = false
 		Global.inf_time = true
 
