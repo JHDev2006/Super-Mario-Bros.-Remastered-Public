@@ -279,6 +279,18 @@ func get_config_path() -> String:
 			push_warning("Portable flag found but exe directory is not writeable. Falling back to user://")
 	return "user://"
 
+## Deletes a folder and everything in it. Used instead of OS.move_to_trash, which does nothing useful on Android.
+static func remove_dir_recursive(path: String) -> void:
+	if OS.has_feature("android") == false and path.begins_with("res://") == false:
+		OS.move_to_trash(ProjectSettings.globalize_path(path))
+		if DirAccess.dir_exists_absolute(path) == false:
+			return
+	for file_name in DirAccess.get_files_at(path):
+		DirAccess.remove_absolute(path.path_join(file_name))
+	for dir_name in DirAccess.get_directories_at(path):
+		remove_dir_recursive(path.path_join(dir_name))
+	DirAccess.remove_absolute(path)
+
 func check_for_rom() -> void:
 	rom_path = ""
 	rom_assets_exist = false
@@ -295,7 +307,7 @@ func check_for_rom() -> void:
 			rom_assets_exist = true 
 		else:
 			ResourceGenerator.updating = true
-			OS.move_to_trash(ROM_ASSETS_PATH)
+			remove_dir_recursive(ROM_ASSETS_PATH)
 
 func _process(delta: float) -> void:
 	if multibind_action_just_pressed("debug_reload"):

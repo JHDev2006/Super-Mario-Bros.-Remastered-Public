@@ -1,6 +1,9 @@
 extends Node
 
 func window_mode_changed(new_value := 0) -> void:
+	if OS.has_feature("android"):
+		Settings.file.video.mode = new_value
+		return
 	match new_value:
 		0:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
@@ -70,6 +73,8 @@ func frame_limit_changed(new_value := 0) -> void:
 	Settings.file.video.frame_limit = new_value
 
 func set_window_size(value := []) -> void:
+	if OS.has_feature("android"):
+		return
 	print(Settings.file.video)
 	print(value)
 	var new_size = Vector2(value[0], value[1])

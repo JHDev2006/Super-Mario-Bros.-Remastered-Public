@@ -73,7 +73,7 @@ func generate_resource_pack() -> void:
 		error.show()
 		## uncomment this once the initial jsons are fully setup so that the game won't
 		## boot if the resource pack loading is borked
-		OS.move_to_trash(Global.ROM_ASSETS_PATH)
+		Global.remove_dir_recursive(Global.ROM_ASSETS_PATH)
 	else:
 		done()
 

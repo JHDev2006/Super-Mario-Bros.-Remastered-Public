@@ -37,10 +37,29 @@ func _ready() -> void:
 	await get_tree().physics_frame
 
 	# Window setup
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+	if not OS.has_feature("android"):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+
+const ANDROID_ROM_DIRS := [
+	"/storage/emulated/0/Roms/NES", "/storage/emulated/0/ROMs/NES", "/storage/emulated/0/roms/nes",
+	"/storage/emulated/0/Roms/FC", "/storage/emulated/0/ROMs/nes", "/storage/emulated/0/Roms/Nintendo - NES",
+	"/storage/emulated/0/Roms", "/storage/emulated/0/ROMs", "/storage/emulated/0/Download",
+	"/storage/emulated/0/Documents", "/storage/emulated/0/SMB1R",
+]
+
+func find_android_rom() -> String:
+	for dir_path in ANDROID_ROM_DIRS:
+		for file_name in DirAccess.get_files_at(dir_path):
+			var ext := file_name.get_extension().to_lower()
+			if ext in ["nes", "nez", "unf", "unif"] and is_valid_rom(dir_path.path_join(file_name)):
+				return dir_path.path_join(file_name)
+	return ""
 
 func find_local_rom() -> String:
+	if OS.has_feature("android"):
+		OS.request_permissions()
+		return find_android_rom()
 	var exe_dir := OS.get_executable_path().get_base_dir()
 	var dir := DirAccess.open(exe_dir)
 	if not dir:
@@ -79,7 +98,14 @@ func handle_rom(path: String) -> bool:
 	return true
 
 func copy_rom(file_path: String) -> void:
-	DirAccess.copy_absolute(file_path, Global.ROM_PATH)
+	if DirAccess.copy_absolute(file_path, Global.ROM_PATH) == OK:
+		return
+	# Fallback for paths DirAccess can't copy (e.g. Android content:// URIs from the system picker)
+	var bytes := FileAccess.get_file_as_bytes(file_path)
+	var out := FileAccess.open(Global.ROM_PATH, FileAccess.WRITE)
+	if out and bytes.size() > 0:
+		out.store_buffer(bytes)
+		out.close()
 
 static func get_hash(file_path: String) -> String:
 	var file := FileAccess.open(file_path, FileAccess.READ)

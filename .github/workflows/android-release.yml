@@ -1,0 +1,162 @@
+name: Android release (APK + OTA)
+
+# Run this from the Actions tab of YOUR fork.
+#   content = publish only a new OTA .pck (players get it automatically on next launch)
+#   full    = publish a new signed APK too (needed first time, and whenever native stuff changes:
+#             Godot version, permissions, export settings, native libs)
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: "content = OTA .pck only, full = new APK + OTA .pck"
+        type: choice
+        options: [full, content]
+        default: full
+      notes:
+        description: "Release notes"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+env:
+  GODOT_VERSION: "4.6-stable"
+  GODOT_TEMPLATE_DIR: "4.6.stable"
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        if: inputs.release_type == 'full'
+        uses: android-actions/setup-android@v3
+        with:
+          packages: "platform-tools build-tools;35.0.1 platforms;android-35"
+
+      - name: Install Godot and export templates
+        run: |
+          set -euo pipefail
+          BASE="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}"
+          curl -fsSL -o godot.zip "$BASE/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          unzip -q godot.zip
+          sudo mv "Godot_v${GODOT_VERSION}_linux.x86_64" /usr/local/bin/godot
+          curl -fsSL -o templates.tpz "$BASE/Godot_v${GODOT_VERSION}_export_templates.tpz"
+          unzip -q templates.tpz
+          mkdir -p "$HOME/.local/share/godot/export_templates"
+          mv templates "$HOME/.local/share/godot/export_templates/${GODOT_TEMPLATE_DIR}"
+
+      - name: Configure Godot editor settings
+        if: inputs.release_type == 'full'
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.config/godot"
+          for f in editor_settings-4.tres editor_settings-4.6.tres; do
+            {
+              echo '[gd_resource type="EditorSettings" format=3]'
+              echo
+              echo '[resource]'
+              echo "export/android/android_sdk_path = \"${ANDROID_HOME}\""
+              echo "export/android/java_sdk_path = \"${JAVA_HOME}\""
+            } > "$HOME/.config/godot/$f"
+          done
+
+      - name: Work out build numbers
+        id: nums
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          BUILD="${{ github.run_number }}"
+          VERSION_BASE="$(tr -d '[:space:]' < version.txt)"
+          echo "build=$BUILD" >> "$GITHUB_OUTPUT"
+          echo "version=${VERSION_BASE}-android.${BUILD}" >> "$GITHUB_OUTPUT"
+          mkdir -p prev
+          if [ "${{ inputs.release_type }}" = "full" ]; then
+            echo "apk_base=$BUILD" >> "$GITHUB_OUTPUT"
+            echo "apk_url=https://github.com/${{ github.repository }}/releases/download/android-b${BUILD}/SMB1R.apk" >> "$GITHUB_OUTPUT"
+          else
+            # content-only release: keep pointing at the last full APK
+            gh release download --repo "${{ github.repository }}" --pattern update.json --dir prev \
+              || { echo "No previous release found. Run a 'full' release first."; exit 1; }
+            echo "apk_base=$(jq -r .apk_base prev/update.json)" >> "$GITHUB_OUTPUT"
+            echo "apk_url=$(jq -r .apk_url prev/update.json)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Stamp build into the project
+        run: |
+          set -euo pipefail
+          echo "${{ steps.nums.outputs.build }}" > android_build.txt
+          echo "${{ steps.nums.outputs.apk_base }}" > android_apk_base.txt
+          sed -i 's|__REPO__|${{ github.repository }}|' Scripts/Classes/Singletons/OTAUpdater.gd
+          sed -i 's|^version/code=.*|version/code=${{ steps.nums.outputs.apk_base }}|' export_presets.cfg
+          sed -i 's|^version/name=.*|version/name="${{ steps.nums.outputs.version }}"|' export_presets.cfg
+
+      - name: Import project
+        run: godot --headless --import || true
+
+      - name: Export OTA pack
+        run: |
+          mkdir -p build
+          godot --headless --export-pack "Android OTA PCK" "$PWD/build/update.pck"
+          test -s build/update.pck
+
+      - name: Export signed APK
+        if: inputs.release_type == 'full'
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          GODOT_ANDROID_KEYSTORE_RELEASE_USER: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+          GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -z "${KEYSTORE_B64}" ]; then echo "Missing secret ANDROID_KEYSTORE_BASE64 (see ANDROID.md)"; exit 1; fi
+          echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+          export GODOT_ANDROID_KEYSTORE_RELEASE_PATH="$RUNNER_TEMP/release.keystore"
+          godot --headless --export-release "Android arm64" "$PWD/build/SMB1R.apk"
+          test -s build/SMB1R.apk
+
+      - name: Write update manifest
+        env:
+          NOTES: ${{ inputs.notes }}
+        run: |
+          set -euo pipefail
+          SHA=$(sha256sum build/update.pck | cut -d' ' -f1)
+          TAG="android-b${{ steps.nums.outputs.build }}"
+          jq -n \
+            --arg version "${{ steps.nums.outputs.version }}" \
+            --argjson build "${{ steps.nums.outputs.build }}" \
+            --argjson apk_base "${{ steps.nums.outputs.apk_base }}" \
+            --arg pck_url "https://github.com/${{ github.repository }}/releases/download/${TAG}/update.pck" \
+            --arg pck_sha256 "$SHA" \
+            --arg apk_url "${{ steps.nums.outputs.apk_url }}" \
+            --arg notes "$NOTES" \
+            '{version:$version, build:$build, apk_base:$apk_base, pck_url:$pck_url, pck_sha256:$pck_sha256, apk_url:$apk_url, notes:$notes}' \
+            > build/update.json
+          cat build/update.json
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NOTES: ${{ inputs.notes }}
+        run: |
+          set -euo pipefail
+          TAG="android-b${{ steps.nums.outputs.build }}"
+          FILES="build/update.pck build/update.json"
+          if [ "${{ inputs.release_type }}" = "full" ]; then FILES="$FILES build/SMB1R.apk"; fi
+          gh release create "$TAG" $FILES \
+            --repo "${{ github.repository }}" \
+            --title "Android ${{ steps.nums.outputs.version }}" \
+            --notes "$NOTES" \
+            --latest

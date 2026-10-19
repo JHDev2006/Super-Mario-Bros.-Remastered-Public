@@ -34,6 +34,7 @@ buses/default_bus_layout="uid://bc65qkbkya885"
 
 ModLoaderStore="*res://addons/mod_loader/mod_loader_store.gd"
 ModLoader="*res://addons/mod_loader/mod_loader.gd"
+OTAUpdater="*res://Scripts/Classes/Singletons/OTAUpdater.gd"
 NewLevelBuilder="*res://Scenes/Prefabs/Autoload/NewLevelBuilder.gd"
 Global="*res://Scenes/Prefabs/Global.tscn"
 Settings="*res://Scenes/Prefabs/Autoload/Settings.tscn"
@@ -56,6 +57,7 @@ window/size/viewport_height=240
 window/size/window_width_override=1024
 window/size/window_height_override=960
 window/stretch/mode="viewport"
+window/handheld/orientation=0
 
 [dotnet]
 
@@ -612,6 +614,8 @@ locale/locale_filter_mode=1
 common/physics_interpolation=true
 
 [rendering]
+
+textures/vram_compression/import_etc2_astc=true
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
