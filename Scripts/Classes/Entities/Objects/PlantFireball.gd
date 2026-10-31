@@ -6,6 +6,7 @@ var can_rotate := true
 const SMOKE_PARTICLE = preload("uid://d08nv4qtfouv1")
 
 func _ready() -> void:
+	super()
 	if can_rotate:
 		$Sprite/Animation.play("Spin")
 

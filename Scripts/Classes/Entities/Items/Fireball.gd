@@ -6,6 +6,7 @@ var can_rotate := true
 const FIREBALL_EXPLOSION = preload("res://Scenes/Prefabs/Particles/FireballExplosion.tscn")
 
 func _ready() -> void:
+	super()
 	if can_rotate:
 		$Sprite/Animation.play("Spin")
 	await get_tree().create_timer(0.5, false).timeout

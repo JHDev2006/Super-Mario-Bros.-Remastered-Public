@@ -4,6 +4,7 @@ extends Projectile
 var can_rotate := true
 
 func _ready() -> void:
+	super()
 	if can_rotate:
 		$Animations.play("Rotate")
 
