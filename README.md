@@ -29,6 +29,9 @@ A Remake / Celebration of the original 'Super Mario Bros.' games. Features new l
 4. Extract and run
 5. Enjoy!
 
+### RecompLauncher
+Super Mario Bros. Remastered can also be installed and updated with [RecompLauncher](https://recomplauncher.com). Pick your ROM once and press Play. Release zips should include `recomplauncher.json` next to the executable.
+
 ### macOS (Unofficial)
 1. Go to the [macOS repo](https://github.com/yuriko-shimizu/Super-Mario-Bros.-Remastered-Public-Mac/releases)
 2. (NOTE: THIS IS AN UNOFFICIAL FORK OF THE GAME)

@@ -51,6 +51,7 @@ jobs:
         run: |
           mkdir -p build/${{matrix.environment.output_dir}}
           godot --headless --verbose --export-release "${{matrix.environment.godot_template}}" build/${{matrix.environment.output_dir}}/$EXPORT_NAME.${{matrix.environment.file_suffix}}
+          cp recomplauncher.json build/${{matrix.environment.output_dir}}/
           cd build/${{matrix.environment.output_dir}}
           zip ${{env.EXPORT_NAME}}.zip *
       - name: Upload Artifact

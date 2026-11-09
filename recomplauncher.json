@@ -1,0 +1,122 @@
+{
+  "$schema": "https://recomplauncher.com/schema/recomplauncher.json",
+  "format": 1,
+  "name": "Super Mario Bros. Remastered",
+  "repo": "JHDev2006/Super-Mario-Bros.-Remastered-Public",
+  "game": {
+    "kind": "iso",
+    "label": "Your Super Mario Bros. ROM (.nes) for the Nintendo Entertainment System."
+  },
+  "start": {
+    "program": [
+      "SuperMarioBrosRemastered.exe",
+      "SMB1R.exe",
+      "SuperMarioBrosRemastered.x86_64",
+      "SMB1R.x86_64",
+      "SuperMarioBrosRemastered.arm64",
+      "SMB1R.arm64"
+    ],
+    "args": ["-rom", "{game}"]
+  },
+  "config": [
+    {
+      "id": "main",
+      "format": "ini",
+      "file": [
+        { "path": "{install}/config/settings.cfg", "if": "{install}/portable.txt" },
+        { "path": "{local}/SMB1R/settings.cfg", "if": "{local}/SMB1R" },
+        { "path": "{config}/SMB1R/settings.cfg" }
+      ]
+    }
+  ],
+  "folders": {
+    "saves": [
+      { "path": "{install}/config/saves", "if": "{install}/portable.txt" },
+      { "path": "{local}/SMB1R/saves", "if": "{local}/SMB1R" },
+      { "path": "{config}/SMB1R/saves" }
+    ]
+  },
+  "saves": [
+    "{install}/config/saves",
+    "{install}/config/achievements.sav",
+    "{install}/config/settings.cfg",
+    "{local}/SMB1R/saves",
+    "{local}/SMB1R/achievements.sav",
+    "{local}/SMB1R/settings.cfg",
+    "{config}/SMB1R/saves",
+    "{config}/SMB1R/achievements.sav",
+    "{config}/SMB1R/settings.cfg"
+  ],
+  "settings": [
+    {
+      "id": "window_mode",
+      "label": "Window mode",
+      "help": "How the game sits on your screen.",
+      "choices": [
+        { "label": "Windowed", "set": { "video/mode": "0" } },
+        { "label": "Maximized", "set": { "video/mode": "1" } },
+        { "label": "Borderless", "set": { "video/mode": "2" } },
+        { "label": "Fullscreen", "set": { "video/mode": "3" } }
+      ],
+      "defaults": { "video/mode": "0" }
+    },
+    {
+      "id": "aspect",
+      "label": "Screen shape",
+      "help": "The NES picture is the original shape. Widescreen shows more of each level at the sides.",
+      "choices": [
+        { "label": "NES", "set": { "video/size": "0" } },
+        { "label": "4:3", "set": { "video/size": "1" } },
+        { "label": "Widescreen", "set": { "video/size": "2" } },
+        { "label": "Fill the window", "set": { "video/size": "3" } }
+      ],
+      "defaults": { "video/size": "0" }
+    },
+    {
+      "id": "pixel_scaling",
+      "label": "Pixel scaling",
+      "help": "Whole steps keep every pixel sharp. Smooth fills the window exactly.",
+      "choices": [
+        { "label": "Whole steps", "set": { "video/scaling": "0" } },
+        { "label": "Smooth", "set": { "video/scaling": "1" } }
+      ],
+      "defaults": { "video/scaling": "0" }
+    },
+    {
+      "id": "vsync",
+      "label": "V-Sync",
+      "help": "Matches the picture to your screen's refresh to stop tearing.",
+      "choices": [
+        { "label": "Off", "set": { "video/vsync": "0" } },
+        { "label": "On", "set": { "video/vsync": "1" } }
+      ],
+      "defaults": { "video/vsync": "1" }
+    },
+    {
+      "id": "frame_limit",
+      "label": "Frame rate limit",
+      "help": "Caps how fast the game draws. Unlimited uses as much of your PC as it can.",
+      "choices": [
+        { "label": "Unlimited", "set": { "video/frame_limit": "0" } },
+        { "label": "60 fps", "set": { "video/frame_limit": "1" } },
+        { "label": "120 fps", "set": { "video/frame_limit": "2" } },
+        { "label": "144 fps", "set": { "video/frame_limit": "3" } },
+        { "label": "240 fps", "set": { "video/frame_limit": "4" } }
+      ],
+      "defaults": { "video/frame_limit": "0" }
+    },
+    {
+      "id": "hud",
+      "label": "HUD style",
+      "help": "Classic is the original look. Modern is the remastered score bar.",
+      "choices": [
+        { "label": "Classic", "set": { "visuals/modern_hud": "0" } },
+        { "label": "Modern", "set": { "visuals/modern_hud": "1" } }
+      ],
+      "defaults": { "visuals/modern_hud": "0" }
+    }
+  ],
+  "actions": [
+    { "id": "saves", "label": "Saves", "help": "Your saves and settings.", "open": "saves" }
+  ]
+}
