@@ -18,19 +18,6 @@
     ],
     "args": ["-rom", "{game}"]
   },
-  "prepare": {
-    "program": [
-      "SuperMarioBrosRemastered.exe",
-      "SMB1R.exe",
-      "SuperMarioBrosRemastered.x86_64",
-      "SMB1R.x86_64",
-      "SuperMarioBrosRemastered.arm64",
-      "SMB1R.arm64"
-    ],
-    "args": ["--prepare", "-rom", "{game}"],
-    "label": "Graphics built from your ROM",
-    "timeout": 300
-  },
   "config": [
     {
       "id": "main",
