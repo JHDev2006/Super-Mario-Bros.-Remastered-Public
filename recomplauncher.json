@@ -63,6 +63,7 @@
   "settings": [
     {
       "id": "window_mode",
+      "group": "Video",
       "label": "Window mode",
       "help": "How the game sits on your screen.",
       "choices": [
@@ -75,6 +76,7 @@
     },
     {
       "id": "aspect",
+      "group": "Video",
       "label": "Screen shape",
       "help": "The NES picture is the original shape. Widescreen shows more of each level at the sides.",
       "choices": [
@@ -87,6 +89,7 @@
     },
     {
       "id": "pixel_scaling",
+      "group": "Video",
       "label": "Pixel scaling",
       "help": "Whole steps keep every pixel sharp. Smooth fills the window exactly.",
       "choices": [
@@ -97,6 +100,7 @@
     },
     {
       "id": "vsync",
+      "group": "Video",
       "label": "V-Sync",
       "help": "Matches the picture to your screen's refresh to stop tearing.",
       "choices": [
@@ -107,6 +111,7 @@
     },
     {
       "id": "frame_limit",
+      "group": "Video",
       "label": "Frame rate limit",
       "help": "Caps how fast the game draws. Unlimited uses as much of your PC as it can.",
       "choices": [
@@ -120,6 +125,7 @@
     },
     {
       "id": "hud",
+      "group": "Interface",
       "label": "HUD style",
       "help": "Classic is the original look. Modern is the remastered score bar.",
       "choices": [
@@ -127,6 +133,30 @@
         { "label": "Modern", "set": { "visuals/modern_hud": "1" } }
       ],
       "defaults": { "visuals/modern_hud": "0" }
+    },
+    {
+      "id": "master_volume",
+      "label": "Master volume",
+      "help": "Overall loudness.",
+      "group": "Audio",
+      "slider": { "key": "audio/master", "min": 0, "max": 10, "step": 1, "format": "%g" },
+      "defaults": { "audio/master": "10" }
+    },
+    {
+      "id": "music_volume",
+      "label": "Music volume",
+      "help": "Background music only.",
+      "group": "Audio",
+      "slider": { "key": "audio/music", "min": 0, "max": 10, "step": 1, "format": "%g" },
+      "defaults": { "audio/music": "10" }
+    },
+    {
+      "id": "sfx_volume",
+      "label": "Sound effects volume",
+      "help": "Jumps, coins and other effects.",
+      "group": "Audio",
+      "slider": { "key": "audio/sfx", "min": 0, "max": 10, "step": 1, "format": "%g" },
+      "defaults": { "audio/sfx": "10" }
     }
   ],
   "actions": [
