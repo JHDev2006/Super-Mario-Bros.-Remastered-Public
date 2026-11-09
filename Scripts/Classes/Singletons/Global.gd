@@ -51,7 +51,6 @@ var config_path : String = get_config_path()
 
 var rom_path := ""
 var rom_assets_exist := false
-var prepare_mode := false
 var ROM_POINTER_PATH = config_path.path_join("rom_pointer.smb")
 var ROM_PATH = config_path.path_join("baserom.nes")
 var ROM_ASSETS_PATH = config_path.path_join("resource_packs/BaseAssets")
@@ -226,9 +225,6 @@ func _ready() -> void:
 	get_server_version()
 	setup_config_dirs()
 	check_for_rom()
-	if OS.get_cmdline_args().has("--prepare"):
-		prepare_mode = true
-		run_prepare.call_deferred()
 	load_default_translations()
 	level_theme_changed.connect(load_default_translations)
 
@@ -282,31 +278,6 @@ func get_config_path() -> String:
 		else:
 			push_warning("Portable flag found but exe directory is not writeable. Falling back to user://")
 	return "user://"
-
-## Opt-in setup mode for launchers: `--prepare -rom <path>` checks the ROM, builds the
-## assets without any menus, prints "progress <0-1> <text>" lines and exits (0 = success).
-func run_prepare() -> void:
-	get_window().hide()
-	var args := OS.get_cmdline_args()
-	var rom_idx := args.find("-rom")
-	if rom_idx != -1 and rom_idx + 1 < args.size():
-		var rom_arg := args[rom_idx + 1].replace("\\", "/")
-		if not ROMVerifier.is_valid_rom(rom_arg):
-			print("That is not a supported Super Mario Bros. ROM.")
-			get_tree().quit(2)
-			return
-		ROMVerifier.copy_rom(rom_arg)
-		check_for_rom()
-	if rom_path == "":
-		print("No valid Super Mario Bros. ROM was given. Pass it with -rom <path>.")
-		get_tree().quit(2)
-		return
-	print("progress 0.0 Reading your ROM")
-	if rom_assets_exist:
-		print("progress 1.0 Already set up")
-		get_tree().quit(0)
-		return
-	get_tree().change_scene_to_file("res://Scenes/Levels/RomResourceGenerator.tscn")
 
 func check_for_rom() -> void:
 	rom_path = ""

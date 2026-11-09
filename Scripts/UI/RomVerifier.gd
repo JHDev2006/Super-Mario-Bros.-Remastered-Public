@@ -78,7 +78,7 @@ func handle_rom(path: String) -> bool:
 	verified()
 	return true
 
-static func copy_rom(file_path: String) -> void:
+func copy_rom(file_path: String) -> void:
 	DirAccess.copy_absolute(file_path, Global.ROM_PATH)
 
 static func get_hash(file_path: String) -> String:
