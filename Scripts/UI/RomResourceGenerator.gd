@@ -23,6 +23,10 @@ func _exit_tree() -> void:
 func done() -> void:
 	if not Settings.file.visuals.resource_packs.has(Global.ROM_PACK_NAME):
 		Settings.file.visuals.resource_packs.insert(0, Global.ROM_PACK_NAME)
+	if Global.prepare_mode:
+		print("progress 1.0 Done")
+		get_tree().quit(0)
+		return
 		
 	await get_tree().create_timer(0.5).timeout
 	Global.transition_to_scene("res://Scenes/Levels/TitleScreen.tscn")
@@ -67,6 +71,8 @@ func generate_resource_pack() -> void:
 		
 			sprites_handled += 1 
 			progress_bar.value = sprites_handled
+			if Global.prepare_mode:
+				print("progress %.2f Building graphics from your ROM" % (sprites_handled / float(sprite_list.size())))
 			await get_tree().process_frame
 	
 	if sprites_handled < sprite_list.size():
@@ -74,6 +80,8 @@ func generate_resource_pack() -> void:
 		## uncomment this once the initial jsons are fully setup so that the game won't
 		## boot if the resource pack loading is borked
 		OS.move_to_trash(Global.ROM_ASSETS_PATH)
+		if Global.prepare_mode:
+			get_tree().quit(1)
 	else:
 		done()
 
