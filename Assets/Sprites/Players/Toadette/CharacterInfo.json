@@ -27,6 +27,12 @@
 			"Small": {},
 			"Big": {},
 			"Fire": {}
+		},
+		"POWER_PARAMETERS": {
+			"Default": {},
+			"Small": {},
+			"Big": {},
+			"Fire": {}
 		}
 	}
 }
