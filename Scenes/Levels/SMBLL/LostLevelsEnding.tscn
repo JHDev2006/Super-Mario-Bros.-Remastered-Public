@@ -384,6 +384,7 @@ metadata/_custom_type_script = "uid://cmvlgsjmsk0v5"
 [node name="LostLevelsEnding" type="Node" unique_id=1711187041]
 script = ExtResource("1_qmhaw")
 music = ExtResource("2_k7rel")
+room_type = 6
 theme = "Castle"
 campaign = "SMBLL"
 world_id = 8

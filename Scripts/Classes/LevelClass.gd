@@ -11,8 +11,8 @@ static var extra_music: JSON = null
 
 const THEME_IDXS := ["Overworld", "Underground", "Desert", "Snow", "Jungle", "Beach", "Garden", "Mountain", "Skyland", "Autumn", "Pipeland", "Space", "Underwater", "Volcano", "GhostHouse", "Castle", "CastleWater", "Airship", "Bonus"]
 
-enum RoomType{NORMAL, BONUS_ROOM, COIN_HEAVEN, PIPE_CUTSCENE, TITLE_SCREEN, SublevelExit}
-const ROOM_STRINGS := ["MainRoom", "BonusRoom", "CoinHeaven", "PipeCutscene", "TitleScreen", "SublevelExit"]
+enum RoomType{NORMAL, BONUS_ROOM, COIN_HEAVEN, PIPE_CUTSCENE, TITLE_SCREEN, SublevelExit, SPECIAL}
+const ROOM_STRINGS := ["MainRoom", "BonusRoom", "CoinHeaven", "PipeCutscene", "TitleScreen", "SublevelExit", "Special"]
 
 static var WORLD_COUNTS := {
 	"SMB1": 8,
